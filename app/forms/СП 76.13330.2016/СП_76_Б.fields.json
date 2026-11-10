@@ -1,0 +1,177 @@
+[
+  {
+    "key": "t0_r0_c0",
+    "label": "(город, населённый пункт)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r2_c0",
+    "label": "(заказчик)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r4_c0",
+    "label": "(объект)",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(Ф.И.О., должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c1",
+    "label": "от",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r3_c0",
+    "label": "(Ф.И.О., должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "1. В соответствии с договором №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c6",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c8",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r1_c1",
+    "label": "заключённым между",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r2_c1",
+    "label": "и",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r4_c0",
+    "label": "(наименование объекта, электроустановки)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r6_c0",
+    "label": "установила следующее:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "2. Работы выполнены на следующих электроустановках",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c3",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c5",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c7",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c2",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c0",
+    "label": "4. Результаты пусконаладочных работ приведены в представленной технической документации в составе:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c0",
+    "label": "6. Дополнительные замечания:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r1_c2",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r1_c6",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

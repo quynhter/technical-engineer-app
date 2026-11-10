@@ -1,0 +1,124 @@
+[
+  {
+    "key": "date_0_3",
+    "label": "День подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "day_2digits",
+    "required": true
+  },
+  {
+    "key": "date_0_5",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "month_genitive_ru",
+    "required": true
+  },
+  {
+    "key": "date_0_7",
+    "label": "Год подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "year_4digits",
+    "required": true
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "Генподрядчик (заказчик)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r3_c0",
+    "label": "(Ф.И.О. должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r5_c1",
+    "label": "от монтажной организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r6_c0",
+    "label": "(Ф.И.О. должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(наименование объекта, обозначение рабочей документации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c2",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c2",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c1",
+    "label": "Перечень прилагаемой к акту документации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r1_c0",
+    "label": "кументацией. Смонтированные приборы, средства автоматизации и вспомогательная аппаратура перечислены в ведомости смонтированных технических средств систем автоматизации, прилагаемой к настоящему акту.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

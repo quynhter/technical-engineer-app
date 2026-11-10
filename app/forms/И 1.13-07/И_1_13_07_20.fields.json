@@ -1,0 +1,176 @@
+[
+  {
+    "key": "city",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "installer_org",
+    "label": "Электромонтажная организация",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.installer.full_name"
+  },
+  {
+    "key": "customer_org",
+    "label": "Заказчик",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "division",
+    "label": "Подразделение",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "object_name",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "site",
+    "label": "Участок",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "day",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "month",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "year",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "ПОД ОПОРУ ВЛ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "Опора №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c3",
+    "label": "Опора № , наименование опоры",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c5",
+    "label": "Опора № , наименование опоры , тип",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "customer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "builder",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "installer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t6_r0_c2",
+    "label": "1. Фундамент выполнен согласно проекту по чертежам",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r2_c2",
+    "label": "2. Согласно предъявленным протоколам марка бетона составляет",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c0",
+    "label": "(материал покрытия, число слоев)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c2",
+    "label": "3. Анкерные болты (закладные части) установлены по чертежам №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c2",
+    "label": "5. Отступления от проекта (существо отступления)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r2_c1",
+    "label": "согласованы с заказчиком в лице (должность, фамилия, и., о.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r4_c1",
+    "label": "и проектной организацией в лице (должность, фамилия, и., о.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r0_c0",
+    "label": "(номера чертежей)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

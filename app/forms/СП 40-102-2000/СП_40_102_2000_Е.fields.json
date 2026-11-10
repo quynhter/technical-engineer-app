@@ -1,0 +1,142 @@
+[
+  {
+    "key": "t0_r0_c1",
+    "label": "наименование организации получателя",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "водопровод, канализация и др.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c1",
+    "label": "давлением",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "организация заказчика, должность, Ф.И.О.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r2_c0",
+    "label": "организация подрядчика, должность, Ф.И.О.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r4_c0",
+    "label": "эксплуатирующая организация, должность, Ф.И.О.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "провели входной контроль партии труб (соединительных деталей) №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c1",
+    "label": "диаметром",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r2_c1",
+    "label": "наименование фирмы, дата",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r4_c1",
+    "label": "из полимера типа",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c1",
+    "label": "шт., бухт или барабанов (ящиков соединительных деталей)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r2_c1",
+    "label": "российский или зарубежный стандарт",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c1",
+    "label": "Количество труб Ду",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c3",
+    "label": "мм, длиной",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c5",
+    "label": "(маркировка по стандарту)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r2_c1",
+    "label": "Количество деталей Ду",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r2_c3",
+    "label": "мм",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r2_c5",
+    "label": "(маркировка по стандарту)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c1",
+    "label": "Данные о сопроводительном сертификате",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c1",
+    "label": "Дата",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

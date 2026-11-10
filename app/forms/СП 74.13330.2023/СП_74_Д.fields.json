@@ -1,0 +1,103 @@
+[
+  {
+    "key": "date_0_3",
+    "label": "День подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "day_2digits",
+    "required": true
+  },
+  {
+    "key": "date_0_5",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "month_genitive_ru",
+    "required": true
+  },
+  {
+    "key": "date_0_7",
+    "label": "Год подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "year_4digits",
+    "required": true
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "г.",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(фамилия, имя, отчество, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(фамилия, имя, отчество, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "(фамилия, имя, отчество, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(наименование строительно-монтажной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c1",
+    "label": "участке от камеры (пикета, шахты) №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c3",
+    "label": "до камеры (пикета, шахты) №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r2_c0",
+    "label": "(наименование трубопровода)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r4_c1",
+    "label": "протяженностью",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r5_c1",
+    "label": "(наименование среды, давление, расход)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r8_c0",
+    "label": "(наименование проектной организации, номера чертежей и дата их составления)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

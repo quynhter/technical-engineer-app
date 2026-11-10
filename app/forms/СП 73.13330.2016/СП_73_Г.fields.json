@@ -1,0 +1,86 @@
+[
+  {
+    "key": "t0_r0_c0",
+    "label": "(наименование системы)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "(наименование объекта, здания, цеха)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r2_c3",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c5",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c7",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(наименование организации, должность, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(наименование организации, должность, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(наименование организации, должность, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c1",
+    "label": "(наименование проектной организации и номера чертежей)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c2",
+    "label": "проливом воды путем одновременного открытия",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r2_c1",
+    "label": "санитарных приборов, подключенных к проверяемому участку в течение",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

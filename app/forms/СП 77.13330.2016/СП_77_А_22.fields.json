@@ -1,0 +1,135 @@
+[
+  {
+    "key": "t0_r1_c0",
+    "label": "Приложение А.22",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r2_c0",
+    "label": "Приложение А.22",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c3",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c5",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t2_r0_c3",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c5",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c7",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(наименование пусконаладочной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(представитель заказчика, Ф.И.О., должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r2_c0",
+    "label": "(представители пусконаладочной организации, Ф.И.О., должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "(наименование систем автоматизации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c1",
+    "label": "(времени)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c0",
+    "label": "(наименование нормативного документа, проекта)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r1_c2",
+    "label": "Пусконаладочные работы выполнены с оценкой",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r0_c1",
+    "label": "1.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r1_c1",
+    "label": "2.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r2_c1",
+    "label": "3.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

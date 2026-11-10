@@ -1,0 +1,182 @@
+[
+  {
+    "key": "city",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "installer_org",
+    "label": "Электромонтажная организация",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.installer.full_name"
+  },
+  {
+    "key": "customer_org",
+    "label": "Заказчик",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "division",
+    "label": "Подразделение",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "object_name",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "site",
+    "label": "Участок",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "day",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "month",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "year",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "rows_1",
+    "label": "Номер барабана / Марка кабеля, сечение, мм², напряжение, кВ / Длина кабеля, м / Завод-изготовитель / Дата выпуска / Состояние / барабана и обшивки / Состояние / наружных витков / Состояние / герметизиру-ющих заделок / Сопротивление изоляции, МОм / Заключение",
+    "kind": "table",
+    "value": null,
+    "required": true,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Номер барабана",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Марка кабеля, сечение, мм², напряжение, кВ",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Длина кабеля, м",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Завод-изготовитель",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Дата выпуска",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Состояние / барабана и обшивки",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Состояние / наружных витков",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": true
+      },
+      {
+        "key": "c8",
+        "label": "Состояние / герметизиру-ющих заделок",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": true
+      },
+      {
+        "key": "c9",
+        "label": "Сопротивление изоляции, МОм",
+        "kind": "reference",
+        "source": "item.c9",
+        "required": true
+      },
+      {
+        "key": "c10",
+        "label": "Заключение",
+        "kind": "reference",
+        "source": "item.c10",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "Сопротивление изоляции замерено мегаомметром на напряжение 2500 В типа",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r1_c1",
+    "label": "заводской №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c3",
+    "label": "произвел / (ФИО)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.inspector.fio"
+  },
+  {
+    "key": "t3_r1_c9",
+    "label": "произвел / / (мастер) / (ФИО)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.foreman.fio"
+  },
+  {
+    "key": "t4_r0_c3",
+    "label": "Представитель заказчика / (ФИО)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.customer.fio"
+  }
+]

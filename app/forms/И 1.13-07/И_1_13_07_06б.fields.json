@@ -1,0 +1,112 @@
+[
+  {
+    "key": "city",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "installer_org",
+    "label": "Электромонтажная организация",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.installer.full_name"
+  },
+  {
+    "key": "customer_org",
+    "label": "Заказчик",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "division",
+    "label": "Подразделение",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "object_name",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "site",
+    "label": "Участок",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "day",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "month",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "year",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "commissioner",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "installer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "Выполненные работы, характеристики и физические объёмы",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "Проектная организация",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c3",
+    "label": "Сдали / ФИО",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.installer.fio"
+  },
+  {
+    "key": "t5_r0_c8",
+    "label": "Сдали / Приняли / ФИО",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.commissioner.fio"
+  }
+]

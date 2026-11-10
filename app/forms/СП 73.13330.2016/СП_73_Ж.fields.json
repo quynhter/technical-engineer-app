@@ -1,0 +1,114 @@
+[
+  {
+    "key": "t0_r0_c1",
+    "label": "Адрес объекта",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r1_c1",
+    "label": "(наименование организации,",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r3_c0",
+    "label": "должность, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r5_c1",
+    "label": "Наименование системы",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r6_c1",
+    "label": "(тип, модель, производитель)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "(230 В±10%)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r4_c1",
+    "label": "(не менее 12ºС)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r6_c1",
+    "label": "(отклонение от заводских параметров не более ±5%)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "Используемый хладон",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "Количество дозаправленного хладагента, кг",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c1",
+    "label": "Пролив конденсата",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c1",
+    "label": "Наличие дополнительных агрегатов и опций",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c0",
+    "label": "(дренажная помпа, козырек, защитная сетка, комплект зимнего старта, прочее)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c1",
+    "label": "Заключение",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c1",
+    "label": "(подпись, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c1",
+    "label": "(подпись, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

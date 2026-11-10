@@ -1,0 +1,219 @@
+[
+  {
+    "key": "p86_1",
+    "label": "Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p86_2",
+    "label": "Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p86_3",
+    "label": "Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r1_c0",
+    "label": "Приложение А.23",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r2_c0",
+    "label": "Приложение А.23",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c3",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c5",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t2_r0_c3",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c5",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c7",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "(наименование предприятия заказчика)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c1",
+    "label": "приказом от «",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c3",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c5",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c7",
+    "label": "г. №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "(должность, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c1",
+    "label": "(должность, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r2_c1",
+    "label": "(должность, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c0",
+    "label": "(наименование систем или технических средств)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c1",
+    "label": "(обозначение проекта, дата разработки)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r4_c1",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r6_c1",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c1",
+    "label": "с «",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c3",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c5",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c7",
+    "label": "г. по «",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c9",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c11",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r0_c0",
+    "label": "Перечень прилагаемой к акту документации:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

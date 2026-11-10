@@ -1,0 +1,190 @@
+[
+  {
+    "key": "city",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "installer_org",
+    "label": "Электромонтажная организация",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.installer.full_name"
+  },
+  {
+    "key": "customer_org",
+    "label": "Заказчик",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "division",
+    "label": "Подразделение",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "object_name",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "site",
+    "label": "Участок",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "day",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "month",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "year",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "installer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "customer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "general_contractor",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t4_r0_c1",
+    "label": "выполненных (наименование генподрядной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "(траншеи, каналы, туннели, блоки кабельной канализации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c0",
+    "label": "(наименование организации, № чертежей рабочей документации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c0",
+    "label": "(перечислить)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c1",
+    "label": "согласованы (наименование проектной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r4_c1",
+    "label": "4. Разбивка трассы траншеи (каналов, туннелей) (выполнена, не выполнена)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r7_c1",
+    "label": "выполнена из",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r7_c3",
+    "label": "выполнена из толщиной слоя",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r8_c1",
+    "label": "трубах (материал)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r10_c1",
+    "label": "глубине",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r10_c3",
+    "label": "глубине мм, соединение и окраска труб (способ выполнения)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c0",
+    "label": "Обрамление и перекрытия кабельных каналов",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r0_c1",
+    "label": "9. Особые замечания",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r1_c0",
+    "label": "8. Дренаж выполнен по проекту.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

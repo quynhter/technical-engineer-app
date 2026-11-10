@@ -1,0 +1,205 @@
+[
+  {
+    "key": "p120_1",
+    "label": "2. Предъявленное к приемке газооборудование считать принятым с \"…\"… 20… г. для проведения комплексного опробования (пусконаладочных работ).",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p120_2",
+    "label": "2. Предъявленное к приемке газооборудование считать принятым с \"…\"… 20… г. для проведения комплексного опробования (пусконаладочных работ).",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p120_3",
+    "label": "2. Предъявленное к приемке газооборудование считать принятым с \"…\"… 20… г. для проведения комплексного опробования (пусконаладочных работ).",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r0_c0",
+    "label": "(наименование и адрес объекта)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "г.",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r0_c4",
+    "label": "«",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c6",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c8",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r1_c0",
+    "label": "(фамилия, имя, отчество, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r4_c1",
+    "label": "(фамилия, имя, отчество, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r6_c1",
+    "label": "(фамилия, имя, отчество, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r8_c1",
+    "label": "(фамилия, имя, отчество, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r3_c0",
+    "label": "(тип, количество, техническая характеристика)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r5_c1",
+    "label": ",",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r6_c0",
+    "label": "(тип автоматики)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r9_c0",
+    "label": "(наименование объекта)",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t4_r0_c1",
+    "label": "2. Проект N",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c3",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c1",
+    "label": "(месяц, год)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c3",
+    "label": "(месяц, год)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r1_c0",
+    "label": "(наименование пусконаладочной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c3",
+    "label": "от «",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c5",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c7",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c2",
+    "label": "«",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c4",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c0",
+    "label": "(виды испытаний)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

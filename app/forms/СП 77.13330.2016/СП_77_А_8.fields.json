@@ -1,0 +1,265 @@
+[
+  {
+    "key": "p36_1",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p36_2",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p36_3",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p83_4",
+    "label": "в начале испытания … °C",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p84_5",
+    "label": "в конце испытания … °C",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p151_6",
+    "label": "Установлено … заглушек. Снято после испытаний … заглушек.Согласно приведенным результатам испытаний и осмотру монтаж трубных проводок выполнен в соответствии с рабочей документацией и СП 77.13330",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p151_7",
+    "label": "Установлено … заглушек. Снято после испытаний … заглушек.Согласно приведенным результатам испытаний и осмотру монтаж трубных проводок выполнен в соответствии с рабочей документацией и СП 77.13330",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "x_0_16",
+    "label": "Проект N",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "rows_0_21",
+    "label": "Таблица 1",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Проект N {{ x_0_16 }} / Данные контрольных приборов / N п/п",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Наименование приборов",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Тип",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "N прибора",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Шкала",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Класс",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Примечание",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": false
+      }
+    ]
+  },
+  {
+    "key": "rows_0_32",
+    "label": "Таблица 1",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Графа 1",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Графа 2",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Графа 3",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Графа 4",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Графа 5",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Графа 6",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Графа 7",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": true
+      },
+      {
+        "key": "c8",
+        "label": "Графа 8",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": true
+      },
+      {
+        "key": "c9",
+        "label": "Графа 9",
+        "kind": "reference",
+        "source": "item.c9",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "t0_r6_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t0_r7_c1",
+    "label": "(наименование)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r9_c1",
+    "label": "Представитель организации-заказчика",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r10_c0",
+    "label": "(наименование организации, должность, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r12_c1",
+    "label": "Представитель монтирующей организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r13_c0",
+    "label": "(наименование организации, должность, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r15_c1",
+    "label": "Наименование проектной организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r15_c2",
+    "label": "{{ t0_r15_c1 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r24_c1",
+    "label": "Испытательная среда",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r37_c1",
+    "label": "(подпись, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r39_c1",
+    "label": "(подпись, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

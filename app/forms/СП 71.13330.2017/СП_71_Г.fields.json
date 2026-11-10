@@ -1,0 +1,128 @@
+[
+  {
+    "key": "t0_r0_c0",
+    "label": "(дата составления документа)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "(наименование здания, сооружения)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c1",
+    "label": "в осях:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c4",
+    "label": "на отм.:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "(район застройки, квартал, улица, N дома и корпуса)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "- авторского надзора",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "- технического надзора заказчика",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "- генеральной подрядной организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c0",
+    "label": "- субподрядной организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c1",
+    "label": "(наименование строительно-монтажной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c0",
+    "label": "(наименование работ)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r0_c0",
+    "label": "(стандарт, проект серии, наименование проектной организации, номера чертежей и дата их составления)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r2_c1",
+    "label": "3 Работы выполнены в период с",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r2_c3",
+    "label": "по",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t11_r0_c3",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t11_r2_c3",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t11_r4_c3",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t11_r6_c3",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

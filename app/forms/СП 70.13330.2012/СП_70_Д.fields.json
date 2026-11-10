@@ -1,0 +1,279 @@
+[
+  {
+    "key": "p12_1",
+    "label": "на болтах с контролируемым натяжением №…",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "Наименование организации, выполняющей работы",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "Наименование объекта строительства",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "Должность, фамилия, инициалы и подпись лица, ответственного за выполнение работ и ведение журнала",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "Организация, разработавшая проектную документацию, чертежи КМ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c1",
+    "label": "Шифр проекта",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "t3_r1_c3",
+    "label": "Диаметры и классы прочности болтов",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r2_c1",
+    "label": "Организация, разработавшая проект производства работ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r3_c1",
+    "label": "Шифр проекта",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "t3_r4_c1",
+    "label": "Предприятие, разработавшее чертежи КМД и изготовившее конструкции",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r5_c1",
+    "label": "Шифр заказа",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r5_c3",
+    "label": "Диаметры и классы прочности болтов",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "Заказчик (организация), должность, фамилия, инициалы и подпись руководителя (представителя) технического надзора",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c2",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c2",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "rows_7_2",
+    "label": "и лиц, ответственных за выполнение работ и ведение журнала",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Фамилия, имя, отчество",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Присвоенный разряд",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Присвоенный номер или знак (клеймо)",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Квалификационное удостоверение / Дата выдачи",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Примечание / Кем выдано",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": false
+      },
+      {
+        "key": "c6",
+        "label": "Графа 6",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "rows_8_3",
+    "label": "р или знак (клеймо)Квалификационное удостоверениеПримечаниеДата выдачиКем выдано{%tr for item in rows_7_2 %}{{ item.c1 }}{{ item.c2 }}{{ item.c3 }}{{ item.c4 }}{{ item.c5 }}{{ item.c6 }}{%tr endfor %}",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Дата",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Номер чертежа КМД и наименование узла (стыка) в соединении, ряд, ось, отметка",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Постановка болтов / Число постав-ленных болтов в соеди-нении, шт.",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Результаты контроля / Номер серти-фиката на болты",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Способ обработки контактных поверхностей",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Расчётный момент закручивания, кгс*м, угол поворота, град.",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Качество обработки контактных поверхно-стей",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": true
+      },
+      {
+        "key": "c8",
+        "label": "Число прове-ренных болтов, шт",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": true
+      },
+      {
+        "key": "c9",
+        "label": "Результаты проверки момента закручивания, кгс*м, угла поворота, град.",
+        "kind": "reference",
+        "source": "item.c9",
+        "required": true
+      },
+      {
+        "key": "c10",
+        "label": "Номер клейма, подпись бригадира",
+        "kind": "reference",
+        "source": "item.c10",
+        "required": false
+      },
+      {
+        "key": "c11",
+        "label": "Подпись лица, ответственного за постановку болтов",
+        "kind": "reference",
+        "source": "item.c11",
+        "required": false
+      },
+      {
+        "key": "c12",
+        "label": "Подпись представителя заказчика",
+        "kind": "reference",
+        "source": "item.c12",
+        "required": false
+      }
+    ]
+  }
+]

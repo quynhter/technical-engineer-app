@@ -1,0 +1,133 @@
+[
+  {
+    "key": "date_0_3",
+    "label": "День подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "day_2digits",
+    "required": true
+  },
+  {
+    "key": "date_0_5",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "month_genitive_ru",
+    "required": true
+  },
+  {
+    "key": "date_0_7",
+    "label": "Год подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "year_4digits",
+    "required": true
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "(наименование генподрядчика, заказчика)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c1",
+    "label": "(должность, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r4_c1",
+    "label": "(наименование монтажной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r6_c1",
+    "label": "(должность, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(наименование объекта, стройки)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "Проектная организация",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c1",
+    "label": "Проект №",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "rows_5_2",
+    "label": "Переданы в производство работ",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "№ п/п",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Наименование и номер чертежа",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Количество экз.",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Примечание",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": false
+      }
+    ]
+  },
+  {
+    "key": "t6_r0_c1",
+    "label": "Рабочую документацию сдал:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c1",
+    "label": "Рабочую документацию принял:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

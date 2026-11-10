@@ -1,0 +1,156 @@
+[
+  {
+    "key": "p9_1",
+    "label": "освидетельствования и приёмки скважины сваи №…",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "Наименование строительной организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r1_c1",
+    "label": "Наименование строительного объекта",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(представитель застройщика (технического заказчика, эксплуатирующей организации или регионального оператора) по вопросам строительного контроля)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c0",
+    "label": "(представитель лица, осуществляющего строительство, по вопросам строительного контроля (специалист по организации строительства))",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r4_c0",
+    "label": "(представитель лица, выполнившего работы, подлежащие освидетельствованию)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c2",
+    "label": "Отметка низа скважины, м",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c2",
+    "label": "Отметка устья скважины, м",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r2_c2",
+    "label": "Абсолютная отметка кровли",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r3_c2",
+    "label": "и мощности слоя грунта,",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r4_c2",
+    "label": "Диаметр и глубина скважины, м",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r5_c2",
+    "label": "Отклонения скважины",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r7_c1",
+    "label": "Буровой шлам удален из скважины с применением (способ и время)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r9_c1",
+    "label": "на строительной площадке и установили:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r1_c1",
+    "label": "(наименование работ и конструкций)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r3_c2",
+    "label": "Начать бетонирование не позднее",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r3_c4",
+    "label": "ч. «",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r3_c6",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r3_c8",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c0",
+    "label": "Представитель лица, осуществляющего строительство, по вопросам строительного контроля (специалист по организации строительства)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r3_c0",
+    "label": "Представитель лица, выполнившего работы, подлежащие освидетельствованию",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r5_c0",
+    "label": "производство последующих работ по устройству (монтажу){{ t4_r1_c1 }}(наименование работ и конструкций)2.Начать бетонирование не позднее{{ t4_r3_c2 }}ч. «{{ t4_r3_c4 }}»{{ t4_r3_c6 }}20{{ t4_r3_c8 }}г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

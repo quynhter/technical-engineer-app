@@ -1,0 +1,191 @@
+[
+  {
+    "key": "date_6_3",
+    "label": "День подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "day_2digits",
+    "required": true
+  },
+  {
+    "key": "date_6_5",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "month_genitive_ru",
+    "required": true
+  },
+  {
+    "key": "date_6_7",
+    "label": "Год подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "year_4digits",
+    "required": true
+  },
+  {
+    "key": "rows_0_22",
+    "label": "Таблица 1",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "№ п/п",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Наименование прибора",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Тип",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "№ прибора",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Шкала",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Класс",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Примечание",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": false
+      }
+    ]
+  },
+  {
+    "key": "rows_0_33",
+    "label": "Таблица 1",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Графа 1",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Графа 2",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Графа 3",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Графа 4",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "между проводами (жилами)",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "относи-тельно земли",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Графа 7",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "t0_r6_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t0_r8_c1",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t0_r10_c1",
+    "label": "Заказчик",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r12_c1",
+    "label": "Монтажная организация",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r14_c1",
+    "label": "Проект №",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "t0_r39_c1",
+    "label": "Заказчика",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r41_c1",
+    "label": "Монтирующей организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

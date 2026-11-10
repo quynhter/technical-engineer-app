@@ -1,0 +1,25 @@
+[
+  {"key": "city", "label": "Город", "kind": "reference", "source": "project.city", "required": true},
+  {"key": "day", "kind": "reference", "source": "act.date_signed", "format": "day_2digits", "required": true},
+  {"key": "month", "kind": "reference", "source": "act.date_signed", "format": "month_genitive_ru", "required": true},
+  {"key": "year", "kind": "reference", "source": "act.date_signed", "format": "year_4digits", "required": true},
+  {"key": "object_name", "kind": "reference", "source": "object.name", "required": true},
+  {"key": "project_name", "kind": "reference", "source": "project.name", "required": true},
+  {"key": "companies", "kind": "table", "source": "companies", "fields": [
+    {"key": "role", "kind": "reference", "source": "item.role", "required": true},
+    {"key": "name", "kind": "reference", "source": "item.name", "required": true}
+  ]},
+  {
+    "key": "materials", "kind": "table", "source": "resources", "required": true,
+    "fields": [
+      {"key": "no", "kind": "reference", "source": "row.number"},
+      {"key": "spec_no", "kind": "reference", "source": "item.spec_num", "required": true},
+      {"key": "item_name", "kind": "reference", "source": "item.name", "required": true},
+      {"key": "item_type", "kind": "reference", "source": "item.type_mark"},
+      {"key": "serial_no", "kind": "reference", "source": "item.serial_num"},
+      {"key": "notes", "kind": "reference", "source": "item.note"}
+    ]
+  },
+  {"key": "recipient", "label": "Принял", "kind": "signatory", "role": "recipient", "presentation": "position_org_fio", "required": true},
+  {"key": "consignor", "label": "Сдал", "kind": "signatory", "role": "consignor", "presentation": "position_org_fio", "required": true}
+]

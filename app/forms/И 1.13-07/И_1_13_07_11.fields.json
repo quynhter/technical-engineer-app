@@ -1,0 +1,133 @@
+[
+  {
+    "key": "city",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "installer_org",
+    "label": "Электромонтажная организация",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.installer.full_name"
+  },
+  {
+    "key": "customer_org",
+    "label": "Заказчик",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "division",
+    "label": "Подразделение",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "object_name",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "site",
+    "label": "Участок",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "day",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "month",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "year",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(должность, фамилия, и.о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "installer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(должность, фамилия, и.о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "customer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t2_r2_c1",
+    "label": "произвела осмотр (материал)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r4_c0",
+    "label": "(место укладки)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c2",
+    "label": "1. Прокладка труб произведена по чертежам №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c0",
+    "label": "(наименование проектной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(при наличии отклонения указывается кем согласованы, № чертежа и дата согласования)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r2_c2",
+    "label": "3. Соединения труб выполнены",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r3_c1",
+    "label": "металлических труб обеспечен (чем)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

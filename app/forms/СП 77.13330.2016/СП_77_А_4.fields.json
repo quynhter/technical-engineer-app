@@ -1,0 +1,116 @@
+[
+  {
+    "key": "t0_r0_c1",
+    "label": "№ бухты барабана",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "Марка кабеля",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "Количество оптических волокон",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c2",
+    "label": "тип",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c2",
+    "label": "заводской №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r2_c2",
+    "label": "год выпуска",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "rows_4_5",
+    "label": "Прибор:тип{{ t3_r0_c2 }}заводской №{{ t3_r1_c2 }}год выпуска{{ t3_r2_c2 }}",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Длина ОК, М L",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Номер ОВ",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Паспортные данные (затухание ОВ, А, ДБ)",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Мощность излучения по индикатору, ДБ / Авх",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Результаты расчёта / Затухания А, ДБ / Авых",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Дата проверки / Коэффициент затухания α, ДБ/км",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Графа 7",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": true
+      },
+      {
+        "key": "c8",
+        "label": "Графа 8",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "t5_r0_c1",
+    "label": "(подпись, Ф.И.О. исполнителя)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

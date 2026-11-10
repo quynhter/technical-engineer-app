@@ -1,0 +1,82 @@
+[
+  {
+    "key": "date_0_3",
+    "label": "День подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "day_2digits",
+    "required": true
+  },
+  {
+    "key": "date_0_5",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "month_genitive_ru",
+    "required": true
+  },
+  {
+    "key": "date_0_7",
+    "label": "Год подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "year_4digits",
+    "required": true
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t1_r1_c1",
+    "label": "Проект",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c1",
+    "label": "(наименование заказчика)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "Недоделки, подлежащие устранению: строка 1",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r1_c0",
+    "label": "Недоделки, подлежащие устранению: строка 2",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "t2_r2_c0",
+    "label": "Недоделки, подлежащие устранению: строка 3",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "Представитель заказчика: должность и Ф.И.О.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

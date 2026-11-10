@@ -1,0 +1,278 @@
+[
+  {
+    "key": "date_t10_r1",
+    "label": "Дата повторного предъявления фундаментов",
+    "kind": "literal",
+    "required": true,
+    "value": null,
+    "value_type": "date",
+    "format": "date_ru"
+  },
+  {
+    "key": "city",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "installer_org",
+    "label": "Электромонтажная организация",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.installer.full_name"
+  },
+  {
+    "key": "customer_org",
+    "label": "Заказчик",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "division",
+    "label": "Подразделение",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "object_name",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "site",
+    "label": "Участок",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "day",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "month",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "year",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "rows_11",
+    "label": "Номер опоры / Наимено-вание и тип опоры / Тип фундам-мента / Завод-изгото-витель сборного ЖБ, паспорт, марка / № чертежа фунда-мента / Наличие гидро-изоляция, материал / Дата устрой-ства фунда-мента / Установка на опоры разре-шается, подпись произво-дителя работ / Приме-чание",
+    "kind": "table",
+    "value": null,
+    "required": true,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Номер опоры",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Наимено-вание и тип опоры",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Тип фундам-мента",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Завод-изгото-витель сборного ЖБ, паспорт, марка",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "№ чертежа фунда-мента",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Наличие гидро-изоляция, материал",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Дата устрой-ства фунда-мента",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": true
+      },
+      {
+        "key": "c8",
+        "label": "Установка на опоры разре-шается, подпись произво-дителя работ",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": false
+      },
+      {
+        "key": "c9",
+        "label": "Приме-чание",
+        "kind": "reference",
+        "source": "item.c9",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "ФУНДАМЕНТОВ ПОД УСТАНОВКУ ОПОР ВЛ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "customer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "builder",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(должность, фамилия, и., о.)",
+    "kind": "signatory",
+    "required": true,
+    "role": "installer",
+    "presentation": "position_org_fio"
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "рассмотрела техническую документацию на сборные железобетонные фундаменты ВЛ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c2",
+    "label": "1. Предъявлено под установку опор ВЛ законченные устройством (число)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c1",
+    "label": "Из них под опоры: промежуточные (число)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c3",
+    "label": "Из них под опоры: промежуточные , анкерные (число)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c1",
+    "label": "угловые (число)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r2_c3",
+    "label": "угловые , другие (число)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c0",
+    "label": "(наименование проектной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r2_c1",
+    "label": "по чертежам (наименование и номера чертежей)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r0_c2",
+    "label": "4. Отступления от проекта (существо отступления)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r2_c1",
+    "label": "согласованы с заказчиком в лице (должность, фамилия, и., о.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r4_c1",
+    "label": "и проектной организацией в лице (должность, фамилия, и., о.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r6_c2",
+    "label": "5. Сборные железобетонные фундаменты для опор (номера опор)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r8_c1",
+    "label": "комиссией не приняты по причине (указать причину)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t10_r0_c0",
+    "label": "Срок переделки (доработки) отбракованных фундаментов и повторного их предъявления",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

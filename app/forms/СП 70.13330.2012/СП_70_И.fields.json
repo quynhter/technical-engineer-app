@@ -1,0 +1,201 @@
+[
+  {
+    "key": "date_0_4",
+    "label": "День подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "day_2digits",
+    "required": true
+  },
+  {
+    "key": "date_0_6",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "month_genitive_ru",
+    "required": true
+  },
+  {
+    "key": "date_0_8",
+    "label": "Год подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "year_4digits",
+    "required": true
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "г.",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(наименование организации-заказчика, назначившей комиссию)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c2",
+    "label": "«",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c4",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c9",
+    "label": "№",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(фамилия, инициалы, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(фамилия, инициалы, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "(фамилия, инициалы, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c0",
+    "label": "(наименование организации и ее ведомственная подчиненность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c0",
+    "label": "(наименование здания, сооружения)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c0",
+    "label": "(наименование объекта)",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t9_r0_c0",
+    "label": "(шифр проекта)",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "t9_r2_c0",
+    "label": "(наименование проектной организации и ее ведомственная подчиненность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t10_r0_c0",
+    "label": "(виды работ)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t11_r0_c0",
+    "label": "(наименование организации и перечень видов работ)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t12_r0_c1",
+    "label": "(месяц, год)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t12_r0_c4",
+    "label": "(месяц, год)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t13_r0_c0",
+    "label": "(шифр проекта, наименование организации, ведомственная подчиненность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t13_r2_c1",
+    "label": "(дата начала и окончания испытания)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t14_r0_c0",
+    "label": "(указать результаты испытаний)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t15_r0_c0",
+    "label": "(наименование здания, сооружения)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t16_r0_c1",
+    "label": "1",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t17_r0_c1",
+    "label": "2",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t19_r0_c1",
+    "label": "Члены комиссии",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

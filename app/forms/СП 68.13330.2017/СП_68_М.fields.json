@@ -1,0 +1,236 @@
+[
+  {
+    "key": "date_0_2",
+    "label": "День подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "day_2digits",
+    "required": true
+  },
+  {
+    "key": "date_0_4",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "month_genitive_ru",
+    "required": true
+  },
+  {
+    "key": "date_0_6",
+    "label": "Год подписания",
+    "kind": "reference",
+    "source": "act.date_signed",
+    "format": "year_4digits",
+    "required": true
+  },
+  {
+    "key": "t0_r0_c0",
+    "label": "(место составления)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "(инициалы, фамилия, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c0",
+    "label": "[наименование организации - застройщика (технического заказчика)]",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "(инициалы, фамилия, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r2_c0",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r4_c1",
+    "label": "(инициалы, фамилия, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r6_c0",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r8_c1",
+    "label": "(инициалы, фамилия, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r10_c0",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r12_c1",
+    "label": "(инициалы, фамилия, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r14_c0",
+    "label": "(наименование организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r17_c0",
+    "label": "(инициалы, фамилия, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r20_c0",
+    "label": "(инициалы, фамилия, должность)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r22_c1",
+    "label": "1. Предъявлено к приёмке следующее оборудование:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r23_c0",
+    "label": "[перечень оборудования и его краткая техническая характеристика (при необходимости перечень указывается в приложении)]",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r25_c1",
+    "label": "(наименование здания, сооружения, цеха)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r27_c1",
+    "label": "(наименование предприятия, его очереди, пускового комплекса)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r29_c1",
+    "label": "2. Монтажные работы выполнены",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r30_c0",
+    "label": "(наименование монтажных организаций, их ведомственная подчинённость)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r32_c1",
+    "label": "3. Проектная документация разработана",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r33_c0",
+    "label": "(наименования проектных организаций, номера чертежей и даты их составления)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r35_c1",
+    "label": "(месяц и год)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r37_c1",
+    "label": "(месяц и год)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r40_c0",
+    "label": "(наименование испытаний)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c2",
+    "label": "«",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c4",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r1_c0",
+    "label": "с«{{ t3_r0_c2 }}»{{ t3_r0_c4 }}20{{ t3_r0_c6 }}г.для комплексного опробования.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r2_c0",
+    "label": "с«{{ t3_r0_c2 }}»{{ t3_r0_c4 }}20{{ t3_r0_c6 }}г.для комплексного опробования.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r2_c2",
+    "label": "{{ t4_r2_c0 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

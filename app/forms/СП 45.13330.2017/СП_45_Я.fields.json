@@ -1,0 +1,121 @@
+[
+  {
+    "key": "p9_1",
+    "label": "освидетельствования и приёмки сваи №…",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "Наименование строительной организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r1_c1",
+    "label": "Наименование строительного объекта",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "(представитель застройщика (технического заказчика, эксплуатирующей организации или регионального оператора) по вопросам строительного контроля)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c0",
+    "label": "(представитель лица, осуществляющего строительство, по вопросам строительного контроля (специалист по организации строительства))",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r4_c0",
+    "label": "(представитель лица, выполнившего работы, подлежащие освидетельствованию)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c1",
+    "label": "установили, что свая №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c2",
+    "label": "Работы по свае выполнены с отметки",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c2",
+    "label": "Скважина пробурена на глубину, м",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r2_c2",
+    "label": "Грунт в основании подошвы сваи",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r3_c2",
+    "label": "Скважина заполнена бетоном класса",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r4_c2",
+    "label": "Размеры сваи (диаметр, длина), м",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c2",
+    "label": "Акт освидетельствования и приемки скважины сваи №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r1_c2",
+    "label": "Акт освидетельствования арматурного каркаса сваи №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c0",
+    "label": "Представитель лица, осуществляющего строительство, по вопросам строительного контроля (специалист по организации строительства)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r3_c0",
+    "label": "Представитель лица, выполнившего работы, подлежащие освидетельствованию",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r5_c0",
+    "label": "r0_c2 }}2.Акт освидетельствования арматурного каркаса сваи №{{ t4_r1_c2 }}3.Документ о качестве на бентонит (полимерный порошок).4.Документ о качестве на арматуру.5.Ведомость контроля качества бетона.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

@@ -1,0 +1,226 @@
+[
+  {
+    "key": "t0_r5_c1",
+    "label": "Монтажная организация",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r6_c1",
+    "label": "Предприятие (заказчик)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r7_c1",
+    "label": "Цех (объект)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r8_c1",
+    "label": "Вид документации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r12_c2",
+    "label": "Свидетельство о монтаже",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r12_c3",
+    "label": "{{ t0_r12_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r13_c2",
+    "label": "Акт на обезжиривание труб, арматуры и соединений (для кислородопроводов)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r13_c3",
+    "label": "{{ t0_r13_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r14_c2",
+    "label": "Схема расположения сварных швов",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r14_c3",
+    "label": "{{ t0_r14_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r15_c2",
+    "label": "Журнал по сварке трубопроводов",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r15_c3",
+    "label": "{{ t0_r15_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r16_c2",
+    "label": "Заключение ВИК",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r16_c3",
+    "label": "{{ t0_r16_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r17_c2",
+    "label": "Заключение цветной дефектоскопии",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r17_c3",
+    "label": "{{ t0_r17_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r18_c2",
+    "label": "Заключение дефектоскопии ультразвуковым или радиографическим методом",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r18_c3",
+    "label": "{{ t0_r18_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r19_c2",
+    "label": "Список сварщиков, дефектоскопистов и сборщиков резьбовых соединений",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r19_c3",
+    "label": "{{ t0_r19_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r20_c2",
+    "label": "Копии удостоверений сварщиков",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r20_c3",
+    "label": "{{ t0_r20_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r21_c2",
+    "label": "Копии удостоверений дефектоскопистов, сборщиков резьбовых соединений",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r21_c3",
+    "label": "{{ t0_r21_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r22_c2",
+    "label": "Документация входного контроля на изделия и материалы для трубных проводок. Сертификаты",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r22_c3",
+    "label": "{{ t0_r22_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r23_c2",
+    "label": "Акт испытания трубных проводок на прочность и плотность",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r23_c3",
+    "label": "{{ t0_r23_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r24_c2",
+    "label": "Акт испытания трубных проводок на герметичность с определением падения давления за время испытания",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r24_c3",
+    "label": "{{ t0_r24_c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r26_c1",
+    "label": "Документацию сдал:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r28_c1",
+    "label": "Документацию принял:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

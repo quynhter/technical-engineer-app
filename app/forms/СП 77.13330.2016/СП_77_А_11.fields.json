@@ -1,0 +1,100 @@
+[
+  {
+    "key": "t0_r3_c1",
+    "label": "Свидетельство №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r5_c0",
+    "label": "(наименование и месторасположение объекта, отделение, корпус)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r7_c0",
+    "label": "(назначение и категория трубопровода)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r9_c0",
+    "label": "(буквенно-цифровое обозначение)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r11_c0",
+    "label": "(рабочая среда, рабочее давление, рабочая температура)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r14_c1",
+    "label": "(наименование монтажной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r16_c1",
+    "label": "в полном соответствии с рабочей документацией, разработанной",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r17_c0",
+    "label": "(наименование проектной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r19_c1",
+    "label": "(номера чертежей расположения оборудования трубопроводов)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r22_c1",
+    "label": "Вид сварки, применявшейся при монтаже трубных проводок",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r23_c1",
+    "label": "Методы и объем контроля качества сварных соединений",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r30_c0",
+    "label": "Примечание - Пункты 3 и 4 заполняются при наличии указаний в рабочей документации или НТД о необходимости выполнения указанных работ",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "t0_r36_c2",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r38_c2",
+    "label": "(Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

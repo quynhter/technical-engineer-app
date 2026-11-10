@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ИТД · Рабочее пространство</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head>
+<body data-auth="pending">
+<a class="skip-link" href="#content">К содержимому</a><header class="topbar"><div class="topbar-inner"><button class="brand" data-action="objects" aria-label="Все объекты"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="brand-mark" width="44" height="44" aria-hidden="true" focusable="false" fill="none">
+  <g fill="currentColor">
+    <path fill-rule="evenodd" d="M32 18 A16 16 0 1 0 32 50 A16 16 0 1 0 32 18 Z M32 26 A8 8 0 1 1 32 42 A8 8 0 1 1 32 26 Z" />
+    <g transform="rotate(22.5 32 34)">
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" />
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" transform="rotate(45 32 34)" />
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" transform="rotate(90 32 34)" />
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" transform="rotate(135 32 34)" />
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" transform="rotate(180 32 34)" />
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" transform="rotate(225 32 34)" />
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" transform="rotate(270 32 34)" />
+      <rect x="29" y="13.5" width="6" height="5.5" rx="1" transform="rotate(315 32 34)" />
+    </g>
+  </g>
+  <g stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="32" y1="4" x2="32" y2="9" stroke-width="2.5" />
+    <circle cx="32" cy="13.5" r="3" fill="var(--teal)" stroke-width="0" />
+    <line x1="32" y1="14" x2="17" y2="57" stroke-width="3" />
+    <line x1="32" y1="14" x2="47" y2="57" stroke-width="3" />
+    <line x1="22.5" y1="34" x2="41.5" y2="34" stroke-width="2" />
+    <circle cx="32" cy="34" r="3.5" fill="var(--teal)" stroke-width="0" />
+    <circle cx="17" cy="57" r="1.5" fill="var(--teal)" stroke-width="0" />
+    <circle cx="47" cy="57" r="1.5" fill="var(--teal)" stroke-width="0" />
+  </g>
+</svg>и<span>тд</span></button><div class="header-tools"><button id="knowledge-open" data-open-knowledge class="secondary" type="button">База знаний</button><div class="accent-picker" role="group" aria-label="Акцентный цвет"><button class="swatch" data-accent="teal" aria-label="Зелёный акцент" title="Зелёный"></button><button class="swatch" data-accent="blue" aria-label="Синий акцент" title="Синий"></button><button class="swatch" data-accent="violet" aria-label="Фиолетовый акцент" title="Фиолетовый"></button><button class="swatch" data-accent="amber" aria-label="Янтарный акцент" title="Янтарный"></button><button class="swatch" data-accent="rose" aria-label="Розовый акцент" title="Розовый"></button></div><button id="theme-toggle" class="theme-toggle secondary" type="button">Тёмная тема</button><button id="session-resume" data-session-resume class="secondary" type="button" hidden>Войти</button><button id="account-open" class="secondary account-avatar" type="button" aria-label="Настройки профиля" aria-haspopup="dialog" hidden></button></div></div></header>
+<div class="context"><div><label class="sr" for="object-select">Выберите объект</label><select id="object-select"><option value="">Выберите объект или создайте новый</option></select></div><button id="new-object" class="secondary"> <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>Новый объект</button></div>
+<nav id="steps" aria-label="Разделы объекта"></nav>
+<main><aside id="sidebar"></aside><section class="main-content"><div id="notice" role="status" aria-live="polite"></div><div id="content"></div><footer id="actions"></footer></section></main>
+<footer id="workspace-status" aria-label="Состояние рабочего пространства"><div class="connection-tools"><span id="database-status" class="connection-status" data-state="checking" role="status"><i></i><span>Проверка базы…</span></span><details class="agent-help"><summary class="agent-status">ИИ-агент</summary><div class="agent-popover"><strong>Можно работать с ИИ-агентом</strong><p>Откройте эту папку в Codex или OpenCode и опишите задачу в чате. Агент и веб-интерфейс работают с одной базой.</p><p>Чтобы увидеть изменения после работы с агентом, обновите страницу.</p></div></details></div></footer>
+<dialog id="editor-dialog" class="workspace-dialog" aria-labelledby="editor-title"><div class="dialog-bar"><h2 id="editor-title" class="dialog-title">Ввод сведений</h2><div class="dialog-tools"><button type="button" class="secondary" data-session-resume hidden>Войти</button><button class="secondary" type="button" data-open-knowledge>База знаний</button><button class="secondary" type="button" data-dialog-close aria-label="Закрыть окно">✕</button></div></div><div id="editor-notice" role="status"></div><div id="editor-content" class="dialog-content"></div><div id="editor-footer" class="dialog-footer" hidden></div></dialog><div id="toast" role="status"></div><script src="/dialogs.js" defer></script><script src="/ui.js" defer></script><script src="/deletion.js" defer></script><script src="/tables.js" defer></script><script src="/manual.js" defer></script><script src="/act-fields.js" defer></script><script src="/journals.js" defer></script><script src="/resources.js" defer></script><script src="/ojr-ui.js" defer></script><script src="/configuration.js" defer></script><script src="/document-versions.js" defer></script><script src="/account.js" defer></script><script src="/app.js" defer></script>
+<dialog id="knowledge-dialog" class="workspace-dialog workspace-dialog--wide" aria-labelledby="knowledge-title"><div class="dialog-bar"><h2 id="knowledge-title" class="dialog-title">Нормативная база знаний</h2><button id="knowledge-close" data-dialog-close class="secondary" type="button" aria-label="Закрыть базу знаний">✕</button></div><div class="dialog-content"><div class="knowledge-controls"><div class="knowledge-tools"><select id="knowledge-corpus" aria-label="Нормативный набор"><option value="">Все наборы</option></select><button id="knowledge-search" type="button">Найти</button></div><textarea id="knowledge-query" rows="3" maxlength="500" aria-label="Поиск по нормативам" placeholder="Введите слова или номер пункта, например: сопротивление изоляции"></textarea></div><p id="knowledge-message" role="status" aria-live="polite"></p><div id="knowledge-results"></div></div></dialog><script src="/knowledge-markdown.js" defer></script><script src="/knowledge.js" defer></script>
+<dialog id="account-dialog" class="workspace-dialog workspace-dialog--settings" aria-labelledby="account-title">
+ <div class="dialog-bar"><h2 id="account-title" class="dialog-title">Настройки профиля</h2><button class="secondary" type="button" data-dialog-close aria-label="Закрыть настройки">✕</button></div>
+ <div class="dialog-content" id="account-content"></div>
+</dialog>
+<dialog id="prompt-dialog" class="workspace-dialog workspace-dialog--compact" aria-labelledby="prompt-title">
+ <div class="dialog-bar"><h2 id="prompt-title" class="dialog-title"></h2><button class="secondary" type="button" data-dialog-close aria-label="Закрыть окно">✕</button></div>
+ <div class="dialog-content" id="prompt-content"></div>
+</dialog>
+<dialog id="login-dialog" class="workspace-dialog workspace-dialog--compact" aria-labelledby="login-title">
+ <div class="dialog-bar"><h2 id="login-title" class="dialog-title">Вход в ИТД</h2><button id="login-cancel" type="button" class="secondary" data-dialog-close hidden aria-label="Вернуться к введённым данным">✕</button></div>
+ <div class="dialog-content">
+  <form id="login-form">
+   <p class="hint">Откройте выданную ссылку или вставьте код входа.</p>
+   <label class="field"><span>Код входа</span><input name="code" type="password" autocomplete="current-password" required autofocus></label>
+   <p class="account-message" role="status"></p>
+   <button type="submit">Войти</button>
+  </form>
+ </div>
+</dialog>
+</body></html>

@@ -1,0 +1,170 @@
+[
+  {
+    "key": "city",
+    "label": "Город",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "installer_org",
+    "label": "Электромонтажная организация",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.installer.full_name"
+  },
+  {
+    "key": "customer_org",
+    "label": "Заказчик",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "division",
+    "label": "Подразделение",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "object_name",
+    "label": "Объект",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "site",
+    "label": "Участок",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "day",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "month",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "year",
+    "label": "Дата подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "readiness_date",
+    "label": "Дата акта технической готовности",
+    "kind": "literal",
+    "required": true,
+    "value": null,
+    "value_type": "date",
+    "format": "date_ru"
+  },
+  {
+    "key": "rows_1",
+    "label": "№ п.п. / Наименование электрооборудования, комплекта / Тип, марка / Заводской номер или маркировка / Кол-во / Примечание",
+    "kind": "table",
+    "required": true,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "№ п.п.",
+        "kind": "reference",
+        "source": "row.number",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Наименование электрооборудования, комплекта",
+        "kind": "reference",
+        "source": "item.name",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Тип, марка",
+        "kind": "reference",
+        "source": "item.type_mark",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Заводской номер или маркировка",
+        "kind": "reference",
+        "source": "item.serial_num",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Кол-во",
+        "kind": "reference",
+        "source": "item.qty_fact",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Примечание",
+        "kind": "reference",
+        "source": "item.note",
+        "required": false
+      }
+    ],
+    "source": "resources"
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(должность)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.installer.position"
+  },
+  {
+    "key": "t2_r0_c4",
+    "label": "(расшифровка подписи)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.installer.fio"
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(должность)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.customer.position"
+  },
+  {
+    "key": "t3_r0_c4",
+    "label": "(расшифровка подписи)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.customer.fio"
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(должность)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.general_contractor.position"
+  },
+  {
+    "key": "t4_r0_c4",
+    "label": "(расшифровка подписи)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.general_contractor.fio"
+  }
+]

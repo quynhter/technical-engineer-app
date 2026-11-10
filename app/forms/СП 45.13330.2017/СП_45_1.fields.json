@@ -1,0 +1,165 @@
+[
+  {
+    "key": "t0_r0_c1",
+    "label": "Наименование объекта",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t0_r2_c1",
+    "label": "Адрес объекта",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r4_c1",
+    "label": "Наименование строительной организации",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "Начат «",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c3",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c5",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c1",
+    "label": "Окончен «",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c3",
+    "label": "»",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r2_c5",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "rows_2_3",
+    "label": "Начат «{{ t1_r0_c1 }}»{{ t1_r0_c3 }}20{{ t1_r0_c5 }}г.Окончен «{{ t1_r2_c1 }}»{{ t1_r2_c3 }}20{{ t1_r2_c5 }}г.",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "№ п/п",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Время проб отбора / Дата",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Место отбора пробы / Часы",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Вид работы при отборе пробы",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Глубина отбора пробы",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Параметры раствора",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Примечания / Вязкость, с",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": false
+      },
+      {
+        "key": "c8",
+        "label": "Водоотделение, %",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": true
+      },
+      {
+        "key": "c9",
+        "label": "Стабильность, г/см³",
+        "kind": "reference",
+        "source": "item.c9",
+        "required": true
+      },
+      {
+        "key": "c10",
+        "label": "Содержание песка, %",
+        "kind": "reference",
+        "source": "item.c10",
+        "required": true
+      },
+      {
+        "key": "c11",
+        "label": "Водоотдача, см³ за 30 мин",
+        "kind": "reference",
+        "source": "item.c11",
+        "required": true
+      },
+      {
+        "key": "c12",
+        "label": "Плотность, г/см³",
+        "kind": "reference",
+        "source": "item.c12",
+        "required": true
+      },
+      {
+        "key": "c13",
+        "label": "Графа 13",
+        "kind": "reference",
+        "source": "item.c13",
+        "required": true
+      }
+    ]
+  }
+]

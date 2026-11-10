@@ -1,0 +1,415 @@
+[
+  {
+    "key": "object_name",
+    "label": "Наименование объекта",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "object_address",
+    "label": "Почтовый или строительный адрес объекта",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "customer_name",
+    "label": "customer: наименование",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.customer.full_name"
+  },
+  {
+    "key": "customer_ogrn",
+    "label": "customer: ОГРН",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.customer.ogrn"
+  },
+  {
+    "key": "customer_inn",
+    "label": "customer: ИНН",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.customer.inn"
+  },
+  {
+    "key": "customer_address",
+    "label": "customer: адрес",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.customer.address"
+  },
+  {
+    "key": "customer_phone",
+    "label": "customer: телефон",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.customer.phone"
+  },
+  {
+    "key": "customer_sro",
+    "label": "customer: сведения СРО",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.customer.sro_info"
+  },
+  {
+    "key": "customer_individual",
+    "label": "Индивидуальные реквизиты физического лица/ИП при необходимости",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "builder_org_name",
+    "label": "builder_org: наименование",
+    "kind": "reference",
+    "required": true,
+    "source": "organizations.builder.full_name"
+  },
+  {
+    "key": "builder_org_ogrn",
+    "label": "builder_org: ОГРН",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.builder.ogrn"
+  },
+  {
+    "key": "builder_org_inn",
+    "label": "builder_org: ИНН",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.builder.inn"
+  },
+  {
+    "key": "builder_org_address",
+    "label": "builder_org: адрес",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.builder.address"
+  },
+  {
+    "key": "builder_org_phone",
+    "label": "builder_org: телефон",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.builder.phone"
+  },
+  {
+    "key": "builder_org_sro",
+    "label": "builder_org: сведения СРО",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.builder.sro_info"
+  },
+  {
+    "key": "designer_org_name",
+    "label": "designer_org: наименование",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.designer.full_name"
+  },
+  {
+    "key": "designer_org_ogrn",
+    "label": "designer_org: ОГРН",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.designer.ogrn"
+  },
+  {
+    "key": "designer_org_inn",
+    "label": "designer_org: ИНН",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.designer.inn"
+  },
+  {
+    "key": "designer_org_address",
+    "label": "designer_org: адрес",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.designer.address"
+  },
+  {
+    "key": "designer_org_phone",
+    "label": "designer_org: телефон",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.designer.phone"
+  },
+  {
+    "key": "designer_org_sro",
+    "label": "designer_org: сведения СРО",
+    "kind": "reference",
+    "required": false,
+    "source": "organizations.designer.sro_info"
+  },
+  {
+    "key": "act_num",
+    "label": "Номер акта",
+    "kind": "reference",
+    "required": true,
+    "source": "act.act_num"
+  },
+  {
+    "key": "signed_day",
+    "label": "День подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "day_2digits"
+  },
+  {
+    "key": "signed_month",
+    "label": "Месяц подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "month_genitive_ru"
+  },
+  {
+    "key": "signed_year",
+    "label": "Год подписания",
+    "kind": "reference",
+    "required": true,
+    "source": "act.date_signed",
+    "format": "year_4digits"
+  },
+  {
+    "key": "customer_control_details",
+    "label": "Строительный контроль застройщика/заказчика",
+    "kind": "signatory",
+    "required": true,
+    "role": "customer_control",
+    "template": "{signatory.position}, {signatory.fio_short}, {signatory.order_doc}"
+  },
+  {
+    "key": "customer_control_nrs",
+    "label": "Строительный контроль застройщика/заказчика: номер НРС",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.customer_control.nrs_id"
+  },
+  {
+    "key": "control_org_name",
+    "label": "control_org: наименование",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.customer_control.organization.full_name"
+  },
+  {
+    "key": "control_org_ogrn",
+    "label": "control_org: ОГРН",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.customer_control.organization.ogrn"
+  },
+  {
+    "key": "control_org_inn",
+    "label": "control_org: ИНН",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.customer_control.organization.inn"
+  },
+  {
+    "key": "control_org_address",
+    "label": "control_org: адрес",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.customer_control.organization.address"
+  },
+  {
+    "key": "control_org_phone",
+    "label": "control_org: телефон",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.customer_control.organization.phone"
+  },
+  {
+    "key": "builder_details",
+    "label": "Лицо, осуществляющее строительство",
+    "kind": "signatory",
+    "required": true,
+    "role": "builder",
+    "template": "{signatory.position}, {signatory.fio_short}, {signatory.order_doc}"
+  },
+  {
+    "key": "builder_control_details",
+    "label": "Строительный контроль лица, осуществляющего строительство",
+    "kind": "signatory",
+    "required": true,
+    "role": "builder_control",
+    "template": "{signatory.position}, {signatory.fio_short}, {signatory.order_doc}"
+  },
+  {
+    "key": "builder_control_nrs",
+    "label": "Строительный контроль лица, осуществляющего строительство: номер НРС",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.builder_control.nrs_id"
+  },
+  {
+    "key": "designer_details",
+    "label": "Представитель проектировщика",
+    "kind": "signatory",
+    "required": false,
+    "role": "designer",
+    "template": "{signatory.position}, {signatory.fio_short}, {signatory.order_doc}"
+  },
+  {
+    "key": "designer_employer_name",
+    "label": "designer_employer: наименование",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.designer.organization.full_name"
+  },
+  {
+    "key": "designer_employer_ogrn",
+    "label": "designer_employer: ОГРН",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.designer.organization.ogrn"
+  },
+  {
+    "key": "designer_employer_inn",
+    "label": "designer_employer: ИНН",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.designer.organization.inn"
+  },
+  {
+    "key": "designer_employer_address",
+    "label": "designer_employer: адрес",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.designer.organization.address"
+  },
+  {
+    "key": "designer_employer_phone",
+    "label": "designer_employer: телефон",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.designer.organization.phone"
+  },
+  {
+    "key": "work_performer_details",
+    "label": "Представитель фактического исполнителя работ",
+    "kind": "signatory",
+    "required": false,
+    "role": "work_performer",
+    "template": "{signatory.position}, {signatory.fio_short}, {signatory.order_doc}"
+  },
+  {
+    "key": "work_performer_employer_name",
+    "label": "work_performer_employer: наименование",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.work_performer.organization.full_name"
+  },
+  {
+    "key": "work_performer_employer_ogrn",
+    "label": "work_performer_employer: ОГРН",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.work_performer.organization.ogrn"
+  },
+  {
+    "key": "work_performer_employer_inn",
+    "label": "work_performer_employer: ИНН",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.work_performer.organization.inn"
+  },
+  {
+    "key": "work_performer_employer_address",
+    "label": "work_performer_employer: адрес",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.work_performer.organization.address"
+  },
+  {
+    "key": "work_performer_employer_phone",
+    "label": "work_performer_employer: телефон",
+    "kind": "reference",
+    "required": false,
+    "source": "signatories.work_performer.organization.phone"
+  },
+  {
+    "key": "examined_object",
+    "label": "Наименование объекта",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "design_compliance",
+    "label": "Чертежи, проектировщик, регламенты и нормативные акты",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "additional_info",
+    "label": "Дополнительные сведения",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "copies_count",
+    "label": "Количество экземпляров",
+    "kind": "literal",
+    "required": false,
+    "value": null,
+    "value_type": "number"
+  },
+  {
+    "key": "attachments",
+    "label": "Приложения: чертежи, схемы, ведомости",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "customer_control_signature",
+    "label": "Строительный контроль застройщика/заказчика: подпись/ФИО",
+    "kind": "signatory",
+    "required": true,
+    "role": "customer_control",
+    "presentation": "fio_short"
+  },
+  {
+    "key": "builder_signature",
+    "label": "Лицо, осуществляющее строительство: подпись/ФИО",
+    "kind": "signatory",
+    "required": true,
+    "role": "builder",
+    "presentation": "fio_short"
+  },
+  {
+    "key": "builder_control_signature",
+    "label": "Строительный контроль лица, осуществляющего строительство: подпись/ФИО",
+    "kind": "signatory",
+    "required": true,
+    "role": "builder_control",
+    "presentation": "fio_short"
+  },
+  {
+    "key": "designer_signature",
+    "label": "Представитель проектировщика: подпись/ФИО",
+    "kind": "signatory",
+    "required": false,
+    "role": "designer",
+    "presentation": "fio_short"
+  },
+  {
+    "key": "work_performer_signature",
+    "label": "Представитель фактического исполнителя работ: подпись/ФИО",
+    "kind": "signatory",
+    "required": false,
+    "role": "work_performer",
+    "presentation": "fio_short"
+  }
+]

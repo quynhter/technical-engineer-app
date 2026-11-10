@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "technical-engineer-app"
+version = "0.2.0"
+description = "Веб-приложение для ведения ИТД"
+requires-python = ">=3.10"
+dynamic = ["dependencies"]
+
+[project.scripts]
+itd = "itd.__main__:main"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["itd*"]
+
+[tool.setuptools.package-data]
+itd = ["migrations/*.sql", "*.mjs", "web_assets/*"]

@@ -1,0 +1,316 @@
+[
+  {
+    "key": "p16_1",
+    "label": "Журнал работ по монтажу строительных конструкций №…",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r0_c1",
+    "label": "Наименование организации, выполняющей работы",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c0",
+    "label": "Наименование объекта строительства",
+    "kind": "reference",
+    "required": true,
+    "source": "object.name"
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "Должность, фамилия, инициалы и подпись лица, ответственного за монтажные работы и ведение журнала",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c1",
+    "label": "Организация, разработавшая проектную документацию; чертежи КЖ, КМ, КД",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r1_c1",
+    "label": "Шифр проекта",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "t3_r2_c1",
+    "label": "Организация, разработавшая проект производства работ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r3_c1",
+    "label": "Шифр проекта",
+    "kind": "reference",
+    "required": true,
+    "source": "project.code"
+  },
+  {
+    "key": "t3_r4_c1",
+    "label": "Предприятие, изготовившее конструкции",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r5_c1",
+    "label": "Шифр заказа",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "Заказчик (организация), должность, фамилия, инициалы и подпись руководителя (представителя) технического надзора",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c1",
+    "label": "Объем работ: стальных конструкций, т",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r1_c1",
+    "label": "сборных железобетонных конструкций, м³",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r2_c1",
+    "label": "деревянных конструкций, м³",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c2",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c2",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c4",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c6",
+    "label": "20",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "rows_8_1",
+    "label": "инженерно-технического персонала, занятого на монтаже здания (сооружения)",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Фамилия, имя, отчество",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Специальность и образование",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Занимаемая должность",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Дата начала работы на объекте",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Отметка о прохождении аттестации и дата аттестации",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Дата окончания работы на объекте",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "rows_9_2",
+    "label": "актов освидетельствования скрытых работ и актов промежуточной приемки ответственных конструкций",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "№ п/п",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Наименование актов",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Дата подписания акта",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "t9_r1_c0",
+    "label": "{{ item.c1 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r1_c1",
+    "label": "{{ item.c2 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r1_c2",
+    "label": "{{ t9_r1_c1 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "rows_10_2",
+    "label": "№ п/пНаименование актов Дата подписания акта {{ t9_r1_c0 }}{{ t9_r1_c1 }}{{ t9_r1_c2 }}{%tr for item in rows_9_2 %}{{ item.c1 }}{{ item.c2 }}{%tr endfor %}",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "Дата выполнения работ, смена",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "Описание производимых работ, наименование устанавливаемых конструкций, их марка, результаты осмотра конструкций",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Место установки и номера монтажных схем",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Номера технических паспортов на конструкции",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Атмосферные условия (температура окружающего воздуха, осадки, скорость ветра)",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Фамилия, инициалы исполнителя (бригадира)",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Подпись исполнителя (бригадира)",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": false
+      },
+      {
+        "key": "c8",
+        "label": "Замечания и предложения по монтажу конструкций руководителей монтажной организации, авторского надзора, технического надзора заказчика",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": true
+      },
+      {
+        "key": "c9",
+        "label": "Подпись мастера (производителя работ), разрешившего производство работ и принявшего работу. Подпись лиц, осуществляющих авторский надзор",
+        "kind": "reference",
+        "source": "item.c9",
+        "required": false
+      }
+    ]
+  }
+]

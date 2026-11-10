@@ -1,0 +1,228 @@
+[
+  {
+    "key": "p260_1",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p260_2",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p260_3",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p261_4",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p261_5",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "p261_6",
+    "label": "\"…\" … 20… г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "rows_0_8",
+    "label": "Таблица 1",
+    "kind": "table",
+    "required": true,
+    "value": null,
+    "fields": [
+      {
+        "key": "c1",
+        "label": "(N чертежей расположения трубопроводов, буквенно-цифровое обозначение участков) / № п/п",
+        "kind": "reference",
+        "source": "item.c1",
+        "required": true
+      },
+      {
+        "key": "c2",
+        "label": "(наименование и месторасположение объекта) / Номер сварного соединения по чертежам (исполнительным чертежам)",
+        "kind": "reference",
+        "source": "item.c2",
+        "required": true
+      },
+      {
+        "key": "c3",
+        "label": "Номер трубной проводки",
+        "kind": "reference",
+        "source": "item.c3",
+        "required": true
+      },
+      {
+        "key": "c4",
+        "label": "Ф.И.О. сварщика, личное клеймо",
+        "kind": "reference",
+        "source": "item.c4",
+        "required": true
+      },
+      {
+        "key": "c5",
+        "label": "Марка стали (композиция марок сталей), НД, № сертификата",
+        "kind": "reference",
+        "source": "item.c5",
+        "required": true
+      },
+      {
+        "key": "c6",
+        "label": "Наружный диаметр элемента трубопровода и толщина стенки DнхS, мм",
+        "kind": "reference",
+        "source": "item.c6",
+        "required": true
+      },
+      {
+        "key": "c7",
+        "label": "Дата сварки, температурные условия в рабочей зоне, °С",
+        "kind": "reference",
+        "source": "item.c7",
+        "required": true
+      },
+      {
+        "key": "c8",
+        "label": "Способ сварки",
+        "kind": "reference",
+        "source": "item.c8",
+        "required": true
+      },
+      {
+        "key": "c9",
+        "label": "Сварочные материалы (марка электрода, сварочной проволоки, защитный газ, флюс), НД, № сертификата",
+        "kind": "reference",
+        "source": "item.c9",
+        "required": true
+      },
+      {
+        "key": "c10",
+        "label": "Режим предварительного и сопутствующего подогрева",
+        "kind": "reference",
+        "source": "item.c10",
+        "required": true
+      },
+      {
+        "key": "c11",
+        "label": "Отметка о контроле корня шва",
+        "kind": "reference",
+        "source": "item.c11",
+        "required": true
+      },
+      {
+        "key": "c12",
+        "label": "Стилоскопирование металла шва, № заключения, дата",
+        "kind": "reference",
+        "source": "item.c12",
+        "required": true
+      },
+      {
+        "key": "c13",
+        "label": "Ф.И.О. оператора-термиста, личное клеймо",
+        "kind": "reference",
+        "source": "item.c13",
+        "required": true
+      },
+      {
+        "key": "c14",
+        "label": "№ диаграммы по журналу термообработки сварных соединений",
+        "kind": "reference",
+        "source": "item.c14",
+        "required": true
+      },
+      {
+        "key": "c15",
+        "label": "Замер твердости металла шва, N включения, дата",
+        "kind": "reference",
+        "source": "item.c15",
+        "required": true
+      },
+      {
+        "key": "c16",
+        "label": "Отметка о годности сварного соединения по внешнему осмотру и измерениям",
+        "kind": "reference",
+        "source": "item.c16",
+        "required": true
+      },
+      {
+        "key": "c17",
+        "label": "Способ и результаты неразрушающего контроля сварного соединения, N заключения, дата",
+        "kind": "reference",
+        "source": "item.c17",
+        "required": true
+      },
+      {
+        "key": "c18",
+        "label": "Результаты замера ферритной фазы в металле шва, N заключения, дата",
+        "kind": "reference",
+        "source": "item.c18",
+        "required": true
+      }
+    ]
+  },
+  {
+    "key": "t0_r2_c1",
+    "label": "(наименование и месторасположение объекта)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r4_c0",
+    "label": "(N чертежей расположения трубопроводов, буквенно-цифровое обозначение участков)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r16_c10",
+    "label": "(наименование монтажной организации)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r18_c11",
+    "label": "(подпись, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r18_c13",
+    "label": "(подпись, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r19_c10",
+    "label": "\"{{ p260_1 }}\" {{ p260_2 }} 20{{ p260_3 }} г.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t0_r19_c12",
+    "label": "(подпись, Ф.И.О.)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]

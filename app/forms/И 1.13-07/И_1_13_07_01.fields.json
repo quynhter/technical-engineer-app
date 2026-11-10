@@ -1,0 +1,88 @@
+[
+  {
+    "key": "readiness_date",
+    "label": "Дата акта технической готовности",
+    "kind": "literal",
+    "required": true,
+    "value": null,
+    "value_type": "date",
+    "format": "date_ru"
+  },
+  {
+    "key": "t1_r0_c2",
+    "label": "Представительмонтажной организации (должность)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.installer.position"
+  },
+  {
+    "key": "t1_r0_c6",
+    "label": "Представительмонтажной организации (расшифровка подписи)",
+    "kind": "reference",
+    "required": true,
+    "source": "signatories.installer.fio"
+  },
+  {
+    "key": "section_1_2",
+    "label": "Номера документов, раздел 1",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "section_1_3",
+    "label": "Количество листов, раздел 1",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "section_1_4",
+    "label": "Примечание, раздел 1",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "section_2_2",
+    "label": "Номера документов, раздел 2",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "section_2_3",
+    "label": "Количество листов, раздел 2",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "section_2_4",
+    "label": "Примечание, раздел 2",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  },
+  {
+    "key": "section_3_2",
+    "label": "Номера документов, раздел 3",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "section_3_3",
+    "label": "Количество листов, раздел 3",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "section_3_4",
+    "label": "Примечание, раздел 3",
+    "kind": "literal",
+    "required": false,
+    "value": null
+  }
+]

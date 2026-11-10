@@ -1,0 +1,2673 @@
+{
+  "И_1_13_07_02": {
+    "t3_r0_c0": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    }
+  },
+  "И_1_13_07_06б": {
+    "t4_r0_c0": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    }
+  },
+  "И_1_13_07_07": {
+    "t10_r2_c2": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t12_r4_c1": {
+      "kind": "signatory",
+      "role": "material_custodian",
+      "label": "Материально ответственное лицо",
+      "template": "{signatory.fio}"
+    }
+  },
+  "И_1_13_07_11": {
+    "t3_r1_c0": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    }
+  },
+  "И_1_13_07_14а": {
+    "t4_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.general_contractor.full_name",
+      "label": "Генподрядчик"
+    }
+  },
+  "И_1_13_07_20": {
+    "t8_r2_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t8_r4_c1": {
+      "kind": "signatory",
+      "role": "designer",
+      "label": "Представитель проектировщика",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "И_1_13_07_21": {
+    "t8_r0_c0": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    },
+    "t9_r2_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t9_r4_c1": {
+      "kind": "signatory",
+      "role": "designer",
+      "label": "Представитель проектировщика",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "И_1_13_07_23": {
+    "t4_r0_c1": {
+      "kind": "signatory",
+      "role": "crossing_owner",
+      "label": "Представитель владельца пересекаемого объекта",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    }
+  },
+  "МИНСТРОЙ_344_АОГРО": {
+    "object_address": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    }
+  },
+  "МИНСТРОЙ_344_АООК": {
+    "object_address": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    },
+    "design_documents": {
+      "kind": "reference",
+      "source": "project_documentation.description",
+      "label": "Рабочая документация и проектировщик"
+    }
+  },
+  "МИНСТРОЙ_344_АОСР": {
+    "object_address": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    },
+    "design_documents": {
+      "kind": "reference",
+      "source": "project_documentation.description",
+      "label": "Рабочая документация и проектировщик"
+    }
+  },
+  "МИНСТРОЙ_344_АОУСИТО": {
+    "object_address": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    },
+    "design_documents": {
+      "kind": "reference",
+      "source": "project_documentation.description",
+      "label": "Рабочая документация и проектировщик"
+    }
+  },
+  "МИНСТРОЙ_344_АРООКС": {
+    "object_address": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    }
+  },
+  "СП_40_102_2000_Е": {
+    "t2_r0_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t2_r2_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t2_r4_c0": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_42_101_2003_П": {
+    "t0_r0_c0": {
+      "kind": "reference",
+      "source": "project_documentation.object_description",
+      "label": "Объект и адрес"
+    },
+    "t2_r1_c0": {
+      "kind": "signatory",
+      "role": "commission_chair",
+      "label": "Председатель комиссии от заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r4_c1": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r6_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r8_c1": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.general_contractor.full_name",
+      "label": "Генподрядчик"
+    },
+    "t6_r1_c0": {
+      "kind": "reference",
+      "source": "organizations.commissioner.full_name",
+      "label": "Пусконаладочная организация"
+    }
+  },
+  "СП_42_101_2003_Т": {
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "foreman",
+      "label": "Производитель работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r0_c1": {
+      "kind": "signatory",
+      "role": "foreman",
+      "label": "Производитель работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t8_r0_c1": {
+      "kind": "signatory",
+      "role": "chief_engineer",
+      "label": "Главный инженер монтажной организации",
+      "template": "{signatory.fio}"
+    },
+    "t8_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_42_101_2003_С": {
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "foreman",
+      "label": "Производитель работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r0_c1": {
+      "kind": "signatory",
+      "role": "foreman",
+      "label": "Производитель работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t8_r0_c1": {
+      "kind": "signatory",
+      "role": "chief_engineer",
+      "label": "Главный инженер монтажной организации",
+      "template": "{signatory.fio}"
+    },
+    "t8_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_42_101_2003_Р": {
+    "t0_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "foreman",
+      "label": "Производитель работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t6_r0_c1": {
+      "kind": "signatory",
+      "role": "foreman",
+      "label": "Производитель работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t6_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t7_r0_c1": {
+      "kind": "signatory",
+      "role": "laboratory_head",
+      "label": "Начальник лаборатории",
+      "template": "{signatory.fio}"
+    },
+    "t7_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t9_r0_c1": {
+      "kind": "signatory",
+      "role": "foreman",
+      "label": "Производитель работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t12_r0_c1": {
+      "kind": "signatory",
+      "role": "chief_engineer",
+      "label": "Главный инженер монтажной организации",
+      "template": "{signatory.fio}"
+    },
+    "t12_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t9_r2_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_45_Ш": {
+    "t1_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r2_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r4_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r1_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.fio}"
+    },
+    "t5_r3_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.fio}"
+    },
+    "t0_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.builder.full_name",
+      "label": "Представитель подрядчика"
+    }
+  },
+  "СП_45_Я": {
+    "t1_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r2_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r4_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r1_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.fio}"
+    },
+    "t5_r3_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.fio}"
+    },
+    "t0_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.builder.full_name",
+      "label": "Представитель подрядчика"
+    }
+  },
+  "СП_45_Ю": {
+    "t1_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r2_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r4_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r1_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.fio}"
+    },
+    "t5_r3_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.fio}"
+    },
+    "t0_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.builder.full_name",
+      "label": "Представитель подрядчика"
+    }
+  },
+  "СП_45_Щ": {
+    "t1_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r2_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r4_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r1_c0": {
+      "kind": "signatory",
+      "role": "builder_control",
+      "label": "Строительный контроль подрядчика",
+      "template": "{signatory.fio}"
+    },
+    "t5_r3_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.fio}"
+    },
+    "t0_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.builder.full_name",
+      "label": "Представитель подрядчика"
+    }
+  },
+  "СП_45_1": {
+    "t0_r2_c1": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    }
+  },
+  "СП_48_И": {
+    "t0_r2_c1": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    }
+  },
+  "СП_68_М": {
+    "t0_r0_c0": {
+      "kind": "reference",
+      "source": "project.city",
+      "label": "Город"
+    },
+    "t1_r0_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t1_r2_c0": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t2_r0_c1": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r2_c0": {
+      "kind": "reference",
+      "source": "organizations.general_contractor.full_name",
+      "label": "Генподрядчик"
+    },
+    "t2_r4_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r6_c0": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t2_r8_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r10_c0": {
+      "kind": "reference",
+      "source": "organizations.network_operator.full_name",
+      "label": "Представитель эксплуатирующей организации"
+    },
+    "t2_r12_c1": {
+      "kind": "signatory",
+      "role": "designer",
+      "label": "Представитель проектировщика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r14_c0": {
+      "kind": "reference",
+      "source": "organizations.designer.full_name",
+      "label": "Проектная организация"
+    },
+    "t2_r17_c0": {
+      "kind": "signatory",
+      "role": "gsn",
+      "label": "Государственный строительный надзор",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r20_c0": {
+      "kind": "signatory",
+      "role": "supervisory",
+      "label": "Представитель надзорной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r30_c0": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t4_r2_c2": {
+      "kind": "reference",
+      "source": "field_values.t4_r2_c0",
+      "label": "Повтор сведений"
+    }
+  },
+  "СП_68_Н": {
+    "t0_r6_c0": {
+      "kind": "reference",
+      "source": "project.city",
+      "label": "Город"
+    },
+    "t0_r9_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r11_c0": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r16_c0": {
+      "kind": "reference",
+      "source": "organizations.general_contractor.full_name",
+      "label": "Генподрядчик"
+    },
+    "t0_r18_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r20_c0": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r22_c1": {
+      "kind": "reference",
+      "source": "organizations.network_operator.full_name",
+      "label": "Представитель эксплуатирующей организации"
+    },
+    "t0_r24_c0": {
+      "kind": "reference",
+      "source": "organizations.network_operator.full_name",
+      "label": "Представитель эксплуатирующей организации"
+    },
+    "t0_r28_c0": {
+      "kind": "reference",
+      "source": "organizations.designer.full_name",
+      "label": "Проектная организация"
+    },
+    "t0_r31_c0": {
+      "kind": "signatory",
+      "role": "gsn",
+      "label": "Государственный строительный надзор",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r34_c0": {
+      "kind": "signatory",
+      "role": "supervisory",
+      "label": "Представитель надзорной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r53_c0": {
+      "kind": "reference",
+      "source": "organizations.commissioner.full_name",
+      "label": "Пусконаладочная организация"
+    },
+    "t0_r69_c9": {
+      "kind": "reference",
+      "source": "field_values.t0_r69_c1",
+      "label": "Повтор сведений"
+    }
+  },
+  "СП_70_И": {
+    "t1_r0_c0": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t3_r0_c0": {
+      "kind": "signatory",
+      "role": "commission_chair",
+      "label": "Председатель комиссии от заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t7_r0_c0": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t15_r0_c0": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    }
+  },
+  "СП_70_В": {
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация РД"
+    },
+    "t3_r1_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр РД"
+    },
+    "t3_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.ppr_designer.full_name",
+      "label": "Разработчик ППР"
+    },
+    "t3_r3_c1": {
+      "label": "Шифр ППР"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_70_Д": {
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация РД"
+    },
+    "t3_r1_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр РД"
+    },
+    "t3_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.ppr_designer.full_name",
+      "label": "Разработчик ППР"
+    },
+    "t3_r3_c1": {
+      "label": "Шифр ППР"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_70_Г": {
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация РД"
+    },
+    "t3_r1_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр РД"
+    },
+    "t3_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.ppr_designer.full_name",
+      "label": "Разработчик ППР"
+    },
+    "t3_r3_c1": {
+      "label": "Шифр ППР"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_70_А": {
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t9_r1_c2": {
+      "kind": "reference",
+      "source": "field_values.t9_r1_c1",
+      "label": "Повтор сведений"
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация РД"
+    },
+    "t3_r1_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр РД"
+    },
+    "t3_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.ppr_designer.full_name",
+      "label": "Разработчик ППР"
+    },
+    "t3_r3_c1": {
+      "label": "Шифр ППР"
+    }
+  },
+  "СП_70_Б": {
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация РД"
+    },
+    "t3_r1_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр РД"
+    },
+    "t3_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.ppr_designer.full_name",
+      "label": "Разработчик ППР"
+    },
+    "t3_r3_c1": {
+      "label": "Шифр ППР"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "work_performer",
+      "label": "Представитель исполнителя работ",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_71_Г": {
+    "t4_r0_c0": {
+      "kind": "reference",
+      "source": "organizations.customer_control.full_name",
+      "label": "Строительный контроль заказчика"
+    },
+    "t5_r0_c0": {
+      "kind": "reference",
+      "source": "organizations.general_contractor.full_name",
+      "label": "Генподрядчик"
+    },
+    "t6_r0_c0": {
+      "kind": "signatory",
+      "role": "subcontractor",
+      "label": "Представитель субподрядчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t7_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t11_r0_c3": {
+      "kind": "signatory",
+      "role": "author_supervision",
+      "label": "Авторский надзор",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t11_r2_c3": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t11_r4_c3": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t11_r6_c3": {
+      "kind": "signatory",
+      "role": "subcontractor",
+      "label": "Представитель субподрядчика",
+      "template": "{signatory.fio}"
+    },
+    "t0_r0_c0": {
+      "kind": "reference",
+      "source": "act.date_signed",
+      "label": "Дата документа",
+      "format": "date_ru"
+    },
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t2_r0_c1": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    }
+  },
+  "СП_71_В": {
+    "t2_r1_c0": {
+      "kind": "signatory",
+      "role": "inspection_party",
+      "label": "Представитель, проводящий осмотр",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}",
+      "role_slot": "inspection_party",
+      "role_options": [
+        "customer_control",
+        "author_supervision",
+        "general_contractor"
+      ]
+    },
+    "t3_r0_c0": {
+      "kind": "signatory",
+      "role": "builder",
+      "label": "Представитель подрядчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t5_r0_c3": {
+      "kind": "signatory",
+      "role": "author_supervision",
+      "label": "Авторский надзор",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r2_c3": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t5_r4_c3": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r0_c0": {
+      "kind": "reference",
+      "source": "act.date_signed",
+      "label": "Дата документа",
+      "format": "date_ru"
+    },
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t1_r2_c1": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    }
+  },
+  "СП_72_Д": {
+    "t1_r0_c7": {
+      "kind": "reference",
+      "source": "field_values.t1_r0_c5",
+      "label": "Повтор сведений"
+    },
+    "t3_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t5_r0_c0": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_73_В": {
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c0": {
+      "kind": "signatory",
+      "role": "builder",
+      "label": "Представитель подрядчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_73_Д": {
+    "t0_r0_c1": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c0": {
+      "kind": "signatory",
+      "role": "builder",
+      "label": "Представитель подрядчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_73_Г": {
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c0": {
+      "kind": "signatory",
+      "role": "builder",
+      "label": "Представитель подрядчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_73_Е": {
+    "t2_r4_c2": {
+      "kind": "reference",
+      "source": "field_values.t2_r4_c1",
+      "label": "Повтор сведений"
+    },
+    "t2_r4_c3": {
+      "kind": "reference",
+      "source": "field_values.t2_r4_c2",
+      "label": "Повтор сведений"
+    },
+    "t2_r4_c4": {
+      "kind": "reference",
+      "source": "field_values.t2_r4_c3",
+      "label": "Повтор сведений"
+    },
+    "t2_r4_c5": {
+      "kind": "reference",
+      "source": "field_values.t2_r4_c4",
+      "label": "Повтор сведений"
+    },
+    "t2_r4_c6": {
+      "kind": "reference",
+      "source": "field_values.t2_r4_c5",
+      "label": "Повтор сведений"
+    },
+    "t2_r4_c7": {
+      "kind": "reference",
+      "source": "field_values.t2_r4_c6",
+      "label": "Повтор сведений"
+    },
+    "t2_r5_c2": {
+      "kind": "reference",
+      "source": "field_values.t2_r5_c1",
+      "label": "Повтор сведений"
+    },
+    "t2_r5_c3": {
+      "kind": "reference",
+      "source": "field_values.t2_r5_c2",
+      "label": "Повтор сведений"
+    },
+    "t2_r5_c4": {
+      "kind": "reference",
+      "source": "field_values.t2_r5_c3",
+      "label": "Повтор сведений"
+    },
+    "t2_r5_c5": {
+      "kind": "reference",
+      "source": "field_values.t2_r5_c4",
+      "label": "Повтор сведений"
+    },
+    "t2_r5_c6": {
+      "kind": "reference",
+      "source": "field_values.t2_r5_c5",
+      "label": "Повтор сведений"
+    },
+    "t2_r5_c7": {
+      "kind": "reference",
+      "source": "field_values.t2_r5_c6",
+      "label": "Повтор сведений"
+    },
+    "t4_r3_c2": {
+      "kind": "reference",
+      "source": "field_values.t4_r3_c1",
+      "label": "Повтор сведений"
+    },
+    "t4_r3_c3": {
+      "kind": "reference",
+      "source": "field_values.t4_r3_c2",
+      "label": "Повтор сведений"
+    },
+    "t4_r3_c4": {
+      "kind": "reference",
+      "source": "field_values.t4_r3_c3",
+      "label": "Повтор сведений"
+    },
+    "t4_r3_c5": {
+      "kind": "reference",
+      "source": "field_values.t4_r3_c4",
+      "label": "Повтор сведений"
+    },
+    "t4_r3_c6": {
+      "kind": "reference",
+      "source": "field_values.t4_r3_c5",
+      "label": "Повтор сведений"
+    },
+    "t4_r3_c7": {
+      "kind": "reference",
+      "source": "field_values.t4_r3_c6",
+      "label": "Повтор сведений"
+    },
+    "t4_r3_c8": {
+      "kind": "reference",
+      "source": "field_values.t4_r3_c7",
+      "label": "Повтор сведений"
+    },
+    "t4_r4_c2": {
+      "kind": "reference",
+      "source": "field_values.t4_r4_c1",
+      "label": "Повтор сведений"
+    },
+    "t4_r4_c3": {
+      "kind": "reference",
+      "source": "field_values.t4_r4_c2",
+      "label": "Повтор сведений"
+    },
+    "t4_r4_c4": {
+      "kind": "reference",
+      "source": "field_values.t4_r4_c3",
+      "label": "Повтор сведений"
+    },
+    "t4_r4_c5": {
+      "kind": "reference",
+      "source": "field_values.t4_r4_c4",
+      "label": "Повтор сведений"
+    },
+    "t4_r4_c6": {
+      "kind": "reference",
+      "source": "field_values.t4_r4_c5",
+      "label": "Повтор сведений"
+    },
+    "t4_r4_c7": {
+      "kind": "reference",
+      "source": "field_values.t4_r4_c6",
+      "label": "Повтор сведений"
+    },
+    "t4_r4_c8": {
+      "kind": "reference",
+      "source": "field_values.t4_r4_c7",
+      "label": "Повтор сведений"
+    },
+    "t6_r2_c2": {
+      "kind": "reference",
+      "source": "field_values.t6_r2_c1",
+      "label": "Повтор сведений"
+    },
+    "t6_r2_c3": {
+      "kind": "reference",
+      "source": "field_values.t6_r2_c2",
+      "label": "Повтор сведений"
+    },
+    "t6_r2_c4": {
+      "kind": "reference",
+      "source": "field_values.t6_r2_c3",
+      "label": "Повтор сведений"
+    },
+    "t6_r2_c5": {
+      "kind": "reference",
+      "source": "field_values.t6_r2_c4",
+      "label": "Повтор сведений"
+    },
+    "t6_r2_c6": {
+      "kind": "reference",
+      "source": "field_values.t6_r2_c5",
+      "label": "Повтор сведений"
+    },
+    "t6_r2_c7": {
+      "kind": "reference",
+      "source": "field_values.t6_r2_c6",
+      "label": "Повтор сведений"
+    },
+    "t6_r3_c2": {
+      "kind": "reference",
+      "source": "field_values.t6_r3_c1",
+      "label": "Повтор сведений"
+    },
+    "t6_r3_c3": {
+      "kind": "reference",
+      "source": "field_values.t6_r3_c2",
+      "label": "Повтор сведений"
+    },
+    "t6_r3_c4": {
+      "kind": "reference",
+      "source": "field_values.t6_r3_c3",
+      "label": "Повтор сведений"
+    },
+    "t6_r3_c5": {
+      "kind": "reference",
+      "source": "field_values.t6_r3_c4",
+      "label": "Повтор сведений"
+    },
+    "t6_r3_c6": {
+      "kind": "reference",
+      "source": "field_values.t6_r3_c5",
+      "label": "Повтор сведений"
+    },
+    "t6_r3_c7": {
+      "kind": "reference",
+      "source": "field_values.t6_r3_c6",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c2": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c1",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c3": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c2",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c4": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c3",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c5": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c4",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c6": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c5",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c7": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c6",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c8": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c7",
+      "label": "Повтор сведений"
+    },
+    "t8_r2_c9": {
+      "kind": "reference",
+      "source": "field_values.t8_r2_c8",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c2": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c1",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c3": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c2",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c4": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c3",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c5": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c4",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c6": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c5",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c7": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c6",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c8": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c7",
+      "label": "Повтор сведений"
+    },
+    "t8_r3_c9": {
+      "kind": "reference",
+      "source": "field_values.t8_r3_c8",
+      "label": "Повтор сведений"
+    },
+    "t10_r4_c2": {
+      "kind": "reference",
+      "source": "field_values.t10_r4_c1",
+      "label": "Повтор сведений"
+    },
+    "t10_r4_c3": {
+      "kind": "reference",
+      "source": "field_values.t10_r4_c2",
+      "label": "Повтор сведений"
+    },
+    "t10_r4_c4": {
+      "kind": "reference",
+      "source": "field_values.t10_r4_c3",
+      "label": "Повтор сведений"
+    },
+    "t10_r4_c5": {
+      "kind": "reference",
+      "source": "field_values.t10_r4_c4",
+      "label": "Повтор сведений"
+    },
+    "t10_r4_c6": {
+      "kind": "reference",
+      "source": "field_values.t10_r4_c5",
+      "label": "Повтор сведений"
+    },
+    "t10_r5_c2": {
+      "kind": "reference",
+      "source": "field_values.t10_r5_c1",
+      "label": "Повтор сведений"
+    },
+    "t10_r5_c3": {
+      "kind": "reference",
+      "source": "field_values.t10_r5_c2",
+      "label": "Повтор сведений"
+    },
+    "t10_r5_c4": {
+      "kind": "reference",
+      "source": "field_values.t10_r5_c3",
+      "label": "Повтор сведений"
+    },
+    "t10_r5_c5": {
+      "kind": "reference",
+      "source": "field_values.t10_r5_c4",
+      "label": "Повтор сведений"
+    },
+    "t10_r5_c6": {
+      "kind": "reference",
+      "source": "field_values.t10_r5_c5",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c2": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c1",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c3": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c2",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c4": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c3",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c5": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c4",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c6": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c5",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c7": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c6",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c8": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c7",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c9": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c8",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c10": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c9",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c11": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c10",
+      "label": "Повтор сведений"
+    },
+    "t12_r4_c12": {
+      "kind": "reference",
+      "source": "field_values.t12_r4_c11",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c2": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c1",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c3": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c2",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c4": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c3",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c5": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c4",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c6": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c5",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c7": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c6",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c8": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c7",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c9": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c8",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c10": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c9",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c11": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c10",
+      "label": "Повтор сведений"
+    },
+    "t12_r5_c12": {
+      "kind": "reference",
+      "source": "field_values.t12_r5_c11",
+      "label": "Повтор сведений"
+    },
+    "t14_r2_c2": {
+      "kind": "reference",
+      "source": "field_values.t14_r2_c1",
+      "label": "Повтор сведений"
+    },
+    "t14_r2_c3": {
+      "kind": "reference",
+      "source": "field_values.t14_r2_c2",
+      "label": "Повтор сведений"
+    },
+    "t14_r2_c4": {
+      "kind": "reference",
+      "source": "field_values.t14_r2_c3",
+      "label": "Повтор сведений"
+    },
+    "t14_r2_c5": {
+      "kind": "reference",
+      "source": "field_values.t14_r2_c4",
+      "label": "Повтор сведений"
+    },
+    "t14_r3_c2": {
+      "kind": "reference",
+      "source": "field_values.t14_r3_c1",
+      "label": "Повтор сведений"
+    },
+    "t14_r3_c3": {
+      "kind": "reference",
+      "source": "field_values.t14_r3_c2",
+      "label": "Повтор сведений"
+    },
+    "t14_r3_c4": {
+      "kind": "reference",
+      "source": "field_values.t14_r3_c3",
+      "label": "Повтор сведений"
+    },
+    "t14_r3_c5": {
+      "kind": "reference",
+      "source": "field_values.t14_r3_c4",
+      "label": "Повтор сведений"
+    },
+    "t16_r2_c2": {
+      "kind": "reference",
+      "source": "field_values.t16_r2_c1",
+      "label": "Повтор сведений"
+    },
+    "t16_r2_c3": {
+      "kind": "reference",
+      "source": "field_values.t16_r2_c2",
+      "label": "Повтор сведений"
+    },
+    "t16_r2_c4": {
+      "kind": "reference",
+      "source": "field_values.t16_r2_c3",
+      "label": "Повтор сведений"
+    },
+    "t16_r2_c5": {
+      "kind": "reference",
+      "source": "field_values.t16_r2_c4",
+      "label": "Повтор сведений"
+    },
+    "t16_r2_c6": {
+      "kind": "reference",
+      "source": "field_values.t16_r2_c5",
+      "label": "Повтор сведений"
+    },
+    "t16_r3_c2": {
+      "kind": "reference",
+      "source": "field_values.t16_r3_c1",
+      "label": "Повтор сведений"
+    },
+    "t16_r3_c3": {
+      "kind": "reference",
+      "source": "field_values.t16_r3_c2",
+      "label": "Повтор сведений"
+    },
+    "t16_r3_c4": {
+      "kind": "reference",
+      "source": "field_values.t16_r3_c3",
+      "label": "Повтор сведений"
+    },
+    "t16_r3_c5": {
+      "kind": "reference",
+      "source": "field_values.t16_r3_c4",
+      "label": "Повтор сведений"
+    },
+    "t16_r3_c6": {
+      "kind": "reference",
+      "source": "field_values.t16_r3_c5",
+      "label": "Повтор сведений"
+    },
+    "t19_r0_c0": {
+      "kind": "signatory",
+      "role": "acceptance_party",
+      "label": "Заказчик или наладочная организация",
+      "template": "{signatory.fio}",
+      "role_slot": "acceptance_party",
+      "role_options": [
+        "customer",
+        "commissioner"
+      ]
+    },
+    "t20_r0_c0": {
+      "kind": "signatory",
+      "role": "designer",
+      "label": "Представитель проектировщика",
+      "template": "{signatory.fio}"
+    },
+    "t21_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_73_Ж": {
+    "t0_r0_c1": {
+      "kind": "reference",
+      "source": "object.address",
+      "label": "Адрес объекта"
+    },
+    "t0_r1_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r3_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t7_r0_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.fio}"
+    },
+    "t8_r0_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_74_Б": {
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t1_r2_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_74_Г": {
+    "t1_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    }
+  },
+  "СП_74_Д": {
+    "t1_r0_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c1": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    }
+  },
+  "СП_74_А": {
+    "t2_r0_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "network_operator",
+      "label": "Представитель эксплуатирующей организации",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c0": {
+      "kind": "signatory",
+      "role": "builder",
+      "label": "Представитель подрядчика",
+      "template": "{organization.full_name}, {signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_76_Б": {
+    "t0_r0_c0": {
+      "kind": "reference",
+      "source": "project.city",
+      "label": "Город"
+    },
+    "t0_r2_c0": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t1_r0_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r4_c0": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t1_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.commissioner.full_name",
+      "label": "Пусконаладочная организация"
+    },
+    "t1_r3_c0": {
+      "kind": "signatory",
+      "role": "commissioner",
+      "label": "Представитель пусконаладочной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t8_r1_c2": {
+      "kind": "signatory",
+      "role": "commissioner",
+      "label": "Представитель пусконаладочной организации",
+      "template": "{signatory.fio}"
+    },
+    "t8_r1_c6": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_77_А_2": {
+    "t2_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.general_contractor.full_name",
+      "label": "Генподрядчик"
+    },
+    "t2_r2_c1": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r4_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t2_r6_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r9_c0": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r12_c0": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t5_r0_c1": {
+      "kind": "signatory",
+      "role": "general_contractor",
+      "label": "Представитель генподрядчика",
+      "template": "{signatory.fio}"
+    },
+    "t6_r0_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.fio}"
+    },
+    "t7_r0_c1": {
+      "kind": "signatory",
+      "role": "customer_control",
+      "label": "Строительный контроль заказчика",
+      "template": "{signatory.fio}"
+    },
+    "t2_r15_c0": {
+      "kind": "reference",
+      "source": "project_documentation.section_description",
+      "label": "Раздел и шифр РД"
+    }
+  },
+  "СП_77_А_8": {
+    "t0_r9_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r10_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r12_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r13_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r15_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    },
+    "t0_r15_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r15_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r37_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.fio}"
+    },
+    "t0_r39_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_77_А_7": {
+    "t0_r6_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r9_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r10_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r12_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r13_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r26_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.fio}"
+    },
+    "t0_r28_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_77_А_9": {
+    "t0_r7_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r8_c1": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t0_r9_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r12_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r14_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r26_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r28_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_5": {
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.construction_party.full_name",
+      "label": "Организация: Генподрядчик или заказчик",
+      "role_slot": "construction_party",
+      "role_options": [
+        "general_contractor",
+        "customer"
+      ]
+    },
+    "t2_r3_c0": {
+      "kind": "signatory",
+      "role": "construction_party",
+      "label": "Генподрядчик или заказчик",
+      "template": "{signatory.position} {signatory.fio}",
+      "role_slot": "construction_party",
+      "role_options": [
+        "general_contractor",
+        "customer"
+      ]
+    },
+    "t2_r5_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t2_r6_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c0": {
+      "kind": "reference",
+      "source": "project_documentation.object_and_project",
+      "label": "Объект и шифр РД"
+    }
+  },
+  "СП_77_А_1": {
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.construction_party.full_name",
+      "label": "Организация: Генподрядчик или заказчик",
+      "role_slot": "construction_party",
+      "role_options": [
+        "general_contractor",
+        "customer"
+      ]
+    },
+    "t1_r2_c1": {
+      "kind": "signatory",
+      "role": "construction_party",
+      "label": "Генподрядчик или заказчик",
+      "template": "{signatory.position} {signatory.fio}",
+      "role_slot": "construction_party",
+      "role_options": [
+        "general_contractor",
+        "customer"
+      ]
+    },
+    "t1_r4_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t1_r6_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r0_c0": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    },
+    "t6_r0_c1": {
+      "kind": "signatory",
+      "role": "construction_party",
+      "label": "Генподрядчик или заказчик",
+      "template": "{signatory.fio}",
+      "role_slot": "construction_party",
+      "role_options": [
+        "general_contractor",
+        "customer"
+      ]
+    },
+    "t7_r0_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_77_А_3": {
+    "t1_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t2_r0_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t2_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t6_r0_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.fio}"
+    },
+    "t7_r0_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.fio}"
+    },
+    "t2_r4_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t3_r0_c0": {
+      "kind": "reference",
+      "source": "project.name",
+      "label": "Название раздела"
+    }
+  },
+  "СП_77_А_22": {
+    "t0_r1_c0": {
+      "kind": "literal",
+      "value": "Приложение А.22",
+      "label": "Обозначение формы",
+      "readonly": true,
+      "required": false
+    },
+    "t0_r2_c0": {
+      "kind": "literal",
+      "value": "Приложение А.22",
+      "label": "Обозначение формы",
+      "readonly": true,
+      "required": false
+    },
+    "t3_r0_c0": {
+      "kind": "reference",
+      "source": "organizations.commissioner.full_name",
+      "label": "Пусконаладочная организация"
+    },
+    "t4_r0_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t4_r2_c0": {
+      "kind": "signatory",
+      "role": "commissioner",
+      "label": "Представитель пусконаладочной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_23": {
+    "t0_r1_c0": {
+      "kind": "literal",
+      "value": "Приложение А.23",
+      "label": "Обозначение формы",
+      "readonly": true,
+      "required": false
+    },
+    "t0_r2_c0": {
+      "kind": "literal",
+      "value": "Приложение А.23",
+      "label": "Обозначение формы",
+      "readonly": true,
+      "required": false
+    },
+    "t3_r0_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t5_r0_c0": {
+      "kind": "signatory",
+      "role": "commission_chair",
+      "label": "Председатель комиссии от заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t6_r0_c1": {
+      "kind": "signatory",
+      "role": "commissioner",
+      "label": "Представитель пусконаладочной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t6_r2_c1": {
+      "kind": "signatory",
+      "role": "supervisory",
+      "label": "Представитель надзорной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t7_r6_c1": {
+      "kind": "reference",
+      "source": "organizations.commissioner.full_name",
+      "label": "Пусконаладочная организация"
+    },
+    "t7_r4_c1": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    }
+  },
+  "СП_77_А_13": {
+    "t0_r2_c1": {
+      "kind": "reference",
+      "source": "project_documentation.object_description",
+      "label": "Объект и адрес"
+    },
+    "t0_r16_c10": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r18_c11": {
+      "kind": "signatory",
+      "role": "site_manager",
+      "label": "Начальник участка",
+      "template": "{signatory.fio}"
+    },
+    "t0_r18_c13": {
+      "kind": "signatory",
+      "role": "welding_supervisor",
+      "label": "Руководитель сварочных работ",
+      "template": "{signatory.fio}"
+    },
+    "t0_r19_c12": {
+      "kind": "signatory",
+      "role": "welding_supervisor",
+      "label": "Руководитель сварочных работ",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_77_А_14": {
+    "t0_r6_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r6_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r7_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр рабочей документации"
+    },
+    "t0_r7_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r7_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r33_c2": {
+      "kind": "signatory",
+      "role": "flaw_detector",
+      "label": "Дефектоскопист",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r35_c2": {
+      "kind": "signatory",
+      "role": "laboratory_head",
+      "label": "Начальник лаборатории",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_10": {
+    "t0_r5_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r6_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r7_c1": {
+      "kind": "reference",
+      "source": "object.name",
+      "label": "Наименование объекта"
+    },
+    "t0_r12_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r12_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r13_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r13_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r14_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r14_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r15_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r15_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r16_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r16_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r17_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r17_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r18_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r18_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r19_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r19_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r20_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r20_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r21_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r21_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r22_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r22_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r23_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r23_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r24_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r24_c2",
+      "label": "Повтор сведений"
+    },
+    "t0_r26_c1": {
+      "kind": "signatory",
+      "role": "documentation_sender",
+      "label": "Документацию сдал",
+      "template": "{signatory.position} {signatory.fio}",
+      "role_slot": "documentation_sender",
+      "role_options": [
+        "installer",
+        "general_contractor",
+        "builder",
+        "customer"
+      ]
+    },
+    "t0_r28_c1": {
+      "kind": "signatory",
+      "role": "documentation_recipient",
+      "label": "Документацию принял",
+      "template": "{signatory.position} {signatory.fio}",
+      "role_slot": "documentation_recipient",
+      "role_options": [
+        "customer",
+        "general_contractor",
+        "installer",
+        "builder"
+      ]
+    }
+  },
+  "СП_77_А_19_МУФТА": {
+    "t0_r8_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r9_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр рабочей документации"
+    },
+    "t0_r14_c1": {
+      "kind": "signatory",
+      "role": "worker",
+      "label": "Исполнитель",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r15_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r22_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r22_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r23_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r23_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r24_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r24_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r25_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r25_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r26_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r26_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r27_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r27_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r28_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r28_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r29_c2": {
+      "kind": "reference",
+      "source": "field_values.t0_r29_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r30_c2": {
+      "kind": "signatory",
+      "role": "inspector",
+      "label": "Проверяющий",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_19_УЧАСТОК": {
+    "t0_r8_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r9_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр рабочей документации"
+    },
+    "t0_r23_c2": {
+      "kind": "signatory",
+      "role": "inspector",
+      "label": "Проверяющий",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_4": {
+    "t5_r0_c1": {
+      "kind": "signatory",
+      "role": "inspector",
+      "label": "Проверяющий",
+      "template": "{signatory.fio}"
+    }
+  },
+  "СП_77_А_19_ИЗМЕРЕНИЯ": {
+    "t0_r10_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр рабочей документации"
+    },
+    "t0_r12_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r15_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r28_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r28_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r28_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r32_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r32_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r32_c1",
+      "label": "Повтор сведений"
+    }
+  },
+  "СП_77_А_16": {
+    "t0_r10_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r12_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r39_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r41_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_18": {
+    "t0_r8_c0": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r8_c3": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r17_c0": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r20_c0": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_17": {
+    "t0_r10_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r19_c1": {
+      "kind": "signatory",
+      "role": "worker",
+      "label": "Исполнитель",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r19_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r19_c1",
+      "label": "Повтор сведений"
+    },
+    "t0_r23_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r23_c3": {
+      "kind": "reference",
+      "source": "field_values.t0_r23_c1",
+      "label": "Повтор сведений"
+    }
+  },
+  "СП_77_А_11": {
+    "t0_r5_c0": {
+      "kind": "reference",
+      "source": "project_documentation.object_description",
+      "label": "Объект и адрес"
+    },
+    "t0_r14_c1": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r17_c0": {
+      "kind": "reference",
+      "source": "project_documentation.designer_name",
+      "label": "Проектная организация"
+    },
+    "t0_r36_c2": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r38_c2": {
+      "kind": "signatory",
+      "role": "chief_engineer",
+      "label": "Главный инженер монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_15": {
+    "t0_r5_c0": {
+      "kind": "reference",
+      "source": "project_documentation.object_description",
+      "label": "Объект и адрес"
+    },
+    "t0_r7_c0": {
+      "kind": "reference",
+      "source": "organizations.installer.full_name",
+      "label": "Монтажная организация"
+    },
+    "t0_r10_c7": {
+      "kind": "reference",
+      "source": "field_values.t0_r10_c6",
+      "label": "Повтор сведений"
+    },
+    "t0_r27_c2": {
+      "kind": "signatory",
+      "role": "welding_supervisor",
+      "label": "Руководитель сварочных работ",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r29_c2": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "СП_77_А_24": {
+    "t0_r6_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t0_r10_c1": {
+      "kind": "signatory",
+      "role": "construction_party",
+      "label": "Генподрядчик или заказчик",
+      "template": "{signatory.position} {signatory.fio}",
+      "role_slot": "construction_party",
+      "role_options": [
+        "general_contractor",
+        "customer"
+      ]
+    },
+    "t0_r12_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r19_c1": {
+      "kind": "signatory",
+      "role": "installer",
+      "label": "Представитель монтажной организации",
+      "template": "{signatory.position} {signatory.fio}"
+    },
+    "t0_r21_c1": {
+      "kind": "signatory",
+      "role": "construction_party",
+      "label": "Генподрядчик или заказчик",
+      "template": "{signatory.position} {signatory.fio}",
+      "role_slot": "construction_party",
+      "role_options": [
+        "general_contractor",
+        "customer"
+      ]
+    }
+  },
+  "СП_77_А_20": {
+    "t1_r1_c1": {
+      "kind": "reference",
+      "source": "project.code",
+      "label": "Шифр рабочей документации"
+    },
+    "t1_r2_c1": {
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Заказчик"
+    },
+    "t3_r0_c1": {
+      "kind": "signatory",
+      "role": "customer",
+      "label": "Представитель заказчика",
+      "template": "{signatory.position} {signatory.fio}"
+    }
+  },
+  "И_1_13_07_24": {
+    "t2_r8_c1": {
+      "label": "Согласование отступлений: организация, представитель и дата"
+    }
+  }
+}

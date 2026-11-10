@@ -1,0 +1,114 @@
+[
+  {
+    "key": "t0_r0_c1",
+    "label": "АКТ №",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c1",
+    "label": "г.",
+    "kind": "reference",
+    "required": true,
+    "source": "project.city"
+  },
+  {
+    "key": "t1_r0_c3",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c5",
+    "label": "\"",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t1_r0_c7",
+    "label": "{{ t1_r0_c5 }}",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t2_r0_c0",
+    "label": "(наименование)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t3_r0_c0",
+    "label": "(наименование организации, должность, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t4_r0_c0",
+    "label": "(наименование организации, должность, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t5_r0_c0",
+    "label": "(наименование организации, должность, инициалы, фамилия)",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t6_r0_c1",
+    "label": "1.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t7_r0_c1",
+    "label": "2.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t8_r0_c2",
+    "label": "Объём выполненных работ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t9_r0_c2",
+    "label": "Дата начала работ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t10_r0_c2",
+    "label": "Дата окончания работ",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t11_r0_c0",
+    "label": "Работы выполнены в соответствии с проектно-сметной документацией, стандартами, строительными нормами и правилами и отвечают требованиям их приёмки.",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  },
+  {
+    "key": "t12_r0_c1",
+    "label": "Качество выполненных работ:",
+    "kind": "literal",
+    "required": true,
+    "value": null
+  }
+]
