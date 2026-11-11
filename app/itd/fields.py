@@ -58,6 +58,8 @@ def validate_fields(fields):
         if field["key"] in keys:
             raise ValueError(f"Повтор поля: {field['key']}")
         keys.add(field["key"])
+        if field.get('template_path') is not None and (not isinstance(field['template_path'], str) or not re.fullmatch(r'[a-z][a-z_0-9]*(?:\.[a-z][a-z_0-9]*)*', field['template_path'])):
+            raise ValueError('template_path должен быть английским путём свойств')
         if field.get("state") not in (None, "hidden", "not_applicable"):
             raise ValueError("Неизвестное состояние поля")
         if field.get("state") == "not_applicable" and not field.get("reason"):

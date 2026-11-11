@@ -4,56 +4,64 @@
     "label": "\"…\" … 20… г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.day"
   },
   {
     "key": "p36_2",
     "label": "\"…\" … 20… г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.month"
   },
   {
     "key": "p36_3",
     "label": "\"…\" … 20… г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.year"
   },
   {
     "key": "p83_4",
     "label": "в начале испытания … °C",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.temperature_voltage_test"
   },
   {
     "key": "p84_5",
     "label": "в конце испытания … °C",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.temperature_voltage_test_2"
   },
   {
     "key": "p151_6",
     "label": "Установлено … заглушек. Снято после испытаний … заглушек.Согласно приведенным результатам испытаний и осмотру монтаж трубных проводок выполнен в соответствии с рабочей документацией и СП 77.13330",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.plugs_voltage_cable"
   },
   {
     "key": "p151_7",
     "label": "Установлено … заглушек. Снято после испытаний … заглушек.Согласно приведенным результатам испытаний и осмотру монтаж трубных проводок выполнен в соответствии с рабочей документацией и СП 77.13330",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.plugs_voltage_cable_2"
   },
   {
     "key": "x_0_16",
     "label": "Проект N",
     "kind": "reference",
     "required": true,
-    "source": "project.code"
+    "source": "project.code",
+    "template_path": "project.code"
   },
   {
     "key": "rows_0_21",
@@ -67,51 +75,59 @@
         "label": "Проект N {{ x_0_16 }} / Данные контрольных приборов / N п/п",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
         "label": "Наименование приборов",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "name"
       },
       {
         "key": "c3",
         "label": "Тип",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "type"
       },
       {
         "key": "c4",
         "label": "N прибора",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "serial_number"
       },
       {
         "key": "c5",
         "label": "Шкала",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "scale"
       },
       {
         "key": "c6",
         "label": "Класс",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "accuracy_class"
       },
       {
         "key": "c7",
         "label": "Примечание",
         "kind": "reference",
         "source": "item.c7",
-        "required": false
+        "required": false,
+        "template_path": "notes"
       }
-    ]
+    ],
+    "template_path": "form.instruments"
   },
   {
     "key": "rows_0_32",
@@ -125,141 +141,162 @@
         "label": "Графа 1",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
         "label": "Графа 2",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "value"
       },
       {
         "key": "c3",
         "label": "Графа 3",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "value_2"
       },
       {
         "key": "c4",
         "label": "Графа 4",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "value_3"
       },
       {
         "key": "c5",
         "label": "Графа 5",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "value_4"
       },
       {
         "key": "c6",
         "label": "Графа 6",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "value_5"
       },
       {
         "key": "c7",
         "label": "Графа 7",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "value_6"
       },
       {
         "key": "c8",
         "label": "Графа 8",
         "kind": "reference",
         "source": "item.c8",
-        "required": true
+        "required": true,
+        "template_path": "value_7"
       },
       {
         "key": "c9",
         "label": "Графа 9",
         "kind": "reference",
         "source": "item.c9",
-        "required": true
+        "required": true,
+        "template_path": "value_8"
       }
-    ]
+    ],
+    "template_path": "form.tightness_tests"
   },
   {
     "key": "t0_r6_c1",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t0_r7_c1",
     "label": "(наименование)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibre"
   },
   {
     "key": "t0_r9_c1",
     "label": "Представитель организации-заказчика",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "t0_r10_c0",
     "label": "(наименование организации, должность, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t0_r12_c1",
     "label": "Представитель монтирующей организации",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t0_r13_c0",
     "label": "(наименование организации, должность, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t0_r15_c1",
     "label": "Наименование проектной организации",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.designer_name"
   },
   {
     "key": "t0_r15_c2",
     "label": "{{ t0_r15_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.repeated_project_documentation_designer_name"
   },
   {
     "key": "t0_r24_c1",
     "label": "Испытательная среда",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.medium"
   },
   {
     "key": "t0_r37_c1",
     "label": "(подпись, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_customer_details"
   },
   {
     "key": "t0_r39_c1",
     "label": "(подпись, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_installer_details"
   }
 ]

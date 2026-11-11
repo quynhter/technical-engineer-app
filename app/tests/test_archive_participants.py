@@ -10,6 +10,18 @@ from itd.participants import add_organization, add_signatory, assign, participan
 
 
 class ArchiveParticipantTests(unittest.TestCase):
+    def test_company_print_roles_are_russian_and_keep_assignment_keys(self):
+        with connect(self.path) as connection:
+            org = add_organization(connection, full_name='Полная организация', short_name='ООО Пример')
+            for role in ('customer', 'technical_customer', 'installer', 'custom_role'):
+                assign(connection, entity='organization', entity_id=org,
+                       role_key=role, object_id=self.obj)
+            companies = participants_context(connection, self.project)['companies']
+            names = {c['role_key']: c['role'] for c in companies}
+            self.assertEqual(names, {'customer': 'Заказчик', 'technical_customer': 'Технический заказчик',
+                                    'installer': 'Монтажная организация', 'custom_role': 'custom_role'})
+            self.assertTrue(all(c['name'] == 'ООО Пример' for c in companies))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

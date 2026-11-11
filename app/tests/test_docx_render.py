@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -12,6 +13,29 @@ HAS_DOCXTPL = all(importlib.util.find_spec(module) is not None
 
 @unittest.skipUnless(HAS_DOCXTPL, "Нужны зависимости requirements.txt")
 class DocxRenderTests(unittest.TestCase):
+    def test_sp77_passport_keeps_grid_with_empty_and_long_legacy_values(self):
+        from docx import Document
+        root = Path(__file__).resolve().parents[2]
+        template = root / 'app/templates/СП 77.13330.2016/СП_77_А_19_УЧАСТОК.docx'
+        fields = json.loads((root / 'app/forms/СП 77.13330.2016/СП_77_А_19_УЧАСТОК.fields.json').read_text())
+        original = Document(template)
+        self.assertEqual(len(original.tables), 1)
+        grid = original.tables[0]._tbl.tblGrid.xml
+        for long in (False, True):
+            context = {f['key']: [] if f['kind'] == 'table' else '' for f in fields}
+            if long:
+                context['t0_r7_c1'] = 'Длинное название объекта ' * 15
+                context['rows_0_18'] = [{f'c{i}': str(i) for i in range(1, 8)}]
+            output = Path(self.temp.name) / f'passport-{long}.docx'
+            render_docx(template, context, output)
+            result = Document(output)
+            self.assertEqual(len(result.tables), 1)
+            self.assertFalse(result.tables[0].autofit)
+            self.assertEqual(result.tables[0]._tbl.tblGrid.xml, grid)
+            if long:
+                self.assertIn(context['t0_r7_c1'], '\n'.join(p.text for p in result.paragraphs))
+            self.assertNotIn('{%', '\n'.join(p.text for p in result.paragraphs))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

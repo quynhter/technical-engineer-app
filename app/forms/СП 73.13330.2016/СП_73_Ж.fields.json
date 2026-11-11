@@ -4,111 +4,127 @@
     "label": "Адрес объекта",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "object.address"
   },
   {
     "key": "t0_r1_c1",
     "label": "(наименование организации,",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t0_r3_c0",
     "label": "должность, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t0_r5_c1",
     "label": "Наименование системы",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.system_fibre"
   },
   {
     "key": "t0_r6_c1",
     "label": "(тип, модель, производитель)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.type"
   },
   {
     "key": "t1_r0_c1",
     "label": "(230 В±10%)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_percentage"
   },
   {
     "key": "t1_r4_c1",
     "label": "(не менее 12ºС)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.temperature"
   },
   {
     "key": "t1_r6_c1",
     "label": "(отклонение от заводских параметров не более ±5%)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_percentage_organisation"
   },
   {
     "key": "t2_r0_c1",
     "label": "Используемый хладон",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.refrigerant"
   },
   {
     "key": "t3_r0_c1",
     "label": "Количество дозаправленного хладагента, кг",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.quantity_system"
   },
   {
     "key": "t4_r0_c1",
     "label": "Пролив конденсата",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.condensate"
   },
   {
     "key": "t5_r0_c1",
     "label": "Наличие дополнительных агрегатов и опций",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.notes_equipment_fibre"
   },
   {
     "key": "t5_r1_c0",
     "label": "(дренажная помпа, козырек, защитная сетка, комплект зимнего старта, прочее)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.completeness"
   },
   {
     "key": "t6_r0_c1",
     "label": "Заключение",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.conclusion"
   },
   {
     "key": "t7_r0_c1",
     "label": "(подпись, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t8_r0_c1",
     "label": "(подпись, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_installer_details"
   }
 ]

@@ -4,14 +4,16 @@
     "label": "указываются в приложении … к акту), выявленные в процессе комплексного опробования,",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments_commissioning_voltage"
   },
   {
     "key": "p346_2",
     "label": "в приложении … к акту.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments_voltage"
   },
   {
     "key": "date_6_2",
@@ -19,7 +21,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "day_2digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.day"
   },
   {
     "key": "date_6_4",
@@ -27,7 +30,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "month_genitive_ru",
-    "required": true
+    "required": true,
+    "template_path": "document.date.month"
   },
   {
     "key": "date_6_6",
@@ -35,230 +39,263 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "year_4digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.year"
   },
   {
     "key": "t0_r6_c0",
     "label": "(место составления)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.city"
   },
   {
     "key": "t0_r9_c1",
     "label": "Представитель застройщика (технического заказчика)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t0_r11_c0",
     "label": "наименование организации - застройщика (технического заказчика)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "t0_r14_c1",
     "label": "генерального подрядчика",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representative"
   },
   {
     "key": "t0_r16_c0",
     "label": "(наименование организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.general_contractor.full_name"
   },
   {
     "key": "t0_r18_c1",
     "label": "субподрядных (монтажных) организаций",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t0_r20_c0",
     "label": "(наименование организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisations_installer_full_name"
   },
   {
     "key": "t0_r22_c1",
     "label": "эксплуатационной организаций",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.network_operator.full_name"
   },
   {
     "key": "t0_r24_c0",
     "label": "(наименование организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisations_network_operator_full_name"
   },
   {
     "key": "t0_r26_c1",
     "label": "генерального проектировщика",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.design_documentation_fibre"
   },
   {
     "key": "t0_r28_c0",
     "label": "(наименование организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.designer.full_name"
   },
   {
     "key": "t0_r31_c0",
     "label": "(инициалы, фамилия, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.gsn.details"
   },
   {
     "key": "t0_r34_c0",
     "label": "(инициалы, фамилия, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.supervisory.details"
   },
   {
     "key": "t0_r36_c1",
     "label": "1. Оборудование:",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.equipment_fibre"
   },
   {
     "key": "t0_r38_c0",
     "label": "(при необходимости указывается в приложении к акту)]",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments_voltage_2"
   },
   {
     "key": "t0_r40_c1",
     "label": "смонтированное в",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_fibre"
   },
   {
     "key": "t0_r42_c1",
     "label": "входящего в состав",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage"
   },
   {
     "key": "t0_r46_c2",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.day"
   },
   {
     "key": "t0_r46_c4",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.month"
   },
   {
     "key": "t0_r46_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.year"
   },
   {
     "key": "t0_r46_c10",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start_2.day"
   },
   {
     "key": "t0_r46_c12",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start_2.month"
   },
   {
     "key": "t0_r46_c14",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start_2.year"
   },
   {
     "key": "t0_r48_c1",
     "label": "в течение",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_duration"
   },
   {
     "key": "t0_r50_c1",
     "label": "и по",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.commissioning_cable_fibre"
   },
   {
     "key": "t0_r53_c0",
     "label": "(наименование организации-заказчика, пусконаладочной организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.commissioner.full_name"
   },
   {
     "key": "t0_r63_c1",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date_3.day"
   },
   {
     "key": "t0_r63_c3",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date_3.month"
   },
   {
     "key": "t0_r63_c5",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date_3.year"
   },
   {
     "key": "t0_r68_c1",
     "label": "таблица 0, строка 68, ячейка 1",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.additional_statement"
   },
   {
     "key": "t0_r69_c1",
     "label": "таблица 0, строка 69, ячейка 1",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.additional_statement_continuation"
   },
   {
     "key": "t0_r69_c9",
     "label": "{{ t0_r69_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.repeated_additional_statement_continuation"
   }
 ]

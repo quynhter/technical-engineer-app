@@ -4,42 +4,48 @@
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -47,7 +53,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -55,7 +62,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -63,35 +71,40 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "t1_r0_c1",
     "label": "ПОД ОПОРУ ВЛ",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.support_system"
   },
   {
     "key": "t2_r0_c1",
     "label": "Опора №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.support_number"
   },
   {
     "key": "t2_r0_c3",
     "label": "Опора № , наименование опоры",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.support_number_fibre"
   },
   {
     "key": "t2_r0_c5",
     "label": "Опора № , наименование опоры , тип",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.support_number_type"
   },
   {
     "key": "t3_r0_c0",
@@ -99,7 +112,8 @@
     "kind": "signatory",
     "required": true,
     "role": "customer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t4_r0_c0",
@@ -107,7 +121,8 @@
     "kind": "signatory",
     "required": true,
     "role": "builder",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.builder.details"
   },
   {
     "key": "t5_r0_c0",
@@ -115,62 +130,71 @@
     "kind": "signatory",
     "required": true,
     "role": "installer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t6_r0_c2",
     "label": "1. Фундамент выполнен согласно проекту по чертежам",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.foundation_design_documentation"
   },
   {
     "key": "t6_r2_c2",
     "label": "2. Согласно предъявленным протоколам марка бетона составляет",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.concrete_type_system"
   },
   {
     "key": "t7_r0_c0",
     "label": "(материал покрытия, число слоев)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.materials_coating_quantity"
   },
   {
     "key": "t7_r2_c2",
     "label": "3. Анкерные болты (закладные части) установлены по чертежам №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.bolts_number_design_documentation"
   },
   {
     "key": "t8_r0_c2",
     "label": "5. Отступления от проекта (существо отступления)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_design_documentation"
   },
   {
     "key": "t8_r2_c1",
     "label": "согласованы с заказчиком в лице (должность, фамилия, и., о.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_customer_details"
   },
   {
     "key": "t8_r4_c1",
     "label": "и проектной организацией в лице (должность, фамилия, и., о.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.designer.details"
   },
   {
     "key": "t9_r0_c0",
     "label": "(номера чертежей)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation"
   }
 ]

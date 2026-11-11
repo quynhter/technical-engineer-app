@@ -383,7 +383,7 @@ CREATE TABLE act_signatories (
 | `act_type` | TEXT; NOT NULL | FK #0.0 → document_types.code; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `sequence_no` | INTEGER; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `act_num` | TEXT; NOT NULL | Прямые привязки: 5; [список](#source-acts-act_num) |
-| `date_signed` | TEXT | Прямые привязки: 140; [список](#source-acts-date_signed) |
+| `date_signed` | TEXT | Прямые привязки: 141; [список](#source-acts-date_signed) |
 | `is_active` | INTEGER; NOT NULL; DEFAULT 1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `fields` | TEXT; NOT NULL; DEFAULT '[]' | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `sheets_count` | INTEGER | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
@@ -636,7 +636,7 @@ CREATE TABLE document_counters (
 <a id="table-document_types"></a>
 #### document_types — Зарегистрированные формы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -929,7 +929,7 @@ CREATE UNIQUE INDEX org_role_project ON organization_assignments(project_id, rol
 <a id="table-organizations"></a>
 #### organizations — Участники: организации
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1371,7 +1371,7 @@ CREATE TABLE resource_sources (
 <a id="table-resources"></a>
 #### resources — Ресурсы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1511,7 +1511,7 @@ END;
 <a id="table-signatories"></a>
 #### signatories — Участники: представители
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -2171,7 +2171,7 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 <a id="source-acts-date_signed"></a>
 ### `acts.date_signed`
 
-`И_1_13_07_02.day`, `И_1_13_07_02.month`, `И_1_13_07_02.year`, `И_1_13_07_03.day`, `И_1_13_07_03.month`, `И_1_13_07_03.year`, `И_1_13_07_04.day`, `И_1_13_07_04.month`, `И_1_13_07_04.year`, `И_1_13_07_05.day`, `И_1_13_07_05.month`, `И_1_13_07_05.year`, `И_1_13_07_06.day`, `И_1_13_07_06.month`, `И_1_13_07_06.year`, `И_1_13_07_06а.day`, `И_1_13_07_06а.month`, `И_1_13_07_06а.year`, `И_1_13_07_06б.day`, `И_1_13_07_06б.month`, `И_1_13_07_06б.year`, `И_1_13_07_07.day`, `И_1_13_07_07.month`, `И_1_13_07_07.year`, `И_1_13_07_09.day`, `И_1_13_07_09.month`, `И_1_13_07_09.year`, `И_1_13_07_10.day`, `И_1_13_07_10.month`, `И_1_13_07_10.year`, `И_1_13_07_11.day`, `И_1_13_07_11.month`, `И_1_13_07_11.year`, `И_1_13_07_12.day`, `И_1_13_07_12.month`, `И_1_13_07_12.year`, `И_1_13_07_14а.day`, `И_1_13_07_14а.month`, `И_1_13_07_14а.year`, `И_1_13_07_15.day`, `И_1_13_07_15.month`, `И_1_13_07_15.year`, `И_1_13_07_16.day`, `И_1_13_07_16.month`, `И_1_13_07_16.year`, `И_1_13_07_17.day`, `И_1_13_07_17.month`, `И_1_13_07_17.year`, `И_1_13_07_18.day`, `И_1_13_07_18.month`, `И_1_13_07_18.year`, `И_1_13_07_19.day`, `И_1_13_07_19.month`, `И_1_13_07_19.year`, `И_1_13_07_20.day`, `И_1_13_07_20.month`, `И_1_13_07_20.year`, `И_1_13_07_21.day`, `И_1_13_07_21.month`, `И_1_13_07_21.year`, `И_1_13_07_22.day`, `И_1_13_07_22.month`, `И_1_13_07_22.year`, `И_1_13_07_23.day`, `И_1_13_07_23.month`, `И_1_13_07_23.year`, `И_1_13_07_24.day`, `И_1_13_07_24.month`, `И_1_13_07_24.year`, `МИНСТРОЙ_344_АОГРО.signed_day`, `МИНСТРОЙ_344_АОГРО.signed_month`, `МИНСТРОЙ_344_АОГРО.signed_year`, `МИНСТРОЙ_344_АООК.signed_day`, `МИНСТРОЙ_344_АООК.signed_month`, `МИНСТРОЙ_344_АООК.signed_year`, `МИНСТРОЙ_344_АОСР.signed_day`, `МИНСТРОЙ_344_АОСР.signed_month`, `МИНСТРОЙ_344_АОСР.signed_year`, `МИНСТРОЙ_344_АОУСИТО.signed_day`, `МИНСТРОЙ_344_АОУСИТО.signed_month`, `МИНСТРОЙ_344_АОУСИТО.signed_year`, `МИНСТРОЙ_344_АРООКС.signed_day`, `МИНСТРОЙ_344_АРООКС.signed_month`, `МИНСТРОЙ_344_АРООКС.signed_year`, `СП_68_М.date_0_2`, `СП_68_М.date_0_4`, `СП_68_М.date_0_6`, `СП_68_Н.date_6_2`, `СП_68_Н.date_6_4`, `СП_68_Н.date_6_6`, `СП_70_И.date_0_4`, `СП_70_И.date_0_6`, `СП_70_И.date_0_8`, `СП_71_Г.t0_r0_c0`, `СП_71_В.t0_r0_c0`, `СП_74_Б.date_0_3`, `СП_74_Б.date_0_5`, `СП_74_Б.date_0_7`, `СП_74_Г.date_0_3`, `СП_74_Г.date_0_5`, `СП_74_Г.date_0_7`, `СП_74_Д.date_0_3`, `СП_74_Д.date_0_5`, `СП_74_Д.date_0_7`, `СП_74_А.date_0_3`, `СП_74_А.date_0_5`, `СП_74_А.date_0_7`, `СП_77_А_2.date_0_3`, `СП_77_А_2.date_0_5`, `СП_77_А_2.date_0_7`, `СП_77_А_9.date_5_3`, `СП_77_А_9.date_5_5`, `СП_77_А_9.date_5_7`, `СП_77_А_5.date_0_3`, `СП_77_А_5.date_0_5`, `СП_77_А_5.date_0_7`, `СП_77_А_1.date_0_3`, `СП_77_А_1.date_0_5`, `СП_77_А_1.date_0_7`, `СП_77_А_3.date_0_3`, `СП_77_А_3.date_0_5`, `СП_77_А_3.date_0_7`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_3`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_5`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_7`, `СП_77_А_16.date_6_3`, `СП_77_А_16.date_6_5`, `СП_77_А_16.date_6_7`, `СП_77_А_17.date_6_3`, `СП_77_А_17.date_6_5`, `СП_77_А_17.date_6_7`, `СП_77_А_24.p32_1`, `СП_77_А_24.p32_2`, `СП_77_А_24.p32_3`, `СП_77_А_20.date_0_3`, `СП_77_А_20.date_0_5`, `СП_77_А_20.date_0_7`, `СП_77_А_21.day`, `СП_77_А_21.month`, `СП_77_А_21.year`
+`И_1_13_07_02.day`, `И_1_13_07_02.month`, `И_1_13_07_02.year`, `И_1_13_07_03.day`, `И_1_13_07_03.month`, `И_1_13_07_03.year`, `И_1_13_07_04.day`, `И_1_13_07_04.month`, `И_1_13_07_04.year`, `И_1_13_07_05.day`, `И_1_13_07_05.month`, `И_1_13_07_05.year`, `И_1_13_07_06.day`, `И_1_13_07_06.month`, `И_1_13_07_06.year`, `И_1_13_07_06а.day`, `И_1_13_07_06а.month`, `И_1_13_07_06а.year`, `И_1_13_07_06б.day`, `И_1_13_07_06б.month`, `И_1_13_07_06б.year`, `И_1_13_07_07.day`, `И_1_13_07_07.month`, `И_1_13_07_07.year`, `И_1_13_07_09.day`, `И_1_13_07_09.month`, `И_1_13_07_09.year`, `И_1_13_07_10.day`, `И_1_13_07_10.month`, `И_1_13_07_10.year`, `И_1_13_07_11.day`, `И_1_13_07_11.month`, `И_1_13_07_11.year`, `И_1_13_07_12.day`, `И_1_13_07_12.month`, `И_1_13_07_12.year`, `И_1_13_07_14а.day`, `И_1_13_07_14а.month`, `И_1_13_07_14а.year`, `И_1_13_07_15.day`, `И_1_13_07_15.month`, `И_1_13_07_15.year`, `И_1_13_07_16.day`, `И_1_13_07_16.month`, `И_1_13_07_16.year`, `И_1_13_07_17.day`, `И_1_13_07_17.month`, `И_1_13_07_17.year`, `И_1_13_07_18.day`, `И_1_13_07_18.month`, `И_1_13_07_18.year`, `И_1_13_07_19.day`, `И_1_13_07_19.month`, `И_1_13_07_19.year`, `И_1_13_07_20.day`, `И_1_13_07_20.month`, `И_1_13_07_20.year`, `И_1_13_07_21.day`, `И_1_13_07_21.month`, `И_1_13_07_21.year`, `И_1_13_07_22.day`, `И_1_13_07_22.month`, `И_1_13_07_22.year`, `И_1_13_07_23.day`, `И_1_13_07_23.month`, `И_1_13_07_23.year`, `И_1_13_07_24.day`, `И_1_13_07_24.month`, `И_1_13_07_24.year`, `МИНСТРОЙ_344_АОГРО.signed_day`, `МИНСТРОЙ_344_АОГРО.signed_month`, `МИНСТРОЙ_344_АОГРО.signed_year`, `МИНСТРОЙ_344_АООК.signed_day`, `МИНСТРОЙ_344_АООК.signed_month`, `МИНСТРОЙ_344_АООК.signed_year`, `МИНСТРОЙ_344_АОСР.signed_day`, `МИНСТРОЙ_344_АОСР.signed_month`, `МИНСТРОЙ_344_АОСР.signed_year`, `МИНСТРОЙ_344_АОУСИТО.signed_day`, `МИНСТРОЙ_344_АОУСИТО.signed_month`, `МИНСТРОЙ_344_АОУСИТО.signed_year`, `МИНСТРОЙ_344_АРООКС.signed_day`, `МИНСТРОЙ_344_АРООКС.signed_month`, `МИНСТРОЙ_344_АРООКС.signed_year`, `СП_68_М.date_0_2`, `СП_68_М.date_0_4`, `СП_68_М.date_0_6`, `СП_68_Н.date_6_2`, `СП_68_Н.date_6_4`, `СП_68_Н.date_6_6`, `СП_70_И.date_0_4`, `СП_70_И.date_0_6`, `СП_70_И.date_0_8`, `СП_71_Г.t0_r0_c0`, `СП_71_В.t0_r0_c0`, `СП_72_Д.t1_r0_c7`, `СП_74_Б.date_0_3`, `СП_74_Б.date_0_5`, `СП_74_Б.date_0_7`, `СП_74_Г.date_0_3`, `СП_74_Г.date_0_5`, `СП_74_Г.date_0_7`, `СП_74_Д.date_0_3`, `СП_74_Д.date_0_5`, `СП_74_Д.date_0_7`, `СП_74_А.date_0_3`, `СП_74_А.date_0_5`, `СП_74_А.date_0_7`, `СП_77_А_2.date_0_3`, `СП_77_А_2.date_0_5`, `СП_77_А_2.date_0_7`, `СП_77_А_9.date_5_3`, `СП_77_А_9.date_5_5`, `СП_77_А_9.date_5_7`, `СП_77_А_5.date_0_3`, `СП_77_А_5.date_0_5`, `СП_77_А_5.date_0_7`, `СП_77_А_1.date_0_3`, `СП_77_А_1.date_0_5`, `СП_77_А_1.date_0_7`, `СП_77_А_3.date_0_3`, `СП_77_А_3.date_0_5`, `СП_77_А_3.date_0_7`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_3`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_5`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_7`, `СП_77_А_16.date_6_3`, `СП_77_А_16.date_6_5`, `СП_77_А_16.date_6_7`, `СП_77_А_17.date_6_3`, `СП_77_А_17.date_6_5`, `СП_77_А_17.date_6_7`, `СП_77_А_24.p32_1`, `СП_77_А_24.p32_2`, `СП_77_А_24.p32_3`, `СП_77_А_20.date_0_3`, `СП_77_А_20.date_0_5`, `СП_77_А_20.date_0_7`, `СП_77_А_21.day`, `СП_77_А_21.month`, `СП_77_А_21.year`
 
 <a id="source-acts-fields"></a>
 ### `acts.fields`
@@ -4057,6 +4057,7 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 | Источник | Отбор / происхождение |
 |---|---|
+| _template_context | Общая объектная модель DOCX; object, project, document, organisations, representatives, recipient, consignor, companies, form. JSON template_path связывает сохранённые ключи с публичными свойствами; см. app/templates/README.md и TEMPLATE_FIELDS.md |
 | object / project / act | Карточка акта → раздел → объект; project.city с fallback objects.city |
 | resources | Только act_resources, ORDER BY ordinal; _source из resource_sources (attachment_id, source_key, page, sheet, locator) |
 | schemes | Только act_schemes, ORDER BY ordinal |
@@ -4067,7 +4068,7 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 | unit / section_designer | projects.unit_id / designer_org_id; корень существует только при выбранной связи |
 | organizations / signatories | Назначения объекта → раздела → выбора в акте; roles — ключи, не названия |
 | participant_ids | ojr.directory текущего объекта; Organisation.ID / Representative.ID, явный ~default=role |
-| companies | Представление назначений: role, name=(short_name или full_name), остальные реквизиты organizations |
+| companies | Представление назначений: role — русская подпись, role_key — код назначения, name=(short_name или full_name), остальные реквизиты organizations |
 | participation_periods | Все participant_periods объекта |
 | work_summary.description | ojr.act_work_description из связанных работ / фактов |
 | project_documentation | code, designer_name, description, section_description, object_and_project, object_description; form_defaults.documentation_context |
@@ -4223,7 +4224,7 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_01.docx](app/templates/И%201.13-07/И_1_13_07_01.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_01.fields.json](app/forms/И%201.13-07/И_1_13_07_01.fields.json).
 
-SHA-256 рабочего DOCX: `f86381a6c4cd960ec4dd0744fe36242b8700a595e32b36d972c10ca06d040707`.
+SHA-256 рабочего DOCX: `eebeb0e71cb2e15596bddbec676929181b4427488def1a2ef27f75d39cada19d`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/01 - Ведомость технической документации.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/01%20-%20Ведомость%20технической%20документации.docx). SHA-256: `e6ea45715badb472fe2a29d81b9c30d67b46fd0c289ad882804c683cd2000548`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4247,7 +4248,7 @@ SHA-256 рабочего DOCX: `f86381a6c4cd960ec4dd0744fe36242b8700a595e32b36d9
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_02.docx](app/templates/И%201.13-07/И_1_13_07_02.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_02.fields.json](app/forms/И%201.13-07/И_1_13_07_02.fields.json).
 
-SHA-256 рабочего DOCX: `2a8c0a78cbdc4f3488b80f66b3d9e0725ccab39b28e192913df85a69d2577932`.
+SHA-256 рабочего DOCX: `f1bd942ceadb320b21f01912876b113a8708746e8bb77767bcdf253a56a59bd4`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/02 - Акт технической готовности электромонтажных работ.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/02%20-%20Акт%20технической%20готовности%20электромонтажных%20работ.docx). SHA-256: `98956ddbee704992e397c653a04c579367c0619d8f0b9157ed48a0e129927079`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4274,7 +4275,7 @@ SHA-256 рабочего DOCX: `2a8c0a78cbdc4f3488b80f66b3d9e0725ccab39b28e19291
 
 Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_03.docx](app/templates/И%201.13-07/И_1_13_07_03.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_03.fields.json](app/forms/И%201.13-07/И_1_13_07_03.fields.json).
 
-SHA-256 рабочего DOCX: `55395756a3ebb3b125db2be2f9a3c40d2c37f067cd4bf664e911538802f209df`.
+SHA-256 рабочего DOCX: `c90b9835b4d8d34740a3b3dd141653852dc65244a7b1920d005a371af3062121`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/03 - Ведомость изменений и отступлений от проекта.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/03%20-%20Ведомость%20изменений%20и%20отступлений%20от%20проекта.docx). SHA-256: `6b0461f395fed0ee1de5a33c02d5a48bf078128581a315e387871cd613196468`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4303,7 +4304,7 @@ SHA-256 рабочего DOCX: `55395756a3ebb3b125db2be2f9a3c40d2c37f067cd4bf664
 
 Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_04.docx](app/templates/И%201.13-07/И_1_13_07_04.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_04.fields.json](app/forms/И%201.13-07/И_1_13_07_04.fields.json).
 
-SHA-256 рабочего DOCX: `acaf109a3b08a86035b19cc39a5111f3ebaf14ad01c9dfd5db9bcc832d6541c6`.
+SHA-256 рабочего DOCX: `7be1ab252790fd9e616b8860c0350580cd99a46919581a61da83a09e5500779d`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/04 - Ведомость электромонтажных недоделок.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/04%20-%20Ведомость%20электромонтажных%20недоделок.docx). SHA-256: `9ccff642fc63ea0ac173d9ff7ab38e54d24723ffd0de92d8bb98fd1f27fc8407`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4336,7 +4337,7 @@ SHA-256 рабочего DOCX: `acaf109a3b08a86035b19cc39a5111f3ebaf14ad01c9dfd5
 
 Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_05.docx](app/templates/И%201.13-07/И_1_13_07_05.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_05.fields.json](app/forms/И%201.13-07/И_1_13_07_05.fields.json).
 
-SHA-256 рабочего DOCX: `64c6bedda91b00dadfb85a7916a2d15cddb5f0fc41b911fea4378e6d3ba0f6a1`.
+SHA-256 рабочего DOCX: `bbae9786ec6cd031678e813b8e04fc3812d083187146822919b6d3b5769da432`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/05 - Ведомость смонтированного электрооборудования.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/05%20-%20Ведомость%20смонтированного%20электрооборудования.docx). SHA-256: `48a83d2456697f1368c25b3cde472932b06371b38388b8c7f54f4bbf36c18d8c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4371,7 +4372,7 @@ SHA-256 рабочего DOCX: `64c6bedda91b00dadfb85a7916a2d15cddb5f0fc41b911fe
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_06.docx](app/templates/И%201.13-07/И_1_13_07_06.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_06.fields.json](app/forms/И%201.13-07/И_1_13_07_06.fields.json).
 
-SHA-256 рабочего DOCX: `89448886a0d4fadfb4e77c0ba89820274596ee0f0920dcdb6dee2814f6d3f086`.
+SHA-256 рабочего DOCX: `9972a4804eef6e9975044970f9010ae7f4bf66c64730d716aab9ddd4970ddb28`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/06 - Акт готовности строительной части помещений (сооружений) к производству электромонтажных работ.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/06%20-%20Акт%20готовности%20строительной%20части%20помещений%20(сооружений)%20к%20производству%20электромонтажных%20работ.docx). SHA-256: `edc5ddd115c95e13973f9216a56ed16bddbab4065433ce057a3485303eb181ee`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4405,7 +4406,7 @@ SHA-256 рабочего DOCX: `89448886a0d4fadfb4e77c0ba89820274596ee0f0920dcdb
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_06а.docx](app/templates/И%201.13-07/И_1_13_07_06а.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_06а.fields.json](app/forms/И%201.13-07/И_1_13_07_06а.fields.json).
 
-SHA-256 рабочего DOCX: `c67a7d83b7d7b5efd9d8146fec5d350b9a7754b6e60dae3dfe056d7d2c9c4879`.
+SHA-256 рабочего DOCX: `f5433de52e9143863533fe9ab2287850be3b412894fa75f6549d75846f0d3f7d`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/06а - Справка о ликвидации недоделок.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/06а%20-%20Справка%20о%20ликвидации%20недоделок.docx). SHA-256: `8c8904a5e812f53a7e02fa97d62d2794b28d1865313b340f16f62cf3517946e9`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4430,7 +4431,7 @@ SHA-256 рабочего DOCX: `c67a7d83b7d7b5efd9d8146fec5d350b9a7754b6e60dae3d
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_06б.docx](app/templates/И%201.13-07/И_1_13_07_06б.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_06б.fields.json](app/forms/И%201.13-07/И_1_13_07_06б.fields.json).
 
-SHA-256 рабочего DOCX: `de7db6308037fa9ad874c029b546a48f077fdf041e0988277bf9f64ddccec294`.
+SHA-256 рабочего DOCX: `6dc85f7148391f404840bb65b8d024999bec46caaa40cba3a78ef317eea10c90`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/06б - Акт передачи смонтированного оборудования для производства пусконаладочных работ.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/06б%20-%20Акт%20передачи%20смонтированного%20оборудования%20для%20производства%20пусконаладочных%20работ.docx). SHA-256: `e65f7d55e40de33c376e905fa2950a56f7407d641d9f2c29b765ccf0b25f5f36`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4457,7 +4458,7 @@ SHA-256 рабочего DOCX: `de7db6308037fa9ad874c029b546a48f077fdf041e098827
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_07.docx](app/templates/И%201.13-07/И_1_13_07_07.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_07.fields.json](app/forms/И%201.13-07/И_1_13_07_07.fields.json).
 
-SHA-256 рабочего DOCX: `1d233be44b317ed5204bb96c42e80ae41a6698f1fd0a89c60a3ad1a155eb15dd`.
+SHA-256 рабочего DOCX: `68d67932fc568a89fbffbde143ab96cad8e7d14f351090cb3f31f986025526c0`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/07 - Акт о приёмке и монтаже силового трансформатора.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/07%20-%20Акт%20о%20приёмке%20и%20монтаже%20силового%20трансформатора.docx). SHA-256: `4d9a5d4d3ed8020b71fc9dcce5180aeb777ae71ff9e410d8db920c4646bd9d78`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4511,7 +4512,7 @@ SHA-256 рабочего DOCX: `1d233be44b317ed5204bb96c42e80ae41a6698f1fd0a89c6
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_09.docx](app/templates/И%201.13-07/И_1_13_07_09.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_09.fields.json](app/forms/И%201.13-07/И_1_13_07_09.fields.json).
 
-SHA-256 рабочего DOCX: `dd43308d84d4b754381c2abe81f181a096a9aad1e343416ec5cf19a36009d566`.
+SHA-256 рабочего DOCX: `251911dd30170dc8a90bb7efd67f98d4c69fcba32ca1f3b792d5d2022601fe09`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/09 - Протокол осмотра и проверки технической готовности ЭМР по АБ.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/09%20-%20Протокол%20осмотра%20и%20проверки%20технической%20готовности%20ЭМР%20по%20АБ.docx). SHA-256: `30ed6966c7c071fc2c9e30ba7beecc2e1ce416eb5d64907d5636f498ae8a8641`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4541,7 +4542,7 @@ SHA-256 рабочего DOCX: `dd43308d84d4b754381c2abe81f181a096a9aad1e343416e
 
 Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_10.docx](app/templates/И%201.13-07/И_1_13_07_10.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_10.fields.json](app/forms/И%201.13-07/И_1_13_07_10.fields.json).
 
-SHA-256 рабочего DOCX: `423c4bf68d57fc5d5c8f0e1cbecd15e4bebb9cb453a24cf70aefcfa5b09ca879`.
+SHA-256 рабочего DOCX: `8e9c994bdc781ad7603c99873c02eb6f43b54d8dfa5cde4a873813e6221f2907`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/10 - Ведомость замеров при контрольном разряде аккумуляторной батареи.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/10%20-%20Ведомость%20замеров%20при%20контрольном%20разряде%20аккумуляторной%20батареи.docx). SHA-256: `a27e9fcc445880806679fcfc479a5854b9f566829627919a03fda1b3defed91e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4583,7 +4584,7 @@ SHA-256 рабочего DOCX: `423c4bf68d57fc5d5c8f0e1cbecd15e4bebb9cb453a24cf7
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_11.docx](app/templates/И%201.13-07/И_1_13_07_11.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_11.fields.json](app/forms/И%201.13-07/И_1_13_07_11.fields.json).
 
-SHA-256 рабочего DOCX: `adc4d487c523c7376c4c991a1bf055f6ca95e51d1c8509dd818b1c9e06abfcc1`.
+SHA-256 рабочего DOCX: `a066137f59759cd77379384a3dd1795f08702e8dd0bb13e98e739bb58a1bed84`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/11 - Акт осмотра канализации из труб перед закрытием.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/11%20-%20Акт%20осмотра%20канализации%20из%20труб%20перед%20закрытием.docx). SHA-256: `1b2f625cfb9ef69f85e697fec77b0ded60a6907584ce5a370c897a0b9c555491`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4613,7 +4614,7 @@ SHA-256 рабочего DOCX: `adc4d487c523c7376c4c991a1bf055f6ca95e51d1c8509dd
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_12.docx](app/templates/И%201.13-07/И_1_13_07_12.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_12.fields.json](app/forms/И%201.13-07/И_1_13_07_12.fields.json).
 
-SHA-256 рабочего DOCX: `aa6a2565d3f626d625ac870c535f46872357349b3bd39bdcfe7586528714b87f`.
+SHA-256 рабочего DOCX: `241e9125cc80202f2ed44d84904dc33eda9704d145818c26d8eceaa083d6d86d`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/12 - Протокол испытаний давлением.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/12%20-%20Протокол%20испытаний%20давлением.docx). SHA-256: `12bb9d1a1e65d65627e84b4a2fa245f2728776503bcaf7822a4b0c67c94c6607`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4646,7 +4647,7 @@ SHA-256 рабочего DOCX: `aa6a2565d3f626d625ac870c535f46872357349b3bd39bdc
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_14а.docx](app/templates/И%201.13-07/И_1_13_07_14а.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_14а.fields.json](app/forms/И%201.13-07/И_1_13_07_14а.fields.json).
 
-SHA-256 рабочего DOCX: `dd53507ea15d052ffaf39fabe8c0f401bec9f54a3cf8273dc076e0cea42117f9`.
+SHA-256 рабочего DOCX: `08ae0419c6b014bda2f668efadb800b1a1a2d1e2b6969e04a522eb87ea601e03`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/14а - Акт приёмки траншей, каналов, туннелей и блоков под монтаж кабелей.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/14а%20-%20Акт%20приёмки%20траншей,%20каналов,%20туннелей%20и%20блоков%20под%20монтаж%20кабелей.docx). SHA-256: `8a007b347126536cc59fbfb58cea1dcb0dfd2b419555da2d6cd7fe421eedf1f1`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4684,7 +4685,7 @@ SHA-256 рабочего DOCX: `dd53507ea15d052ffaf39fabe8c0f401bec9f54a3cf8273d
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_15.docx](app/templates/И%201.13-07/И_1_13_07_15.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_15.fields.json](app/forms/И%201.13-07/И_1_13_07_15.fields.json).
 
-SHA-256 рабочего DOCX: `e83c2ca20f9590f4c31fdb2ef66112a72993d136245929194534d9c98ef36dc6`.
+SHA-256 рабочего DOCX: `55ff6ff9be26def96f40fcd8ff8a53ab4210856786843e560c748fa66b450daf`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/15 - Протокол осмотра и проверки сопротивления изоляции кабелей на барабане перед прокладкой.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/15%20-%20Протокол%20осмотра%20и%20проверки%20сопротивления%20изоляции%20кабелей%20на%20барабане%20перед%20прокладкой.docx). SHA-256: `c77e5dc97e266f73a9c19fd4f516e6064ccba1cec77ab177751a516649b83a44`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4721,7 +4722,7 @@ SHA-256 рабочего DOCX: `e83c2ca20f9590f4c31fdb2ef66112a72993d13624592919
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_16.docx](app/templates/И%201.13-07/И_1_13_07_16.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_16.fields.json](app/forms/И%201.13-07/И_1_13_07_16.fields.json).
 
-SHA-256 рабочего DOCX: `6bdbc089531302440d745bafaa5d5cb5aee3ca25131d7145f21aea7fc99471d1`.
+SHA-256 рабочего DOCX: `eed27f23f6b041e65ac30cc127d7a9ac6830cb3f6f0ada8d060e98092e04061f`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/16 - Протокол прогрева кабелей на барабане перед прокладкой при низких температурах.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/16%20-%20Протокол%20прогрева%20кабелей%20на%20барабане%20перед%20прокладкой%20при%20низких%20температурах.docx). SHA-256: `19172c89f6ee4f8f509dde972d3dcb668b19bbd4f6e81063e25f09c9a6157c70`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4752,7 +4753,7 @@ SHA-256 рабочего DOCX: `6bdbc089531302440d745bafaa5d5cb5aee3ca25131d7145
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_17.docx](app/templates/И%201.13-07/И_1_13_07_17.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_17.fields.json](app/forms/И%201.13-07/И_1_13_07_17.fields.json).
 
-SHA-256 рабочего DOCX: `41234e44f0c1e7b8dd574322ebb83be3f3747989228caed154f13d9d662f13e5`.
+SHA-256 рабочего DOCX: `735f6dc2f3566201582c6d171dec40a0cdbefecc5c18c1d93b01334da2328d9e`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/17 - Акт осмотра кабельной канализации в траншеях и каналах перед закрытием.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/17%20-%20Акт%20осмотра%20кабельной%20канализации%20в%20траншеях%20и%20каналах%20перед%20закрытием.docx). SHA-256: `da1c380bf8fb39770bc438def8517211b10b2ad2943a6903f5f548b06130c31e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4784,7 +4785,7 @@ SHA-256 рабочего DOCX: `41234e44f0c1e7b8dd574322ebb83be3f3747989228caed1
 
 Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_18.docx](app/templates/И%201.13-07/И_1_13_07_18.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_18.fields.json](app/forms/И%201.13-07/И_1_13_07_18.fields.json).
 
-SHA-256 рабочего DOCX: `d87236678a4c06aa17f233d7d90945d3a4d2098559c0823e4719a36217364167`.
+SHA-256 рабочего DOCX: `7e754410c1a6a12e2a2a103e06a6209693d542eda299f63629b52777b55a4e6e`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/18 - Журнал прокладки кабелей.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/18%20-%20Журнал%20прокладки%20кабелей.docx). SHA-256: `46947d89a3d0425693e4d5a4b2ff43b2cbc42e4b140edbc7c87745048e6cca26`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4816,7 +4817,7 @@ SHA-256 рабочего DOCX: `d87236678a4c06aa17f233d7d90945d3a4d2098559c0823e
 
 Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_19.docx](app/templates/И%201.13-07/И_1_13_07_19.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_19.fields.json](app/forms/И%201.13-07/И_1_13_07_19.fields.json).
 
-SHA-256 рабочего DOCX: `2c2943c2b7ccc65e8ce2504a4c6aaaa4eb2c95b418bdbca745f27ba63ab90962`.
+SHA-256 рабочего DOCX: `3ab82cade9f949a8af34c4b0ca1e68ece4eee1a8bf7186eb946750236294cb3c`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/19 - Журнал монтажа кабельных муфт напряжением выше 1000 В.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/19%20-%20Журнал%20монтажа%20кабельных%20муфт%20напряжением%20выше%201000%20В.docx). SHA-256: `722c6d39813415cceb7e649dc93d2b201e0fc539f566e69a3560ff98441df330`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4845,7 +4846,7 @@ SHA-256 рабочего DOCX: `2c2943c2b7ccc65e8ce2504a4c6aaaa4eb2c95b418bdbca7
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_20.docx](app/templates/И%201.13-07/И_1_13_07_20.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_20.fields.json](app/forms/И%201.13-07/И_1_13_07_20.fields.json).
 
-SHA-256 рабочего DOCX: `59fab3c82652a0fe13069d40f32d1b4b2e3e50fd14cc3bbec2a67d8a71c6ffc7`.
+SHA-256 рабочего DOCX: `fc1f0de1d8af7ac0da417a2f34a5f71fa703f0109a7449c08f625aac455b807a`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/20 - Акт готовности монолитного бетонного фундамента под опору ВЛ.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/20%20-%20Акт%20готовности%20монолитного%20бетонного%20фундамента%20под%20опору%20ВЛ.docx). SHA-256: `d120fde00b23ddc2c8ec43ce2d96793740d360f41a7768af33105f9a74600b2a`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4881,7 +4882,7 @@ SHA-256 рабочего DOCX: `59fab3c82652a0fe13069d40f32d1b4b2e3e50fd14cc3bbe
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_21.docx](app/templates/И%201.13-07/И_1_13_07_21.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_21.fields.json](app/forms/И%201.13-07/И_1_13_07_21.fields.json).
 
-SHA-256 рабочего DOCX: `60b8ece8f9b234cdab148a2217068ffd0fd1cdac030c1e0310180270855bb54d`.
+SHA-256 рабочего DOCX: `4e29e29db9f5cc10c16f24d5c8d64674d25042bb868133ac7b494522737aec0b`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/21 - Акт готовности сборных железобетонных фундаментов под установку опор ВЛ.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/21%20-%20Акт%20готовности%20сборных%20железобетонных%20фундаментов%20под%20установку%20опор%20ВЛ.docx). SHA-256: `3ce46566f318bcf286eadfa70e1489403c67efeebff73afbd137f68872342fcb`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4931,7 +4932,7 @@ SHA-256 рабочего DOCX: `60b8ece8f9b234cdab148a2217068ffd0fd1cdac030c1e03
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_22.docx](app/templates/И%201.13-07/И_1_13_07_22.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_22.fields.json](app/forms/И%201.13-07/И_1_13_07_22.fields.json).
 
-SHA-256 рабочего DOCX: `d0a738099f5b19deea2b8db206606e9ec850d533667116081e8516e7f1fd0619`.
+SHA-256 рабочего DOCX: `45e890255faec2fd96f6d0c2ab9dd5895ac5b28364377115537be9eceecda2f5`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/22 - Паспорт воздушной линии электропередачи.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/22%20-%20Паспорт%20воздушной%20линии%20электропередачи.docx). SHA-256: `9c15813671dfb41bdb3091fcaad0d7138ba44805ed7960b0b393d8036c27c3bc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -4993,7 +4994,7 @@ SHA-256 рабочего DOCX: `d0a738099f5b19deea2b8db206606e9ec850d53366711608
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_23.docx](app/templates/И%201.13-07/И_1_13_07_23.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_23.fields.json](app/forms/И%201.13-07/И_1_13_07_23.fields.json).
 
-SHA-256 рабочего DOCX: `adb9880713ac11f3a33273bad1b6f3f2c838ede3f3e21aa073073bcbb9184eb7`.
+SHA-256 рабочего DOCX: `7c52f76dcafd35d62338eac658ecfb0e299a27039c10e6fe7cc52f4d7f5e9776`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/23 - Акт замеров в натуре габаритов от проводов ВЛ до пересекаемого объекта.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/23%20-%20Акт%20замеров%20в%20натуре%20габаритов%20от%20проводов%20ВЛ%20до%20пересекаемого%20объекта.docx). SHA-256: `ae32a29b2204a0145aa6937d66000074fee8830531e976b6ad7f373785eb7e21`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5030,7 +5031,7 @@ SHA-256 рабочего DOCX: `adb9880713ac11f3a33273bad1b6f3f2c838ede3f3e21aa0
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_24.docx](app/templates/И%201.13-07/И_1_13_07_24.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_24.fields.json](app/forms/И%201.13-07/И_1_13_07_24.fields.json).
 
-SHA-256 рабочего DOCX: `98194194e3df02f121db2a42518fc012ac16779a57567fef6ecb92e5d9e14830`.
+SHA-256 рабочего DOCX: `e4176a4d1673a7fe7f05c9ea9070e23937ef20e9d071167e827d641303e24d47`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/24 - Паспорт заземляющего устройства.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/24%20-%20Паспорт%20заземляющего%20устройства.docx). SHA-256: `b89ecb92e38b1f425a33a01fbc527c6dfc753d9d3172a9483bd8db4974af0497`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5072,7 +5073,7 @@ SHA-256 рабочего DOCX: `98194194e3df02f121db2a42518fc012ac16779a57567fef
 
 Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_25.docx](app/templates/И%201.13-07/И_1_13_07_25.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_25.fields.json](app/forms/И%201.13-07/И_1_13_07_25.fields.json).
 
-SHA-256 рабочего DOCX: `96446f236136b253b8da17e6debbe5d9dc53e95c5716f12e17d995ed6f5599de`.
+SHA-256 рабочего DOCX: `2717b1d1433b026d1ec3dc16f8ffdf12613960b983543341ac1c8a3c44121be2`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/25 - Обложка к комплекту технической документации по сдаче-приёмке электромонтажных работ.docx](misc/downloads/Исходные%20формы%20документов/И%201.13-07/25%20-%20Обложка%20к%20комплекту%20технической%20документации%20по%20сдаче-приёмке%20электромонтажных%20работ.docx). SHA-256: `600f5a08496b83e477e2043a6e5246421e51f397c9c5d37b1010d9bd220f6371`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5090,7 +5091,7 @@ SHA-256 рабочего DOCX: `96446f236136b253b8da17e6debbe5d9dc53e95c5716f12e
 
 Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОГРО.docx](app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОГРО.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОГРО.fields.json](app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОГРО.fields.json).
 
-SHA-256 рабочего DOCX: `be5785905eff3c0654dac564c4e66131cc65a11a5ca25013d4d3d20d621bd818`.
+SHA-256 рабочего DOCX: `dc091a89447ebebd75fcc7ff072c040fd7ffd83ebf2491d18a7950a0fe258c4c`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АОГРО.docx](misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АОГРО.docx). SHA-256: `3064f6446103057e134362a3abda60a10db9576c9fc5e7be4861ae718c023f3b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5159,7 +5160,7 @@ SHA-256 рабочего DOCX: `be5785905eff3c0654dac564c4e66131cc65a11a5ca25013
 
 Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АООК.docx](app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АООК.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АООК.fields.json](app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АООК.fields.json).
 
-SHA-256 рабочего DOCX: `807601179a3c3e1c1dd49e5899bf00d6a8484c1ce14e9e0e24a35b7a5b201dda`.
+SHA-256 рабочего DOCX: `c1336cfc92a8fd72165c49293ca02d80a138605ef6cd300224143e6ec9f883b8`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АООК.docx](misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АООК.docx). SHA-256: `9be387e2c63c9a4b721dae07aecd7534015f85e10d4e81c3c73bcdf484365a94`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5238,7 +5239,7 @@ SHA-256 рабочего DOCX: `807601179a3c3e1c1dd49e5899bf00d6a8484c1ce14e9e0e
 
 Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОСР.docx](app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОСР.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОСР.fields.json](app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОСР.fields.json).
 
-SHA-256 рабочего DOCX: `201a34a8d10be72fcf6faab808f9ccea844a2118aba539e92bdd563ec4d0a1b3`.
+SHA-256 рабочего DOCX: `862d9d36b5b989caa67778a250201259855142e337dd81f44a8eafdc2fbaec20`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АОСР.docx](misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АОСР.docx). SHA-256: `2d95d1b37a821f0013c57dd0bb1bcacea23ae738e79b1ec8ec3c2a9ffcd9e30a`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5314,7 +5315,7 @@ SHA-256 рабочего DOCX: `201a34a8d10be72fcf6faab808f9ccea844a2118aba539e9
 
 Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОУСИТО.docx](app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОУСИТО.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОУСИТО.fields.json](app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОУСИТО.fields.json).
 
-SHA-256 рабочего DOCX: `e103672c9aad11a22a7d75065ae6aabd7309f1fb4496367eb4a437ed3204347e`.
+SHA-256 рабочего DOCX: `84bcc0c688ac2fd4eb86edb76eb1ac1e9f6de6276ed0412032ef4f060004984b`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АОУСИТО.docx](misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АОУСИТО.docx). SHA-256: `d069a91c9731df9a5b69bea9eef78823e094b0810d2b20ab23b4c7d97af7c632`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5400,7 +5401,7 @@ SHA-256 рабочего DOCX: `e103672c9aad11a22a7d75065ae6aabd7309f1fb4496367e
 
 Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АРООКС.docx](app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АРООКС.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АРООКС.fields.json](app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АРООКС.fields.json).
 
-SHA-256 рабочего DOCX: `c74cde5e18e13edfeb47f9779387cbb55e076837f4ce5f4fb6ac204bdcdd5dab`.
+SHA-256 рабочего DOCX: `903422db55a31c6ac182ce2419778dc95b5db09f8ff36b2b7afa227ef6e8950f`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АРООКС.docx](misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АРООКС.docx). SHA-256: `55cdeabe2095133631e7ffba30f3ec730df16fc849f46ce2fe150e280c73dab3`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5472,7 +5473,7 @@ SHA-256 рабочего DOCX: `c74cde5e18e13edfeb47f9779387cbb55e076837f4ce5f4f
 
 Группа: `act`. DOCX: [app/templates/Титульники/ТИТУЛЬНЫЙ_ЛИСТ.docx](app/templates/Титульники/ТИТУЛЬНЫЙ_ЛИСТ.docx). Определения: [app/forms/ТИТУЛЬНЫЙ_ЛИСТ.fields.json](app/forms/ТИТУЛЬНЫЙ_ЛИСТ.fields.json).
 
-SHA-256 рабочего DOCX: `fa9c217d902bd3d4187c44221ea9dbd64da45e5273127e152090d23b982771e0`.
+SHA-256 рабочего DOCX: `9948a29ce7119e8300884a81d6c7508ce2d429ebd3b371461b9c59d32f602595`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/Титульники/template.docx](misc/downloads/Исходные%20формы%20документов/Титульники/template.docx). SHA-256: `bfc4abe58bba5cfdb5a8e62ac19c8ccb2a0f327d9f3ebc3638cb32278a7e30fc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5499,7 +5500,7 @@ SHA-256 рабочего DOCX: `fa9c217d902bd3d4187c44221ea9dbd64da45e5273127e15
 
 Группа: `act`. DOCX: [app/templates/СП 40-102-2000/СП_40_102_2000_Е.docx](app/templates/СП%2040-102-2000/СП_40_102_2000_Е.docx). Определения: [app/forms/СП 40-102-2000/СП_40_102_2000_Е.fields.json](app/forms/СП%2040-102-2000/СП_40_102_2000_Е.fields.json).
 
-SHA-256 рабочего DOCX: `1cd95d4214fc33b4e683131ac7d10a402b533d0dca6687dc528e1a2e3072323d`.
+SHA-256 рабочего DOCX: `42568aa92045c2c6f40e7314f228d76eb183c1b8fed7dd4454c0be7fdaef93ce`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 40-102-2000/Акт о проведении входного контроля партии труб.docx](misc/downloads/Исходные%20формы%20документов/СП%2040-102-2000/Акт%20о%20проведении%20входного%20контроля%20партии%20труб.docx). SHA-256: `c61596ca5277721cf6b6b7f0ee3d2878cc3d78b99054ca7a1b6dbdadc7529e18`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5531,7 +5532,7 @@ SHA-256 рабочего DOCX: `1cd95d4214fc33b4e683131ac7d10a402b533d0dca6687dc
 
 Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_П.docx](app/templates/СП%2042-101-2003/СП_42_101_2003_П.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_П.fields.json](app/forms/СП%2042-101-2003/СП_42_101_2003_П.fields.json).
 
-SHA-256 рабочего DOCX: `69da5273390e8603646731006ca31d7c004f3f9838f90757b0646dece994d123`.
+SHA-256 рабочего DOCX: `678847e30c1c3956927900a534d7f3cab4065b89a71dedd2d82be9c483a542a7`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Акт приёмки газопроводов для комплексного опробования.docx](misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Акт%20приёмки%20газопроводов%20для%20комплексного%20опробования.docx). SHA-256: `a1f0ee77324568febe10221e3cbd32cf61b88ce90222d0b473148c9ef87e0254`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5572,7 +5573,7 @@ SHA-256 рабочего DOCX: `69da5273390e8603646731006ca31d7c004f3f9838f90757
 
 Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_Т.docx](app/templates/СП%2042-101-2003/СП_42_101_2003_Т.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_Т.fields.json](app/forms/СП%2042-101-2003/СП_42_101_2003_Т.fields.json).
 
-SHA-256 рабочего DOCX: `ee19f7a496685f89301b4c8a79e8c30fefd12c364daae4cbcfa609c0d62200ea`.
+SHA-256 рабочего DOCX: `dbc07f7112f793118eca971c84c7c97af805716b989d5a14bf069ce4d9bf4918`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Строительный паспорт ГРП.docx](misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Строительный%20паспорт%20ГРП.docx). SHA-256: `31257058ddfa91dabf4abdc867115c07a9003648b3c6e39472e3f99b9b616e4c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5619,7 +5620,7 @@ SHA-256 рабочего DOCX: `ee19f7a496685f89301b4c8a79e8c30fefd12c364daae4cb
 
 Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_С.docx](app/templates/СП%2042-101-2003/СП_42_101_2003_С.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_С.fields.json](app/forms/СП%2042-101-2003/СП_42_101_2003_С.fields.json).
 
-SHA-256 рабочего DOCX: `deeea87102cd3f61a94d421f796a7a681aa3ecb06b6962c3e8bbf1853b4d02b4`.
+SHA-256 рабочего DOCX: `40cba17b75603b41e7885847b8b94f057ad4d73648706a57c7a48f41add948ae`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Строительный паспорт газоиспользующего оборудования.docx](misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Строительный%20паспорт%20газоиспользующего%20оборудования.docx). SHA-256: `36198022fe155275e2016640d5ada33b19a980e3a5be75029a6f936adad513cc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5666,7 +5667,7 @@ SHA-256 рабочего DOCX: `deeea87102cd3f61a94d421f796a7a681aa3ecb06b6962c3
 
 Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_Р.docx](app/templates/СП%2042-101-2003/СП_42_101_2003_Р.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_Р.fields.json](app/forms/СП%2042-101-2003/СП_42_101_2003_Р.fields.json).
 
-SHA-256 рабочего DOCX: `fa6a20301dbac65a728105b77b67fe7cdc4a51df083ea0c7de4aa7e453dfbf1c`.
+SHA-256 рабочего DOCX: `66c0f2df410265b84c833bededf6c65e3d497ab2c3c8f2f5e8ca043018999cf6`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Строительный паспорт газопровода.docx](misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Строительный%20паспорт%20газопровода.docx). SHA-256: `6862408b40ebe470ec04b0f449c65ab32154affcc923cd9d3208f3b7fd9c3c73`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5741,7 +5742,7 @@ SHA-256 рабочего DOCX: `fa6a20301dbac65a728105b77b67fe7cdc4a51df083ea0c7
 
 Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Ш.docx](app/templates/СП%2045.13330.2017/СП_45_Ш.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Ш.fields.json](app/forms/СП%2045.13330.2017/СП_45_Ш.fields.json).
 
-SHA-256 рабочего DOCX: `7e883c843b943b2ed105493f0a00e54fff3942fbc20e89b079f465a70e410b03`.
+SHA-256 рабочего DOCX: `23f1f2c2c2cc3277d0b72b11a65d809c242345ea8d9c56c154c16dd0dd66acf5`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки захватки стены в грунте (баретты).docx](misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20захватки%20стены%20в%20грунте%20(баретты).docx). SHA-256: `5faa1725b1c155f4f655dda0f5a65e1e7d7ba54e34397bf06c15bba8a49842a0`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5770,7 +5771,7 @@ SHA-256 рабочего DOCX: `7e883c843b943b2ed105493f0a00e54fff3942fbc20e89b0
 
 Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Я.docx](app/templates/СП%2045.13330.2017/СП_45_Я.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Я.fields.json](app/forms/СП%2045.13330.2017/СП_45_Я.fields.json).
 
-SHA-256 рабочего DOCX: `109c7d797e2ff6de4a14c8e39629023c886f121803bb2534a041bc89cc421781`.
+SHA-256 рабочего DOCX: `f7041bb7245e7d1f212a4b01cb1104215517b8822b18e467d3fe4cfeba4c0892`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки сваи.docx](misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20сваи.docx). SHA-256: `b38f59480d88ece49b1d3728925337064ccb4c09001ecf782a21031a8a7dc7cb`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5799,7 +5800,7 @@ SHA-256 рабочего DOCX: `109c7d797e2ff6de4a14c8e39629023c886f121803bb2534
 
 Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Ю.docx](app/templates/СП%2045.13330.2017/СП_45_Ю.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Ю.fields.json](app/forms/СП%2045.13330.2017/СП_45_Ю.fields.json).
 
-SHA-256 рабочего DOCX: `ee6cba92ebf4f4e39bda1910790c1e84afe427b9cf1b8549f83245b862df5d41`.
+SHA-256 рабочего DOCX: `fd6da226090d9c8edc9d1b51834f403e8787bc99b8cfd04131795783f21d6561`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки скважины.docx](misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20скважины.docx). SHA-256: `0db78f16a6f60858c8b5f276bb39071b5a71aa60313116c905dc0dcc41dd6b29`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5833,7 +5834,7 @@ SHA-256 рабочего DOCX: `ee6cba92ebf4f4e39bda1910790c1e84afe427b9cf1b8549
 
 Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Щ.docx](app/templates/СП%2045.13330.2017/СП_45_Щ.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Щ.fields.json](app/forms/СП%2045.13330.2017/СП_45_Щ.fields.json).
 
-SHA-256 рабочего DOCX: `ca61d06b74ea8677e4d5c7dc3ff3a2b0dc6d15f00d6e8ae7528ed00081879a84`.
+SHA-256 рабочего DOCX: `27c7c3e80a39ab39974b87f4820674886519615a6f66e4f093dd4d32d7eca711`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки траншеи.docx](misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20траншеи.docx). SHA-256: `d9d236e28d492b83b7140ea63cfa7a4b04d8aad3154e4447eebd9a7185fc1119`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5866,7 +5867,7 @@ SHA-256 рабочего DOCX: `ca61d06b74ea8677e4d5c7dc3ff3a2b0dc6d15f00d6e8ae7
 
 Группа: `statement`. DOCX: [app/templates/СП 45.13330.2017/СП_45_1.docx](app/templates/СП%2045.13330.2017/СП_45_1.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_1.fields.json](app/forms/СП%2045.13330.2017/СП_45_1.fields.json).
 
-SHA-256 рабочего DOCX: `cf13b5924bcd927640890a676e0c5b795d4926b26775170acbb7bf0136f62a36`.
+SHA-256 рабочего DOCX: `2341942e6cbf24924a2a7f7787e25655630b34dafdf5d6d7acc05d8f8e4d5036`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Журнал контроля качества глинистого раствора.docx](misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Журнал%20контроля%20качества%20глинистого%20раствора.docx). SHA-256: `e0f23b4cdb241a5dc5aa9fe0676c26574fbaac36a3fba793eabeb6004ed1f566`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5901,7 +5902,7 @@ SHA-256 рабочего DOCX: `cf13b5924bcd927640890a676e0c5b795d4926b26775170a
 
 Группа: `statement`. DOCX: [app/templates/СП 48.13330.2019/СП_48_И.docx](app/templates/СП%2048.13330.2019/СП_48_И.docx). Определения: [app/forms/СП 48.13330.2019/СП_48_И.fields.json](app/forms/СП%2048.13330.2019/СП_48_И.fields.json).
 
-SHA-256 рабочего DOCX: `9ebb123850e4df7970ab882b313d4f9a4b91c30587255dccd59ce293c328dc04`.
+SHA-256 рабочего DOCX: `efd9a5f3bf41058596a88f52475b631bc05cc3894af1ae7586b35b1f9e73d624`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 48.13330.2019/Журнал входного контроля.docx](misc/downloads/Исходные%20формы%20документов/СП%2048.13330.2019/Журнал%20входного%20контроля.docx). SHA-256: `28ab85f9eca43db4e6094640770cf86fc21cfa5d542ab8572f53b9f2b15b2ea6`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5933,7 +5934,7 @@ SHA-256 рабочего DOCX: `9ebb123850e4df7970ab882b313d4f9a4b91c30587255dcc
 
 Группа: `act`. DOCX: [app/templates/СП 68.13330.2017/СП_68_М.docx](app/templates/СП%2068.13330.2017/СП_68_М.docx). Определения: [app/forms/СП 68.13330.2017/СП_68_М.fields.json](app/forms/СП%2068.13330.2017/СП_68_М.fields.json).
 
-SHA-256 рабочего DOCX: `e5415d7f3d2f77eb2b177f8bce214d34ca559c708a493c829083a2b30b28ba45`.
+SHA-256 рабочего DOCX: `a5bec185fa1218f4e53b6fa7def1876344ec0a8fe016d5916e51fd253fac94a1`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 68.13330.2017/Акт приёмки оборудования после индивидуального испытания.docx](misc/downloads/Исходные%20формы%20документов/СП%2068.13330.2017/Акт%20приёмки%20оборудования%20после%20индивидуального%20испытания.docx). SHA-256: `43e26e7b10d479c5298e258fab3074c50e2578a7d1c29e72cb68940eb61d9706`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -5978,7 +5979,7 @@ SHA-256 рабочего DOCX: `e5415d7f3d2f77eb2b177f8bce214d34ca559c708a493c82
 
 Группа: `act`. DOCX: [app/templates/СП 68.13330.2017/СП_68_Н.docx](app/templates/СП%2068.13330.2017/СП_68_Н.docx). Определения: [app/forms/СП 68.13330.2017/СП_68_Н.fields.json](app/forms/СП%2068.13330.2017/СП_68_Н.fields.json).
 
-SHA-256 рабочего DOCX: `e69e50ab221beb58f01f3d61086f66c5a1f715c619ff9a08a7ca31f8783cc746`.
+SHA-256 рабочего DOCX: `e28b93d2ef330f3544566c450e84694a2fb82f853ccae46888ac8b1b03a652f6`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 68.13330.2017/Акт приёмки оборудования после комплексного опробования.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2068.13330.2017/Акт%20приёмки%20оборудования%20после%20комплексного%20опробования.xlsx). SHA-256: `6fe3ffedf9131459e55ba06571df87e56aae3c041ea72674ff302eea83f360bc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6027,7 +6028,7 @@ SHA-256 рабочего DOCX: `e69e50ab221beb58f01f3d61086f66c5a1f715c619ff9a08
 
 Группа: `act`. DOCX: [app/templates/СП 70.13330.2012/СП_70_И.docx](app/templates/СП%2070.13330.2012/СП_70_И.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_И.fields.json](app/forms/СП%2070.13330.2012/СП_70_И.fields.json).
 
-SHA-256 рабочего DOCX: `8ca4cbcd461bfca3a9fd5fcf756f8581e181a5b5522b6af1d6c05ea74df8e401`.
+SHA-256 рабочего DOCX: `cab3fdf8c5ec75addfe8e51439e8225dfcb6e639809ca1722ec315d9550b7a27`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Акт испытания конструкций здания и сооружения.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Акт%20испытания%20конструкций%20здания%20и%20сооружения.docx). SHA-256: `c81f4e63589dc178f55931ef460532c26a62e1f13957ff56fe5738cb6c59273b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6067,7 +6068,7 @@ SHA-256 рабочего DOCX: `8ca4cbcd461bfca3a9fd5fcf756f8581e181a5b5522b6af1
 
 Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_В.docx](app/templates/СП%2070.13330.2012/СП_70_В.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_В.fields.json](app/forms/СП%2070.13330.2012/СП_70_В.fields.json).
 
-SHA-256 рабочего DOCX: `ca697cc40ebfb07e94a05bf61f0fc576965228b2db07b9fec76ee5e4466df9eb`.
+SHA-256 рабочего DOCX: `2603e89d0991691d4f80e274d9261f28321a2a738e149f57d66c552a99ded66c`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал АКЗ сварных соединений.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20АКЗ%20сварных%20соединений.docx). SHA-256: `69439e8888126797e553c82b5948aaca7dc9b8f55d416991e148ef0c8b1e4417`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6109,7 +6110,7 @@ SHA-256 рабочего DOCX: `ca697cc40ebfb07e94a05bf61f0fc576965228b2db07b9fe
 
 Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Ф.docx](app/templates/СП%2070.13330.2012/СП_70_Ф.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Ф.fields.json](app/forms/СП%2070.13330.2012/СП_70_Ф.fields.json).
 
-SHA-256 рабочего DOCX: `3e3d609676dd98234a59ce6997644acb8e0ea22dcc664499cc26a1a085f3d0da`.
+SHA-256 рабочего DOCX: `e812177d7dfe567f67c4583e037c2d5386d4c4698e69e58cb359014b1a924152`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал бетонных работ.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20бетонных%20работ.docx). SHA-256: `92801ce22622d03fc097b2dbf9fa83cc691a62cd518037f4977d3aa554f12e6b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6151,7 +6152,7 @@ SHA-256 рабочего DOCX: `3e3d609676dd98234a59ce6997644acb8e0ea22dcc664499
 
 Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Д.docx](app/templates/СП%2070.13330.2012/СП_70_Д.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Д.fields.json](app/forms/СП%2070.13330.2012/СП_70_Д.fields.json).
 
-SHA-256 рабочего DOCX: `140d310ba06780093fe607463b8ac43d8c7b7653fa40d3e0d3bd599093460689`.
+SHA-256 рабочего DOCX: `d7d33a4a3c8a9ce398d9fb1537208793d9f7d6837e482f7d9b542a2c715e9b9e`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал выполнения монтажных соединений на болтах с контролируемым натяжением.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20выполнения%20монтажных%20соединений%20на%20болтах%20с%20контролируемым%20натяжением.docx). SHA-256: `7ba14101abfe853354d88eb1509981be78522f51bbfce65ac1b809f45e25a43b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6202,7 +6203,7 @@ SHA-256 рабочего DOCX: `140d310ba06780093fe607463b8ac43d8c7b7653fa40d3e0
 
 Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Г.docx](app/templates/СП%2070.13330.2012/СП_70_Г.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Г.fields.json](app/forms/СП%2070.13330.2012/СП_70_Г.fields.json).
 
-SHA-256 рабочего DOCX: `382a6fa2658084c11da3d8ccc0f2ee42656c363082e8f9265d36eff1f7d646c6`.
+SHA-256 рабочего DOCX: `f54cdf6d6e668330bb36cf804b8899975fb2d8baf269936bc9a9a65448b969ed`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал замоноличивания монтажных стыков и узлов.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20замоноличивания%20монтажных%20стыков%20и%20узлов.docx). SHA-256: `11217e4b0304b0d4541e2c9a22e2f219b4a73845d52c0233cedc8eaf887f08aa`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6242,7 +6243,7 @@ SHA-256 рабочего DOCX: `382a6fa2658084c11da3d8ccc0f2ee42656c363082e8f926
 
 Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Е.docx](app/templates/СП%2070.13330.2012/СП_70_Е.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Е.fields.json](app/forms/СП%2070.13330.2012/СП_70_Е.fields.json).
 
-SHA-256 рабочего DOCX: `0271466f07c93ef1c9663603d9d29fc84776ef4155127800954dd4a61c1ef007`.
+SHA-256 рабочего DOCX: `6ad6eec2b5b28a01949a89c17b0c46f8f66e5185d7a56a3f75de5ac57f22453f`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал контрольной тарировки динамометрических ключей.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20контрольной%20тарировки%20динамометрических%20ключей.docx). SHA-256: `d3eabf039e4de9176c4b773cbbf00998b115baa0670ae2691838d95c8096dd8e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6265,7 +6266,7 @@ SHA-256 рабочего DOCX: `0271466f07c93ef1c9663603d9d29fc84776ef4155127800
 
 Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_А.docx](app/templates/СП%2070.13330.2012/СП_70_А.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_А.fields.json](app/forms/СП%2070.13330.2012/СП_70_А.fields.json).
 
-SHA-256 рабочего DOCX: `f7c302e76f4c414aa19fbc680627bbd7dba576803a7549c45121224318d63fab`.
+SHA-256 рабочего DOCX: `47b2745245090f0e4ffd457fe0af71839949b4eff9770112a3066557d8de19c6`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал работ по монтажу строительных конструкций.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20работ%20по%20монтажу%20строительных%20конструкций.docx). SHA-256: `dd06eaf63a1bef33362f5b50b8a38647cb63286e53bd9bbefeede3c3670fdbff`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6321,7 +6322,7 @@ SHA-256 рабочего DOCX: `f7c302e76f4c414aa19fbc680627bbd7dba576803a7549c4
 
 Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Б.docx](app/templates/СП%2070.13330.2012/СП_70_Б.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Б.fields.json](app/forms/СП%2070.13330.2012/СП_70_Б.fields.json).
 
-SHA-256 рабочего DOCX: `af46cea6ece6339b514d7cd40593aa3d9a31f29969b1ec76584ae996b00e1c9d`.
+SHA-256 рабочего DOCX: `c0a72f1b3cf5ed2757f8966e1c5855e5962a00bdd57657b648e5f102df24ff48`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал сварочных работ.docx](misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20сварочных%20работ.docx). SHA-256: `0b249d0c1e1eeeb642ea37ef3073852636f70986ea01a39f467275bcd6a4ba99`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6379,7 +6380,7 @@ SHA-256 рабочего DOCX: `af46cea6ece6339b514d7cd40593aa3d9a31f29969b1ec76
 
 Группа: `act`. DOCX: [app/templates/СП 71.13330.2017/СП_71_Г.docx](app/templates/СП%2071.13330.2017/СП_71_Г.docx). Определения: [app/forms/СП 71.13330.2017/СП_71_Г.fields.json](app/forms/СП%2071.13330.2017/СП_71_Г.fields.json).
 
-SHA-256 рабочего DOCX: `6b35adca3c8be214a4b6f2ea141d4f3ad0fa48113c01c845446dfa38ac332a88`.
+SHA-256 рабочего DOCX: `ec630066d285dbd5729b515e383b94c5361c289d32a8f19549441fc239ee3424`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 71.13330.2017/Акт приёмки выполненных работ.docx](misc/downloads/Исходные%20формы%20документов/СП%2071.13330.2017/Акт%20приёмки%20выполненных%20работ.docx). SHA-256: `e54009469da96d1344c90dd56ea660159198a89e9f5505edff90207165b37086`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6409,7 +6410,7 @@ SHA-256 рабочего DOCX: `6b35adca3c8be214a4b6f2ea141d4f3ad0fa48113c01c845
 
 Группа: `act`. DOCX: [app/templates/СП 71.13330.2017/СП_71_В.docx](app/templates/СП%2071.13330.2017/СП_71_В.docx). Определения: [app/forms/СП 71.13330.2017/СП_71_В.fields.json](app/forms/СП%2071.13330.2017/СП_71_В.fields.json).
 
-SHA-256 рабочего DOCX: `b76a3e6ebaa2caf9fcee510728c5f808bb51853c8d11df6c02cce148c1cfd94c`.
+SHA-256 рабочего DOCX: `6e990e3cd1596688ae1feea7a844b49047865e8f09229343611ffdc1b73218d8`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 71.13330.2017/Предписание контроля качества строительно-монтажных работ.docx](misc/downloads/Исходные%20формы%20документов/СП%2071.13330.2017/Предписание%20контроля%20качества%20строительно-монтажных%20работ.docx). SHA-256: `b67bf58212acbd9608688f6eadb7f38c0ea5ddd3ee8c1074e0711ae6d6b5ea0b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6435,7 +6436,7 @@ SHA-256 рабочего DOCX: `b76a3e6ebaa2caf9fcee510728c5f808bb51853c8d11df6c
 
 Группа: `act`. DOCX: [app/templates/СП 72.13330.2016/СП_72_Д.docx](app/templates/СП%2072.13330.2016/СП_72_Д.docx). Определения: [app/forms/СП 72.13330.2016/СП_72_Д.fields.json](app/forms/СП%2072.13330.2016/СП_72_Д.fields.json).
 
-SHA-256 рабочего DOCX: `03e37b93678a212a83f9b4257bb4551fb1e81ced83bb07b945cb3af9acb8b9fb`.
+SHA-256 рабочего DOCX: `6dd9a96f5936472c17c948bfd58675488bb7a07e5403810a6803f6a34a1f6aa1`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 72.13330.2016/Акт приёмки защитного покрытия.docx](misc/downloads/Исходные%20формы%20документов/СП%2072.13330.2016/Акт%20приёмки%20защитного%20покрытия.docx). SHA-256: `54d8b46d7d92f9d4d55c3ce123d9eed1c5a3388d474abe7ee8595b37d31aba01`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6445,7 +6446,7 @@ SHA-256 рабочего DOCX: `03e37b93678a212a83f9b4257bb4551fb1e81ced83bb07b9
 | `t1_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
 | `t1_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t1_r0_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t1_r0_c5 этой же формы | DOCX; word/document.xml |
+| `t1_r0_c7` | {{ t1_r0_c5 }} | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
 | `t2_r0_c0` | (наименование) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t4_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -6463,7 +6464,7 @@ SHA-256 рабочего DOCX: `03e37b93678a212a83f9b4257bb4551fb1e81ced83bb07b9
 
 Группа: `statement`. DOCX: [app/templates/СП 72.13330.2016/СП_72_Г.docx](app/templates/СП%2072.13330.2016/СП_72_Г.docx). Определения: [app/forms/СП 72.13330.2016/СП_72_Г.fields.json](app/forms/СП%2072.13330.2016/СП_72_Г.fields.json).
 
-SHA-256 рабочего DOCX: `ed79ffbd2bcddf88d932f6c0e5a7272ce68e0903e0783681b87fd82d4afa17d2`.
+SHA-256 рабочего DOCX: `68aa212a26ae9e35a57b929b1c522af64f9fb0d03c4c743e8424a1c14685e8c2`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 72.13330.2016/Журнал производства антикоррозионных работ.docx](misc/downloads/Исходные%20формы%20документов/СП%2072.13330.2016/Журнал%20производства%20антикоррозионных%20работ.docx). SHA-256: `02fe498c140f4065d3abb887706e3e87ccf3bac22501e70ad3e91d5c22ba141d`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6496,7 +6497,7 @@ SHA-256 рабочего DOCX: `ed79ffbd2bcddf88d932f6c0e5a7272ce68e0903e0783681
 
 Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_В.docx](app/templates/СП%2073.13330.2016/СП_73_В.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_В.fields.json](app/forms/СП%2073.13330.2016/СП_73_В.fields.json).
 
-SHA-256 рабочего DOCX: `513bdfc43fdba5b707446fc51b1012c58d212f3a8ec5cbfdcc0f4d31673838e1`.
+SHA-256 рабочего DOCX: `dd7b6e1b109bd4784e721efcf38b104413d3d8c7f79b7e59d9790f1fba6de804`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Акт о проведении гидростатического или манометрического испытания на герметичность.docx](misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Акт%20о%20проведении%20гидростатического%20или%20манометрического%20испытания%20на%20герметичность.docx). SHA-256: `6c4b6fbdbd1ff4fecb4a80caf09007d5431c4b8abb20f68cd3ff981ed9445109`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6524,7 +6525,7 @@ SHA-256 рабочего DOCX: `513bdfc43fdba5b707446fc51b1012c58d212f3a8ec5cbfd
 
 Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Д.docx](app/templates/СП%2073.13330.2016/СП_73_Д.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Д.fields.json](app/forms/СП%2073.13330.2016/СП_73_Д.fields.json).
 
-SHA-256 рабочего DOCX: `bdb346291d4e26e5592a262ffb2ba456336eb27aecf9d357eceef25a81483036`.
+SHA-256 рабочего DOCX: `645431beb3ee8488503aaff6f72655700a62ac4dcf131f8a668405ca094d20af`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Акт о проведении индивидуального испытания оборудования.docx](misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Акт%20о%20проведении%20индивидуального%20испытания%20оборудования.docx). SHA-256: `24b7810e3e37ee969e710342b3d9a6d383a51872e4b2bedabb40679f7b3207d3`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6546,7 +6547,7 @@ SHA-256 рабочего DOCX: `bdb346291d4e26e5592a262ffb2ba456336eb27aecf9d357
 
 Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Г.docx](app/templates/СП%2073.13330.2016/СП_73_Г.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Г.fields.json](app/forms/СП%2073.13330.2016/СП_73_Г.fields.json).
 
-SHA-256 рабочего DOCX: `a228aa44a890d46ad5aa199166f92569ebc061ff451583f551d2cc0fc4a74a70`.
+SHA-256 рабочего DOCX: `95932453b42e8bb95b459976c5a9786d3edf4c98e3c688d6447d4c7c94cea522`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Акт о проведении испытания систем канализации и водостоков.docx](misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Акт%20о%20проведении%20испытания%20систем%20канализации%20и%20водостоков.docx). SHA-256: `3c8d74655b4bc6fec4199a25cf74eb264f8014c9f5049a682a0a5a10236ad665`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6570,7 +6571,7 @@ SHA-256 рабочего DOCX: `a228aa44a890d46ad5aa199166f92569ebc061ff451583f5
 
 Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Е.docx](app/templates/СП%2073.13330.2016/СП_73_Е.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Е.fields.json](app/forms/СП%2073.13330.2016/СП_73_Е.fields.json).
 
-SHA-256 рабочего DOCX: `83c3cd1c8179667110ad295f4e0a9bdeb3a615060d4ba1339538de69b6e9c280`.
+SHA-256 рабочего DOCX: `6e9ce74677d0725d2982c68ac69d3f1f7e1acb6ec1a7e93188d233813c672629`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Паспорт системы вентиляции (кондиционирования воздуха).docx](misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Паспорт%20системы%20вентиляции%20(кондиционирования%20воздуха).docx). SHA-256: `1fe79b60b52d932720447aea22eceecc6b71c6d9c7b85c636d2d55f5f4a5c9ac`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6725,7 +6726,7 @@ SHA-256 рабочего DOCX: `83c3cd1c8179667110ad295f4e0a9bdeb3a615060d4ba133
 
 Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Ж.docx](app/templates/СП%2073.13330.2016/СП_73_Ж.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Ж.fields.json](app/forms/СП%2073.13330.2016/СП_73_Ж.fields.json).
 
-SHA-256 рабочего DOCX: `996d1a422f068c2d8e8c0c4dce13fa77b11792aa41045a4d54d5d811f429b5fd`.
+SHA-256 рабочего DOCX: `d9db32b717c9808c78b6574a33bb0af2052031c7dd0662c79826f90278aab305`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Паспорт системы охлаждения (сплит, VRF, VRV).docx](misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Паспорт%20системы%20охлаждения%20(сплит,%20VRF,%20VRV).docx). SHA-256: `5e01d6c1ff49d3710bada529dcae426110f7cf79570ed56f3d46668a63df992c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6753,7 +6754,7 @@ SHA-256 рабочего DOCX: `996d1a422f068c2d8e8c0c4dce13fa77b11792aa41045a4d
 
 Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_Б.docx](app/templates/СП%2074.13330.2023/СП_74_Б.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_Б.fields.json](app/forms/СП%2074.13330.2023/СП_74_Б.fields.json).
 
-SHA-256 рабочего DOCX: `5e7c9ae830ebef005d9f11b41cd9d37f3fb46a48ee0c6e7d2e5b2b06e290941d`.
+SHA-256 рабочего DOCX: `68bdba821e925b5683fa80d71f57ec5be52fb0a4f74a5c63eba40afb8719e1fe`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт на приёмку электрозащитной установки в эксплуатацию.docx](misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20на%20приёмку%20электрозащитной%20установки%20в%20эксплуатацию.docx). SHA-256: `db2ea38f2c400f7a83b3f650a4c1f55e1dced9cebdcfe2d4eafe1139c93e2ae8`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6781,7 +6782,7 @@ SHA-256 рабочего DOCX: `5e7c9ae830ebef005d9f11b41cd9d37f3fb46a48ee0c6e7d
 
 Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_Г.docx](app/templates/СП%2074.13330.2023/СП_74_Г.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_Г.fields.json](app/forms/СП%2074.13330.2023/СП_74_Г.fields.json).
 
-SHA-256 рабочего DOCX: `512852cceedcdb788367ec65bcb2bd4fd70988a0913a89de8ba5a05eb3807974`.
+SHA-256 рабочего DOCX: `6e378c2b0c4ed7594ce3dcc9d218d5f98f37ce9d9cea6cca578d26f86119bac1`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт о проведении испытаний трубопроводов на прочность и герметичность.docx](misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20о%20проведении%20испытаний%20трубопроводов%20на%20прочность%20и%20герметичность.docx). SHA-256: `762115b530778c3547a669f0fbcd0fda10354925441cb5e66a850fe5797e3c0e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6812,7 +6813,7 @@ SHA-256 рабочего DOCX: `512852cceedcdb788367ec65bcb2bd4fd70988a0913a89de
 
 Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_Д.docx](app/templates/СП%2074.13330.2023/СП_74_Д.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_Д.fields.json](app/forms/СП%2074.13330.2023/СП_74_Д.fields.json).
 
-SHA-256 рабочего DOCX: `2d3ceda9e39be063900df0b099836f66f409adcd8701f1b06b80946593fbdc57`.
+SHA-256 рабочего DOCX: `f3bc1f59327345e72801dcd558c911cee39e44870acb0dd3f658314552cbda71`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт о проведении промывки (продувки) трубопроводов.docx](misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20о%20проведении%20промывки%20(продувки)%20трубопроводов.docx). SHA-256: `36d13d97b5a664035b4c8cc153ab756c1b9f55858ff293fffff8224209b38f9c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6838,7 +6839,7 @@ SHA-256 рабочего DOCX: `2d3ceda9e39be063900df0b099836f66f409adcd8701f1b0
 
 Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_А.docx](app/templates/СП%2074.13330.2023/СП_74_А.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_А.fields.json](app/forms/СП%2074.13330.2023/СП_74_А.fields.json).
 
-SHA-256 рабочего DOCX: `50e03773f2a5644d3b258d2a260f15cbe388b5a5d92a7fde9d54b7cad010847c`.
+SHA-256 рабочего DOCX: `e9629b57a55780368639bbbed4d68e20d1b5ddce5cc1465c7e0d258283332072`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт о растяжке компенсаторов.docx](misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20о%20растяжке%20компенсаторов.docx). SHA-256: `c03bffc28545f63a9c46364011a6a03acf95d37d87e875b286572fc6c0ccb757`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6867,7 +6868,7 @@ SHA-256 рабочего DOCX: `50e03773f2a5644d3b258d2a260f15cbe388b5a5d92a7fde
 
 Группа: `act`. DOCX: [app/templates/СП 76.13330.2016/СП_76_Б.docx](app/templates/СП%2076.13330.2016/СП_76_Б.docx). Определения: [app/forms/СП 76.13330.2016/СП_76_Б.fields.json](app/forms/СП%2076.13330.2016/СП_76_Б.fields.json).
 
-SHA-256 рабочего DOCX: `88e417ba7ee2b5c5a0f5f11772ddd3b6130f0027d9d2b1998a440ee9a46bc66a`.
+SHA-256 рабочего DOCX: `34b128c0bee380caf33d8df9f6c516c653acaebf43617122405db1325a4c8f82`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 76.13330.2016/Акт сдачи-приёмки пусконаладочных работ.docx](misc/downloads/Исходные%20формы%20документов/СП%2076.13330.2016/Акт%20сдачи-приёмки%20пусконаладочных%20работ.docx). SHA-256: `95d04f5d0d9bc77bf5c3d37f6e96b3f6ca1fdf2c32afd63c32527acadb106a9f`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6904,7 +6905,7 @@ SHA-256 рабочего DOCX: `88e417ba7ee2b5c5a0f5f11772ddd3b6130f0027d9d2b199
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_2.docx](app/templates/СП%2077.13330.2016/СП_77_А_2.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_2.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_2.fields.json).
 
-SHA-256 рабочего DOCX: `1cc1fce5badf832acdc556500c8c6c296d10d3dc17adaeacd71715fc0366d0b3`.
+SHA-256 рабочего DOCX: `5e8d7a729f682ab3c5f84c5a71446cd7d0d5c0440c3065836aee78fd0cedfa11`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт готовности объекта к производству работ по монтажу систем автоматизации.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20готовности%20объекта%20к%20производству%20работ%20по%20монтажу%20систем%20автоматизации.docx). SHA-256: `cc602d8b291cd33bde978c4af5cd9f32a50e040f87e3fd25fdb34de7ac38d941`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6938,7 +6939,7 @@ SHA-256 рабочего DOCX: `1cc1fce5badf832acdc556500c8c6c296d10d3dc17adaeac
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_8.docx](app/templates/СП%2077.13330.2016/СП_77_А_8.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_8.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_8.fields.json).
 
-SHA-256 рабочего DOCX: `9418389acf1ad0f3d5662995a50da0e40f51a11746dad7b131e1edba43b4472e`.
+SHA-256 рабочего DOCX: `3504e92cb4766e99461f1dee8fc93496604b5a6aab6161bccf5bc2f4f029a869`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт испытания трубных проводок на герметичность.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20испытания%20трубных%20проводок%20на%20герметичность.xlsx). SHA-256: `3e1f45c9e6c9b5a0e5ca33eb81f40eb9fa79f5f9e57521e88eb90985f87e6b5f`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -6987,7 +6988,7 @@ SHA-256 рабочего DOCX: `9418389acf1ad0f3d5662995a50da0e40f51a11746dad7b1
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_7.docx](app/templates/СП%2077.13330.2016/СП_77_А_7.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_7.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_7.fields.json).
 
-SHA-256 рабочего DOCX: `883564917c4b8b5a9b5747319989b1f11319ff637070b2020509560d29055aa1`.
+SHA-256 рабочего DOCX: `211174706f6e1f43e8a5404c88bd1b0ef99f3e7251f1a5107daad861e41556ec`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт испытания трубных проводок на прочность и плотность.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20испытания%20трубных%20проводок%20на%20прочность%20и%20плотность.xlsx). SHA-256: `928b9ed508ecad5a6841046a0d03bdd6bde8ddb67360a3f6564c91d908f149c9`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7021,7 +7022,7 @@ SHA-256 рабочего DOCX: `883564917c4b8b5a9b5747319989b1f11319ff637070b202
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_9.docx](app/templates/СП%2077.13330.2016/СП_77_А_9.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_9.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_9.fields.json).
 
-SHA-256 рабочего DOCX: `7b1270d8aa484c9ffbc7f98b6cfebe68f9aad0ebaa36050286c172b309c0a993`.
+SHA-256 рабочего DOCX: `4e976220a7a03be72117b82072f3e9cf8682396211d3b3c6f60355e026a8de08`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт на обезжиривание труб, арматуры и соединений.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20на%20обезжиривание%20труб,%20арматуры%20и%20соединений.xlsx). SHA-256: `7accea367252663ed536ed541311dab1f3c23e3fc23ec6b38fa6ae1288340765`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7046,7 +7047,7 @@ SHA-256 рабочего DOCX: `7b1270d8aa484c9ffbc7f98b6cfebe68f9aad0ebaa360502
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_5.docx](app/templates/СП%2077.13330.2016/СП_77_А_5.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_5.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_5.fields.json).
 
-SHA-256 рабочего DOCX: `e6c921e2e1fa810ffd0277e5bf4d9fa3ff0dce823db7215894ac03557d586162`.
+SHA-256 рабочего DOCX: `4d3f74488ba27fb41a1a1e1ad50d035bfc1dfd863cb94b8264122a9dcfd2d8b4`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт окончания работ по монтажу систем автоматизации.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20окончания%20работ%20по%20монтажу%20систем%20автоматизации.docx). SHA-256: `f44faa24ed4b56863b62ec1580d1c604a74e175a19e55eab5f0a3b502cea7bff`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7080,7 +7081,7 @@ SHA-256 рабочего DOCX: `e6c921e2e1fa810ffd0277e5bf4d9fa3ff0dce823db72158
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_1.docx](app/templates/СП%2077.13330.2016/СП_77_А_1.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_1.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_1.fields.json).
 
-SHA-256 рабочего DOCX: `831dbac70c62941f48d683da199b78ded46b8ec1fb1ddb42bb5a38cf28bebc2a`.
+SHA-256 рабочего DOCX: `0b828eeb2731d6c6ead8dda7371771945e4d649b0d7504844c1815b4d7fc7dc9`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт передачи рабочей документации для производства работ по монтажу систем автоматизации.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20передачи%20рабочей%20документации%20для%20производства%20работ%20по%20монтажу%20систем%20автоматизации.docx). SHA-256: `56409992b2bddbbe2287f89c65de391421fc3a0cc2b6ce9290185d91aa685731`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7110,7 +7111,7 @@ SHA-256 рабочего DOCX: `831dbac70c62941f48d683da199b78ded46b8ec1fb1ddb42
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_3.docx](app/templates/СП%2077.13330.2016/СП_77_А_3.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_3.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_3.fields.json).
 
-SHA-256 рабочего DOCX: `3d1ab69f9cf2b1a8e5f5ffc3647b173b0d878c402ca5855ca6361ad2a795a9d5`.
+SHA-256 рабочего DOCX: `8a7e651bdbbb0edd6a1dc40fed51ddcd6332dc9eff6ebe18f48f8557074da1ce`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт передачи технических средств автоматизации в монтаж.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20передачи%20технических%20средств%20автоматизации%20в%20монтаж.docx). SHA-256: `3ecda3dbea78941976e8ba97eae39269c7a979ca92bced5bf36b6964e2edf180`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7141,7 +7142,7 @@ SHA-256 рабочего DOCX: `3d1ab69f9cf2b1a8e5f5ffc3647b173b0d878c402ca5855c
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_22.docx](app/templates/СП%2077.13330.2016/СП_77_А_22.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_22.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_22.fields.json).
 
-SHA-256 рабочего DOCX: `bd0db161bdbc8112f587fe21e57e282a0c26a168177122a998ea218ced98a2a2`.
+SHA-256 рабочего DOCX: `99f2475e1e8d635db7a0d261bfc02e137f922141a0fe2a93c933643c27cf5782`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт приёмки в эксплуатацию отдельных систем автоматизации.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20приёмки%20в%20эксплуатацию%20отдельных%20систем%20автоматизации.docx). SHA-256: `1e4addc0adc39009a95d971175721ac05187f0be9dda028e86f56e66bfa76f22`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7172,7 +7173,7 @@ SHA-256 рабочего DOCX: `bd0db161bdbc8112f587fe21e57e282a0c26a168177122a9
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_23.docx](app/templates/СП%2077.13330.2016/СП_77_А_23.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_23.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_23.fields.json).
 
-SHA-256 рабочего DOCX: `5060039cf8f41b8f491a951d8ff8e5514c552a7f68648d440250e0b35bac2676`.
+SHA-256 рабочего DOCX: `d81167f45ba0d017af34a8fd1b8973da53050db8b0fd0b6b105fd3017683bb5e`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт приёмки систем автоматизации в эксплуатацию.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20приёмки%20систем%20автоматизации%20в%20эксплуатацию.docx). SHA-256: `3bb78f65546bf4823c1871bb3345d927573701f899a566f26e0819661966a97e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7215,7 +7216,7 @@ SHA-256 рабочего DOCX: `5060039cf8f41b8f491a951d8ff8e5514c552a7f68648d44
 
 Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_13.docx](app/templates/СП%2077.13330.2016/СП_77_А_13.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_13.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_13.fields.json).
 
-SHA-256 рабочего DOCX: `8e9b3b794d58c6271d585c124e99527d2aad7c2fbf5bcb096c20e723fea898f6`.
+SHA-256 рабочего DOCX: `3db3aa15f4588ccc8f2a4f1077b7de4c68b65a34eb8319f927121593d9a8fca2`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Журнал по сварке трубопроводов.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Журнал%20по%20сварке%20трубопроводов.xlsx). SHA-256: `f66add7c13af53fe73edbc01c9b00495d5d2609469c1d3df64545c59f6aed94f`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7259,7 +7260,7 @@ SHA-256 рабочего DOCX: `8e9b3b794d58c6271d585c124e99527d2aad7c2fbf5bcb09
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_14.docx](app/templates/СП%2077.13330.2016/СП_77_А_14.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_14.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_14.fields.json).
 
-SHA-256 рабочего DOCX: `aa72d82a2d8dd417be4b4061fe05ca32331da49e2a3d1d680ef86eb71e1a6739`.
+SHA-256 рабочего DOCX: `1be639c9b5633500269320365635ee3d847e6dd659e9ff543e1525c3690e428e`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Заключение о проверке качества сварных швов, произведённой методом капиллярной дефектоскопии.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Заключение%20о%20проверке%20качества%20сварных%20швов,%20произведённой%20методом%20капиллярной%20дефектоскопии.xlsx). SHA-256: `a171ef947bef1a27026134ecccb7b0515f8c37100facdd11f4af464749fe1a12`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7294,7 +7295,7 @@ SHA-256 рабочего DOCX: `aa72d82a2d8dd417be4b4061fe05ca32331da49e2a3d1d68
 
 Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_10.docx](app/templates/СП%2077.13330.2016/СП_77_А_10.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_10.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_10.fields.json).
 
-SHA-256 рабочего DOCX: `efb034d1dd2df3af5ac9366c0206452184fec48ffb8204b1d16f1152c1dad36d`.
+SHA-256 рабочего DOCX: `bab0b828985f3ee99ac171e09d4d4402bf4d75fa537e07cae85effa491ccc1ff`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Опись технической документации.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Опись%20технической%20документации.xlsx). SHA-256: `011309c9277ffc7ef79eeaa77ca3e0fbf8b3d8fa5e5457e7570d6b6cac17ee31`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7338,7 +7339,7 @@ SHA-256 рабочего DOCX: `efb034d1dd2df3af5ac9366c0206452184fec48ffb8204b1
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_19_МУФТА.docx](app/templates/СП%2077.13330.2016/СП_77_А_19_МУФТА.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_19_МУФТА.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_19_МУФТА.fields.json).
 
-SHA-256 рабочего DOCX: `2fda9132b21ae49f420e0f274ed2f6a4f0623ce1254aa9693a4755e89d3207ad`.
+SHA-256 рабочего DOCX: `c917925b4db2576445ee5b6162dd233f17e338fcd2e95e1044025e1f70c78c50`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Паспорт на смонтированную соединительную муфту.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Паспорт%20на%20смонтированную%20соединительную%20муфту.xlsx). SHA-256: `ef9e6dac36d12fd0c661c1faeb26e493a5925b34ff7911241d43636d9e166f74`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7383,7 +7384,7 @@ SHA-256 рабочего DOCX: `2fda9132b21ae49f420e0f274ed2f6a4f0623ce1254aa969
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_19_УЧАСТОК.docx](app/templates/СП%2077.13330.2016/СП_77_А_19_УЧАСТОК.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_19_УЧАСТОК.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_19_УЧАСТОК.fields.json).
 
-SHA-256 рабочего DOCX: `05397521999d01968a9d9eb3e06b4b812f9d1e3420748d4bc723e00ef7814fff`.
+SHA-256 рабочего DOCX: `3fc17b18f89969ae1a90e36f4436809591f4bbd936b458849bf8dbd7cb51935d`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Паспорт регенерационного участка.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Паспорт%20регенерационного%20участка.xlsx). SHA-256: `1c55f34a7493904ae6610550b1a690fc0a660657e273cb948268a59e6f52046a`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7413,7 +7414,7 @@ SHA-256 рабочего DOCX: `05397521999d01968a9d9eb3e06b4b812f9d1e3420748d4b
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_4.docx](app/templates/СП%2077.13330.2016/СП_77_А_4.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_4.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_4.fields.json).
 
-SHA-256 рабочего DOCX: `c70911fe09f4e878cc43498bc1b017c70fb0edfcb08347cd6ee8b3570c95decc`.
+SHA-256 рабочего DOCX: `c61a0e60112f6fdae0e9ae6256aa7facf80e2e3b83660bedd351dea17ba24e16`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол входного контроля оптического кабеля.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20входного%20контроля%20оптического%20кабеля.docx). SHA-256: `b74c3af49c420dc24771603cebc175b1a30c1dbaf5021515ac8db003e853b1d1`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7441,7 +7442,7 @@ SHA-256 рабочего DOCX: `c70911fe09f4e878cc43498bc1b017c70fb0edfcb08347cd
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.docx](app/templates/СП%2077.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.fields.json).
 
-SHA-256 рабочего DOCX: `8cfe34cdf83f78d78f247fec87c4fbf81f4a57cf9ebbfd4d386285b324e0b22a`.
+SHA-256 рабочего DOCX: `271cee09fa879200aa715d8638e592ace3150cd9647b2ce2491f8fd5b6243cec`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол измерения параметров смонтированного оптического кабеля.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20измерения%20параметров%20смонтированного%20оптического%20кабеля.xlsx). SHA-256: `51b9a171b911ec081e6b252ba8f2f5ea89b18ba5321d7e37cb97cc0f3d72f494`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7469,7 +7470,7 @@ SHA-256 рабочего DOCX: `8cfe34cdf83f78d78f247fec87c4fbf81f4a57cf9ebbfd4d
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_16.docx](app/templates/СП%2077.13330.2016/СП_77_А_16.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_16.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_16.fields.json).
 
-SHA-256 рабочего DOCX: `8e89f6bcce641088a06137f43a50825071d7624b7708f8f79d073602d460d6bd`.
+SHA-256 рабочего DOCX: `544d5374e90fece840e050ac668aeadb5654e62b1c5c2259ac17d61d622534ec`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол измерения сопротивления изоляции.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20измерения%20сопротивления%20изоляции.xlsx). SHA-256: `379c08ba0940c13f6cc904cc00189f4c40d013a3363b2cb7d9c1bb2646bc6396`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7487,13 +7488,13 @@ SHA-256 рабочего DOCX: `8e89f6bcce641088a06137f43a50825071d7624b7708f8f7
 | `rows_0_22.c6` | Класс | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_0_22.c7` | Примечание | reference; required=false | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_0_33` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_33.c1` | Графа 1 | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c2` | Графа 2 | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c3` | Графа 3 | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c4` | Графа 4 | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c5` | между проводами (жилами) | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c6` | относи-тельно земли | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c7` | Графа 7 | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
+| `rows_0_33.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
+| `rows_0_33.c2` | Маркировка провода (кабеля) по чертежу, N позиции | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
+| `rows_0_33.c3` | Марка провода (кабеля) | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
+| `rows_0_33.c4` | Кол-во и сечение жил, мм2 | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
+| `rows_0_33.c5` | Сопротивление изоляции МОм / между проводами (жилами) | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
+| `rows_0_33.c6` | Сопротивление изоляции МОм / относи-тельно земли | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
+| `rows_0_33.c7` | Примечание | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
 | `t0_r8_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t0_r10_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
@@ -7507,7 +7508,7 @@ SHA-256 рабочего DOCX: `8e89f6bcce641088a06137f43a50825071d7624b7708f8f7
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_18.docx](app/templates/СП%2077.13330.2016/СП_77_А_18.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_18.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_18.fields.json).
 
-SHA-256 рабочего DOCX: `f4b32832754b2b158fe2d306345979509d29987bfd5c250b7d9f3f5f16ddcb40`.
+SHA-256 рабочего DOCX: `e0e1cf65d22f4c2f2a8b1f6c90160b961a9e48e5be64fe1cb59d10ee86d96efc`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол испытаний давлением.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20испытаний%20давлением.xlsx). SHA-256: `5909b97c343540e63b782696717b39759e3ae32d8226edda55a0178571b1403d`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7542,7 +7543,7 @@ SHA-256 рабочего DOCX: `f4b32832754b2b158fe2d306345979509d29987bfd5c250b
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_17.docx](app/templates/СП%2077.13330.2016/СП_77_А_17.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_17.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_17.fields.json).
 
-SHA-256 рабочего DOCX: `dc0d7573c25d36c41e8dad67dd061766b28655905e4d3cc673c75f5465379f89`.
+SHA-256 рабочего DOCX: `d5987945f7da81818d57851c5946f3f0fe56a08c3f8b67c094d8b39bcd988736`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол прогрева кабелей на барабанах.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20прогрева%20кабелей%20на%20барабанах.xlsx). SHA-256: `bd3920300c980911f75c261ae23e2cf742498fc5ad59b98b17f75d74de91bfb7`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7572,7 +7573,7 @@ SHA-256 рабочего DOCX: `dc0d7573c25d36c41e8dad67dd061766b28655905e4d3cc6
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_11.docx](app/templates/СП%2077.13330.2016/СП_77_А_11.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_11.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_11.fields.json).
 
-SHA-256 рабочего DOCX: `99f1802069d1f5ae06f0cc0e9c44e8faad09b324aabb26819fc96d88616dc948`.
+SHA-256 рабочего DOCX: `e737108cc940250f28174511801bcb1cd3b986f8f253836375d27cfc40fb34c2`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Свидетельство о монтаже трубных проводок.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Свидетельство%20о%20монтаже%20трубных%20проводок.xlsx). SHA-256: `b8cff0c400ec4c9a72cb5a035f46d04bbe33078c3ece86230fca46c6f164b820`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7598,7 +7599,7 @@ SHA-256 рабочего DOCX: `99f1802069d1f5ae06f0cc0e9c44e8faad09b324aabb2681
 
 Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_15.docx](app/templates/СП%2077.13330.2016/СП_77_А_15.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_15.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_15.fields.json).
 
-SHA-256 рабочего DOCX: `d82cc977e9cb91f6c5c735460b6f4d9685341254ad34bd747dea4b84283a3714`.
+SHA-256 рабочего DOCX: `deec1edc34b8a1cb294c0b0ccb412ec446d2204f3413e0d8970381ad46dccfaf`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Список сварщиков, дефектоскопистов и сборщиков резьбовых соединений.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Список%20сварщиков,%20дефектоскопистов%20и%20сборщиков%20резьбовых%20соединений.xlsx). SHA-256: `536494bc86fe48083c332d5c542c46663e920d8cfe0fdb265087b7eb2fbf2927`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7631,7 +7632,7 @@ SHA-256 рабочего DOCX: `d82cc977e9cb91f6c5c735460b6f4d9685341254ad34bd74
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_24.docx](app/templates/СП%2077.13330.2016/СП_77_А_24.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_24.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_24.fields.json).
 
-SHA-256 рабочего DOCX: `0949d8310222e486f94bece67d776fcbcd216e6246f8f76e68745d916d1f12c8`.
+SHA-256 рабочего DOCX: `67443430ded9b72ddde24ff8bfa46edf803672216fc85486153597b48401fc48`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт приостановки (консервации) монтажных работ по системам автоматизации.xlsx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20приостановки%20(консервации)%20монтажных%20работ%20по%20системам%20автоматизации.xlsx). SHA-256: `dad64a50c5308182cf735ed43783ac342b73ab61e2d4d3e557338eb799907c3c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7658,7 +7659,7 @@ SHA-256 рабочего DOCX: `0949d8310222e486f94bece67d776fcbcd216e6246f8f76e
 
 Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_20.docx](app/templates/СП%2077.13330.2016/СП_77_А_20.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_20.fields.json](app/forms/СП%2077.13330.2016/СП_77_А_20.fields.json).
 
-SHA-256 рабочего DOCX: `6910236d77ad86043b9763fdbb861002934842408dc23effe80bed8b8884025a`.
+SHA-256 рабочего DOCX: `97f6c8097d1901a41942bc918405b3731cd55b5a67d895f4354300da53a07f0a`.
 
 Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Разрешение на монтаж технических средств автоматизации.docx](misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Разрешение%20на%20монтаж%20технических%20средств%20автоматизации.docx). SHA-256: `fb071911b81be512510c258e6d3c5fda6a73cfbcd12a67af8c8c04d3a34edba9`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
 
@@ -7681,7 +7682,7 @@ SHA-256 рабочего DOCX: `6910236d77ad86043b9763fdbb861002934842408dc23eff
 
 Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_21.docx](app/templates/СП%2077.13330.2016/СП_77_А_21.docx). Определения: [app/forms/СП_77_А_21.fields.json](app/forms/СП_77_А_21.fields.json).
 
-SHA-256 рабочего DOCX: `b192165b1a738907e55478459be5784214dff2c8328d2e9716f8f496e47bc723`.
+SHA-256 рабочего DOCX: `8402ed30deb1d9acd989501d051cee942a7303559b0a456f3563585577ed0abc`.
 
 Не указан в каталоге (общая форма); см. app/templates/README.md.
 
@@ -7711,7 +7712,7 @@ SHA-256 рабочего DOCX: `b192165b1a738907e55478459be5784214dff2c8328d2e97
 
 Группа: `registry`. DOCX: [app/templates/РЕЕСТР_ИТД.docx](app/templates/РЕЕСТР_ИТД.docx). Определения: [app/forms/РЕЕСТР_ИТД.fields.json](app/forms/РЕЕСТР_ИТД.fields.json).
 
-SHA-256 рабочего DOCX: `de520846561a98d20e4d056fea73334812d79ed45640d61b360678302d91a004`.
+SHA-256 рабочего DOCX: `017a47295f79a12edbffef9b2681d0f31c999a134ab46875fef3502943a972c5`.
 
 Не указан в каталоге (общая форма); см. app/templates/README.md.
 

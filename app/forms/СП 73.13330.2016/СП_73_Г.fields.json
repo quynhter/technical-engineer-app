@@ -4,83 +4,95 @@
     "label": "(наименование системы)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.system_fibre"
   },
   {
     "key": "t1_r0_c1",
     "label": "(наименование объекта, здания, цеха)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "object.name"
   },
   {
     "key": "t1_r2_c1",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t1_r2_c3",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.day"
   },
   {
     "key": "t1_r2_c5",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.month"
   },
   {
     "key": "t1_r2_c7",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.year"
   },
   {
     "key": "t2_r0_c0",
     "label": "(наименование организации, должность, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t3_r0_c0",
     "label": "(наименование организации, должность, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.builder.details"
   },
   {
     "key": "t4_r0_c0",
     "label": "(наименование организации, должность, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t5_r0_c1",
     "label": "(наименование проектной организации и номера чертежей)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation_organisation"
   },
   {
     "key": "t6_r0_c2",
     "label": "проливом воды путем одновременного открытия",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.duration_fibre"
   },
   {
     "key": "t6_r2_c1",
     "label": "санитарных приборов, подключенных к проверяемому участку в течение",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_equipment_duration"
   }
 ]

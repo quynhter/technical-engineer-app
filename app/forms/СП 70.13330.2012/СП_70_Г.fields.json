@@ -4,119 +4,136 @@
     "label": "Журнал замоноличивания монтажных стыков и узлов №…",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.connection_number_fibre"
   },
   {
     "key": "t0_r0_c1",
     "label": "Наименование организации, выполняющей работы",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation_work_fibre"
   },
   {
     "key": "t1_r0_c0",
     "label": "Наименование объекта строительства",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t2_r0_c0",
     "label": "Должность, фамилия, инициалы и подпись лица, ответственного за выполнение работы по замоноличиванию и ведение журнала",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.work_performer.details"
   },
   {
     "key": "t3_r0_c1",
     "label": "Организация, разработавшая проектную документацию, чертежи КЖ,",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.designer_name"
   },
   {
     "key": "t3_r1_c1",
     "label": "Шифр проекта",
     "kind": "reference",
     "required": true,
-    "source": "project.code"
+    "source": "project.code",
+    "template_path": "project.code"
   },
   {
     "key": "t3_r2_c1",
     "label": "Организация, разработавшая проект производства работ по замоноличиванию монтажных стыков и узлов",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.ppr_designer.full_name"
   },
   {
     "key": "t3_r3_c1",
     "label": "Шифр проекта",
     "kind": "reference",
     "required": true,
-    "source": "project.code"
+    "source": "project.code",
+    "template_path": "form.project_code"
   },
   {
     "key": "t3_r4_c1",
     "label": "Предприятие, изготовившее конструкции",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.structure_organisation_fibre"
   },
   {
     "key": "t3_r5_c1",
     "label": "Шифр заказа",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number"
   },
   {
     "key": "t4_r0_c0",
     "label": "Заказчик (организация), должность, фамилия, инициалы и подпись руководителя (представителя) технического надзора",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer_control.details"
   },
   {
     "key": "t5_r0_c2",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.day"
   },
   {
     "key": "t5_r0_c4",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.month"
   },
   {
     "key": "t5_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.year"
   },
   {
     "key": "t6_r0_c2",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.day"
   },
   {
     "key": "t6_r0_c4",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.month"
   },
   {
     "key": "t6_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.year"
   },
   {
     "key": "rows_7_2",
@@ -130,71 +147,82 @@
         "label": "Дата замоноличивания",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "date"
       },
       {
         "key": "c2",
         "label": "Наименование стыков и узлов, место или номер по чертежу или схеме",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "connection_number_design_documentation"
       },
       {
         "key": "c3",
         "label": "Заданные марки бетона (раствора) и рабочий состав бетонной (растворной) смеси",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "concrete"
       },
       {
         "key": "c4",
         "label": "Температура наружного воздуха, °С",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "temperature"
       },
       {
         "key": "c5",
         "label": "Температура предварительного обогрева элементов в узлах, °С",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "temperature_voltage_structure"
       },
       {
         "key": "c6",
         "label": "Температура бетона в момент укладки, °С",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "temperature_voltage_concrete"
       },
       {
         "key": "c7",
         "label": "Результата испытаний контрольных образцов",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "test_fibre"
       },
       {
         "key": "c8",
         "label": "Дата распалубки",
         "kind": "reference",
         "source": "item.c8",
-        "required": true
+        "required": true,
+        "template_path": "date_2"
       },
       {
         "key": "c9",
         "label": "Фамилия и инициалы исполнителя (бригадира), подпись",
         "kind": "reference",
         "source": "item.c9",
-        "required": false
+        "required": false,
+        "template_path": "representative"
       },
       {
         "key": "c10",
         "label": "Замечания производителя работ, авторского надзора, технического надзора заказчика",
         "kind": "reference",
         "source": "item.c10",
-        "required": true
+        "required": true,
+        "template_path": "customer_author_supervision_notes"
       }
-    ]
+    ],
+    "template_path": "form.date"
   }
 ]

@@ -4,85 +4,98 @@
     "kind": "reference",
     "source": "object.name",
     "required": true,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "object.name"
   },
   {
     "key": "project",
     "kind": "reference",
     "source": "project.name",
     "required": true,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "project.name"
   },
   {
     "key": "cifr",
     "kind": "reference",
     "source": "project.code",
     "required": true,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "project.code"
   },
   {
     "key": "city",
     "kind": "reference",
     "source": "project.city",
     "required": true,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "project.city"
   },
   {
     "key": "client",
     "kind": "reference",
     "source": "organizations.Заказчик.full_name",
     "required": false,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "tech_client",
     "kind": "reference",
     "source": "organizations.Технический_заказчик.full_name",
     "required": false,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "organisations.technical_customer.full_name"
   },
   {
     "key": "gen_contractor",
     "kind": "reference",
     "source": "organizations.Генподрядчик.full_name",
     "required": false,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "organisations.general_contractor.full_name"
   },
   {
     "key": "sub_contractor",
     "kind": "reference",
     "source": "organizations.Подрядчик.full_name",
     "required": false,
-    "value_type": "text"
+    "value_type": "text",
+    "template_path": "organisations.builder.full_name"
   },
   {
     "key": "year",
     "kind": "literal",
     "value": null,
-    "required": true
+    "required": true,
+    "template_path": "form.year"
   },
   {
     "key": "copies",
     "kind": "literal",
     "value": 1,
-    "required": false
+    "required": false,
+    "template_path": "form.copies"
   },
   {
     "key": "volumes",
     "kind": "literal",
     "value": 1,
-    "required": false
+    "required": false,
+    "template_path": "form.volumes"
   },
   {
     "key": "font",
     "kind": "literal",
     "value": "Arial",
-    "required": false
+    "required": false,
+    "template_path": "form.font"
   },
   {
     "key": "labels",
     "kind": "literal",
     "value": true,
-    "required": false
+    "required": false,
+    "template_path": "form.labels"
   }
 ]

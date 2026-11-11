@@ -5,7 +5,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "day_2digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.day"
   },
   {
     "key": "date_6_5",
@@ -13,7 +14,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "month_genitive_ru",
-    "required": true
+    "required": true,
+    "template_path": "document.date.month"
   },
   {
     "key": "date_6_7",
@@ -21,7 +23,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "year_4digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.year"
   },
   {
     "key": "rows_0_22",
@@ -35,51 +38,59 @@
         "label": "№ п/п",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
         "label": "Наименование прибора",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "name"
       },
       {
         "key": "c3",
         "label": "Тип",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "type"
       },
       {
         "key": "c4",
         "label": "№ прибора",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "serial_number"
       },
       {
         "key": "c5",
         "label": "Шкала",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "scale"
       },
       {
         "key": "c6",
         "label": "Класс",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "accuracy_class"
       },
       {
         "key": "c7",
         "label": "Примечание",
         "kind": "reference",
         "source": "item.c7",
-        "required": false
+        "required": false,
+        "template_path": "notes"
       }
-    ]
+    ],
+    "template_path": "form.instruments"
   },
   {
     "key": "rows_0_33",
@@ -90,102 +101,117 @@
     "fields": [
       {
         "key": "c1",
-        "label": "Графа 1",
+        "label": "№ п/п",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
-        "label": "Графа 2",
+        "label": "Маркировка провода (кабеля) по чертежу, N позиции",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "drawing_mark"
       },
       {
         "key": "c3",
-        "label": "Графа 3",
+        "label": "Марка провода (кабеля)",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "cable_type"
       },
       {
         "key": "c4",
-        "label": "Графа 4",
+        "label": "Кол-во и сечение жил, мм2",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "cores_and_cross_section"
       },
       {
         "key": "c5",
-        "label": "между проводами (жилами)",
+        "label": "Сопротивление изоляции МОм / между проводами (жилами)",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "between_cores_mohm"
       },
       {
         "key": "c6",
-        "label": "относи-тельно земли",
+        "label": "Сопротивление изоляции МОм / относи-тельно земли",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "to_ground_mohm"
       },
       {
         "key": "c7",
-        "label": "Графа 7",
+        "label": "Примечание",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "notes"
       }
-    ]
+    ],
+    "template_path": "form.insulation_measurements"
   },
   {
     "key": "t0_r6_c1",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t0_r8_c1",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t0_r10_c1",
     "label": "Заказчик",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "t0_r12_c1",
     "label": "Монтажная организация",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t0_r14_c1",
     "label": "Проект №",
     "kind": "reference",
     "required": true,
-    "source": "project.code"
+    "source": "project.code",
+    "template_path": "project.code"
   },
   {
     "key": "t0_r39_c1",
     "label": "Заказчика",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t0_r41_c1",
     "label": "Монтирующей организации",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   }
 ]

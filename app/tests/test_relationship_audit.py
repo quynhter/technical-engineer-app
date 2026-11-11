@@ -24,6 +24,19 @@ builder = module('sp_builder_for_audit', 'app/scripts/prepare_sp_templates.py')
 
 
 class RelationshipAuditTests(unittest.TestCase):
+    def test_named_fields_resolve_to_legacy_keys_and_table_columns(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'named.docx'
+            document = Document()
+            for text in ('{%p set Объект = t0_r7_c1 %}', '{{ Объект }}',
+                         '{%p set Измерения = rows_0_18 %}', '{% for item in Измерения %}',
+                         '{% set Номер_ОВ = item.c1 %}{{ Номер_ОВ }}', '{% endfor %}'):
+                document.add_paragraph(text)
+            document.save(path)
+            refs, locations = audit.template_contract(path)
+            self.assertEqual(set(refs), {'t0_r7_c1', 'rows_0_18', 'rows_0_18.c1'})
+            self.assertTrue(locations['rows_0_18.c1'])
+
     def test_signing_date_is_data_but_handwritten_signatures_stay_blank(self):
         self.assertFalse(builder.handwritten_column('Дата подписания акта'))
         self.assertTrue(builder.handwritten_column('Подпись бригадира'))

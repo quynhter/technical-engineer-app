@@ -4,77 +4,88 @@
     "label": "«…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности ….",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.accuracy_class_instrument_gas_pipeline"
   },
   {
     "key": "p56_2",
     "label": "«…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности ….",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.accuracy_class_instrument_gas_pipeline_2"
   },
   {
     "key": "p56_3",
     "label": "«…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности ….",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.accuracy_class_instrument_gas_pipeline_3"
   },
   {
     "key": "p56_4",
     "label": "«…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности ….",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.accuracy_class_instrument_gas_pipeline_4"
   },
   {
     "key": "p56_5",
     "label": "«…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности ….",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.accuracy_class_instrument_gas_pipeline_5"
   },
   {
     "key": "p56_6",
     "label": "«…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности ….",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.accuracy_class_instrument_gas_pipeline_6"
   },
   {
     "key": "p56_7",
     "label": "«…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности ….",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.accuracy_class_instrument_gas_pipeline_7"
   },
   {
     "key": "t0_r0_c1",
     "label": "(наименование строительно-монтажной организации и номер проекта)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation_organisation"
   },
   {
     "key": "t0_r2_c1",
     "label": "(город, улица, привязки начального и конечного пикетов)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location_fibre"
   },
   {
     "key": "t1_r0_c0",
     "label": "ность газопровода и число запорных устройств на них; для внутрицехового оборудования — общая протяженность газопровода, тип и число установленного газоиспользующего оборудования, рабочее давление газа",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.gas_pipeline_pressure_length"
   },
   {
     "key": "t2_r0_c0",
     "label": "2. Перечень прилагаемых сертификатов, технических паспортов (или их копий) и других документов, удостоверяющих качество материалов и оборудования",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.passport_attachments_quality_documents"
   },
   {
     "key": "rows_3_2",
@@ -88,127 +99,146 @@
         "label": "Фамилия, имя, отчество сварщика (паяльщика)",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "welding_representative"
       },
       {
         "key": "c2",
         "label": "Номер (клеймо) сварщика (паяльщика)",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "welding_number"
       },
       {
         "key": "c3",
         "label": "Сварено стыков / Диаметр труб, мм",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "diameter_connection_pipe"
       },
       {
         "key": "c4",
         "label": "Дата проведения сварочных работ / Число, шт.",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "welding_date_quantity"
       },
       {
         "key": "c5",
         "label": "Графа 5",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "value"
       }
-    ]
+    ],
+    "template_path": "form.gas_pipeline_connection_cable"
   },
   {
     "key": "t4_r0_c0",
     "label": "(должность, подпись, инициалы, фамилия производителя работ)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.foreman.details"
   },
   {
     "key": "t5_r0_c1",
     "label": "(должность, подпись, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_foreman_details"
   },
   {
     "key": "t5_r2_c1",
     "label": "(должность, подпись, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.network_operator.details"
   },
   {
     "key": "t6_r1_c0",
     "label": "(наименование проектной организации, дата выпуска проекта)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_design_documentation_organisation"
   },
   {
     "key": "t6_r3_c1",
     "label": "с учетом согласованных изменений, внесенных в рабочие чертежи №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_voltage_number"
   },
   {
     "key": "t7_r0_c2",
     "label": "«",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date"
   },
   {
     "key": "t7_r0_c4",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_2"
   },
   {
     "key": "t7_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_3"
   },
   {
     "key": "t7_r2_c2",
     "label": "«",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.ready_date.day"
   },
   {
     "key": "t7_r2_c4",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.ready_date.month"
   },
   {
     "key": "t7_r2_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.ready_date.year"
   },
   {
     "key": "t8_r0_c1",
     "label": "(подпись, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.chief_engineer.details"
   },
   {
     "key": "t8_r2_c1",
     "label": "(должность, подпись, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_network_operator_details"
   }
 ]

@@ -4,119 +4,136 @@
     "label": "Журнал сварочных работ №…",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.welding_number_work"
   },
   {
     "key": "t0_r0_c1",
     "label": "Наименование организации, выполняющей работы:",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation_work_fibre"
   },
   {
     "key": "t1_r0_c0",
     "label": "Наименование объекта строительства:",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t2_r0_c0",
     "label": "Должность, фамилия, инициалы и подпись лица, ответственного за сварочные работы и ведение журнала",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.work_performer.details"
   },
   {
     "key": "t3_r0_c1",
     "label": "Организация, разработавшая проектную документацию; чертежи КМ, КЖ, КМД, КЖД",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.designer_name"
   },
   {
     "key": "t3_r1_c1",
     "label": "Шифр проекта",
     "kind": "reference",
     "required": true,
-    "source": "project.code"
+    "source": "project.code",
+    "template_path": "project.code"
   },
   {
     "key": "t3_r2_c1",
     "label": "Организация, разработавшая проект производства сварочных работ",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.ppr_designer.full_name"
   },
   {
     "key": "t3_r3_c1",
     "label": "Шифр проекта",
     "kind": "reference",
     "required": true,
-    "source": "project.code"
+    "source": "project.code",
+    "template_path": "form.project_code"
   },
   {
     "key": "t3_r4_c1",
     "label": "Предприятие, изготовившее стальные конструкции, арматурные и закладные изделия",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.materials_structure_organisation"
   },
   {
     "key": "t3_r5_c1",
     "label": "Шифр документа о качестве",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.quality_documents_number"
   },
   {
     "key": "t4_r0_c0",
     "label": "Заказчик (организация), должность, фамилия, инициалы и подпись руководителя (представителя) технического надзора",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer_control.details"
   },
   {
     "key": "t5_r0_c2",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.day"
   },
   {
     "key": "t5_r0_c4",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.month"
   },
   {
     "key": "t5_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.year"
   },
   {
     "key": "t6_r0_c2",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.day"
   },
   {
     "key": "t6_r0_c4",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.month"
   },
   {
     "key": "t6_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.year"
   },
   {
     "key": "rows_7_1",
@@ -130,44 +147,51 @@
         "label": "Фамилия, имя, отчество",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "representative"
       },
       {
         "key": "c2",
         "label": "Специальность и образование",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "qualification_fibre"
       },
       {
         "key": "c3",
         "label": "Занимаемая должность",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "position"
       },
       {
         "key": "c4",
         "label": "Дата начала работы на объекте",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "date_location_work"
       },
       {
         "key": "c5",
         "label": "Отметка о прохождении аттестации и дата",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "elevation_date"
       },
       {
         "key": "c6",
         "label": "Дата окончания работы на объекте",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "date_location_work_2"
       }
-    ]
+    ],
+    "template_path": "form.welding_work"
   },
   {
     "key": "rows_8_2",
@@ -181,51 +205,59 @@
         "label": "Фамилия, имя, отчество",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "representative"
       },
       {
         "key": "c2",
         "label": "Разряд квалифи-кационный",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "voltage_qualification"
       },
       {
         "key": "c3",
         "label": "Номер личного клейма",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "welding_number"
       },
       {
         "key": "c4",
         "label": "Диплом, удостоверение на право производства сварочных работ / номер",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "welding_number_work"
       },
       {
         "key": "c5",
         "label": "Отметка о сварке пробных и контрольных образцов / срок действия",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "elevation_welding_date"
       },
       {
         "key": "c6",
         "label": "допущен к сварке (швов в пространственном положении)",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "voltage_welding_fibre"
       },
       {
         "key": "c7",
         "label": "Графа 7",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "value"
       }
-    ]
+    ],
+    "template_path": "form.welding_location_work"
   },
   {
     "key": "rows_9_2",
@@ -239,92 +271,106 @@
         "label": "Дата выполнения работ, смена",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "date_work"
       },
       {
         "key": "c2",
         "label": "Наименование соединяемых элементов; марка стали",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "structure_type_fibre"
       },
       {
         "key": "c3",
         "label": "Место или номер (по чертежу или схеме) свариваемого элемента",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "welding_structure_number"
       },
       {
         "key": "c4",
         "label": "Отметка о сдаче и приёмке узла под сварку (должность, фамилия, инициалы, подпись)",
         "kind": "reference",
         "source": "item.c4",
-        "required": false
+        "required": false,
+        "template_path": "elevation_welding_representative"
       },
       {
         "key": "c5",
         "label": "Марка применяемых сварочных материалов (проволока, флюс, электроды), номер партии",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "welding_materials_number"
       },
       {
         "key": "c6",
         "label": "Атмосферные условия (температура воздуха, осадки, скорость ветра)",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "temperature_fibre"
       },
       {
         "key": "c7",
         "label": "Фамилия, инициалы сварщика, номер удостоверения",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "welding_number_representative"
       },
       {
         "key": "c8",
         "label": "Клеймо",
         "kind": "reference",
         "source": "item.c8",
-        "required": true
+        "required": true,
+        "template_path": "welding"
       },
       {
         "key": "c9",
         "label": "Подписи сварщиков, сваривших соединения",
         "kind": "reference",
         "source": "item.c9",
-        "required": false
+        "required": false,
+        "template_path": "connection_welding_representative"
       },
       {
         "key": "c10",
         "label": "Фамилия, инициалы ответственного за производство работ (мастера, производителя работ)",
         "kind": "reference",
         "source": "item.c10",
-        "required": true
+        "required": true,
+        "template_path": "representative_work"
       },
       {
         "key": "c11",
         "label": "Подпись руководителя сварочных работ",
         "kind": "reference",
         "source": "item.c11",
-        "required": false
+        "required": false,
+        "template_path": "welding_representative_work"
       },
       {
         "key": "c12",
         "label": "Отметка о приёмке сварного соединения представителя ИЛ",
         "kind": "reference",
         "source": "item.c12",
-        "required": true
+        "required": true,
+        "template_path": "representative_elevation_connection"
       },
       {
         "key": "c13",
         "label": "Замечания по контрольной проверке (производителя работ и др.)",
         "kind": "reference",
         "source": "item.c13",
-        "required": true
+        "required": true,
+        "template_path": "notes_representative_test"
       }
-    ]
+    ],
+    "template_path": "form.voltage_welding_date"
   }
 ]

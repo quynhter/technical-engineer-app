@@ -4,42 +4,48 @@
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -47,7 +53,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -55,7 +62,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -63,7 +71,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "t1_r0_c0",
@@ -71,7 +80,8 @@
     "kind": "signatory",
     "required": true,
     "role": "installer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t2_r0_c0",
@@ -79,55 +89,63 @@
     "kind": "signatory",
     "required": true,
     "role": "customer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t2_r2_c1",
     "label": "произвела осмотр (материал)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.materials_test"
   },
   {
     "key": "t2_r4_c0",
     "label": "(место укладки)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location"
   },
   {
     "key": "t3_r0_c2",
     "label": "1. Прокладка труб произведена по чертежам №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.pipe_number_design_documentation"
   },
   {
     "key": "t3_r1_c0",
     "label": "(наименование проектной организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.designer_name"
   },
   {
     "key": "t4_r0_c0",
     "label": "(при наличии отклонения указывается кем согласованы, № чертежа и дата согласования)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_date_number"
   },
   {
     "key": "t4_r2_c2",
     "label": "3. Соединения труб выполнены",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.connection_pipe"
   },
   {
     "key": "t4_r3_c1",
     "label": "металлических труб обеспечен (чем)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.pipe"
   }
 ]

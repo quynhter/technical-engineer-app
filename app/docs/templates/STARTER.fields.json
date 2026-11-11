@@ -1,0 +1,20 @@
+[
+  {
+    "key": "recipient",
+    "label": "Получатель",
+    "kind": "signatory",
+    "role": "recipient",
+    "presentation": "position_org_fio",
+    "required": true,
+    "template_path": "recipient.text"
+  },
+  {
+    "key": "test_pressure",
+    "label": "Испытательное давление, МПа",
+    "kind": "literal",
+    "value_type": "number",
+    "required": true,
+    "value": null,
+    "template_path": "form.test.pressure"
+  }
+]

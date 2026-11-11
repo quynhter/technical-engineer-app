@@ -146,6 +146,13 @@ def template_contract(path):
         return None
 
     def visit(node, aliases, part):
+        if isinstance(node, nodes.Assign):
+            visit(node.node, aliases, part)
+            base = expression(node.node)
+            if isinstance(node.target, nodes.Name) and base:
+                first, _, tail = base.partition('.')
+                aliases[node.target.name] = aliases.get(first, first) + ('.' + tail if tail else '')
+            return
         if isinstance(node, nodes.For):
             visit(node.iter, aliases, part)
             scope = dict(aliases)
@@ -189,8 +196,12 @@ def template_contract(path):
                         continue
                     loop = re.match(r'{%\s*(?:tr\s+|p\s+)?for\s+(\w+)\s+in\s+([\w.]+)', marker)
                     aliases = scopes[-1]
+                    assignment = re.match(r'{%\s*(?:p\s+)?set\s+(\w+)\s*=\s*([\w.]+)', marker)
+                    if assignment:
+                        first, _, tail = assignment[2].partition('.')
+                        aliases[assignment[1]] = aliases.get(first, first) + ('.' + tail if tail else '')
                     expression_text = loop[2] if loop else marker
-                    for key in re.findall(r'\b[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*', expression_text):
+                    for key in re.findall(r'\b[^\W\d]\w*(?:\.[^\W\d]\w*)*', expression_text):
                         first, _, tail = key.partition('.')
                         key = aliases.get(first, first) + ('.' + tail if tail else '')
                         if key in refs:
@@ -199,7 +210,14 @@ def template_contract(path):
                         first, _, tail = loop[2].partition('.')
                         target = aliases.get(first, first) + ('.' + tail if tail else '')
                         scopes.append({**aliases, loop[1]: target})
-    return dict(refs), dict(locations)
+    from itd.template_objects import legacy_paths
+    mapping = legacy_paths(Path(path).stem)
+    canonical_refs, canonical_locations = defaultdict(set), defaultdict(set)
+    for key, parts in refs.items():
+        legacy = mapping.get(key, key)
+        canonical_refs[legacy].update(parts)
+        canonical_locations[legacy].update(locations.get(key, ()))
+    return dict(canonical_refs), dict(canonical_locations)
 
 
 def flatten(fields, prefix=''):
@@ -231,8 +249,8 @@ def source_columns(source, schemas, item_source=None):
         return DOC_FIELDS[bits[1]], description + ' (вычисляется form_defaults.documentation_context)'
     elif root == 'item' and item_source in LIST_ROOTS and len(bits) == 2:
         table, column = LIST_ROOTS[item_source], bits[1]
-        if item_source == 'companies' and column in ('role', 'name'):
-            return (['organization_assignments.role_key'] if column == 'role' else ['organizations.short_name', 'organizations.full_name']), description
+        if item_source == 'companies' and column in ('role', 'role_key', 'name'):
+            return (['organization_assignments.role_key'] if column in ('role', 'role_key') else ['organizations.short_name', 'organizations.full_name']), description
         if item_source == 'materials' and column == 'act_quantity':
             return ['act_materials.quantity'], description
     elif root in LIST_ROOTS and len(bits) == 1:
@@ -569,6 +587,7 @@ def render_map(result):
     for col, uses in sorted(reverse.items()):
         lines += [f'<a id="source-{col.replace(".", "-")}"></a>', f'### `{col}`', '', ', '.join('`' + x + '`' for x in uses), '']
     lines += ['### Корни контекста build_context', '', '| Источник | Отбор / происхождение |', '|---|---|',
+              '| _template_context | Общая объектная модель DOCX; object, project, document, organisations, representatives, recipient, consignor, companies, form. JSON template_path связывает сохранённые ключи с публичными свойствами; см. app/templates/README.md и TEMPLATE_FIELDS.md |',
               '| object / project / act | Карточка акта → раздел → объект; project.city с fallback objects.city |',
               '| resources | Только act_resources, ORDER BY ordinal; _source из resource_sources (attachment_id, source_key, page, sheet, locator) |',
               '| schemes | Только act_schemes, ORDER BY ordinal |',
@@ -579,7 +598,7 @@ def render_map(result):
               '| unit / section_designer | projects.unit_id / designer_org_id; корень существует только при выбранной связи |',
               '| organizations / signatories | Назначения объекта → раздела → выбора в акте; roles — ключи, не названия |',
               '| participant_ids | ojr.directory текущего объекта; Organisation.ID / Representative.ID, явный ~default=role |',
-              '| companies | Представление назначений: role, name=(short_name или full_name), остальные реквизиты organizations |',
+              '| companies | Представление назначений: role — русская подпись, role_key — код назначения, name=(short_name или full_name), остальные реквизиты organizations |',
               '| participation_periods | Все participant_periods объекта |',
               '| work_summary.description | ojr.act_work_description из связанных работ / фактов |',
               '| project_documentation | code, designer_name, description, section_description, object_and_project, object_description; form_defaults.documentation_context |',

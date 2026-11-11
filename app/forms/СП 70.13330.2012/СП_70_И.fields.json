@@ -5,7 +5,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "day_2digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.day"
   },
   {
     "key": "date_0_6",
@@ -13,7 +14,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "month_genitive_ru",
-    "required": true
+    "required": true,
+    "template_path": "document.date.month"
   },
   {
     "key": "date_0_8",
@@ -21,181 +23,207 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "year_4digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.year"
   },
   {
     "key": "t0_r0_c1",
     "label": "г.",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t1_r0_c0",
     "label": "(наименование организации-заказчика, назначившей комиссию)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "t2_r0_c2",
     "label": "«",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.day"
   },
   {
     "key": "t2_r0_c4",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.month"
   },
   {
     "key": "t2_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.year"
   },
   {
     "key": "t2_r0_c9",
     "label": "№",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number"
   },
   {
     "key": "t3_r0_c0",
     "label": "(фамилия, инициалы, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.commission_chair.details"
   },
   {
     "key": "t4_r0_c0",
     "label": "(фамилия, инициалы, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.general_contractor.details"
   },
   {
     "key": "t5_r0_c0",
     "label": "(фамилия, инициалы, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t6_r0_c0",
     "label": "(наименование организации и ее ведомственная подчиненность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation_fibre"
   },
   {
     "key": "t7_r0_c0",
     "label": "(наименование здания, сооружения)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "object.name"
   },
   {
     "key": "t8_r0_c0",
     "label": "(наименование объекта)",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "form.object_name"
   },
   {
     "key": "t9_r0_c0",
     "label": "(шифр проекта)",
     "kind": "reference",
     "required": true,
-    "source": "project.code"
+    "source": "project.code",
+    "template_path": "project.code"
   },
   {
     "key": "t9_r2_c0",
     "label": "(наименование проектной организации и ее ведомственная подчиненность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.design_documentation_organisation_fibre"
   },
   {
     "key": "t10_r0_c0",
     "label": "(виды работ)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work"
   },
   {
     "key": "t11_r0_c0",
     "label": "(наименование организации и перечень видов работ)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation_work_fibre"
   },
   {
     "key": "t12_r0_c1",
     "label": "(месяц, год)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date"
   },
   {
     "key": "t12_r0_c4",
     "label": "(месяц, год)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_2"
   },
   {
     "key": "t13_r0_c0",
     "label": "(шифр проекта, наименование организации, ведомственная подчиненность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation_organisation"
   },
   {
     "key": "t13_r2_c1",
     "label": "(дата начала и окончания испытания)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_test"
   },
   {
     "key": "t14_r0_c0",
     "label": "(указать результаты испытаний)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test"
   },
   {
     "key": "t15_r0_c0",
     "label": "(наименование здания, сооружения)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.object_name_2"
   },
   {
     "key": "t16_r0_c1",
     "label": "1",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments.document_1"
   },
   {
     "key": "t17_r0_c1",
     "label": "2",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments.document_2"
   },
   {
     "key": "t19_r0_c1",
     "label": "Члены комиссии",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representative"
   }
 ]

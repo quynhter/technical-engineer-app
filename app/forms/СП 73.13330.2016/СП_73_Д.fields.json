@@ -4,69 +4,79 @@
     "label": "(наименование объекта строительства, здания, цеха)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "object.name"
   },
   {
     "key": "t1_r0_c1",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t1_r0_c3",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.day"
   },
   {
     "key": "t1_r0_c5",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.month"
   },
   {
     "key": "t1_r0_c7",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.year"
   },
   {
     "key": "t2_r0_c0",
     "label": "(наименование организации, должность, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t3_r0_c0",
     "label": "(наименование организации, должность, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.builder.details"
   },
   {
     "key": "t4_r0_c0",
     "label": "(наименование организации, должность, инициалы, фамилия)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t5_r0_c0",
     "label": "(вентиляторы, насосы, муфты, самоочищающиеся фильтры с электроприводом, регулирующие клапаны систем вентиляции (кондиционирования воздуха), теплоутилизаторы, увлажнители, секции нагрева и охлаждения, воздушно-тепловые завесы (указываются номера систем))",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.joint_number_system"
   },
   {
     "key": "t5_r2_c1",
     "label": "прошли испытание в течение",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_duration_test"
   }
 ]

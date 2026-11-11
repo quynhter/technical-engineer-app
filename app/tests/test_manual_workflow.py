@@ -44,7 +44,10 @@ class ManualTests(unittest.TestCase):
             self.assertEqual(view['supplies'][0]['remaining'],0)
             self.assertIsNone(c.execute('SELECT qty_fact FROM resources WHERE id=?',(self.rid,)).fetchone()[0])
             self.assertEqual(c.execute('SELECT count(*) FROM work_facts').fetchone()[0],0)
-            self.assertEqual(build_context(c,self.aid)['context'],{})
+            print_context = build_context(c,self.aid)['context']
+            model = print_context.pop('_template_context')
+            self.assertEqual(print_context, {})
+            self.assertEqual(model['form'], {})
         with self.assertRaisesRegex(ValueError,'Ожидаемые'),connect(self.db) as c:
             execute(c,self.pid,'allocate',dict(act_id=self.aid,supply_id=s['id'],quantity=9,expected={'quantity':None}))
 

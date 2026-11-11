@@ -25,8 +25,28 @@ def document_project(project, obj):
 
 def apply_form_defaults(code, fields):
     bindings=field_bindings().get(code,{})
+    # Старые регистрации сохраняют подписи до исправления шапки DOCX.
+    # Обновляем только заглушки, не затрагивая пользовательские названия.
+    column_labels = {}
+    if code == 'СП_77_А_16' and any(
+            column.get('label') == f'Графа {index}'
+            for field in fields if field['key'] == 'rows_0_33'
+            for index, column in enumerate(field.get('fields', []), 1)):
+        supplied = json.loads((Path(__file__).parents[1] / 'forms' /
+                              'СП 77.13330.2016' / f'{code}.fields.json').read_text(encoding='utf-8'))
+        column_labels = {column['key']: column['label'] for field in supplied
+                         if field['key'] == 'rows_0_33' for column in field['fields']}
     result=[]
     for field in fields:
+        if column_labels and field['key'] == 'rows_0_33':
+            field = {**field, 'fields': [
+                {**column, 'label': column_labels.get(column['key'], column['label'])}
+                if column.get('label') == f'Графа {index}' else column
+                for index, column in enumerate(field.get('fields', []), 1)]}
+        # В прежней поставке год этой формы ошибочно повторял поле месяца.
+        # Исправляем только точную старую привязку; ручной год сохраняется.
+        if code == 'СП_72_Д' and field['key'] == 't1_r0_c7' and field.get('source') == 'field_values.t1_r0_c5':
+            field = {**field, 'source': 'act.date_signed', 'format': 'year_4digits'}
         binding=bindings.get(field['key'])
         if binding and field['kind']=='literal' and field.get('value') in (None,'') and field.get('state') not in ('hidden','not_applicable'):
             field={k:v for k,v in field.items() if k not in ('value','source','role','template','presentation')}

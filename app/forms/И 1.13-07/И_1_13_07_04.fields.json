@@ -4,42 +4,48 @@
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -47,7 +53,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -55,7 +62,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -63,7 +71,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "readiness_date",
@@ -72,7 +81,8 @@
     "required": true,
     "value": null,
     "value_type": "date",
-    "format": "date_ru"
+    "format": "date_ru",
+    "template_path": "form.readiness_date"
   },
   {
     "key": "rows_1",
@@ -86,71 +96,82 @@
         "label": "№ п.п.",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
         "label": "Недоделки",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "defects"
       },
       {
         "key": "c3",
         "label": "Срок устранения",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "date"
       },
       {
         "key": "c4",
         "label": "Кто устраняет",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "value"
       }
-    ]
+    ],
+    "template_path": "form.defects"
   },
   {
     "key": "t2_r0_c0",
     "label": "(должность)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.installer.position"
+    "source": "signatories.installer.position",
+    "template_path": "representatives.installer.position"
   },
   {
     "key": "t2_r0_c4",
     "label": "(расшифровка подписи)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.installer.fio"
+    "source": "signatories.installer.fio",
+    "template_path": "representatives.installer.fio"
   },
   {
     "key": "t3_r0_c0",
     "label": "(должность)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.general_contractor.position"
+    "source": "signatories.general_contractor.position",
+    "template_path": "representatives.general_contractor.position"
   },
   {
     "key": "t3_r0_c4",
     "label": "(расшифровка подписи)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.general_contractor.fio"
+    "source": "signatories.general_contractor.fio",
+    "template_path": "representatives.general_contractor.fio"
   },
   {
     "key": "t4_r0_c0",
     "label": "(должность)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.customer.position"
+    "source": "signatories.customer.position",
+    "template_path": "representatives.customer.position"
   },
   {
     "key": "t4_r0_c4",
     "label": "(расшифровка подписи)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.customer.fio"
+    "source": "signatories.customer.fio",
+    "template_path": "representatives.customer.fio"
   }
 ]

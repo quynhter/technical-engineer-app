@@ -6,49 +6,56 @@
     "required": true,
     "value": null,
     "value_type": "date",
-    "format": "date_ru"
+    "format": "date_ru",
+    "template_path": "form.date_t10_r1"
   },
   {
     "key": "city",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -56,7 +63,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -64,7 +72,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -72,7 +81,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "rows_11",
@@ -86,72 +96,83 @@
         "label": "Номер опоры",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "support_number"
       },
       {
         "key": "c2",
         "label": "Наимено-вание и тип опоры",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "support_type"
       },
       {
         "key": "c3",
         "label": "Тип фундам-мента",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "type"
       },
       {
         "key": "c4",
         "label": "Завод-изгото-витель сборного ЖБ, паспорт, марка",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "passport_organisation_type"
       },
       {
         "key": "c5",
         "label": "№ чертежа фунда-мента",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "number_design_documentation"
       },
       {
         "key": "c6",
         "label": "Наличие гидро-изоляция, материал",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "insulation_materials"
       },
       {
         "key": "c7",
         "label": "Дата устрой-ства фунда-мента",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "date"
       },
       {
         "key": "c8",
         "label": "Установка на опоры разре-шается, подпись произво-дителя работ",
         "kind": "reference",
         "source": "item.c8",
-        "required": false
+        "required": false,
+        "template_path": "support_equipment_representative"
       },
       {
         "key": "c9",
         "label": "Приме-чание",
         "kind": "reference",
         "source": "item.c9",
-        "required": true
+        "required": true,
+        "template_path": "value"
       }
-    ]
+    ],
+    "template_path": "form.wire_measurements"
   },
   {
     "key": "t1_r0_c1",
     "label": "ФУНДАМЕНТОВ ПОД УСТАНОВКУ ОПОР ВЛ",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.foundation_support_equipment"
   },
   {
     "key": "t2_r0_c0",
@@ -159,7 +180,8 @@
     "kind": "signatory",
     "required": true,
     "role": "customer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t3_r0_c0",
@@ -167,7 +189,8 @@
     "kind": "signatory",
     "required": true,
     "role": "builder",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.builder.details"
   },
   {
     "key": "t4_r0_c0",
@@ -175,104 +198,119 @@
     "kind": "signatory",
     "required": true,
     "role": "installer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t5_r0_c0",
     "label": "рассмотрела техническую документацию на сборные железобетонные фундаменты ВЛ",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.foundation_concrete_system"
   },
   {
     "key": "t6_r0_c2",
     "label": "1. Предъявлено под установку опор ВЛ законченные устройством (число)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.support_equipment_quantity"
   },
   {
     "key": "t7_r0_c1",
     "label": "Из них под опоры: промежуточные (число)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.support_quantity"
   },
   {
     "key": "t7_r0_c3",
     "label": "Из них под опоры: промежуточные , анкерные (число)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.bolts_support_quantity"
   },
   {
     "key": "t7_r2_c1",
     "label": "угловые (число)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.quantity_fibre"
   },
   {
     "key": "t7_r2_c3",
     "label": "угловые , другие (число)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.quantity_fibre_2"
   },
   {
     "key": "t8_r0_c0",
     "label": "(наименование проектной организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.designer_name"
   },
   {
     "key": "t8_r2_c1",
     "label": "по чертежам (наименование и номера чертежей)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation_fibre"
   },
   {
     "key": "t9_r0_c2",
     "label": "4. Отступления от проекта (существо отступления)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_design_documentation"
   },
   {
     "key": "t9_r2_c1",
     "label": "согласованы с заказчиком в лице (должность, фамилия, и., о.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_customer_details"
   },
   {
     "key": "t9_r4_c1",
     "label": "и проектной организацией в лице (должность, фамилия, и., о.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.designer.details"
   },
   {
     "key": "t9_r6_c2",
     "label": "5. Сборные железобетонные фундаменты для опор (номера опор)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.foundation_concrete_support"
   },
   {
     "key": "t9_r8_c1",
     "label": "комиссией не приняты по причине (указать причину)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test"
   },
   {
     "key": "t10_r0_c0",
     "label": "Срок переделки (доработки) отбракованных фундаментов и повторного их предъявления",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.foundation_date_system"
   }
 ]

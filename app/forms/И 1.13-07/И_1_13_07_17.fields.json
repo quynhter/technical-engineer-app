@@ -4,42 +4,48 @@
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -47,7 +53,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -55,7 +62,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -63,7 +71,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "t1_r0_c0",
@@ -71,7 +80,8 @@
     "kind": "signatory",
     "required": true,
     "role": "installer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t2_r0_c0",
@@ -79,7 +89,8 @@
     "kind": "signatory",
     "required": true,
     "role": "customer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t3_r0_c0",
@@ -87,62 +98,71 @@
     "kind": "signatory",
     "required": true,
     "role": "general_contractor",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.general_contractor.details"
   },
   {
     "key": "t3_r2_c1",
     "label": "произвела осмотр кабельной канализации в (траншее, канале)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_cable_test"
   },
   {
     "key": "t4_r0_c0",
     "label": "(наименование проектной организации, № чертежей и кабельных журналов)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.cable_number_design_documentation"
   },
   {
     "key": "t4_r2_c1",
     "label": "2. Отступления от проекта согласованы и нанесены на чертежи №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_number_design_documentation"
   },
   {
     "key": "t5_r0_c1",
     "label": "4. На кабелях смонтировано (количество)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.cable_quantity_fibre"
   },
   {
     "key": "t5_r3_c1",
     "label": "5. Произведена подсыпка кабельных линий слоем (материал подсыпки)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.cable_materials_coating"
   },
   {
     "key": "t5_r6_c0",
     "label": "(указать дополнительные места защиты кабелей при наличии)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.notes_cable"
   },
   {
     "key": "t5_r9_c1",
     "label": "защищены (указать, чем защищены)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_cross_section_cable"
   },
   {
     "key": "t6_r0_c0",
     "label": "Другие особенности, отмеченные комиссией",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.features"
   }
 ]

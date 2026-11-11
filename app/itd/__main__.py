@@ -31,6 +31,8 @@ def main(argv=None):
     parser.add_argument("--agent", action="store_true", help="Отметить вызов из ИИ-агента в журнале")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("init", help="Применить миграции")
+    schema = commands.add_parser('template-schema', help='Объекты и свойства DOCX без открытия рабочей БД')
+    schema.add_argument('--type', dest='form_code', help='Код формы для её индивидуальных свойств')
     for name in ('knowledge-status', 'knowledge-validate', 'knowledge-index', 'knowledge-search', 'knowledge-show', 'knowledge-export'):
         from .knowledge import default_root
         knowledge = commands.add_parser(name, help="Локальная база нормативных знаний")
@@ -116,6 +118,7 @@ def main(argv=None):
     context = commands.add_parser("act-context", help="Собрать поля акта из текущих данных БД")
     context.add_argument("--act-id", type=int, required=True)
     context.add_argument("--final", action="store_true")
+    context.add_argument('--objects', action='store_true', help='Показать объектную модель для автора DOCX')
     context.add_argument("--templates", type=Path, default=default_templates())
     review = commands.add_parser("act-review", help="Записать подтверждённую проверку статических утверждений")
     review.add_argument("--act-id", type=int, required=True)
@@ -258,6 +261,9 @@ def main(argv=None):
             from .web import serve
             serve(args.db, args.port, not args.no_browser)
             return
+        elif args.command == 'template-schema':
+            from .template_objects import template_schema
+            result = template_schema(args.form_code)
         elif args.command == "init":
             args.db.parent.mkdir(parents=True, exist_ok=True)
             initialize(args.db)
@@ -350,6 +356,9 @@ def main(argv=None):
                 elif args.command == "act-context":
                     from .acts import find_template, template_claims
                     result = build_context(connection, args.act_id, draft=not args.final)
+                    if args.objects:
+                        from .template_objects import CONTEXT_KEY
+                        result['context'] = result['context'].get(CONTEXT_KEY, result['context'])
                     try:
                         result["static_claims_to_review"] = template_claims(find_template(args.templates, result["act_type"]))
                     except ValueError as error:

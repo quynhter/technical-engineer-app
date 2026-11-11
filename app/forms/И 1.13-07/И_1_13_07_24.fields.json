@@ -4,42 +4,48 @@
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -47,7 +53,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -55,7 +62,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -63,7 +71,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "rows_3",
@@ -77,58 +86,67 @@
         "label": "№ п.п.",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
         "label": "Элемент заземляющих устройств",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "earthing_structure"
       },
       {
         "key": "c3",
         "label": "Параметры элементов заземляющего устройства / материал",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "earthing_materials_structure"
       },
       {
         "key": "c4",
         "label": "Параметры элементов заземляющего устройства / профиль",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "earthing_structure_fibre"
       },
       {
         "key": "c5",
         "label": "Параметры элементов заземляющего устройства / размеры, мм",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "dimensions_earthing_structure"
       },
       {
         "key": "c6",
         "label": "Параметры элементов заземляющего устройства / кол-во, шт.",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "earthing_structure_quantity"
       },
       {
         "key": "c7",
         "label": "Параметры элементов заземляющего устройства / глубина заложения, м",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "earthing_depth_structure"
       },
       {
         "key": "c8",
         "label": "Примечание",
         "kind": "reference",
         "source": "item.c8",
-        "required": false
+        "required": false,
+        "template_path": "notes"
       }
-    ]
+    ],
+    "template_path": "form.earthing"
   },
   {
     "key": "t1_r1_c0",
@@ -136,7 +154,8 @@
     "kind": "signatory",
     "required": true,
     "role": "installer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t1_r4_c0",
@@ -144,76 +163,87 @@
     "kind": "signatory",
     "required": true,
     "role": "customer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t2_r0_c0",
     "label": "(название)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.description"
   },
   {
     "key": "t2_r2_c1",
     "label": "разработанным (проектная организация)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.design_documentation_organisation_work"
   },
   {
     "key": "t2_r4_c1",
     "label": "по чертежам (номер)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation"
   },
   {
     "key": "t2_r6_c1",
     "label": "2. Отступления от проекта",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_design_documentation"
   },
   {
     "key": "t2_r7_c0",
     "label": "1. Заземляющее устройство выполнено в соответствии с проектом",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.earthing_voltage_design_documentation"
   },
   {
     "key": "t2_r8_c1",
     "label": "согласованы с (организация, должность, фамилия, и, о, дата)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representative_deviations_date"
   },
   {
     "key": "t2_r10_c1",
     "label": "и внесены в чертежи (номер)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_number_design_documentation"
   },
   {
     "key": "t4_r0_c0",
     "label": "Характер соединений элементов заземления",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.earthing_connection_structure"
   },
   {
     "key": "t5_r0_c1",
     "label": "5. Выделены дефекты",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.defects"
   },
   {
     "key": "t5_r1_c0",
     "label": "Паспорт заземляющего устройства",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.earthing_passport"
   }
 ]

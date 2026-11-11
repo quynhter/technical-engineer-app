@@ -35,9 +35,18 @@ def render_docx(template: str | Path, context: dict, output: str | Path, *, draf
         raise ValueError("Контекст должен быть JSON-объектом")
     # Допускается только JSON: не передаём шаблону объекты БД, функции или классы.
     context = json.loads(json.dumps(context, ensure_ascii=False, allow_nan=False))
+    from .template_objects import render_context, display_object
+    context = render_context(template.stem, context)
     if draft:
         context = _draft_display(context)
-    environment = SandboxedEnvironment(undefined=StrictUndefined, autoescape=True)
+    class TemplateEnvironment(SandboxedEnvironment):
+        def getattr(self, obj, attribute):
+            # Свойство JSON-объекта имеет приоритет над методом dict (items и др.).
+            if isinstance(obj, dict) and attribute in obj:
+                return obj[attribute]
+            return super().getattr(obj, attribute)
+
+    environment = TemplateEnvironment(undefined=StrictUndefined, autoescape=True, finalize=display_object)
     environment.globals.clear()
     document = DocxTemplate(template)
     document.render(context, jinja_env=environment, autoescape=True)

@@ -11,141 +11,162 @@
         "label": "(месторасположение объекта, отделение, корпус) / (наименование монтажной организации) / N п/п",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
         "label": "Ф.И.О.",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "representative"
       },
       {
         "key": "c3",
         "label": "Специальность, вид операции",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "qualification"
       },
       {
         "key": "c4",
         "label": "Разряд",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "qualification_2"
       },
       {
         "key": "c5",
         "label": "Личное клеймо",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "welding"
       },
       {
         "key": "c6",
         "label": "Номер",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "number_2"
       },
       {
         "key": "c7",
         "label": "N журнала учета и проверки качества контрольных соединений",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "connection_number_test"
       },
       {
         "key": "c8",
         "label": "Образец подписи",
         "kind": "reference",
         "source": "item.c8",
-        "required": false
+        "required": false,
+        "template_path": "representative_2"
       }
-    ]
+    ],
+    "template_path": "form.specialists"
   },
   {
     "key": "t0_r5_c0",
     "label": "(месторасположение объекта, отделение, корпус)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.object_description"
   },
   {
     "key": "t0_r7_c0",
     "label": "(наименование монтажной организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t0_r10_c0",
     "label": "{{ item.c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.number"
   },
   {
     "key": "t0_r10_c1",
     "label": "{{ item.c2 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.full_name"
   },
   {
     "key": "t0_r10_c2",
     "label": "{{ item.c3 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.speciality"
   },
   {
     "key": "t0_r10_c3",
     "label": "{{ item.c4 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.qualification"
   },
   {
     "key": "t0_r10_c4",
     "label": "{{ item.c5 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.stamp"
   },
   {
     "key": "t0_r10_c5",
     "label": "{{ item.c6 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.certificate"
   },
   {
     "key": "t0_r10_c6",
     "label": "{{ item.c7 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.test_log"
   },
   {
     "key": "t0_r10_c7",
     "label": "{{ t0_r10_c6 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.column_notes.signature"
   },
   {
     "key": "t0_r27_c2",
     "label": "(Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.welding_supervisor.details"
   },
   {
     "key": "t0_r29_c2",
     "label": "(Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   }
 ]

@@ -4,230 +4,263 @@
     "label": "\"…\" … 20… г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.day"
   },
   {
     "key": "p58_2",
     "label": "\"…\" … 20… г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.month"
   },
   {
     "key": "p58_3",
     "label": "\"…\" … 20… г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.year"
   },
   {
     "key": "t0_r6_c1",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t0_r7_c1",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t0_r8_c1",
     "label": "Монтажная организация",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t0_r9_c1",
     "label": "Проект",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.code"
   },
   {
     "key": "t0_r10_c1",
     "label": "Муфта N",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.joint_number"
   },
   {
     "key": "t0_r11_c1",
     "label": "Оптические линии связи",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.optical_lines"
   },
   {
     "key": "t0_r12_c1",
     "label": "Регенерационный участок",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location"
   },
   {
     "key": "t0_r13_c1",
     "label": "Марка оптического кабеля",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.cable_type"
   },
   {
     "key": "t0_r14_c1",
     "label": "Монтаж производил",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.worker.details"
   },
   {
     "key": "t0_r15_c0",
     "label": "(наименование монтажной организации, Ф.И.О. исполнителей, дата)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t0_r17_c1",
     "label": "Сведения о ремонте",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.repair"
   },
   {
     "key": "t0_r18_c1",
     "label": "Измерительные приборы",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.instrument_equipment"
   },
   {
     "key": "t0_r19_c0",
     "label": "НомерОВ",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_fibre"
   },
   {
     "key": "t0_r22_c1",
     "label": "1",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_1.attenuation_ab_db"
   },
   {
     "key": "t0_r22_c2",
     "label": "{{ t0_r22_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_1.attenuation_ba_db"
   },
   {
     "key": "t0_r23_c1",
     "label": "2",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_2.attenuation_ab_db"
   },
   {
     "key": "t0_r23_c2",
     "label": "{{ t0_r23_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_2.attenuation_ba_db"
   },
   {
     "key": "t0_r24_c1",
     "label": "3",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_3.attenuation_ab_db"
   },
   {
     "key": "t0_r24_c2",
     "label": "{{ t0_r24_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_3.attenuation_ba_db"
   },
   {
     "key": "t0_r25_c1",
     "label": "4",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_4.attenuation_ab_db"
   },
   {
     "key": "t0_r25_c2",
     "label": "{{ t0_r25_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_4.attenuation_ba_db"
   },
   {
     "key": "t0_r26_c1",
     "label": "5",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_5.attenuation_ab_db"
   },
   {
     "key": "t0_r26_c2",
     "label": "{{ t0_r26_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_5.attenuation_ba_db"
   },
   {
     "key": "t0_r27_c1",
     "label": "6",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_6.attenuation_ab_db"
   },
   {
     "key": "t0_r27_c2",
     "label": "{{ t0_r27_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_6.attenuation_ba_db"
   },
   {
     "key": "t0_r28_c1",
     "label": "7",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_7.attenuation_ab_db"
   },
   {
     "key": "t0_r28_c2",
     "label": "{{ t0_r28_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_7.attenuation_ba_db"
   },
   {
     "key": "t0_r29_c1",
     "label": "8",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_8.attenuation_ab_db"
   },
   {
     "key": "t0_r29_c2",
     "label": "{{ t0_r29_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibres.fibre_8.attenuation_ba_db"
   },
   {
     "key": "t0_r30_c2",
     "label": "(должность, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.inspector.details"
   }
 ]

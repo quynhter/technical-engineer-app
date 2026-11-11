@@ -79,6 +79,42 @@ class FileManagerTests(unittest.TestCase):
             self.assertEqual(p['plan']['actions'],[]);self.assertIn('документы объекта',p['plan']['blocked'][0]['reason'])
         self.assertTrue(archived.exists())
 
+    def resource_link(self, aid, pid):
+        from itd.resources import add_resource, CATEGORIES
+        with connect(self.db) as c:
+            rid = add_resource(c, project_id=pid, name='Кабель', unit='м', category=CATEGORIES[3])
+            link_file(c, attachment_id=aid, entity='resource', entity_id=rid)
+        return rid
+
+    def test_explicit_delete_clears_resource_link_left_after_journal_deletion(self):
+        aid, visible, archived = self.add('logo.svg', 'quality')
+        rid = self.resource_link(aid, self.pid)
+        visible.unlink()
+        self.assertTrue(self.plan()['plan']['blocked'])
+        p = self.plan('delete', aid)
+        self.assertEqual(p['plan']['actions'][0]['unlink_resources'], [rid])
+        self.apply(p)
+        self.assertFalse(archived.exists())
+        with connect(self.db) as c:
+            self.assertFalse(c.execute('SELECT 1 FROM resource_attachments').fetchone())
+            self.assertTrue(c.execute('SELECT 1 FROM resources WHERE id=?', (rid,)).fetchone())
+            self.assertEqual(c.execute('PRAGMA foreign_key_check').fetchall(), [])
+
+    def test_resource_file_stays_protected_by_supply_or_other_section(self):
+        aid, visible, archived = self.add('logo.svg', 'quality')
+        rid = self.resource_link(aid, self.pid)
+        with connect(self.db) as c:
+            c.execute("INSERT INTO supplies(project_id,resource_id,source_key,unit,status,source,attachment_id) VALUES (?,?,'test','м','accepted','ЖВК',?)", (self.pid, rid, aid))
+        self.assertIn('поставки', self.plan('delete', aid)['plan']['blocked'][0]['reason'])
+        with connect(self.db) as c:
+            c.execute('DELETE FROM supplies')
+        p = self.plan('delete', aid)
+        self.resource_link(aid, self.other)
+        with self.assertRaisesRegex(ValueError, 'изменились'):
+            self.apply(p)
+        self.assertIn('документы ресурсов', self.plan('delete', aid)['plan']['blocked'][0]['reason'])
+        self.assertTrue(visible.exists()); self.assertTrue(archived.exists())
+
     def test_check_imports_new_files_removes_missing_and_preserves_rd_type(self):
         aid,visible,archived=self.add();visible.unlink()
         added=self.folder/'Сертификат.pdf';added.write_bytes(b'new quality')

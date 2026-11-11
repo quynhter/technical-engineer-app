@@ -5,7 +5,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "day_2digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.day"
   },
   {
     "key": "date_0_5",
@@ -13,7 +14,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "month_genitive_ru",
-    "required": true
+    "required": true,
+    "template_path": "document.date.month"
   },
   {
     "key": "date_0_7",
@@ -21,104 +23,119 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "year_4digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.year"
   },
   {
     "key": "t0_r0_c1",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t1_r0_c1",
     "label": "Генподрядчик (заказчик)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.construction_party.full_name"
   },
   {
     "key": "t2_r3_c0",
     "label": "(Ф.И.О. должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.construction_party.details"
   },
   {
     "key": "t2_r5_c1",
     "label": "от монтажной организации",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t2_r6_c0",
     "label": "(Ф.И.О. должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t3_r0_c0",
     "label": "(наименование объекта, обозначение рабочей документации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.object_and_project"
   },
   {
     "key": "t4_r0_c2",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.day"
   },
   {
     "key": "t4_r0_c4",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.month"
   },
   {
     "key": "t4_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.year"
   },
   {
     "key": "t5_r0_c2",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.day"
   },
   {
     "key": "t5_r0_c4",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.month"
   },
   {
     "key": "t5_r0_c6",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end_2.year"
   },
   {
     "key": "t6_r0_c1",
     "label": "Перечень прилагаемой к акту документации",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments_documentation"
   },
   {
     "key": "t6_r1_c0",
     "label": "кументацией. Смонтированные приборы, средства автоматизации и вспомогательная аппаратура перечислены в ведомости смонтированных технических средств систем автоматизации, прилагаемой к настоящему акту.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments_voltage_equipment"
   }
 ]

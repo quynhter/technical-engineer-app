@@ -4,14 +4,16 @@
     "label": "…сварочная лаборатория",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.welding"
   },
   {
     "key": "p15_2",
     "label": "ЗАКЛЮЧЕНИЕ N …",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.conclusion_number"
   },
   {
     "key": "rows_0_16",
@@ -25,141 +27,162 @@
         "label": "Дефектоскопист / Удостоверение / Результаты контроля / N блока",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "defects_number_test"
       },
       {
         "key": "c2",
         "label": "Поз. КИП",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "position_number"
       },
       {
         "key": "c3",
         "label": "Место контроля (наименование участка, диаметр и толщина стенки трубы)",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "thickness_diameter_pipe"
       },
       {
         "key": "c4",
         "label": "Дата контроля",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "date_test"
       },
       {
         "key": "c5",
         "label": "Номер стыка",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "connection_number"
       },
       {
         "key": "c6",
         "label": "Ф.И.О. сварщика",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "welding_representative"
       },
       {
         "key": "c7",
         "label": "Клеймо сварщика",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "welding"
       },
       {
         "key": "c8",
         "label": "Обнаружены дефекты",
         "kind": "reference",
         "source": "item.c8",
-        "required": true
+        "required": true,
+        "template_path": "defects"
       },
       {
         "key": "c9",
         "label": "Заключение по контролю",
         "kind": "reference",
         "source": "item.c9",
-        "required": true
+        "required": true,
+        "template_path": "conclusion_test"
       }
-    ]
+    ],
+    "template_path": "form.weld_inspections"
   },
   {
     "key": "t0_r3_c1",
     "label": "{{ p11_1 }}сварочная лаборатория",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.welding_2"
   },
   {
     "key": "t0_r6_c1",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t0_r6_c2",
     "label": "{{ t0_r6_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.repeated_object_name"
   },
   {
     "key": "t0_r7_c1",
     "label": "Проект",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.code"
   },
   {
     "key": "t0_r7_c2",
     "label": "{{ t0_r7_c1 }}",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.repeated_project_code"
   },
   {
     "key": "t0_r9_c1",
     "label": "Контроль производился дефектоскопическим комплектом",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.defects_test_completeness"
   },
   {
     "key": "t0_r10_c1",
     "label": "Класс чувствительности контроля",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_class"
   },
   {
     "key": "t0_r11_c1",
     "label": "Дефектоскопист",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.defects"
   },
   {
     "key": "t0_r12_c1",
     "label": "Удостоверение",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibre"
   },
   {
     "key": "t0_r33_c2",
     "label": "(Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.flaw_detector.details"
   },
   {
     "key": "t0_r35_c2",
     "label": "(Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.laboratory_head.details"
   }
 ]

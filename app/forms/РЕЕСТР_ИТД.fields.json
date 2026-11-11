@@ -1,16 +1,90 @@
 [
-  {"key": "object_name", "kind": "reference", "source": "object.name", "required": true},
-  {"key": "project_code", "kind": "reference", "source": "project.code", "required": true},
-  {"key": "project_name", "kind": "reference", "source": "project.name", "required": true},
-  {"key": "registry", "kind": "table", "source": "registry", "required": true, "fields": [
-    {"key": "no", "kind": "reference", "source": "item.no", "required": true},
-    {"key": "name", "kind": "reference", "source": "item.name", "required": true},
-    {"key": "number", "kind": "reference", "source": "item.number"},
-    {"key": "date", "kind": "reference", "source": "item.date", "format": "date_ru"},
-    {"key": "sheets_count", "kind": "reference", "source": "item.sheets_count", "required": true},
-    {"key": "note", "kind": "reference", "source": "item.note"},
-    {"key": "number_date", "kind": "reference", "source": "item.number_date"},
-    {"key": "organization", "kind": "reference", "source": "item.organization"},
-    {"key": "pages", "kind": "reference", "source": "item.pages"}
-  ]}
+  {
+    "key": "object_name",
+    "kind": "reference",
+    "source": "object.name",
+    "required": true,
+    "template_path": "object.name"
+  },
+  {
+    "key": "project_code",
+    "kind": "reference",
+    "source": "project.code",
+    "required": true,
+    "template_path": "project.code"
+  },
+  {
+    "key": "project_name",
+    "kind": "reference",
+    "source": "project.name",
+    "required": true,
+    "template_path": "project.name"
+  },
+  {
+    "key": "registry",
+    "kind": "table",
+    "source": "registry",
+    "required": true,
+    "fields": [
+      {
+        "key": "no",
+        "kind": "reference",
+        "source": "item.no",
+        "required": true,
+        "template_path": "no"
+      },
+      {
+        "key": "name",
+        "kind": "reference",
+        "source": "item.name",
+        "required": true,
+        "template_path": "name"
+      },
+      {
+        "key": "number",
+        "kind": "reference",
+        "source": "item.number",
+        "template_path": "number"
+      },
+      {
+        "key": "date",
+        "kind": "reference",
+        "source": "item.date",
+        "format": "date_ru",
+        "template_path": "date"
+      },
+      {
+        "key": "sheets_count",
+        "kind": "reference",
+        "source": "item.sheets_count",
+        "required": true,
+        "template_path": "sheets_count"
+      },
+      {
+        "key": "note",
+        "kind": "reference",
+        "source": "item.note",
+        "template_path": "note"
+      },
+      {
+        "key": "number_date",
+        "kind": "reference",
+        "source": "item.number_date",
+        "template_path": "number_date"
+      },
+      {
+        "key": "organization",
+        "kind": "reference",
+        "source": "item.organization",
+        "template_path": "organization"
+      },
+      {
+        "key": "pages",
+        "kind": "reference",
+        "source": "item.pages",
+        "template_path": "pages"
+      }
+    ],
+    "template_path": "form.registry"
+  }
 ]

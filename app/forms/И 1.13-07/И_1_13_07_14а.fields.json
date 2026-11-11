@@ -4,42 +4,48 @@
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -47,7 +53,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -55,7 +62,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -63,7 +71,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "t1_r0_c0",
@@ -71,7 +80,8 @@
     "kind": "signatory",
     "required": true,
     "role": "installer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t2_r0_c0",
@@ -79,7 +89,8 @@
     "kind": "signatory",
     "required": true,
     "role": "customer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t3_r0_c0",
@@ -87,104 +98,119 @@
     "kind": "signatory",
     "required": true,
     "role": "general_contractor",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.general_contractor.details"
   },
   {
     "key": "t4_r0_c1",
     "label": "выполненных (наименование генподрядной организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.general_contractor.full_name"
   },
   {
     "key": "t5_r0_c0",
     "label": "(траншеи, каналы, туннели, блоки кабельной канализации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.cable"
   },
   {
     "key": "t6_r0_c0",
     "label": "(наименование организации, № чертежей рабочей документации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation_organisation"
   },
   {
     "key": "t7_r0_c0",
     "label": "(перечислить)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.description"
   },
   {
     "key": "t7_r2_c1",
     "label": "согласованы (наименование проектной организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.deviations_design_documentation_organisation"
   },
   {
     "key": "t7_r4_c1",
     "label": "4. Разбивка трассы траншеи (каналов, туннелей) (выполнена, не выполнена)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibre"
   },
   {
     "key": "t7_r7_c1",
     "label": "выполнена из",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_thickness_cross_section"
   },
   {
     "key": "t7_r7_c3",
     "label": "выполнена из толщиной слоя",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.thickness_coating"
   },
   {
     "key": "t7_r8_c1",
     "label": "трубах (материал)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.pipe_materials"
   },
   {
     "key": "t7_r10_c1",
     "label": "глубине",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.depth"
   },
   {
     "key": "t7_r10_c3",
     "label": "глубине мм, соединение и окраска труб (способ выполнения)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.depth_connection_pipe"
   },
   {
     "key": "t8_r0_c0",
     "label": "Обрамление и перекрытия кабельных каналов",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.cable_fibre"
   },
   {
     "key": "t9_r0_c1",
     "label": "9. Особые замечания",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.notes"
   },
   {
     "key": "t9_r1_c0",
     "label": "8. Дренаж выполнен по проекту.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.design_documentation"
   }
 ]

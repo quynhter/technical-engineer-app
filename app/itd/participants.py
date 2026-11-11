@@ -3,6 +3,15 @@
 from .db import required_text
 
 
+def short_fio(person):
+    if person.get('last_name') and person.get('first_name'):
+        result = person['last_name'] + ' ' + person['first_name'][0] + '.'
+        if person.get('middle_name'):
+            result += ' ' + person['middle_name'][0] + '.'
+        return result
+    return person.get('fio_short') or person.get('fio') or ''
+
+
 def add_organization(connection, *, full_name, short_name=None, ogrn=None, inn=None,
                      address=None, phone=None, sro_info=None):
     cursor = connection.execute(
@@ -83,15 +92,9 @@ def participants_context(connection, project_id):
                 continue
             org = dict(connection.execute("SELECT * FROM organizations WHERE id=?", (value["org_id"],)).fetchone())
             value["organization"] = org
-            if value["last_name"] and value["first_name"]:
-                value["fio_short"] = value["last_name"] + " " + value["first_name"][0] + "."
-                if value["middle_name"]:
-                    value["fio_short"] += " " + value["middle_name"][0] + "."
-            else:
-                value["fio_short"] = value["fio"]
+            value['fio_short'] = short_fio(value)
             signatories[row["role_key"]] = value
-    companies = [{"role": role, "name": org["short_name"] or org["full_name"], **org}
-                 for role, org in organizations.items()]
+    companies = companies_context(organizations)
     contractor = organizations.get('builder')
     if contractor is None and connection.execute(
         "SELECT 1 FROM sqlite_master WHERE type='table' AND name='object_participants'"
@@ -115,3 +118,14 @@ def participants_context(connection, project_id):
         periods=[dict(r) for r in connection.execute('SELECT * FROM participant_periods WHERE object_id=? ORDER BY id',(project['object_id'],))]
     return {"organizations": organizations, "signatories": signatories, "companies": companies,
             'signatory_candidates': candidates, 'participation_periods':periods}
+
+
+def companies_context(organizations):
+    """Печатное имя роли отдельно от стабильного машинного кода назначения."""
+    # workspace использует функции назначения из этого модуля.
+    from .workspace import ROLES, DOC_ROLES
+    labels = {**ROLES, **DOC_ROLES,
+              'technical_customer': 'Технический заказчик'}
+    return [{**org, 'role_key': role, 'role': labels.get(role, role),
+             'name': org['short_name'] or org['full_name']}
+            for role, org in organizations.items()]

@@ -135,7 +135,16 @@ def _build(c, database, pid, purpose, aid):
             continue
         if purpose == 'check' and any(sha == r['sha256'] for sha in states.values()):
             continue
-        protected = [ref['table'] for ref in refs if ref['table'] not in ('project_attachments', 'project_files')]
+        # Resource links also survive deletion of incoming journal entries.
+        # An explicit file deletion may clear these links in this section;
+        # reconciliation and references to actual business records stay protected.
+        resource_ids = [row['resource_id'] for ref in refs if ref['table'] == 'resource_attachments' for row in ref['rows']]
+        local_resources = {row[0] for row in c.execute('SELECT id FROM resources WHERE project_id=?', (pid,))}
+        clear_resource_links = purpose == 'delete' and set(resource_ids) <= local_resources
+        removable = {'project_attachments', 'project_files'}
+        if clear_resource_links:
+            removable.add('resource_attachments')
+        protected = [ref['table'] for ref in refs if ref['table'] not in removable]
         if protected:
             blocked.append({'id': r['id'], 'name': r['original_name'], 'reason': 'Используется в записях ИТД: '+', '.join(REFERENCE_NAMES.get(table,'связанные записи') for table in protected)})
             continue
@@ -147,6 +156,8 @@ def _build(c, database, pid, purpose, aid):
         if not shared and archive_state:
             paths.append(str(archived.relative_to(workspace)))
         actions.append({'action': 'detach' if shared else 'remove', 'id': r['id'], 'name': r['original_name'], 'paths': paths, 'sha256': r['sha256'], 'type': archive.file_type(r)})
+        if clear_resource_links and resource_ids:
+            actions[-1]['unlink_resources'] = sorted(resource_ids)
     if purpose == 'check':
         for path, sha in disk.items():
             existing = known.get(sha)
@@ -257,6 +268,8 @@ def apply_plan(database, plan, token, types, secret):
                     before = dict(c.execute('SELECT * FROM attachments WHERE id=?', (a['id'],)).fetchone())
                     c.execute('DELETE FROM project_files WHERE project_id=? AND attachment_id=?', (pid, a['id']))
                     c.execute('DELETE FROM project_attachments WHERE project_id=? AND attachment_id=?', (pid, a['id']))
+                    for resource_id in a.get('unlink_resources', []):
+                        c.execute('DELETE FROM resource_attachments WHERE resource_id=? AND attachment_id=?', (resource_id, a['id']))
                     if a['action'] == 'remove':
                         c.execute('DELETE FROM attachments WHERE id=?', (a['id'],))
                     log_event(c, 'file-'+a['action'], entity='attachments', entity_id=a['id'], before=before, after={'project_id': pid})

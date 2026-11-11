@@ -6,7 +6,7 @@ from pathlib import Path
 from .db import calendar_date, required_text, atomic_operation
 from .fields import merge_fields, resolve_fields, validate_fields
 from .layout import path_component
-from .participants import participants_context
+from .participants import participants_context, short_fio
 
 
 def register_form(connection, *, code, name, fields, form_group="act", filename_title=None):
@@ -142,7 +142,7 @@ def build_context(connection, act_id, *, draft=True):
         if not selected_people:
             for role,choices in role_candidates(connection,act['project_id'],fallback=False).items():
                 if len(choices)==1 and role in roots['organizations']:
-                    p=choices[0];candidates[role]={**p,'organization':roots['organizations'][role],'fio_short':p['fio']}
+                    p=choices[0];candidates[role]={**p,'organization':roots['organizations'][role],'fio_short':short_fio(p)}
         selected_people={role:person if person and (person['id'] in eligible or any(p['id']==person['id'] for p in assigned.get(role,[]))) else None for role,person in candidates.items()}
     else:
         selected_people=selected_people or roots['signatories']
@@ -161,6 +161,10 @@ def build_context(connection, act_id, *, draft=True):
     from .titles import CODE, prepare_context
     if act["act_type"] == CODE:
         prepare_context(context)
+    from .template_objects import CONTEXT_KEY, build_template_context
+    template_context = build_template_context(act['act_type'], context, roots=roots, fields=fields)
+    if template_context:
+        context[CONTEXT_KEY] = template_context
     return {"context": context, "missing": missing, "act_num": act["act_num"],
             "act_type": act["act_type"], "draft": draft, "field_diagnostics": diagnostics}
 

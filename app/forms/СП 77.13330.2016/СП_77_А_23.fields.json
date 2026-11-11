@@ -4,216 +4,247 @@
     "label": "Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_test_system"
   },
   {
     "key": "p86_2",
     "label": "Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_test_system_2"
   },
   {
     "key": "p86_3",
     "label": "Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_test_system_3"
   },
   {
     "key": "t0_r1_c0",
     "label": "Приложение А.23",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.form_reference"
   },
   {
     "key": "t0_r2_c0",
     "label": "Приложение А.23",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.form_reference_2"
   },
   {
     "key": "t1_r0_c1",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.day"
   },
   {
     "key": "t1_r0_c3",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.month"
   },
   {
     "key": "t1_r0_c5",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date.year"
   },
   {
     "key": "t2_r0_c1",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t2_r0_c3",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date_2.day"
   },
   {
     "key": "t2_r0_c5",
     "label": "\"",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date_2.month"
   },
   {
     "key": "t2_r0_c7",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_date_2.year"
   },
   {
     "key": "t3_r0_c1",
     "label": "(наименование предприятия заказчика)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "t4_r0_c1",
     "label": "приказом от «",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.commission_order.date.day"
   },
   {
     "key": "t4_r0_c3",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.commission_order.date.month"
   },
   {
     "key": "t4_r0_c5",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.commission_order.date.year"
   },
   {
     "key": "t4_r0_c7",
     "label": "г. №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.commission_order.number"
   },
   {
     "key": "t5_r0_c0",
     "label": "(должность, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.commission_chair.details"
   },
   {
     "key": "t6_r0_c1",
     "label": "(должность, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.commissioner.details"
   },
   {
     "key": "t6_r2_c1",
     "label": "(должность, Ф.И.О.)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.supervisory.details"
   },
   {
     "key": "t7_r0_c0",
     "label": "(наименование систем или технических средств)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.system_fibre"
   },
   {
     "key": "t7_r2_c1",
     "label": "(обозначение проекта, дата разработки)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_design_documentation_work"
   },
   {
     "key": "t7_r4_c1",
     "label": "(наименование организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "project.documentation.designer_name"
   },
   {
     "key": "t7_r6_c1",
     "label": "(наименование организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.commissioner.full_name"
   },
   {
     "key": "t8_r0_c1",
     "label": "с «",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.day"
   },
   {
     "key": "t8_r0_c3",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.month"
   },
   {
     "key": "t8_r0_c5",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_start.year"
   },
   {
     "key": "t8_r0_c7",
     "label": "г. по «",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end.day"
   },
   {
     "key": "t8_r0_c9",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end.month"
   },
   {
     "key": "t8_r0_c11",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.work_end.year"
   },
   {
     "key": "t9_r0_c0",
     "label": "Перечень прилагаемой к акту документации:",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.attachments_documentation"
   }
 ]

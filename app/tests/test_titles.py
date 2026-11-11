@@ -37,7 +37,13 @@ class TitleTests(unittest.TestCase):
             a = self.add(c, copies=2.0, volumes=3.0, font_index=1)
             config = export_config(c, a)
             b = add_title(c, self.project, config)["act_id"]
-            self.assertEqual(build_context(c, a)["context"], build_context(c, b)["context"])
+            first = build_context(c, a)['context']
+            second = build_context(c, b)['context']
+            first_model = first.pop('_template_context')
+            second_model = second.pop('_template_context')
+            self.assertEqual(first, second)
+            self.assertEqual(first_model['object'], second_model['object'])
+            self.assertNotEqual(first_model['document']['number'], second_model['document']['number'])
             config["object"] = "Другое название"
             with self.assertRaisesRegex(ValueError, "object"):
                 add_title(c, self.project, config)

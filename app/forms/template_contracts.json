@@ -1,0 +1,6665 @@
+{
+  "И_1_13_07_01": {
+    "readiness_date": {
+      "path": "form.readiness_date"
+    },
+    "t1_r0_c2": {
+      "path": "representatives.installer.position"
+    },
+    "t1_r0_c6": {
+      "path": "representatives.installer.fio"
+    },
+    "section_1_2": {
+      "path": "form.section_1_2"
+    },
+    "section_1_3": {
+      "path": "form.section_1_3"
+    },
+    "section_1_4": {
+      "path": "form.section_1_4"
+    },
+    "section_2_2": {
+      "path": "form.section_2_2"
+    },
+    "section_2_3": {
+      "path": "form.section_2_3"
+    },
+    "section_2_4": {
+      "path": "form.section_2_4"
+    },
+    "section_3_2": {
+      "path": "form.section_3_2"
+    },
+    "section_3_3": {
+      "path": "form.section_3_3"
+    },
+    "section_3_4": {
+      "path": "form.section_3_4"
+    }
+  },
+  "И_1_13_07_02": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r1_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t1_r4_c0": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t1_r7_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "form.volume_work"
+    },
+    "t3_r0_c0": {
+      "path": "project.documentation.designer_name"
+    },
+    "t4_r0_c1": {
+      "path": "form.test_fibre"
+    }
+  },
+  "И_1_13_07_03": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "readiness_date": {
+      "path": "form.readiness_date"
+    },
+    "rows_1": {
+      "path": "form.design_changes",
+      "columns": {
+        "c1": "number",
+        "c2": "deviations",
+        "c3": "value",
+        "c4": "deviations_number_fibre"
+      }
+    },
+    "t2_r0_c1": {
+      "path": "representatives.foreman.position"
+    },
+    "t2_r0_c5": {
+      "path": "representatives.foreman.fio"
+    }
+  },
+  "И_1_13_07_04": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "readiness_date": {
+      "path": "form.readiness_date"
+    },
+    "rows_1": {
+      "path": "form.defects",
+      "columns": {
+        "c1": "number",
+        "c2": "defects",
+        "c3": "date",
+        "c4": "value"
+      }
+    },
+    "t2_r0_c0": {
+      "path": "representatives.installer.position"
+    },
+    "t2_r0_c4": {
+      "path": "representatives.installer.fio"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.general_contractor.position"
+    },
+    "t3_r0_c4": {
+      "path": "representatives.general_contractor.fio"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer.position"
+    },
+    "t4_r0_c4": {
+      "path": "representatives.customer.fio"
+    }
+  },
+  "И_1_13_07_05": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "readiness_date": {
+      "path": "form.readiness_date"
+    },
+    "rows_1": {
+      "path": "form.equipment",
+      "columns": {
+        "c1": "number",
+        "c2": "equipment_completeness_fibre",
+        "c3": "type",
+        "c4": "number_organisation_fibre",
+        "c5": "quantity",
+        "c6": "notes"
+      }
+    },
+    "t2_r0_c0": {
+      "path": "representatives.installer.position"
+    },
+    "t2_r0_c4": {
+      "path": "representatives.installer.fio"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.customer.position"
+    },
+    "t3_r0_c4": {
+      "path": "representatives.customer.fio"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.general_contractor.position"
+    },
+    "t4_r0_c4": {
+      "path": "representatives.general_contractor.fio"
+    }
+  },
+  "И_1_13_07_06": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "ready_date": {
+      "path": "form.ready_date"
+    },
+    "rows_7": {
+      "path": "form.defects",
+      "columns": {
+        "c1": "number",
+        "c2": "location",
+        "c3": "defects",
+        "c4": "date",
+        "c5": "value"
+      }
+    },
+    "t1_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t4_r0_c0": {
+      "path": "form.location_fibre"
+    },
+    "t5_r0_c0": {
+      "path": "form.number_design_documentation"
+    },
+    "t6_r0_c0": {
+      "path": "form.number_design_documentation_organisation"
+    }
+  },
+  "И_1_13_07_06а": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "defects_date": {
+      "path": "form.defects_date"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t3_r0_c0": {
+      "path": "form.defects_voltage_fibre"
+    }
+  },
+  "И_1_13_07_06б": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.commissioner.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t3_r0_c0": {
+      "path": "form.volume_work"
+    },
+    "t4_r0_c0": {
+      "path": "project.documentation.designer_name"
+    },
+    "t5_r0_c3": {
+      "path": "representatives.installer.fio"
+    },
+    "t5_r0_c8": {
+      "path": "representatives.commissioner.fio"
+    }
+  },
+  "И_1_13_07_07": {
+    "date_t7_r4": {
+      "path": "form.date_t7_r4"
+    },
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c1": {
+      "path": "form.power"
+    },
+    "t1_r0_c3": {
+      "path": "form.voltage_power"
+    },
+    "t1_r1_c1": {
+      "path": "form.voltage"
+    },
+    "t1_r1_c3": {
+      "path": "form.voltage_2"
+    },
+    "t2_r0_c1": {
+      "path": "form.organisation_fibre"
+    },
+    "t2_r0_c3": {
+      "path": "form.organisation_type_fibre"
+    },
+    "t2_r1_c1": {
+      "path": "form.number_organisation"
+    },
+    "t2_r1_c3": {
+      "path": "form.date_number_organisation"
+    },
+    "t2_r2_c1": {
+      "path": "form.date_location"
+    },
+    "t3_r0_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r2_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t4_r1_c1": {
+      "path": "form.requirements"
+    },
+    "t4_r3_c1": {
+      "path": "form.fibre"
+    },
+    "t4_r5_c2": {
+      "path": "form.completeness_fibre"
+    },
+    "t4_r7_c0": {
+      "path": "form.completeness"
+    },
+    "t4_r9_c0": {
+      "path": "form.completeness_2"
+    },
+    "t4_r11_c1": {
+      "path": "form.system"
+    },
+    "t5_r0_c0": {
+      "path": "form.test"
+    },
+    "t6_r0_c0": {
+      "path": "form.oil_fibre"
+    },
+    "t7_r1_c1": {
+      "path": "form.number_design_documentation"
+    },
+    "t7_r2_c0": {
+      "path": "form.test_2"
+    },
+    "t7_r4_c1": {
+      "path": "form.number_organisation_2"
+    },
+    "t8_r0_c1": {
+      "path": "form.description_defects_date"
+    },
+    "t8_r2_c0": {
+      "path": "form.fibre_2"
+    },
+    "t9_r0_c0": {
+      "path": "form.requirements_voltage_fibre"
+    },
+    "t9_r2_c1": {
+      "path": "form.oil_flow_rate"
+    },
+    "t10_r0_c1": {
+      "path": "form.voltage_3"
+    },
+    "t10_r1_c1": {
+      "path": "form.missing_oil_quantity_oil_quantity"
+    },
+    "t10_r2_c1": {
+      "path": "form.customer_date_system"
+    },
+    "t10_r2_c2": {
+      "path": "form.organisations_customer_full_name"
+    },
+    "t11_r0_c0": {
+      "path": "form.conclusion"
+    },
+    "t12_r4_c1": {
+      "path": "representatives.material_custodian.details"
+    }
+  },
+  "И_1_13_07_09": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c2": {
+      "path": "form.capacity_duration"
+    },
+    "t1_r0_c4": {
+      "path": "form.capacity"
+    },
+    "t1_r1_c1": {
+      "path": "form.voltage"
+    },
+    "t1_r1_c3": {
+      "path": "form.voltage_structure_quantity"
+    },
+    "t1_r2_c1": {
+      "path": "form.design_documentation"
+    },
+    "t1_r2_c2": {
+      "path": "form.design_documentation_organisation_fibre"
+    },
+    "t1_r4_c0": {
+      "path": "form.work"
+    },
+    "t2_r0_c3": {
+      "path": "representatives.inspector.fio"
+    },
+    "t2_r2_c3": {
+      "path": "representatives.foreman.fio"
+    }
+  },
+  "И_1_13_07_10": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_2": {
+      "path": "form.battery_measurements",
+      "columns": {
+        "c1": "structure_number",
+        "c2": "voltage",
+        "c3": "density",
+        "c4": "voltage_2",
+        "c5": "density_2",
+        "c6": "voltage_3",
+        "c7": "density_3"
+      }
+    },
+    "t1_r0_c0": {
+      "path": "form.type"
+    },
+    "t1_r0_c2": {
+      "path": "form.capacity"
+    },
+    "t1_r0_c4": {
+      "path": "form.voltage_capacity_duration"
+    },
+    "t1_r2_c1": {
+      "path": "form.structure_quantity_fibre"
+    },
+    "t1_r3_c1": {
+      "path": "form.resistance_insulation_method"
+    },
+    "t1_r4_c1": {
+      "path": "form.temperature_location"
+    },
+    "t1_r4_c3": {
+      "path": "form.electrolyte_temperature_location"
+    },
+    "t3_r0_c1": {
+      "path": "form.qualification"
+    },
+    "t4_r0_c1": {
+      "path": "form.capacity_qualification_system"
+    },
+    "t4_r1_c1": {
+      "path": "form.structure_fibre"
+    },
+    "t4_r1_c3": {
+      "path": "form.structure_quantity_number"
+    },
+    "measured_by": {
+      "path": "representatives.inspector.fio"
+    },
+    "foreman": {
+      "path": "representatives.foreman.fio"
+    }
+  },
+  "И_1_13_07_11": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t2_r2_c1": {
+      "path": "form.materials_test"
+    },
+    "t2_r4_c0": {
+      "path": "form.location"
+    },
+    "t3_r0_c2": {
+      "path": "form.pipe_number_design_documentation"
+    },
+    "t3_r1_c0": {
+      "path": "project.documentation.designer_name"
+    },
+    "t4_r0_c0": {
+      "path": "form.deviations_date_number"
+    },
+    "t4_r2_c2": {
+      "path": "form.connection_pipe"
+    },
+    "t4_r3_c1": {
+      "path": "form.pipe"
+    }
+  },
+  "И_1_13_07_12": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_3": {
+      "path": "form.pressure_tests",
+      "columns": {
+        "c1": "equipment_location_fibre",
+        "c2": "class",
+        "c3": "pressure_system",
+        "c4": "pressure_drop_pressure_test",
+        "c5": "duration_test",
+        "c6": "notes"
+      }
+    },
+    "t1_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t4_r0_c1": {
+      "path": "form.instrument_pressure_number"
+    },
+    "t4_r1_c1": {
+      "path": "form.accuracy_class_class"
+    },
+    "t4_r4_c2": {
+      "path": "form.class"
+    }
+  },
+  "И_1_13_07_14а": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t4_r0_c1": {
+      "path": "organisations.general_contractor.full_name"
+    },
+    "t5_r0_c0": {
+      "path": "form.cable"
+    },
+    "t6_r0_c0": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t7_r0_c0": {
+      "path": "form.description"
+    },
+    "t7_r2_c1": {
+      "path": "form.deviations_design_documentation_organisation"
+    },
+    "t7_r4_c1": {
+      "path": "form.fibre"
+    },
+    "t7_r7_c1": {
+      "path": "form.voltage_thickness_cross_section"
+    },
+    "t7_r7_c3": {
+      "path": "form.thickness_coating"
+    },
+    "t7_r8_c1": {
+      "path": "form.pipe_materials"
+    },
+    "t7_r10_c1": {
+      "path": "form.depth"
+    },
+    "t7_r10_c3": {
+      "path": "form.depth_connection_pipe"
+    },
+    "t8_r0_c0": {
+      "path": "form.cable_fibre"
+    },
+    "t9_r0_c1": {
+      "path": "form.notes"
+    },
+    "t9_r1_c0": {
+      "path": "form.design_documentation"
+    }
+  },
+  "И_1_13_07_15": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_1": {
+      "path": "form.cable_installation",
+      "columns": {
+        "c1": "drum_number",
+        "c2": "voltage_cross_section_cable",
+        "c3": "length_cable",
+        "c4": "organisation_fibre",
+        "c5": "date",
+        "c6": "drum_condition",
+        "c7": "condition_fibre",
+        "c8": "condition",
+        "c9": "resistance_insulation_system",
+        "c10": "conclusion"
+      }
+    },
+    "t2_r0_c1": {
+      "path": "form.instrument_voltage_resistance"
+    },
+    "t2_r1_c1": {
+      "path": "form.number_organisation"
+    },
+    "t3_r1_c3": {
+      "path": "representatives.inspector.fio"
+    },
+    "t3_r1_c9": {
+      "path": "representatives.foreman.fio"
+    },
+    "t4_r0_c3": {
+      "path": "representatives.customer.fio"
+    }
+  },
+  "И_1_13_07_16": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_1": {
+      "path": "form.cable_joints",
+      "columns": {
+        "c1": "drum_number",
+        "c2": "voltage_cross_section_cable",
+        "c3": "length_cable",
+        "c4": "temperature_voltage_cable",
+        "c5": "cable_heating_duration",
+        "c6": "temperature_cable_heating",
+        "c7": "temperature_cable_heating_2"
+      }
+    },
+    "heated_by": {
+      "path": "representatives.worker.fio"
+    },
+    "foreman": {
+      "path": "representatives.foreman.fio"
+    }
+  },
+  "И_1_13_07_17": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t3_r2_c1": {
+      "path": "form.voltage_cable_test"
+    },
+    "t4_r0_c0": {
+      "path": "form.cable_number_design_documentation"
+    },
+    "t4_r2_c1": {
+      "path": "form.deviations_number_design_documentation"
+    },
+    "t5_r0_c1": {
+      "path": "form.cable_quantity_fibre"
+    },
+    "t5_r3_c1": {
+      "path": "form.cable_materials_coating"
+    },
+    "t5_r6_c0": {
+      "path": "form.notes_cable"
+    },
+    "t5_r9_c1": {
+      "path": "form.voltage_cross_section_cable"
+    },
+    "t6_r0_c0": {
+      "path": "form.features"
+    }
+  },
+  "И_1_13_07_18": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_1": {
+      "path": "form.foundations",
+      "columns": {
+        "c1": "date",
+        "c2": "cable_number_fibre",
+        "c3": "voltage_cross_section_cable",
+        "c4": "length",
+        "c5": "length_drum_cable",
+        "c6": "joint",
+        "c7": "temperature",
+        "c8": "cable_heating_duration",
+        "c9": "representative"
+      }
+    },
+    "t2_r0_c3": {
+      "path": "representatives.foreman.fio"
+    }
+  },
+  "И_1_13_07_19": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_1": {
+      "path": "form.connections",
+      "columns": {
+        "c1": "cable_number",
+        "c2": "voltage_cross_section_cable",
+        "c3": "joint_number",
+        "c4": "dimensions_joint_type",
+        "c5": "joint_date",
+        "c6": "representative"
+      }
+    },
+    "t2_r0_c3": {
+      "path": "representatives.foreman.fio"
+    }
+  },
+  "И_1_13_07_20": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c1": {
+      "path": "form.support_system"
+    },
+    "t2_r0_c1": {
+      "path": "form.support_number"
+    },
+    "t2_r0_c3": {
+      "path": "form.support_number_fibre"
+    },
+    "t2_r0_c5": {
+      "path": "form.support_number_type"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t5_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t6_r0_c2": {
+      "path": "form.foundation_design_documentation"
+    },
+    "t6_r2_c2": {
+      "path": "form.concrete_type_system"
+    },
+    "t7_r0_c0": {
+      "path": "form.materials_coating_quantity"
+    },
+    "t7_r2_c2": {
+      "path": "form.bolts_number_design_documentation"
+    },
+    "t8_r0_c2": {
+      "path": "form.deviations_design_documentation"
+    },
+    "t8_r2_c1": {
+      "path": "form.representatives_customer_details"
+    },
+    "t8_r4_c1": {
+      "path": "representatives.designer.details"
+    },
+    "t9_r0_c0": {
+      "path": "form.number_design_documentation"
+    }
+  },
+  "И_1_13_07_21": {
+    "date_t10_r1": {
+      "path": "form.date_t10_r1"
+    },
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_11": {
+      "path": "form.wire_measurements",
+      "columns": {
+        "c1": "support_number",
+        "c2": "support_type",
+        "c3": "type",
+        "c4": "passport_organisation_type",
+        "c5": "number_design_documentation",
+        "c6": "insulation_materials",
+        "c7": "date",
+        "c8": "support_equipment_representative",
+        "c9": "value"
+      }
+    },
+    "t1_r0_c1": {
+      "path": "form.foundation_support_equipment"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t5_r0_c0": {
+      "path": "form.foundation_concrete_system"
+    },
+    "t6_r0_c2": {
+      "path": "form.support_equipment_quantity"
+    },
+    "t7_r0_c1": {
+      "path": "form.support_quantity"
+    },
+    "t7_r0_c3": {
+      "path": "form.bolts_support_quantity"
+    },
+    "t7_r2_c1": {
+      "path": "form.quantity_fibre"
+    },
+    "t7_r2_c3": {
+      "path": "form.quantity_fibre_2"
+    },
+    "t8_r0_c0": {
+      "path": "project.documentation.designer_name"
+    },
+    "t8_r2_c1": {
+      "path": "form.number_design_documentation_fibre"
+    },
+    "t9_r0_c2": {
+      "path": "form.deviations_design_documentation"
+    },
+    "t9_r2_c1": {
+      "path": "form.representatives_customer_details"
+    },
+    "t9_r4_c1": {
+      "path": "representatives.designer.details"
+    },
+    "t9_r6_c2": {
+      "path": "form.foundation_concrete_support"
+    },
+    "t9_r8_c1": {
+      "path": "form.test"
+    },
+    "t10_r0_c0": {
+      "path": "form.foundation_date_system"
+    }
+  },
+  "И_1_13_07_22": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_3": {
+      "path": "form.tensioning",
+      "columns": {
+        "c1": "support_connection_number",
+        "c2": "type",
+        "c3": "connection_method",
+        "c4": "representative",
+        "c5": "representative_2"
+      }
+    },
+    "t1_r3_c0": {
+      "path": "form.support"
+    },
+    "t1_r4_c1": {
+      "path": "form.quantity_system_fibre"
+    },
+    "t1_r4_c2": {
+      "path": "form.support_number_design_documentation"
+    },
+    "t1_r4_c3": {
+      "path": "form.support_materials"
+    },
+    "t1_r4_c4": {
+      "path": "form.notes_support_coating"
+    },
+    "t1_r5_c1": {
+      "path": "form.bolts_quantity_system"
+    },
+    "t1_r5_c2": {
+      "path": "form.bolts_support_number"
+    },
+    "t1_r5_c3": {
+      "path": "form.bolts_support_materials"
+    },
+    "t1_r5_c4": {
+      "path": "form.notes_bolts_support"
+    },
+    "t1_r6_c1": {
+      "path": "form.quantity_system_fibre_2"
+    },
+    "t1_r6_c2": {
+      "path": "form.support_number_design_documentation_2"
+    },
+    "t1_r6_c3": {
+      "path": "form.support_materials_fibre"
+    },
+    "t1_r6_c4": {
+      "path": "form.notes_support_coating_2"
+    },
+    "t1_r7_c1": {
+      "path": "form.quantity_system_fibre_3"
+    },
+    "t1_r7_c2": {
+      "path": "form.support_number_design_documentation_3"
+    },
+    "t1_r7_c3": {
+      "path": "form.support_materials_2"
+    },
+    "t1_r7_c4": {
+      "path": "form.notes_support_coating_3"
+    },
+    "t1_r8_c1": {
+      "path": "form.quantity_system_fibre_4"
+    },
+    "t1_r8_c2": {
+      "path": "form.support_number_design_documentation_4"
+    },
+    "t1_r8_c3": {
+      "path": "form.support_materials_3"
+    },
+    "t1_r8_c4": {
+      "path": "form.notes_support_coating_4"
+    },
+    "t2_r0_c1": {
+      "path": "form.system"
+    },
+    "t2_r0_c3": {
+      "path": "form.voltage_cable_system"
+    },
+    "t2_r1_c1": {
+      "path": "form.cross_section"
+    },
+    "t2_r1_c3": {
+      "path": "form.voltage_cross_section_quantity"
+    },
+    "t2_r2_c1": {
+      "path": "form.length"
+    },
+    "t2_r2_c3": {
+      "path": "form.length_2"
+    },
+    "t4_r0_c1": {
+      "path": "form.system_2"
+    },
+    "t4_r1_c2": {
+      "path": "form.pipe_qualification_type"
+    },
+    "t4_r2_c1": {
+      "path": "form.description_support_number"
+    },
+    "t5_r0_c2": {
+      "path": "form.type"
+    },
+    "t5_r1_c1": {
+      "path": "form.support_number"
+    },
+    "t6_r0_c1": {
+      "path": "form.earthing_support_system"
+    },
+    "t7_r0_c0": {
+      "path": "form.conclusion"
+    },
+    "t8_r0_c3": {
+      "path": "representatives.foreman.fio"
+    }
+  },
+  "И_1_13_07_23": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "t1_r0_c1": {
+      "path": "form.cross_section_representative_test"
+    },
+    "t1_r1_c0": {
+      "path": "form.system_fibre"
+    },
+    "t1_r3_c1": {
+      "path": "form.location_fibre"
+    },
+    "t2_r0_c2": {
+      "path": "form.cross_section_design_documentation"
+    },
+    "t2_r1_c2": {
+      "path": "form.quantity_system_fibre"
+    },
+    "t2_r1_c4": {
+      "path": "form.cable_system_fibre"
+    },
+    "t2_r3_c2": {
+      "path": "form.cross_section_support_number"
+    },
+    "t2_r4_c1": {
+      "path": "form.location_system_fibre"
+    },
+    "t3_r1_c1": {
+      "path": "form.system"
+    },
+    "t3_r2_c2": {
+      "path": "form.cable_system_fibre_2"
+    },
+    "t3_r4_c0": {
+      "path": "form.voltage_cable_location"
+    },
+    "t3_r6_c1": {
+      "path": "form.system_2"
+    },
+    "t3_r7_c2": {
+      "path": "form.temperature_medium"
+    },
+    "t4_r0_c1": {
+      "path": "representatives.crossing_owner.details"
+    },
+    "t5_r0_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t6_r0_c1": {
+      "path": "representatives.installer.details"
+    }
+  },
+  "И_1_13_07_24": {
+    "city": {
+      "path": "project.city"
+    },
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "division": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "site": {
+      "path": "form.site"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "rows_3": {
+      "path": "form.earthing",
+      "columns": {
+        "c1": "number",
+        "c2": "earthing_structure",
+        "c3": "earthing_materials_structure",
+        "c4": "earthing_structure_fibre",
+        "c5": "dimensions_earthing_structure",
+        "c6": "earthing_structure_quantity",
+        "c7": "earthing_depth_structure",
+        "c8": "notes"
+      }
+    },
+    "t1_r1_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t1_r4_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t2_r0_c0": {
+      "path": "form.description"
+    },
+    "t2_r2_c1": {
+      "path": "form.design_documentation_organisation_work"
+    },
+    "t2_r4_c1": {
+      "path": "form.number_design_documentation"
+    },
+    "t2_r6_c1": {
+      "path": "form.deviations_design_documentation"
+    },
+    "t2_r7_c0": {
+      "path": "form.earthing_voltage_design_documentation"
+    },
+    "t2_r8_c1": {
+      "path": "form.representative_deviations_date"
+    },
+    "t2_r10_c1": {
+      "path": "form.voltage_number_design_documentation"
+    },
+    "t4_r0_c0": {
+      "path": "form.earthing_connection_structure"
+    },
+    "t5_r0_c1": {
+      "path": "form.defects"
+    },
+    "t5_r1_c0": {
+      "path": "form.earthing_passport"
+    }
+  },
+  "И_1_13_07_25": {
+    "installer_org": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r2_c0": {
+      "path": "form.division"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "customer_org": {
+      "path": "organisations.customer.full_name"
+    },
+    "city": {
+      "path": "project.city"
+    },
+    "year": {
+      "path": "form.year"
+    }
+  },
+  "МИНСТРОЙ_344_АОГРО": {
+    "object_name": {
+      "path": "object.name"
+    },
+    "object_address": {
+      "path": "object.address"
+    },
+    "customer_name": {
+      "path": "organisations.customer.full_name"
+    },
+    "customer_ogrn": {
+      "path": "organisations.customer.ogrn"
+    },
+    "customer_inn": {
+      "path": "organisations.customer.inn"
+    },
+    "customer_address": {
+      "path": "organisations.customer.address"
+    },
+    "customer_phone": {
+      "path": "organisations.customer.phone"
+    },
+    "customer_sro": {
+      "path": "organisations.customer.sro_info"
+    },
+    "customer_individual": {
+      "path": "form.customer_individual"
+    },
+    "builder_org_name": {
+      "path": "organisations.builder.full_name"
+    },
+    "builder_org_ogrn": {
+      "path": "organisations.builder.ogrn"
+    },
+    "builder_org_inn": {
+      "path": "organisations.builder.inn"
+    },
+    "builder_org_address": {
+      "path": "organisations.builder.address"
+    },
+    "builder_org_phone": {
+      "path": "organisations.builder.phone"
+    },
+    "builder_org_sro": {
+      "path": "organisations.builder.sro_info"
+    },
+    "designer_org_name": {
+      "path": "organisations.designer.full_name"
+    },
+    "designer_org_ogrn": {
+      "path": "organisations.designer.ogrn"
+    },
+    "designer_org_inn": {
+      "path": "organisations.designer.inn"
+    },
+    "designer_org_address": {
+      "path": "organisations.designer.address"
+    },
+    "designer_org_phone": {
+      "path": "organisations.designer.phone"
+    },
+    "designer_org_sro": {
+      "path": "organisations.designer.sro_info"
+    },
+    "act_num": {
+      "path": "document.number"
+    },
+    "signed_day": {
+      "path": "document.date.day"
+    },
+    "signed_month": {
+      "path": "document.date.month"
+    },
+    "signed_year": {
+      "path": "document.date.year"
+    },
+    "customer_control_details": {
+      "path": "representatives.customer_control.details"
+    },
+    "customer_control_nrs": {
+      "path": "representatives.customer_control.nrs_id"
+    },
+    "control_org_name": {
+      "path": "representatives.customer_control.organisation.full_name"
+    },
+    "control_org_ogrn": {
+      "path": "representatives.customer_control.organisation.ogrn"
+    },
+    "control_org_inn": {
+      "path": "representatives.customer_control.organisation.inn"
+    },
+    "control_org_address": {
+      "path": "representatives.customer_control.organisation.address"
+    },
+    "control_org_phone": {
+      "path": "representatives.customer_control.organisation.phone"
+    },
+    "builder_details": {
+      "path": "representatives.builder.details"
+    },
+    "builder_control_details": {
+      "path": "representatives.builder_control.details"
+    },
+    "builder_control_nrs": {
+      "path": "representatives.builder_control.nrs_id"
+    },
+    "designer_details": {
+      "path": "representatives.designer.details"
+    },
+    "designer_employer_name": {
+      "path": "representatives.designer.organisation.full_name"
+    },
+    "designer_employer_ogrn": {
+      "path": "representatives.designer.organisation.ogrn"
+    },
+    "designer_employer_inn": {
+      "path": "representatives.designer.organisation.inn"
+    },
+    "designer_employer_address": {
+      "path": "representatives.designer.organisation.address"
+    },
+    "designer_employer_phone": {
+      "path": "representatives.designer.organisation.phone"
+    },
+    "work_performer_details": {
+      "path": "representatives.work_performer.details"
+    },
+    "work_performer_employer_name": {
+      "path": "representatives.work_performer.organisation.full_name"
+    },
+    "work_performer_employer_ogrn": {
+      "path": "representatives.work_performer.organisation.ogrn"
+    },
+    "work_performer_employer_inn": {
+      "path": "representatives.work_performer.organisation.inn"
+    },
+    "work_performer_employer_address": {
+      "path": "representatives.work_performer.organisation.address"
+    },
+    "work_performer_employer_phone": {
+      "path": "representatives.work_performer.organisation.phone"
+    },
+    "examined_object": {
+      "path": "form.object_name"
+    },
+    "design_compliance": {
+      "path": "form.design_compliance"
+    },
+    "additional_info": {
+      "path": "form.additional_info"
+    },
+    "copies_count": {
+      "path": "form.copies_count"
+    },
+    "attachments": {
+      "path": "form.attachments"
+    },
+    "customer_control_signature": {
+      "path": "representatives.customer_control.fio_short"
+    },
+    "builder_signature": {
+      "path": "representatives.builder.fio_short"
+    },
+    "builder_control_signature": {
+      "path": "representatives.builder_control.fio_short"
+    },
+    "designer_signature": {
+      "path": "representatives.designer.fio_short"
+    },
+    "work_performer_signature": {
+      "path": "representatives.work_performer.fio_short"
+    }
+  },
+  "МИНСТРОЙ_344_АООК": {
+    "object_name": {
+      "path": "object.name"
+    },
+    "object_address": {
+      "path": "object.address"
+    },
+    "customer_name": {
+      "path": "organisations.customer.full_name"
+    },
+    "customer_ogrn": {
+      "path": "organisations.customer.ogrn"
+    },
+    "customer_inn": {
+      "path": "organisations.customer.inn"
+    },
+    "customer_address": {
+      "path": "organisations.customer.address"
+    },
+    "customer_phone": {
+      "path": "organisations.customer.phone"
+    },
+    "customer_sro": {
+      "path": "organisations.customer.sro_info"
+    },
+    "customer_individual": {
+      "path": "form.customer_individual"
+    },
+    "builder_org_name": {
+      "path": "organisations.builder.full_name"
+    },
+    "builder_org_ogrn": {
+      "path": "organisations.builder.ogrn"
+    },
+    "builder_org_inn": {
+      "path": "organisations.builder.inn"
+    },
+    "builder_org_address": {
+      "path": "organisations.builder.address"
+    },
+    "builder_org_phone": {
+      "path": "organisations.builder.phone"
+    },
+    "builder_org_sro": {
+      "path": "organisations.builder.sro_info"
+    },
+    "designer_org_name": {
+      "path": "organisations.designer.full_name"
+    },
+    "designer_org_ogrn": {
+      "path": "organisations.designer.ogrn"
+    },
+    "designer_org_inn": {
+      "path": "organisations.designer.inn"
+    },
+    "designer_org_address": {
+      "path": "organisations.designer.address"
+    },
+    "designer_org_phone": {
+      "path": "organisations.designer.phone"
+    },
+    "designer_org_sro": {
+      "path": "organisations.designer.sro_info"
+    },
+    "act_num": {
+      "path": "document.number"
+    },
+    "signed_day": {
+      "path": "document.date.day"
+    },
+    "signed_month": {
+      "path": "document.date.month"
+    },
+    "signed_year": {
+      "path": "document.date.year"
+    },
+    "customer_control_details": {
+      "path": "representatives.customer_control.details"
+    },
+    "customer_control_nrs": {
+      "path": "representatives.customer_control.nrs_id"
+    },
+    "control_org_name": {
+      "path": "representatives.customer_control.organisation.full_name"
+    },
+    "control_org_ogrn": {
+      "path": "representatives.customer_control.organisation.ogrn"
+    },
+    "control_org_inn": {
+      "path": "representatives.customer_control.organisation.inn"
+    },
+    "control_org_address": {
+      "path": "representatives.customer_control.organisation.address"
+    },
+    "control_org_phone": {
+      "path": "representatives.customer_control.organisation.phone"
+    },
+    "builder_details": {
+      "path": "representatives.builder.details"
+    },
+    "builder_control_details": {
+      "path": "representatives.builder_control.details"
+    },
+    "builder_control_nrs": {
+      "path": "representatives.builder_control.nrs_id"
+    },
+    "designer_details": {
+      "path": "representatives.designer.details"
+    },
+    "designer_employer_name": {
+      "path": "representatives.designer.organisation.full_name"
+    },
+    "designer_employer_ogrn": {
+      "path": "representatives.designer.organisation.ogrn"
+    },
+    "designer_employer_inn": {
+      "path": "representatives.designer.organisation.inn"
+    },
+    "designer_employer_address": {
+      "path": "representatives.designer.organisation.address"
+    },
+    "designer_employer_phone": {
+      "path": "representatives.designer.organisation.phone"
+    },
+    "work_performer_details": {
+      "path": "representatives.work_performer.details"
+    },
+    "work_performer_employer_name": {
+      "path": "representatives.work_performer.organisation.full_name"
+    },
+    "work_performer_employer_ogrn": {
+      "path": "representatives.work_performer.organisation.ogrn"
+    },
+    "work_performer_employer_inn": {
+      "path": "representatives.work_performer.organisation.inn"
+    },
+    "work_performer_employer_address": {
+      "path": "representatives.work_performer.organisation.address"
+    },
+    "work_performer_employer_phone": {
+      "path": "representatives.work_performer.organisation.phone"
+    },
+    "actual_performer": {
+      "path": "organisations.work_performer.full_name"
+    },
+    "construction_description": {
+      "path": "form.construction_description"
+    },
+    "design_documents": {
+      "path": "project.documentation.description"
+    },
+    "hidden_works_acts": {
+      "path": "form.hidden_works_acts"
+    },
+    "materials_quality": {
+      "path": "form.materials_quality"
+    },
+    "geodetic_schemes": {
+      "path": "form.structure"
+    },
+    "control_results": {
+      "path": "form.control_results"
+    },
+    "test_reports": {
+      "path": "form.test_reports"
+    },
+    "compliance_basis": {
+      "path": "form.compliance_basis"
+    },
+    "decision": {
+      "path": "form.decision"
+    },
+    "additional_info": {
+      "path": "form.additional_info"
+    },
+    "copies_count": {
+      "path": "form.copies_count"
+    },
+    "attachments": {
+      "path": "form.attachments"
+    },
+    "work_start": {
+      "path": "form.work_start"
+    },
+    "work_end": {
+      "path": "form.work_end"
+    },
+    "customer_control_signature": {
+      "path": "representatives.customer_control.fio_short"
+    },
+    "builder_signature": {
+      "path": "representatives.builder.fio_short"
+    },
+    "builder_control_signature": {
+      "path": "representatives.builder_control.fio_short"
+    },
+    "designer_signature": {
+      "path": "representatives.designer.fio_short"
+    },
+    "work_performer_signature": {
+      "path": "representatives.work_performer.fio_short"
+    }
+  },
+  "МИНСТРОЙ_344_АОСР": {
+    "object_name": {
+      "path": "object.name"
+    },
+    "object_address": {
+      "path": "object.address"
+    },
+    "customer_name": {
+      "path": "organisations.customer.full_name"
+    },
+    "customer_ogrn": {
+      "path": "organisations.customer.ogrn"
+    },
+    "customer_inn": {
+      "path": "organisations.customer.inn"
+    },
+    "customer_address": {
+      "path": "organisations.customer.address"
+    },
+    "customer_phone": {
+      "path": "organisations.customer.phone"
+    },
+    "customer_sro": {
+      "path": "organisations.customer.sro_info"
+    },
+    "customer_individual": {
+      "path": "form.customer_individual"
+    },
+    "builder_org_name": {
+      "path": "organisations.builder.full_name"
+    },
+    "builder_org_ogrn": {
+      "path": "organisations.builder.ogrn"
+    },
+    "builder_org_inn": {
+      "path": "organisations.builder.inn"
+    },
+    "builder_org_address": {
+      "path": "organisations.builder.address"
+    },
+    "builder_org_phone": {
+      "path": "organisations.builder.phone"
+    },
+    "builder_org_sro": {
+      "path": "organisations.builder.sro_info"
+    },
+    "designer_org_name": {
+      "path": "organisations.designer.full_name"
+    },
+    "designer_org_ogrn": {
+      "path": "organisations.designer.ogrn"
+    },
+    "designer_org_inn": {
+      "path": "organisations.designer.inn"
+    },
+    "designer_org_address": {
+      "path": "organisations.designer.address"
+    },
+    "designer_org_phone": {
+      "path": "organisations.designer.phone"
+    },
+    "designer_org_sro": {
+      "path": "organisations.designer.sro_info"
+    },
+    "act_num": {
+      "path": "document.number"
+    },
+    "signed_day": {
+      "path": "document.date.day"
+    },
+    "signed_month": {
+      "path": "document.date.month"
+    },
+    "signed_year": {
+      "path": "document.date.year"
+    },
+    "customer_control_details": {
+      "path": "representatives.customer_control.details"
+    },
+    "customer_control_nrs": {
+      "path": "representatives.customer_control.nrs_id"
+    },
+    "control_org_name": {
+      "path": "representatives.customer_control.organisation.full_name"
+    },
+    "control_org_ogrn": {
+      "path": "representatives.customer_control.organisation.ogrn"
+    },
+    "control_org_inn": {
+      "path": "representatives.customer_control.organisation.inn"
+    },
+    "control_org_address": {
+      "path": "representatives.customer_control.organisation.address"
+    },
+    "control_org_phone": {
+      "path": "representatives.customer_control.organisation.phone"
+    },
+    "builder_details": {
+      "path": "representatives.builder.details"
+    },
+    "builder_control_details": {
+      "path": "representatives.builder_control.details"
+    },
+    "builder_control_nrs": {
+      "path": "representatives.builder_control.nrs_id"
+    },
+    "designer_details": {
+      "path": "representatives.designer.details"
+    },
+    "designer_employer_name": {
+      "path": "representatives.designer.organisation.full_name"
+    },
+    "designer_employer_ogrn": {
+      "path": "representatives.designer.organisation.ogrn"
+    },
+    "designer_employer_inn": {
+      "path": "representatives.designer.organisation.inn"
+    },
+    "designer_employer_address": {
+      "path": "representatives.designer.organisation.address"
+    },
+    "designer_employer_phone": {
+      "path": "representatives.designer.organisation.phone"
+    },
+    "work_performer_details": {
+      "path": "representatives.work_performer.details"
+    },
+    "work_performer_employer_name": {
+      "path": "representatives.work_performer.organisation.full_name"
+    },
+    "work_performer_employer_ogrn": {
+      "path": "representatives.work_performer.organisation.ogrn"
+    },
+    "work_performer_employer_inn": {
+      "path": "representatives.work_performer.organisation.inn"
+    },
+    "work_performer_employer_address": {
+      "path": "representatives.work_performer.organisation.address"
+    },
+    "work_performer_employer_phone": {
+      "path": "representatives.work_performer.organisation.phone"
+    },
+    "actual_performer": {
+      "path": "organisations.work_performer.full_name"
+    },
+    "work_description": {
+      "path": "form.work_description"
+    },
+    "design_documents": {
+      "path": "project.documentation.description"
+    },
+    "materials_quality": {
+      "path": "form.materials_quality"
+    },
+    "compliance_documents": {
+      "path": "form.compliance_documents"
+    },
+    "compliance_basis": {
+      "path": "form.compliance_basis"
+    },
+    "subsequent_works": {
+      "path": "form.subsequent_works"
+    },
+    "additional_info": {
+      "path": "form.additional_info"
+    },
+    "copies_count": {
+      "path": "form.copies_count"
+    },
+    "attachments": {
+      "path": "form.attachments"
+    },
+    "work_start": {
+      "path": "form.work_start"
+    },
+    "work_end": {
+      "path": "form.work_end"
+    },
+    "customer_control_signature": {
+      "path": "representatives.customer_control.fio_short"
+    },
+    "builder_signature": {
+      "path": "representatives.builder.fio_short"
+    },
+    "builder_control_signature": {
+      "path": "representatives.builder_control.fio_short"
+    },
+    "designer_signature": {
+      "path": "representatives.designer.fio_short"
+    },
+    "work_performer_signature": {
+      "path": "representatives.work_performer.fio_short"
+    }
+  },
+  "МИНСТРОЙ_344_АОУСИТО": {
+    "object_name": {
+      "path": "object.name"
+    },
+    "object_address": {
+      "path": "object.address"
+    },
+    "customer_name": {
+      "path": "organisations.customer.full_name"
+    },
+    "customer_ogrn": {
+      "path": "organisations.customer.ogrn"
+    },
+    "customer_inn": {
+      "path": "organisations.customer.inn"
+    },
+    "customer_address": {
+      "path": "organisations.customer.address"
+    },
+    "customer_phone": {
+      "path": "organisations.customer.phone"
+    },
+    "customer_sro": {
+      "path": "organisations.customer.sro_info"
+    },
+    "customer_individual": {
+      "path": "form.customer_individual"
+    },
+    "builder_org_name": {
+      "path": "organisations.builder.full_name"
+    },
+    "builder_org_ogrn": {
+      "path": "organisations.builder.ogrn"
+    },
+    "builder_org_inn": {
+      "path": "organisations.builder.inn"
+    },
+    "builder_org_address": {
+      "path": "organisations.builder.address"
+    },
+    "builder_org_phone": {
+      "path": "organisations.builder.phone"
+    },
+    "builder_org_sro": {
+      "path": "organisations.builder.sro_info"
+    },
+    "designer_org_name": {
+      "path": "organisations.designer.full_name"
+    },
+    "designer_org_ogrn": {
+      "path": "organisations.designer.ogrn"
+    },
+    "designer_org_inn": {
+      "path": "organisations.designer.inn"
+    },
+    "designer_org_address": {
+      "path": "organisations.designer.address"
+    },
+    "designer_org_phone": {
+      "path": "organisations.designer.phone"
+    },
+    "designer_org_sro": {
+      "path": "organisations.designer.sro_info"
+    },
+    "act_num": {
+      "path": "document.number"
+    },
+    "signed_day": {
+      "path": "document.date.day"
+    },
+    "signed_month": {
+      "path": "document.date.month"
+    },
+    "signed_year": {
+      "path": "document.date.year"
+    },
+    "customer_control_details": {
+      "path": "representatives.customer_control.details"
+    },
+    "customer_control_nrs": {
+      "path": "representatives.customer_control.nrs_id"
+    },
+    "control_org_name": {
+      "path": "representatives.customer_control.organisation.full_name"
+    },
+    "control_org_ogrn": {
+      "path": "representatives.customer_control.organisation.ogrn"
+    },
+    "control_org_inn": {
+      "path": "representatives.customer_control.organisation.inn"
+    },
+    "control_org_address": {
+      "path": "representatives.customer_control.organisation.address"
+    },
+    "control_org_phone": {
+      "path": "representatives.customer_control.organisation.phone"
+    },
+    "builder_details": {
+      "path": "representatives.builder.details"
+    },
+    "builder_control_details": {
+      "path": "representatives.builder_control.details"
+    },
+    "builder_control_nrs": {
+      "path": "representatives.builder_control.nrs_id"
+    },
+    "designer_details": {
+      "path": "representatives.designer.details"
+    },
+    "designer_employer_name": {
+      "path": "representatives.designer.organisation.full_name"
+    },
+    "designer_employer_ogrn": {
+      "path": "representatives.designer.organisation.ogrn"
+    },
+    "designer_employer_inn": {
+      "path": "representatives.designer.organisation.inn"
+    },
+    "designer_employer_address": {
+      "path": "representatives.designer.organisation.address"
+    },
+    "designer_employer_phone": {
+      "path": "representatives.designer.organisation.phone"
+    },
+    "work_performer_details": {
+      "path": "representatives.work_performer.details"
+    },
+    "work_performer_employer_name": {
+      "path": "representatives.work_performer.organisation.full_name"
+    },
+    "work_performer_employer_ogrn": {
+      "path": "representatives.work_performer.organisation.ogrn"
+    },
+    "work_performer_employer_inn": {
+      "path": "representatives.work_performer.organisation.inn"
+    },
+    "work_performer_employer_address": {
+      "path": "representatives.work_performer.organisation.address"
+    },
+    "work_performer_employer_phone": {
+      "path": "representatives.work_performer.organisation.phone"
+    },
+    "network_operator_details": {
+      "path": "representatives.network_operator.details"
+    },
+    "network_operator_employer_name": {
+      "path": "representatives.network_operator.organisation.full_name"
+    },
+    "network_operator_employer_ogrn": {
+      "path": "representatives.network_operator.organisation.ogrn"
+    },
+    "network_operator_employer_inn": {
+      "path": "representatives.network_operator.organisation.inn"
+    },
+    "network_operator_employer_address": {
+      "path": "representatives.network_operator.organisation.address"
+    },
+    "network_operator_employer_phone": {
+      "path": "representatives.network_operator.organisation.phone"
+    },
+    "network_sections": {
+      "path": "form.network_sections"
+    },
+    "design_documents": {
+      "path": "project.documentation.description"
+    },
+    "connection_conditions": {
+      "path": "form.connection_conditions"
+    },
+    "hidden_works_acts": {
+      "path": "form.hidden_works_acts"
+    },
+    "materials_quality": {
+      "path": "form.materials_quality"
+    },
+    "geodetic_schemes": {
+      "path": "form.voltage_date_number"
+    },
+    "control_results": {
+      "path": "form.control_results"
+    },
+    "technical_conditions": {
+      "path": "form.technical_conditions"
+    },
+    "test_reports": {
+      "path": "form.test_reports"
+    },
+    "compliance_basis": {
+      "path": "form.compliance_basis"
+    },
+    "additional_info": {
+      "path": "form.additional_info"
+    },
+    "copies_count": {
+      "path": "form.copies_count"
+    },
+    "attachments": {
+      "path": "form.attachments"
+    },
+    "work_start": {
+      "path": "form.work_start"
+    },
+    "work_end": {
+      "path": "form.work_end"
+    },
+    "customer_control_signature": {
+      "path": "representatives.customer_control.fio_short"
+    },
+    "builder_signature": {
+      "path": "representatives.builder.fio_short"
+    },
+    "builder_control_signature": {
+      "path": "representatives.builder_control.fio_short"
+    },
+    "designer_signature": {
+      "path": "representatives.designer.fio_short"
+    },
+    "work_performer_signature": {
+      "path": "representatives.work_performer.fio_short"
+    },
+    "network_operator_signature": {
+      "path": "representatives.network_operator.fio_short"
+    }
+  },
+  "МИНСТРОЙ_344_АРООКС": {
+    "object_name": {
+      "path": "object.name"
+    },
+    "object_address": {
+      "path": "object.address"
+    },
+    "customer_name": {
+      "path": "organisations.customer.full_name"
+    },
+    "customer_ogrn": {
+      "path": "organisations.customer.ogrn"
+    },
+    "customer_inn": {
+      "path": "organisations.customer.inn"
+    },
+    "customer_address": {
+      "path": "organisations.customer.address"
+    },
+    "customer_phone": {
+      "path": "organisations.customer.phone"
+    },
+    "customer_sro": {
+      "path": "organisations.customer.sro_info"
+    },
+    "customer_individual": {
+      "path": "form.customer_individual"
+    },
+    "builder_org_name": {
+      "path": "organisations.builder.full_name"
+    },
+    "builder_org_ogrn": {
+      "path": "organisations.builder.ogrn"
+    },
+    "builder_org_inn": {
+      "path": "organisations.builder.inn"
+    },
+    "builder_org_address": {
+      "path": "organisations.builder.address"
+    },
+    "builder_org_phone": {
+      "path": "organisations.builder.phone"
+    },
+    "builder_org_sro": {
+      "path": "organisations.builder.sro_info"
+    },
+    "designer_org_name": {
+      "path": "organisations.designer.full_name"
+    },
+    "designer_org_ogrn": {
+      "path": "organisations.designer.ogrn"
+    },
+    "designer_org_inn": {
+      "path": "organisations.designer.inn"
+    },
+    "designer_org_address": {
+      "path": "organisations.designer.address"
+    },
+    "designer_org_phone": {
+      "path": "organisations.designer.phone"
+    },
+    "designer_org_sro": {
+      "path": "organisations.designer.sro_info"
+    },
+    "act_num": {
+      "path": "document.number"
+    },
+    "signed_day": {
+      "path": "document.date.day"
+    },
+    "signed_month": {
+      "path": "document.date.month"
+    },
+    "signed_year": {
+      "path": "document.date.year"
+    },
+    "customer_control_details": {
+      "path": "representatives.customer_control.details"
+    },
+    "customer_control_nrs": {
+      "path": "representatives.customer_control.nrs_id"
+    },
+    "control_org_name": {
+      "path": "representatives.customer_control.organisation.full_name"
+    },
+    "control_org_ogrn": {
+      "path": "representatives.customer_control.organisation.ogrn"
+    },
+    "control_org_inn": {
+      "path": "representatives.customer_control.organisation.inn"
+    },
+    "control_org_address": {
+      "path": "representatives.customer_control.organisation.address"
+    },
+    "control_org_phone": {
+      "path": "representatives.customer_control.organisation.phone"
+    },
+    "builder_details": {
+      "path": "representatives.builder.details"
+    },
+    "builder_control_details": {
+      "path": "representatives.builder_control.details"
+    },
+    "builder_control_nrs": {
+      "path": "representatives.builder_control.nrs_id"
+    },
+    "designer_details": {
+      "path": "representatives.designer.details"
+    },
+    "designer_employer_name": {
+      "path": "representatives.designer.organisation.full_name"
+    },
+    "designer_employer_ogrn": {
+      "path": "representatives.designer.organisation.ogrn"
+    },
+    "designer_employer_inn": {
+      "path": "representatives.designer.organisation.inn"
+    },
+    "designer_employer_address": {
+      "path": "representatives.designer.organisation.address"
+    },
+    "designer_employer_phone": {
+      "path": "representatives.designer.organisation.phone"
+    },
+    "work_performer_details": {
+      "path": "representatives.work_performer.details"
+    },
+    "work_performer_employer_name": {
+      "path": "representatives.work_performer.organisation.full_name"
+    },
+    "work_performer_employer_ogrn": {
+      "path": "representatives.work_performer.organisation.ogrn"
+    },
+    "work_performer_employer_inn": {
+      "path": "representatives.work_performer.organisation.inn"
+    },
+    "work_performer_employer_address": {
+      "path": "representatives.work_performer.organisation.address"
+    },
+    "work_performer_employer_phone": {
+      "path": "representatives.work_performer.organisation.phone"
+    },
+    "axes": {
+      "path": "form.axes"
+    },
+    "examined_object": {
+      "path": "form.object_name"
+    },
+    "setting_out_basis": {
+      "path": "form.setting_out_basis"
+    },
+    "axes_fixing": {
+      "path": "form.axes_fixing"
+    },
+    "design_compliance": {
+      "path": "form.design_compliance"
+    },
+    "additional_info": {
+      "path": "form.additional_info"
+    },
+    "copies_count": {
+      "path": "form.copies_count"
+    },
+    "attachments": {
+      "path": "form.attachments"
+    },
+    "customer_control_signature": {
+      "path": "representatives.customer_control.fio_short"
+    },
+    "builder_signature": {
+      "path": "representatives.builder.fio_short"
+    },
+    "builder_control_signature": {
+      "path": "representatives.builder_control.fio_short"
+    },
+    "designer_signature": {
+      "path": "representatives.designer.fio_short"
+    },
+    "work_performer_signature": {
+      "path": "representatives.work_performer.fio_short"
+    }
+  },
+  "ТИТУЛЬНЫЙ_ЛИСТ": {
+    "object": {
+      "path": "object.name"
+    },
+    "project": {
+      "path": "project.name"
+    },
+    "cifr": {
+      "path": "project.code"
+    },
+    "city": {
+      "path": "project.city"
+    },
+    "client": {
+      "path": "organisations.customer.full_name"
+    },
+    "tech_client": {
+      "path": "organisations.technical_customer.full_name"
+    },
+    "gen_contractor": {
+      "path": "organisations.general_contractor.full_name"
+    },
+    "sub_contractor": {
+      "path": "organisations.builder.full_name"
+    },
+    "year": {
+      "path": "form.year"
+    },
+    "copies": {
+      "path": "form.copies"
+    },
+    "volumes": {
+      "path": "form.volumes"
+    },
+    "font": {
+      "path": "form.font"
+    },
+    "labels": {
+      "path": "form.labels"
+    },
+    "pages": {
+      "path": "form.pages"
+    },
+    "contractors_info": {
+      "path": "form.contractors_info"
+    }
+  },
+  "СП_40_102_2000_Е": {
+    "t0_r0_c1": {
+      "path": "form.organisation_fibre"
+    },
+    "t1_r0_c1": {
+      "path": "form.cable_fibre"
+    },
+    "t1_r2_c1": {
+      "path": "form.pressure_system"
+    },
+    "t2_r0_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t2_r2_c0": {
+      "path": "form.representatives_customer_details"
+    },
+    "t2_r4_c0": {
+      "path": "representatives.network_operator.details"
+    },
+    "t3_r0_c1": {
+      "path": "form.pipe_number_test"
+    },
+    "t3_r1_c1": {
+      "path": "form.diameter"
+    },
+    "t3_r2_c1": {
+      "path": "form.date_fibre"
+    },
+    "t3_r4_c1": {
+      "path": "form.type"
+    },
+    "t4_r0_c1": {
+      "path": "form.drum_quantity_fibre"
+    },
+    "t4_r2_c1": {
+      "path": "form.requirements"
+    },
+    "t5_r0_c1": {
+      "path": "form.pipe_quantity"
+    },
+    "t5_r0_c3": {
+      "path": "form.length"
+    },
+    "t5_r0_c5": {
+      "path": "form.requirements_fibre"
+    },
+    "t5_r2_c1": {
+      "path": "form.quantity"
+    },
+    "t5_r2_c3": {
+      "path": "form.length_mm"
+    },
+    "t5_r2_c5": {
+      "path": "form.requirements_fibre_2"
+    },
+    "t6_r0_c1": {
+      "path": "form.quality_documents_cable_fibre"
+    },
+    "t7_r0_c1": {
+      "path": "form.date"
+    }
+  },
+  "СП_42_101_2003_П": {
+    "p120_1": {
+      "path": "form.gas_pipeline_commissioning_equipment"
+    },
+    "p120_2": {
+      "path": "form.gas_pipeline_commissioning_equipment_2"
+    },
+    "p120_3": {
+      "path": "form.gas_pipeline_commissioning_equipment_3"
+    },
+    "t0_r0_c0": {
+      "path": "project.documentation.object_description"
+    },
+    "t1_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c4": {
+      "path": "form.test_date.day"
+    },
+    "t1_r0_c6": {
+      "path": "form.test_date.month"
+    },
+    "t1_r0_c8": {
+      "path": "form.test_date.year"
+    },
+    "t2_r1_c0": {
+      "path": "representatives.commission_chair.details"
+    },
+    "t2_r4_c1": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t2_r6_c1": {
+      "path": "representatives.network_operator.details"
+    },
+    "t2_r8_c1": {
+      "path": "representatives.customer_control.details"
+    },
+    "t3_r0_c1": {
+      "path": "organisations.general_contractor.full_name"
+    },
+    "t3_r3_c0": {
+      "path": "form.quantity_type"
+    },
+    "t3_r5_c1": {
+      "path": "form.equipment_fibre"
+    },
+    "t3_r6_c0": {
+      "path": "form.type"
+    },
+    "t3_r9_c0": {
+      "path": "object.name"
+    },
+    "t4_r0_c1": {
+      "path": "form.number_design_documentation"
+    },
+    "t4_r0_c3": {
+      "path": "form.organisation_fibre"
+    },
+    "t5_r1_c1": {
+      "path": "form.date"
+    },
+    "t5_r1_c3": {
+      "path": "form.date_2"
+    },
+    "t6_r1_c0": {
+      "path": "organisations.commissioner.full_name"
+    },
+    "t7_r0_c3": {
+      "path": "form.number_fibre"
+    },
+    "t7_r0_c5": {
+      "path": "form.number_fibre_2"
+    },
+    "t7_r0_c7": {
+      "path": "form.number_fibre_3"
+    },
+    "t7_r2_c2": {
+      "path": "form.date_work"
+    },
+    "t7_r2_c4": {
+      "path": "form.date_work_2"
+    },
+    "t7_r2_c6": {
+      "path": "form.date_work_3"
+    },
+    "t8_r0_c0": {
+      "path": "form.test"
+    }
+  },
+  "СП_42_101_2003_Т": {
+    "p53_1": {
+      "path": "form.accuracy_class_instrument_gas_pipeline"
+    },
+    "p53_2": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_2"
+    },
+    "p53_3": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_3"
+    },
+    "p53_4": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_4"
+    },
+    "p53_5": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_5"
+    },
+    "p54_6": {
+      "path": "form.pressure_drop_pressure_system"
+    },
+    "p54_7": {
+      "path": "form.pressure_drop_pressure_system_2"
+    },
+    "t0_r0_c1": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t0_r2_c1": {
+      "path": "form.location"
+    },
+    "t1_r0_c0": {
+      "path": "form.dimensions_pressure_equipment"
+    },
+    "t2_r0_c0": {
+      "path": "form.passport_attachments_quality_documents"
+    },
+    "rows_3_2": {
+      "path": "form.gas_pipeline_connection_cable",
+      "columns": {
+        "c1": "welding_representative",
+        "c2": "welding_number",
+        "c3": "diameter_connection_pipe",
+        "c4": "welding_date_quantity",
+        "c5": "value"
+      }
+    },
+    "t4_r0_c0": {
+      "path": "representatives.foreman.details"
+    },
+    "t5_r0_c1": {
+      "path": "form.representatives_foreman_details"
+    },
+    "t5_r2_c1": {
+      "path": "representatives.network_operator.details"
+    },
+    "t6_r1_c0": {
+      "path": "form.date_design_documentation_organisation"
+    },
+    "t6_r3_c1": {
+      "path": "form.deviations_voltage_number"
+    },
+    "t7_r0_c2": {
+      "path": "form.date"
+    },
+    "t7_r0_c4": {
+      "path": "form.date_2"
+    },
+    "t7_r0_c6": {
+      "path": "form.date_3"
+    },
+    "t7_r2_c2": {
+      "path": "form.ready_date.day"
+    },
+    "t7_r2_c4": {
+      "path": "form.ready_date.month"
+    },
+    "t7_r2_c6": {
+      "path": "form.ready_date.year"
+    },
+    "t8_r0_c1": {
+      "path": "representatives.chief_engineer.details"
+    },
+    "t8_r2_c1": {
+      "path": "form.representatives_network_operator_details"
+    }
+  },
+  "СП_42_101_2003_С": {
+    "p56_1": {
+      "path": "form.accuracy_class_instrument_gas_pipeline"
+    },
+    "p56_2": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_2"
+    },
+    "p56_3": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_3"
+    },
+    "p56_4": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_4"
+    },
+    "p56_5": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_5"
+    },
+    "p56_6": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_6"
+    },
+    "p56_7": {
+      "path": "form.accuracy_class_instrument_gas_pipeline_7"
+    },
+    "t0_r0_c1": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t0_r2_c1": {
+      "path": "form.location_fibre"
+    },
+    "t1_r0_c0": {
+      "path": "form.gas_pipeline_pressure_length"
+    },
+    "t2_r0_c0": {
+      "path": "form.passport_attachments_quality_documents"
+    },
+    "rows_3_2": {
+      "path": "form.gas_pipeline_connection_cable",
+      "columns": {
+        "c1": "welding_representative",
+        "c2": "welding_number",
+        "c3": "diameter_connection_pipe",
+        "c4": "welding_date_quantity",
+        "c5": "value"
+      }
+    },
+    "t4_r0_c0": {
+      "path": "representatives.foreman.details"
+    },
+    "t5_r0_c1": {
+      "path": "form.representatives_foreman_details"
+    },
+    "t5_r2_c1": {
+      "path": "representatives.network_operator.details"
+    },
+    "t6_r1_c0": {
+      "path": "form.date_design_documentation_organisation"
+    },
+    "t6_r3_c1": {
+      "path": "form.deviations_voltage_number"
+    },
+    "t7_r0_c2": {
+      "path": "form.date"
+    },
+    "t7_r0_c4": {
+      "path": "form.date_2"
+    },
+    "t7_r0_c6": {
+      "path": "form.date_3"
+    },
+    "t7_r2_c2": {
+      "path": "form.ready_date.day"
+    },
+    "t7_r2_c4": {
+      "path": "form.ready_date.month"
+    },
+    "t7_r2_c6": {
+      "path": "form.ready_date.year"
+    },
+    "t8_r0_c1": {
+      "path": "representatives.chief_engineer.details"
+    },
+    "t8_r2_c1": {
+      "path": "form.representatives_network_operator_details"
+    }
+  },
+  "СП_42_101_2003_Р": {
+    "p112_1": {
+      "path": "form.defects_requirements_thickness"
+    },
+    "p114_2": {
+      "path": "form.pipe_test_fibre"
+    },
+    "p114_3": {
+      "path": "form.pipe_test_fibre_2"
+    },
+    "p114_4": {
+      "path": "form.pipe_test_fibre_3"
+    },
+    "p127_5": {
+      "path": "form.gas_pipeline_tightness_cable"
+    },
+    "p127_6": {
+      "path": "form.gas_pipeline_tightness_cable_2"
+    },
+    "p127_7": {
+      "path": "form.gas_pipeline_tightness_cable_3"
+    },
+    "p128_8": {
+      "path": "form.gas_pipeline_tightness_voltage"
+    },
+    "p128_9": {
+      "path": "form.gas_pipeline_tightness_voltage_2"
+    },
+    "p128_10": {
+      "path": "form.gas_pipeline_tightness_voltage_3"
+    },
+    "p128_11": {
+      "path": "form.gas_pipeline_tightness_voltage_4"
+    },
+    "p129_12": {
+      "path": "form.gas_pipeline_pressure_temperature"
+    },
+    "p130_13": {
+      "path": "form.requirements_instrument_pressure"
+    },
+    "p130_14": {
+      "path": "form.requirements_instrument_pressure_2"
+    },
+    "p163_15": {
+      "path": "form.defects_gas_pipeline_tightness"
+    },
+    "p163_16": {
+      "path": "form.defects_gas_pipeline_tightness_2"
+    },
+    "p163_17": {
+      "path": "form.defects_gas_pipeline_tightness_3"
+    },
+    "p163_18": {
+      "path": "form.defects_gas_pipeline_tightness_4"
+    },
+    "p163_19": {
+      "path": "form.defects_gas_pipeline_tightness_5"
+    },
+    "t0_r0_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r2_c0": {
+      "path": "form.number_design_documentation"
+    },
+    "t0_r4_c1": {
+      "path": "form.location_fibre"
+    },
+    "t1_r0_c0": {
+      "path": "form.gas_pipeline_insulation_connection"
+    },
+    "t2_r0_c0": {
+      "path": "form.passport_attachments_quality_documents"
+    },
+    "rows_3_2": {
+      "path": "form.gas_pipeline_connection_cable",
+      "columns": {
+        "c1": "welding_representative",
+        "c2": "welding",
+        "c3": "welding_number",
+        "c4": "diameter_connection_pipe",
+        "c5": "welding_date_quantity",
+        "c6": "value"
+      }
+    },
+    "t4_r0_c0": {
+      "path": "representatives.foreman.details"
+    },
+    "t6_r0_c1": {
+      "path": "form.representatives_foreman_details"
+    },
+    "t6_r2_c1": {
+      "path": "representatives.network_operator.details"
+    },
+    "t7_r0_c1": {
+      "path": "representatives.laboratory_head.details"
+    },
+    "t7_r2_c1": {
+      "path": "form.representatives_network_operator_details"
+    },
+    "rows_8_3": {
+      "path": "form.gas_pipeline_pressure_cable",
+      "columns": {
+        "c1": "date_test",
+        "c2": "pressure_quantity_system",
+        "c3": "pressure_drop_pressure_system",
+        "c4": "instrument",
+        "c5": "value",
+        "c6": "value_2",
+        "c7": "value_3",
+        "c8": "value_4",
+        "c9": "value_5"
+      }
+    },
+    "t9_r0_c1": {
+      "path": "form.representatives_foreman_details_2"
+    },
+    "t9_r2_c1": {
+      "path": "form.representatives_network_operator_details_2"
+    },
+    "t10_r1_c0": {
+      "path": "form.date_design_documentation_organisation"
+    },
+    "t10_r3_c1": {
+      "path": "form.deviations_voltage_number"
+    },
+    "t11_r0_c2": {
+      "path": "form.date"
+    },
+    "t11_r0_c4": {
+      "path": "form.date_2"
+    },
+    "t11_r0_c6": {
+      "path": "form.date_3"
+    },
+    "t11_r2_c2": {
+      "path": "form.ready_date.day"
+    },
+    "t11_r2_c4": {
+      "path": "form.ready_date.month"
+    },
+    "t11_r2_c6": {
+      "path": "form.ready_date.year"
+    },
+    "t12_r0_c1": {
+      "path": "representatives.chief_engineer.details"
+    },
+    "t12_r2_c1": {
+      "path": "form.representatives_network_operator_details_3"
+    }
+  },
+  "СП_45_Ш": {
+    "p9_1": {
+      "path": "form.certificate_voltage_number"
+    },
+    "t0_r0_c1": {
+      "path": "organisations.builder.full_name"
+    },
+    "t0_r1_c1": {
+      "path": "object.name"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t1_r2_c0": {
+      "path": "representatives.builder_control.details"
+    },
+    "t1_r4_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t2_r0_c1": {
+      "path": "form.number_fibre"
+    },
+    "t3_r0_c2": {
+      "path": "form.voltage_elevation_work"
+    },
+    "t3_r1_c2": {
+      "path": "form.depth_work"
+    },
+    "t3_r2_c2": {
+      "path": "form.voltage_fibre"
+    },
+    "t3_r3_c2": {
+      "path": "form.concrete_class"
+    },
+    "t3_r4_c2": {
+      "path": "form.dimensions"
+    },
+    "t4_r0_c2": {
+      "path": "form.certificate_number_fibre"
+    },
+    "t4_r1_c2": {
+      "path": "form.certificate_number_fibre_2"
+    },
+    "t5_r1_c0": {
+      "path": "form.representatives_builder_control_details"
+    },
+    "t5_r3_c0": {
+      "path": "form.representatives_work_performer_details"
+    },
+    "t5_r5_c0": {
+      "path": "form.certificate_quality_documents_concrete"
+    }
+  },
+  "СП_45_Я": {
+    "p9_1": {
+      "path": "form.certificate_number_fibre"
+    },
+    "t0_r0_c1": {
+      "path": "organisations.builder.full_name"
+    },
+    "t0_r1_c1": {
+      "path": "object.name"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t1_r2_c0": {
+      "path": "representatives.builder_control.details"
+    },
+    "t1_r4_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t2_r0_c1": {
+      "path": "form.number_fibre"
+    },
+    "t3_r0_c2": {
+      "path": "form.elevation_work"
+    },
+    "t3_r1_c2": {
+      "path": "form.voltage_depth"
+    },
+    "t3_r2_c2": {
+      "path": "form.voltage_welding_fibre"
+    },
+    "t3_r3_c2": {
+      "path": "form.voltage_concrete_class"
+    },
+    "t3_r4_c2": {
+      "path": "form.dimensions_diameter_length"
+    },
+    "t4_r0_c2": {
+      "path": "form.certificate_voltage_number"
+    },
+    "t4_r1_c2": {
+      "path": "form.certificate_number_fibre_2"
+    },
+    "t5_r1_c0": {
+      "path": "form.representatives_builder_control_details"
+    },
+    "t5_r3_c0": {
+      "path": "form.representatives_work_performer_details"
+    },
+    "t5_r5_c0": {
+      "path": "form.certificate_quality_documents_concrete"
+    }
+  },
+  "СП_45_Ю": {
+    "p9_1": {
+      "path": "form.certificate_voltage_number"
+    },
+    "t0_r0_c1": {
+      "path": "organisations.builder.full_name"
+    },
+    "t0_r1_c1": {
+      "path": "object.name"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t1_r2_c0": {
+      "path": "representatives.builder_control.details"
+    },
+    "t1_r4_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t3_r0_c2": {
+      "path": "form.voltage_elevation"
+    },
+    "t3_r1_c2": {
+      "path": "form.voltage_elevation_2"
+    },
+    "t3_r2_c2": {
+      "path": "form.elevation_system_fibre"
+    },
+    "t3_r3_c2": {
+      "path": "form.power_coating"
+    },
+    "t3_r4_c2": {
+      "path": "form.voltage_diameter_depth"
+    },
+    "t3_r5_c2": {
+      "path": "form.deviations_voltage"
+    },
+    "t3_r7_c1": {
+      "path": "form.voltage_duration_method"
+    },
+    "t3_r9_c1": {
+      "path": "form.location_fibre"
+    },
+    "t4_r1_c1": {
+      "path": "form.structure_work_fibre"
+    },
+    "t4_r3_c2": {
+      "path": "form.concrete_date_fibre"
+    },
+    "t4_r3_c4": {
+      "path": "form.duration"
+    },
+    "t4_r3_c6": {
+      "path": "form.concrete_date_duration"
+    },
+    "t4_r3_c8": {
+      "path": "form.concrete_date_duration_2"
+    },
+    "t5_r1_c0": {
+      "path": "form.representatives_builder_control_details"
+    },
+    "t5_r3_c0": {
+      "path": "form.representatives_work_performer_details"
+    },
+    "t5_r5_c0": {
+      "path": "form.concrete_structure_date"
+    }
+  },
+  "СП_45_Щ": {
+    "t0_r0_c1": {
+      "path": "organisations.builder.full_name"
+    },
+    "t0_r1_c1": {
+      "path": "object.name"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t1_r2_c0": {
+      "path": "representatives.builder_control.details"
+    },
+    "t1_r4_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t3_r0_c2": {
+      "path": "form.elevation"
+    },
+    "t3_r1_c2": {
+      "path": "form.elevation_2"
+    },
+    "t3_r2_c2": {
+      "path": "form.elevation_system_fibre"
+    },
+    "t3_r3_c2": {
+      "path": "form.power_coating"
+    },
+    "t3_r4_c2": {
+      "path": "form.dimensions_depth"
+    },
+    "t3_r5_c2": {
+      "path": "form.deviations"
+    },
+    "t3_r7_c1": {
+      "path": "form.duration_method_fibre"
+    },
+    "t3_r9_c1": {
+      "path": "form.location_fibre"
+    },
+    "t4_r1_c1": {
+      "path": "form.structure_work_fibre"
+    },
+    "t4_r3_c2": {
+      "path": "form.concrete_date_fibre"
+    },
+    "t4_r3_c4": {
+      "path": "form.duration"
+    },
+    "t4_r3_c6": {
+      "path": "form.concrete_date_duration"
+    },
+    "t4_r3_c8": {
+      "path": "form.concrete_date_duration_2"
+    },
+    "t5_r1_c0": {
+      "path": "form.representatives_builder_control_details"
+    },
+    "t5_r3_c0": {
+      "path": "form.representatives_work_performer_details"
+    },
+    "t5_r5_c0": {
+      "path": "form.concrete_structure_date"
+    }
+  },
+  "СП_45_1": {
+    "t0_r0_c1": {
+      "path": "object.name"
+    },
+    "t0_r2_c1": {
+      "path": "object.address"
+    },
+    "t0_r4_c1": {
+      "path": "form.organisation_fibre"
+    },
+    "t1_r0_c1": {
+      "path": "form.date"
+    },
+    "t1_r0_c3": {
+      "path": "form.date_2"
+    },
+    "t1_r0_c5": {
+      "path": "form.date_3"
+    },
+    "t1_r2_c1": {
+      "path": "form.date_4"
+    },
+    "t1_r2_c3": {
+      "path": "form.date_5"
+    },
+    "t1_r2_c5": {
+      "path": "form.date_6"
+    },
+    "rows_2_3": {
+      "path": "form.date_7",
+      "columns": {
+        "c1": "number",
+        "c2": "date_duration",
+        "c3": "location",
+        "c4": "work",
+        "c5": "depth",
+        "c6": "value",
+        "c7": "notes",
+        "c8": "value_2",
+        "c9": "value_3",
+        "c10": "value_4",
+        "c11": "duration",
+        "c12": "density",
+        "c13": "value_5"
+      }
+    }
+  },
+  "СП_48_И": {
+    "t0_r0_c1": {
+      "path": "object.name"
+    },
+    "t0_r2_c1": {
+      "path": "object.address"
+    },
+    "t0_r4_c1": {
+      "path": "form.organisation_fibre"
+    },
+    "t1_r0_c1": {
+      "path": "form.date"
+    },
+    "t1_r0_c3": {
+      "path": "form.date_2"
+    },
+    "t1_r0_c5": {
+      "path": "form.date_3"
+    },
+    "t1_r2_c1": {
+      "path": "form.date_4"
+    },
+    "t1_r2_c3": {
+      "path": "form.date_5"
+    },
+    "t1_r2_c5": {
+      "path": "form.date_6"
+    },
+    "rows_2_2": {
+      "path": "form.date_7",
+      "columns": {
+        "c1": "number",
+        "c2": "date",
+        "c3": "equipment_materials_structure",
+        "c4": "quantity",
+        "c5": "value",
+        "c6": "number_organisation_fibre",
+        "c7": "requirements_cable_design_documentation",
+        "c8": "conclusion_test_fibre",
+        "c9": "test",
+        "c10": "representative_test_system"
+      }
+    }
+  },
+  "СП_68_М": {
+    "date_0_2": {
+      "path": "document.date.day"
+    },
+    "date_0_4": {
+      "path": "document.date.month"
+    },
+    "date_0_6": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c0": {
+      "path": "project.city"
+    },
+    "t1_r0_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t1_r2_c0": {
+      "path": "organisations.customer.full_name"
+    },
+    "t2_r0_c1": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t2_r2_c0": {
+      "path": "organisations.general_contractor.full_name"
+    },
+    "t2_r4_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r6_c0": {
+      "path": "organisations.installer.full_name"
+    },
+    "t2_r8_c1": {
+      "path": "representatives.network_operator.details"
+    },
+    "t2_r10_c0": {
+      "path": "organisations.network_operator.full_name"
+    },
+    "t2_r12_c1": {
+      "path": "representatives.designer.details"
+    },
+    "t2_r14_c0": {
+      "path": "organisations.designer.full_name"
+    },
+    "t2_r17_c0": {
+      "path": "representatives.gsn.details"
+    },
+    "t2_r20_c0": {
+      "path": "representatives.supervisory.details"
+    },
+    "t2_r22_c1": {
+      "path": "form.equipment_system_fibre"
+    },
+    "t2_r23_c0": {
+      "path": "form.attachments_voltage_equipment"
+    },
+    "t2_r25_c1": {
+      "path": "form.location_fibre"
+    },
+    "t2_r27_c1": {
+      "path": "form.organisation_fibre"
+    },
+    "t2_r29_c1": {
+      "path": "form.work"
+    },
+    "t2_r30_c0": {
+      "path": "form.organisations_installer_full_name"
+    },
+    "t2_r32_c1": {
+      "path": "form.design_documentation_work_documentation"
+    },
+    "t2_r33_c0": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t2_r35_c1": {
+      "path": "form.date"
+    },
+    "t2_r37_c1": {
+      "path": "form.date_2"
+    },
+    "t2_r40_c0": {
+      "path": "form.test_fibre"
+    },
+    "t3_r0_c2": {
+      "path": "form.work_start.day"
+    },
+    "t3_r0_c4": {
+      "path": "form.work_start.month"
+    },
+    "t3_r0_c6": {
+      "path": "form.work_start.year"
+    },
+    "t4_r1_c0": {
+      "path": "form.commissioning_fibre"
+    },
+    "t4_r2_c0": {
+      "path": "form.commissioning_fibre_2"
+    },
+    "t4_r2_c2": {
+      "path": "form.repeated_commissioning_fibre_2"
+    }
+  },
+  "СП_68_Н": {
+    "p343_1": {
+      "path": "form.attachments_commissioning_voltage"
+    },
+    "p346_2": {
+      "path": "form.attachments_voltage"
+    },
+    "date_6_2": {
+      "path": "document.date.day"
+    },
+    "date_6_4": {
+      "path": "document.date.month"
+    },
+    "date_6_6": {
+      "path": "document.date.year"
+    },
+    "t0_r6_c0": {
+      "path": "project.city"
+    },
+    "t0_r9_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t0_r11_c0": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r14_c1": {
+      "path": "form.representative"
+    },
+    "t0_r16_c0": {
+      "path": "organisations.general_contractor.full_name"
+    },
+    "t0_r18_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r20_c0": {
+      "path": "form.organisations_installer_full_name"
+    },
+    "t0_r22_c1": {
+      "path": "organisations.network_operator.full_name"
+    },
+    "t0_r24_c0": {
+      "path": "form.organisations_network_operator_full_name"
+    },
+    "t0_r26_c1": {
+      "path": "form.design_documentation_fibre"
+    },
+    "t0_r28_c0": {
+      "path": "organisations.designer.full_name"
+    },
+    "t0_r31_c0": {
+      "path": "representatives.gsn.details"
+    },
+    "t0_r34_c0": {
+      "path": "representatives.supervisory.details"
+    },
+    "t0_r36_c1": {
+      "path": "form.equipment_fibre"
+    },
+    "t0_r38_c0": {
+      "path": "form.attachments_voltage_2"
+    },
+    "t0_r40_c1": {
+      "path": "form.voltage_fibre"
+    },
+    "t0_r42_c1": {
+      "path": "form.voltage"
+    },
+    "t0_r46_c2": {
+      "path": "form.work_start.day"
+    },
+    "t0_r46_c4": {
+      "path": "form.work_start.month"
+    },
+    "t0_r46_c6": {
+      "path": "form.work_start.year"
+    },
+    "t0_r46_c10": {
+      "path": "form.work_start_2.day"
+    },
+    "t0_r46_c12": {
+      "path": "form.work_start_2.month"
+    },
+    "t0_r46_c14": {
+      "path": "form.work_start_2.year"
+    },
+    "t0_r48_c1": {
+      "path": "form.voltage_duration"
+    },
+    "t0_r50_c1": {
+      "path": "form.commissioning_cable_fibre"
+    },
+    "t0_r53_c0": {
+      "path": "organisations.commissioner.full_name"
+    },
+    "t0_r63_c1": {
+      "path": "form.test_date_3.day"
+    },
+    "t0_r63_c3": {
+      "path": "form.test_date_3.month"
+    },
+    "t0_r63_c5": {
+      "path": "form.test_date_3.year"
+    },
+    "t0_r68_c1": {
+      "path": "form.additional_statement"
+    },
+    "t0_r69_c1": {
+      "path": "form.additional_statement_continuation"
+    },
+    "t0_r69_c9": {
+      "path": "form.repeated_additional_statement_continuation"
+    }
+  },
+  "СП_70_И": {
+    "date_0_4": {
+      "path": "document.date.day"
+    },
+    "date_0_6": {
+      "path": "document.date.month"
+    },
+    "date_0_8": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c0": {
+      "path": "organisations.customer.full_name"
+    },
+    "t2_r0_c2": {
+      "path": "form.test_date.day"
+    },
+    "t2_r0_c4": {
+      "path": "form.test_date.month"
+    },
+    "t2_r0_c6": {
+      "path": "form.test_date.year"
+    },
+    "t2_r0_c9": {
+      "path": "form.number"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.commission_chair.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t5_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t6_r0_c0": {
+      "path": "form.organisation_fibre"
+    },
+    "t7_r0_c0": {
+      "path": "object.name"
+    },
+    "t8_r0_c0": {
+      "path": "form.object_name"
+    },
+    "t9_r0_c0": {
+      "path": "project.code"
+    },
+    "t9_r2_c0": {
+      "path": "form.design_documentation_organisation_fibre"
+    },
+    "t10_r0_c0": {
+      "path": "form.work"
+    },
+    "t11_r0_c0": {
+      "path": "form.organisation_work_fibre"
+    },
+    "t12_r0_c1": {
+      "path": "form.date"
+    },
+    "t12_r0_c4": {
+      "path": "form.date_2"
+    },
+    "t13_r0_c0": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t13_r2_c1": {
+      "path": "form.date_test"
+    },
+    "t14_r0_c0": {
+      "path": "form.test"
+    },
+    "t15_r0_c0": {
+      "path": "form.object_name_2"
+    },
+    "t16_r0_c1": {
+      "path": "form.attachments.document_1"
+    },
+    "t17_r0_c1": {
+      "path": "form.attachments.document_2"
+    },
+    "t19_r0_c1": {
+      "path": "form.representative"
+    }
+  },
+  "СП_70_В": {
+    "p18_1": {
+      "path": "form.connection_welding_number"
+    },
+    "t0_r0_c0": {
+      "path": "form.organisation_work_fibre"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t3_r0_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t3_r1_c1": {
+      "path": "project.code"
+    },
+    "t3_r2_c1": {
+      "path": "organisations.ppr_designer.full_name"
+    },
+    "t3_r3_c1": {
+      "path": "form.project_code"
+    },
+    "t3_r4_c1": {
+      "path": "form.structure_organisation_fibre"
+    },
+    "t3_r5_c1": {
+      "path": "form.number"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t5_r0_c2": {
+      "path": "form.work_start.day"
+    },
+    "t5_r0_c4": {
+      "path": "form.work_start.month"
+    },
+    "t5_r0_c6": {
+      "path": "form.work_start.year"
+    },
+    "t6_r0_c2": {
+      "path": "form.work_end_2.day"
+    },
+    "t6_r0_c4": {
+      "path": "form.work_end_2.month"
+    },
+    "t6_r0_c6": {
+      "path": "form.work_end_2.year"
+    },
+    "rows_7_2": {
+      "path": "form.date",
+      "columns": {
+        "c1": "date_work",
+        "c2": "materials_structure_coating",
+        "c3": "connection_structure_number",
+        "c4": "elevation_representative_position",
+        "c5": "connection_welding_materials",
+        "c6": "temperature_connection_welding",
+        "c7": "representative",
+        "c8": "representative_work",
+        "c9": "thickness_coating_test",
+        "c10": "representative_2",
+        "c11": "representative_work_2",
+        "c12": "customer_author_supervision_notes"
+      }
+    }
+  },
+  "СП_70_Ф": {
+    "t0_r0_c0": {
+      "path": "form.organisation"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c0": {
+      "path": "form.location"
+    },
+    "t3_r0_c0": {
+      "path": "form.strength_concrete_structure"
+    },
+    "t4_r0_c1": {
+      "path": "form.concrete_volume"
+    },
+    "t5_r0_c1": {
+      "path": "form.concrete_volume_fibre"
+    },
+    "t6_r0_c1": {
+      "path": "form.concrete_volume_fibre_2"
+    },
+    "t7_r0_c1": {
+      "path": "form.representative_work"
+    },
+    "t8_r0_c1": {
+      "path": "form.date"
+    },
+    "t9_r0_c1": {
+      "path": "form.date_2"
+    },
+    "rows_10_3": {
+      "path": "form.date_3",
+      "columns": {
+        "c1": "concrete_date_duration",
+        "c2": "elevation_concrete_structure",
+        "c3": "concrete_organisation_fibre",
+        "c4": "quality_documents_requirements_concrete",
+        "c5": "voltage_concrete_structure",
+        "c6": "temperature",
+        "c7": "concrete_method",
+        "c8": "strength_voltage_concrete",
+        "c9": "requirements_strength_voltage",
+        "c10": "requirements_strength_concrete",
+        "c11": "requirements_strength_voltage_2",
+        "c12": "voltage",
+        "c13": "voltage_design_documentation",
+        "c14": "value"
+      }
+    }
+  },
+  "СП_70_Д": {
+    "p12_1": {
+      "path": "form.bolts_number_test"
+    },
+    "t0_r0_c1": {
+      "path": "form.organisation_work_fibre"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t3_r0_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t3_r1_c1": {
+      "path": "project.code"
+    },
+    "t3_r1_c3": {
+      "path": "form.strength_diameter_bolts"
+    },
+    "t3_r2_c1": {
+      "path": "organisations.ppr_designer.full_name"
+    },
+    "t3_r3_c1": {
+      "path": "form.project_code"
+    },
+    "t3_r4_c1": {
+      "path": "form.structure_design_documentation_organisation"
+    },
+    "t3_r5_c1": {
+      "path": "form.number"
+    },
+    "t3_r5_c3": {
+      "path": "form.strength_diameter_bolts_2"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t5_r0_c2": {
+      "path": "form.work_start.day"
+    },
+    "t5_r0_c4": {
+      "path": "form.work_start.month"
+    },
+    "t5_r0_c6": {
+      "path": "form.work_start.year"
+    },
+    "t6_r0_c2": {
+      "path": "form.work_end_2.day"
+    },
+    "t6_r0_c4": {
+      "path": "form.work_end_2.month"
+    },
+    "t6_r0_c6": {
+      "path": "form.work_end_2.year"
+    },
+    "rows_7_2": {
+      "path": "form.representative_work",
+      "columns": {
+        "c1": "representative",
+        "c2": "qualification",
+        "c3": "welding_number",
+        "c4": "voltage_date_fibre",
+        "c5": "notes",
+        "c6": "value"
+      }
+    },
+    "rows_8_3": {
+      "path": "form.notes_voltage_welding",
+      "columns": {
+        "c1": "date",
+        "c2": "voltage_elevation_connection",
+        "c3": "voltage_bolts_quantity",
+        "c4": "bolts_number_test",
+        "c5": "method_work_fibre",
+        "c6": "fibre",
+        "c7": "work_fibre",
+        "c8": "bolts_quantity_fibre",
+        "c9": "test_fibre",
+        "c10": "welding_number_representative",
+        "c11": "bolts_representative_fibre",
+        "c12": "representative_customer"
+      }
+    }
+  },
+  "СП_70_Г": {
+    "p16_1": {
+      "path": "form.connection_number_fibre"
+    },
+    "t0_r0_c1": {
+      "path": "form.organisation_work_fibre"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t3_r0_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t3_r1_c1": {
+      "path": "project.code"
+    },
+    "t3_r2_c1": {
+      "path": "organisations.ppr_designer.full_name"
+    },
+    "t3_r3_c1": {
+      "path": "form.project_code"
+    },
+    "t3_r4_c1": {
+      "path": "form.structure_organisation_fibre"
+    },
+    "t3_r5_c1": {
+      "path": "form.number"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t5_r0_c2": {
+      "path": "form.work_start.day"
+    },
+    "t5_r0_c4": {
+      "path": "form.work_start.month"
+    },
+    "t5_r0_c6": {
+      "path": "form.work_start.year"
+    },
+    "t6_r0_c2": {
+      "path": "form.work_end_2.day"
+    },
+    "t6_r0_c4": {
+      "path": "form.work_end_2.month"
+    },
+    "t6_r0_c6": {
+      "path": "form.work_end_2.year"
+    },
+    "rows_7_2": {
+      "path": "form.date",
+      "columns": {
+        "c1": "date",
+        "c2": "connection_number_design_documentation",
+        "c3": "concrete",
+        "c4": "temperature",
+        "c5": "temperature_voltage_structure",
+        "c6": "temperature_voltage_concrete",
+        "c7": "test_fibre",
+        "c8": "date_2",
+        "c9": "representative",
+        "c10": "customer_author_supervision_notes"
+      }
+    }
+  },
+  "СП_70_Е": {
+    "t0_r0_c0": {
+      "path": "form.organisation_fibre"
+    },
+    "t0_r2_c0": {
+      "path": "object.name"
+    },
+    "t0_r4_c0": {
+      "path": "form.location"
+    },
+    "rows_1_2": {
+      "path": "form.test_fibre",
+      "columns": {
+        "c1": "date",
+        "c2": "type",
+        "c3": "number_weight",
+        "c4": "test",
+        "c5": "equipment",
+        "c6": "representative",
+        "c7": "value"
+      }
+    }
+  },
+  "СП_70_А": {
+    "p16_1": {
+      "path": "form.structure_number_work"
+    },
+    "t0_r0_c1": {
+      "path": "form.organisation_work_fibre"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t3_r0_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t3_r1_c1": {
+      "path": "project.code"
+    },
+    "t3_r2_c1": {
+      "path": "organisations.ppr_designer.full_name"
+    },
+    "t3_r3_c1": {
+      "path": "form.project_code"
+    },
+    "t3_r4_c1": {
+      "path": "form.structure_organisation_fibre"
+    },
+    "t3_r5_c1": {
+      "path": "form.number"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t5_r0_c1": {
+      "path": "form.structure_volume_work"
+    },
+    "t5_r1_c1": {
+      "path": "form.concrete_structure"
+    },
+    "t5_r2_c1": {
+      "path": "form.structure"
+    },
+    "t6_r0_c2": {
+      "path": "form.work_start.day"
+    },
+    "t6_r0_c4": {
+      "path": "form.work_start.month"
+    },
+    "t6_r0_c6": {
+      "path": "form.work_start.year"
+    },
+    "t7_r0_c2": {
+      "path": "form.work_end_2.day"
+    },
+    "t7_r0_c4": {
+      "path": "form.work_end_2.month"
+    },
+    "t7_r0_c6": {
+      "path": "form.work_end_2.year"
+    },
+    "rows_8_1": {
+      "path": "form.location",
+      "columns": {
+        "c1": "representative",
+        "c2": "qualification_fibre",
+        "c3": "position",
+        "c4": "date_location_work",
+        "c5": "elevation_date",
+        "c6": "date_location_work_2"
+      }
+    },
+    "rows_9_2": {
+      "path": "form.certificate_structure_representative",
+      "columns": {
+        "c1": "number",
+        "c2": "fibre",
+        "c3": "date_representative"
+      }
+    },
+    "t9_r1_c0": {
+      "path": "form.number_2"
+    },
+    "t9_r1_c1": {
+      "path": "form.number_3"
+    },
+    "t9_r1_c2": {
+      "path": "form.repeated_number_3"
+    },
+    "rows_10_2": {
+      "path": "form.number_4",
+      "columns": {
+        "c1": "date_work",
+        "c2": "structure_test_type",
+        "c3": "equipment_number_location",
+        "c4": "passport_structure_number",
+        "c5": "temperature_fibre",
+        "c6": "representative",
+        "c7": "representative_2",
+        "c8": "customer_author_supervision_notes",
+        "c9": "author_supervision_representative_system"
+      }
+    }
+  },
+  "СП_70_Б": {
+    "p16_1": {
+      "path": "form.welding_number_work"
+    },
+    "t0_r0_c1": {
+      "path": "form.organisation_work_fibre"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.work_performer.details"
+    },
+    "t3_r0_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t3_r1_c1": {
+      "path": "project.code"
+    },
+    "t3_r2_c1": {
+      "path": "organisations.ppr_designer.full_name"
+    },
+    "t3_r3_c1": {
+      "path": "form.project_code"
+    },
+    "t3_r4_c1": {
+      "path": "form.materials_structure_organisation"
+    },
+    "t3_r5_c1": {
+      "path": "form.quality_documents_number"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t5_r0_c2": {
+      "path": "form.work_start.day"
+    },
+    "t5_r0_c4": {
+      "path": "form.work_start.month"
+    },
+    "t5_r0_c6": {
+      "path": "form.work_start.year"
+    },
+    "t6_r0_c2": {
+      "path": "form.work_end_2.day"
+    },
+    "t6_r0_c4": {
+      "path": "form.work_end_2.month"
+    },
+    "t6_r0_c6": {
+      "path": "form.work_end_2.year"
+    },
+    "rows_7_1": {
+      "path": "form.welding_work",
+      "columns": {
+        "c1": "representative",
+        "c2": "qualification_fibre",
+        "c3": "position",
+        "c4": "date_location_work",
+        "c5": "elevation_date",
+        "c6": "date_location_work_2"
+      }
+    },
+    "rows_8_2": {
+      "path": "form.welding_location_work",
+      "columns": {
+        "c1": "representative",
+        "c2": "voltage_qualification",
+        "c3": "welding_number",
+        "c4": "welding_number_work",
+        "c5": "elevation_welding_date",
+        "c6": "voltage_welding_fibre",
+        "c7": "value"
+      }
+    },
+    "rows_9_2": {
+      "path": "form.voltage_welding_date",
+      "columns": {
+        "c1": "date_work",
+        "c2": "structure_type_fibre",
+        "c3": "welding_structure_number",
+        "c4": "elevation_welding_representative",
+        "c5": "welding_materials_number",
+        "c6": "temperature_fibre",
+        "c7": "welding_number_representative",
+        "c8": "welding",
+        "c9": "connection_welding_representative",
+        "c10": "representative_work",
+        "c11": "welding_representative_work",
+        "c12": "representative_elevation_connection",
+        "c13": "notes_representative_test"
+      }
+    }
+  },
+  "СП_71_Г": {
+    "t0_r0_c0": {
+      "path": "document.date.text"
+    },
+    "t1_r0_c1": {
+      "path": "object.name"
+    },
+    "t1_r2_c1": {
+      "path": "form.voltage_location"
+    },
+    "t1_r2_c4": {
+      "path": "form.elevation"
+    },
+    "t2_r0_c1": {
+      "path": "object.address"
+    },
+    "t3_r0_c0": {
+      "path": "form.author_supervision"
+    },
+    "t4_r0_c0": {
+      "path": "organisations.customer_control.full_name"
+    },
+    "t5_r0_c0": {
+      "path": "organisations.general_contractor.full_name"
+    },
+    "t6_r0_c0": {
+      "path": "representatives.subcontractor.details"
+    },
+    "t7_r0_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t8_r0_c0": {
+      "path": "form.work_fibre"
+    },
+    "t9_r0_c0": {
+      "path": "form.requirements_date_number"
+    },
+    "t9_r2_c1": {
+      "path": "form.voltage_work"
+    },
+    "t9_r2_c3": {
+      "path": "form.voltage_work_2"
+    },
+    "t11_r0_c3": {
+      "path": "representatives.author_supervision.details"
+    },
+    "t11_r2_c3": {
+      "path": "representatives.customer_control.details"
+    },
+    "t11_r4_c3": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t11_r6_c3": {
+      "path": "form.representatives_subcontractor_details"
+    }
+  },
+  "СП_71_В": {
+    "t0_r0_c0": {
+      "path": "document.date.text"
+    },
+    "t1_r0_c1": {
+      "path": "object.name"
+    },
+    "t1_r2_c1": {
+      "path": "object.address"
+    },
+    "t2_r1_c0": {
+      "path": "representatives.inspection_party.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t3_r2_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "rows_4_2": {
+      "path": "form.test_fibre",
+      "columns": {
+        "c1": "number",
+        "c2": "fibre",
+        "c3": "date",
+        "c4": "elevation"
+      }
+    },
+    "t5_r0_c3": {
+      "path": "representatives.author_supervision.details"
+    },
+    "t5_r2_c3": {
+      "path": "representatives.customer_control.details"
+    },
+    "t5_r4_c3": {
+      "path": "representatives.general_contractor.details"
+    }
+  },
+  "СП_72_Д": {
+    "t0_r0_c1": {
+      "path": "form.number"
+    },
+    "t1_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c3": {
+      "path": "form.signed_date.day"
+    },
+    "t1_r0_c5": {
+      "path": "form.signed_date.month"
+    },
+    "t1_r0_c7": {
+      "path": "form.signed_date.year"
+    },
+    "t2_r0_c0": {
+      "path": "form.fibre"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t5_r0_c0": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t6_r0_c1": {
+      "path": "form.structure_location_fibre"
+    },
+    "t7_r0_c1": {
+      "path": "form.coating"
+    },
+    "t8_r0_c2": {
+      "path": "form.volume_work"
+    },
+    "t9_r0_c2": {
+      "path": "form.date_work"
+    },
+    "t10_r0_c2": {
+      "path": "form.date_work_2"
+    },
+    "t11_r0_c0": {
+      "path": "form.requirements_voltage_design_documentation"
+    },
+    "t12_r0_c1": {
+      "path": "form.work"
+    }
+  },
+  "СП_72_Г": {
+    "t0_r0_c1": {
+      "path": "form.number"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c1": {
+      "path": "form.work_fibre"
+    },
+    "t3_r0_c1": {
+      "path": "form.representative_work"
+    },
+    "t4_r0_c1": {
+      "path": "form.date_work"
+    },
+    "t4_r0_c3": {
+      "path": "form.date_work_2"
+    },
+    "t5_r0_c1": {
+      "path": "form.voltage_fibre"
+    },
+    "rows_7_4": {
+      "path": "form.organisation_representative",
+      "columns": {
+        "c1": "date_quantity",
+        "c2": "materials_work_fibre",
+        "c3": "volume",
+        "c4": "temperature_materials_duration",
+        "c5": "materials_fibre",
+        "c6": "requirements_thickness_coating",
+        "c7": "passport_quality_documents_temperature",
+        "c8": "coating_representative_test",
+        "c9": "certificate_date_number",
+        "c10": "notes",
+        "c11": "value",
+        "c12": "value_2",
+        "c13": "value_3"
+      }
+    }
+  },
+  "СП_73_В": {
+    "t0_r0_c0": {
+      "path": "form.system_fibre"
+    },
+    "t1_r0_c1": {
+      "path": "object.name"
+    },
+    "t1_r2_c1": {
+      "path": "project.city"
+    },
+    "t1_r2_c3": {
+      "path": "form.test_date.day"
+    },
+    "t1_r2_c5": {
+      "path": "form.test_date.month"
+    },
+    "t1_r2_c7": {
+      "path": "form.test_date.year"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t5_r0_c1": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t5_r2_c1": {
+      "path": "form.instrument_method"
+    },
+    "t5_r4_c1": {
+      "path": "form.pressure_system"
+    },
+    "t5_r4_c4": {
+      "path": "form.pressure_system_2"
+    },
+    "t5_r5_c1": {
+      "path": "form.voltage_duration"
+    },
+    "t5_r6_c1": {
+      "path": "form.pressure_drop_pressure_system"
+    },
+    "t5_r6_c4": {
+      "path": "form.pressure_drop_pressure_system_2"
+    }
+  },
+  "СП_73_Д": {
+    "t0_r0_c1": {
+      "path": "object.name"
+    },
+    "t1_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c3": {
+      "path": "form.test_date.day"
+    },
+    "t1_r0_c5": {
+      "path": "form.test_date.month"
+    },
+    "t1_r0_c7": {
+      "path": "form.test_date.year"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t5_r0_c0": {
+      "path": "form.joint_number_system"
+    },
+    "t5_r2_c1": {
+      "path": "form.voltage_duration_test"
+    }
+  },
+  "СП_73_Г": {
+    "t0_r0_c0": {
+      "path": "form.system_fibre"
+    },
+    "t1_r0_c1": {
+      "path": "object.name"
+    },
+    "t1_r2_c1": {
+      "path": "project.city"
+    },
+    "t1_r2_c3": {
+      "path": "form.test_date.day"
+    },
+    "t1_r2_c5": {
+      "path": "form.test_date.month"
+    },
+    "t1_r2_c7": {
+      "path": "form.test_date.year"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t5_r0_c1": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t6_r0_c2": {
+      "path": "form.duration_fibre"
+    },
+    "t6_r2_c1": {
+      "path": "form.voltage_equipment_duration"
+    }
+  },
+  "СП_73_Е": {
+    "t0_r0_c1": {
+      "path": "form.equipment_system_fibre"
+    },
+    "t0_r1_c1": {
+      "path": "object.name"
+    },
+    "t0_r2_c1": {
+      "path": "form.location"
+    },
+    "t0_r3_c1": {
+      "path": "form.location_2"
+    },
+    "t1_r0_c1": {
+      "path": "form.system"
+    },
+    "t1_r1_c1": {
+      "path": "form.equipment_location_system"
+    },
+    "t2_r4_c1": {
+      "path": "form.design_documentation"
+    },
+    "t2_r4_c2": {
+      "path": "form.repeated_design_documentation"
+    },
+    "t2_r4_c3": {
+      "path": "form.repeated_repeated_design_documentation"
+    },
+    "t2_r4_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation"
+    },
+    "t2_r4_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation"
+    },
+    "t2_r4_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation"
+    },
+    "t2_r4_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation"
+    },
+    "t2_r5_c1": {
+      "path": "form.design_documentation_2"
+    },
+    "t2_r5_c2": {
+      "path": "form.repeated_design_documentation_2"
+    },
+    "t2_r5_c3": {
+      "path": "form.repeated_repeated_design_documentation_2"
+    },
+    "t2_r5_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_2"
+    },
+    "t2_r5_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_2"
+    },
+    "t2_r5_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_2"
+    },
+    "t2_r5_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_2"
+    },
+    "t3_r0_c1": {
+      "path": "form.notes"
+    },
+    "t4_r3_c1": {
+      "path": "form.design_documentation_3"
+    },
+    "t4_r3_c2": {
+      "path": "form.repeated_design_documentation_3"
+    },
+    "t4_r3_c3": {
+      "path": "form.repeated_repeated_design_documentation_3"
+    },
+    "t4_r3_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_3"
+    },
+    "t4_r3_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_3"
+    },
+    "t4_r3_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_3"
+    },
+    "t4_r3_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_3"
+    },
+    "t4_r3_c8": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_3"
+    },
+    "t4_r4_c1": {
+      "path": "form.design_documentation_4"
+    },
+    "t4_r4_c2": {
+      "path": "form.repeated_design_documentation_4"
+    },
+    "t4_r4_c3": {
+      "path": "form.repeated_repeated_design_documentation_4"
+    },
+    "t4_r4_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_4"
+    },
+    "t4_r4_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_4"
+    },
+    "t4_r4_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_4"
+    },
+    "t4_r4_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_4"
+    },
+    "t4_r4_c8": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_4"
+    },
+    "t5_r0_c1": {
+      "path": "form.notes_2"
+    },
+    "t6_r2_c1": {
+      "path": "form.design_documentation_5"
+    },
+    "t6_r2_c2": {
+      "path": "form.repeated_design_documentation_5"
+    },
+    "t6_r2_c3": {
+      "path": "form.repeated_repeated_design_documentation_5"
+    },
+    "t6_r2_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_5"
+    },
+    "t6_r2_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_5"
+    },
+    "t6_r2_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_5"
+    },
+    "t6_r2_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_5"
+    },
+    "t6_r3_c1": {
+      "path": "form.design_documentation_6"
+    },
+    "t6_r3_c2": {
+      "path": "form.repeated_design_documentation_6"
+    },
+    "t6_r3_c3": {
+      "path": "form.repeated_repeated_design_documentation_6"
+    },
+    "t6_r3_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_6"
+    },
+    "t6_r3_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_6"
+    },
+    "t6_r3_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_6"
+    },
+    "t6_r3_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_6"
+    },
+    "t7_r0_c1": {
+      "path": "form.notes_3"
+    },
+    "t8_r2_c1": {
+      "path": "form.design_documentation_7"
+    },
+    "t8_r2_c2": {
+      "path": "form.repeated_design_documentation_7"
+    },
+    "t8_r2_c3": {
+      "path": "form.repeated_repeated_design_documentation_7"
+    },
+    "t8_r2_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_7"
+    },
+    "t8_r2_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_7"
+    },
+    "t8_r2_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_7"
+    },
+    "t8_r2_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_7"
+    },
+    "t8_r2_c8": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_7"
+    },
+    "t8_r2_c9": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_7"
+    },
+    "t8_r3_c1": {
+      "path": "form.design_documentation_8"
+    },
+    "t8_r3_c2": {
+      "path": "form.repeated_design_documentation_8"
+    },
+    "t8_r3_c3": {
+      "path": "form.repeated_repeated_design_documentation_8"
+    },
+    "t8_r3_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_8"
+    },
+    "t8_r3_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_8"
+    },
+    "t8_r3_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_8"
+    },
+    "t8_r3_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_8"
+    },
+    "t8_r3_c8": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_8"
+    },
+    "t8_r3_c9": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_8"
+    },
+    "t9_r0_c1": {
+      "path": "form.notes_4"
+    },
+    "t10_r4_c1": {
+      "path": "form.design_documentation_9"
+    },
+    "t10_r4_c2": {
+      "path": "form.repeated_design_documentation_9"
+    },
+    "t10_r4_c3": {
+      "path": "form.repeated_repeated_design_documentation_9"
+    },
+    "t10_r4_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_9"
+    },
+    "t10_r4_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_9"
+    },
+    "t10_r4_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_9"
+    },
+    "t10_r5_c1": {
+      "path": "form.design_documentation_10"
+    },
+    "t10_r5_c2": {
+      "path": "form.repeated_design_documentation_10"
+    },
+    "t10_r5_c3": {
+      "path": "form.repeated_repeated_design_documentation_10"
+    },
+    "t10_r5_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_10"
+    },
+    "t10_r5_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_10"
+    },
+    "t10_r5_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_10"
+    },
+    "t11_r0_c1": {
+      "path": "form.notes_5"
+    },
+    "t12_r4_c1": {
+      "path": "form.design_documentation_11"
+    },
+    "t12_r4_c2": {
+      "path": "form.repeated_design_documentation_11"
+    },
+    "t12_r4_c3": {
+      "path": "form.repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c8": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c9": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c10": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c11": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r4_c12": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_11"
+    },
+    "t12_r5_c1": {
+      "path": "form.design_documentation_12"
+    },
+    "t12_r5_c2": {
+      "path": "form.repeated_design_documentation_12"
+    },
+    "t12_r5_c3": {
+      "path": "form.repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c7": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c8": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c9": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c10": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c11": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t12_r5_c12": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_repeated_design_documentation_12"
+    },
+    "t13_r0_c1": {
+      "path": "form.notes_6"
+    },
+    "t14_r2_c1": {
+      "path": "form.design_documentation_13"
+    },
+    "t14_r2_c2": {
+      "path": "form.repeated_design_documentation_13"
+    },
+    "t14_r2_c3": {
+      "path": "form.repeated_repeated_design_documentation_13"
+    },
+    "t14_r2_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_13"
+    },
+    "t14_r2_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_13"
+    },
+    "t14_r3_c1": {
+      "path": "form.design_documentation_14"
+    },
+    "t14_r3_c2": {
+      "path": "form.repeated_design_documentation_14"
+    },
+    "t14_r3_c3": {
+      "path": "form.repeated_repeated_design_documentation_14"
+    },
+    "t14_r3_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_14"
+    },
+    "t14_r3_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_14"
+    },
+    "t15_r0_c1": {
+      "path": "form.notes_7"
+    },
+    "t16_r2_c1": {
+      "path": "form.design_documentation_15"
+    },
+    "t16_r2_c2": {
+      "path": "form.repeated_design_documentation_15"
+    },
+    "t16_r2_c3": {
+      "path": "form.repeated_repeated_design_documentation_15"
+    },
+    "t16_r2_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_15"
+    },
+    "t16_r2_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_15"
+    },
+    "t16_r2_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_15"
+    },
+    "t16_r3_c1": {
+      "path": "form.design_documentation_16"
+    },
+    "t16_r3_c2": {
+      "path": "form.repeated_design_documentation_16"
+    },
+    "t16_r3_c3": {
+      "path": "form.repeated_repeated_design_documentation_16"
+    },
+    "t16_r3_c4": {
+      "path": "form.repeated_repeated_repeated_design_documentation_16"
+    },
+    "t16_r3_c5": {
+      "path": "form.repeated_repeated_repeated_repeated_design_documentation_16"
+    },
+    "t16_r3_c6": {
+      "path": "form.repeated_repeated_repeated_repeated_repeated_design_documentation_16"
+    },
+    "t17_r0_c1": {
+      "path": "form.notes_8"
+    },
+    "rows_18_3": {
+      "path": "form.flow_rate_location",
+      "columns": {
+        "c1": "cross_section_number",
+        "c2": "location_fibre",
+        "c3": "flow_rate_duration",
+        "c4": "deviations_design_documentation",
+        "c5": "value"
+      }
+    },
+    "t19_r0_c0": {
+      "path": "representatives.acceptance_party.details"
+    },
+    "t20_r0_c0": {
+      "path": "representatives.designer.details"
+    },
+    "t21_r0_c0": {
+      "path": "representatives.installer.details"
+    }
+  },
+  "СП_73_Ж": {
+    "t0_r0_c1": {
+      "path": "object.address"
+    },
+    "t0_r1_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r3_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r5_c1": {
+      "path": "form.system_fibre"
+    },
+    "t0_r6_c1": {
+      "path": "form.type"
+    },
+    "t1_r0_c1": {
+      "path": "form.voltage_percentage"
+    },
+    "t1_r4_c1": {
+      "path": "form.temperature"
+    },
+    "t1_r6_c1": {
+      "path": "form.deviations_percentage_organisation"
+    },
+    "t2_r0_c1": {
+      "path": "form.refrigerant"
+    },
+    "t3_r0_c1": {
+      "path": "form.quantity_system"
+    },
+    "t4_r0_c1": {
+      "path": "form.condensate"
+    },
+    "t5_r0_c1": {
+      "path": "form.notes_equipment_fibre"
+    },
+    "t5_r1_c0": {
+      "path": "form.completeness"
+    },
+    "t6_r0_c1": {
+      "path": "form.conclusion"
+    },
+    "t7_r0_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t8_r0_c1": {
+      "path": "form.representatives_installer_details"
+    }
+  },
+  "СП_74_Б": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t1_r1_c1": {
+      "path": "form.system"
+    },
+    "t1_r2_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t2_r0_c0": {
+      "path": "form.foundation_support"
+    },
+    "t3_r0_c1": {
+      "path": "form.location"
+    },
+    "t4_r0_c1": {
+      "path": "form.design_documentation"
+    },
+    "t4_r2_c2": {
+      "path": "form.length"
+    },
+    "t5_r0_c1": {
+      "path": "form.quantity_type"
+    },
+    "t5_r2_c1": {
+      "path": "form.length_type"
+    },
+    "t5_r4_c1": {
+      "path": "form.resistance_system"
+    },
+    "t5_r6_c1": {
+      "path": "form.quantity_location"
+    },
+    "t5_r8_c1": {
+      "path": "form.bonding"
+    }
+  },
+  "СП_74_Г": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t3_r0_c1": {
+      "path": "representatives.network_operator.details"
+    },
+    "t4_r0_c0": {
+      "path": "organisations.installer.full_name"
+    },
+    "t5_r0_c1": {
+      "path": "form.system"
+    },
+    "t6_r0_c1": {
+      "path": "form.location_number"
+    },
+    "t6_r0_c3": {
+      "path": "form.location_number_2"
+    },
+    "t6_r1_c1": {
+      "path": "form.cable_pipe_fibre"
+    },
+    "t6_r1_c3": {
+      "path": "form.length"
+    },
+    "rows_7_4": {
+      "path": "form.length_location_cable",
+      "columns": {
+        "c1": "cable_pipe_fibre",
+        "c2": "pressure_system",
+        "c3": "pressure_duration_system",
+        "c4": "pressure_test_system"
+      }
+    },
+    "t8_r1_c0": {
+      "path": "form.date_number_design_documentation"
+    }
+  },
+  "СП_74_Д": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t3_r0_c1": {
+      "path": "representatives.network_operator.details"
+    },
+    "t4_r0_c0": {
+      "path": "organisations.installer.full_name"
+    },
+    "t5_r1_c1": {
+      "path": "form.location_number"
+    },
+    "t5_r1_c3": {
+      "path": "form.location_number_2"
+    },
+    "t5_r2_c0": {
+      "path": "form.cable_pipe_fibre"
+    },
+    "t5_r4_c1": {
+      "path": "form.length"
+    },
+    "t5_r5_c1": {
+      "path": "form.pressure_flow_rate_system"
+    },
+    "t5_r8_c0": {
+      "path": "form.date_number_design_documentation"
+    }
+  },
+  "СП_74_А": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c0": {
+      "path": "object.name"
+    },
+    "t2_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t3_r0_c0": {
+      "path": "representatives.builder.details"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.network_operator.details"
+    },
+    "t4_r2_c1": {
+      "path": "form.location_number_fibre"
+    },
+    "t5_r1_c1": {
+      "path": "form.location_number"
+    },
+    "rows_6_4": {
+      "path": "form.certificate_voltage_location",
+      "columns": {
+        "c1": "joint_number_design_documentation",
+        "c2": "number_design_documentation",
+        "c3": "joint_type",
+        "c4": "design_documentation",
+        "c5": "value"
+      }
+    },
+    "t7_r0_c1": {
+      "path": "form.temperature_joint_fibre"
+    }
+  },
+  "СП_76_Б": {
+    "t0_r0_c0": {
+      "path": "project.city"
+    },
+    "t0_r2_c0": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r4_c0": {
+      "path": "object.name"
+    },
+    "t1_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t1_r2_c1": {
+      "path": "organisations.commissioner.full_name"
+    },
+    "t1_r3_c0": {
+      "path": "representatives.commissioner.details"
+    },
+    "t2_r0_c1": {
+      "path": "form.voltage_number_fibre"
+    },
+    "t2_r0_c4": {
+      "path": "form.test_date.day"
+    },
+    "t2_r0_c6": {
+      "path": "form.test_date.month"
+    },
+    "t2_r0_c8": {
+      "path": "form.test_date.year"
+    },
+    "t2_r1_c1": {
+      "path": "form.voltage_number_fibre_2"
+    },
+    "t2_r2_c1": {
+      "path": "form.commissioning_work_fibre"
+    },
+    "t2_r4_c0": {
+      "path": "form.object_name"
+    },
+    "t2_r6_c0": {
+      "path": "form.fibre"
+    },
+    "t3_r0_c0": {
+      "path": "form.equipment_work_fibre"
+    },
+    "t4_r0_c3": {
+      "path": "form.work_start_2.day"
+    },
+    "t4_r0_c5": {
+      "path": "form.work_start_2.month"
+    },
+    "t4_r0_c7": {
+      "path": "form.work_start_2.year"
+    },
+    "t5_r0_c2": {
+      "path": "form.work_end_3.day"
+    },
+    "t5_r0_c4": {
+      "path": "form.work_end_3.month"
+    },
+    "t5_r0_c6": {
+      "path": "form.work_end_3.year"
+    },
+    "t6_r0_c0": {
+      "path": "form.commissioning_voltage_system"
+    },
+    "t7_r0_c0": {
+      "path": "form.notes"
+    },
+    "t8_r1_c2": {
+      "path": "form.representatives_commissioner_details"
+    },
+    "t8_r1_c6": {
+      "path": "form.representatives_customer_details"
+    }
+  },
+  "СП_77_А_2": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c1": {
+      "path": "object.name"
+    },
+    "t2_r0_c1": {
+      "path": "organisations.general_contractor.full_name"
+    },
+    "t2_r2_c1": {
+      "path": "representatives.general_contractor.details"
+    },
+    "t2_r4_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t2_r6_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r9_c0": {
+      "path": "representatives.customer_control.details"
+    },
+    "t2_r12_c0": {
+      "path": "form.object_name"
+    },
+    "t2_r15_c0": {
+      "path": "project.documentation.section_description"
+    },
+    "t3_r0_c0": {
+      "path": "form.notes"
+    },
+    "t4_r0_c0": {
+      "path": "form.attachments"
+    },
+    "t5_r0_c1": {
+      "path": "form.representatives_general_contractor_details"
+    },
+    "t6_r0_c1": {
+      "path": "form.representatives_installer_details"
+    },
+    "t7_r0_c1": {
+      "path": "form.representatives_customer_control_details"
+    }
+  },
+  "СП_77_А_8": {
+    "p36_1": {
+      "path": "form.test_date.day"
+    },
+    "p36_2": {
+      "path": "form.test_date.month"
+    },
+    "p36_3": {
+      "path": "form.test_date.year"
+    },
+    "p83_4": {
+      "path": "form.temperature_voltage_test"
+    },
+    "p84_5": {
+      "path": "form.temperature_voltage_test_2"
+    },
+    "p151_6": {
+      "path": "form.plugs_voltage_cable"
+    },
+    "p151_7": {
+      "path": "form.plugs_voltage_cable_2"
+    },
+    "x_0_16": {
+      "path": "project.code"
+    },
+    "rows_0_21": {
+      "path": "form.instruments",
+      "columns": {
+        "c1": "number",
+        "c2": "name",
+        "c3": "type",
+        "c4": "serial_number",
+        "c5": "scale",
+        "c6": "accuracy_class",
+        "c7": "notes"
+      }
+    },
+    "rows_0_32": {
+      "path": "form.tightness_tests",
+      "columns": {
+        "c1": "number",
+        "c2": "value",
+        "c3": "value_2",
+        "c4": "value_3",
+        "c5": "value_4",
+        "c6": "value_5",
+        "c7": "value_6",
+        "c8": "value_7",
+        "c9": "value_8"
+      }
+    },
+    "t0_r6_c1": {
+      "path": "project.city"
+    },
+    "t0_r7_c1": {
+      "path": "form.fibre"
+    },
+    "t0_r9_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r10_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t0_r12_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r13_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r15_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t0_r15_c2": {
+      "path": "form.repeated_project_documentation_designer_name"
+    },
+    "t0_r24_c1": {
+      "path": "form.medium"
+    },
+    "t0_r37_c1": {
+      "path": "form.representatives_customer_details"
+    },
+    "t0_r39_c1": {
+      "path": "form.representatives_installer_details"
+    }
+  },
+  "СП_77_А_7": {
+    "p35_1": {
+      "path": "form.test_date.day"
+    },
+    "p35_2": {
+      "path": "form.test_date.month"
+    },
+    "p35_3": {
+      "path": "form.test_date.year"
+    },
+    "p93_4": {
+      "path": "form.plugs_system_fibre"
+    },
+    "p94_5": {
+      "path": "form.plugs_test"
+    },
+    "rows_0_21": {
+      "path": "form.pressure_tests",
+      "columns": {
+        "c1": "number",
+        "c2": "name",
+        "c3": "inner_diameter_mm",
+        "c4": "length_mm",
+        "c5": "strength_pressure_mpa",
+        "c6": "tightness_pressure_mpa",
+        "c7": "notes"
+      }
+    },
+    "t0_r5_c1": {
+      "path": "project.city"
+    },
+    "t0_r6_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r7_c0": {
+      "path": "form.fibre"
+    },
+    "t0_r9_c1": {
+      "path": "form.organisations_customer_full_name"
+    },
+    "t0_r10_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t0_r12_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r13_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r26_c1": {
+      "path": "form.representatives_customer_details"
+    },
+    "t0_r28_c1": {
+      "path": "form.representatives_installer_details"
+    }
+  },
+  "СП_77_А_9": {
+    "date_5_3": {
+      "path": "document.date.day"
+    },
+    "date_5_5": {
+      "path": "document.date.month"
+    },
+    "date_5_7": {
+      "path": "document.date.year"
+    },
+    "t0_r5_c1": {
+      "path": "project.city"
+    },
+    "t0_r7_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r8_c1": {
+      "path": "object.name"
+    },
+    "t0_r9_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r12_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t0_r14_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r17_c0": {
+      "path": "form.materials_fibre"
+    },
+    "t0_r20_c0": {
+      "path": "form.method"
+    },
+    "t0_r26_c1": {
+      "path": "form.representatives_customer_details"
+    },
+    "t0_r28_c1": {
+      "path": "form.representatives_installer_details"
+    }
+  },
+  "СП_77_А_5": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c1": {
+      "path": "organisations.construction_party.full_name"
+    },
+    "t2_r3_c0": {
+      "path": "representatives.construction_party.details"
+    },
+    "t2_r5_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t2_r6_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t3_r0_c0": {
+      "path": "project.documentation.object_and_project"
+    },
+    "t4_r0_c2": {
+      "path": "form.work_start.day"
+    },
+    "t4_r0_c4": {
+      "path": "form.work_start.month"
+    },
+    "t4_r0_c6": {
+      "path": "form.work_start.year"
+    },
+    "t5_r0_c2": {
+      "path": "form.work_end_2.day"
+    },
+    "t5_r0_c4": {
+      "path": "form.work_end_2.month"
+    },
+    "t5_r0_c6": {
+      "path": "form.work_end_2.year"
+    },
+    "t6_r0_c1": {
+      "path": "form.attachments_documentation"
+    },
+    "t6_r1_c0": {
+      "path": "form.attachments_voltage_equipment"
+    }
+  },
+  "СП_77_А_1": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c1": {
+      "path": "organisations.construction_party.full_name"
+    },
+    "t1_r2_c1": {
+      "path": "representatives.construction_party.details"
+    },
+    "t1_r4_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t1_r6_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t2_r0_c0": {
+      "path": "object.name"
+    },
+    "t3_r0_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t4_r0_c1": {
+      "path": "project.code"
+    },
+    "rows_5_2": {
+      "path": "form.drawings",
+      "columns": {
+        "c1": "number",
+        "c2": "number_design_documentation_fibre",
+        "c3": "quantity",
+        "c4": "notes"
+      }
+    },
+    "t6_r0_c1": {
+      "path": "form.representatives_construction_party_details"
+    },
+    "t7_r0_c1": {
+      "path": "form.representatives_installer_details"
+    }
+  },
+  "СП_77_А_3": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t2_r0_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t2_r2_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t2_r4_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t3_r0_c0": {
+      "path": "project.name"
+    },
+    "t3_r2_c0": {
+      "path": "form.location_fibre"
+    },
+    "rows_4_4": {
+      "path": "form.materials",
+      "columns": {
+        "c1": "number",
+        "c2": "number_design_documentation_fibre",
+        "c3": "organisation_type_documentation",
+        "c4": "value",
+        "c5": "quantity"
+      }
+    },
+    "t5_r0_c0": {
+      "path": "form.specification_reference"
+    },
+    "t6_r0_c1": {
+      "path": "form.representatives_customer_details"
+    },
+    "t7_r0_c1": {
+      "path": "form.representatives_installer_details"
+    }
+  },
+  "СП_77_А_22": {
+    "t0_r1_c0": {
+      "path": "form.form_reference"
+    },
+    "t0_r2_c0": {
+      "path": "form.form_reference_2"
+    },
+    "t1_r0_c1": {
+      "path": "form.test_date.day"
+    },
+    "t1_r0_c3": {
+      "path": "form.test_date.month"
+    },
+    "t1_r0_c5": {
+      "path": "form.test_date.year"
+    },
+    "t2_r0_c1": {
+      "path": "project.city"
+    },
+    "t2_r0_c3": {
+      "path": "form.test_date_2.day"
+    },
+    "t2_r0_c5": {
+      "path": "form.test_date_2.month"
+    },
+    "t2_r0_c7": {
+      "path": "form.test_date_2.year"
+    },
+    "t3_r0_c0": {
+      "path": "organisations.commissioner.full_name"
+    },
+    "t4_r0_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t4_r2_c0": {
+      "path": "representatives.commissioner.details"
+    },
+    "t5_r0_c0": {
+      "path": "form.system_fibre"
+    },
+    "t6_r0_c1": {
+      "path": "form.duration"
+    },
+    "t7_r0_c0": {
+      "path": "form.requirements_design_documentation_fibre"
+    },
+    "t8_r1_c2": {
+      "path": "form.commissioning_work"
+    },
+    "t9_r0_c1": {
+      "path": "form.attachments.document_1"
+    },
+    "t9_r1_c1": {
+      "path": "form.attachments.document_2"
+    },
+    "t9_r2_c1": {
+      "path": "form.attachments.document_3"
+    }
+  },
+  "СП_77_А_23": {
+    "p86_1": {
+      "path": "form.voltage_test_system"
+    },
+    "p86_2": {
+      "path": "form.voltage_test_system_2"
+    },
+    "p86_3": {
+      "path": "form.voltage_test_system_3"
+    },
+    "t0_r1_c0": {
+      "path": "form.form_reference"
+    },
+    "t0_r2_c0": {
+      "path": "form.form_reference_2"
+    },
+    "t1_r0_c1": {
+      "path": "form.test_date.day"
+    },
+    "t1_r0_c3": {
+      "path": "form.test_date.month"
+    },
+    "t1_r0_c5": {
+      "path": "form.test_date.year"
+    },
+    "t2_r0_c1": {
+      "path": "project.city"
+    },
+    "t2_r0_c3": {
+      "path": "form.test_date_2.day"
+    },
+    "t2_r0_c5": {
+      "path": "form.test_date_2.month"
+    },
+    "t2_r0_c7": {
+      "path": "form.test_date_2.year"
+    },
+    "t3_r0_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t4_r0_c1": {
+      "path": "form.commission_order.date.day"
+    },
+    "t4_r0_c3": {
+      "path": "form.commission_order.date.month"
+    },
+    "t4_r0_c5": {
+      "path": "form.commission_order.date.year"
+    },
+    "t4_r0_c7": {
+      "path": "form.commission_order.number"
+    },
+    "t5_r0_c0": {
+      "path": "representatives.commission_chair.details"
+    },
+    "t6_r0_c1": {
+      "path": "representatives.commissioner.details"
+    },
+    "t6_r2_c1": {
+      "path": "representatives.supervisory.details"
+    },
+    "t7_r0_c0": {
+      "path": "form.system_fibre"
+    },
+    "t7_r2_c1": {
+      "path": "form.date_design_documentation_work"
+    },
+    "t7_r4_c1": {
+      "path": "project.documentation.designer_name"
+    },
+    "t7_r6_c1": {
+      "path": "organisations.commissioner.full_name"
+    },
+    "t8_r0_c1": {
+      "path": "form.work_start.day"
+    },
+    "t8_r0_c3": {
+      "path": "form.work_start.month"
+    },
+    "t8_r0_c5": {
+      "path": "form.work_start.year"
+    },
+    "t8_r0_c7": {
+      "path": "form.work_end.day"
+    },
+    "t8_r0_c9": {
+      "path": "form.work_end.month"
+    },
+    "t8_r0_c11": {
+      "path": "form.work_end.year"
+    },
+    "t9_r0_c0": {
+      "path": "form.attachments_documentation"
+    }
+  },
+  "СП_77_А_13": {
+    "p260_1": {
+      "path": "form.test_date.day"
+    },
+    "p260_2": {
+      "path": "form.test_date.month"
+    },
+    "p260_3": {
+      "path": "form.test_date.year"
+    },
+    "p261_4": {
+      "path": "form.test_date_2.day"
+    },
+    "p261_5": {
+      "path": "form.test_date_2.month"
+    },
+    "p261_6": {
+      "path": "form.test_date_2.year"
+    },
+    "rows_0_8": {
+      "path": "form.welding",
+      "columns": {
+        "c1": "number",
+        "c2": "connection_welding_number",
+        "c3": "cable_pipe_number",
+        "c4": "welding_representative",
+        "c5": "quality_documents_number_type",
+        "c6": "thickness_diameter_cable",
+        "c7": "temperature_voltage_welding",
+        "c8": "welding_method",
+        "c9": "quality_documents_welding_materials",
+        "c10": "heating",
+        "c11": "elevation_welding_test",
+        "c12": "conclusion_welding_date",
+        "c13": "welding_representative_2",
+        "c14": "connection_welding_heating",
+        "c15": "welding_date_number",
+        "c16": "conclusion_elevation_connection",
+        "c17": "conclusion_connection_welding",
+        "c18": "conclusion_voltage_welding"
+      }
+    },
+    "t0_r2_c1": {
+      "path": "project.documentation.object_description"
+    },
+    "t0_r4_c0": {
+      "path": "form.voltage_cable_pipe"
+    },
+    "t0_r16_c10": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r18_c11": {
+      "path": "representatives.site_manager.details"
+    },
+    "t0_r18_c13": {
+      "path": "representatives.welding_supervisor.details"
+    },
+    "t0_r19_c10": {
+      "path": "form.installation_manager_date"
+    },
+    "t0_r19_c12": {
+      "path": "form.representatives_welding_supervisor_details"
+    }
+  },
+  "СП_77_А_14": {
+    "p11_1": {
+      "path": "form.welding"
+    },
+    "p15_2": {
+      "path": "form.conclusion_number"
+    },
+    "rows_0_16": {
+      "path": "form.weld_inspections",
+      "columns": {
+        "c1": "defects_number_test",
+        "c2": "position_number",
+        "c3": "thickness_diameter_pipe",
+        "c4": "date_test",
+        "c5": "connection_number",
+        "c6": "welding_representative",
+        "c7": "welding",
+        "c8": "defects",
+        "c9": "conclusion_test"
+      }
+    },
+    "t0_r3_c1": {
+      "path": "form.welding_2"
+    },
+    "t0_r6_c1": {
+      "path": "object.name"
+    },
+    "t0_r6_c2": {
+      "path": "form.repeated_object_name"
+    },
+    "t0_r7_c1": {
+      "path": "project.code"
+    },
+    "t0_r7_c2": {
+      "path": "form.repeated_project_code"
+    },
+    "t0_r9_c1": {
+      "path": "form.defects_test_completeness"
+    },
+    "t0_r10_c1": {
+      "path": "form.test_class"
+    },
+    "t0_r11_c1": {
+      "path": "form.defects"
+    },
+    "t0_r12_c1": {
+      "path": "form.fibre"
+    },
+    "t0_r33_c2": {
+      "path": "representatives.flaw_detector.details"
+    },
+    "t0_r35_c2": {
+      "path": "representatives.laboratory_head.details"
+    }
+  },
+  "СП_77_А_10": {
+    "t0_r5_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r6_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r7_c1": {
+      "path": "object.name"
+    },
+    "t0_r8_c1": {
+      "path": "form.documentation"
+    },
+    "t0_r12_c2": {
+      "path": "form.certificate"
+    },
+    "t0_r12_c3": {
+      "path": "form.repeated_certificate"
+    },
+    "t0_r13_c2": {
+      "path": "form.connection_cable_pipe"
+    },
+    "t0_r13_c3": {
+      "path": "form.repeated_connection_cable_pipe"
+    },
+    "t0_r14_c2": {
+      "path": "form.welding_fibre"
+    },
+    "t0_r14_c3": {
+      "path": "form.repeated_welding_fibre"
+    },
+    "t0_r15_c2": {
+      "path": "form.cable_pipe_welding"
+    },
+    "t0_r15_c3": {
+      "path": "form.repeated_cable_pipe_welding"
+    },
+    "t0_r16_c2": {
+      "path": "form.conclusion"
+    },
+    "t0_r16_c3": {
+      "path": "form.repeated_conclusion"
+    },
+    "t0_r17_c2": {
+      "path": "form.defects_conclusion"
+    },
+    "t0_r17_c3": {
+      "path": "form.repeated_defects_conclusion"
+    },
+    "t0_r18_c2": {
+      "path": "form.defects_conclusion_method"
+    },
+    "t0_r18_c3": {
+      "path": "form.repeated_defects_conclusion_method"
+    },
+    "t0_r19_c2": {
+      "path": "form.defects_connection_welding"
+    },
+    "t0_r19_c3": {
+      "path": "form.repeated_defects_connection_welding"
+    },
+    "t0_r20_c2": {
+      "path": "form.welding_fibre_2"
+    },
+    "t0_r20_c3": {
+      "path": "form.repeated_welding_fibre_2"
+    },
+    "t0_r21_c2": {
+      "path": "form.defects_connection_fibre"
+    },
+    "t0_r21_c3": {
+      "path": "form.repeated_defects_connection_fibre"
+    },
+    "t0_r22_c2": {
+      "path": "form.quality_documents_cable_pipe"
+    },
+    "t0_r22_c3": {
+      "path": "form.repeated_quality_documents_cable_pipe"
+    },
+    "t0_r23_c2": {
+      "path": "form.strength_density_cable"
+    },
+    "t0_r23_c3": {
+      "path": "form.repeated_strength_density_cable"
+    },
+    "t0_r24_c2": {
+      "path": "form.tightness_pressure_drop_pressure"
+    },
+    "t0_r24_c3": {
+      "path": "form.repeated_tightness_pressure_drop_pressure"
+    },
+    "t0_r26_c1": {
+      "path": "representatives.documentation_sender.details"
+    },
+    "t0_r28_c1": {
+      "path": "representatives.documentation_recipient.details"
+    }
+  },
+  "СП_77_А_19_МУФТА": {
+    "p58_1": {
+      "path": "form.test_date.day"
+    },
+    "p58_2": {
+      "path": "form.test_date.month"
+    },
+    "p58_3": {
+      "path": "form.test_date.year"
+    },
+    "t0_r6_c1": {
+      "path": "project.city"
+    },
+    "t0_r7_c1": {
+      "path": "object.name"
+    },
+    "t0_r8_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r9_c1": {
+      "path": "project.code"
+    },
+    "t0_r10_c1": {
+      "path": "form.joint_number"
+    },
+    "t0_r11_c1": {
+      "path": "form.optical_lines"
+    },
+    "t0_r12_c1": {
+      "path": "form.location"
+    },
+    "t0_r13_c1": {
+      "path": "form.cable_type"
+    },
+    "t0_r14_c1": {
+      "path": "representatives.worker.details"
+    },
+    "t0_r15_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r17_c1": {
+      "path": "form.repair"
+    },
+    "t0_r18_c1": {
+      "path": "form.instrument_equipment"
+    },
+    "t0_r19_c0": {
+      "path": "form.number_fibre"
+    },
+    "t0_r22_c1": {
+      "path": "form.fibres.fibre_1.attenuation_ab_db"
+    },
+    "t0_r22_c2": {
+      "path": "form.fibres.fibre_1.attenuation_ba_db"
+    },
+    "t0_r23_c1": {
+      "path": "form.fibres.fibre_2.attenuation_ab_db"
+    },
+    "t0_r23_c2": {
+      "path": "form.fibres.fibre_2.attenuation_ba_db"
+    },
+    "t0_r24_c1": {
+      "path": "form.fibres.fibre_3.attenuation_ab_db"
+    },
+    "t0_r24_c2": {
+      "path": "form.fibres.fibre_3.attenuation_ba_db"
+    },
+    "t0_r25_c1": {
+      "path": "form.fibres.fibre_4.attenuation_ab_db"
+    },
+    "t0_r25_c2": {
+      "path": "form.fibres.fibre_4.attenuation_ba_db"
+    },
+    "t0_r26_c1": {
+      "path": "form.fibres.fibre_5.attenuation_ab_db"
+    },
+    "t0_r26_c2": {
+      "path": "form.fibres.fibre_5.attenuation_ba_db"
+    },
+    "t0_r27_c1": {
+      "path": "form.fibres.fibre_6.attenuation_ab_db"
+    },
+    "t0_r27_c2": {
+      "path": "form.fibres.fibre_6.attenuation_ba_db"
+    },
+    "t0_r28_c1": {
+      "path": "form.fibres.fibre_7.attenuation_ab_db"
+    },
+    "t0_r28_c2": {
+      "path": "form.fibres.fibre_7.attenuation_ba_db"
+    },
+    "t0_r29_c1": {
+      "path": "form.fibres.fibre_8.attenuation_ab_db"
+    },
+    "t0_r29_c2": {
+      "path": "form.fibres.fibre_8.attenuation_ba_db"
+    },
+    "t0_r30_c2": {
+      "path": "representatives.inspector.details"
+    }
+  },
+  "СП_77_А_19_УЧАСТОК": {
+    "p58_1": {
+      "path": "form.test_date.day"
+    },
+    "p58_2": {
+      "path": "form.test_date.month"
+    },
+    "p58_3": {
+      "path": "form.test_date.year"
+    },
+    "rows_0_18": {
+      "path": "form.fibre_measurements",
+      "columns": {
+        "c1": "fibre_number",
+        "c2": "power_ab_input",
+        "c3": "power_ab_output",
+        "c4": "power_ba_input",
+        "c5": "power_ba_output",
+        "c6": "attenuation_db",
+        "c7": "measured_on"
+      }
+    },
+    "t0_r6_c1": {
+      "path": "project.city"
+    },
+    "t0_r7_c1": {
+      "path": "object.name"
+    },
+    "t0_r8_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r9_c1": {
+      "path": "project.code"
+    },
+    "t0_r10_c1": {
+      "path": "form.location"
+    },
+    "t0_r11_c0": {
+      "path": "form.number_fibre"
+    },
+    "t0_r23_c2": {
+      "path": "representatives.inspector.details"
+    }
+  },
+  "СП_77_А_4": {
+    "t0_r0_c1": {
+      "path": "form.drum_number"
+    },
+    "t1_r0_c1": {
+      "path": "form.cable_type"
+    },
+    "t2_r0_c1": {
+      "path": "form.quantity_fibre"
+    },
+    "t3_r0_c2": {
+      "path": "form.type"
+    },
+    "t3_r1_c2": {
+      "path": "form.number_organisation"
+    },
+    "t3_r2_c2": {
+      "path": "form.date"
+    },
+    "rows_4_5": {
+      "path": "form.fibre_measurements",
+      "columns": {
+        "c1": "length",
+        "c2": "number_fibre",
+        "c3": "passport_attenuation_fibre",
+        "c4": "power",
+        "c5": "attenuation",
+        "c6": "attenuation_date_test",
+        "c7": "value",
+        "c8": "value_2"
+      }
+    },
+    "t5_r0_c1": {
+      "path": "representatives.inspector.details"
+    }
+  },
+  "СП_77_А_19_ИЗМЕРЕНИЯ": {
+    "date_6_3": {
+      "path": "document.date.day"
+    },
+    "date_6_5": {
+      "path": "document.date.month"
+    },
+    "date_6_7": {
+      "path": "document.date.year"
+    },
+    "t0_r6_c1": {
+      "path": "project.city"
+    },
+    "t0_r8_c1": {
+      "path": "object.name"
+    },
+    "t0_r10_c1": {
+      "path": "project.code"
+    },
+    "t0_r12_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r15_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t0_r19_c1": {
+      "path": "form.design_documentation"
+    },
+    "t0_r20_c1": {
+      "path": "form.deviations_design_documentation"
+    },
+    "t0_r24_c0": {
+      "path": "form.conclusion"
+    },
+    "t0_r26_c0": {
+      "path": "form.acceptance_conclusion"
+    },
+    "t0_r28_c1": {
+      "path": "form.representatives_installer_details"
+    },
+    "t0_r28_c3": {
+      "path": "form.repeated_representatives_installer_details"
+    },
+    "t0_r32_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r32_c3": {
+      "path": "form.repeated_organisations_customer_full_name"
+    }
+  },
+  "СП_77_А_16": {
+    "date_6_3": {
+      "path": "document.date.day"
+    },
+    "date_6_5": {
+      "path": "document.date.month"
+    },
+    "date_6_7": {
+      "path": "document.date.year"
+    },
+    "rows_0_22": {
+      "path": "form.instruments",
+      "columns": {
+        "c1": "number",
+        "c2": "name",
+        "c3": "type",
+        "c4": "serial_number",
+        "c5": "scale",
+        "c6": "accuracy_class",
+        "c7": "notes"
+      }
+    },
+    "rows_0_33": {
+      "path": "form.insulation_measurements",
+      "columns": {
+        "c1": "number",
+        "c2": "drawing_mark",
+        "c3": "cable_type",
+        "c4": "cores_and_cross_section",
+        "c5": "between_cores_mohm",
+        "c6": "to_ground_mohm",
+        "c7": "notes"
+      }
+    },
+    "t0_r6_c1": {
+      "path": "project.city"
+    },
+    "t0_r8_c1": {
+      "path": "object.name"
+    },
+    "t0_r10_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r12_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r14_c1": {
+      "path": "project.code"
+    },
+    "t0_r39_c1": {
+      "path": "representatives.customer.details"
+    },
+    "t0_r41_c1": {
+      "path": "representatives.installer.details"
+    }
+  },
+  "СП_77_А_18": {
+    "rows_0_29": {
+      "path": "form.pressure_tests",
+      "columns": {
+        "c1": "equipment_location_fibre",
+        "c2": "class",
+        "c3": "pressure_system",
+        "c4": "pressure_drop_pressure_test",
+        "c5": "duration_test",
+        "c6": "notes"
+      }
+    },
+    "t0_r6_c0": {
+      "path": "object.name"
+    },
+    "t0_r6_c3": {
+      "path": "project.city"
+    },
+    "t0_r8_c0": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r8_c3": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r10_c0": {
+      "path": "form.division"
+    },
+    "t0_r10_c3": {
+      "path": "form.object_name"
+    },
+    "t0_r12_c0": {
+      "path": "form.location"
+    },
+    "t0_r12_c2": {
+      "path": "form.test_date.day"
+    },
+    "t0_r12_c4": {
+      "path": "form.test_date.month"
+    },
+    "t0_r12_c6": {
+      "path": "form.test_date.year"
+    },
+    "t0_r17_c0": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r20_c0": {
+      "path": "representatives.customer.details"
+    },
+    "t0_r33_c1": {
+      "path": "form.instrument_pressure_number"
+    },
+    "t0_r34_c1": {
+      "path": "form.accuracy_class"
+    },
+    "t0_r37_c0": {
+      "path": "form.explosion_zone"
+    },
+    "t0_r37_c2": {
+      "path": "form.class"
+    }
+  },
+  "СП_77_А_17": {
+    "date_6_3": {
+      "path": "document.date.day"
+    },
+    "date_6_5": {
+      "path": "document.date.month"
+    },
+    "date_6_7": {
+      "path": "document.date.year"
+    },
+    "rows_0_16": {
+      "path": "form.cable_heating",
+      "columns": {
+        "c1": "drum_number",
+        "c2": "voltage_cross_section_cable",
+        "c3": "length_cable",
+        "c4": "temperature_voltage_cable",
+        "c5": "temperature_cable_heating",
+        "c6": "temperature",
+        "c7": "temperature_2"
+      }
+    },
+    "t0_r6_c1": {
+      "path": "project.city"
+    },
+    "t0_r8_c1": {
+      "path": "object.name"
+    },
+    "t0_r10_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r19_c1": {
+      "path": "representatives.worker.details"
+    },
+    "t0_r19_c3": {
+      "path": "form.repeated_representatives_worker_details"
+    },
+    "t0_r23_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r23_c3": {
+      "path": "form.repeated_representatives_installer_details"
+    }
+  },
+  "СП_77_А_11": {
+    "t0_r3_c1": {
+      "path": "form.certificate_number"
+    },
+    "t0_r5_c0": {
+      "path": "project.documentation.object_description"
+    },
+    "t0_r7_c0": {
+      "path": "form.cable_pipe_class"
+    },
+    "t0_r9_c0": {
+      "path": "form.voltage_number_fibre"
+    },
+    "t0_r11_c0": {
+      "path": "form.pressure_temperature_system"
+    },
+    "t0_r14_c1": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r16_c1": {
+      "path": "form.voltage_work_documentation"
+    },
+    "t0_r17_c0": {
+      "path": "project.documentation.designer_name"
+    },
+    "t0_r19_c1": {
+      "path": "form.cable_pipe_equipment"
+    },
+    "t0_r22_c1": {
+      "path": "form.cable_pipe_welding"
+    },
+    "t0_r23_c1": {
+      "path": "form.connection_welding_volume"
+    },
+    "t0_r30_c0": {
+      "path": "form.notes_voltage_work"
+    },
+    "t0_r36_c2": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r38_c2": {
+      "path": "representatives.chief_engineer.details"
+    }
+  },
+  "СП_77_А_15": {
+    "rows_0_11": {
+      "path": "form.specialists",
+      "columns": {
+        "c1": "number",
+        "c2": "representative",
+        "c3": "qualification",
+        "c4": "qualification_2",
+        "c5": "welding",
+        "c6": "number_2",
+        "c7": "connection_number_test",
+        "c8": "representative_2"
+      }
+    },
+    "t0_r5_c0": {
+      "path": "project.documentation.object_description"
+    },
+    "t0_r7_c0": {
+      "path": "organisations.installer.full_name"
+    },
+    "t0_r10_c0": {
+      "path": "form.column_notes.number"
+    },
+    "t0_r10_c1": {
+      "path": "form.column_notes.full_name"
+    },
+    "t0_r10_c2": {
+      "path": "form.column_notes.speciality"
+    },
+    "t0_r10_c3": {
+      "path": "form.column_notes.qualification"
+    },
+    "t0_r10_c4": {
+      "path": "form.column_notes.stamp"
+    },
+    "t0_r10_c5": {
+      "path": "form.column_notes.certificate"
+    },
+    "t0_r10_c6": {
+      "path": "form.column_notes.test_log"
+    },
+    "t0_r10_c7": {
+      "path": "form.column_notes.signature"
+    },
+    "t0_r27_c2": {
+      "path": "representatives.welding_supervisor.details"
+    },
+    "t0_r29_c2": {
+      "path": "representatives.installer.details"
+    }
+  },
+  "СП_77_А_24": {
+    "p32_1": {
+      "path": "document.date.day"
+    },
+    "p32_2": {
+      "path": "document.date.month"
+    },
+    "p32_3": {
+      "path": "document.date.year"
+    },
+    "rows_0_17": {
+      "path": "form.accepted_work",
+      "columns": {
+        "c1": "number",
+        "c2": "customer_test_work",
+        "c3": "customer_system",
+        "c4": "notes"
+      }
+    },
+    "t0_r5_c1": {
+      "path": "project.city"
+    },
+    "t0_r6_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t0_r8_c1": {
+      "path": "form.number_design_documentation_organisation"
+    },
+    "t0_r10_c1": {
+      "path": "representatives.construction_party.details"
+    },
+    "t0_r12_c1": {
+      "path": "representatives.installer.details"
+    },
+    "t0_r19_c1": {
+      "path": "form.representatives_installer_details"
+    },
+    "t0_r21_c1": {
+      "path": "form.representatives_construction_party_details"
+    }
+  },
+  "СП_77_А_20": {
+    "date_0_3": {
+      "path": "document.date.day"
+    },
+    "date_0_5": {
+      "path": "document.date.month"
+    },
+    "date_0_7": {
+      "path": "document.date.year"
+    },
+    "t0_r0_c1": {
+      "path": "project.city"
+    },
+    "t1_r0_c1": {
+      "path": "object.name"
+    },
+    "t1_r1_c1": {
+      "path": "project.code"
+    },
+    "t1_r2_c1": {
+      "path": "organisations.customer.full_name"
+    },
+    "t2_r0_c0": {
+      "path": "form.defects"
+    },
+    "t2_r1_c0": {
+      "path": "form.defects_2"
+    },
+    "t2_r2_c0": {
+      "path": "form.defects_3"
+    },
+    "t3_r0_c1": {
+      "path": "representatives.customer.details"
+    }
+  },
+  "СП_77_А_21": {
+    "city": {
+      "path": "project.city"
+    },
+    "day": {
+      "path": "document.date.day"
+    },
+    "month": {
+      "path": "document.date.month"
+    },
+    "year": {
+      "path": "document.date.year"
+    },
+    "object_name": {
+      "path": "object.name"
+    },
+    "project_name": {
+      "path": "project.name"
+    },
+    "companies": {
+      "path": "companies",
+      "columns": {
+        "role": "role",
+        "name": "name"
+      }
+    },
+    "materials": {
+      "path": "form.materials",
+      "columns": {
+        "no": "no",
+        "spec_no": "spec_no",
+        "item_name": "item_name",
+        "item_type": "item_type",
+        "serial_no": "serial_no",
+        "notes": "notes"
+      }
+    },
+    "recipient": {
+      "path": "recipient.text"
+    },
+    "consignor": {
+      "path": "consignor.text"
+    }
+  },
+  "РЕЕСТР_ИТД": {
+    "object_name": {
+      "path": "object.name"
+    },
+    "project_code": {
+      "path": "project.code"
+    },
+    "project_name": {
+      "path": "project.name"
+    },
+    "registry": {
+      "path": "form.registry",
+      "columns": {
+        "no": "no",
+        "name": "name",
+        "number": "number",
+        "date": "date",
+        "sheets_count": "sheets_count",
+        "note": "note",
+        "number_date": "number_date",
+        "organization": "organization",
+        "pages": "pages"
+      }
+    }
+  }
+}

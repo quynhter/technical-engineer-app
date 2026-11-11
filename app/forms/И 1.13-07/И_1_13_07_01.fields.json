@@ -6,83 +6,95 @@
     "required": true,
     "value": null,
     "value_type": "date",
-    "format": "date_ru"
+    "format": "date_ru",
+    "template_path": "form.readiness_date"
   },
   {
     "key": "t1_r0_c2",
     "label": "Представительмонтажной организации (должность)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.installer.position"
+    "source": "signatories.installer.position",
+    "template_path": "representatives.installer.position"
   },
   {
     "key": "t1_r0_c6",
     "label": "Представительмонтажной организации (расшифровка подписи)",
     "kind": "reference",
     "required": true,
-    "source": "signatories.installer.fio"
+    "source": "signatories.installer.fio",
+    "template_path": "representatives.installer.fio"
   },
   {
     "key": "section_1_2",
     "label": "Номера документов, раздел 1",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.section_1_2"
   },
   {
     "key": "section_1_3",
     "label": "Количество листов, раздел 1",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.section_1_3"
   },
   {
     "key": "section_1_4",
     "label": "Примечание, раздел 1",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.section_1_4"
   },
   {
     "key": "section_2_2",
     "label": "Номера документов, раздел 2",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.section_2_2"
   },
   {
     "key": "section_2_3",
     "label": "Количество листов, раздел 2",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.section_2_3"
   },
   {
     "key": "section_2_4",
     "label": "Примечание, раздел 2",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.section_2_4"
   },
   {
     "key": "section_3_2",
     "label": "Номера документов, раздел 3",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.section_3_2"
   },
   {
     "key": "section_3_3",
     "label": "Количество листов, раздел 3",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.section_3_3"
   },
   {
     "key": "section_3_4",
     "label": "Примечание, раздел 3",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.section_3_4"
   }
 ]

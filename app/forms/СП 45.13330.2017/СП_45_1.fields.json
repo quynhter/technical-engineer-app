@@ -4,63 +4,72 @@
     "label": "Наименование объекта",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t0_r2_c1",
     "label": "Адрес объекта",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "object.address"
   },
   {
     "key": "t0_r4_c1",
     "label": "Наименование строительной организации",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation_fibre"
   },
   {
     "key": "t1_r0_c1",
     "label": "Начат «",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date"
   },
   {
     "key": "t1_r0_c3",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_2"
   },
   {
     "key": "t1_r0_c5",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_3"
   },
   {
     "key": "t1_r2_c1",
     "label": "Окончен «",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_4"
   },
   {
     "key": "t1_r2_c3",
     "label": "»",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_5"
   },
   {
     "key": "t1_r2_c5",
     "label": "20",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_6"
   },
   {
     "key": "rows_2_3",
@@ -74,92 +83,106 @@
         "label": "№ п/п",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "number"
       },
       {
         "key": "c2",
         "label": "Время проб отбора / Дата",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "date_duration"
       },
       {
         "key": "c3",
         "label": "Место отбора пробы / Часы",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "location"
       },
       {
         "key": "c4",
         "label": "Вид работы при отборе пробы",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "work"
       },
       {
         "key": "c5",
         "label": "Глубина отбора пробы",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "depth"
       },
       {
         "key": "c6",
         "label": "Параметры раствора",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "value"
       },
       {
         "key": "c7",
         "label": "Примечания / Вязкость, с",
         "kind": "reference",
         "source": "item.c7",
-        "required": false
+        "required": false,
+        "template_path": "notes"
       },
       {
         "key": "c8",
         "label": "Водоотделение, %",
         "kind": "reference",
         "source": "item.c8",
-        "required": true
+        "required": true,
+        "template_path": "value_2"
       },
       {
         "key": "c9",
         "label": "Стабильность, г/см³",
         "kind": "reference",
         "source": "item.c9",
-        "required": true
+        "required": true,
+        "template_path": "value_3"
       },
       {
         "key": "c10",
         "label": "Содержание песка, %",
         "kind": "reference",
         "source": "item.c10",
-        "required": true
+        "required": true,
+        "template_path": "value_4"
       },
       {
         "key": "c11",
         "label": "Водоотдача, см³ за 30 мин",
         "kind": "reference",
         "source": "item.c11",
-        "required": true
+        "required": true,
+        "template_path": "duration"
       },
       {
         "key": "c12",
         "label": "Плотность, г/см³",
         "kind": "reference",
         "source": "item.c12",
-        "required": true
+        "required": true,
+        "template_path": "density"
       },
       {
         "key": "c13",
         "label": "Графа 13",
         "kind": "reference",
         "source": "item.c13",
-        "required": true
+        "required": true,
+        "template_path": "value_5"
       }
-    ]
+    ],
+    "template_path": "form.date_7"
   }
 ]

@@ -47,11 +47,14 @@ def settings(data):
 
 
 def default_fields():
-    return ([{"key": key, "kind": "reference", "source": source,
+    fields = ([{"key": key, "kind": "reference", "source": source,
               "required": key in ("object", "project", "cifr", "city"), "value_type": "text"}
              for key, source in SOURCES.items()]
             + [{"key": key, "kind": "literal", "value": value, "required": key == "year"}
                for key, value in settings({}).items()])
+    from .template_objects import field_contract
+    spec = field_contract(CODE)
+    return [{**f, **({'template_path': spec[f['key']]['path']} if f['key'] in spec else {})} for f in fields]
 
 
 def prepare_context(context):
@@ -106,7 +109,9 @@ def add_title(connection, project_id, data):
                          + ". Сначала согласуйте реквизиты/назначения либо выберите точные roles")
     defaults = default_fields()
     registered = connection.execute("SELECT * FROM document_types WHERE code=?", (CODE,)).fetchone()
-    if registered and (json.loads(registered["fields"]) != defaults or registered["form_group"] != "act"
+    def business_fields(fields):
+        return [{k: v for k, v in field.items() if k != 'template_path'} for field in fields]
+    if registered and (business_fields(json.loads(registered["fields"])) != business_fields(defaults) or registered["form_group"] != "act"
                        or registered["name"] != NAME or registered["filename_title"] != "Титульные листы и наклейки"):
         raise ValueError("Форма титульника уже настроена иначе: согласуйте её изменение")
     if not registered:

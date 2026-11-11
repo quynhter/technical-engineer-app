@@ -5,7 +5,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "day_2digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.day"
   },
   {
     "key": "date_0_5",
@@ -13,7 +14,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "month_genitive_ru",
-    "required": true
+    "required": true,
+    "template_path": "document.date.month"
   },
   {
     "key": "date_0_7",
@@ -21,77 +23,88 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "year_4digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.year"
   },
   {
     "key": "t0_r0_c1",
     "label": "г.",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t1_r0_c0",
     "label": "(фамилия, имя, отчество, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t2_r0_c0",
     "label": "(фамилия, имя, отчество, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer_control.details"
   },
   {
     "key": "t3_r0_c1",
     "label": "(фамилия, имя, отчество, должность)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.network_operator.details"
   },
   {
     "key": "t4_r0_c0",
     "label": "(наименование строительно-монтажной организации)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "t5_r0_c1",
     "label": "(гидравлические или пневматические)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.system"
   },
   {
     "key": "t6_r0_c1",
     "label": "(пикета, шахты) №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location_number"
   },
   {
     "key": "t6_r0_c3",
     "label": "до камеры (пикета, шахты) №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location_number_2"
   },
   {
     "key": "t6_r1_c1",
     "label": "(наименование трубопровода)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.cable_pipe_fibre"
   },
   {
     "key": "t6_r1_c3",
     "label": "протяженностью",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.length"
   },
   {
     "key": "rows_7_4",
@@ -105,36 +118,42 @@
         "label": "Трубопровод",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "cable_pipe_fibre"
       },
       {
         "key": "c2",
         "label": "Испытательное давление, МПа (кгс/см²)",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "pressure_system"
       },
       {
         "key": "c3",
         "label": "Продолжительность, выдержки под испытательным давлением, мин",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "pressure_duration_system"
       },
       {
         "key": "c4",
         "label": "Наружный осмотр при давлении, МПа (кгс/см²)",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "pressure_test_system"
       }
-    ]
+    ],
+    "template_path": "form.length_location_cable"
   },
   {
     "key": "t8_r1_c0",
     "label": "(наименование проектной организации, номера чертежей и дата их составления)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_number_design_documentation"
   }
 ]

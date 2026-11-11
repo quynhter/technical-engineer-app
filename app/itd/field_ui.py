@@ -50,13 +50,21 @@ def table_headers(template):
     from docx.table import _Cell
 
     headers = {}
-    for table in Document(template).tables:
+    document = Document(template)
+    from .template_objects import legacy_paths
+    bindings = legacy_paths(__import__('pathlib').Path(template).stem)
+    aliases = {}
+    for paragraph in document.paragraphs:
+        assignment = re.fullmatch(r'\s*{%p\s+set\s+(\w+)\s*=\s*(\w+)\s*%}\s*', paragraph.text)
+        if assignment:
+            aliases[assignment[1]] = aliases.get(assignment[2], assignment[2])
+    for table in document.tables:
         rows = []
         vertical = {}
         docx_rows = list(table.rows)
         for index, row in enumerate(docx_rows):
             text = row.cells[0].text if row.cells else ''
-            loop = re.fullmatch(r'\s*{%tr\s+for\s+\w+\s+in\s+(\w+)\s*%}\s*', text)
+            loop = re.fullmatch(r'\s*{%tr\s+for\s+\w+\s+in\s+([\w.]+)\s*%}\s*', text)
             if loop and index + 1 < len(docx_rows):
                 # The editor has one column per data cell. A DOCX cell may
                 # occupy several grid columns even when it holds a single field.
@@ -69,7 +77,8 @@ def table_headers(template):
                     rows.pop(0)
                 if all(cell['column'] in boundaries and cell['column'] + cell['span'] in boundaries
                        for header in rows for cell in header):
-                    headers[loop[1]] = [
+                    key = aliases.get(loop[1], loop[1])
+                    headers[bindings.get(key, key)] = [
                         [{'label': cell['label'], 'rowspan': cell['rowspan'],
                           'span': boundaries[cell['column'] + cell['span']] - boundaries[cell['column']]}
                          for cell in header] for header in rows

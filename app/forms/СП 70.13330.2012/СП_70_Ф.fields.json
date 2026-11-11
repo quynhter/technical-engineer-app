@@ -4,70 +4,80 @@
     "label": "Организация",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation"
   },
   {
     "key": "t1_r0_c0",
     "label": "Наименование объекта",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t2_r0_c0",
     "label": "Адрес",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location"
   },
   {
     "key": "t3_r0_c0",
     "label": "1. Класс бетона по прочности на сжатие конструктивных элементов",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.strength_concrete_structure"
   },
   {
     "key": "t4_r0_c1",
     "label": "2. Объём бетона общий",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.concrete_volume"
   },
   {
     "key": "t5_r0_c1",
     "label": "Объём бетона неармированного",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.concrete_volume_fibre"
   },
   {
     "key": "t6_r0_c1",
     "label": "Объём бетона армированного",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.concrete_volume_fibre_2"
   },
   {
     "key": "t7_r0_c1",
     "label": "Производитель работ",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representative_work"
   },
   {
     "key": "t8_r0_c1",
     "label": "Начало",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date"
   },
   {
     "key": "t9_r0_c1",
     "label": "Окончание",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_2"
   },
   {
     "key": "rows_10_3",
@@ -81,99 +91,114 @@
         "label": "Дата и время укладки бетона",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "concrete_date_duration"
       },
       {
         "key": "c2",
         "label": "Наименование бетонируемой конструкции и ее расположение (оси, отметка)",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "elevation_concrete_structure"
       },
       {
         "key": "c3",
         "label": "Изготовитель (поставщик) бетонной смеси",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "concrete_organisation_fibre"
       },
       {
         "key": "c4",
         "label": "Условное обозначение бетонной смеси и номер документа о качестве по ГОСТ 7473",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "quality_documents_requirements_concrete"
       },
       {
         "key": "c5",
         "label": "Объем партии бетонной смеси, уложенной в конструкцию, м3",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "voltage_concrete_structure"
       },
       {
         "key": "c6",
         "label": "Температура наружного воздуха, °С",
         "kind": "reference",
         "source": "item.c6",
-        "required": true
+        "required": true,
+        "template_path": "temperature"
       },
       {
         "key": "c7",
         "label": "Способ и режим твердения бетона",
         "kind": "reference",
         "source": "item.c7",
-        "required": true
+        "required": true,
+        "template_path": "concrete_method"
       },
       {
         "key": "c8",
         "label": "Проектный класс прочности бетона В / Нормируемый (В норм)",
         "kind": "reference",
         "source": "item.c8",
-        "required": true
+        "required": true,
+        "template_path": "strength_voltage_concrete"
       },
       {
         "key": "c9",
         "label": "Прочность бетона в промежуточном возрасте при распалубке или нагружении конструкций (% Внорм) / Фактический (Вф) в проектном возрасте в контролируемой партии конструкций по результатам сплошного неразрушающего контроля прочности по ГОСТ 18105",
         "kind": "reference",
         "source": "item.c9",
-        "required": true
+        "required": true,
+        "template_path": "requirements_strength_voltage"
       },
       {
         "key": "c10",
         "label": "Средняя прочность серий контрольных образцов бетона (МПа) по результатам входного контроля прочности бетонной смеси по пунктам 6.2 и 7.2.4 ГОСТ 18105-2018 или по пункту 8.2.4 ГОСТ 18105-2018 / Нормируемая",
         "kind": "reference",
         "source": "item.c10",
-        "required": true
+        "required": true,
+        "template_path": "requirements_strength_concrete"
       },
       {
         "key": "c11",
         "label": "Подписи ответственных исполнителей работ по бетонированию и контролю качества / Фактическая в контролируемой партии конструкций по результатам сплошного неразрушающего контроля прочности по ГОСТ 18105",
         "kind": "reference",
         "source": "item.c11",
-        "required": false
+        "required": false,
+        "template_path": "requirements_strength_voltage_2"
       },
       {
         "key": "c12",
         "label": "В промежуточном возрасте",
         "kind": "reference",
         "source": "item.c12",
-        "required": true
+        "required": true,
+        "template_path": "voltage"
       },
       {
         "key": "c13",
         "label": "В проектном возрасте",
         "kind": "reference",
         "source": "item.c13",
-        "required": true
+        "required": true,
+        "template_path": "voltage_design_documentation"
       },
       {
         "key": "c14",
         "label": "Графа 14",
         "kind": "reference",
         "source": "item.c14",
-        "required": true
+        "required": true,
+        "template_path": "value"
       }
-    ]
+    ],
+    "template_path": "form.date_3"
   }
 ]

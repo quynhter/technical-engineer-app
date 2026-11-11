@@ -6,49 +6,56 @@
     "required": true,
     "value": null,
     "value_type": "date",
-    "format": "date_ru"
+    "format": "date_ru",
+    "template_path": "form.date_t7_r4"
   },
   {
     "key": "city",
     "label": "Город",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "installer_org",
     "label": "Электромонтажная организация",
     "kind": "reference",
     "required": true,
-    "source": "organizations.installer.full_name"
+    "source": "organizations.installer.full_name",
+    "template_path": "organisations.installer.full_name"
   },
   {
     "key": "customer_org",
     "label": "Заказчик",
     "kind": "reference",
     "required": true,
-    "source": "organizations.customer.full_name"
+    "source": "organizations.customer.full_name",
+    "template_path": "organisations.customer.full_name"
   },
   {
     "key": "division",
     "label": "Подразделение",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.division"
   },
   {
     "key": "object_name",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "site",
     "label": "Участок",
     "kind": "literal",
     "required": false,
-    "value": null
+    "value": null,
+    "template_path": "form.site"
   },
   {
     "key": "day",
@@ -56,7 +63,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "day_2digits"
+    "format": "day_2digits",
+    "template_path": "document.date.day"
   },
   {
     "key": "month",
@@ -64,7 +72,8 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "month_genitive_ru"
+    "format": "month_genitive_ru",
+    "template_path": "document.date.month"
   },
   {
     "key": "year",
@@ -72,70 +81,80 @@
     "kind": "reference",
     "required": true,
     "source": "act.date_signed",
-    "format": "year_4digits"
+    "format": "year_4digits",
+    "template_path": "document.date.year"
   },
   {
     "key": "t1_r0_c1",
     "label": "Мощность",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.power"
   },
   {
     "key": "t1_r0_c3",
     "label": "Мощность кВА, ВН",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_power"
   },
   {
     "key": "t1_r1_c1",
     "label": "СН",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage"
   },
   {
     "key": "t1_r1_c3",
     "label": "СН кВ, НН",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_2"
   },
   {
     "key": "t2_r0_c1",
     "label": "Завод-изготовитель",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation_fibre"
   },
   {
     "key": "t2_r0_c3",
     "label": "Завод-изготовитель , тип",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisation_type_fibre"
   },
   {
     "key": "t2_r1_c1",
     "label": "заводской номер",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_organisation"
   },
   {
     "key": "t2_r1_c3",
     "label": "заводской номер , дата выпуска",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_number_organisation"
   },
   {
     "key": "t2_r2_c1",
     "label": "дата прибытия на площадку",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.date_location"
   },
   {
     "key": "t3_r0_c1",
@@ -143,7 +162,8 @@
     "kind": "signatory",
     "required": true,
     "role": "customer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t3_r2_c1",
@@ -151,153 +171,175 @@
     "kind": "signatory",
     "required": true,
     "role": "installer",
-    "presentation": "position_org_fio"
+    "presentation": "position_org_fio",
+    "template_path": "representatives.installer.details"
   },
   {
     "key": "t4_r1_c1",
     "label": "трансформатор по перечню ГОСТ Р 52719-2007 (п. 6.8.2) (есть, нет)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.requirements"
   },
   {
     "key": "t4_r3_c1",
     "label": "Отсутствуют документы (наименование документов)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibre"
   },
   {
     "key": "t4_r5_c2",
     "label": "б) трансформатор (укомплектован, не полностью укомплектован",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.completeness_fibre"
   },
   {
     "key": "t4_r7_c0",
     "label": "1. Комплектность",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.completeness"
   },
   {
     "key": "t4_r9_c0",
     "label": "1. Комплектность",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.completeness_2"
   },
   {
     "key": "t4_r11_c1",
     "label": "К трансформатору не поставлены:",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.system"
   },
   {
     "key": "t5_r0_c0",
     "label": "Результаты внешнего осмотра трансформатора",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test"
   },
   {
     "key": "t6_r0_c0",
     "label": "(отсутствие течи масла из бака трансформатора и узлов, заполненных маслом)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.oil_fibre"
   },
   {
     "key": "t7_r1_c1",
     "label": "пути и др.) выполнена согласно проекта №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_design_documentation"
   },
   {
     "key": "t7_r2_c0",
     "label": "(приняты, не приняты)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.test_2"
   },
   {
     "key": "t7_r4_c1",
     "label": "монтажной организацией по акту №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_organisation_2"
   },
   {
     "key": "t8_r0_c1",
     "label": "Не закончено строительством (перечислить неоконченные работы)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.description_defects_date"
   },
   {
     "key": "t8_r2_c0",
     "label": "Акт о приёмке и монтаже силового трансформатора",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.fibre_2"
   },
   {
     "key": "t9_r0_c0",
     "label": "(наименование стандарта, ТУ, пробивное напряжение)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.requirements_voltage_fibre"
   },
   {
     "key": "t9_r2_c1",
     "label": "всего требуется масла (с учётом расхода на технологические нужды)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.oil_flow_rate"
   },
   {
     "key": "t10_r0_c1",
     "label": "имеется в трансформаторе",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_3"
   },
   {
     "key": "t10_r1_c1",
     "label": "недостающее количество масла",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.missing_oil_quantity_oil_quantity"
   },
   {
     "key": "t10_r2_c1",
     "label": "будет поставлено заказчиком (дата)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.customer_date_system"
   },
   {
     "key": "t10_r2_c2",
     "label": "будет поставлено заказчиком",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.organisations_customer_full_name"
   },
   {
     "key": "t11_r0_c0",
     "label": "Заключение о пригодности к монтажу",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.conclusion"
   },
   {
     "key": "t12_r4_c1",
     "label": "Трансформатор принят на хранениематериально ответственным лицом (фамилия, и., о., подпись)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.material_custodian.details"
   }
 ]

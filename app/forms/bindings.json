@@ -958,8 +958,8 @@
   "СП_72_Д": {
     "t1_r0_c7": {
       "kind": "reference",
-      "source": "field_values.t1_r0_c5",
-      "label": "Повтор сведений"
+      "source": "act.date_signed",
+      "format": "year_4digits"
     },
     "t3_r0_c0": {
       "kind": "signatory",

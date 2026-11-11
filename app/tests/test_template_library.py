@@ -22,6 +22,46 @@ def source_path(form):
 
 
 class TemplateLibraryTests(unittest.TestCase):
+    def test_insulation_creation_headers_for_new_and_registered_forms(self):
+        from copy import deepcopy
+        from itd.form_catalog import available_forms
+
+        code = 'СП_77_А_16'
+        expected = ['№ п/п', 'Маркировка провода (кабеля) по чертежу, N позиции',
+                    'Марка провода (кабеля)', 'Кол-во и сечение жил, мм2',
+                    'Сопротивление изоляции МОм / между проводами (жилами)',
+                    'Сопротивление изоляции МОм / относи-тельно земли', 'Примечание']
+
+        def columns(form):
+            return next(f for f in form['fields'] if f['key'] == 'rows_0_33')['fields']
+
+        with tempfile.TemporaryDirectory() as tmp:
+            db = Path(tmp) / 'test.db'
+            initialize(db)
+            with connect(db) as conn:
+                obj = add_object(conn, 'Проверочный объект')
+                project = add_project(conn, object_id=obj, section_code='АТХ', code='ТЕСТ', name='Автоматизация')
+                new = next(f for f in available_forms(conn, project) if f['code'] == code)
+                self.assertEqual([c['label'] for c in columns(new)], expected)
+                old = deepcopy(new['fields'])
+                table = next(f for f in old if f['key'] == 'rows_0_33')
+                for index in (0, 1, 2, 3, 6):
+                    table['fields'][index]['label'] = f'Графа {index + 1}'
+                table['fields'][2]['label'] = 'Моя марка кабеля'
+                table['value'] = [{'c1': '1', 'c3': 'КВВГ'}]
+                register_form(conn, code=code, name='Протокол', fields=old)
+                stored = conn.execute('SELECT fields FROM document_types WHERE code=?', (code,)).fetchone()[0]
+                registered = next(f for f in available_forms(conn, project) if f['code'] == code)
+                expected[2] = 'Моя марка кабеля'
+                self.assertEqual([c['label'] for c in columns(registered)], expected)
+                ui_table = next(f for f in registered['ui_fields'] if f['key'] == 'rows_0_33')
+                self.assertFalse(any(c['label'].startswith('Графа ') for c in ui_table['fields']))
+                repaired = next(f for f in registered['fields'] if f['key'] == 'rows_0_33')
+                self.assertEqual(repaired['value'], table['value'])
+                self.assertEqual([{k: v for k, v in c.items() if k != 'label'} for c in repaired['fields']],
+                                 [{k: v for k, v in c.items() if k != 'label'} for c in table['fields']])
+                self.assertEqual(conn.execute('SELECT fields FROM document_types WHERE code=?', (code,)).fetchone()[0], stored)
+
     def test_insulation_protocol_headers_follow_the_seven_data_columns(self):
         from itd.field_ui import table_headers
 
@@ -187,13 +227,22 @@ class TemplateLibraryTests(unittest.TestCase):
         for form in excel:
             with self.subTest(code=form['code']):
                 doc = Document(ROOT / form['template'])
-                if SOURCE_DIR:
+                reflowed = form['code'].startswith('СП_77_')
+                if reflowed:
+                    self.assertGreater(len(doc.paragraphs), 1)
+                    for table in doc.tables:
+                        self.assertFalse(table.autofit)
+                    if any(f['kind'] == 'table' for f in json.loads((ROOT / form['fields']).read_text())):
+                        self.assertTrue(doc.tables)
+                elif SOURCE_DIR:
                     sheet = load_workbook(source_path(form)).active
                     self.assertEqual(len(doc.tables[0].columns), sheet.max_column)
-                self.assertTrue(doc.tables[0]._tbl.xpath('.//w:gridSpan'))
+                if not reflowed:
+                    self.assertTrue(doc.tables[0]._tbl.xpath('.//w:gridSpan'))
                 self.assertEqual(len(doc.inline_shapes), 0)
                 section = doc.sections[0]
                 if SOURCE_DIR:
+                    sheet = load_workbook(source_path(form)).active
                     self.assertEqual(section.page_width > section.page_height, sheet.page_setup.orientation == 'landscape')
                 fields = json.loads((ROOT / form['fields']).read_text())
                 self.assertTrue(fields)

@@ -5,7 +5,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "day_2digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.day"
   },
   {
     "key": "date_0_5",
@@ -13,7 +14,8 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "month_genitive_ru",
-    "required": true
+    "required": true,
+    "template_path": "document.date.month"
   },
   {
     "key": "date_0_7",
@@ -21,56 +23,64 @@
     "kind": "reference",
     "source": "act.date_signed",
     "format": "year_4digits",
-    "required": true
+    "required": true,
+    "template_path": "document.date.year"
   },
   {
     "key": "t0_r0_c1",
     "label": "г.",
     "kind": "reference",
     "required": true,
-    "source": "project.city"
+    "source": "project.city",
+    "template_path": "project.city"
   },
   {
     "key": "t1_r0_c0",
     "label": "Объект",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t2_r0_c0",
     "label": "(наименование организации, должность, фамилия, инициалы)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer.details"
   },
   {
     "key": "t3_r0_c0",
     "label": "(наименование организации, должность, фамилия, инициалы)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.builder.details"
   },
   {
     "key": "t4_r0_c0",
     "label": "(наименование организации, должность, фамилия, инициалы)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.network_operator.details"
   },
   {
     "key": "t4_r2_c1",
     "label": "составили настоящий акт о том, что на участке тепловых сетей от камеры (пикета) №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location_number_fibre"
   },
   {
     "key": "t5_r1_c1",
     "label": "таблице, на участке до камеры (пикета, шахты) №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.location_number"
   },
   {
     "key": "rows_6_4",
@@ -84,43 +94,50 @@
         "label": "Номер компенсатора по проектной схеме",
         "kind": "reference",
         "source": "item.c1",
-        "required": true
+        "required": true,
+        "template_path": "joint_number_design_documentation"
       },
       {
         "key": "c2",
         "label": "Номер чертежа",
         "kind": "reference",
         "source": "item.c2",
-        "required": true
+        "required": true,
+        "template_path": "number_design_documentation"
       },
       {
         "key": "c3",
         "label": "Тип компенсатора",
         "kind": "reference",
         "source": "item.c3",
-        "required": true
+        "required": true,
+        "template_path": "joint_type"
       },
       {
         "key": "c4",
         "label": "Величина растяжки, мм / проектная",
         "kind": "reference",
         "source": "item.c4",
-        "required": true
+        "required": true,
+        "template_path": "design_documentation"
       },
       {
         "key": "c5",
         "label": "фактическая",
         "kind": "reference",
         "source": "item.c5",
-        "required": true
+        "required": true,
+        "template_path": "value"
       }
-    ]
+    ],
+    "template_path": "form.certificate_voltage_location"
   },
   {
     "key": "t7_r0_c1",
     "label": "Растяжка компенсаторов проведена при температуре окружающего воздуха",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.temperature_joint_fibre"
   }
 ]

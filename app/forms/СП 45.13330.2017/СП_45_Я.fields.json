@@ -4,118 +4,135 @@
     "label": "освидетельствования и приёмки сваи №…",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.certificate_number_fibre"
   },
   {
     "key": "t0_r0_c1",
     "label": "Наименование строительной организации",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "organisations.builder.full_name"
   },
   {
     "key": "t0_r1_c1",
     "label": "Наименование строительного объекта",
     "kind": "reference",
     "required": true,
-    "source": "object.name"
+    "source": "object.name",
+    "template_path": "object.name"
   },
   {
     "key": "t1_r0_c0",
     "label": "(представитель застройщика (технического заказчика, эксплуатирующей организации или регионального оператора) по вопросам строительного контроля)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.customer_control.details"
   },
   {
     "key": "t1_r2_c0",
     "label": "(представитель лица, осуществляющего строительство, по вопросам строительного контроля (специалист по организации строительства))",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.builder_control.details"
   },
   {
     "key": "t1_r4_c0",
     "label": "(представитель лица, выполнившего работы, подлежащие освидетельствованию)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "representatives.work_performer.details"
   },
   {
     "key": "t2_r0_c1",
     "label": "установили, что свая №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.number_fibre"
   },
   {
     "key": "t3_r0_c2",
     "label": "Работы по свае выполнены с отметки",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.elevation_work"
   },
   {
     "key": "t3_r1_c2",
     "label": "Скважина пробурена на глубину, м",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_depth"
   },
   {
     "key": "t3_r2_c2",
     "label": "Грунт в основании подошвы сваи",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_welding_fibre"
   },
   {
     "key": "t3_r3_c2",
     "label": "Скважина заполнена бетоном класса",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.voltage_concrete_class"
   },
   {
     "key": "t3_r4_c2",
     "label": "Размеры сваи (диаметр, длина), м",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.dimensions_diameter_length"
   },
   {
     "key": "t4_r0_c2",
     "label": "Акт освидетельствования и приемки скважины сваи №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.certificate_voltage_number"
   },
   {
     "key": "t4_r1_c2",
     "label": "Акт освидетельствования арматурного каркаса сваи №",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.certificate_number_fibre_2"
   },
   {
     "key": "t5_r1_c0",
     "label": "Представитель лица, осуществляющего строительство, по вопросам строительного контроля (специалист по организации строительства)",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_builder_control_details"
   },
   {
     "key": "t5_r3_c0",
     "label": "Представитель лица, выполнившего работы, подлежащие освидетельствованию",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.representatives_work_performer_details"
   },
   {
     "key": "t5_r5_c0",
     "label": "r0_c2 }}2.Акт освидетельствования арматурного каркаса сваи №{{ t4_r1_c2 }}3.Документ о качестве на бентонит (полимерный порошок).4.Документ о качестве на арматуру.5.Ведомость контроля качества бетона.",
     "kind": "literal",
     "required": true,
-    "value": null
+    "value": null,
+    "template_path": "form.certificate_quality_documents_concrete"
   }
 ]
