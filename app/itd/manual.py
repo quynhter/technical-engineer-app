@@ -271,6 +271,12 @@ def execute(c,project_id,action,data):
     if action=='act-status':
         from .ojr import sign_act
         return sign_act(c,project_id,data)
+    if action in ('document-version-ensure', 'document-version-save'):
+        from . import document_versions
+        same_project(c, 'acts', data['act_id'], project_id)
+        if action == 'document-version-ensure':
+            return document_versions.ensure(c, project_id, data['act_id'])
+        return document_versions.save(c, project_id, data)
 
     if action=='assign':
         from .participants import assign

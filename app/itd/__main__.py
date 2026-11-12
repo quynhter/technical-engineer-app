@@ -28,6 +28,7 @@ def main(argv=None):
     from . import __version__
     parser.add_argument("--version", action="version", version=__version__)
     parser.add_argument("--db", type=Path, default=default_database())
+    parser.add_argument('--itd-root', type=Path, help='Явная папка ИТД выбранной БД (как в настройках веб-сервиса)')
     parser.add_argument("--agent", action="store_true", help="Отметить вызов из ИИ-агента в журнале")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("init", help="Применить миграции")
@@ -191,10 +192,13 @@ def main(argv=None):
     recovery.add_argument("--operation-id", type=int, required=True)
     selecting = commands.add_parser("release-select")
     selecting.add_argument("--release-id", type=int, required=True)
+    unselecting = commands.add_parser('release-unselect', help='Убрать выпуск из выдачи без удаления файла и истории')
+    unselecting.add_argument('--release-id', type=int, required=True)
     publishing = commands.add_parser("release-publish", help="Продолжить публикацию сохранённого выпуска после сбоя")
     publishing.add_argument("--release-id", type=int, required=True)
     publishing.add_argument("--output", type=Path, required=True)
     package = commands.add_parser("package-export")
+    package.add_argument('--include-originals', action='store_true', help='Добавить связанные оригиналы с проверкой SHA-256')
     package.add_argument("--project-id", type=int, required=True)
     package.add_argument("--output", type=Path, required=True)
     reconciliation = commands.add_parser("release-reconcile")
@@ -233,6 +237,9 @@ def main(argv=None):
     comparison.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     agent_run = vars(args).pop('agent')
+    from .paths import itd_root
+    output_root = vars(args).pop('itd_root')
+    root_token = itd_root.set(output_root.resolve()) if output_root else None
     agent_log = None
     try:
         if agent_run:
@@ -428,6 +435,9 @@ def main(argv=None):
                     from .releases import select_release
                     select_release(connection, args.release_id)
                     result = {"selected": args.release_id}
+                elif args.command == 'release-unselect':
+                    from .releases import unselect_release
+                    result = unselect_release(connection,args.release_id)
                 elif args.command == "release-reconcile":
                     from .releases import reconcile, plan_relocations
                     if args.from_relocations and args.apply:
@@ -435,7 +445,7 @@ def main(argv=None):
                     result = plan_relocations(connection, read_json(args.data)) if args.from_relocations else reconcile(connection, read_json(args.data), apply=args.apply)
                 elif args.command == "package-export":
                     from .releases import export_package
-                    result = export_package(connection, args.project_id, args.output)
+                    result = export_package(connection, args.project_id, args.output, include_originals=args.include_originals)
                 elif args.command == "project-activate":
                     if not connection.execute("SELECT 1 FROM projects WHERE id=?", (args.project_id,)).fetchone():
                         raise ValueError("Раздел не найден")
@@ -505,6 +515,9 @@ def main(argv=None):
         if agent_log:
             agent_log.warning('Команда агента %s завершилась ошибкой %s', args.command, type(error).__name__)
         parser.exit(1, f"Ошибка: {error}\n")
+    finally:
+        if root_token is not None:
+            itd_root.reset(root_token)
     if agent_log:
         agent_log.info('Команда агента %s завершена', args.command)
     print(json.dumps(result, ensure_ascii=False, indent=2))

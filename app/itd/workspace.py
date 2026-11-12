@@ -22,6 +22,7 @@ DOC_ROLES = {'customer': 'Заказчик', 'builder': 'Подрядчик', 'd
              'builder_control': 'Строительный контроль подрядчика',
              'author_supervision': 'Авторский надзор', 'developer': 'Застройщик'}
 DOC_ROLES.update(installer='Монтажная организация',recipient='Получатель',consignor='Отправитель',
+                 construction_party='Генподрядчик (заказчик)',
                  work_performer='Исполнитель работ',foreman='Производитель работ',general_contractor='Генподрядчик',
                  commissioner='Пусконаладочная организация',inspector='Инспектор',worker='Исполнитель',
                  network_operator='Эксплуатирующая организация')

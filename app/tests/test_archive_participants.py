@@ -112,6 +112,29 @@ class ArchiveParticipantTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 import_file(connection, archive_root=self.archive, source=source, doc_type="order", title="Приказ")
 
+    def test_reimport_recovers_missing_original_and_keeps_metadata(self):
+        source=self.root/'Приказ.txt';source.write_bytes(b'original')
+        with connect(self.path) as c:
+            first=import_file(c,archive_root=self.archive,source=source,doc_type='order',title='Исходный приказ')
+            row=c.execute('SELECT * FROM attachments WHERE id=?',(first['id'],)).fetchone()
+            stored=archived_path(self.archive,row['storage_path']);stored.unlink()
+            result=import_file(c,archive_root=self.archive,source=source,doc_type='other',title='Другое название')
+            self.assertEqual(result['id'],first['id'])
+            self.assertEqual(stored.read_bytes(),b'original')
+            after=c.execute('SELECT * FROM attachments WHERE id=?',(first['id'],)).fetchone()
+            self.assertEqual(dict(row),dict(after))
+
+    def test_long_source_name_is_shortened_to_available_path_budget(self):
+        from itd.archive import publish_project_file
+        from itd.layout import check_path
+        source=self.root/('Длинное название приказа '*5+'.txt');source.write_bytes(b'original')
+        with connect(self.path) as c:
+            item=import_file(c,archive_root=self.archive,source=source,doc_type='order',title='Приказ')
+            target=self.root/publish_project_file(c,attachment_id=item['id'],project_id=self.project,archive_root=self.archive)
+            check_path(target)
+            self.assertEqual(target.read_bytes(),b'original')
+            self.assertTrue(target.name.endswith('.txt'))
+
     def test_one_file_links_to_multiple_projects(self):
         source = self.root / "Паспорт.pdf"
         source.write_bytes(b"passport")

@@ -48,6 +48,8 @@ def apply_form_defaults(code, fields):
         if code == 'СП_72_Д' and field['key'] == 't1_r0_c7' and field.get('source') == 'field_values.t1_r0_c5':
             field = {**field, 'source': 'act.date_signed', 'format': 'year_4digits'}
         binding=bindings.get(field['key'])
+        if code == 'СП_77_А_23' and field['key'] in ('t0_r1_c0', 't0_r2_c0') and field.get('value') == 'Приложение А.23':
+            field = {**field, 'value': None}
         if binding and field['kind']=='literal' and field.get('value') in (None,'') and field.get('state') not in ('hidden','not_applicable'):
             field={k:v for k,v in field.items() if k not in ('value','source','role','template','presentation')}
             field={**field,**binding}

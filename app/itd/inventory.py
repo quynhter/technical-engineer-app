@@ -30,8 +30,6 @@ def balances(c, project_id):
         received=None if unknown else math.fsum(s['quantity'] for s in valid)
         used=math.fsum(x[0] for x in c.execute('SELECT quantity FROM work_materials WHERE resource_id=?', (r['id'],)))
         reserved=math.fsum(supply_used(c,s['id'])[1] for s in valid)
-        allocated=math.fsum(row[0] for row in c.execute(
-            'SELECT quantity FROM work_material_allocations WHERE resource_id=?', (r['id'],)))
         delivered=list(c.execute("SELECT * FROM supplies WHERE project_id=? AND resource_id=? AND status!='void'",(project_id,r['id'])))
         controlled=[s for s in delivered if s['status']=='accepted' and controls.get((r['id'],s['id']))=='accepted']
         def total(items):
@@ -40,7 +38,7 @@ def balances(c, project_id):
         result.append({**dict(r),'delivered':total(delivered),'control_accepted':total(controlled),
                        'awaiting_control':len(delivered)-len(controlled)-len(rejected),'control_rejected':len(rejected),
                        'received':received,'consumed':used,'reserved':reserved,
-                       'remaining':None if received is None else received-allocated-reserved,
+                       'remaining':None if received is None else received-used-reserved,
                        'unknown_receipts':unknown})
     return result
 

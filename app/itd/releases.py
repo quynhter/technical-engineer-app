@@ -206,6 +206,17 @@ def recover(connection, operation_id):
         raise
 
 
+def unselect_release(connection, release_id):
+    """Убрать выпуск из комплекта, сохранив файл и всю историю, даже если файл утрачен."""
+    row = release_row(connection, release_id)
+    if connection.execute("SELECT 1 FROM release_operations WHERE state='prepared' AND release_id=?",(release_id,)).fetchone():
+        raise ValueError('Сначала завершите перенос')
+    connection.execute('UPDATE releases SET selected=0 WHERE id=?',(release_id,))
+    log_event(connection,'release-unselect',entity='releases',entity_id=release_id,
+              before={'selected':row['selected']},after={'selected':0})
+    return {'release_id':release_id,'selected':False}
+
+
 def select_release(connection, release_id):
     row=release_row(connection,release_id)
     path=actual_path(connection,row['path'])
@@ -282,7 +293,7 @@ def publish(connection, release_id, target):
     return {'release_id':release_id,'output':str(target),'selected':True}
 
 
-def export_package(connection, project_id, output):
+def export_package(connection, project_id, output, *, include_originals=False):
     output=Path(output).resolve()
     if output.exists():
         raise FileExistsError('Архив уже существует')
@@ -308,6 +319,20 @@ def export_package(connection, project_id, output):
         seen.add(member.casefold())
         manifest.append({'release_id':r['id'],'title':r['title'],'file':member,'sha256':r['sha256'],'mode':r['mode']})
     manifest.sort(key=lambda m:(m['file'].split('/')[0],m['release_id']))
+    originals = []
+    if include_originals:
+        from .registry import registry_rows
+        from .archive import archived_path
+        from .layout import path_component
+        database = Path(connection.execute('PRAGMA database_list').fetchone()[2])
+        ids = {item['id'] for item in registry_rows(connection, project_id) if item['entity'] == 'attachment'}
+        for identity in sorted(ids):
+            item = connection.execute('SELECT * FROM attachments WHERE id=?', (identity,)).fetchone()
+            source = archived_path(database.parent / 'archive', item['storage_path'])
+            if not source.is_file() or digest(source) != item['sha256']:
+                raise ValueError(f'Целостность оригинала не подтверждена: {item["original_name"]}')
+            member = '02_Приложения/' + str(identity) + '_' + path_component(item['original_name'], preserve_end=True)
+            originals.append({'attachment_id': identity, 'file': member, 'sha256': item['sha256'], 'title': item['title']})
     output.parent.mkdir(parents=True,exist_ok=True)
     with output.open('xb') as handle:
         try:
@@ -315,12 +340,15 @@ def export_package(connection, project_id, output):
                 for item in manifest:
                     row=release_row(connection,item['release_id'])
                     z.write(actual_path(connection,row['path']),item['file'])
-                z.writestr('manifest.json',json.dumps({'project_id':project_id,'releases':manifest},ensure_ascii=False,indent=2))
+                for item in originals:
+                    attachment = connection.execute('SELECT storage_path FROM attachments WHERE id=?', (item['attachment_id'],)).fetchone()
+                    z.write(archived_path(database.parent / 'archive', attachment['storage_path']), item['file'])
+                z.writestr('manifest.json',json.dumps({'project_id':project_id,'releases':manifest,'attachments':originals},ensure_ascii=False,indent=2))
         except Exception:
             output.unlink(missing_ok=True)
             raise
     log_event(connection,'package-export',after={'project_id':project_id,'output':str(output),'releases':manifest})
-    return {'output':str(output),'releases':manifest,'note':'Только выбранные сформированные выпуски; исходные приложения в ZIP не добавляются.'}
+    return {'output':str(output),'releases':manifest,'attachments':originals,'note':'Выбранные выпуски и связанные оригиналы.' if include_originals else 'Только выбранные сформированные выпуски; исходные приложения в ZIP не добавляются.'}
 
 
 def reconcile(connection, items, *, apply=False):

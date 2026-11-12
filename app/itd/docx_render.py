@@ -50,6 +50,12 @@ def render_docx(template: str | Path, context: dict, output: str | Path, *, draf
     environment.globals.clear()
     document = DocxTemplate(template)
     document.render(context, jinja_env=environment, autoescape=True)
+    for person in context.get('_additional_signatories', []):
+        paragraph = document.docx.add_paragraph()
+        paragraph.paragraph_format.keep_together = True
+        paragraph.add_run(person['role'] + ': ').bold = True
+        paragraph.add_run(', '.join(filter(None, [person['position'], person['organization'], person['fio'], person['authority']])))
+        paragraph.add_run('    ____________ (подпись)')
     output.parent.mkdir(parents=True, exist_ok=True)
     handle, temp_name = tempfile.mkstemp(prefix=".itd-", suffix=".docx", dir=output.parent)
     os.close(handle)

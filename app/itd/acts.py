@@ -158,6 +158,21 @@ def build_context(connection, act_id, *, draft=True):
     fields = apply_form_defaults(act["act_type"], merge_fields(json.loads(form["fields"]), json.loads(act["fields"])))
     diagnostics = []
     context, missing = resolve_fields(fields, roots, draft=draft, diagnostics=diagnostics)
+    # Дополнительные участники выбираются в карточке, хотя исходный бланк
+    # обычно не содержит строк для них. Передаём только явный выбор акта.
+    from .workspace import OTHER_SIGNER_ROLES
+    explicit_people = act_people(connection, act_id)
+    additional_signatories = [
+        {'role': label, 'fio': short_fio(person), 'position': person['position'],
+         'organization': person['organization'].get('short_name') or person['organization']['full_name'],
+         'authority': person.get('order_doc') or ''}
+        for role, label in OTHER_SIGNER_ROLES.items()
+        if (person := explicit_people.get(role)) and not any(
+            (f.get('role') == role or f.get('source', '').startswith('signatories.' + role + '.'))
+            and f.get('state') not in ('hidden', 'not_applicable') for f in fields)
+    ]
+    if additional_signatories:
+        context['_additional_signatories'] = additional_signatories
     from .titles import CODE, prepare_context
     if act["act_type"] == CODE:
         prepare_context(context)

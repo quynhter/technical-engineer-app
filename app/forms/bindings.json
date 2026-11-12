@@ -2121,18 +2121,17 @@
   },
   "СП_77_А_23": {
     "t0_r1_c0": {
-      "kind": "literal",
-      "value": "Приложение А.23",
-      "label": "Обозначение формы",
-      "readonly": true,
-      "required": false
+      "kind": "reference",
+      "source": "organizations.customer.full_name",
+      "label": "Организация, утверждающая акт",
+      "required": true
     },
     "t0_r2_c0": {
-      "kind": "literal",
-      "value": "Приложение А.23",
-      "label": "Обозначение формы",
-      "readonly": true,
-      "required": false
+      "kind": "signatory",
+      "role": "commission_chair",
+      "template": "{signatory.position} {signatory.fio}",
+      "label": "Представитель, утверждающий акт",
+      "required": true
     },
     "t3_r0_c1": {
       "kind": "reference",

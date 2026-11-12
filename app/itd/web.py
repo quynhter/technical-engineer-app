@@ -389,7 +389,7 @@ class Handler(BaseHTTPRequestHandler):
                     pid=int(query['project_id'][0])
                     with tempfile.TemporaryDirectory(prefix='itd-package-') as folder:
                         target=Path(folder)/'ИТД.zip'
-                        export_package(c,pid,target)
+                        export_package(c,pid,target,include_originals=True)
                         self.send_bytes(target.read_bytes(),'application/zip',filename='ИТД.zip');return
                 else:
                     self.send_json({'error': 'Страница не найдена'}, 404)

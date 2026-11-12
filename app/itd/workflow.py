@@ -330,7 +330,11 @@ def report(c, project_id):
             if f['unit']!=row(c,'resources',f['resource_id'])['unit']: issue('fact_unit_changed',fact_id=f['id'])
             if act['date_signed'] and f['end_date'] and act['date_signed'] < f['end_date']: issue('act_signed_before_work_end',act_id=act['id'],fact_id=f['id'])
         missing = sorted(resources-{f['resource_id'] for f in facts if f['status']=='confirmed'})
-        if missing: issue('act_facts_missing',act_id=act['id'],resource_ids=missing)
+        # Передача оборудования и электрические измерения могут предшествовать
+        # монтажу. Состав ресурсов этих форм не является заявлением о монтаже.
+        preinstallation_forms = {'СП_77_А_3', 'СП_77_А_4', 'СП_77_А_16', 'СП_77_А_17'}
+        if missing and act['act_type'] not in preinstallation_forms:
+            issue('act_facts_missing',act_id=act['id'],resource_ids=missing)
         from .acts import build_context
         try:
             context = build_context(c,act['id'],draft=True)

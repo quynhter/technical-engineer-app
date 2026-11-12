@@ -98,6 +98,12 @@ def registry_rows(connection, project_id, *, registry_act_id=None, detailed=Fals
     for journal in automatic_journals(connection, project_id):
         if journal["project_id"] != project_id:
             continue
+        # При наличии единственного сохранённого одноимённого экземпляра
+        # показываем его вместо второй строки живого представления без листов.
+        snapshots = [r for r in rows if r['entity'] == 'attachment' and r['name'] == journal['name']]
+        if len(snapshots) == 1:
+            snapshots[0]['group'] = 'journal'
+            continue
         rows.append({"entity": "journal", "id": journal["kind"], "name": journal["name"],
                      "number": "", "date": journal["date"], "sheets_count": None,
                      "note": "" if journal["date"] else "Дата не указана", "group": "journal"})

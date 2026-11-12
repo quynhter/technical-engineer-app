@@ -13,6 +13,16 @@ HAS_DOCXTPL = all(importlib.util.find_spec(module) is not None
 
 @unittest.skipUnless(HAS_DOCXTPL, "Нужны зависимости requirements.txt")
 class DocxRenderTests(unittest.TestCase):
+    def test_explicit_other_person_is_printed_with_authority(self):
+        from docx import Document
+        document=Document();document.add_paragraph('Акт {{ city }}');document.save(self.template)
+        render_docx(self.template,{'city':'Казань','_additional_signatories':[
+            {'role':'Иное лицо 1','fio':'Тестов Т. Т.','position':'Метролог',
+             'organization':'Заказчик','authority':'Приказ №ТЕСТ'}]},self.output)
+        text='\n'.join(p.text for p in Document(self.output).paragraphs)
+        for value in ('Иное лицо 1','Тестов Т. Т.','Приказ №ТЕСТ','(подпись)'):
+            self.assertIn(value,text)
+
     def test_sp77_passport_keeps_grid_with_empty_and_long_legacy_values(self):
         from docx import Document
         root = Path(__file__).resolve().parents[2]

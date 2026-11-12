@@ -56,6 +56,11 @@ def import_file(connection, *, archive_root, source, doc_type, title, doc_num=No
         existing = connection.execute("SELECT * FROM attachments WHERE sha256=?", (sha,)).fetchone()
         if existing:
             stored = archived_path(root, existing["storage_path"])
+            if not stored.exists():
+                # Повторно предоставленный оригинал с тем же хешем может
+                # восстановить потерянную копию без изменения реквизитов.
+                stored.parent.mkdir(parents=True, exist_ok=True)
+                os.link(temp, stored)
             if not stored.is_file() or digest(stored) != sha:
                 raise ValueError("Архивная копия отсутствует или повреждена")
             # Повторный импорт не меняет реквизиты уже зарегистрированного файла.
@@ -114,14 +119,17 @@ def publish_project_file(connection, *, attachment_id, project_id, archive_root)
     if not folder.resolve().is_relative_to(root.resolve()):
         raise ValueError('Каталог исходных файлов находится вне корня ИТД')
     folder.mkdir(parents=True,exist_ok=True)
-    name = path_component(item['original_name'],preserve_end=True)
+    budget = min(180, 239 - len(str(folder).encode('utf-16-le')) // 2)
+    if budget < 24:
+        raise ValueError('Сократите путь к папке ИТД: для имени исходного файла не осталось места')
+    name = path_component(item['original_name'],preserve_end=True,max_bytes=budget)
     target = folder / name
     # Не затираем одноимённый файл другой редакции или пользовательские изменения.
     if target.is_symlink():
         raise ValueError('Вместо исходного файла обнаружена ссылка')
     if target.exists() and (not target.is_file() or digest(target)!=item['sha256']):
         original = Path(name)
-        name = path_component(original.stem+' ['+item['sha256'][:12]+']'+original.suffix,preserve_end=True)
+        name = path_component(original.stem+' ['+item['sha256'][:12]+']'+original.suffix,preserve_end=True,max_bytes=budget)
         target = folder / name
     check_path(target)
     if target.is_symlink() or not target.resolve().is_relative_to(root.resolve()):

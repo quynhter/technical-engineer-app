@@ -212,6 +212,19 @@ def prepare_generation(c,aid):
         create(c,pid,aid,{'id':current['id'],'revision':current['revision']})
 
     current=versions(c,pid,aid)[-1]
+    # Общие операции CLI могут менять выбор вне карточки версии. Состав
+    # новой печати и её карточки должен совпадать, включая необязательные роли.
+    from .ojr import act_people
+    explicit = act_people(c, aid)
+    primary = {}
+    for signer in current['signers']:
+        primary.setdefault(signer['role'], signer['person_id'])
+    if explicit and primary != {role: person['id'] for role, person in explicit.items()}:
+        selected = [{'role': role, 'person_id': person['id'], 'person': person,
+                     'signed': False, 'signed_date': None} for role, person in explicit.items()]
+        c.execute('UPDATE document_versions SET signers_json=?,revision=revision+1 WHERE id=?',
+                  (json.dumps(selected,ensure_ascii=False),current['id']))
+        current=versions(c,pid,aid)[-1]
     # Неоднозначная роль остаётся пустой; единственный участник подставляется явно.
     if not current['signers']:
         from .ojr import act_people

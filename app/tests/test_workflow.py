@@ -66,6 +66,19 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual(c.execute('SELECT title FROM attachments WHERE id=?', (source,)).fetchone()[0],
                              'Книга1.xlsx')
 
+    def test_registry_keeps_saved_journal_instead_of_duplicate_live_row(self):
+        from itd.workspace import save_entry
+        with connect(self.path) as c:
+            save_entry(c,self.project,dict(kind='work',title='Монтаж',entry_date='2026-01-02'))
+            saved=self.attachment(c,'other','Общий журнал работ (ОЖР)','2026-01-02')
+            update_record(c,entity='attachments',record_id=saved,changes={'sheets_count':2})
+            rows=registry_rows(c,self.project,detailed=True)
+            journals=[r for r in rows if r['name']=='Общий журнал работ (ОЖР)']
+            self.assertEqual(len(journals),1)
+            self.assertEqual(journals[0]['entity'],'attachment')
+            self.assertEqual(journals[0]['sheets_count'],2)
+            self.assertEqual(journals[0]['pages'],'1–2')
+
     def test_journal_date_confirmation_is_atomic_and_end_extends_automatically(self):
         from itd.workspace import JournalDatesConfirmation, save_entry
         with connect(self.path) as c:

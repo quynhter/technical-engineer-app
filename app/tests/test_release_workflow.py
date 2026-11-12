@@ -21,6 +21,16 @@ from itd.archive import import_file
 
 
 class ReleaseWorkflowTests(unittest.TestCase):
+    def test_missing_release_can_leave_package_without_deleting_history(self):
+        from itd.releases import unselect_release
+        with connect(self.db) as c:
+            result=self.emit(c)
+            Path(result['output']).unlink()
+            before=dict(c.execute('SELECT * FROM releases WHERE id=?',(result['release_id'],)).fetchone())
+            unselect_release(c,result['release_id'])
+            after=dict(c.execute('SELECT * FROM releases WHERE id=?',(result['release_id'],)).fetchone())
+            self.assertEqual(after,{**before,'selected':0})
+
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(prefix='itd-test-')
         self.addCleanup(self.temp.cleanup)
@@ -62,6 +72,26 @@ class ReleaseWorkflowTests(unittest.TestCase):
                 self.assertEqual(z.read(docs[0]),Path(second['output']).read_bytes())
             self.assertTrue((layout/'.itd-project.json').is_file())
             self.assertEqual((layout/'03_Акты'/'чужой.docx').read_bytes(),b'unknown')
+
+    def test_complete_package_includes_only_linked_verified_originals(self):
+        from itd.archive import link_file, archived_path
+        with connect(self.db) as c:
+            self.emit(c)
+            source = self.root/'Входной контроль.txt'; source.write_text('Учебный контроль')
+            item = import_file(c,archive_root=self.root/'archive',source=source,doc_type='quality',title='Контроль')
+            link_file(c,attachment_id=item['id'],entity='project',entity_id=self.project)
+            foreign = self.root/'Чужой.txt'; foreign.write_text('Другой объект')
+            import_file(c,archive_root=self.root/'archive',source=foreign,doc_type='other',title='Чужой')
+            result = export_package(c,self.project,self.root/'Полный.zip',include_originals=True)
+            with ZipFile(result['output']) as z:
+                manifest=json.loads(z.read('manifest.json'))
+                self.assertEqual(len(manifest['attachments']),1)
+                self.assertEqual(z.read(manifest['attachments'][0]['file']),source.read_bytes())
+            row=c.execute('SELECT * FROM attachments WHERE id=?',(item['id'],)).fetchone()
+            archived_path(self.root/'archive',row['storage_path']).write_bytes(b'corrupt')
+            with self.assertRaisesRegex(ValueError,'Целостность оригинала'):
+                export_package(c,self.project,self.root/'Поврежден.zip',include_originals=True)
+            self.assertFalse((self.root/'Поврежден.zip').exists())
 
     def test_crash_after_file_move_is_recovered_from_fresh_connection(self):
         with connect(self.db) as c:

@@ -66,11 +66,11 @@ class ResourceOjrTests(WorkspaceFixture,unittest.TestCase):
         return dict(kind='work',title='Прокладка кабеля',details='Этаж 2, оси А–Б',entry_date='2026-11-02',responsible_id=self.person,
                     materials=[{'resource_id':self.rid,'quantity':quantity}],**changes)
 
-    def test_work_material_creates_one_fact_without_allocating_stock(self):
+    def test_work_material_reduces_total_balance_without_allocating_a_batch(self):
         with connect(self.path) as c:
             e=save_entry(c,self.pid,self.entry())
             m=dict(c.execute('SELECT * FROM work_materials').fetchone())
-            self.assertEqual(balances(c,self.pid)[0]['remaining'],10)
+            self.assertEqual(balances(c,self.pid)[0]['remaining'],7)
             fact=c.execute('SELECT status,work_entry_id,start_date,end_date FROM work_facts WHERE id=?',(m['fact_id'],)).fetchone()
             self.assertEqual(tuple(fact),('confirmed',e['id'],e['entry_date'],e['entry_date']))
             self.assertEqual(c.execute('SELECT count(*) FROM work_material_allocations').fetchone()[0],0)
@@ -84,7 +84,7 @@ class ResourceOjrTests(WorkspaceFixture,unittest.TestCase):
             e=save_entry(c,self.pid,self.entry())
             old=c.execute('SELECT fact_id FROM work_materials').fetchone()[0]
             e=save_entry(c,self.pid,{**e,'materials':[{'resource_id':self.rid,'quantity':5}]})
-            self.assertEqual(balances(c,self.pid)[0]['remaining'],10)
+            self.assertEqual(balances(c,self.pid)[0]['remaining'],5)
             self.assertEqual(c.execute('SELECT status FROM work_facts WHERE id=?',(old,)).fetchone()[0],'void')
             save_entry(c,self.pid,{**e,'materials':[]})
             self.assertEqual(balances(c,self.pid)[0]['remaining'],10)
@@ -98,7 +98,7 @@ class ResourceOjrTests(WorkspaceFixture,unittest.TestCase):
             with self.assertRaises(ValueError): save_entry(c,self.pid,{**e,'materials':[]})
             other=add_project(c,object_id=self.oid,section_code='ЭОМ',code='ЭОМ',name='Другой раздел')
             with self.assertRaises(ValueError): save_entry(c,other,self.entry())
-            self.assertEqual(balances(c,self.pid)[0]['remaining'],10)
+            self.assertEqual(balances(c,self.pid)[0]['remaining'],-2)
             self.assertGreater(newer['revision'],e['revision'])
 
     def test_legacy_act_reservation_does_not_limit_work(self):
@@ -121,7 +121,7 @@ class ResourceOjrTests(WorkspaceFixture,unittest.TestCase):
             handler=object.__new__(Handler)
             result=handler.mutate(c,'/api/act',dict(project_id=self.pid,act_type='A',entry_ids=[e['id']],resource_ids=[self.rid]))
             self.assertEqual(c.execute('SELECT count(*) FROM act_facts WHERE act_id=?',(result['act_id'],)).fetchone()[0],1)
-            self.assertEqual(balances(c,self.pid)[0]['remaining'],10)
+            self.assertEqual(balances(c,self.pid)[0]['remaining'],7)
             self.assertEqual(c.execute('SELECT count(*) FROM work_material_allocations').fetchone()[0],0)
 
     def test_manual_web_fact_requires_work_and_derives_its_source(self):

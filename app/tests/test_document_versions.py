@@ -11,6 +11,16 @@ from itd.participants import add_signatory,assign
 
 
 class DocumentVersionTests(WorkspaceFixture,unittest.TestCase):
+    def test_generation_syncs_optional_people_selected_outside_version_card(self):
+        from itd.ojr import set_act_people
+        with connect(self.path) as c:
+            versions.save(c,self.pid,self.draft(c))
+            set_act_people(c,self.pid,self.aid,{'customer_control':self.person,'other_1':self.person})
+            versions.prepare_generation(c,self.aid)
+            current=versions.versions(c,self.pid,self.aid)[-1]
+            self.assertEqual({s['role'] for s in current['signers']},{'customer_control','other_1'})
+            self.assertTrue(all(not s['signed'] for s in current['signers']))
+
     def setUp(self):
         super().setUp();state=self.create();self.oid=state['object']['id'];self.pid=state['projects'][0]['id']
         self.person=state['participants'][0]['representatives'][0]['id'];self.org=state['participants'][0]['id']

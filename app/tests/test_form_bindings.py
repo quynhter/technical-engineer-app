@@ -16,6 +16,15 @@ from itd.act_participants import organization_candidates,set_organizations
 
 
 class FormBindingTests(WorkspaceFixture,unittest.TestCase):
+    def test_a23_approval_uses_participants_instead_of_appendix_caption(self):
+        fields=apply_form_defaults('СП_77_А_23',[
+            {'key':'t0_r1_c0','kind':'literal','value':'Приложение А.23'},
+            {'key':'t0_r2_c0','kind':'literal','value':None},
+        ])
+        self.assertEqual(fields[0]['source'],'organizations.customer.full_name')
+        self.assertEqual(fields[1]['role'],'commission_chair')
+        self.assertNotIn('Приложение А.23',json.dumps(fields,ensure_ascii=False))
+
     def setUp(self):
         super().setUp();s=self.create();self.pid=s['projects'][0]['id'];self.oid=s['object']['id']
         self.ids={}

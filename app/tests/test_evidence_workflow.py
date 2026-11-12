@@ -21,6 +21,16 @@ from itd.__main__ import main
 
 
 class EvidenceWorkflowTests(unittest.TestCase):
+    def test_transfer_and_measurements_do_not_claim_mounted_quantities(self):
+        with connect(self.path) as c:
+            for code in ('СП_77_А_3','СП_77_А_16'):
+                register_form(c,code=code,name=code,fields=[])
+                aid=add_act(c,project_id=self.pid,act_type=code,date_signed='2026-01-01')
+                set_resources(c,aid,[self.rid])
+            report=w.report(c,self.pid)
+            missing=[issue['act_id'] for issue in report['findings'] if issue['code']=='act_facts_missing']
+            self.assertEqual(missing,[self.act])
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
