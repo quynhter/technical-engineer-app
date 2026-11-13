@@ -299,7 +299,7 @@ class Handler(BaseHTTPRequestHandler):
     def get_route(self):
         try:
             url = urlsplit(self.path)
-            if url.path in ('/', '/logo.svg', '/favicon.svg', '/deletion.js', '/tables.js', '/account.js', '/configuration.js', '/document-versions.js', '/act-fields.js', '/journals.js', '/resources.js', '/ojr-ui.js', '/dialogs.js', '/app.js', '/knowledge.js', '/knowledge-markdown.js', '/manual.js', '/ui.js', '/style.css', '/open-sans-regular.ttf', '/open-sans-semibold.ttf', '/open-sans-bold.ttf', '/open-sans-LICENSE.txt'):
+            if url.path in ('/', '/design.js', '/design.css', '/design-LICENSE.txt', '/logo.svg', '/favicon.svg', '/deletion.js', '/tables.js', '/account.js', '/configuration.js', '/document-versions.js', '/act-fields.js', '/journals.js', '/resources.js', '/ojr-ui.js', '/dialogs.js', '/app.js', '/knowledge.js', '/knowledge-markdown.js', '/manual.js', '/ui.js', '/style.css', '/open-sans-regular.ttf', '/open-sans-semibold.ttf', '/open-sans-bold.ttf', '/open-sans-LICENSE.txt'):
                 if self.headers.get('Host') != urlsplit(self.server.origin).netloc:
                     raise PermissionError('Недопустимый адрес сервера')
                 path = ASSETS / ('index.html' if url.path == '/' else url.path[1:])

@@ -414,4 +414,5 @@ function applyDataTable(table,model){
    if(all){all.checked=matched.length>0&&picked===matched.length;all.indeterminate=picked>0&&picked<matched.length;}
    if(model.selectionBox){model.selectionBox.hidden=!model.selected.size;model.selectionBox.querySelector('[data-selected-count]').textContent=model.selected.size;}
   }
+  if(typeof window!=='undefined'&&window.ITDDesign)window.ITDDesign.enhanceTable(table,model,rows=>downloadTableCsv(table,model,rows));
 }

@@ -65,6 +65,9 @@ function setProfile(user){
 
    document.querySelectorAll('#editor-dialog [data-action="cancel-entry"]').forEach(button=>{if(button.textContent!=='Закрыть')button.textContent='Закрыть';});
    document.querySelectorAll('#content :is(input,textarea,select),#editor-content :is(input,textarea,select)').forEach(el=>{
+    if(el.closest('.astryx-data-view'))return;
+    const nativeSelect=el.closest('.select-island')?._nativeSelect;
+    if(nativeSelect?.matches('#project-select,#resource-activity-select,[data-journal-project],[data-table-control]'))return;
     if(el.matches('#object-search,#project-select,#resource-activity-select,[data-filter],[data-check-search],[data-table-control]')||
        el.closest('.smart-select')?.querySelector('select')?.matches('#project-select,#resource-activity-select,[data-journal-project],[data-table-control]')||
        el.matches('[data-journal-project]'))return;

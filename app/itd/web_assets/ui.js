@@ -47,6 +47,7 @@ function tableCellLabels(table){
 }
 let smartSequence=0;
 function enhanceSelect(select){
+ if(window.ITDDesign&&!select.multiple)return window.ITDDesign.enhanceSelect(select);
  if(select.multiple)return;if(select.closest('.smart-select')){select.dispatchEvent(new Event('smart-sync'));return;}
  const label=(select.getAttribute('aria-label')||select.closest('label')?.querySelector('span')?.textContent||document.querySelector(`label[for="${select.id}"]`)?.textContent||'Выберите значение').trim();
  const wrap=document.createElement('div');wrap.className='smart-select';

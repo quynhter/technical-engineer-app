@@ -46,6 +46,7 @@ function applyAppearance() {
  $('#theme-toggle').setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
  document.querySelectorAll('.swatch').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.accent === appearance.accent)));
  try { localStorage.setItem(appearanceKey, JSON.stringify(appearance)); } catch (_) {}
+ document.dispatchEvent(new Event('itd:appearance'));
 }
 applyAppearance();
 $('#theme-toggle').addEventListener('click', () => {
@@ -113,7 +114,8 @@ function option(v,t,selected){return `<option value="${esc(v)}" ${v==selected?'s
 function navigate(view){closeAgentHelp();workspaceView=view;const url=new URL(location.href);url.searchParams.set('view',view);history.replaceState(null,'',url.pathname+url.search);const map={object:0,participants:1,rd:2,permits:4,documents:3,registry:3,schemes:3,work:3,incoming:3,journal:3,cable:3,facts:3,check:3,delivery:3,manage:5,resources:3,ojr:3};step=map[view]??0;if(view==='work')journalSection='3';if(view==='incoming')resourcePanel='incoming';else if(view==='facts')resourcePanel='facts';else if(view==='resources')resourcePanel='list';if(view==='check')packagePanel='check';else if(view==='delivery')packagePanel='delivery';else if(['documents','registry'].includes(view))packagePanel=view;const ti=idViews.indexOf(({work:'ojr',journal:'ojr',cable:'ojr',registry:'documents',facts:'resources',incoming:'resources',check:'documents',delivery:'documents'})[view]||view);if(ti>=0)tab=ti;editEntry=null;notice();render();window.scrollTo({top:0,behavior:'auto'});window.requestAnimationFrame?.(()=>{const target=document.querySelector(['check','delivery'].includes(view)?'#package-panel-title':'#content h1');if(target){target.setAttribute('tabindex','-1');target.focus({preventScroll:true});if(['check','delivery'].includes(view))target.scrollIntoView({block:'start',behavior:'auto'});}});refreshJournals();}
 function render(){
  const nav=[['overview','Обзор','home'],['object','Объект','building'],['rd','Разделы','file'],['participants','Участники','user'],['permits','Разрешительная документация','clipboard'],['registry','Исполнительная документация','list']];
- $('#steps').innerHTML=nav.map(([v,n,i])=>`<button data-view="${v}" class="${workspaceView===v||(v==='registry'&&step===3)?'active':''}" ${workspaceView===v||(v==='registry'&&step===3)?'aria-current="page"':''}>${icon(i)}${n}</button>`).join('');
+ if(window.ITDDesign)window.ITDDesign.renderNav(nav.map(([v,n,i])=>[v,n,icon(i)]),workspaceView,navigate);
+ else $('#steps').innerHTML=nav.map(([v,n,i])=>`<button data-view="${v}" class="${workspaceView===v||(v==='registry'&&step===3)?'active':''}" ${workspaceView===v||(v==='registry'&&step===3)?'aria-current="page"':''}>${icon(i)}${n}</button>`).join('');
  $('#sidebar').innerHTML=step===1&&workspaceView==='participants'?orgSidebar():'';
  $('#sidebar').hidden=!(step===1&&workspaceView==='participants');
  $('main').classList.toggle('no-sidebar',$('#sidebar').hidden);

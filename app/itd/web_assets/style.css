@@ -1,3 +1,5 @@
+@layer legacy, reset, astryx-base, astryx-theme;
+@layer legacy {
 @font-face{font-family:"Open Sans";font-style:normal;font-weight:400;src:url("/open-sans-regular.ttf") format("truetype");font-display:swap}
 @font-face{font-family:"Open Sans";font-style:normal;font-weight:600;src:url("/open-sans-semibold.ttf") format("truetype");font-display:swap}
 @font-face{font-family:"Open Sans";font-style:normal;font-weight:700;src:url("/open-sans-bold.ttf") format("truetype");font-display:swap}
@@ -663,3 +665,5 @@ body[data-role="viewer"] #editor-content .ux-form-intro{display:none}
 .brand-mark{display:block;width:44px;height:44px;flex:0 0 44px;margin-right:10px;letter-spacing:normal}
 button.brand{min-height:44px}
 button.brand:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+
+}
