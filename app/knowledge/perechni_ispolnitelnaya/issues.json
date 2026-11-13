@@ -1,0 +1,369 @@
+[
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-e35853a56268",
+    "title": "Внутренние сети водоснабжения и канализации",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20vk.xls",
+    "source_snapshot": "sources/excel_ce641d2daa13ab08.xls",
+    "source_sha256": "ce641d2daa13ab08cf148f31b2639b28ebc81f67db2e52b49657c6626515be10",
+    "extraction": "sources/excel_ce641d2daa13ab08.json",
+    "html_items": 24,
+    "matched_items": 23,
+    "unmatched_html_rows": [
+      9
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-1d2466487857",
+    "title": "Внутренние сети электроснабжения",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20eo.xls",
+    "source_snapshot": "sources/excel_e8dcc67562737043.xls",
+    "source_sha256": "e8dcc6756273704365a24a5559d2325608174808391aac7ca666dd42e8fadfb3",
+    "extraction": "sources/excel_e8dcc67562737043.json",
+    "html_items": 28,
+    "matched_items": 27,
+    "unmatched_html_rows": [
+      9
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-40e794faad57",
+    "title": "Тепловые сети",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20ts.xls",
+    "source_snapshot": "sources/excel_9cdb9e483cd63688.xls",
+    "source_sha256": "9cdb9e483cd63688327b73951aa8824fe4719848e430c1580e76d1b2f6739caf",
+    "extraction": "sources/excel_9cdb9e483cd63688.json",
+    "html_items": 26,
+    "matched_items": 25,
+    "unmatched_html_rows": [
+      22
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-65916d609c13",
+    "title": "Наружные сети электроснабжения",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20vnutriplochad%20seti.xls",
+    "source_snapshot": "sources/excel_6a2b55a668c025ed.xls",
+    "source_sha256": "6a2b55a668c025ed5af6efe5358f335b1690920eeff80fd86b37187b2b1b69d5",
+    "extraction": "sources/excel_6a2b55a668c025ed.json",
+    "html_items": 34,
+    "matched_items": 30,
+    "unmatched_html_rows": [
+      23,
+      24,
+      25,
+      26
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-2f97fecb72b8",
+    "title": "Монтаж дизель-генераторной установки",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20montaj%20tehnoborudovania.xls",
+    "source_snapshot": "sources/excel_ed60755d84cb9dbb.xls",
+    "source_sha256": "ed60755d84cb9dbb97de85406fe06dd13a0707342cecb71fe2169e064b4c9d65",
+    "extraction": "sources/excel_ed60755d84cb9dbb.json",
+    "html_items": 9,
+    "matched_items": 6,
+    "unmatched_html_rows": [
+      6,
+      10,
+      12
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-20cf1b7a45aa",
+    "title": "Наружные сети газоснабжения",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20gazoprovod.xls",
+    "source_snapshot": "sources/excel_0cfb83fc6004edd7.xls",
+    "source_sha256": "0cfb83fc6004edd78294856a122e9a70acec80f34bd39af8d31d44ad1aa39c32",
+    "extraction": "sources/excel_0cfb83fc6004edd7.json",
+    "html_items": 47,
+    "matched_items": 45,
+    "unmatched_html_rows": [
+      42,
+      44
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-b0a2fd49dbcc",
+    "title": "Внутренние сети газоснабжения",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B5%D0%BD%D1%8C%20%D0%98%D0%94%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B8%D0%B5%20%D1%81%D0%B5%D1%82%D0%B8%20%D0%B3%D0%B0%D0%B7%D0%BE%D1%81%D0%BD%D0%B0%D0%B1%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F.xls",
+    "source_snapshot": "sources/excel_e36a98ccee456c74.xls",
+    "source_sha256": "e36a98ccee456c7446270c710d5c0e0cbec335493435545f90ad01d06ff196cd",
+    "extraction": "sources/excel_e36a98ccee456c74.json",
+    "html_items": 34,
+    "matched_items": 32,
+    "unmatched_html_rows": [
+      23,
+      25
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-ded6ea350900",
+    "title": "Технологическое оборудование и технологические трубопроводы",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20montaj%20tehnoborudovania.xls",
+    "source_snapshot": "sources/excel_ed60755d84cb9dbb.xls",
+    "source_sha256": "ed60755d84cb9dbb97de85406fe06dd13a0707342cecb71fe2169e064b4c9d65",
+    "extraction": "sources/excel_ed60755d84cb9dbb.json",
+    "html_items": 17,
+    "matched_items": 16,
+    "unmatched_html_rows": [
+      19
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-8d2fa29b067f",
+    "title": "Монтаж мостовых и подвесных кранов",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B5%D0%BD%D1%8C%20%D0%98%D0%94%20%D0%BC%D0%BE%D0%BD%D1%82%D0%B0%D0%B6%20%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BA%D1%80%D0%B0%D0%BD%D0%BE%D0%B2.xls",
+    "source_snapshot": "sources/excel_73be2d988c2a95bb.xls",
+    "source_sha256": "73be2d988c2a95bb4fb6529b4e9d2e5fc6ac82575e430b4573b05c81ab4f161f",
+    "extraction": "sources/excel_73be2d988c2a95bb.json",
+    "html_items": 32,
+    "matched_items": 29,
+    "unmatched_html_rows": [
+      34,
+      35,
+      38
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-0c5e40d283cf",
+    "title": "Монтаж лифта",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/montag%20lifta.xls",
+    "source_snapshot": "sources/excel_fd868c1675316802.xls",
+    "source_sha256": "fd868c1675316802aa2cca72daa9faf3ee1cf583b2c6c388b46e918106087fae",
+    "extraction": "sources/excel_fd868c1675316802.json",
+    "html_items": 14,
+    "matched_items": 13,
+    "unmatched_html_rows": [
+      9
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-e39f8421a44c",
+    "title": "Системы автоматизации",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20avtomatizacia.xls",
+    "source_snapshot": "sources/excel_093be456db8bfdb5.xls",
+    "source_sha256": "093be456db8bfdb53442ea14c5f4b4f08be42f0d861af36c866a01c6e4196682",
+    "extraction": "sources/excel_093be456db8bfdb5.json",
+    "html_items": 29,
+    "matched_items": 27,
+    "unmatched_html_rows": [
+      25,
+      27
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-ef937edc8081",
+    "title": "Устройство отдельностоящих монолитных ж/б фундаментов с монолитными балками",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/monolitnie%20fundamenti%20s%20monolitnimi%20balkami.xls",
+    "source_snapshot": "sources/excel_644611f721ae6c62.xls",
+    "source_sha256": "644611f721ae6c629550f7e01007413171a2428381b53755e1d3e136dda43fe1",
+    "extraction": "sources/excel_644611f721ae6c62.json",
+    "html_items": 28,
+    "matched_items": 27,
+    "unmatched_html_rows": [
+      7
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-603da59852a2",
+    "title": "Строительство каркаса здания из сборного железобетона;",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/jb%20karkas.xls",
+    "source_snapshot": "sources/excel_c644b0c29524cc5d.xls",
+    "source_sha256": "c644b0c29524cc5d33fb86df3230f1746dd5cf5c88ea8c983ead4786c41f22ba",
+    "extraction": "sources/excel_c644b0c29524cc5d.json",
+    "html_items": 31,
+    "matched_items": 28,
+    "unmatched_html_rows": [
+      12,
+      13,
+      37
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-8671746bc168",
+    "title": "Огнезащита металлического каркаса здания",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/perechen%20ognezaschita.xls",
+    "source_snapshot": "sources/excel_ab8a3482c5a661cf.xls",
+    "source_sha256": "ab8a3482c5a661cfdc7e088e66a7efc0f55482652c406a16b5d9b717b530084e",
+    "extraction": "sources/excel_ab8a3482c5a661cf.json",
+    "html_items": 11,
+    "matched_items": 9,
+    "unmatched_html_rows": [
+      8,
+      10
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-689bbe0e3ff5",
+    "title": "Монтаж вертикального цилиндрического стального резервуара для хранения нефти и нефтепродуктов",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/rezervuar%20cilindr.xls",
+    "source_snapshot": "sources/excel_aa94028ed264168f.xls",
+    "source_sha256": "aa94028ed264168f55b779f6371906c5eed4c4f02f3971b48c865779a19d681e",
+    "extraction": "sources/excel_aa94028ed264168f.json",
+    "html_items": 29,
+    "matched_items": 27,
+    "unmatched_html_rows": [
+      8,
+      18
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-142126914f93",
+    "title": "Устройство монолитного железобетонного резервуара противопожарного запаса воды",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/rezervuar%20monolitni.xls",
+    "source_snapshot": "sources/excel_a19737b406efe336.xls",
+    "source_sha256": "a19737b406efe3366172dfd3777ae8250147a0213635d29d55aa00e722212903",
+    "extraction": "sources/excel_a19737b406efe336.json",
+    "html_items": 25,
+    "matched_items": 23,
+    "unmatched_html_rows": [
+      19,
+      20
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-283a98c8e816",
+    "title": "Монтаж алюминиевых витражей при остеклении фасадов зданий",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B5%D0%BD%D1%8C%20%D0%98%D0%94%20%D0%BF%D0%BE%20%D0%B2%D0%B8%D1%82%D1%80%D0%B0%D0%B6%D0%B0%D0%BC.xls",
+    "source_snapshot": "sources/excel_3e415afdd30868fe.xls",
+    "source_sha256": "3e415afdd30868fe73c0aaa860c90680ae98b10f11b55dc5c1f555aef0722807",
+    "extraction": "sources/excel_3e415afdd30868fe.json",
+    "html_items": 17,
+    "matched_items": 16,
+    "unmatched_html_rows": [
+      17
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-4cd189fbca48",
+    "title": "Устройство штукатурного (мокрого) фасада здания",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/%D0%9F%D0%B5%D1%80%D0%B5%D1%87%D0%B5%D0%BD%D1%8C%20%D0%98%D0%94%20%D0%BF%D0%BE%20%D0%BC%D0%BE%D0%BA%D1%80%D0%BE%D0%BC%D1%83%20%D1%84%D0%B0%D1%81%D0%B0%D0%B4%D1%83.xls",
+    "source_snapshot": "sources/excel_d902dc499be373ba.xls",
+    "source_sha256": "d902dc499be373ba35fbf6f0f11c31ae34b3418af11a8bb499c1b96009ccdb44",
+    "extraction": "sources/excel_d902dc499be373ba.json",
+    "html_items": 11,
+    "matched_items": 10,
+    "unmatched_html_rows": [
+      13
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "html_excel_difference",
+    "list_id": "list-c8f2d32fb146",
+    "title": "Устройство детских площадок",
+    "url": "https://www.ispolnitelnaya.ru/perechni/fails/%D0%9C%D0%90%D0%A4.xls",
+    "source_snapshot": "sources/excel_f6c53c5e8eb887a2.xls",
+    "source_sha256": "f6c53c5e8eb887a2b50017717679080d976de4fc195a6f80fce17c07e3889a41",
+    "extraction": "sources/excel_f6c53c5e8eb887a2.json",
+    "html_items": 13,
+    "matched_items": 12,
+    "unmatched_html_rows": [
+      6
+    ],
+    "status": "differences_require_review"
+  },
+  {
+    "type": "unavailable_link",
+    "id": "resource-1cff8e6f201a",
+    "kind": "normative",
+    "title": "Правила безопасности опасных производственных объектов, на которых используются подъемные сооружения",
+    "labels": [
+      "Правила безопасности опасных   производственных объектов, на которых используются подъемные сооружения"
+    ],
+    "url": "https://docs.cntd.ru/document/573275657?marker=2702GIK&section=text",
+    "status": "error",
+    "error": "HTTP Error 307: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nTemporary Redirect",
+    "source_sha256": null,
+    "bytes": null,
+    "content_kind": null,
+    "list_ids": [
+      "list-8d2fa29b067f"
+    ],
+    "checked_at": "2026-11-13",
+    "linked_downloads": []
+  },
+  {
+    "type": "unavailable_link",
+    "id": "resource-bd09e3c56990",
+    "kind": "normative",
+    "title": "ТР ЕАЭС 042/2017",
+    "labels": [
+      "ТР ЕАЭС 042/2017"
+    ],
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/RD/%D0%A2%D0%A0%20%D0%95%D0%90%D0%A1%20042_2017.pdf",
+    "status": "error",
+    "error": "HTTP Error 404: Not Found",
+    "source_sha256": null,
+    "bytes": null,
+    "content_kind": null,
+    "list_ids": [
+      "list-c8f2d32fb146"
+    ],
+    "checked_at": "2026-11-13",
+    "linked_downloads": []
+  },
+  {
+    "type": "source_date_conflict",
+    "detail": "Общий перечень называет приказ №1026/пр от 02.12.2023; связанная страница озаглавлена «Приказ N 1026/пр от 2 декабря 2022 г.». Дата в перечне не исправлена молча.",
+    "list_id": "list-252833e9e437"
+  },
+  {
+    "type": "misleading_page_title",
+    "detail": "HTML title страницы АУП повторяет название пожарной сигнализации; рубрика определяется ссылкой каталога и заголовком таблицы, исходный title сохранён.",
+    "url": "https://www.ispolnitelnaya.ru/perechni/perechen%20aup.html"
+  },
+  {
+    "type": "edition_conflict",
+    "detail": "В источниках встречаются СП 74.13330.2011 и СП 74.13330.2023, старые ГОСТ лифтов и РД. Правовой статус и действующая редакция не проверены; нельзя объединять их в одно подтвержденное основание."
+  },
+  {
+    "type": "mismatched_link",
+    "detail": "В перечне наружного газоснабжения ссылка с названием «Протоколы УЗК сварных стыков» ведет на страницу radiograf с названием про радиографический контроль. Метод контроля нужно установить по проекту и первоисточнику.",
+    "url": "https://www.ispolnitelnaya.ru/akti/gaz/protokol%20radiograf.html"
+  },
+  {
+    "type": "regional_example",
+    "detail": "Общий перечень содержит региональную справку технической инвентаризации по Челябинской области. Это часть примера сайта, а не универсальное требование для любого объекта."
+  },
+  {
+    "type": "shared_excel_mismatch",
+    "detail": "Ссылка Excel на странице ДГУ ведет на тот же файл перечня монтажа технологического оборудования, что и технологический раздел. Это не отдельная подтвержденная Excel-версия перечня ДГУ; основной текст ДГУ взят из HTML."
+  }
+]

@@ -1,0 +1,3625 @@
+[
+  {
+    "number": 1,
+    "locator": "element[83]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Министерство монтажных и специальных строительных работ СССР",
+          "1": "Ведомственные строительные нормы",
+          "2": "ВСН 123-90 ММСС СССР"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Министерство монтажных и специальных строительных работ СССР"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ведомственные строительные нормы"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ВСН 123-90 ММСС СССР"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "Инструкция по оформлению приемо-сдаточной документации по электромонтажным работам",
+          "2": "Взамен ВСН 123-79 ММСС СССР"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Инструкция по оформлению приемо-сдаточной документации по электромонтажным работам"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Взамен ВСН 123-79 ММСС СССР"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "locator": "element[161]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Внесены НПО «Электромонтаж»",
+          "1": "Утверждены Минмонтажспецстроем СССР 24 декабря 1990 г.",
+          "2": "Срок введения 1.01.1991 г."
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Внесены НПО «Электромонтаж»"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Утверждены Минмонтажспецстроем СССР 24 декабря 1990 г."
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Срок введения 1.01.1991 г."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "locator": "element[316]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Разделы",
+          "1": "Состав документации",
+          "2": "Номер документов",
+          "3": "Кол-во листов",
+          "4": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Разделы"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Состав документации"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер документов"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кол-во листов"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "I",
+          "1": "Комплект рабочих чертежей электротехнической части - исполнительная документация",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "I"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Комплект рабочих чертежей электротехнической части - исполнительная документация"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "II",
+          "1": "Комплект заводской документации (паспорта электрооборудования, протоколы заводских испытаний, инструкции по монтажу, наладке и эксплуатации и т.п.)",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "II"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Комплект заводской документации (паспорта электрооборудования, протоколы заводских испытаний, инструкции по монтажу, наладке и эксплуатации и т.п.)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "III",
+          "1": "Акты, протоколы, ведомости, журналы по электромонтажным работам и по строительным работам, связанным с монтажом электротехнических устройств",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "III"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Акты, протоколы, ведомости, журналы по электромонтажным работам и по строительным работам, связанным с монтажом электротехнических устройств"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Представитель монтажной организации _____________________________________ (подпись)",
+          "1": "← ячейка 5:1",
+          "2": "← ячейка 5:1",
+          "3": "← ячейка 5:1",
+          "4": "← ячейка 5:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 5,
+            "text": "Представитель монтажной организации _____________________________________ (подпись)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "locator": "element[622]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "№ п.п.",
+          "1": "Состав изменений и отступлений",
+          "2": "Причина изменений",
+          "3": "Кем, когда согласовано, номер документа"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п.п."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Состав изменений и отступлений"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Причина изменений"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кем, когда согласовано, номер документа"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "locator": "element[715]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "№ п.п.",
+          "1": "Недоделки",
+          "2": "Срок устранения",
+          "3": "Кто устраняет"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п.п."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Недоделки"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Срок устранения"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кто устраняет"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "locator": "element[806]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Код операции",
+          "1": "Склад"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Код операции"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Склад"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "locator": "element[842]",
+    "columns": 10,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование оборудования",
+          "1": "Код (номенклатурный номер)",
+          "2": "Тип, марка",
+          "3": "Заводской номер или маркировка",
+          "4": "Завод-изготовитель",
+          "5": "Номер позиции по технологической схеме",
+          "6": "Поступление на склад заказчика",
+          "7": "← ячейка 1:7",
+          "8": "Количество",
+          "9": "Стоимость"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Наименование оборудования"
+          },
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Код (номенклатурный номер)"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Тип, марка"
+          },
+          {
+            "column": 4,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Заводской номер или маркировка"
+          },
+          {
+            "column": 5,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Завод-изготовитель"
+          },
+          {
+            "column": 6,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Номер позиции по технологической схеме"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Поступление на склад заказчика"
+          },
+          {
+            "column": 9,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Количество"
+          },
+          {
+            "column": 10,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Стоимость"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:3",
+          "3": "↑ ячейка 1:4",
+          "4": "↑ ячейка 1:5",
+          "5": "↑ ячейка 1:6",
+          "8": "↑ ячейка 1:9",
+          "9": "↑ ячейка 1:10",
+          "6": "Дата",
+          "7": "Номер акта приемки"
+        },
+        "source_cells": [
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Дата"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер акта приемки"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "4",
+          "4": "5",
+          "5": "6",
+          "6": "7",
+          "7": "8",
+          "8": "9",
+          "9": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9"
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": "",
+          "9": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "locator": "element[1062]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование",
+          "1": "Тип, марка",
+          "2": "Заводской номер или маркировка",
+          "3": "Проектная организация",
+          "4": "← ячейка 1:4",
+          "5": "Дата",
+          "6": "← ячейка 1:6",
+          "7": "Обнаруженные дефекты"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Наименование"
+          },
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Тип, марка"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Заводской номер или маркировка"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Проектная организация"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Дата"
+          },
+          {
+            "column": 8,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Обнаруженные дефекты"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:3",
+          "7": "↑ ячейка 1:8",
+          "3": "Номер чертежа",
+          "4": "Наименование",
+          "5": "Изготовления оборудования",
+          "6": "Поступления оборудования на склад"
+        },
+        "source_cells": [
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер чертежа"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Изготовления оборудования"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Поступления оборудования на склад"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "4",
+          "4": "5",
+          "5": "6",
+          "6": "7",
+          "7": "8"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "locator": "element[1142]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование",
+          "1": "Тип, марка",
+          "2": "Заводской номер или маркировка",
+          "3": "Проектная организация",
+          "4": "← ячейка 1:4",
+          "5": "Дата",
+          "6": "← ячейка 1:6",
+          "7": "Обнаруженные дефекты"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Наименование"
+          },
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Тип, марка"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Заводской номер или маркировка"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Проектная организация"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Дата"
+          },
+          {
+            "column": 8,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Обнаруженные дефекты"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:3",
+          "7": "↑ ячейка 1:8",
+          "3": "Номер чертежа",
+          "4": "Наименование",
+          "5": "Изготовления оборудования",
+          "6": "Поступления оборудования на склад"
+        },
+        "source_cells": [
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер чертежа"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Изготовления оборудования"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Поступления оборудования на склад"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "4",
+          "4": "5",
+          "5": "6",
+          "6": "7",
+          "7": "8"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "locator": "element[1332]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "№ п.п.",
+          "1": "Наименование электрооборудования, комплекта",
+          "2": "Тип, марка",
+          "3": "Заводской номер или маркировка",
+          "4": "Кол-во",
+          "5": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п.п."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование электрооборудования, комплекта"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип, марка"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заводской номер или маркировка"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кол-во"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "4",
+          "4": "5",
+          "5": "6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 11,
+    "locator": "element[1509]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "№ п.п.",
+          "1": "Помещение (сооружение)",
+          "2": "Недоделки",
+          "3": "Сроки устранения",
+          "4": "Кто устраняет"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п.п."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Помещение (сооружение)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Недоделки"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Сроки устранения"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кто устраняет"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 12,
+    "locator": "element[2227]",
+    "columns": 9,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер элемента",
+          "1": "Напряжение, В",
+          "2": "Плотность, г/см^{2}",
+          "3": "Номер элемента",
+          "4": "Напряжение, В",
+          "5": "Плотность, г/см^{2}",
+          "6": "Номер элемента",
+          "7": "Напряжение, В",
+          "8": "Плотность, г/см^{3}"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Номер элемента"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Напряжение, В"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Плотность, г/см^{2}"
+          },
+          {
+            "column": 4,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Номер элемента"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Напряжение, В"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Плотность, г/см^{2}"
+          },
+          {
+            "column": 7,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Номер элемента"
+          },
+          {
+            "column": 8,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Напряжение, В"
+          },
+          {
+            "column": 9,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Плотность, г/см^{3}"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "3": "↑ ячейка 1:4",
+          "6": "↑ ячейка 1:7",
+          "7": "↑ ячейка 1:8",
+          "8": "↑ ячейка 1:9",
+          "1": "заряжен. разряжен.",
+          "2": "заряжен. разряжен.",
+          "4": "заряжен. разряжен.",
+          "5": "заряжен. разряжен."
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заряжен. разряжен."
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заряжен. разряжен."
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заряжен. разряжен."
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заряжен. разряжен."
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "1",
+          "1": "2",
+          "2": "3",
+          "3": "4",
+          "4": "5",
+          "5": "6",
+          "6": "7",
+          "7": "8",
+          "8": "9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 13,
+    "locator": "element[2575]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Место установки или участок",
+          "1": "Класс взрывоопасной зоны",
+          "2": "Фактическое давление, кПа",
+          "3": "Падение давления при испытаниях, кПа",
+          "4": "Продолжительность испытания, мин",
+          "5": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Место установки или участок"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Класс взрывоопасной зоны"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фактическое давление, кПа"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Падение давления при испытаниях, кПа"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Продолжительность испытания, мин"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 14,
+    "locator": "element[2723]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование линии и ее параметры",
+          "1": "Сопротивление изоляции, МОм",
+          "2": "← ячейка 1:2",
+          "3": "← ячейка 1:2",
+          "4": "← ячейка 1:2",
+          "5": "← ячейка 1:2",
+          "6": "← ячейка 1:2",
+          "7": "Заключение"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Наименование линии и ее параметры"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 6,
+            "text": "Сопротивление изоляции, МОм"
+          },
+          {
+            "column": 8,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Заключение"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "7": "↑ ячейка 1:8",
+          "1": "А-В",
+          "2": "А-С",
+          "3": "В-С",
+          "4": "А-О",
+          "5": "В-О",
+          "6": "С-О"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "А-В"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "А-С"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "В-С"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "А-О"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "В-О"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "С-О"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 15,
+    "locator": "element[2835]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Тип шинопровода, марка кабеля",
+          "1": "Обозначение шинопровода, номер кабельной линии по проекту",
+          "2": "Фаза А соответствует",
+          "3": "Фаза В соответствует",
+          "4": "Фаза С соответствует",
+          "5": "Фамилия и должность производящего фазировку"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип шинопровода, марка кабеля"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Обозначение шинопровода, номер кабельной линии по проекту"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фаза А соответствует"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фаза В соответствует"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фаза С соответствует"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фамилия и должность производящего фазировку"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 16,
+    "locator": "element[3110]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер барабана",
+          "1": "Марка кабеля",
+          "2": "Сечение кабеля, мм^{2}",
+          "3": "Длина кабеля, м",
+          "4": "Рабочее напряжение, кВ",
+          "5": "Испытательное напряжение, кВ",
+          "6": "Продолжительность испытания, мин",
+          "7": "Заключение"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер барабана"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка кабеля"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Сечение кабеля, мм^{2}"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Длина кабеля, м"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Рабочее напряжение, кВ"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Испытательное напряжение, кВ"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Продолжительность испытания, мин"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заключение"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Испытание произвел _____________________________ ( ) (подпись) Производитель работ _____________________________ ( ) (подпись)",
+          "1": "← ячейка 3:1",
+          "2": "← ячейка 3:1",
+          "3": "← ячейка 3:1",
+          "4": "← ячейка 3:1",
+          "5": "← ячейка 3:1",
+          "6": "← ячейка 3:1",
+          "7": "← ячейка 3:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 8,
+            "text": "Испытание произвел _____________________________ ( ) (подпись) Производитель работ _____________________________ ( ) (подпись)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 17,
+    "locator": "element[3183]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)",
+          "1": "",
+          "2": "← ячейка 1:2",
+          "3": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "ПРОТОКОЛ ОСМОТРА И ПРОВЕРКИ СОПРОТИВЛЕНИЯ ИЗОЛЯЦИИ КАБЕЛЕЙ НА БАРАБАНЕ ПЕРЕД ПРОКЛАДКОЙ Номер барабана Марка кабеля, сечение, мм^{2}, напряжение, кВ Длина кабеля, м Завод-изготовитель Дата выпуска Состояние Сопротивление изоляции, МОм Заключение барабана и обшивки наружных витков герметизирующих заделок Сопротивление изоляции замерено мегаомметром на напряжение 2500 В типа ______________________ заводской № _________________",
+          "1": "← ячейка 2:1",
+          "2": "← ячейка 2:1",
+          "3": "← ячейка 2:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 4,
+            "text": "ПРОТОКОЛ ОСМОТРА И ПРОВЕРКИ СОПРОТИВЛЕНИЯ ИЗОЛЯЦИИ КАБЕЛЕЙ НА БАРАБАНЕ ПЕРЕД ПРОКЛАДКОЙ Номер барабана Марка кабеля, сечение, мм^{2}, напряжение, кВ Длина кабеля, м Завод-изготовитель Дата выпуска Состояние Сопротивление изоляции, МОм Заключение барабана и обшивки наружных витков герметизирующих заделок Сопротивление изоляции замерено мегаомметром на напряжение 2500 В типа ______________________ заводской № _________________"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Осмотр и проверку произвел ____________ ( ) (подпись)",
+          "1": "← ячейка 3:1",
+          "2": "Производитель работ (мастер) __________ ( ) (подпись)",
+          "3": "← ячейка 3:3"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Осмотр и проверку произвел ____________ ( ) (подпись)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Производитель работ (мастер) __________ ( ) (подпись)"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 18,
+    "locator": "element[3346]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)",
+          "1": "",
+          "2": "← ячейка 1:2",
+          "3": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "ПРОТОКОЛ ПРОГРЕВА КАБЕЛЕЙ НА БАРАБАНЕ ПЕРЕД ПРОКЛАДКОЙ ПРИ НИЗКИХ ТЕМПЕРАТУРАХ Номер барабана Марка кабеля, напряжение, кВ, сечение, мм^{2} Длина кабеля, м Прогрев кабелей внутри обогреваемых помещений Прогрев кабелей электрическим током, А температура в помещении, °С продолжительность прогрева, ч температура внешних витков кабеля при температуре наружного воздуха -10°С ниже -10°С",
+          "1": "← ячейка 2:1",
+          "2": "← ячейка 2:1",
+          "3": "← ячейка 2:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 4,
+            "text": "ПРОТОКОЛ ПРОГРЕВА КАБЕЛЕЙ НА БАРАБАНЕ ПЕРЕД ПРОКЛАДКОЙ ПРИ НИЗКИХ ТЕМПЕРАТУРАХ Номер барабана Марка кабеля, напряжение, кВ, сечение, мм^{2} Длина кабеля, м Прогрев кабелей внутри обогреваемых помещений Прогрев кабелей электрическим током, А температура в помещении, °С продолжительность прогрева, ч температура внешних витков кабеля при температуре наружного воздуха -10°С ниже -10°С"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Прогрев произвел ____________ ( ) (подпись)",
+          "1": "← ячейка 3:1",
+          "2": "Производитель работ ________ ( ) (подпись)",
+          "3": "← ячейка 3:3"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Прогрев произвел ____________ ( ) (подпись)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Производитель работ ________ ( ) (подпись)"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 19,
+    "locator": "element[3493]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)",
+          "1": "",
+          "2": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 20,
+    "locator": "element[3552]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер барабана",
+          "1": "Марка кабеля, напряжение, кВ, сечение, мм^{2}",
+          "2": "Длина кабеля, м",
+          "3": "Прогрев кабелей внутри обогреваемых помещений",
+          "4": "← ячейка 1:4",
+          "5": "← ячейка 1:4",
+          "6": "Прогрев кабелей электрическим током, А",
+          "7": "← ячейка 1:7"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Номер барабана"
+          },
+          {
+            "column": 2,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Марка кабеля, напряжение, кВ, сечение, мм^{2}"
+          },
+          {
+            "column": 3,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Длина кабеля, м"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Прогрев кабелей внутри обогреваемых помещений"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Прогрев кабелей электрическим током, А"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:3",
+          "3": "температура в помещении, °С",
+          "4": "← ячейка 2:4",
+          "5": "продолжительность прогрева, ч",
+          "6": "температура внешних витков кабеля при температуре наружного воздуха",
+          "7": "← ячейка 2:7"
+        },
+        "source_cells": [
+          {
+            "column": 4,
+            "rowspan": 2,
+            "colspan": 2,
+            "text": "температура в помещении, °С"
+          },
+          {
+            "column": 6,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "продолжительность прогрева, ч"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "температура внешних витков кабеля при температуре наружного воздуха"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:3",
+          "3": "↑ ячейка 2:4",
+          "4": "↑ ячейка 2:4",
+          "5": "↑ ячейка 2:6",
+          "6": "-10°С",
+          "7": "ниже -10°С"
+        },
+        "source_cells": [
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-10°С"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ниже -10°С"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "← ячейка 4:4",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Прогрев произвел ____________ ( ) (подпись)",
+          "1": "← ячейка 5:1",
+          "2": "← ячейка 5:1",
+          "3": "← ячейка 5:1",
+          "4": "Производитель работ ________ ( ) (подпись)",
+          "5": "← ячейка 5:5",
+          "6": "← ячейка 5:5",
+          "7": "← ячейка 5:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 4,
+            "text": "Прогрев произвел ____________ ( ) (подпись)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 4,
+            "text": "Производитель работ ________ ( ) (подпись)"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 21,
+    "locator": "element[3819]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)",
+          "1": "",
+          "2": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (Министерство) ____________________________________ (трест) ____________________________________ (монтажное управление) ____________________________________ (участок)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "____________________________________ (город) ____________________________________ (заказчик) ____________________________________ (объект) ________________________________200___г"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "ЖУРНАЛ ПРОКЛАДКИ КАБЕЛЕЙ Дата прокладки Наименование и номер кабеля по кабельному журналу или исполнительной схеме Марка кабеля, напряжение, кВ, сечение, мм^{2} Общая длина линии, м Номер барабана и длина кабеля на каждом, м Количество соединительных муфт на линии Температура окружающего воздуха при прокладке, °С Способ подогрева кабеля и продолжительность прокладки, ч Фамилия и подпись ответственного за прокладку Производитель работ ______________ ( ) (подпись)",
+          "1": "← ячейка 2:1",
+          "2": "← ячейка 2:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "ЖУРНАЛ ПРОКЛАДКИ КАБЕЛЕЙ Дата прокладки Наименование и номер кабеля по кабельному журналу или исполнительной схеме Марка кабеля, напряжение, кВ, сечение, мм^{2} Общая длина линии, м Номер барабана и длина кабеля на каждом, м Количество соединительных муфт на линии Температура окружающего воздуха при прокладке, °С Способ подогрева кабеля и продолжительность прокладки, ч Фамилия и подпись ответственного за прокладку Производитель работ ______________ ( ) (подпись)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 22,
+    "locator": "element[3986]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "КАБЕЛЬ",
+          "1": "← ячейка 1:1",
+          "2": "МУФТА",
+          "3": "← ячейка 1:3",
+          "4": "← ячейка 1:3",
+          "5": "Фамилия и подпись исполнителя"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "КАБЕЛЬ"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "МУФТА"
+          },
+          {
+            "column": 6,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Фамилия и подпись исполнителя"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "5": "↑ ячейка 1:6",
+          "0": "Номер по кабельному журналу",
+          "1": "Марка, сечение, мм^{2}, напряжение, кВ",
+          "2": "Номер",
+          "3": "Тип, размер",
+          "4": "Дата монтажа"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер по кабельному журналу"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка, сечение, мм^{2}, напряжение, кВ"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип, размер"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Дата монтажа"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 23,
+    "locator": "element[4378]",
+    "columns": 9,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер опоры",
+          "1": "Наименование и тип опоры",
+          "2": "Тип фундамента",
+          "3": "Завод-изготовитель сборного ЖБ, паспорт, марка",
+          "4": "№ чертежа фундамента",
+          "5": "Наличие гидроизоляций, материал",
+          "6": "Дата устройства фундамента",
+          "7": "Установка опоры разрешается, подпись производителя работ",
+          "8": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер опоры"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование и тип опоры"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип фундамента"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Завод-изготовитель сборного ЖБ, паспорт, марка"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ чертежа фундамента"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наличие гидроизоляций, материал"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Дата устройства фундамента"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Установка опоры разрешается, подпись производителя работ"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 24,
+    "locator": "element[4515]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование опоры",
+          "1": "Установлено на ВЛ, шт.",
+          "2": "Тип опоры (номер чертежа для нетиповых)",
+          "3": "Материал опоры",
+          "4": "Защитное покрытие дополнительно к заводскому (окраска, антисептик), к-во опор"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование опоры"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Установлено на ВЛ, шт."
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип опоры (номер чертежа для нетиповых)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Материал опоры"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Защитное покрытие дополнительно к заводскому (окраска, антисептик), к-во опор"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Промежуточные",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Промежуточные"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Анкерные",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Анкерные"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Угловые",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Угловые"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Другие",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Другие"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Всего:",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Всего:"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 25,
+    "locator": "element[4611]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер опор и пролетов, на которых смонтированы соединения",
+          "1": "Тип соединительного напряженного зажима",
+          "2": "Способ монтажа соединения",
+          "3": "Исполнитель",
+          "4": "← ячейка 1:4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Номер опор и пролетов, на которых смонтированы соединения"
+          },
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Тип соединительного напряженного зажима"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Способ монтажа соединения"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Исполнитель"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:3",
+          "3": "Фамилия, и., о.",
+          "4": "Подпись"
+        },
+        "source_cells": [
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фамилия, и., о."
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Подпись"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 26,
+    "locator": "element[4932]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "№ п.п.",
+          "1": "Элемент заземляющих устройств",
+          "2": "Параметры элементов заземляющего устройства",
+          "3": "← ячейка 1:3",
+          "4": "← ячейка 1:3",
+          "5": "← ячейка 1:3",
+          "6": "← ячейка 1:3",
+          "7": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "№ п.п."
+          },
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Элемент заземляющих устройств"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 5,
+            "text": "Параметры элементов заземляющего устройства"
+          },
+          {
+            "column": 8,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "7": "↑ ячейка 1:8",
+          "2": "материал",
+          "3": "профиль",
+          "4": "размеры, мм",
+          "5": "кол-во, шт.",
+          "6": "глубина заложения, м"
+        },
+        "source_cells": [
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "материал"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "профиль"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "размеры, мм"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "кол-во, шт."
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "глубина заложения, м"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 27,
+    "locator": "element[5032]",
+    "columns": 1,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "___________________________________________________________________________ (Министерство или ведомство) ___________________________________________________________________________ (Объединение) ___________________________________________________________________________ (Трест) ___________________________________________________________________________ (Монтажное управление) ТЕХНИЧЕСКАЯ ДОКУМЕНТАЦИЯ ПО СДАЧЕ-ПРИЕМКЕ ЭЛЕКТРОМОНТАЖНЫХ РАБОТ ______________________________ (объект) ______________________________ (заказчик) ______________________________ (город, год)"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "___________________________________________________________________________ (Министерство или ведомство) ___________________________________________________________________________ (Объединение) ___________________________________________________________________________ (Трест) ___________________________________________________________________________ (Монтажное управление) ТЕХНИЧЕСКАЯ ДОКУМЕНТАЦИЯ ПО СДАЧЕ-ПРИЕМКЕ ЭЛЕКТРОМОНТАЖНЫХ РАБОТ ______________________________ (объект) ______________________________ (заказчик) ______________________________ (город, год)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 28,
+    "locator": "element[5086]",
+    "columns": 1,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  }
+]

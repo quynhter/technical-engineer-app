@@ -1,0 +1,2420 @@
+[
+  {
+    "number": 1,
+    "locator": "element[58]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Обозначение НТД, на который дана ссылка",
+          "1": "Номер пункта"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Обозначение НТД, на который дана ссылка"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер пункта"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "ГОСТ 166-89 (ИСО 3599-76)",
+          "1": "3.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 166-89 (ИСО 3599-76)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.2"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "ГОСТ 380-2005",
+          "1": "1.4; 1.5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 380-2005"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.4; 1.5"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "ГОСТ 1050-88",
+          "1": "1.44; 1.5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 1050-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.44; 1.5"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "ГОСТ 3845-75",
+          "1": "3.11"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 3845-75"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.11"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "ГОСТ 4543-71",
+          "1": "1.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 4543-71"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.4"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "ГОСТ 6507-90",
+          "1": "3.2; 3.3"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 6507-90"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.2; 3.3"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "ГОСТ 7502-98",
+          "1": "3.5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 7502-98"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.5"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "ГОСТ 7565-81",
+          "1": "3.10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 7565-81"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.10"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "ГОСТ 7661-67",
+          "1": "3.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 7661-67"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.4"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "ГОСТ 8026-92",
+          "1": "3.4; 3.6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8026-92"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.4; 3.6"
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "ГОСТ 8638-57",
+          "1": "1.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8638-57"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.2"
+          }
+        ]
+      },
+      {
+        "row": 14,
+        "grid": {
+          "0": "ГОСТ 8639-82",
+          "1": "1.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8639-82"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.2"
+          }
+        ]
+      },
+      {
+        "row": 15,
+        "grid": {
+          "0": "ГОСТ 8642-68",
+          "1": "1.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8642-68"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.2"
+          }
+        ]
+      },
+      {
+        "row": 16,
+        "grid": {
+          "0": "ГОСТ 8644-68",
+          "1": "1.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8644-68"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.2"
+          }
+        ]
+      },
+      {
+        "row": 17,
+        "grid": {
+          "0": "ГОСТ 8645-68",
+          "1": "1.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8645-68"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.2"
+          }
+        ]
+      },
+      {
+        "row": 18,
+        "grid": {
+          "0": "ГОСТ 8646-68",
+          "1": "1.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8646-68"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.2"
+          }
+        ]
+      },
+      {
+        "row": 19,
+        "grid": {
+          "0": "ГОСТ 9045-93",
+          "1": "1.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 9045-93"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.4"
+          }
+        ]
+      },
+      {
+        "row": 20,
+        "grid": {
+          "0": "ГОСТ 9454-78",
+          "1": "3.12"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 9454-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.12"
+          }
+        ]
+      },
+      {
+        "row": 21,
+        "grid": {
+          "0": "ГОСТ 10006-80",
+          "1": "3.12"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 10006-80"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.12"
+          }
+        ]
+      },
+      {
+        "row": 22,
+        "grid": {
+          "0": "ГОСТ 10692-80",
+          "1": "2.1; 4.1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 10692-80"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.1; 4.1"
+          }
+        ]
+      },
+      {
+        "row": 23,
+        "grid": {
+          "0": "ГОСТ 12344-2003",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12344-2003"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 24,
+        "grid": {
+          "0": "ГОСТ 12345-2001 (ИСО 671-82, ИСО 4935-89)",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12345-2001 (ИСО 671-82, ИСО 4935-89)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 25,
+        "grid": {
+          "0": "ГОСТ 12346-78 (ИСО 439-82, ИСО 4829-1-86)",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12346-78 (ИСО 439-82, ИСО 4829-1-86)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 26,
+        "grid": {
+          "0": "ГОСТ 12347-77",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12347-77"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 27,
+        "grid": {
+          "0": "ГОСТ 12348-78 (ИСО 629-82)",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12348-78 (ИСО 629-82)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 28,
+        "grid": {
+          "0": "ГОСТ 12350-78",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12350-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 29,
+        "grid": {
+          "0": "ГОСТ 12352-81",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12352-81"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 30,
+        "grid": {
+          "0": "ГОСТ 12355-78",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12355-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 31,
+        "grid": {
+          "0": "ГОСТ 12356-81",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12356-81"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 32,
+        "grid": {
+          "0": "ГОСТ 12357-84",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12357-84"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 33,
+        "grid": {
+          "0": "ГОСТ 12359-99 (ИСО 4945-77)",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12359-99 (ИСО 4945-77)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 34,
+        "grid": {
+          "0": "ГОСТ 18360-93",
+          "1": "3.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 18360-93"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.2"
+          }
+        ]
+      },
+      {
+        "row": 35,
+        "grid": {
+          "0": "ГОСТ 18365-93",
+          "1": "3.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 18365-93"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.2"
+          }
+        ]
+      },
+      {
+        "row": 36,
+        "grid": {
+          "0": "ГОСТ 19281-89 (ИСО 4950-2-81, ИСО 4950-3-81, ИСО 4951-79, ИСО 4995-78, ИСО 4996-78, ИСО 5952-83)",
+          "1": "1.5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 19281-89 (ИСО 4950-2-81, ИСО 4950-3-81, ИСО 4951-79, ИСО 4995-78, ИСО 4996-78, ИСО 5952-83)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.5"
+          }
+        ]
+      },
+      {
+        "row": 37,
+        "grid": {
+          "0": "ГОСТ 22536.0-87",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.0-87"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 38,
+        "grid": {
+          "0": "ГОСТ 22536.1-88",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.1-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 39,
+        "grid": {
+          "0": "ГОСТ 22536.2-87",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.2-87"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 40,
+        "grid": {
+          "0": "ГОСТ 22536.3-88",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.3-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 41,
+        "grid": {
+          "0": "ГОСТ 22536.4-88",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.4-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 42,
+        "grid": {
+          "0": "ГОСТ 22536.5-87 (ИСО 629-82)",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.5-87 (ИСО 629-82)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 43,
+        "grid": {
+          "0": "ГОСТ 22536.7-88",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.7-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 44,
+        "grid": {
+          "0": "ГОСТ 22536.8-87",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.8-87"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      },
+      {
+        "row": 45,
+        "grid": {
+          "0": "ГОСТ 22536.9-88",
+          "1": "3.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.9-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.9"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "locator": "element[414]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Временное сопротивление разрыву [Изображение: 1; ../../originals/images/32d4384d108368664fdf5cab.gif] , Н/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] (кгс/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] )",
+          "2": "Предел текучести [Изображение: n; ../../originals/images/f8e438486e8b1b5b75f9e679.gif] , Н/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] (кгс/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] )",
+          "3": "Относительное удлинение [Изображение: 5; ../../originals/images/933c4f2243d5b093c07761cc.gif] , %",
+          "4": "Вид труб"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Временное сопротивление разрыву [Изображение: 1; ../../originals/images/32d4384d108368664fdf5cab.gif] , Н/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] (кгс/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] )"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Предел текучести [Изображение: n; ../../originals/images/f8e438486e8b1b5b75f9e679.gif] , Н/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] (кгс/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] )"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Относительное удлинение [Изображение: 5; ../../originals/images/933c4f2243d5b093c07761cc.gif] , %"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Вид труб"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "не менее",
+          "2": "← ячейка 3:2",
+          "3": "← ячейка 3:2",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "не менее"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "10, 10пс",
+          "1": "353 (36)",
+          "2": "216 (22)",
+          "3": "24",
+          "4": "Трубы горяче- деформированные"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10, 10пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353 (36)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "216 (22)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "24"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Трубы горяче- деформированные"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "20",
+          "1": "412 (42)",
+          "2": "245 (25)",
+          "3": "21",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "412 (42)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "245 (25)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "35",
+          "1": "510 (52)",
+          "2": "294 (30)",
+          "3": "18",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "35"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "510 (52)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294 (30)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "45",
+          "1": "549 (56)",
+          "2": "323 (33)",
+          "3": "14",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "45"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "549 (56)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "323 (33)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "09Г2",
+          "1": "441 (45)",
+          "2": "294 (30)",
+          "3": "20",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "09Г2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441 (45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294 (30)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "09Г2С",
+          "1": "441 (45)",
+          "2": "294 (30)",
+          "3": "18",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "09Г2С"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441 (45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294 (30)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "10ХСНД",
+          "1": "490 (50)",
+          "2": "343 (35)",
+          "3": "18",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10ХСНД"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490 (50)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "343 (35)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "10Г2",
+          "1": "422 (43)",
+          "2": "265 (27)",
+          "3": "21",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10Г2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "422 (43)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "265 (27)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "30ХГСА",
+          "1": "600 (61)",
+          "2": "350 (36)",
+          "3": "21",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "30ХГСА"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "600 (61)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "350 (36)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "10, 10пс",
+          "1": "343 (35)",
+          "2": "206 (21)",
+          "3": "24",
+          "4": "Трубы холодно- деформированные"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10, 10пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "343 (35)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "206 (21)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "24"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Трубы холодно- деформированные"
+          }
+        ]
+      },
+      {
+        "row": 14,
+        "grid": {
+          "0": "20",
+          "1": "412 (42)",
+          "2": "245 (25)",
+          "3": "20",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "412 (42)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "245 (25)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 15,
+        "grid": {
+          "0": "35",
+          "1": "510 (52)",
+          "2": "294 (30)",
+          "3": "18",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "35"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "510 (52)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294 (30)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 16,
+        "grid": {
+          "0": "45",
+          "1": "549 (56)",
+          "2": "323 (33)",
+          "3": "14",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "45"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "549 (56)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "323 (33)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 17,
+        "grid": {
+          "0": "09Г2",
+          "1": "441(45)",
+          "2": "294 (30)",
+          "3": "20",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "09Г2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294 (30)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 18,
+        "grid": {
+          "0": "09Г2С",
+          "1": "441 (45)",
+          "2": "265 (27)",
+          "3": "18",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "09Г2С"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441 (45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "265 (27)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 19,
+        "grid": {
+          "0": "10ХСНД",
+          "1": "490 (50)",
+          "2": "343 (35)",
+          "3": "18",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10ХСНД"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490 (50)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "343 (35)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 20,
+        "grid": {
+          "0": "10Г2",
+          "1": "422 (43)",
+          "2": "265 (27)",
+          "3": "21",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10Г2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "422 (43)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "265 (27)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 21,
+        "grid": {
+          "0": "30ХГСА",
+          "1": "600 (61)",
+          "2": "350 (36)",
+          "3": "21",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "30ХГСА"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "600 (61)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "350 (36)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 22,
+        "grid": {
+          "0": "Ст2сп, Ст2пс, Ст2кп",
+          "1": "333 (34)",
+          "2": "206 (21)",
+          "3": "24",
+          "4": "Трубы электросварные, электросварные холоднодефор- мированные, электросварные горячекалибро- ванные"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст2сп, Ст2пс, Ст2кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333 (34)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "206 (21)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "24"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Трубы электросварные, электросварные холоднодефор- мированные, электросварные горячекалибро- ванные"
+          }
+        ]
+      },
+      {
+        "row": 23,
+        "grid": {
+          "0": "Ст3сп, Ст3пс, Ст3кп",
+          "1": "353 (36)",
+          "2": "216 (22)",
+          "3": "22",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст3сп, Ст3пс, Ст3кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353 (36)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "216 (22)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "22"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 24,
+        "grid": {
+          "0": "Ст4сп, Ст4пс, Ст4кп",
+          "1": "412 (42)",
+          "2": "245 (25)",
+          "3": "21",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст4сп, Ст4пс, Ст4кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "412 (42)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "245 (25)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 25,
+        "grid": {
+          "0": "10, 10пс",
+          "1": "333 (34)",
+          "2": "206 (21)",
+          "3": "24",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10, 10пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333 (34)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "206 (21)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "24"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 26,
+        "grid": {
+          "0": "20",
+          "1": "412 (42)",
+          "2": "245 (25)",
+          "3": "21",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "412 (42)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "245 (25)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 27,
+        "grid": {
+          "0": "Ст08пс Ст2пс",
+          "1": "333 (34)",
+          "2": "206 (21)",
+          "3": "24",
+          "4": "Трубы печной сварки"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст08пс Ст2пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333 (34)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "206 (21)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "24"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Трубы печной сварки"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "locator": "element[740]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Временное сопротивление разрыву [Изображение: 1; ../../originals/images/32d4384d108368664fdf5cab.gif] , Н/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] (кгс/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] )",
+          "2": "Относительное удлинение [Изображение: 5; ../../originals/images/933c4f2243d5b093c07761cc.gif] , %"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Временное сопротивление разрыву [Изображение: 1; ../../originals/images/32d4384d108368664fdf5cab.gif] , Н/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] (кгс/мм [Изображение: 2; ../../originals/images/e1f2330cd75c972dae76bb83.gif] )"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Относительное удлинение [Изображение: 5; ../../originals/images/933c4f2243d5b093c07761cc.gif] , %"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "не менее",
+          "2": "← ячейка 3:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "не менее"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "08Ю",
+          "1": "294 (30)",
+          "2": "14"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08Ю"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294 (30)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "08, 08пс, 08кп",
+          "1": "314 (32)",
+          "2": "13"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08, 08пс, 08кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314 (32)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "13"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Ст1сп, Ст1пс, Ст1кп",
+          "1": "333 (34)",
+          "2": "11"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст1сп, Ст1пс, Ст1кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333 (34)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Ст2сп, Ст2пс, Ст2кп",
+          "1": "353 (36)",
+          "2": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст2сп, Ст2пс, Ст2кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353 (36)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Ст3сп, Ст3пс, Ст3кп",
+          "1": "363 (37)",
+          "2": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст3сп, Ст3пс, Ст3кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "363 (37)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "Ст4сп, Ст4пс, Ст4кп",
+          "1": "372 (38)",
+          "2": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст4сп, Ст4пс, Ст4кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372 (38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "10, 10пс, 10кп",
+          "1": "353 (36)",
+          "2": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10, 10пс, 10кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353 (36)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "15, 15пс, 15кп",
+          "1": "372 (38)",
+          "2": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15, 15пс, 15кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372 (38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "20, 20пс, 20кп",
+          "1": "372 (38)",
+          "2": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20, 20пс, 20кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372 (38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      }
+    ]
+  }
+]

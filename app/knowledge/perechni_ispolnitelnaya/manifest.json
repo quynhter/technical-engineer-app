@@ -1,0 +1,32 @@
+{
+  "corpus": "perechni_ispolnitelnaya",
+  "title": "Перечни исполнительной документации",
+  "retrieved_at": "2026-11-13",
+  "root_url": "https://www.ispolnitelnaya.ru/perechni%20ispolnitelnoi.html",
+  "scope": "Все ссылки основного каталога и вложенного общестроительного каталога; все прямые содержательные ссылки из 46 перечней. Глобальная навигация, реклама и рекурсивный обход нормативов/бланков исключены.",
+  "checklist_count": 46,
+  "checklist_items": 1051,
+  "excel_count": 44,
+  "excel_comparisons": 45,
+  "resource_count": 223,
+  "unavailable_resources": 2,
+  "source_class": "Справочный вторичный источник; не самостоятельный норматив",
+  "legal_status": "not_verified",
+  "acquisition": {
+    "html_checklists": "urllib, сохранение исходных байтов",
+    "xls": "xlrd 2.0.2; сравнение нормализованных текстов строк",
+    "resource_links": "Открытие URL, статус ответа, заголовок и ссылки; без юридической проверки"
+  },
+  "catalogs": [
+    {
+      "url": "https://www.ispolnitelnaya.ru/perechni%20ispolnitelnoi.html",
+      "sha256": "af578ecff224666e9cd5c49a3c18110269e99c14aa2eb54886f1b8f5381786ee",
+      "source_snapshot": "sources/catalog.html"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/perechni%20ispolnitelnoi%20obshestroy.html",
+      "sha256": "3ebaeecb50d973c2d59b1090ea26f31aa03cbe281a9f4d0ecaa5865b3b9c1339",
+      "source_snapshot": "sources/construction_catalog.html"
+    }
+  ]
+}

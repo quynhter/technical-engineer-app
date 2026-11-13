@@ -1,0 +1,1636 @@
+[
+  {
+    "text": "ГОСУДАРСТВЕННЫЙ КОМИТЕТ СССР ПО ДЕЛАМ СТРОИТЕЛЬСТВА",
+    "kind": "paragraph",
+    "locator": "text; element[6] <p>"
+  },
+  {
+    "text": "СТРОИТЕЛЬНЫЕ НОРМЫ И ПРАВИЛА",
+    "kind": "paragraph",
+    "locator": "text; element[12] <p>"
+  },
+  {
+    "text": "ПРИЕМКА В ЭКСПЛУАТАЦИЮ ЗАКОНЧЕННЫХ СТРОИТЕЛЬСТВОМ ЗАЩИТНЫХ СООРУЖЕНИЙ И ИХ СОДЕРЖАНИЕ В МИРНОЕ ВРЕМЯ",
+    "kind": "paragraph",
+    "locator": "text; element[17] <p>"
+  },
+  {
+    "text": "СНиП 3.01.09-84",
+    "kind": "paragraph",
+    "locator": "text; element[23] <p>"
+  },
+  {
+    "text": "РАЗРАБОТАНЫ Центральным научно-исследовательским и проектно-экспериментальным институтом промышленных зданий и сооружений (С.А. Лохов - руководитель темы) и Государственным проектным институтом Сантехпроект Госстроя СССР (Е.Н. Пылаев - руководитель темы) с участием Штаба гражданской обороны СССР и Моспромпроекта (мастерская № 6) ГлавАПУ г. Москвы.",
+    "kind": "paragraph",
+    "locator": "text; element[29] <p>"
+  },
+  {
+    "text": "ВНЕСЕНЫ ЦНИИ Промзданий Госстроя СССР.",
+    "kind": "paragraph",
+    "locator": "text; element[34] <p>"
+  },
+  {
+    "text": "ПОДГОТОВЛЕНЫ К УТВЕРЖДЕНИЮ Главным управлением технического нормирования и стандартизации Госстроя СССР (К.М. Кузьмин).",
+    "kind": "paragraph",
+    "locator": "text; element[39] <p>"
+  },
+  {
+    "text": "С введением в действие СНиП 3.01.09-84 “Приемка в эксплуатацию законченных строительством защитных сооружений гражданской обороны и их содержание в мирное время” утрачивает силу “Инструкция по приемке в эксплуатацию законченных строительством защитных сооружений гражданской обороны и их использованию в мирное время” (СНиП 464-74).",
+    "kind": "paragraph",
+    "locator": "text; element[44] <p>"
+  },
+  {
+    "text": "\n\nТаблица источника 1 (стрелки указывают исходную объединенную ячейку строка:столбец):\n\n| Столбец 1 | Столбец 2 | Столбец 3 |\n| --- | --- | --- |\n| Государственный комитет СССР по | Строительные нормы и правила | СНиП 3.01.09-84 |\n| делам строительства (Госстрой СССР) | Приемка в эксплуатацию законченных строительством защитных сооружений гражданской обороны и их содержание в мирное время | Взамен СН 464‑74 |\n",
+    "kind": "table",
+    "locator": "text; element[52] <table>",
+    "table_id": 1
+  },
+  {
+    "text": "Настоящие нормы должны выполняться при приемке в эксплуатацию законченных строительством (реконструкцией) защитных сооружений гражданской обороны (убежищ, противорадиационных укрытий) и их содержании в мирное время.",
+    "kind": "paragraph",
+    "locator": "text; element[94] <p>"
+  },
+  {
+    "text": "При приемке защитных сооружений гражданской обороны в эксплуатацию следует руководствоваться также правилами СНиП III-3-81.",
+    "kind": "paragraph",
+    "locator": "text; element[97] <p>"
+  },
+  {
+    "text": "Примечание. В дальнейшем защитные сооружения гражданской обороны именуются “защитные сооружения”.",
+    "kind": "paragraph",
+    "locator": "text; element[105] <p>"
+  },
+  {
+    "text": "1. ОБЩИЕ ПОЛОЖЕНИЯ",
+    "kind": "heading",
+    "locator": "text; element[111] <h1>"
+  },
+  {
+    "text": "1.1. Государственные приемочные комиссии принимают в эксплуатацию законченные строительством защитные сооружения:",
+    "kind": "paragraph",
+    "locator": "text; element[116] <p>"
+  },
+  {
+    "text": "встроенные в здания, входящие в комплекс строительства объектов производственного или жилищно-гражданского назначения, а также предусмотренные в составе вновь возводимых и реконструируемых рудников и шахт, - вместе с основным объектом строительства или его пусковым комплексом;",
+    "kind": "paragraph",
+    "locator": "text; element[122] <p>"
+  },
+  {
+    "text": "отдельно стоящие, строящиеся по самостоятельному титульному списку, а также защитные сооружения, оборудуемые в существующих зданиях, сооружениях и горных выработках действующих, законсервированных и отработанных рудников и шахт, - сразу по окончании строительства.",
+    "kind": "paragraph",
+    "locator": "text; element[125] <p>"
+  },
+  {
+    "text": "1.2. Законченные строительством отдельно стоящие или встроенные защитные сооружения, входящие в состав объектов производственного и жилищно-гражданского назначения, при условии выполнения строительно-монтажных работ, проведения комплексного опробования оборудования разрешается принимать в эксплуатацию до завершения строительства указанных объектов. В этом случае приемка осуществляется рабочими комиссиями с последующим предъявлением их государственным приемочным комиссиям, принимающим объекты в целом.",
+    "kind": "paragraph",
+    "locator": "text; element[128] <p>"
+  },
+  {
+    "text": "\n\nТаблица источника 2 (стрелки указывают исходную объединенную ячейку строка:столбец):\n\n| Столбец 1 | Столбец 2 | Столбец 3 |\n| --- | --- | --- |\n| Внесены ЦНИИ Промзданий Госстроя СССР | Утверждены постановлением Государственного комитета СССР по делам строительства от 20 июля 1984 г. №118 | Срок введения в действие 1 июля 1985 г. |\n",
+    "kind": "table",
+    "locator": "text; element[137] <table>",
+    "table_id": 2
+  },
+  {
+    "text": "1.3. Акты приемки оборудования и акты рабочей и государственной комиссий о приемке законченного строительством защитного сооружения должны составляться по формам, приведенным в прил. 1-5 СНиП III-3-81.",
+    "kind": "paragraph",
+    "locator": "text; element[165] <p>"
+  },
+  {
+    "text": "1.4. Рабочие и государственные приемочные комиссии назначаются- в соответствии с требованиями СНиП III-3-81.",
+    "kind": "paragraph",
+    "locator": "text; element[174] <p>"
+  },
+  {
+    "text": "В состав государственных и рабочих комиссий по приемке в эксплуатацию законченных строительством защитных сооружений должны также входить представители штаба гражданской обороны области (города, района).",
+    "kind": "paragraph",
+    "locator": "text; element[180] <p>"
+  },
+  {
+    "text": "1.5. Приемка в эксплуатацию защитных сооружений с недоделками, отступлениями от утвержденного проекта, а также без проверки работы и проведения испытания всего установленного оборудования (в том числе средств фильтровентиляции и регенерации) запрещается.",
+    "kind": "paragraph",
+    "locator": "text; element[183] <p>"
+  },
+  {
+    "text": "В случае нарушения правил приемки председатели и члены комиссий, а также лица, понуждающие к приемке в эксплуатацию защитных сооружений с нарушением настоящих правил, привлекаются к административной, дисциплинарной и иной ответственности в соответствии с действующим законодательством.",
+    "kind": "paragraph",
+    "locator": "text; element[189] <p>"
+  },
+  {
+    "text": "1.6. Генеральный подрядчик кроме документации, предусмотренной СНиП III-3-81, по защитным сооружениям представляет рабочим комиссиям акты:",
+    "kind": "paragraph",
+    "locator": "text; element[192] <p>"
+  },
+  {
+    "text": "проверки герметичности убежища, а также исправности герметических и защитных (противовзрывных) устройств; .",
+    "kind": "paragraph",
+    "locator": "text; element[198] <p>"
+  },
+  {
+    "text": "замеров аэродинамического сопротивления перемычек и параметров естественной тяги в горных выработках, где размещаются защитные сооружения;",
+    "kind": "paragraph",
+    "locator": "text; element[201] <p>"
+  },
+  {
+    "text": "освидетельствования скрытых работ по устройству гидроизоляции, отводу поверхностных и грунтовых вод, установке арматуры в железобетоне и сопряжению конструктивных элементов, по устройству вводов инженерных коммуникаций;",
+    "kind": "paragraph",
+    "locator": "text; element[204] <p>"
+  },
+  {
+    "text": "испытания и комплексного опробования защищенной дизельной электростанции (ДЭС) убежища;",
+    "kind": "paragraph",
+    "locator": "text; element[207] <p>"
+  },
+  {
+    "text": "испытания и наладки систем воздухоснабжения и производительности вентиляторов;",
+    "kind": "paragraph",
+    "locator": "text; element[210] <p>"
+  },
+  {
+    "text": "испытания изоляции электрокабеля;",
+    "kind": "paragraph",
+    "locator": "text; element[213] <p>"
+  },
+  {
+    "text": "испытания и освидетельствования емкостей для воды.",
+    "kind": "paragraph",
+    "locator": "text; element[216] <p>"
+  },
+  {
+    "text": "Кроме того, рабочим комиссиям предъявляются паспорта на установленное оборудование, а также инструкции и документы по:",
+    "kind": "paragraph",
+    "locator": "text; element[219] <p>"
+  },
+  {
+    "text": "комплексной проверке работоспособности и надежности систем жизнеобеспечения защитного сооружения;",
+    "kind": "paragraph",
+    "locator": "text; element[222] <p>"
+  },
+  {
+    "text": "проверке производительности элементов внутреннего оборудования (вентиляторов, насосов, фильтров и т. п.);",
+    "kind": "paragraph",
+    "locator": "text; element[225] <p>"
+  },
+  {
+    "text": "проверке местных сопротивлений противовзрывных устройств (УЗС и МЗС), клапанов, фильтров, воздуховодов и системы вентиляции в целом.",
+    "kind": "paragraph",
+    "locator": "text; element[228] <p>"
+  },
+  {
+    "text": "1.7. Датой ввода в эксплуатацию защитных сооружений считается дата подписания акта государственной приемочной комиссией.",
+    "kind": "paragraph",
+    "locator": "text; element[231] <p>"
+  },
+  {
+    "text": "Датой ввода в эксплуатацию защитного сооружения, принимаемого рабочей комиссией в соответствии с требованиями п. 1.2 настоящего СНиП, считается дата подписания акта рабочей комиссией.",
+    "kind": "paragraph",
+    "locator": "text; element[237] <p>"
+  },
+  {
+    "text": "2. ПРИЕМКА В ЭКСПЛУАТАЦИЮ ЗАЩИТНЫХ СООРУЖЕНИЙ",
+    "kind": "heading",
+    "locator": "text; element[242] <h1>"
+  },
+  {
+    "text": "ОБЩИЕ УКАЗАНИЯ",
+    "kind": "heading",
+    "locator": "text; element[245] <h2>"
+  },
+  {
+    "text": "2.1. Рабочие комиссии до предъявления заказчиком государственной комиссии к приемке в эксплуатацию защитного сооружения обязаны выполнить работы, предусмотренные СНиП III-3-81.",
+    "kind": "paragraph",
+    "locator": "text; element[251] <p>"
+  },
+  {
+    "text": "Кроме того, рабочие комиссии должны проверить:",
+    "kind": "paragraph",
+    "locator": "text; element[260] <p>"
+  },
+  {
+    "text": "а) при приемке в эксплуатацию встроенных и отдельно стоящих защитных сооружений:",
+    "kind": "paragraph",
+    "locator": "text; element[263] <p>"
+  },
+  {
+    "text": "состояние ограждающих конструкций, входов, аварийных выходов, защитно-герметических дверей (ворот, ставен) и их соответствие классу защиты сооружения, дренажных систем и систем автоматического пожаротушения;",
+    "kind": "paragraph",
+    "locator": "text; element[266] <p>"
+  },
+  {
+    "text": "наличие и качество закладных деталей и других приспособлений, предназначенных для заделки технологических проемов при переводе сооружения на режим убежища (укрытия);",
+    "kind": "paragraph",
+    "locator": "text; element[269] <p>"
+  },
+  {
+    "text": "исправность противовзрывных устройств (МЗС, УЗС и др.), расширительных камер, задвижек на трубопроводах герметических клапанов на воздухозаборных и вытяжных каналах, клапанов избыточного давления;",
+    "kind": "paragraph",
+    "locator": "text; element[272] <p>"
+  },
+  {
+    "text": "герметичность убежища;",
+    "kind": "paragraph",
+    "locator": "text; element[275] <p>"
+  },
+  {
+    "text": "б) при приемке в эксплуатацию защитных сооружений, расположенных в горных выработках:",
+    "kind": "paragraph",
+    "locator": "text; element[278] <p>"
+  },
+  {
+    "text": "маршруты движения укрываемых от рабочих мест к защитным сооружениям и их защищенность от воздействия средств поражения (наличие защитных перемычек, самоспасателей, пунктов переключения самоспасателей, указателей расстояния и направления движения и т.д.);",
+    "kind": "paragraph",
+    "locator": "text; element[281] <p>"
+  },
+  {
+    "text": "работоспособность системы электроснабжения защитных сооружений с использованием аккумуляторных батарей электровозов и систем их автоматического регулирования;",
+    "kind": "paragraph",
+    "locator": "text; element[284] <p>"
+  },
+  {
+    "text": "состояние путей эвакуации укрываемых из защитного сооружения.",
+    "kind": "paragraph",
+    "locator": "text; element[287] <p>"
+  },
+  {
+    "text": "2.2. При приемке средств связи проверяется работоспособность электросвязи, проводного вещания и радиосвязи, а также средств оповещения гражданской обороны объекта.",
+    "kind": "paragraph",
+    "locator": "text; element[290] <p>"
+  },
+  {
+    "text": "2.3. Приемка рабочей комиссией инженерно-технического оборудования должна завершаться проверкой работоспособности всех систем сооружения в совместной (комплексной) работе.",
+    "kind": "paragraph",
+    "locator": "text; element[296] <p>"
+  },
+  {
+    "text": "Кроме этого, для защитного сооружения, расположенного в горной выработке, должны быть произведены замеры количества воздуха, поступающего в защитное сооружение в режиме чистой вентиляции за счет естественной тяги.",
+    "kind": "paragraph",
+    "locator": "text; element[302] <p>"
+  },
+  {
+    "text": "2.4. Права, обязанности и порядок работы государственных комиссий по приемке в эксплуатацию защитных сооружений гражданской обороны определяются требованиями СНиП III-3-81.",
+    "kind": "paragraph",
+    "locator": "text; element[305] <p>"
+  },
+  {
+    "text": "ПРИЕМКА СТРОИТЕЛЬНЫХ КОНСТРУКЦИЙ",
+    "kind": "heading",
+    "locator": "text; element[318] <h2>"
+  },
+  {
+    "text": "2.5. Проверка состояния ограждающих конструкций осуществляется внешним осмотром, при этом выявляются:",
+    "kind": "paragraph",
+    "locator": "text; element[324] <p>"
+  },
+  {
+    "text": "соответствие проекту конструкций стен, покрытия, перегородок, перемычек, тамбуров-шлюзов, туннелей, шахт, тамбуров и герметических дверей (ворот, ставен);",
+    "kind": "paragraph",
+    "locator": "text; element[330] <p>"
+  },
+  {
+    "text": "правильность выполнения монтажа конструкций, плотность примыкания строительных элементов друг к другу;",
+    "kind": "paragraph",
+    "locator": "text; element[333] <p>"
+  },
+  {
+    "text": "правильность выполнения вводов в убежище электрических кабелей, кабелей связи, а также коммуникаций водоснабжения, канализации и теплоснабжения;",
+    "kind": "paragraph",
+    "locator": "text; element[336] <p>"
+  },
+  {
+    "text": "соответственно проекту толщина подсыпки грунта на покрытие.",
+    "kind": "paragraph",
+    "locator": "text; element[339] <p>"
+  },
+  {
+    "text": "2.6. Система автоматического пожаротушения при приемке проверяется на работоспособность в соответствии с требованиями инструкции по ее эксплуатации.",
+    "kind": "paragraph",
+    "locator": "text; element[342] <p>"
+  },
+  {
+    "text": "2.7. Работоспособность, дренажной системы должна проверяться, путем просвечивания дренажных труб из одного колодца до другого. При этом на зеркале должен быть виден четкий контур дренажной трубы и света.",
+    "kind": "paragraph",
+    "locator": "text; element[348] <p>"
+  },
+  {
+    "text": "2.8. Испытание защитных свойств сооружения от затекания наружного",
+    "kind": "paragraph",
+    "locator": "text; element[354] <p>"
+  },
+  {
+    "text": "воздуха должно включать два этапа:",
+    "kind": "paragraph",
+    "locator": "text; element[360] <p>"
+  },
+  {
+    "text": "первый этап - испытание сооружения на герметичность;",
+    "kind": "paragraph",
+    "locator": "text; element[363] <p>"
+  },
+  {
+    "text": "второй этап - испытание сооружения и систем воздухоснабжения на способность поддержания установленных проектом величин избыточного давления (подпора) воздуха.",
+    "kind": "paragraph",
+    "locator": "text; element[366] <p>"
+  },
+  {
+    "text": "2.9. Герметичность убежища проверяется в такой последовательности:",
+    "kind": "paragraph",
+    "locator": "text; element[369] <p>"
+  },
+  {
+    "text": "закрываются все входные двери, ставни и люки, стопорятся клапаны избыточного давления, закрываются герметические клапаны и заглушки на воздуховодах вытяжных систем, сифоны заполняются водой;",
+    "kind": "paragraph",
+    "locator": "text; element[375] <p>"
+  },
+  {
+    "text": "включается в работу приточная система вентиляции, отрегулированная на заданную проектом производительность, и по производительности вентиляторов определяется количество воздуха, подаваемого в убежище;",
+    "kind": "paragraph",
+    "locator": "text; element[378] <p>"
+  },
+  {
+    "text": "измеряется подпор воздуха в убежище тягонапоромером жидкостным (ТНЖ) или другим пригодным для этой цели прибором. Во всех случаях замеренное значение подпора должно быть не менее значения, указанного на графике, или величины подпора, определяемой по формулам:",
+    "kind": "paragraph",
+    "locator": "text; element[381] <p>"
+  },
+  {
+    "text": "[Изображение: формула или рисунок; data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAANwAAAESCAMAAAChEUvDAAAACXBIWXMAABQAAAAT/wH0sE4iAAADAFBMVEUAAAABAQEDAwMEBAQFBQUGBgYICAgJCQkKCgoLCwsMDAwNDQ0PDw8QEBARERESEhITExMUFBQVFRUWFhYYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMlJSUmJiYnJycoKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc5OTk6Ojo7Ozs8PDw9PT0%2BPj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tMTExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1eXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29wcHBxcXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1%2Bfn5/f3%2BAgICBgYGCgoKDg4OEhISFhYWGhoaHh4eIiIiJiYmKioqLi4uMjIyNjY2Ojo6Pj4%2BQkJCQkJCRkZGSkpKTk5OUlJSVlZWWlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5%2BgoKChoaGioqKjo6OkpKSlpaWmpqanp6eoqKipqamqqqqrq6usrKytra2tra2urq6vr6%2BwsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4uLi5ubm6urq7u7u8vLy9vb2%2Bvr6/v7/AwMDBwcHCwsLDw8PExMTExMTFxcXGxsbHx8fIyMjJycnKysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fX19fY2NjZ2dna2trb29vc3Nzd3d3e3t7f39/g4ODh4eHi4uLj4%2BPk5OTl5eXm5ubn5%2Bfo6Ojo6Ojp6enq6urr6%2Bvs7Ozt7e3u7u7v7%2B/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4%2BPj4%2BPj5%2Bfn6%2Bvr7%2B/v8/Pz9/f3%2B/v7////ohJDmAAAqNklEQVR4nO19dVyUWd/3/cZ9v89z9663SffA0DkwM3R3hyAKmNiKHbCurt3tqmvu2t1iK4pBg6RD93QycZ1nCmWGqYuZAfb97PcPGa%2BYOd9Tvzzn/An8/wg6UfjnTyNbCu3iD3K/V/xB7veKP8j9XvEHud8rZJLjEgnQwP9DvOEpjKYxkByvn9HLlfMudX69TKp%2B8ayRKcH2d4IB5B7s%2BY0i%2BjTPwsV7Qz876p4gtEfQXTbEpFJZvy%2BKA8ilmAe2CT8w/Bc8n%2Br4kCu6fMdr8v55iDOc7gOxkVltI1DEoeMbuS/OYzEtwk/VoUXgiMPFPtH1dSHV4G5gLbiBNTZClo5EGYeMr%2BRYax3NvDuEH6/GtfGyLQvFXTBtBQVcC23jrox7st7%2By4gUcqj4Su6Wx75sdLvw4xbXA9f84ntF19kRr3jszcH4yslvwQXM77Nb5kdmEm97dQk%2B1sS5L159vIQjulE8jwDKIjex9q6k8pbPJ4xQMYeGfnLpdu/AfZ8ewceTNr%2BWlQqokauaIbDzBBMcc3ncmPIrtyn%2BLXfkSjoEiMk9sra5ciTJQdAw3Dm2IonAPRQ9rbc3thQC81y/4BLn1OTY7mSOXEmHADG5nzyT5sQ5Ikn8j/SsuQzhNcYs47HlJelUAJbkMsH1SKyVtR9l5Eo6BIjJtX3%2BUln2/CiL/5GdXyvStvo%2BTNGvJzfyP3XzCXK6Cmu6f19DTlK3ZEje46a7UIezLBqHIquAsfi4xATS16flwmgaCk2ehj4JXfLYSbZ2C6NpwLHnosTq2WhET/2XwXYZDHJUT7Pto7ZjbolJpA26qDo56J2jcRpdkwXSIChu//RRhxzvvKOJA1mTJdIgbpmavlenW7J221jZjlJynVm2mTIuq06uMRNhZrFnVM6X7D3We3AyrqtMjn0nyMrEKGVUSvWXGJ0eWddVJsf6dW6kMyJ2FCqXvLI0gyTJHiUWz6p3S0bPQc/zpFHoIWItMUyukGmLwZBzfWcCKzRVIE0C52xSKPsODHLk1d4fNFMcjYK403ShnFswyJHWeJVrojSaBfuis2%2BDnHtwyK31w2miOJpFc/KkM/LuwSH3Q2C1JoqjUTB/sXDolHcTzpjbElylifJoFG1RE3LlKhYwyOFzMO80UR5Ngn0LEdws9y4Mcr3LvT9poDwaBXGuhdwRB6/lVnu%2BV784GgXlCjqjV/5tGOR6lvuPMnKMq%2B7mTxXch0GOsDlllGkohCV/8VXQcN/IcZlCb1AfSTj38Ggt1Y0CTx%2Bnu66%2BU2QGErZmfdZmUeGjKszyjCLHRz%2B51lUxd/h/WOeXCglQL6ZGTr3KBlDZusyEuVVCdZmweXqdlksLD93LkbsV%2Bj3E5CjHjRD5/L9tyU7CGbFtlm2KY2Q1oG3H7Nzq/pPwK0i7MkdVt%2BRcsoxoV/iEmBxph35gJd8Oyo9YKfQklM060rPZPx9UTZ5KaJy/T0iOuHFKpZbLCwsN6Wa/KLbAxOR4N4OW8Ydm45LZnzkUHui7kYsDp2cXgctRZ0DFD6IZibw3ezRpKOQ9ev5K5gAxOfbpsLP8aSM/5de%2B327yQPPeqzzi9twezs7JReD%2Boreib9s%2BczSR65j8t7VKnB5icr3LQvmqVc/W7OKXyQd44MP6twC38RS3e2NeF%2B/UdIF4g5jVmYijfaMm3YZ7y8FLmcIkJleRIZg0Hnk5zYyyXtoMXq0qAAXLXoLa9ddA8/KFOP4TzCfzne08M19qucwqoyTS8oKymhaTu5EhmCvfTHNB6iOza6HzOQ3cI6trQMnK5%2BBc2AmB6OMxq%2BaEXMNztFxmVUHdbJitNFooIkfbMaNM8Kf%2BxRzLdSUM%2BnK/myeiL3DA2/TTXxKcCkSPUn6cVaPN8sLCG6z1faXOKhG53hNnSKL/n5/1kU/ykF%2BoZxJ/3i%2BPCZjqOrNRdIuwfs6oIde7ZmyY8sKIyHEIYj851FnHV7p4nY93nipj8RvrwsJV%2Bb3irtg9O3G0WOKMw6aI84MDH9JQojhzSN%2B%2Bomd66GjJjiKk/zm1SfljcOy5GRGjRf16jULeYil/DI6DKMOvZOjl0SQas8z2DExOgLiyhQIcB9F07yL1CqUhcI6aYSVKwmPIllBwwsZpmNHRckWRBlslFC%2BIrXbLUVJHBzn62rEo1dxwMMgxUtBlQyyPRlHv87cM%2Be68gYBBjp6EGhWxgrtIk6uqZVXAIMcaHeQ%2BRJjtVjE0D6flwj1Gg/p1FOGvqlkJgxwnCTUKvF/k%2BeYHGcofE%2BIbOa5IVvAIooRRWke7aLptb%2B4QXYFSXWs1V8ih4pKrpcoh0K/k6lafFpDpODfrQDPflqCfmD7jUAtffHzOCk28IVR1oFinkSdHDNfLlhuykkY/uYYM83T%2BSx3L7E1sc3oAuONhirTfTAKERc5uerGipPRIF5wWigsPVxCIVyonWveTKwgwXUsE4BTSf5enLQ6AJXaHz3t5toBHnr9VLnYVWgPcMEyjFooLC92zDFK7VH66nxzlqEshv0ZyMfn0tWi%2BNZEe28td6NkKtvt1gQfYt0KjN9xupL1fjB%2Bsg0pUz5D/OuZ%2Bxgq8t0/PcHlLU/h1E7WOzps3tZc5J7Qb/BIoUgiC3Do0Xlx4%2BBSkdxBGVmQ/OfqsSDz/Tx8TXPO/0AfIvo95tbGXOLWR2URoc4bgFoca4NY0wp69DZZG9TDSfPrJPfPNEc38rT4LiQC8iO0Bu3w7wCWvD6A9dT9fFnDzF1siws%2BO6MKCL16G6%2BFkfPaTy3O6IYxddSyZKZjv927oA9GZVLA%2BgAEeoN/wu3lHhoWxqbGLvJSPYcFpKzscnPysfnKpKOF44mxGvOJ3PWjBLmIb%2Bg4HZIW2M3527Obf4d6MtzB32KSqcqANEKabwkus6yfnvUg4UHdY6E25zgHQ4oDNs7FEAFKQP50OthTqqVAXBt08kksf%2B1YgA%2BphDfp%2BckvrBMXmzPBK8t/Hp3nZ2cZ0I18fO4hFmumliZqL4%2BM9ku0GXgfo5sHLZe0nJ4ri8SqLqsoEOezk337cKYgWU/KX%2BqSI%2B3m3B3YkybHW2k1ohddx5FkFEFXsOiPi%2BqOXBKzrSKaSFoWZ28Gcq2GYPEys/0i2XI4V4iNMMQuDXJcnZgRbrgNrkqWCH1YCcBxEvu4jmHl/zNb0Atz4GZwkG28UEea3awzQ22DEBgZcOQSDHM3bnQTz2zUG6AdrN0lTh/22SakKDadbBjjgYZdKM%2BB9DDe%2BJDGbMHb5x%2BwlKGlKOFEeb5vWoZRMA2DNRSAkGo57xSEh0H6jEtEAhxxmxNwMeD%2BDBInJjH3IteCMrQ9R8WtwRIGPUzH8cmkCrJ8RyBcSXZBXdoBzwilHidyFQa7Z07d7KEVTG5wXIYbZUiKWQ6bHOyqLhcIg1%2B7rpSi5UXtg/ebsIObB7D20ZPl7YSNec1yh7EU45IJGpuW479NNUffx7y7kLory9bQyMZot8BkUhCxTGuoZTI4mCvGTuqU7dEcoVmV3qCZBXIk0MbF2RpojzM2Q2Myf8sr5mkpJEla5t%2BobOdbnToGn%2BXXepmII9L3btOC0QKpR2trbxd29NdR7RLxfTYETHDbfLmztaGnBNTV1kYn8%2BaQi3WiTchffV3L0M77TewHjNHbChOR20D3j%2BwmOe5mAdDIlJnG/yCnTFoEdie1QmOcQiFNMyZA%2B6YeJ32NmPlVmun4lh8v8p1MDaEkzS8MiXoBaL4dljp5N0BOf8UYTsCJfbEuc90isE%2B%2BYpxMl3WO6F1vbWdnmKNMGv5Kj/GyTQuDeCNjy5Vf/h%2BBFzMWORS7v%2Bn6wyvu03Pm%2B8IkGP88R0FBoJ21cP0pfZNe9f1f46q0yE%2Bhbdvplv/MQOdfrI7ieUgZdXUlk5oWXUrJdi8BBH9FyAlywp2qhaI2ibrL%2B3KFu5vGVHHlTVDW/b8a1k3OXEcmnbnPaFi8lt6Ul9fZtCxPEHCFmeZBf27B7nJmXbCxeDPXlr%2BReJmxggifxOziV2SeginXFoG75FVA19Tgg5wXxJSjUcTDIwtjryHAv8W%2BdMSZuyNNYPznmAf98vg4Xcgs8TroBrqWXgsq8EvBhxhPQNj2Y33Ls217jDQ0mpqmQTqZRvEHp7oHrXfiKfnJd89CfAHlLwKO%2BfaHPwd6YIsq5XBx4m/kAehk8jT9JQnTcflvkfpnLsbUHiHzIKGjocbN%2Bcu99XEoAZZd91vaAtDboADZ3R%2BgeBiiKX/Yi3eyQyOStjQwa7rAx/bS18/Nv/4U48Ma8mByU7xNTB7hvYg2MPK/xwItkxFi7JwA0Th5rrxMkTgKvjwkc7uUujZk6OQOVdZhOlP6Ww796y9cpmYXrZ93km7fUguVBeXzJST8XbB3fv4irITZwmFuO%2Baul3Rs13pdWnPHiqYlY2y3Q3ejNNV%2B1g9rwkOENYEE1M74PVSdSDcPkqQ/BDG%2BmLGH9BKdL6nwBDHKf/b2HN%2BBfG/3XLLX6CgxytUHYYU1JZF80t3k4xFdFohEGuXJf1%2BHcm4FXEII8N8R3IdG0CoNcTcCwZsp2rZoYq2YiHQxyuIiAYVwcCOWjTS/IuaWquINBri0heBhTEsmrv/NXt6PAINcUMZzkyv2%2BW6t6lpdswCBXFxw5fBoKfaeO/yADHC5gkOuOix423ZJzBun0TO1vgeOUjYgfrp2OoZLYCcvV7ZTwWi4iZLgSuLlbdNXSmMWQJgeR2ltIAquJ09Mmym3m9BvC1Jjg4Rpz7fF/DVSgDfFUlAVS5Dh3swIjdvPtbdqdnCnZlygAkB5cKiMLv6wzxGeYZkv2TgPL6/Kj%2B%2Bx2FT05UuQKo8cZjsfyZfXToDGGBp4PuaxDThaYncIASKuPxzCRKw7SySPKvw3JWXQ1CJLkoIPIsHsz7YoAtNU87tdphhtZVSFID0P3J4KO2oD2qR9yeeEAv9YkaggLSHub8FJeCKmWO%2Byc9T7LtgLwlvi8Ans87oILPvc7f3R%2BKOiXbb5%2Bw0IO2mmGeK78MWmwNsYeIkpekiL3PtQh2D6zHYBZKT1gc2wLyPX5As77C43UvqCYYYkVdPv9IwQH/7WniL%2BslMq2kOqW%2BT6G35mfZQJW3GIiOTu5jbXIq557PIEvvLnkGj/vqmHYO512wcL0JGzfL7dqyjjUU4Xd8kMyasts1yW9oNL3NlQankr4HJ/c3Zaxgj99NmW7mpg6r9N%2BJsqDAP0c%2BBHcVykTfB9LSwhJchuRW/CtmW6N4G54K7jjv7Pvgc8uzhvfM3yB1zXX3MjIZK/WN%2B8kLdbDwJ9NOKn/hXgy6Kokuam2bwBrAaYZ3AmvAQf8SsEx9%2Bvs064vBWnPlHyU2z2thwoYP6MM9sD%2BFeJVY9u9g73ukuSyzVcUb3GI7wIVrj8%2BC8N0gb22WZejECKVkhcQpv2Y%2BHWsrg/sRTWk7Y6eD2XkpEiSu%2BWL8DK0O8MCfdFm9rrzyOC%2Bt7GNEVqkwjK9/bSezcCK1TM8ATfw0XfI8h/nZd2QJEe/NTci4bIgGvs4DT27kgsov80MX/hIFHumYX21vqV/gfX4JNjBlquOY6KIsm5IyTluc61YOcaVC33P3J72r%2B%2BFoLSdZNOzxMijEGaAk1frOz5Qxg7VAN4ieCxKy2OOutXa5BHcl56kTsqQY7PD2b4A66rlNOCbrmOmwM2GfRP1X4nyzEw4W/r7OGpX/aJNMdUvhtkpe%2BLHOcndMQJOGjDW7otWV7ucttZdC/OVd/MnRg4W3v2QJMdVNAuTvWzqtJPNIKqyT75j4zrg1d7nKX8NVuDclCRH6lBQerqXreKt7YYMoTreMtMEC3NLEtr8iVaK9uqSJMeiKag5tpedluSc4Ed5i83Hw7TimtcYOiqM38FJA3bHaFG1LLMY4wnvjfoF45xuK3wCTuq9txZXhBDXGjlchjWiKav1zS8qfgSO3xLtrrWWo%2B1yND8NazXLl%2BWGyFNKagOOKPB1I8L5eRjg3XCesAQWN%2BIaA4uflb0hTY5BkJvESPF115bizErVNYTlqqfkGY%2BRYcBJQZIcuzxvysLXbMBte/FRaFX1NDW297c9JdBNS%2BR4L%2BwNs%2BC8wNhoapygfGGRBDn2g3iEq0UcHipbgvVMqufLvQ2RIVMKxOwIoT5aIvcxUW9BDYxeydpsYnZOBV%2BEBDnyIvMNxWe30/r2myYGjP2JDT456NpOihfPkYQgb%2B2Qwy%2BZiIaT4cI%2BZmmyU5W6kCBHSLV9wITYgDDHurQ4aSaFc9F51yusg9j%2B7onw1krSHukQchKctAXmcVvDgyotdpMg1x1rmJBxkQfKo6OY7B92seg7kwj0MF%2BxO68zAqMNe451zGFsAozFsIydCIONqjnhJMhVeWF/TPS%2BB%2B767uB2rrkP8Gu2gc7IeDG59kh3beQ4dwX9zQvGUQHM3ZZGP6k4PAaS4z32OUQvxOT0XfK5AMoyK0DromsAF7NKKLp5HTdQlkc073GmHze2lZOSIQuM/UiDIwO4sdqb5O9zOZAc7UB4DehMOsE6HFUC8hNrQenUp%2BB9yEHhbNm7DGloYLFM0ws7GeecESdVX/5N3WhucWQAG%2Bb1pBT5m24OJEfK9XoPnoWXMVfGUMGFoArwOO4TyPcTec24xQtN9aLkHIAzZHDyPf%2B9WPUBR99jZrh/oA7Yu%2BB/jZO/4fFAcoyjtpnHUiZ3Upe73izN9m0Ar%2BOvNO52vy%2B%2BXRfspvEd27rn/gNGRJOyA2GwW2IhHW2PRbR8l9xAclDtPCfv5AKIk58eHIDawwCN0519kPP6swra0kM0vSKE9rOZ1U3Vn95saHxIapFgYegJ%2BdqzxGwJ4Z4%2BFEhTXsmqhMP80cU47z4x%2BqtrqSnBT8OzJfsueuw6OWUbbDW3Lje2OiVll/CeT1HQm%2BRYBQyRv4Fe%2B/4bn6Z4jIYjq6VJ3wXLUU2gPml21bN0rC6LdGUei0pqqicKVsQdTFVQJhgmz5dorGYD/qQt45EP5TQcTzrLHj9/4sTEFsDtrSk4vXFBUqx/zE3%2BE82L5yhY0wcnsS15CIEzBeBcc9L9Qf4SOMnVxc8i9XVMHAOCMJ4YrF9YXGJy2qpK/hR%2BN/aEgkV0cFYbp3hrlNzb8LFzVVymw3kYoavrFJeRkrLmwuuXxWW1uKZWgcSlb3BWlGgEh1wyRpMJ3HXTx4armpxaFflXuxu9vYTuTpKEjkTekajInICTKRvvo0Fy7fP/211FVx7tHFpner2s7seuL1akQsMg15jgrcEJ5abVP1erptv3XfWeOOXzUBz5cFou2kVz2eklSWOnVaukhnMLA/%2Bfp%2Bz4mzLAWhHipDFyzyMmZKiU3wjhd9joza4eWowCTreMdlE7MVeMosn/7azoEKtvwG/Q01/RPsTgEgxyLTHuGto7nbhuwviFqiyo5zAv2P0racjrUOC0XDhKM%2BTYR82Nt3aoMOA4jxJ00XflbGmvAmCQ64jRTLeEbnmMn4tT4UHevaD/WO1Tw4U/iFz/Vm19rV9aBOYFvaWhV1R1XYnOGrFVy1LHJZeq0Brcivi/W2xRx%2BE2iFzLrseCP8RLmUnT9jUC6rl4zLxSoZOwNdxeE%2BRIi/7h%2BEiFPkl9ljTW9rxap2APIncFe4z/L%2B8aBhlmhdjPvIbx9NCdgRPc6Yx208CZj9AJU51tKnhiiHkGhmsb1YvBS5PrW%2B39mv%2BHtc5iX81m201dixyeFIX4Fwtu4SNR6h%2BAwjxqZ7qHqLzMhK36/0pTV9uTJlcYNae0lQGocxO%2BgPtx92oS0rtocxKEv9Ia7Kn%2Bss6nQWPilKvLzLKlJgZL1DaNpcix1vtd%2BDG7FrRnnObwjk%2BrvR92mleXmSt0qJNjXYrV/bnKsO%2Bwr5S6%2BSkXvf7tPig1VBVIrjiQIvcuJOxqgGsl%2BDSjiG/7zu/Zn1gJHsWJIs/UaCd1RUHzQj2zo0rDaj277f/pdmNI0k2yQqTyULYY26U7Y96B%2B7NKQUHcMcry6U3gWJBwkqS%2BRBvmqbdPD3uDqekuZYnE3PZ1euNiNSJ0pMhtRjkgjDDXuccX4cC2mApG6koqYSZGMI9AR1CGBiap6ixVYi/SNb%2BizAPLfjZzkskmzexvIZWdXvfqmp3pyXrm6pVUZlxmDyUil/2blY/Qu9B71HZi2FN1jmh74DZpmrIsWMqtwL8hlbauihisfiUm4QFnS9KdfS67WNSwgNPhxktFbllSaIBaHufKxAmBFYpHEq91j8t3Tvc0dcjdYHIPP/QBUBzlF7y6DnCPBPqHnukSDVNuctgQl6QLGd3wNcrC9XOTPRMyHs/UmZj6dmg/IgODdUvh70IP9jwS9A1azbuvhHhJnkOTPLxufnXdDDBwLxdzgigy2wa64Pd3yzzckH5DJmBYBdywobrTuRDgTdOz3EsZcGEw6A9d/mxxWZN78sJJJo30gJ0ULwaP9bO1Tk6XQrHcfBit43FAo9FNOORCPYYa5SlPt0ReUNgm0NNpBv9Z92HI2w3JBBxy4c5D7Jac5ZaGFxWGT2l3Qv73pPmazieAQQ4KdRyaCGfedzL0U5iH2rsD9Z3H1qF2ermA03Jh1rih/AR1vZvFj4rye/vuz9MZF/dM%2BQGVcAGHXIj1xyFo6rwN9vqrFCVq4g9g/mKxQhtniMEhF20Dd7UGH4xitJGtgomIS1pj8p3zGa0sx4A1odjWwG456lFf45Ba%2Ba/1nc7SMZ/%2BRDsrKmGQ4/m7NMEmt81Fz0uR%2BbLP8f/YHdTWOl84LReAhpu1RytDG1jJH00cwgETQ7fbmp9JxICjfgU4wtyvkHE4ABmoQNnOizB23lUA7zvhAFbL2cA7XIVyFjVRgTpat8H0X7ZvtLkIFpacsymHNeYOu%2Bsi5A%2Bny3GGxgH5cL4PNgaT62ltERok7NbGJjyfTG9nh1hKhdmVwCBHKELpORyTd7f3hOtE01wtH5A5iFz3zNCIq2w%2BtyfT4pK2cABjdVLcRqHZz45zEPovKSox7NrqaxBeI29zj2OhlsZJr7W9W6Y0Odr28eZj/HAAdEzVR%2BlYk0CNla4ucoVgh0tmtKMwGMoblNwjA4w8xPcpcueSHIcJJju1vy2O9H4o%2BY6T36yzKgC8V9itpXnW5dAj9KZDdu6COmZOdlY5D6XzMkIXLY9b7SIzfafjw3CYijS5e76vQT66DLB2BOFBWUgFe%2BMmCjnSReBqo8a6q6ok1eY42iyRUxOUNBcj18c1w7HzrhQ5CJ8PePsSCICUGdoHmpLaGYveAHqmr6Dl6GkOKkYmOmb8e%2BIJ2e45yrU4MyNFsk%2BTGDxbQm/9j/BAV8pkEvQqCd%2BW1QHI05NJAKK2xjuUqOJ0Y37O1XFcLds25S1yNrRar6U1hoMwiBz3eWxAF%2BCVxhzoY%2B5NJLyK7uK34kYGoOaG2Vq6pyhXwNjno8ZFv5E5oii5aFPEghZN50nLxSBytGzbu/zaPxlUBejL51JvJneAlqyX/E55JAhhab1IqUJBf2j7ZzfZoa6mJISh2/1hoyYj%2BPjMYzZfylHWBzSBipn32eemEMGtpEbBaesN4Z5PlTlwuI0HvKziZKz/hXi1a72NJ6Y0a8qbrAqkty/4ONkgZn8tj7rZdff9rEgC%2B0BkXf2CZcJO1jNnuVKn4p20Sea/4gZdhtiFKQ4W5hu7tGYAyIR08PGqvQHSejmFe8/Xyh2Zw2Rf9E9NcLouvNc5I4Oo%2BMv63vn%2BxfrAYBHPq16PNdVzvQbjiFSNQIocr2Tt%2Bm1rDtMA/nRa0rY6AL6sQZlHirwEnWn%2Biv1T1DPButG3B0%2BTzMoYI33UccIwbGAkiUFjrq2XShTUMKulRShnu4rKxbn3bZMDFcYe2/dZ6y0slr7Ko1SvRut%2B7wffQ6E%2B4GQQZQQrcPTQn8w2cd0/aPMG8ruZDoY2%2B5qG%2BygAIeBsATkVLT%2BLkLrXfkz0Y%2BlBRa1YYKNnGHxVrVSZoQMGudZkF3mpGlDXWTudqVJ3aa1lW/0N9VAHR%2BrsM1gJ3OnRckLV5BMhyORbkgoju%2B5YvJOh5aZG4gg1G4DXchkBshXeL1ss/uRVLHmt/Vq83vcG/hdGjhmAt9XxNE9ZVgHreZqhZZbEISU0XMF8xCST1GvDpSHLAZwE7uQwGcZz%2BQzLsaGPB/ZXesXRKGt99PaPI3Jy1kDAWe6SNjjg373Xe5LRgoH7rRCq92ANx9isUpK3MCyAkwY8OVTaUfcpbaL%2BjPxvLYSvu7ko1NHCe3vp8CqRcgAngTtdcjdg7q0oa12XI18nek7HvRw/SwP3vSVVI3pe/DfAEQWJovMKWD0CdQOq3ODxvVHOp37Vg1Z6NMvhu/GBB8pGQX8UA86Yi3EXJcELUlV4d2NMdLAn%2B9eLEgpWo/X0UUm/1Ay7dqwAcERBCurrihD8DrfxZmuqhVlqfayu4/EuJsaoda9rhtuoUQw45KaGinNcC7J9ra0XfyIKPlMuzY7yQ0zCbnr6YcSnfmnAINc5NUjo269cgzW1yHwu8IXwig/OdJ6kYz7lTPlInqMuD8rIQb1fmsXbI7el%2BBXzQOcOf6RR4BX%2BfMh4tD4N6%2BDok322AH7EdVighBz7w/KIsGVVQnY9M2w3n14WZGUUfKX61tZN84J8PQJ%2BeFr2uVUw0OSfUsWlyfMJkcvkRkK4bZ3yZibyQIue19vS3i1X8Cgh93ma3ZxE6zVCWxw/Ux%2BFdra1xkRnLp4ZG%2BkdvjX/c78geHV1gEMTklh9U7LqiZxYT8FcueG5jnWrxHav9KtdK2cMUCVwa5Myl518XtPUQ5XxG4rJQVe81xPqpiYIxxphzkQLZ28fv/iYwJDIxNig2SefNuHry5q6O1oKZkQ9aquvLi95fvfN%2Bwd3rt8u%2BVxbWvrxfWldF%2B4n61lFNb19HbimNgKRRmQwqz/Vk6hkUnfDdtecko6e1prK0sqqj4%2BflZdXVZZV1dbXNNTV7zNHP8H3kkkMagN/bPMItV%2BKSumCXlC908riBJ5cV/256F0JrnKnxf/9%2BwQbr%2Bhpaw8/qhvkEVVMjrUlrACQ1v8gnAfJM8Ya26Ewvl7eYamxvlgUCu0dHRuM8YmISwpHmoYlxwT7hHpjQwMc7Oxs3dE%2BHihXRycXHzdLI4STMwrlYufg4I5ycXX1cHRwwXihsIF%2BNibmbv5BIZ4Ydy9vdxcnD3dPLNbHz8/L188TqW/m5unm4YJCu7ihUE4udvy33dzQbm52FoaG1hhfV1cXNw90ABahZ2igN%2Bk///rXWF2zhOeK93GWBnVRRgMoWXBP%2BB/u9dSgtMVr1%2BZt2Hjs/G8/Lt28d8/hs3uXTp%2B7YtU0S8S0xTPjw2cuXrwuC%2BuTFIkNiEyND8T6BAdE%2Bdtik0K94ienh8YEhyaERMQlR3jGRKGCVs7CGFoGYNC%2BQV7%2BvtjAmEBnD7Svf4B3UFT0jAxvM8uwoMCEEAcnZ7eAmGg0Ni7O383RydUJY6VvjvV29XJwDo4O8gl1M5o4bsz48WPHGZhaLR4UolZMritrOxVcSBad1gnYDDKDTmfQGQwWs49CoNBo9D56b0dXL74qLegVsbu5oYdEYnYVVbS1NLR347vbWxvbeyk3E3/upRGpFCaVTqFQicRefGdze8sXHKHzYsDemqrKz3VVNdVVdbjaippaHK6xsbWri9b9KyahiESgUHvxZH4XZlBoVBKhs6OltbH5tEN4fl1lTWlZbUNNdcNlLz17T98A/5Rtt2SsO1ZMrnDKcwB2xxQrfIgP6Px%2BuSd61GfLO22z7aDc1cutqy7KmX5bF20fIFJbt%2BVdeltUUtYoM6NfMblHGcWAvDhCaVwe6u2RGwPA75S3vSYHL3cSh8jyohLctp4BtGntiuIqisndSi7iXnRLVCt6DfWNmC79J4itQLt4ELj7RqDpEvmukC/lOHGH4Pa2tMluPprsBAFefwMQu9raiVJvssl0DSg9f1J4SCRhR7R32Hac3Edu%2BLhhp4na9XZWXOh8WbsF4xcelhXUK%2B73TpfNiwgKWydZf9xHa/bJTsXi5V/6eoPeVd8mS3Z/hRINhfb2Yb18M4a1KOSXY86bhN0%2B0ywFFSXL9XfaJktGy5eniY8hpKwyNXe0iMcNvNn31nuc3SlZcwR1i6NlmjjjqnRlJCbqrIb2ZhiMl2FPuIyoHEFon%2Bjj/uBzuYyIAJRrc2iwQ4W90jBMFDIqCZlX8PndJ4k330S7JjqlysoaO%2B2K1LESmcy81cbWdvY7iQrKpxa59d44UBj%2BQjBezlk7pDwTXWVITuI7o2VM%2BLzd9hdFPeIX5/lvpWe8PIv8zzL9iJ9C/N7NcRJZlZXurnc/v29S5PVVhxwnO74N7E0QjIHWlKQ96FBRXXdK/t6O%2BbICX8exojSVulR9T78ZUjx2L6E/8JB1lsYz3x%2B%2BTBen%2BhzTNVqpJAqhDrnSyC20vmU7BPX%2BIegpY4ebSP%2BhS7QcJfuIrGGR6yF6%2BIZLxC%2BJxockxhdEpNBXWMuSjoy7DVsdpwkrqzXFLRg5XfFhYOqQ2%2BZRCPVkCpd6ko7TwS/xsiryoXQUQYjOyRGiSa96fQF01nUNUer%2BbtQe2Z7PY46raoVioyDxZtkGJ8UJxOqQm4JpB/d8OwBfmWAxAXVOrnQRBdhpj5Nx9azbWpESxevlV5LDWSl9pBI7V7Yde9Zlg1gSUPgtezRA8RIVdchNtbnbusDuy5X5z9o2/NZ7yfaeDFWEt8ZBRnuSZ9vkk05dpgPOiTZQHWkjmcfJqc%2BIkB2gvuPpJ5aOLH7dNE9eoTjnRx1yx1F8Oy2vJt14TnkgYoaziSwRTppiL0Ma30enk5/5oHpBrcusxykGOZL5RoVJ%2BrPqCDKkc4e//ly%2Badl1oR0cSL5TnmOhZJ2DOuQoFTsy7vaw1tluIB111UfOlxX3ZswPlVG7b2Jug3MObniA99N11vGRikavmDTeBjtNRoLVMVNdmzgS2OK6kpDxDxu0aaySfCa15BygdUKAthRZDkg3tz1ulFmNPXgZTcDkmyhrkZv4c%2BSZ5NAc6XWcWz2DQj0CxHUy8Esf%2BMXHoHv5YtCs52q4rePMT0pUcvXICVAdFcYQZGTAfW%2BOvyB7g1L9eZByhq9p6%2B7sFtfJmZSY9P6D9vCtbc11HHDZFUPBnztfqHS9tfrkOg6rsrnJYJRXqKT3VyyyRwaJVRjxC0sd8m/PiZmj/F31yfHUT8NjtSjoX499LU6xAG1AblXyYm663vhxA3%2BXKFO7V5/c0EHob/Hr/NmDWve8tlmGokieaRLA7/IH3L8J9aetIDUGPWHAjMPZK/OIyBEk9yaxWdTPutN0ibxzkd4RGaUyemr%2BXMeXoCTcGn819pB4e0sAcJvsAwZMlbQUP1kSb%2BTIcXImiZcfP3KJZRITzNPH/%2BXi1/onChqKxgM8Lihyuw8OO678GGPxbaeNj3G%2Bnwa0Vd9RZD1sj7MWAZWHhIn8Q9zNzle5hT6H65f7f%2BwvPS13O4fblVYBrs1%2Bc8H%2BCchwxR20CxSNMg4EuqJM9og%2Bi5%2BvRcsSCyNGjvej42sRlYaYTAa0y5UGWr9mQEAvMPbNbxIsCkG5q53VVCoJfYsdm9nVOfkWaFoaSmet1RmfJWha8mUquVXwEs03fzSRY4eHiIrDu%2Bp4EfSkmZc0fBOV3AP2xjO8DOw6AedKytIe3r6oth7vW%2BC5nf/LDLP/4DnbUd6CHY65J7ze7p4lYNnqJWs7yREj1%2BxxRtROnDWYVug%2BxnbyrN%2B%2BTpbsxaa6xjp6OwRrimhMQM84jj8Z2QMdtjbDmBk6EkB3UalgbXBfitkhBzS/TnhvPGRtbDRS5Di/%2BHdBhYX8MUOJygOs1ba7dy67JWhKlkBiEQOdonNmip0lgLkKS%2BhbeRP6kmiob2yGOMAWbE79Uy0P9GJtQ4xu8L%2BDc85Hlok0UuQIc5KZ1ORIIoAq/N4Daoo/CSLxafE6L99kAe4dp9N44hYXkaOBWxji2fE6qpN33yMw7bCnK1/r4r5yGbOOAZocdP4TJGhuxvpkWerfCJHjPPKcUXQF4UMG3OthPaDdO1s0kzP2uWJLAW1tCAkQMl2Jwmv0jfY/sfd5EBlL/Jo6PqHC%2BWMM%2Bpztx%2B/E%2BPk2RucFL%2BIS9shyv48QOeYxe6cwB/OTXEBYN50Kyt1PiSZ1UtYE46eAnHOICxrj7EQWKynesZCd608oCpnKAOWoZQIBwm4o4bPhVc23FDxD%2BtlO5jaRI0SO17wjJcohmwDY1zGHOKBlh9iiJc03Se0EjNd8fYNyXeTpZt90XM7BT4sgEQ4180DXOtwANZ2x2JUgODc%2BIlCmUTJisyWpqa64mT8zbEMWCPxd4quE2Yj%2B460gseDqu%2BB8GeDiPTshgTHMlZg4KPu38JUwqGGJ7DOxhoGcONwvO%2BrPKVg90F2Cn5c4aIf%2Bjm3NAD/bVtaaBl5vr%2BBbITlLAkbSKhCC0zZQn2c3NAyqA4jJA1DX%2ByEk7484OVUxFIP4d0NuKPiD3O8Vf5D7veJ/AKqbZ%2BuGafzMAAAAAElFTkSuQmCC]",
+    "kind": "paragraph",
+    "locator": "text; element[386] <p>"
+  },
+  {
+    "text": "ГРАФИК ДЛЯ ОЦЕНКИ ГЕРМЕТИЧНОСТИ УБЕЖИЩ",
+    "kind": "paragraph",
+    "locator": "text; element[390] <p>"
+  },
+  {
+    "text": "1 — нормативная кривая подпоров воздуха в убежищах с обычной герметичностью;",
+    "kind": "paragraph",
+    "locator": "text; element[395] <p>"
+  },
+  {
+    "text": "2 — нормативная кривая подпоров воздуха в убежищах с повышенной герметичностью для убежищ с обычной герметичностью (в единицах СИ)",
+    "kind": "paragraph",
+    "locator": "text; element[401] <p>"
+  },
+  {
+    "text": "[Изображение: формула или рисунок; data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAATUAAAB6CAIAAABRBFNeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAtASURBVHhe7Z29ql1VEMcv9xWCLxCCZfANUkiwC5YSJEi6PEFCihgsLFJYejm9IISonYUSkBQWEmMlGkgjSjrxegVvbnGJk8x2HPfH2rPWmtlf%2Bf%2B6c%2B45e6999vzWzJq1jXvPAQBLBX4CsFzgJwDLBX4CsFzgJwDLBX4CsFzgJwDLBX4CsFzgJwDLBX4CsFzgJwDLBX4CsFzgJwBtDm5d2dvbu3LroHmdw/17O/ouf/309LR5txT4CcB/PH70YH9/XwRr3rXx9Ncnb7z2Gn1xd%2B9%2B81Y18BOANmxplp/8lbNnL/1%2BeNi85QH8BKBNrp%2BcOd3lJOAnAG2y/Dw5eXbz8kUqa795%2BFPzlh/wE3hycOvKm%2B/ceHZy0ryeFlLlxjtv1i//svzkD9NV/3183LzlB/wEPlCYUg558Ohx83o%2B7t/bnTlz/smvT5vX%2BWT5ubv9HveEuOtL0Nkf//Jb8%2Bc64CeohbPWjGmzy9HRH5fOns1q8GjsftKJ3j53jrXk%2Bla6uC7lLvwEVbAJi5KTqZk1cv1sdYZ4C9Sl4oWfoJzFyskUK5rrZ0vFXmnLgJ%2BgEI5%2BisI/jo6at5ZH2QxS6Sf9MjcvX4SfYE4Obl2pbMNMAy0Iz585k9XUze0PtRpC7GdL2jLgJyiBIpiWWF7dWlboRY9lAKMqQ/CC0D7aLD%2B5IaT9775TDPwE2XDRWOlML/JwOVOwdOwltxQfavDw%2B93Cld/nhq1j8iTgJ8gmrrLVidRLToYT/uicwqmPB8DoNCg7nN3j6JnFJXMy8BPkwQpFJE9C%2B%2BkY5YzXtELlw273WfMiGPgJ8ghtC0kWijiF18zy2W43WcsafoIMQpMnIQWkb3HL8Cq0xnweXsRz8EPAT5ABB2jQQ7bcdnqpp39xy/AqNOjgEcBPYKVsr98Oy0PE1c/Rl%2BAO/ARWopOPLD5Dn0kKXT%2B7Az%2BBldDilheH7Gfc%2BpZYV4kLP4GJ3C3%2BXPTOSuh/RLquEhd%2BAhPsT1xYT1PcEtETjS/wE5iILgtlZyW0uGVoLljLEhR%2BAhOc39a7s6JZ0RIUfgIToW3PCXZWNNFPWTgCP8E40Ws2KW6nadusqEUEP8E4oQGtd1amqTlX1CKCn2Cc0IJwsp0VAX6CTcHrwyA/J9tZ0azlKSL4Ccb5/KMb5M/V67vmtR%2B6uJ2yYfP%2Bu2/RGT/96vvm9VKBn2CcOD/1zoqluKVM7rJG3V2/Smf8%2BO63zeulAj/BOBzNEX5m7axQsv3w2jWXohR%2Bgu0Q52fWzgqtVL16yPATbIcgP7MeG%2BI2r1eDF36C7RDkp3RuibR4XAY7Nng37ueTn38uKDP0fJlmmn2wMgpiRQciYfmu3hVMU1zy2UcV4Wfr7EPNW/07ODZ4t%2Bwna1askG6pE63wmn632oislBijnwnN0hVd63QJCvzMHZWjn/Z5p4tjPGzZT575aiYzfZO6AZHbc4%2BGR0sj0VO%2Bxc/RemFIUXuhQYyu3FoUjCoif87LZv2U7Ffz%2BIX4OXQQMcGYpnhUuZFagKS10YHJD6VH1coeQwfhEjqdGFmz3LtQNir4ORfZfsqGFVHsg%2Bg3FIL6LJYUqmvmUEvtEwddQu9n9FCJ7tUZ5xqLw13KRgU/5yLPz9ZdHI3RISQLDRXJZbOAXrMFWWr0k36oxE66zlddP%2BmvH3z0SfNiGL7YrMssHhX8nIs8P1uFEGFJbi0sy8syPxltqfsjnbmFdy/yC/RWp3/9%2BedoSiwrbtMkRgU/5yLPTwp9issffvxOLC0QQNxLhLhoQBRMAYQ%2BgqOlLn5KGVLQemXKits0iVHBz7nI8JOTJ2UzXeUWTOES4kPa6OPXaEBoS12i2cXP%2BuxXUNyOkhgVX3XQkmEW%2BIrKpv4pyfCTLkluXnH9qd2LKG570QestNTFTx5PcXBEFLdEYlTwcy6sfnJMSMaTtQqRFamygh0KLy2wb/2mLS22q95P/ulqIoMvxPfHSY8Kfs6F1U%2B6npZREqmE/TrlW73hFSenoFtcBY7J%2BMv8lLPXRIZ7cTs6Kr5q%2BDk9Jj9Zm5YwOtDtLklztbv4LBO%2BjGJLi/3UFQdTZjgfx6u4NY4Kfs6Fyc/elYnOdcZw6UZDi7KQLaC41i3wM3HVBdfrVdxmjQp%2BzsW4n73Jk9FRbrl58vnJPOwighEFUV7gp6BnNCF378e9uLWMCn7OxbifXAr23hs9B1viNVHcTkClmUyNn0wrcWUdh7/r3rkl0qOCn3Mx7idJlYghHfTpq9Xz9MR3WuYFonJqqPeTaKUse5R4Fbe9JEYFP%2BdixM9E8mTsXSL5ZMT0P4SjmYyLn0Tu0oBxL25bDI2q0k8%2BYDSnp6fN%2BQxsxE8KiFGdxIH0J70i20IrFTgGtNdV6HrSOLy44lYYGlWNn3y0CXjl/OS7NZp29KQ79GEtTOjis7WOcjSTcZxlZF4zRklocSv0jqrGz2WyBT/pGiyztVZiKGr1Z4J%2BlGgzGUc/%2BVD2fBhd3DK9o%2BI34ef0DPrJ4W6crSVqid67KDk2qDzT%2BTn0R5cr9cqfxmqCb0doccv0jgp%2BzsWgn2yU8QJGu0RSNYX2Hif4ub385AHbfeNfOLq4HRoV/JyLfj/5PmVFgxjYvbu68lz7Pfbyk6c/%2B68xjSFDo4Kfc9HvZ270EFLBEr3VEbP8XySN0U8pKHrLV56w7D9vbrLV90L/4MWjgp8R0G3a399/cZP29r55%2BFPz7v/p95OSYW5%2B4Bjik%2Bnv6lghQuvb5hyZ2K9Ul/FEYunYumod2fSn3GVkVnGrqxVGorB4VPDTHbpNb5879/I%2BNPQq2uNnKwrLuH7nTvogvj9NqJ%2BjB%2B%2B9lpYMQsLqIXL14M8LWuyyUcHPCGgMkj8Juk1/Hx83f/uXwf4Q2AYFpVAX/PtD0exuv0e36ffDw%2Bb1v8DPLcOZv35NAT9Dodt08/JF5M9XDq5m66s4%2BBkK3SYqdK3rT7ANuFFUsNztAj/j4EYR3abe54fh5zbhzOnV0YGfQXDmPLj7dfO6A/zcGo5pUwjys3inIHeDqsvsfqbTpgA/wTjR%2BVMePiOGZha9y%2BXV8VrI%2BjMB/ATjRO9/6l3ZdDfLayRL2P%2B0AD/BOJP5OVq4Ukl84fULlcUtAT/Bdoj2k49PjBau5Oe1ax9WFrcE/ATbIdRPvbAcbWuRn1986bBohJ9gO4T6yQ3nl3pOJwz8BNvBdze1hX3x6Qj8BNsh1M/0v61BBa3l//afC510yumgGPgJxuEHCXyfeWB0cdt7fBIpIsvBT7Ad4vzkI7OfXQ/pry67KS24I1X/n91NAPwE43CWq39qpwuvA4muLXEW8eXAT7ARglRJPLIneTUuaUdMN%2B7AT2AiYsGmi9shIppS3O6KMN8d%2BAlMRGxIyM5KNzPLnyKaQ6Hbub7AT2AiYoslvbNCZwxaIvJ5l7/5ScBPYIJrUceaUO%2Bs9GpPZ3R51LbFipq3BPwEJtzDWirYoWUt%2BRnxZMKKmkME/ARWfFtEsrMypAoJHFGCRhTqccBPYMUxsvXOysR91LU8OcTAT2DF8SkFvbMyZZ8m7kGLIOAnyMCr85l4bCiUdRW3BPwEGbh0cVHc2oGfIANWqzLE5ypuXSaXiYGfIA8uEWuiXIrbiVPZ6pInAT9BNjWBLnIyk2WzNSZPAn6CbDjWs7qguqbtEp3W1vXMkAZ%2BghJW9Ig5waNdxQO3LeAnKGQtyzlO3SvaU9HAT1DIKorG1T2Q0AJ%2BgnIWHv08g6xXTgJ%2BgioW68AG5CTgJ3CA1qKLMoET%2B%2Bp2U7rAT%2BDD47B/7iAXbgitsVvbBX4CN2Zfjm6jptXATwCWC/wEYLnATwCWC/wEYLnATwCWC/wEYKk8f/4PvOKOHPMnq3oAAAAASUVORK5CYII%3D] (1)",
+    "kind": "paragraph",
+    "locator": "text; element[410] <p>"
+  },
+  {
+    "text": "где [Изображение: формула или рисунок; data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAfCAIAAAD1IXMRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIxSURBVFhH7Ze/SyNBFMejhcFCTkiuECy8PRFyYrQxgo1FtBMrES20vvwHsbGwuH9BxCutQgpjoWCIhdwdeIIcUfEHMd6RkICyKAmCa7N%2ByXu3rDszu4lFbPIpNjOPmXk/vm8G0maapu%2BdaOff96Dlu/m0fLvz7%2BL0uljmiYxy8Xo4GGxTMLmwbDw/81IL3G9PDOMpPh9dWlnjuZrL4wM69uD4kk2mmUmuwxIIhHOFEptq1OW7VMiFAwFNm7mvVNikQLWS3Efn40%2BGwSbTrKvmqY3VrK7n89uJvSM2KTg/zGDlp8iXTr%2BfTTV6tRC%2Bf9I7xVudLMDbN4T8dfNhcXoU40QyLZHNxlX2J75zs1P%2Bjg6y2NH1bOmuyhPA%2BatZW1mCeFQ0YBfSQaVyP6Npoq5AKrmHb%2Bg3PboI8ehc7HfpOGo0h6iAWlXc6%2BEb8a4nMzRGAcTY7VByYnC0UWxAN9/INTYZszZQD0tPB1ZydlGsaknviJtve9KEKgNAkaEqExMDWGPhUielb0fShPV0OGICVHBRbBeUd%2BxoLzHydba7q4vnNfoGI1RY8bK53y45HMNrpEkT0lfT0tXlBorI8y7nTh7Hw46kiZ7%2BIXLzfWufLADrt/N59MFQfw%2Bb6oFjsIGO/RaLqRoEiA8F9WBDYgNJ3n/Pfl98DH/uVWYQGouipfFArm6kMK1WH3Y3f2DQmNiAY/iPZ9KE/bLRGDQkNnD6tlrpzdQfQeu/QfNp%2BW42Pt8L4dgFloF/dm0AAAAASUVORK5CYII%3D] — подпор воздуха в убежище? Па;",
+    "kind": "paragraph",
+    "locator": "text; element[414] <p>"
+  },
+  {
+    "text": "то же, в единицах МКГСС",
+    "kind": "paragraph",
+    "locator": "text; element[427] <p>"
+  },
+  {
+    "text": "[Изображение: формула или рисунок; data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAAP0AAAB4CAIAAAC2KmPAAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAA7hSURBVHhe7Z0NTFRXFseHjWFqy4fuFBsRtzIQGq1S2w2YrrZuRNxtbdWklNXdVlqjqGuy7iZbv9pAYKu22KZ1E%2BXDbhVXY5dOk2pDuwExrR%2BbALtKqcpKhlFXwLbKyoeujmnCHjnXl%2BcwM%2B%2B%2BN/fN3OGdX1J672V4M8L/3XfuueecGzM4OGgjCIvxI/Z/grASpHvCipDuCStCuiesCOmesCKke8KKkO4JK0K6J6wI6Z6wIqR7woqQ7gkrQronzOX2be/GJXNjYmLmLtnovX2bjephYKB3YVoaXAGo%2BuQIGw0N0j1hFqh4u/2%2Btz5qYEM6QcUnJIy9kZ1/y%2BsdHBwsfGEO%2B15okO4Js4iNtW89cBjE2uCqZEN6uNzZMSs1/bRt6rX%2B/sMHttpjY9k3REC6J2Sk/dSx5InpSbkrzrZ9PCY%2Bno2Kg3RPSAeYN6/lveJ0LnBVbRI7zSuQ7gnp2P/O2kMez/qytWbM9AjpnpALMOvLd9TCZD/vZ07FjQOI8uQgpPuooaK4oKC4gnXMBP0w4Xmv4bQ1NrT29Hg8h3Jmra1uaYFlcX//tQVO58q8HJEfCa5LSA76Q46ePMf6YeHcyaOi3hQ/f87iDeiLDE550VJ4caWrgfWH6L7kznQ4BP4SaL6XGpx6t7jOg2KeejyDjYaFjMef8npvfV7223BO/PDvvdjeBY3JzhQcQcanpK1eMx8aH3xK%2B1YjnYGB3hcnT%2BnOyBPuveYkNtZeUl2b3O4yvNUqkIzMmfC1q/2ikE9CupcUEP1L0396Izu/6vVlbCgSoPSzbM3zC4ojK/0U52TWEgHpXkbgcb%2BlMO%2B0bap5Dmx%2BQPqbqlwPNNUUbv6QDZkGvNfDGROg0ebpxBEfJmQ8LOQXQrqXkeOfVe%2Bqv1L3VUWIDuyK4gLmBfTHsVPt7HVaxMePqfiqrmXHG2KdiX5ZuKIIlrA1rnqfx0unpw2%2BLl8kJj6H/DnSgY4UH4dGKOAFFZYWlbNv6KTBVelwZLovdbM%2BN7r8OQC6dNSuG1hhb1icw38FTUj3coG%2BaoF/YABFM6R546IHDIsPdex0LrjW38%2BGhlC8kz6fCt9IfY/BFYb/eCiQ7uXC8JwaBLyXhmQfqv9b77MIFa9GLV/1g2j4B1P/bCi3q19I9xKBAhX%2BN1bkFfqUiTOx2KkXgE8o0K7jgda1EtFcV3PI4xG2dLsLrgiBWS89E%2BJCOTbW/uq6Yo/n0Dfuy2xIBM1ffpkzQ6SbUhPSvSzcvu2td9WA9Zz96CQ2JAK8LLaF3FHj06fBQ6mkbLcod/6RT6pu/GRmWsp41g8LpHtZuHCm6a2PGvLzcsU67Hu%2B7/y8vgUasGxIThIQ1hsfP2Zt2fqW%2Bs87v%2B9hQ0YBxcfExLht6aKyB/kh3cvCkU8/AGkKf9wPXOlu7bkj0Om5z6aMu%2BM8CZ3JM3Im2LoaGpn5ZJg5LxSCqR1%2B0QOkeynAeCyB0lSA2wkbAp8kjnEpz%2BZOH761FEWQ7qUArRFRm/AKAwO9X%2Bw7jm2fCMdQwGiC801nb3q9bCjaIN1LAVojwj051/t6LvT1QcPpXDAtXeTCcc6i5cK9OuGEdC8FaNwLWXeqwdwlaITuwfQhPik50%2BEIFD0mP6T7yIPGfWLiJEdiHBsSgdqDOTNTcM5KXKJjUmLiiVbeyDbZIN1HHq/35tmm86nZU0bb7WxIBHhZaJjhJrLbR0/JThWVBRJ%2BSPeRB61w4Yvay%2B5vDnk80DDDTRTtS1vSvSwIN0UUD6bwOwrJyJzZ13ehp%2B8660cVpPvIg84cgX5GANcM2BbuJlLo6WntvjLAOlEF6T7yKHFjAlHCE3g8mJc7O/703n7W4UZswmuYId1HHndzI3ztuirSYFA8mJrLZXgy7Nny7q9f1P1M6HGfhq97/vYldqML0r0UjBp1/4M/Hs06ImhvPYENzfCEC2eaGq4lCl/4Sg7pfgSihCdoejCx8rDwIFD5Id2PQDB/BRrB98KwRM%2BJvrgw53zIAOl%2BpNF%2B6lhO3kpsB/Izgk2/ccnchISxcHuY4d2XH4O6v9zZcfrfF1mHj%2BC1XBTCUKHFGKgV%2BIT8ZWfUwG/ssQeBxzo6TYnlgskbq2Y/8sTTbGjIz5g%2BMXno93oP6jOnLGjkAAZ139bY8PuSCl171KtKqgfvllJBfBKolXLP8IeRR/2KnkI5nwzumT%2B/thIdLCYRHz/mYEcH%2B1XqISJpHxHHiO5BCtvXvW0s0yxrXr5S08JnPwX%2Bch%2B3ncVKL6B%2BHumDnvZ/sN%2B8EBGwGVJTZ79ZV6fUnzHG8c%2BqDd8zhBkY0T0um%2BAZWrrrIBvSj9/9FEzXx/bb67b3DmjvBZ5u2H2f3W5Swd6Mx5%2B6evXraWlpm6pcyu2qF7Bw/rByE%2BsQcqBb9zjZY/v4vi94pKlGCZYKtJ%2BCgd3Q4ElrgPukpLoWJuOGj94C9aelLdT7eTjB8EPW0QNaOPYnn335uSw2REiAbt0rwgVAmjV1zdjmRNmT51lO8aQ1gPS3HjiM9Yzg84xNSDBP/QYAC2dX/ZW/vF88IS6BDRESoE/3MHvtLivJeu5lZfbSlVwMP46ZEJwR4fyhWnKqHy2cLZXvPTJRZMwZETr6dI81Xt4tfeON0ndxBAyMpjMXsK2JEiwVZD9FCSwxkHcnlfrRwknKXVHw/Cw2FID0rBmJiempD41h/SjBkT4Vvs7ISsdudKFD9zjZY0EvLJqF4/xHDim1XAKleyoPBGD%2BmtXGamhJon60cCq3/c6C3nH50aF7nK2L170Kf0gsmoXjtTvKOfdilEyIQDkWir/P6Vyw/Y%2B/wUFjoPpxTyD86sdNU7Bwwlz%2BjuBEh%2B4P7iq9njhTcT5OnpGDjpeenlae0lkDWsFSRz6pwg12EP2/WvYJyf/H3Zwwqx/%2Bpa/lvbK0qNyaW0JRAa/uYYlWvqNWfXS6crQiwONrV2q5DAf38FH0IJeOjoOCi17cq/701FkmBQsg%2B99Ze9o2NcTnFWEqvLrHyT5/3j1O6DmLlmMDxKTpa1cWrMODRpInpsO3sPJ/dckqfL1AYNmghGHB06ax5e/mmR9g4awu3bvHtU3srUuIhUv3aKKoJ3tk0qPZsHbEdvDC0OoFa6AjN8w4lxgVj6E1oHj3pe6rV782T/SKhRPmM5YJvXDpvrmuxm%2BUNqwdc/PysR08XEddy0V4VTC/hFnxCFk40YK27jEwIZBXUYkzCx6uY2otFx8iongg/BYOMxNNg73NSERb9zjZF61YyPr3AkvGZ15i%2BzJBwnXMqEY9nEgpHgi/hTOydWk2GrpHuzz4FhIetAsNWN36DdeBiyi1XMRWiVGIoOIRjFHdW7oaZ0of8IPBy9Rr%2BoLiCvxZd3NjX5/7/He92OWErYrMhL1TALCeQmOzG7vRhYbuL5xp2lV/JdBkj%2BApANj2G66jq5aLXiKueCIaCaZ7kNTushJNixxWt0rQvN9wHf5aLnqBT1hcMF8GxeORNYHAoAl4GX5OHDTDY0twEkz3GIWGgQlsKABqh6ZPuA5IU/FgmmHcJ4zNoDme0Esw3cNilPNYSbVD0ydcRzFyYKoTXq8C3nfjzp2keEIvAXWPgQk8kz2idmiqw3UUI8ea9SqIsKEU7FAcBkEIqHufKDRN1A5NJVxHXctFV6Q%2BJ7ioxX8tPwaKeaDJh22BRxYTosDNE2zvLV2tKX3/usfJHgMYmVg4UN4YfjAtKQlG1LVcgKefeAQGeW5HSRjwV5QGc3lhUNpSPxZEvcIEtDO/0bdARJDK9ctGjbq//p9nWT9K%2BEfNTtDPsvWVrC8N504eVfvN/BJsXUsQ0Uinp03zkDzSPTGiQL%2B55rmlpHtiRPHh5sKapgc0Q2JJ91Lwww//u/rfm6wjAs4qvD4YSMIc91ASa0UadO5t29fLk6RKuo88SQ%2BNYy1xYBVeWOGxvs1W6WrAJd1wyouW4mt0BZJ82/kf1pKA9lPHkpOzl2/7K2eSKuk%2B8sTG31mBeS59i12BqMu9BImEhZsE61QbCCSJizcrqlwXWMmUf%2BeedB95nvjl4kyH49xF8dOnksuvGQk7eUbO7IzZugJJvuvthsuu%2BdU9WzTRAuk%2B8sQlOiYlJrKOUJRCXTwGzJScX/AHkoAxfbG9S3iAbdgg3UceLLbc1X5RePiDrjS3ec//nN/IwYRpk05CDwOk%2B8gTG2t/OGOCsXM0goBTMrY109zGp6QteuZJ1uEALahAde/kh3QvBXMWLe8RfeZ98DS3gYHezRu2G37CYJitSVmjYYB0LwV42gVPvX9%2Bgqe5XXZ/k5Q1zbCV0t56whGukjBmQLqXAsxR1nWYgCZBjiwHE2h3WYnh2RqeFV/sOx7VCRWkeykQbuKjNLE9XN/Hh2qUG56t0bg3tSSM2ZDuZQFNfJ7K0jwohbqGG/cVxQU5eSs1IxaDABZUl22C8KzRcEK6lwXMnBBl6ijniA1PHsL0IM2IxUBgwGO0Z42S7mUBc/OFZGOiNLHtU4UXi6HDuGEXJH%2BVDZkh3UsE5uaHnr%2BrrmHhY8THx4%2Bp%2BKou0%2BEwtqjFBbEZ9b/CDZsHCDnA%2BLBApdI5UcIwcxZvuOX1stG7eL233l//5rX%2BftbXA145SGhntEDzvVwImfKDhyd4vTev2%2BIMxNXgZA/3kuYJjfJDupcLsEO2ufaAlV/9GfNC6iW4BxNJck40YJ2j93OEnNDI5n1CJsqLlmpWBAhE9yU3lqcGK9yYMeMXvOwIsHAQmu9lZNnrVStyk%2BbNXqU36w9QwhMMeyqHA8%2BQVbPnTV/z5og5oZF0LyOxsfaS6tr87Bt5hVt0GfpqD6aoYEm45pbCvBvZ%2BVWvL2ND0Q/pXlJQ%2Blm25sLNH7IhDoRX4QXRFxfMb7Zl1VaXjASz/i6ke3lB6Se3u%2BYu2cg564utwoui787IO3xg60gS/R2YnU9IzLmTR3kWqerqCYaXxQq4sxviToK0kO6jA1Th0qJy1lehHKbiF78/Ehy8oFh3kGzEwH/sN0QQloHse8KKkO4JK0K6J6wI6Z6wIqR7woqQ7gkrQronrAjpnrAipHvCipDuCStCuiesCOmesCKke8KKkO4JK0K6J6wI6Z6wHjbb/wE2o261qgOEAwAAAABJRU5ErkJggg%3D%3D]",
+    "kind": "paragraph",
+    "locator": "text; element[430] <p>"
+  },
+  {
+    "text": "где [Изображение: формула или рисунок; data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAfCAIAAAD1IXMRAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIxSURBVFhH7Ze/SyNBFMejhcFCTkiuECy8PRFyYrQxgo1FtBMrES20vvwHsbGwuH9BxCutQgpjoWCIhdwdeIIcUfEHMd6RkICyKAmCa7N%2ByXu3rDszu4lFbPIpNjOPmXk/vm8G0maapu%2BdaOff96Dlu/m0fLvz7%2BL0uljmiYxy8Xo4GGxTMLmwbDw/81IL3G9PDOMpPh9dWlnjuZrL4wM69uD4kk2mmUmuwxIIhHOFEptq1OW7VMiFAwFNm7mvVNikQLWS3Efn40%2BGwSbTrKvmqY3VrK7n89uJvSM2KTg/zGDlp8iXTr%2BfTTV6tRC%2Bf9I7xVudLMDbN4T8dfNhcXoU40QyLZHNxlX2J75zs1P%2Bjg6y2NH1bOmuyhPA%2BatZW1mCeFQ0YBfSQaVyP6Npoq5AKrmHb%2Bg3PboI8ehc7HfpOGo0h6iAWlXc6%2BEb8a4nMzRGAcTY7VByYnC0UWxAN9/INTYZszZQD0tPB1ZydlGsaknviJtve9KEKgNAkaEqExMDWGPhUielb0fShPV0OGICVHBRbBeUd%2BxoLzHydba7q4vnNfoGI1RY8bK53y45HMNrpEkT0lfT0tXlBorI8y7nTh7Hw46kiZ7%2BIXLzfWufLADrt/N59MFQfw%2Bb6oFjsIGO/RaLqRoEiA8F9WBDYgNJ3n/Pfl98DH/uVWYQGouipfFArm6kMK1WH3Y3f2DQmNiAY/iPZ9KE/bLRGDQkNnD6tlrpzdQfQeu/QfNp%2BW42Pt8L4dgFloF/dm0AAAAASUVORK5CYII%3D] — подпор воздуха в убежище, кг/м^{2} (мм вод. ст.);",
+    "kind": "paragraph",
+    "locator": "text; element[432] <p>"
+  },
+  {
+    "text": "для убежищ с повышенной герметичностью (в единицах СИ)",
+    "kind": "paragraph",
+    "locator": "text; element[446] <p>"
+  },
+  {
+    "text": "[Изображение: формула или рисунок; data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAAcsAAAB9CAIAAABChN/MAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABphSURBVHhe7Z0LdBXVucehtokoIUgI8ggaQwgNoTSACVcFeYSHSq1RYwoWiVIFYr11tb0QHpYYVOTR1kuvEAgojWKhIajAit5LCLAEXEuggghScpMgEIKCkUDqhRMV7ke%2B3d3xPGb2zJk5OTnn/1uLsGefOfM63/zn29/sb%2B%2B2V65caQMAAMABvif%2BBwAAYDdQWAAAcAooLAAAOAUUFgAAnAIKCwAATgGFBQAAp4DCAgCAU0BhAQDAKaCwAADgFFBYAABwCigsAAA4BRQWAACcAgoLwFUaGxvu79277T8ZNWHWxUuXxGcAWAVjawHQZtuGooysqWJBw459R4YN%2BqFYAMA88GFBuHO6tvrXU2evKK0gb4OpKF3BH03Ozvvy/HkuA2AB%2BLAg3Fmen5OSOWfogCSx3Ezl/p3Jtw6/fPkyKe%2BUB0eKWgBMAh8WhDVNTa5bbn/MTV6J%2BJT0meMzqLD7YCXXAGABKCwIayIiIseOHS4WNFB9z8RuVLijv7v4AqAOFBbYADW0R02Y5WpqEssOQ47nrAmjcvKXi2UHoF2crDpNhT7x3bkGAAtAYYFfbNtQ1LZt25TMOVvXvhgZESFqHYYczBfXbp2TmUK73rnfkVa8y3Xxkz3HMsbPTE%2BJF1UAmAcKCyzCjuT80mOXXC7POGYASBow9MqVK4fffsEJ9/l01cc7z123bOFT7a69VlQBYB4oLLBCY2PDQ8l965KyAum6emVaQXFWUl3f5IcaGhtFld/Q2eVlT56/4qWkm3qIKgAsAYUFpiEBmpg6qOPE6cUF00RVi0IiO31ix0GpE%2B0S2b1bSjo8/Ft00gL%2BA4UF5mB5/So9u2jOZFEVBEyeU5Sd/pUtIlu5f%2Bf80mPLZz0qlgHwAygsMEFTk2v%2BlKxDbfqVFs1u2eCAGxERkbOLSvu1OZQ1Zb4/MdnTtdX/uXJXWXEBwq/AFpDTBUzA%2BfvvfXi0RV5tGULuZ5%2BBd06aW2gtfEHyOuWBguLy/%2BoUHS2qAPCTq2nYAChQd7Kqf0wM6ZdY9pvCuZOEFXojIeGn5y5cEKsqw9ukZ4BYVobO7idpj9Q3NIhl0PpZ8eyj3/uez2Y6GdjZc%2BfEqo4BhQVKuFyXZo7PsKZ6%2BrBwC6u3KqySCxfO/TQhIWP8zEsul6hSQEdeSbJtfKiAwEM/bmpsrDCvQAmrBAoLlDj64XtkndoBqOyCtVtav/8KziNjqR%2Bqm8S7QYcEx7ZVQwY2%2B%2BHR8tcMpLwSeNMFjGlqcq1eVEDWmT0mTVQ5w5CJd3eMihILVkkbk01u7MIZS1T6FVTu39m9Z%2BLB%2Bnqx7AEdEsKyIcPtD4/t1KGDWAgIUFhgzKeH9yxYV5G36Gn/5c8Tzk/l8uOZNnRBjYrq%2BPSivJqaTR83DyygDyeG6RAkfX6BZWw3MFNAYYEx295eFRPTP2Nwsli2ldNVH2%2BqqaEC%2Bcg/ah7Oyn%2BSB2dQw79g0eqADUYDgpbPaw5LA0vp1VXn3ZcTQGGBAadrqwuXlqWOvieui89gpT%2BQfHPBlhAB0y2uV%2B4vxx0of6f2jM/mPwgTpIEFPkRAQGGBAUc%2BqDhYX5%2BdNdqJFIOmJtfxylNctrcFNzLz8fr6gxUfHBHLICxhA7t8%2BTKVAx8iIKCwwIDKg7udCxHUn6l9p/wAFWgX3WPtDPJGxXbvHxODGQrCHK2BdYuNCnCIgIDCAj0aGxveXbPLuRABO8hUsH0XMV3i7hmdumvNuzaOuQVaHUf3bpcG1tMZG9YHCgv0%2BMf5%2Bk/Pn%2B%2BRdLNDoxCQg8wF23cRERE5Oiv7/PlP68//Q1SB8EMaWLfEni0ykgYUFujBPqZDc1Wxg8xlJ2JkcQnJCMWGM2xgLRiEJaCwQA9Hg7BO9NPSglBsmKPtp0UGFvggLAGFBT7h97DR0fEx0e1Fla3U1gjv8pb0vu0iI7lsI%2B2jY%2BKjo09VHkev2PDEaQNTAQoLfMLJMA5ZJ8l3eWkJlx3qChYZ2a5v%2Bi3H9nxy0eUSVSBsYAPjEEHWAxktEoQloLDAJ/yaSyzYjTaXMTkhjgv2EhEReXNSD7zsCk8CYGAqQGGBAQ51JHA6CAvCnGAIwhJQWOCTxrN1znUkcCJZ1pOk/nfU1x%2BsO4susWGHNlnWOQMzBAoLWgBtsqxDCg7CGW2ybMsaGBQW%2BOTwjnfo7wd7q3jRRrS5jCpdwSr37yzasE0smOH8iauRuD//dQcvgjBBa2AjBycbhgiqPtpNBsaKbC9QWOCTs5%2BfESW7MZUsS/7IhpVrrfXJ7Rp3kyiBcMJUsiwb2PC0Pk7EaqGwoAUwlSy7a3NxxblohwZGACGJqWTZ98teJwNzaNQCKCwINDzgLJcNcxkr9%2B/MyJrqUIdZEJKwgSkmy1Z9tJsM7IHMEQ4ZGBQWBBoZIjAcsZDktc/AO51L2wUhiQwRkOXoj1hI8koGdsMN/VRitdaAwoKAsm1DEbkMXNYZloXckB937kzWT%2BVxv8ztFYcOs0CJHW%2BtIgNjB5YMbNsHR7y%2BvyIDG9ClS%2B/UIfTp3blTEx0zML8UtvroUbMZ38vzc9oq0Lnzj6trjaexaynIt6KD7NXrPrNjj1r4YmNjw329ejVfFYG1t%2Br6NDW5Zk0YJXbQtm1O/nLxgU2wYtKWpbwyU7MyeI9uaOd/balRkYIcsqVrrrmGbOlLtbw7MqT7e/cW17eZ5eu3Wn57XlTwmKm9e0ImN%2BfnY8ShNEN3feUJ0YfPLKyYtJERDzyhPanc7NF0nLx9LWRgB86e5XWcNTAxo6Z5Llw499OEhPc%2BPCqWzcCT7zMZ42decrnEB83wfPcEOflVJ%2BtEbRBQOHcSHxiToDy5v7UvulyXZo7PoPXl1P%2ByhrB25T2RV5uYNLdQ1DazIm8yVU7OWyGWWyHvlyxr7afgxopnH23%2BrQRkS/UNDeIzH5DZzH54NK1cWFL%2B7bffamuIHfuO8Grq0P3LbWqVvXuFzsJXq9zyNoMT6wrLd6bbPamIVim8bqHuZFX/mKuv9lRElrdml%2BJ4hY%2BHdqF9NqgIpeUv8gOMVvY8L6mJfp6yvMi%2BNgWFDSro90qNjSVBlAJHGOoRGVJmYiKt6amk299cydsxJbJyg4Q1NdSRVyaURNaiwsr735qbqeKLSb/P08l1Q2VrNiIPTEUotZj6Iq/s9fEjz9cfH18qvs7BQGGDFunJGooRr0mGxN6rFjIk9mTJkI4erxW1Rmj10YIUyseDdKgZN9mlu/7/Ll4Un7VmLCqstmkp27DqqLioUgLU3Vj19f1BnrtZhVX/ojx3Xw8MuYLh48cr8kj0vw6FDVqk%2B6mvcVLOfHmpcgVFReP1n3vuOZW9e8Ka7mtf7KTTZhk6Zs%2BnQqvjXw8NdZo0I3sSC2csMfvCh4cUoYJKSo/KyB0REZEvrt3KOkvrJ/bs7ty7srgEiz2HFL9Il3f1ogIqkPn6GnSqW%2BKPuA1RsW7BnsOfcqUi8m0%2BGXpZcQH6mbZGusf3ESXfkCEV//65y5cv22VIp2urfzb2wYnPLM0eN0xUmaT%2BTO2h6u4ly2e2u/ZaUaWhW1yv9eVvsXYTR2pqudCqsaKwnx7es2BdRWZmJi/W1Gz6uMqclslhb%2BztSR5InXUOmVKtA48tzeVVb5voWkA3ya%2BnzqYCeforFv9K/%2BInpg2mv4PTRNCtNRKT2I/%2BBsMp0IPtmmuuWb5%2Bq1h2HrOG9MrG7TpdC0ivX87LvRB120u/mSCqzEOu1bjpk3RGuroxIYUVnwiN6X9MKyx7WOT%2BFK0qlNeiYNFq9W5btAU5rpLOyLhyBgjSAlMz6bd2nZUOvg48kSqX1SesbmxsmDZsDG98/oqX0Mk0tFE3JHYbd7/x3zqG9H7Z6yvLz767fVmn6GhRZZ6kAUOnPDhSeqmeREV1vHviEF4hNAZdM62w7MDmz3gsNqYrXQuuPFD%2BTu0Zg99SIh%2BtOo0XUmEZiLA2kz7rLL%2BRa73%2BrArqY/jv3VIixyTOHpPGlQAwZEhf%2BDAkbvrMW7rYuZ75nrTgxAT60NUY1LVr2%2BaO7V80NIhaH5hWWGrgS2W874m5/MKKJGzeyo3NnxsjkyZ1hl5mHecyqbnlSAI9EjdWV7dSndWXTrPhYHJgl8xYyOW8RU%2B34JjEIMDoSCdhGNIly3lyxF0xGb/IuVd4l87BDVwZO3Z6d9bY/MrznK1QU7OptHyfftaGuRMg8S5cWibvz5gucfeMTuWPypYWKiqXHPbGVyuAftHpWaIzyqS5hUMH%2BNtYaF06y3NQU4EOVecVn4yiKCId2JjmNH%2B6yG6pYqHq44ctWkM67duQ6j49Kko%2BWPvHX%2B88d92yhU95fT1lL3JyrZadmECfe3/xDPd5oMdA1uhb9R8D5hR248p5/4i%2BQzYwqSX%2B2Ix8LtOv6CvHXAvd2O%2Bu2UUFvs%2B5UgutMDF1EGsByWtxwTSu95/WorM8BzWXTb3F0kc%2B2PjcU1Nzig8c4A4l3HmO623PlwUthdaQXt20Q9/V8kXl/p25817b8D9/Tbqph6hyEp5ci8Thd0/cF5wOLNEtrtffPvuMbpzq6o2dO3YUtT4wcQ5uDiwje3sQKt225Px3nopMDYRZE0Z16HADX%2BKqk3U2yqtEO39qdHR8THR7LgcP9CR4elEel3VaBlIxVc5CPtgI7gNLxiF/R7KYXceq%2BHd8bV4uRDY0YENinSJDqlIwpM7fNSQym7zsyROfWep/O1IFfotOT4LnC/8QyICvo5hQWHJgT7Xp4eZ4auVApduWbNuOys0tm/GEaKA2Exl57YJ1FZzF9MUXH9n%2BppvbxTykCLn35y5c0KpMUDHk3hxOoKDn0NTpf/Lsp6FVzFvS%2B7aLjOSyL7TPFa895Oh3XFz6Zy6TyO7cHwodZcDt4x6RhvRk3ssXL13iegkbEru3boZEerdgWvbBy31f%2Bs2EwLiTJ47sIwUgDyAAAd%2BAoXoa/Et4HUcueXAGh3sI/W5b2h4CD2VkUZu9uZH6HZzwW1lb2TsOcm1lIiIiC4rL%2BN6oWLegb/JDsnGg9fS5RmWaAG3HHV%2BvaONT0nmPhKnud14Rj02HsdbyDR/IkPJXb%2BbUWDKkfik/%2B/KfD1oypDk/H0OG9HaVmIete%2B%2BbtIZkS/csdegmnZ71aHz8T3zlI7jxgx/8QBiBk3zzzTdif5YRwmZERekKbrmL5e8iM%2B511iH8HM3AAnKPBGur%2BMAPZMaq2Q1a%2BKJ2cBaGL53cFKEyFIPi%2Bm55vbxoISuaNxIADLMq%2BcQtnII1aHeWna/CknKxFQXkjuiXUslbdUtIJciQjh6v1R6wNrOW13cbOkBidu8qrHj20djYVMXhEb7//e/zMTvN119/LXZpFSVroMfLkhkLdQZCVuy2JYOwAQiAtjq/1Svd4np99MUX4rdqhuMnMimOmlTpKfFc9h/ZA4w7ilXt/YDKFuaaFcfqPIZyVl91iP46MV1u64IMaf%2BZM%2BKqNUOGlHRTjx2bXuUVtIZE7u3LebmB6Z7F8Pu09e%2BuVQy/%2Bi98ivgv5UqXb%2B%2BWkt3n28994j6x7IG225ZOipHUBZ2esP6j1Vb2%2BFqjturArxy5rNhZWHbc0UdxNeCLpAFDfbnV1CAgtdJxVKc9NEpsJVCwIXGk5Xf/kSPb5twbvWLdguvatROt5e/SZ%2BCd/K2amk0xHTty5SO/W2YtaEOH8bOxD27bc3jogKTACHogMT4fDp7qJ1Zpu23RRS/ZspfLWmg7MlnWoXw4T2114o1Zy0KX8U/Tp3JQVd2B1XbcCY0BNYCfsKPKPeftbQmZguT1noG3TV36l5CUV8L4lGSarL6vpO22VVJa7vmeRCbLkvbZPrFdOGgrs2tzMWe70WkaDt0i0Q7woTKgRnD2YwM28n7Z69KQ3LIJdDxxxmsc9vXnnjQrkXTbPjniLpJX/cEKWjUGZ0UPOh7nxfARp%2B225XUkNJksa/vdSwc5f0pWyGsrQQ98HhmLeKt8vfppUiNDjhRzqvK4YT8BR8M4oMVhQ%2BJGfcCyCdwgeZ00MG3s/MIQllfC4MQUHVhG223LMxlJdmx24u7tcENSaGsrQRYpR8Z678OjZjuBp43J5kaGzkig3KmLHlQ6MXfQ2mHPkeMDO/YdGTboh1wfSFheOzz8Wx15Jc9p4VNPWZ4bMUjQU1h2YKkh4GsELDe6xfXK/eU4LrslI3FMncu2z%2BxIDtqsZctCWFsJuoBDbkkkP53KFuSV0OYUeO3uyj83FTCwYQhDhnRnryTuA9vi8ro6f4oveaXjHBzX83CnlNae3KWnsBw5NTUO08jMx7nglhQrQwTkH5ka7DUIMTvkisTyF7dtKNKmounIK9klT5pNeE76nTRgKHdxJTe2eLNICZNwhHfS3KutNlEFghXD4Vq8suOtVXE3J5H3yvFTh%2BSVjJAn1iY8JwyXEv/avFyv82wzPNv2L%2B4bIb4WTNBl5CNXGb1Qr%2Bti4dxJfEuLZQW082XJ78p%2B7Izt3b%2B1OzUFx23FVtTQpjAQnOOrgrUvylQOQiWzQLs%2B4fVSy59DewxeJ17EPF02YthbSx2ypcx/zvZK0K9mmHkhZ04kfM3ZpY7XN10StzkNtWkLnokPOnjdeItDpzDwxhvFITZryN%2BPnRSfecOnwnpmE1ngOt/9dc1qtw4BUFjDXfiSPwtfdPtKRvNALeIzI8j0xdea8XWRPY/K616gsDbiv8LSr8b5r75wk0639ekntmv2Vn2FlZ8ych23B4MhE59ZavjkaBF0HiGeBC79BgQYuqX9fIxBYYGfbH9zZWJiZhC6orbAzzD9NsS/lBiEGLLzhmVib%2BwiSq2Wz2pPiBJoCcgIrSV6tQpcrot/33f8tn56jjkUNjRpbB4LDbPFMF1uVI39ARthI5y%2B4N9D1Qg/rzm889x1I9J%2BqA0auAGFDUE4BeOr9Oyce8VUlUHF8vwcfl9sFsxz04ogI1wwLbvx1qzAD/ZaVPCYTi8FHcjA1Lvfnm4eTmH9u2t739RdVHkDChtq0A%2Bf1r1HXVLW1rUvKubU%2BiIi6mrq3alTdbxoF9MKiq9896Wc/ts82UHCwqzDtceq6W/7KL%2BuAzALGeHguJ61iQ9seeOFAMzu5caU/NXffvvt/x7YJZVd/y2ffHPVP%2BOunmoGVvXR7ribk/5YtsNwOAUobOhAXsOsCaMemb5qT50jE/DYi3YgC6/TLkhIkbmHmf5qIBggI5zz8zFkhO%2BfOEFGGGDvVcuNCSnSwLIeyNCxHFJk7umhYmD08BjUtWtB6Udff/31sEF68QEGChs6REREvrh2q/%2BuqyQi6nr6W3%2Bqzs/5DgwxnBk/eXDGsKRhZgcMorv9xPHPqXA9fNhAQUb4whtbyAgD77rqYGhgfdJGkIGNHJxsqJg8DaL6MDdQWOCTYffnzhyf8eXxzy%2B6XKLKPuTUYQkKadnto2NG33%2B/2RCBy3Wx8lAttRBz7x8mqkDY4GZg%2BoLIBqYYIjAFFBb4hPyRm5N68HwHoso%2BZCK14kyOKcPSzfrmfI%2BpzGMGQo%2Bje7ebMrDkobc6YSdQWKBHUv876usP1p01mKTdLNR%2Bl3NiqgS/qGmWefdtYkEZHirMoeHeQTDDBsZdcfWDsAwbmGLD3xRQWKAHj0jpORaln1D7/ZM9x7jsNUZ2urb6uZfeEAtW4VmLDGNwIPRQMbAXlqwNQDYEFBbowdPPqAzabQo5J6avIOzGlfOGD08TC5YgL%2BZ45SmVIC8IPT6vOaw1ME/ndPMrzw8ZMkAsOAkUFugRFdXx7olDDpS/U3vmakjLLuRAjl5jZORfrFt33M9RLnnsTUzWEJ6oGFi32CgnwgJuQGGBARyK1Y726yf6QVj69E/Tp578JtrPqYYQhA1b9IOw9OnLebnHm6I6dbjaGdFpoLDAAA7Fep3d0hpyTkzCLUbW2NjwUHLfBesq/Pc9t729KsaBOTdB8KNvYBN%2B1H/%2BX8pvf3hspw4dRK2TQGGBATw5kI2BAvYuuXznwD4iJ7wZni2Y6v30PakZWLi0zEKWLQgBvqr/TBrY8FuTtWMUkIG9WXl1ruWANW6gsMCYkZmP2xgo4Ff8hOdED3KwAj87AHBnW8UZPEGIIQ3McwxvOVhB4HqYiD0D4BueEyHBjmkptLPpeJ0YgkTWzx3xLvRHkwGhinYmhR37jniOjU0im5iYefbcObHsMPBhgTEREZGPzcivqdlUsmWvqLKKzGX0NSdmVGz3sWP/zTAJR4e9W0o21dTAgQ1PtAbmtbfA9TFdycCuD9SwCVBYoER8Sjq5sQtnLGlo9Cu/SybL6gRJx9w73LI4NjY2LJmxkBzY9JR4UQXCCZksSwbma5yBUePuDNjTFwoLlCA39leLV7Q/v/vp3/uVaiXntvE1XEDj2bqYrtZfT5EDu/t8%2BxWLfwUHNjyRBtYtsadXG/iq/jN/DMw0IloAgAI8TqvKvOJeMQzC%2BglPkGz7dPGgtWAYhA088GGBCYbcmzNzfMajWdOtxQoMk2X9obGxYdqwMbGjnwjOuXNAADBMlg08UFhggoiIyNlFpf3aHMqaMt9CAoJ%2BLqM/NDVPTXaoTb/SotmID4QtzhmYZaCwwBxRUR3XHPjb9XtKprzwqqhSQz9Z1k9efWFKyZ7r/3ZgDUYhCFv0k2VbCigsMA2LbMOaxTn5y0WVAjKX0fZk1uX5OYvXNEBewxytganMBxMYoLDACiSy64980r2ydNSEWYrhgo0r53E3mujoeD9HddFC8lpa2f2TI%2Bshr2HO5leelwbW2T4D8xfxxgsASyimYHEnBIktHQm4ZwJ6DgBi%2B5srtU5rkHQkINrSP3FQAFiisbFhYuqgr9Kzy4oL3IJfp2ur70odzJ6FJyTN1pr2TU2u/JxxCLwCMrB7Bt524OxZsfxdyMD2fvhap%2BhosdwSQGEBAMApEIcFAACngMICAIBTQGEBAMApoLAAAOAUUFgAAHAKKCwAADgFFBYAAJwCCgsAAE4BhQUAAKeAwgIAgFNAYQEAwCmgsAAA4BRQWAAAcAooLAAAOAUUFgAAnAIKCwAATgGFBQAAZ2jT5v8BLmr8IEvbt44AAAAASUVORK5CYII%3D] (2)",
+    "kind": "paragraph",
+    "locator": "text; element[449] <p>"
+  },
+  {
+    "text": "то же, в единицах МКГСС",
+    "kind": "paragraph",
+    "locator": "text; element[453] <p>"
+  },
+  {
+    "text": "[Изображение: формула или рисунок; data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAAfMAAACTCAIAAAAV7mfyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAB3VSURBVHhe7d15dBRVvgfwIJiAkgU6YVjCYieGTUPY3xOQJQRBx4AaM4hIhJFN5z2P8xBwgRjcUHnj4TgYgo4ODKIvBlk8yBIDaIDz2AM%2BiAmdsEWixhBCZCAZlvcj91Jeeqmuri2d6u/nD62qDqmuzu1v3751lybXrl0LAgAAC7mF/x8AAKwCyQ4AYDVIdgAAq0GyAwBYDZIdAMBqkOwAAFaDZAcAsBokOwCA1SDZAQCsBskOAGA1SHYAAKtBsgMAWA2SHQDAapDsAABWg2QHMER5WUnvNm2a3BATM/ZsdTV/DMBgSHYA/S3LmNy%2BY2xBRQXfDwoqLV1vi4hIS1969epVfgjAMEh2AJ1RrE9/5e/b9xVeuyEvJ4s9tGLBzGWrt7JtAONgTSUAPZWXlTyeNHXp5n/EderAD9UrPpjfvd8wqrDbbPG7Dnzl9CiAvlBnB9BT4e68jFVLXYM7rveQzPmTaKOy8nB5RQ07CGAQJDuAns5VBt0d247v3GxY8pRbbsE7DsyAcgagp4enTYsIDeU77ths8e2i5H4AQDskO4CpEpLu79jGxncAjIFkhwZQfDA/MrJXSVk53zddTc25sTExJndT2b7%2Bo6tXr6Y8nNiieXN%2BCMAYSHYwVXlZSa/IyNfXHvnll0Mx0e7bo00QGhqxrqQkNsjRpEmT/IPF/KiR6LNk48oddnty6qj%2B/BCAYdDrEcyzND3tnZXn9heslG%2BJNhMF7sSEvhcGpG5YnhESHMyPGmDr6mVJqTO37jkytG83fgjAMKizgxlY64e/xTqhyvvnhUf7B%2B3t0L5/8akf%2BFG90eW/N/edzOxcxDqYA8kOhisvKxl8RyzVi48Wfu5Xsc4EB4e8%2BenXrz2T0LVz9Df7v%2BdH9VNXV7twRmpNv5QnHriHHwIwGJIdjEWxPjphYFTSVKObOzSa8tKyFyckDevXXfdw3/Hl8t1X%2B375cTpunIJp0M4OBmKx/mv4IH9rhHGLKtcZkx/M2vyTjqP/iw/mj0lZtPfAitbh4fwQgPGQ7GAUdnNyZ3XL3QWbGrAbjE/oOU/q0z%2B/6jZdwp0%2B2GakvPrx5sWIdTAZWmPAKJ8senZ9aema3M/1jXWqBbMZz2Wo7iwfGhrxVvZHVVX/9/Scv168dIkfVQWxbmGOQzubNm3KS5sHVAiLTpTxf2A%2BqrMD6I7NWztpfibfN4A0Na7Ebk%2BuOn%2BeP6yB9id/5rRjeLfhRSfL%2BP7N6NE1X%2B3iO9CYbfviA6e5gKgQVlRV8YcbDpId9EfJFW%2Bz6ZWznpw/X5Vst/P3U1BQ4vi5l2pr%2BWPa0G8eFxtLv1OcY105r7Eu8yg0LlRUHo6LYyWQDE%2Bd/euFC/yxBoXWGNDfug8WHK6snPP2s2beNU2fPVmvvjesTYbqYq8uWu5rm0x5Wcn9ff592/fbunaO5l/Lb9a%2BY2zH1NTYRnLjAXwyb1aan/SAQrKDzijaMpdsoBp02oOD%2BSFj/FpdeeLGyqL0/cDT3LnqdOk5YO74xLzPFu45coIfUqD4YH505zhxkTy3piQPw3S%2B1uBcCO9s7yd/WRQv0BmrsOtYg/akpuIMnYhtD544Rt/vB8HBIWmz5vlabY/rPeTKlSv8%2B7BnGIlqGRcqf5Q%2ByO%2BZMKp1mL/cLUeyg55YhV33GrRbW9d%2ByLeCgp4aN4Jv6UddtR0CilgIpyQPDwryl07kSHbQk2kt7DX1UyeybZstvr0Ba1moq7ZD4KBCuHnVrqtXr9J2fSEM859GNiQ76IalLRXxxIHd%2BSHDiO2bCUn3RxuzlkW72LuT7faC3K9O/8ybfQAkYiGMTxwd3aY12/YHSHbQTbnju/WlpcblrKhwd57UyJ6akmRQm35oaMR9E%2B6prDy8fW8RPwRwQ9HebVIjOxVCv5oXCMkOumFtjsblrKSurjY3J5ttG/0VYcS4p%2BgrdnZOLhpkQORUCIf37%2BY/TTEEyQ76MLMppvLnsq9yC9h2eHgXW3hLtm0ENMiAW1QIN%2BUdZo3s1wthhIGFUAUkO%2BjDzKYYQ/s7OpEaZMoravghAOf%2Bjve1Dgtj234CyQ76KCstpP92iOtswiTsRvd3dBIXP4j%2B%2B9H67WwXgJhcCH2FZAcdSG2Og%2BJ/m0PDIGJ/R3M6zncfmJgQFfVD8Uk0tQMj9nekQtgzpq1fNbITJDvooLb24tE9x83v73jHgB4tQkLYtnFahtu6hIcf33P0Ym0tPwSBTSyEnft1u93/VstCsoMOWEE3%2BmYmY05/R1FISIseA%2B4oLV3/nUPNnO9gPU79HU0ohL5CsoMO2C1NE2rQZvZ3lAQHh3Ssb/MpOnGGHYFA5uf9HRkkO%2BjAtNunZvZ3FLGbqDsPF7NdCGR%2B3t%2BRQbKDDooP76T/mnH71MT%2BjqJoe3c/rJdBg/Dz/o4MCitoRV9OTxb/wHcM1rBdzdA9Boif93dkkOygm%2B72aL5lDPP7O0pCo9rH22zoHgP%2B39%2BRQbKDVlKXRyOm0hWZ398RwIn/93dkkOyg1aVL1YcrKqqrHcd/OscPGUN1f8el6Wn5BzXd/GwW0ux8Xd2pU18fcKB7TEBT3d8xK2PyN/u/Z5V9EyDZoXFQ3d%2Bx%2BGB%2BTnH7AT278H0AtVT3d3Qc2rm6uH2/7p1Ma7pBskPjIPZ3VD7vWE3NuedTnvTPsSTQ6Ij9HeMTR3dqG8mOy6NCOCd1ysPjhps5gTuSHRoHsSlGecf5TxY9u7O6pTkDmsDyxKYY5YVw1V%2Be21F1m8kDmpDs0AiI34KJwq5mxQfzZy5YYc7EwmB56gqh49DOP722sufwUSavpYdkh0bgxJE9Cz/L4zvKLE1P69rnXtpAUwzo4lThPiqEPt0CzcqY3K3PvZcvX6ZCaPJaevok%2B8Fvvz1Xo3JdgvKykl6RkU0UW7Z6K/%2BXjRB97L/w2Ei6ipGPvVBbV8ePKkNRxV4BSVr6Uv6Yfsw5i0%2Bo6s0yWvLhWo9lQHqFqbZOu3Z7cuqo/uwh0Ihe25ceH0WvLZVeX0dsLcuY3LRp0/oCdV1kZK/iU/qPbnM6C1HxVN2iqjcVQjHW5QvhvCdG0zOZ8crfr1y9SoUwJamf2d3er2lWW3tp7vjEbw8U8X21MudP4s%2BpHr0cVefP88fqnTntiLfxr9WT5mfyo42B06WRxPFzL9XW8oe9cf3nIr1eCtVn%2BfnnE11CQ5s1uy1331F%2BSA95OVn83Bro9eLQNdrDw3W/xkYh65UnnVKJSu8/L17kD3vD/rn4T4oOfMt%2BIb3HK8%2BdYwc1Ymex2eKLTpbxQ9eunT9fNS421tcnLNr2xQfaE3niy3%2B9cuUq/41m0SHZ6e9Ez96nqHKLfUKw14K4fU%2BKP6P9jCZgLw597IkfS0Thk3d6TTzR%2BFJoPItBye5XAjPZWQRv31dIpTchKoqXg/qSoCQoqVy9OCGJfj4zO/fKlSv8aD0pc52yWAXpLBNfXuJ0FoaFPn2KVFRV8UMBQGuyS6FAfyHH6TP8qCpO%2BeLpS4CWmjtVSxvw84ClPKPwaUj1aKcrFX8Vo6VyqvEsSPZAwFKeFQOFyc4i1VPgSr9QY7hLwe2p%2Bi99igxPna2u5t4YaU128c2vJVwI/QGS7Xb2q2Q%2BJ8QPAF8/TqQIa5B8Fz%2BTlDwB9tp6%2Bknx5WLUNYhpPwuSPRCI1XYlyS4FN1X5%2BSEXLJQV/kK3pGfl6fODkU5ET0bmx6yEfwirJk57tmPlRtX3UYk4IYNMT7Xg4JDOcR3YdmXl4bzd12cGV2hGxnIW7nmfLWweEqLiNqaZ6LWlEr9heYbbrh2hoRErC/aLsZvx9scqLsecs0BAYWNzrtbfPJSZuG1Y8hS2Qe/H5V/uUDHyvmjvNjbKQX4GaTa9PpG57WkxmpK9vKwkc8kGvhMUVFq6PnvLXr7jO3Wzgvi6GAKFO32gsbtzLN9jYsZq%2BUAyCL03dm08m/XOf8q8DhS7z749h%2B8EBamYidCcs0CgKXd8t760lDbkJ25rF3u3VGnI%2BSJPRY2BLQxAsCiKE03Jvu6DBVIWM9k5ueoqdOIoAJvsrCD0k%2BJs4OpWexjxyDQp3%2BkDqVVYmL/lO32DufOx8THRXiaq7T8qVXpvVFefqKz%2BlW0rZM5ZwDTb13zYtGnTtPSlKuq/Otq%2B/iO20S62o0ylgS0wy7apmrXnyAnVT3vXqs0y71/pA8CExWH8hPpkp%2BrexpU76Iv8/l2b%2BaEbfx6%2B4ws2Eyzbll8FTfxJomVOcH/O93bRMfOee5zveCa%2BN1Qw5ywQUFgyKMno4OCQpJRU1gJOCkvL2IYKrMHA7UlZXZAeoirjiIGBsjaW%2BovcuyWbvnClpiTd1Xeo2KdFXUuW9PWNyK%2BCJjbH059K%2B5zg/l9/lyHedTBuXVD5szRvHh4fFRUeHnvH7yL4IcuRrrFTlD8ujeZXxHeoV%2B27dOVbqhpkRox7im8FBc1MTco/WOwa7mzsKG2MmTk91tvXU8tQmez0sbx49lv2%2BgF%2B7IOXPxAUtGFJZklZOd9RTPkCVGIT0APPzPTakqAQy3fWUYTle2RkLxUX0oDMWYwCS16AcuWO04beb%2B/UvZ9YrRzWr7tTuJeXlTya9BAdobB6978mBEiFnai8TlZhn/P2s6xyLbbD%2BtpfhYhN5/LVcPGeLf2pFs/y3pLgk7jeQ6R8pwuJ7djez/NdfOmMmyDFnLOA9fh0v13FzXmqVk6enS7mNYX7stVbWbhTBfTp4aMLKiooK/YeWBEZYdnvlK7UJDu9z3NzslmFnR0JDY0YM3Ew2yZvzV7sU2uGwqm36e80Y%2BgoVmGnD4At3yw1aOn6RpTv0l0H%2BdvOGplzFrCe6uoTvxh8vz2216C8nCwx3GemJqWlL62uPjupT/%2B1DsfEl5ccO7amdXg4fzgwqEl2NvGeU2v42KnzpWE4paXrv3P4kINK%2BjtSrE9M6Mva4ulDxXF8h17tMJ645nuTJk00LrqmO%2Bn%2BhI4NU67MOQtYQ8twW5cbMUpvnK27C13bviVnThTxLQ2GPfSUU7ivfO2ZiAhbftVtRSfL/vHq04HTCCPx%2BYKpwv7x2xlUd5s/dSw/VM/WJvr%2BpAS%2B48t4FvYNgO%2B465dKmT42JiYsrBULl28PFJWUrDOotu6K5Tu7v0qeTHner26usvsTrn8OfZlzFrAG9g1eClPl90W13MKhcJdGvQLx%2BYVgLSeudTfW4MV3goIKcr8q%2B/mmru6eOPViXLFgJpt%2BU8IyPfHG8PchvU3tkbp19TJ6Dokp02mbnsPRws9N%2B1DxSrrr8EbWuwZW2E05C1iJNLiUyPeElnqaE/nO717F9hpUdrJYnLmMvjF07Rxt5rrS/sPnZGddU9x2XxFHlNFruuCDdWxbntjfUYpvV19/%2BqbJN%2B7YTOVSptMTM/85yGN/C3puaQ/%2BdpNDd%2BacBayEvulmzp8k1aCnpM45664fJFv0SopdjcOItq/5MLpz3D979BAnVSXiPdUAwoNTGTanlUz%2BSq0WxO4ywbpb0ixdJCsnjx9tUOJT0jjNmcjXGcHksRsACl9k1ZSchc0aZtM82ac/Y/MF0jVqnHLWaGw%2BcSq0us975euMYOwVYz/PiFODuW050TJdl9O8ktIUYBL5KcOsx7dkZ5EnM6egGF7E6%2ByDWiZuNIJBmc7omOzmhKnCs2h/Muw1MZ/yt7qfJLtrXKojM/%2BiJ74mO6F3N5s53S2K2sJ926X8pdqD6lU4WI47PSvXRTNcp4mXNGvWjP%2BQuf71r3/xZ6A3H5KdvYHlI0lMauI1v8SwM7r6KcPpaeue6YyOye71I1YXCs%2BiMdnrX4%2BGpCTfkewqkp0R/yEjnV2sWcvErjyZGXqPFewQw93Tn6%2BhYl1iRL77kOyspcVrgwn7/s54fbeLrTcG5ak8czKd0SvZFf4hNFJ%2BFszP7j/8pzXGK/FTSnWFXcpuT0/JKdwDZ/GN365ZnjidAD/kgfL7qE79HeUnFdAdnf2Fx0aGhDRnc0qwCFueMYM96reKD%2BYnpkynZzvtEQNfLnPOAoFs/9c5UteJ5xf%2Bh4ouZ6wHNrs1mvJwotveDU7jmA7nbTqtrM9eY6c02VkPFmk6ARlO03nLLMch9nek2r32ub0UYh3knTK9UUQYmwSDamSGPltzzgKBjNUUWSiz%2BqJYs1ZIDBCZOV%2BHPfRU5o2OOlTXLK%2BoCYR%2BMopeTWl0ksKR5d0HJkrNDmx2TbbtROzvKDOpgI6cBj01okwnFLijEwYmPPOaoV8szDkLBDipwk6psnHb%2B%2BqG/iufVPLBP74sJVKAUJTsbDoB5SPL20XHzHzmAb7jeTkOcX7HDnGdTegq/smiZxtjphPEOlgGa%2BtjFefXMv/bhJl12Qh5FV8LGi/vlypV2H0aWS7Om%2Bx2EBpVnzeu3MF3TGxkZz09Glc7A71WM4aOikqauuyl34b26c6cs0CAo9rDH%2B57hMV6ZnYuvRNVB644QY3CVTvs9uSeMW0DIeK9X6Gn6QTkdek5QOxz4roch9gUQy%2B3zDK4OpqRsdzkyQm0o8CdmND3woBUT4tQi5amp6lbttucs0CAo2LGptWlbY2xTtgtPfYb5NdBZS3y9HFyz4T7WocFxNop3l9WmekEZHhdjkNsipFfRCmQKQ9c%2BsmxMTEvLymQX67aLXPOAgGOauv3xsStdThoe/u%2BwhmPjtRed%2B47MoX1xNuYmeXwPM/2T6VHqB5JNcjAWXzDy0XSHyNzyYbE8XMH9OzCDykmsxwH%2B7V8J2DUVJyRJitWgl6lwXfEUonM%2B2xh85CQ%2BunRPGK3hd3eiGaTmjGusxDrdRawNl9Lr5NlGZOjO8dRbZ11PB/atxt/wBu2Zjcrfq5ze1G1/f1tmxKioihhxgx/2u3sNFTCH016qFWruzZue7/RLb4hXv62vUd96NVzTZY42l4j%2BsBkQ0zFATsSo4dTMtovR7oKX7GBmvy31GN3cT1x%2Byp55fo7xYFjjPgzupwFI5X8h0EjlVzHviocMiqOb7L5PoLXaZwRcXte8ek5/QB7Qehtq3rqggZEl%2B80Plbhy07kkl3d215Ga2%2BTL6vOTYXMT3bXQHflOvBVyb9y5fa5iaN8GenH9DoLkt1/6JvsroHuyu1MW05ztijPIydOv4dQ8fOU0W6nqdFluGxDcXv5FVVV/GFZvs0IBo2OOH1C/98/8cTvrw8h1vcbEpIdDCKGtVR6XeeHsSq6/Jcn3sfCnV0%2BbW/dc0TJ5d/0gQDWExwc8uanX7M/9p4vVzz55G%2B9UQH8HJXe1z/ZIpXeKVOmOdVhrY0u/9V/bGI5zi6fP6AAkj3gmDmRA4C%2BqPS2iwoNqHwX1b95w5RcPpI9gNTUT9aBni3QGLHSG584umNAll66/PfmvhOfOCq6TWt%2BSBaSPYCwyRXSZ09ujF3Riw/ms75fWixb7TxiTqEL1WfP19U1bdo8IlTlEsyg0ad/eY5K77xZaQ1Veh2HdkodEFVb%2BvnXPvRcFHxCl%2B9wvPTntBbNm/NDspDsgWLr6mUzF6z49kCR7qNwmzVrHhYcfPnyP385e5EfMkBc7yGsvdWpg1Oi7Ez3TqsFKJzSDvzN9jUfUunduucIld6GaoqJ7TWINXk7LcUnP%2Be72HORSuDw/t1UPH%2B6/GcWrNjyv98N7av0nyPZra%2B8rKRXZOTU2Ruqzp83YnKFZs1Cbr/1Vr5jvMdnLRY7a6amJMlU4ujzQOodpKUZ6kLlj79cvNi0aUjIzf2LwWhUenu3afPHWV9WnD2rPNcM9dif3xU7g8qXQPo8uHDhV9bFJT5xtMK2FAldft%2B2benyf6qsHN6/h/LLR7JbHFXVBw/98zfHj5eUrDN6CofS0z/yLRPJTMzNBAeHTJ6dThta5hM9c/IY3wITUV313uGz8o4do9KrbqZfEygpgWmz5lEod4jr1KJ5C35UAXb5m7//ni7f19GzSHaLG/HINBMyndXZjxQ5z%2BhpBHFWbruyueRCo9rH22za5xOtr7M35TtgvGEPPXXs2Bp/y3SnEqhk8sjbbW3rSyB9d/Rh4V92%2BepmRECyg1ahoRFL1n1CGz%2BdOm3CBJCFu/OkCUzuGNCjhbeBzUwn%2B/1a5hMtObKf/rvo47/FderAjkDAKtq7jU1XSTr363a7slua0V1GmzmBMJIddMAqxcf3HL1YW8sPGab48E6%2B5a2JU1JTcab1mHtUf3Gpq6s97bg%2Bj2DXLu3ZEQhkKkrghcofqQS2DjPvyweSHXTA1kCorj5RWf0rP2SMmpsXbPHaxMnE9R6iZZUotkQBGyPDD0GgohK4edUuqeeiwhIY22vQx%2BnTbrmlCd83HpIddBAaGjFm4uDKysNnKtyvZq6XBlmwhU1gm5B0f2COkQHRT6VH2BTzRGEje4NAsoM%2B4uIH0X9dF8/SV1npb7P8e2pkp1rV63MX69jiTyelOlqHuM4KB4mAhYkl0FMjO5XAN1987%2BKlS3y/ISDZQR/R9uuDgH4oPmncTdS6utrcnGy%2B47mJc%2B%2BW7OKQENUdHJ3QSfO%2ByKGNKcnD2BEIWApL4P6vc76/9daQ4IYcroxkB320i7072W4vyP2q7Gf1K%2B/IY%2B3dfMdDEydVlxbPfkvHBdPZEppoZAdCJXBT3mH5RnYqge/Nfae%2BHuBDB0fdIdlBH1JTu7gsor7EBds8NbJThX1ndUsdJ7NkLftoZAdyofJHqb%2Bjp0Z2qrDnV93W1tayYdvfkeygmxHjrk/%2Bnp2Ta1CDjLgquttG9uKD%2BYkp08PDu9jCW/JDmtFJqY5G37vRyA5iCXTbyO44tDMpdWZoaCdbhG4lUB0kO%2BjG0AYZ%2BpIr9nd0beJcmp7Wtc%2B9tDF44hi9xtzSSTev2mWzxQ/r35UfgkDFCoPUFONaArMyJnfrc%2B/ly5fvmTDKzK7rbiHZQTeGNsiI/R3J9JREPi/qDTMXrGAPDYrXbdYzNMWAROzvSGamJjlN6jvjlb9fqc/9QfFUD2jIRnaCZAc9jZ06P95me2v24nM1OndsF3ubua4JLi73qnDwiFd1dbXLF71KdbR5s5ROig0WJpZA13W9xTVL/WGsMpId9GRrE31/UkJp6frsLXv5IT049TZzrZUHB4dkLN9A4a7j8KUTR/Ys/CwvcfzcAT278EMQqJSUwHl/W/fihKTrJfDO9g0%2BfAnJDnqSpszVt9ou9nf0tIAGnTopJVX5HGHyUGEHkdjf0dMCGlQCEx9Oifm3u1roNJZCCyQ76Cyu95DM%2BZP0rbaL/R3lF9DQMgm7CBV2EIn9HeMTR3dqG8m2XbWL7ejTJOwGQbKD/lhr%2B4vTnyspuz5FonZibzP57NZljBKrsLdqddf7b/0JFXYgPpbABr59SpDsoL920THvZr1RWXl4wQfr%2BCENnPo7ymR3%2BamfdBmjtOPL5W%2Bsyn0j613Mxg7Eqb%2BjfAn8ne32Bm9kv47f2QXQldRZJSsnjx9SS1yl2m5Prjp/nj9gDDodvTMTx8%2BVWbYYAsqxgh1SWFMJrKiq4g/4MdTZwRDBwSEvLstJttu1t8mIvc10HIXkFtXO5qROQTsMiMQSeM%2BE%2B1qHhfEdP4ZkB6OEhkYs/WZLh6AfRg2dobqfjNfeZjqicy2ckbrW4Vi9%2BX/QDgOMmSVQR0h2MFC76JhNBbtbVu9MmfaGuslklPR31AW9gTMmP/jGqtzt%2BwqH9u3Gj0LAU9Lf0Q8h2cFYLNwrcj94IC1dRbiL61nL93fU6KPXpyHWwZW4nrV8f0e/gmQHw1G47zjuuH1Pdo/uj/rULOP0RdjTQgca0VleeGzky0sKik6WIdZBZE4JNAKSHcwQGhqxrqTk%2BYkRfRMmKg93NlyI7%2Bg3IYyopubco9177A3q/8OZvWhbByenCvdRCZT6OxpRAg3S5Nq1hu9UD4GjvKxkdMLAv%2BbuGtLby52o4oP5bFZeid2evL9gpY59Y5Q/GQhAjkM7qQRKsU6oBO7evzwyIoLv%2BzHU2cFU7aJjDv3yy5G1r0dG9nLbG5LStldkZJMmTZxinZSWrm8VFkYPjXzsBY2Le1BVfWxMzBPPf7jnzBnEOoioBPZu04aK2Z0Jg8VYJ1QCo1q1oodG/GFOwy5g7RXq7AAAVoM6OwCA1SDZAQCsBskOAGA1SHYAAKtBsgMAWA2SHQDAapDsAABWg2QHALAaJDsAgNUg2QEArAbJDgBgNUh2AACrQbIDAFgNkh0AwGqQ7AAAVoNkBwCwGiQ7AIDVINkBAKwGyQ4AYDVIdgAAawkK%2Bn8cFBcyYvDaKQAAAABJRU5ErkJggg%3D%3D]",
+    "kind": "paragraph",
+    "locator": "text; element[456] <p>"
+  },
+  {
+    "text": "где L — воздухоподача приточной системы вентиляции, м^{3}/ч;",
+    "kind": "paragraph",
+    "locator": "text; element[458] <p>"
+  },
+  {
+    "text": "F — площадь ограждений по внутреннему контуру герметизации, м^{2}.",
+    "kind": "paragraph",
+    "locator": "text; element[483] <p>"
+  },
+  {
+    "text": "При величинах замеренного подпора воздуха менее определенных по графику или формулам (1) и (2) выявляются места повышенной утечки воздуха по отклонению пламени свечи или с помощью мыльной пленки, при этом проверяются притворы герметических устройств (дверей, люков, клапанов и др.), примыкание коробок дверей и ставен к ограждающим конструкциям, уплотнители клиновых затворов, места прохода через ограждающие конструкции вводов коммуникаций и установка других закладных деталей, стыки сборных железобетонных элементов.",
+    "kind": "paragraph",
+    "locator": "text; element[500] <p>"
+  },
+  {
+    "text": "После устранения выявленных неплотностей производится повторная проверка герметичности убежища. Без доведения до требуемой герметичности убежище в эксплуатацию не принимается.",
+    "kind": "paragraph",
+    "locator": "text; element[503] <p>"
+  },
+  {
+    "text": "2.10. Надежность и удобство закрывания дверей, надежность крепления уплотняющих прокладок, плотность примыкания дверных полотен к коробкам и степень перекрытия подвижными элементами сечений воздуховодов должны проверяться путем их опробования.",
+    "kind": "paragraph",
+    "locator": "text; element[506] <p>"
+  },
+  {
+    "text": "2.11. Испытание сооружения и систем воздухоснабжения на способность поддержания установленных величин избыточного давления (подпора) воздуха при режимах II и III должно производиться в следующем порядке:",
+    "kind": "paragraph",
+    "locator": "text; element[512] <p>"
+  },
+  {
+    "text": "включаются система приточной вентиляции режима II и система вытяжной вентиляции, при этом соответствующие герметические клапаны должны быть открыты, а клапаны перетекания - свободны. Величина подпора воздуха в убежище должна составлять не менее 50 Па (5 мм вод. ст.);",
+    "kind": "paragraph",
+    "locator": "text; element[518] <p>"
+  },
+  {
+    "text": "включается система поддержания подпора воздуха режима III. Остальные системы не работают, при этом должны быть закрыты все герметические клапаны на вытяжных системах, застопорены в закрытом положении клапаны избыточного давления в тамбурах входов. Величина подпора воздуха в убежище должна быть не менее нормативной, указанной в прил. 1 СНиП 11-11-77.",
+    "kind": "paragraph",
+    "locator": "text; element[521] <p>"
+  },
+  {
+    "text": "ПРИЕМКА ИНЖЕНЕРНО-ТЕХНИЧЕСКОГО ОБОРУДОВАНИЯ",
+    "kind": "heading",
+    "locator": "text; element[526] <h2>"
+  },
+  {
+    "text": "2.12. Приемка инженерно-технического оборудования должна производиться после индивидуальных испытаний и комплексного опробования, проводимых специализированными организациями. При приемке оборудования рабочие комиссии проверяют:",
+    "kind": "paragraph",
+    "locator": "text; element[532] <p>"
+  },
+  {
+    "text": "правильность установки вентиляторов, противопыльных фильтров, воздухоохлаждающих установок, автономных кондиционеров, холодильных машин, а также изготовления и монтажа воздуховодов в соответствии с требованиями СНиП Ш-28-75;",
+    "kind": "paragraph",
+    "locator": "text; element[538] <p>"
+  },
+  {
+    "text": "правильность установки специального оборудования - фильтров-поглотителей, предфильтров, фильтров для очистки наружного воздуха от окиси углерода (ФГ-70), установок регенерации воздуха, герметических клапанов, клапанов избыточного давления и противовзрывных устройств;",
+    "kind": "paragraph",
+    "locator": "text; element[541] <p>"
+  },
+  {
+    "text": "наличие приспособлений, фиксирующих положение вентиляционных запорных и регулирующих устройств, и легкость управления этими устройствами;",
+    "kind": "paragraph",
+    "locator": "text; element[544] <p>"
+  },
+  {
+    "text": "работу подвижных элементов противовзрывных устройств;",
+    "kind": "paragraph",
+    "locator": "text; element[547] <p>"
+  },
+  {
+    "text": "работоспособность электронагревателей и водяных охладителей;",
+    "kind": "paragraph",
+    "locator": "text; element[550] <p>"
+  },
+  {
+    "text": "загрузку гравийных охладителей;",
+    "kind": "paragraph",
+    "locator": "text; element[553] <p>"
+  },
+  {
+    "text": "наличие приборов для измерения подпора воздуха в убежище и работоспособность трубы, соединяющей подпоромер с атмосферой;",
+    "kind": "paragraph",
+    "locator": "text; element[556] <p>"
+  },
+  {
+    "text": "состояние фильтров и регенеративных средств;",
+    "kind": "paragraph",
+    "locator": "text; element[559] <p>"
+  },
+  {
+    "text": "крепление оборудования и воздуховодов;",
+    "kind": "paragraph",
+    "locator": "text; element[562] <p>"
+  },
+  {
+    "text": "удобство обслуживания оборудования;",
+    "kind": "paragraph",
+    "locator": "text; element[565] <p>"
+  },
+  {
+    "text": "работоспособность вытяжных воздуховодов от аккумуляторных шкафов;",
+    "kind": "paragraph",
+    "locator": "text; element[568] <p>"
+  },
+  {
+    "text": "герметичность проточных баков запаса питьевой воды;",
+    "kind": "paragraph",
+    "locator": "text; element[571] <p>"
+  },
+  {
+    "text": "удобство вращения рукоятки ручных вентиляторов расчетом звена;",
+    "kind": "paragraph",
+    "locator": "text; element[574] <p>"
+  },
+  {
+    "text": "правильность выполнения обвязки баков трубами для обеспечения обмена воды во всех баках;",
+    "kind": "paragraph",
+    "locator": "text; element[577] <p>"
+  },
+  {
+    "text": "наличие актов о материалах, применяемых для покраски баков питьевой воды;",
+    "kind": "paragraph",
+    "locator": "text; element[580] <p>"
+  },
+  {
+    "text": "удобство открывания и плотность прилегания крышек отверстий на фекальных резервуарах;",
+    "kind": "paragraph",
+    "locator": "text; element[583] <p>"
+  },
+  {
+    "text": "плотность резервуара для сбора фекальных вод, наличие возможности его очистки;",
+    "kind": "paragraph",
+    "locator": "text; element[586] <p>"
+  },
+  {
+    "text": "соответствие проектным данным производительности, полного давления, направления вращения и числа оборотов вентиляторов;",
+    "kind": "paragraph",
+    "locator": "text; element[589] <p>"
+  },
+  {
+    "text": "соответствие проекту расходов воздуха, подаваемого (удаляемого) системами вентиляции в сооружение (из сооружения) и каждое помещение при всех трех режимах, а также при режиме мирного времени, и соответствие при этом эксплуатационного подпора воздуха нормативному;",
+    "kind": "paragraph",
+    "locator": "text; element[592] <p>"
+  },
+  {
+    "text": "герметичность колонок фильтров-поглотителей и воздуховодов, находящихся под разрежением до фильтров-поглотителей;",
+    "kind": "paragraph",
+    "locator": "text; element[595] <p>"
+  },
+  {
+    "text": "надежность работы герметических клапанов, в особенности тех, которые при режимах II и III находятся под разрежением;",
+    "kind": "paragraph",
+    "locator": "text; element[598] <p>"
+  },
+  {
+    "text": "эффективность работы воздухоохлаждающих установок, автономных кондиционеров и холодильных машин;",
+    "kind": "paragraph",
+    "locator": "text; element[601] <p>"
+  },
+  {
+    "text": "соответствие проектным данным производительности насосных установок, подающих воду к воздухоохлаждающим установкам, автономным кондиционерам и холодильным машинам;",
+    "kind": "paragraph",
+    "locator": "text; element[604] <p>"
+  },
+  {
+    "text": "работу клапанов избыточного давления;",
+    "kind": "paragraph",
+    "locator": "text; element[607] <p>"
+  },
+  {
+    "text": "соответствие проекту объема воздуха, подаваемого в вентилируемые тамбуры (убежища и ДЭС);",
+    "kind": "paragraph",
+    "locator": "text; element[610] <p>"
+  },
+  {
+    "text": "правильность выполнения антикоррозионной защиты оборудования, воздуховодов и трубопроводов.",
+    "kind": "paragraph",
+    "locator": "text; element[613] <p>"
+  },
+  {
+    "text": "2.13. Проверка соответствия объемов воздуха, подаваемого системами вентиляции при различных режимах, проектному производится в соответствии с “Временной инструкцией по пуску, наладке и эксплуатации вентиляционных установок на промышленных предприятиях”.",
+    "kind": "paragraph",
+    "locator": "text; element[616] <p>"
+  },
+  {
+    "text": "2.14. Герметичность системы вентиляции с фильтрами ФГ и колонками фильтров-поглотителей, фланцевых и сварных соединений воздуховодов, по которым проходит наружный неочищенный воздух (от мест забора наружного воздуха до герметических клапанов), проверяется при помощи мыльного раствора, для чего:",
+    "kind": "paragraph",
+    "locator": "text; element[622] <p>"
+  },
+  {
+    "text": "закрываются все герметические двери и ставни на входах и в фильтровентиляционных камерах, а также герметический клапан на вытяжной системе из санузлов;",
+    "kind": "paragraph",
+    "locator": "text; element[628] <p>"
+  },
+  {
+    "text": "закрываются герметические клапаны на воздухоподающих системах, кроме герметического клапана перед фильтрами-поглотителями, и герметические клапаны на всех вытяжных системах, кроме клапана на системе, отсасывающей воздух из проверяемых помещений;",
+    "kind": "paragraph",
+    "locator": "text; element[631] <p>"
+  },
+  {
+    "text": "включается вытяжной вентилятор, отсасывающий воздух из помещения для укрываемых;",
+    "kind": "paragraph",
+    "locator": "text; element[634] <p>"
+  },
+  {
+    "text": "закрываются все задвижки, вентили и пробковые краны на трубопроводах водопровода, канализации, подпоромерной линии, вентиляции аккумуляторных шкафов и других каналах, пересекающих линию герметизации чистой зоны;",
+    "kind": "paragraph",
+    "locator": "text; element[637] <p>"
+  },
+  {
+    "text": "обмазываются мыльным раствором все фланцевые, сварные и другие соединения. Появившиеся мыльные пузыри указывают на места просачивания воздуха.",
+    "kind": "paragraph",
+    "locator": "text; element[640] <p>"
+  },
+  {
+    "text": "Проверку герметичности колонок фильтров-поглотителей допускается производить также с помощью этилмеркаптана в соответствии с требованиями “Инструкции по оценке качественного состояния фильтров-поглотителей в защитных сооружениях гражданской обороны”.",
+    "kind": "paragraph",
+    "locator": "text; element[643] <p>"
+  },
+  {
+    "text": "Места нарушения герметичности соединений воздуховодов можно определить по отклонению пламени свечи при работающих приточных вентиляторах (за исключением убежищ, расположенных в подземных горных выработках).",
+    "kind": "paragraph",
+    "locator": "text; element[646] <p>"
+  },
+  {
+    "text": "Не допускаются к установке и эксплуатации фильтры-поглотители с вмятинами и другими повреждениями корпусов, а также фильтры и регенеративные патроны с закрашенными маркировочными надписями или поврежденной заводской окраской.",
+    "kind": "paragraph",
+    "locator": "text; element[649] <p>"
+  },
+  {
+    "text": "2.15. При проверке исправности герметического клапана необходимо в воздуховоде перед закрытым клапаном, по ходу движения воздуха, просверлить отверстие диаметром 6-8 мм, закрыть все, кроме одного (ближайшего к клапану), приточные отверстия и включить в работу систему вентиляции. Затем в просверленное отверстие впрыснуть пульверизатором 50-75 г нашатырного спирта. Отсутствие запаха аммиака в ближайшем приточном отверстии (за клапаном) подтверждает герметичность клапана. После проведения испытания отверстие заделывается.",
+    "kind": "paragraph",
+    "locator": "text; element[652] <p>"
+  },
+  {
+    "text": "Исправность клапана избыточного давления в застопоренном состоянии проверяется путем просвечивания его со стороны тамбура в неосвещенное помещение убежища. Клапан считается герметичным, если на неосвещенной стороне по периметру прилегания тарели к седлу свет не виден.",
+    "kind": "paragraph",
+    "locator": "text; element[658] <p>"
+  },
+  {
+    "text": "2.16. Проверка холодильных машин и насосных установок производится в соответствии с “Инструкцией по испытанию и наладке систем кондиционирования воздуха”. Производительность автономных кондиционеров проверяется по количеству холода и объему воздуха.",
+    "kind": "paragraph",
+    "locator": "text; element[661] <p>"
+  },
+  {
+    "text": "2.17. При приемке гравийных охладителей необходимо проверить:",
+    "kind": "paragraph",
+    "locator": "text; element[667] <p>"
+  },
+  {
+    "text": "соответствие проекту объема и высоты засыпки щебня или гравия;",
+    "kind": "paragraph",
+    "locator": "text; element[673] <p>"
+  },
+  {
+    "text": "размеры щебня или гравия (30-40 мм);",
+    "kind": "paragraph",
+    "locator": "text; element[676] <p>"
+  },
+  {
+    "text": "отсутствие в гравийном охладителе мусора и органических включений.",
+    "kind": "paragraph",
+    "locator": "text; element[679] <p>"
+  },
+  {
+    "text": "2.18. При приемке вытяжных систем убежищ, в которых предусмотрено дымоудаление с помощью вентиляции, должна быть проверена ее производительность.",
+    "kind": "paragraph",
+    "locator": "text; element[682] <p>"
+  },
+  {
+    "text": "2.19. В вентилируемом тамбуре убежища должна быть проверена кратность воздухообмена при продолжительности вентиляции 6 мин.",
+    "kind": "paragraph",
+    "locator": "text; element[688] <p>"
+  },
+  {
+    "text": "ПРИЕМКА ЗАЩИЩЕННЫХ ДИЗЕЛЬНЫХ ЭЛЕКТРОСТАНЦИЙ (ДЭС)",
+    "kind": "heading",
+    "locator": "text; element[696] <h2>"
+  },
+  {
+    "text": "2.20. При приемке защищенных ДЭС генеральный подрядчик представляет рабочей комиссии:",
+    "kind": "paragraph",
+    "locator": "text; element[702] <p>"
+  },
+  {
+    "text": "акт на монтаж оборудования, систем технологических трубопроводов, электрической части ДЭС;",
+    "kind": "paragraph",
+    "locator": "text; element[708] <p>"
+  },
+  {
+    "text": "акты испытания систем водоснабжения, вентиляции, электрооборудования и автоматики;",
+    "kind": "paragraph",
+    "locator": "text; element[711] <p>"
+  },
+  {
+    "text": "проектно-техническую документацию на ДЭС и документацию на поставляемое оборудование, инструкции по эксплуатации и паспорта на установленное оборудование.",
+    "kind": "paragraph",
+    "locator": "text; element[714] <p>"
+  },
+  {
+    "text": "2.21. Рабочая комиссия при приемке смонтированного оборудования ДЭС проверяет:",
+    "kind": "paragraph",
+    "locator": "text; element[717] <p>"
+  },
+  {
+    "text": "горизонтальность установки дизель-генератора и узла охлаждения на фундаментах, при этом уклон должен быть не более 0,002 в продольном и 0,003 в поперечном направлениях для дизель-генератора и не более 0,005 в продольном и поперечном направлениях для узла охлаждения;",
+    "kind": "paragraph",
+    "locator": "text; element[723] <p>"
+  },
+  {
+    "text": "соответствие проекту уложенных кабелей для электрических сетей и наличие на них компенсационных устройств;",
+    "kind": "paragraph",
+    "locator": "text; element[726] <p>"
+  },
+  {
+    "text": "наличие порога в дверях помещения для хранения горюче-смазочных материалов или наличие поддона под расходным топливным баком при расположении его в машинном зале ДЭС;",
+    "kind": "paragraph",
+    "locator": "text; element[729] <p>"
+  },
+  {
+    "text": "наличие аварийных светильников в ДЭС;",
+    "kind": "paragraph",
+    "locator": "text; element[732] <p>"
+  },
+  {
+    "text": "наличие и исправность электрифицированного указателя “Вход”, светильников во входах, розеток для переносных ламп.",
+    "kind": "paragraph",
+    "locator": "text; element[735] <p>"
+  },
+  {
+    "text": "2.22. В системах технологических трубопроводов при приемке проверяются:",
+    "kind": "paragraph",
+    "locator": "text; element[738] <p>"
+  },
+  {
+    "text": "соответствие материалов, деталей, узлов, арматуры и другого оборудования проекту;",
+    "kind": "paragraph",
+    "locator": "text; element[744] <p>"
+  },
+  {
+    "text": "наличие опор под трубопроводами. Расположение опор должно исключать передачу усилий от трубопроводов на оборудование, к которому они присоединены;",
+    "kind": "paragraph",
+    "locator": "text; element[747] <p>"
+  },
+  {
+    "text": "запорная арматура на легкость ее открывания и закрывания. Штурвалы арматуры должны быть обращены в сторону, удобную для обслуживания;",
+    "kind": "paragraph",
+    "locator": "text; element[750] <p>"
+  },
+  {
+    "text": "соответствие выполнения теплоизоляции требованиям проекта, а также правильность установки сборника конденсата и компенсатора.",
+    "kind": "paragraph",
+    "locator": "text; element[753] <p>"
+  },
+  {
+    "text": "2.23. При приемке дизеля на холостом ходу и под нагрузкой проверяются:",
+    "kind": "paragraph",
+    "locator": "text; element[756] <p>"
+  },
+  {
+    "text": "плотность соединения трубопроводов всех систем и отсутствие подтеканий в вентилях, насосах и емкостях;",
+    "kind": "paragraph",
+    "locator": "text; element[762] <p>"
+  },
+  {
+    "text": "герметичность систем газовыхлопа и воздухозабора;",
+    "kind": "paragraph",
+    "locator": "text; element[765] <p>"
+  },
+  {
+    "text": "ручное управление дизель-генераторами с местного пульта;",
+    "kind": "paragraph",
+    "locator": "text; element[768] <p>"
+  },
+  {
+    "text": "надежность остановки агрегата стоп-устройством;",
+    "kind": "paragraph",
+    "locator": "text; element[771] <p>"
+  },
+  {
+    "text": "регулирование числа оборотов;",
+    "kind": "paragraph",
+    "locator": "text; element[774] <p>"
+  },
+  {
+    "text": "температура воды первого контура охлаждения и масла;",
+    "kind": "paragraph",
+    "locator": "text; element[777] <p>"
+  },
+  {
+    "text": "работа систем подачи топлива и масла;",
+    "kind": "paragraph",
+    "locator": "text; element[780] <p>"
+  },
+  {
+    "text": "работа системы удаления тепла от узла охлаждения.",
+    "kind": "paragraph",
+    "locator": "text; element[783] <p>"
+  },
+  {
+    "text": "2.24. Приемка электрической части ДЭС должна производиться согласно требованиям глав 1-8 Правил устройства электроустановок (ПУЭ).",
+    "kind": "paragraph",
+    "locator": "text; element[786] <p>"
+  },
+  {
+    "text": "2.25. Для комплексной приемки ДЭС после выполнения требований пп. 2.22 и 2.23 настоящего СНиП необходимо:",
+    "kind": "paragraph",
+    "locator": "text; element[792] <p>"
+  },
+  {
+    "text": "провести операции по подготовке дизель-генератора к запуску и закрыть герметические двери входа в ДЭС и в помещение узла охлаждения дизеля;",
+    "kind": "paragraph",
+    "locator": "text; element[798] <p>"
+  },
+  {
+    "text": "включить аварийное освещение ДЭС и отключить внешнее электроснабжение; и 0,003 в поперечном направлениях для дизель-генератора и не более 0,005 в продольном и поперечном направлениях для узла охлаждения;",
+    "kind": "paragraph",
+    "locator": "text; element[801] <p>"
+  },
+  {
+    "text": "соответствие проекту уложенных кабелей для электрических сетей и наличие на них компенсационных устройств;",
+    "kind": "paragraph",
+    "locator": "text; element[804] <p>"
+  },
+  {
+    "text": "наличие порога в дверях помещения для хранения горюче-смазочных материалов или наличие поддона под расходным топливным баком при расположении его в машинном зале ДЭС;",
+    "kind": "paragraph",
+    "locator": "text; element[807] <p>"
+  },
+  {
+    "text": "наличие аварийных светильников в ДЭС;",
+    "kind": "paragraph",
+    "locator": "text; element[810] <p>"
+  },
+  {
+    "text": "наличие и исправность электрифицированного указателя “Вход”, светильников во входах, розеток для переносных ламп.",
+    "kind": "paragraph",
+    "locator": "text; element[813] <p>"
+  },
+  {
+    "text": "2.22. В системах технологических трубопроводов при приемке проверяются:",
+    "kind": "paragraph",
+    "locator": "text; element[816] <p>"
+  },
+  {
+    "text": "соответствие материалов, деталей, узлов, арматуры и другого оборудования проекту;",
+    "kind": "paragraph",
+    "locator": "text; element[822] <p>"
+  },
+  {
+    "text": "наличие опор под трубопроводами. Расположение опор должно исключать передачу усилий от трубопроводов на оборудование, к которому они присоединены;",
+    "kind": "paragraph",
+    "locator": "text; element[825] <p>"
+  },
+  {
+    "text": "запорная арматура на легкость ее открывания и закрывания. Штурвалы арматуры должны быть обращены в сторону, удобную для обслуживания;",
+    "kind": "paragraph",
+    "locator": "text; element[828] <p>"
+  },
+  {
+    "text": "соответствие выполнения теплоизоляции требованиям проекта, а также правильность установки сборника конденсата и компенсатора.",
+    "kind": "paragraph",
+    "locator": "text; element[831] <p>"
+  },
+  {
+    "text": "2.23. При приемке дизеля на холостом ходу и под нагрузкой проверяются:",
+    "kind": "paragraph",
+    "locator": "text; element[834] <p>"
+  },
+  {
+    "text": "плотность соединения трубопроводов всех систем и отсутствие подтеканий в вентилях, насосах и емкостях;",
+    "kind": "paragraph",
+    "locator": "text; element[840] <p>"
+  },
+  {
+    "text": "герметичность систем газовыхлопа и воздухозабора;",
+    "kind": "paragraph",
+    "locator": "text; element[843] <p>"
+  },
+  {
+    "text": "ручное управление дизель-генераторами с местного пульта;",
+    "kind": "paragraph",
+    "locator": "text; element[846] <p>"
+  },
+  {
+    "text": "надежность остановки агрегата стоп-устройством;",
+    "kind": "paragraph",
+    "locator": "text; element[849] <p>"
+  },
+  {
+    "text": "регулирование числа оборотов;",
+    "kind": "paragraph",
+    "locator": "text; element[852] <p>"
+  },
+  {
+    "text": "температура воды первого контура охлаждения и масла;",
+    "kind": "paragraph",
+    "locator": "text; element[855] <p>"
+  },
+  {
+    "text": "работа систем подачи топлива и масла;",
+    "kind": "paragraph",
+    "locator": "text; element[858] <p>"
+  },
+  {
+    "text": "работа системы удаления тепла от узла охлаждения.",
+    "kind": "paragraph",
+    "locator": "text; element[861] <p>"
+  },
+  {
+    "text": "2.24. Приемка электрической части ДЭС должна производиться согласно требованиям глав 1-8 Правил устройства электроустановок (ПУЭ).",
+    "kind": "paragraph",
+    "locator": "text; element[864] <p>"
+  },
+  {
+    "text": "2.25. Для комплексной приемки ДЭС после выполнения требований пп. 2.22 и 2.23 настоящего СНиП необходимо:",
+    "kind": "paragraph",
+    "locator": "text; element[870] <p>"
+  },
+  {
+    "text": "провести операции по подготовке дизель-генератора к запуску и закрыть герметические двери входа в ДЭС и в помещение узла охлаждения дизеля;",
+    "kind": "paragraph",
+    "locator": "text; element[876] <p>"
+  },
+  {
+    "text": "включить аварийное освещение ДЭС и отключить внешнее электроснабжение;",
+    "kind": "paragraph",
+    "locator": "text; element[879] <p>"
+  },
+  {
+    "text": "произвести запуск дизеля и вывести дизель-генератор на рабочие обороты согласно инструкции по его эксплуатации;",
+    "kind": "paragraph",
+    "locator": "text; element[882] <p>"
+  },
+  {
+    "text": "включить последовательно электроосвещение, вентиляцию, водопровод и электрооборудование убежища.",
+    "kind": "paragraph",
+    "locator": "text; element[885] <p>"
+  },
+  {
+    "text": "2.26. При комплексной приемке ДЭС проверяются:",
+    "kind": "paragraph",
+    "locator": "text; element[888] <p>"
+  },
+  {
+    "text": "работа дизель-генератора за 1-2 ч в период приемки технологических систем сооружения рабочей комиссией;",
+    "kind": "paragraph",
+    "locator": "text; element[894] <p>"
+  },
+  {
+    "text": "обеспечение электроэнергией всех потребителей по режимам;",
+    "kind": "paragraph",
+    "locator": "text; element[897] <p>"
+  },
+  {
+    "text": "соблюдение требований п. 2.22 настоящего СНиП;",
+    "kind": "paragraph",
+    "locator": "text; element[900] <p>"
+  },
+  {
+    "text": "температура воздуха в машинном зале и помещении узла охлаждения дизеля (для агрегатов с вынесенным узлом охлаждения) при работе дизеля с полной нагрузкой.",
+    "kind": "paragraph",
+    "locator": "text; element[903] <p>"
+  },
+  {
+    "text": "3. СОДЕРЖАНИЕ ЗАЩИТНЫХ СООРУЖЕНИЙ В МИРНОЕ ВРЕМЯ",
+    "kind": "heading",
+    "locator": "text; element[908] <h1>"
+  },
+  {
+    "text": "ОБЩИЕ УКАЗАНИЯ",
+    "kind": "heading",
+    "locator": "text; element[911] <h2>"
+  },
+  {
+    "text": "3.1. Защитные сооружения в мирное время должны использоваться для нужд народного хозяйства и обслуживания населения в соответствии с требованиями СНиП 11-11-77.",
+    "kind": "paragraph",
+    "locator": "text; element[917] <p>"
+  },
+  {
+    "text": "При эксплуатации защитных сооружений в мирное время должны выполняться все требования, обеспечивающие пригодность помещений к переводу их в установленные сроки на режим защитных сооружений, и необходимые условия для пребывания людей в защитных сооружениях в военное время.",
+    "kind": "paragraph",
+    "locator": "text; element[923] <p>"
+  },
+  {
+    "text": "3.2. При эксплуатации защитных сооружений в мирное время должна быть обеспечена сохранность:",
+    "kind": "paragraph",
+    "locator": "text; element[926] <p>"
+  },
+  {
+    "text": "защитных свойств как сооружения в целом, так и отдельных его элементов: входов и аварийных выходов, защитно-герметических и герметических дверей и ставен, противовзрывных устройств;",
+    "kind": "paragraph",
+    "locator": "text; element[932] <p>"
+  },
+  {
+    "text": "герметизации и гидроизоляции всего защитного сооружения;",
+    "kind": "paragraph",
+    "locator": "text; element[935] <p>"
+  },
+  {
+    "text": "инженерно-технического оборудования и возможность к переводу его в любое время на эксплуатацию в режиме военного времени.",
+    "kind": "paragraph",
+    "locator": "text; element[938] <p>"
+  },
+  {
+    "text": "Запрещаются в защитных сооружениях перепланировка помещений, устройство отверстий или проемов в ограждающих конструкциях и не предусмотренный проектом демонтаж оборудования.",
+    "kind": "paragraph",
+    "locator": "text; element[941] <p>"
+  },
+  {
+    "text": "3.3. Предприятия, организации и учреждения, эксплуатирующие защитные сооружения в мирное время, назначают после приемки объекта в эксплуатацию ответственных, в обязанности которых должно входить осуществление систематического контроля за правильным содержанием помещений, сохранностью защитных устройств и инженерно-технического оборудования защитных сооружений.",
+    "kind": "paragraph",
+    "locator": "text; element[944] <p>"
+  },
+  {
+    "text": "3.4. В эксплуатируемом защитном сооружении должна быть следующая документация:",
+    "kind": "paragraph",
+    "locator": "text; element[950] <p>"
+  },
+  {
+    "text": "правила содержания и опись оборудования и имущества защитного сооружения;",
+    "kind": "paragraph",
+    "locator": "text; element[956] <p>"
+  },
+  {
+    "text": "планы внешних и внутренних инженерных сетей с указанием отключающих устройств;",
+    "kind": "paragraph",
+    "locator": "text; element[959] <p>"
+  },
+  {
+    "text": "паспорт убежища (противорадиационного укрытия), составляемый по форме обязательного приложения 1, журнал проверки состояния защитного сооружения, составляемый по форме обязательного приложения 2;",
+    "kind": "paragraph",
+    "locator": "text; element[962] <p>"
+  },
+  {
+    "text": "план защитного сооружения с указанием оборудования для сидения и лежания и путей эвакуации;",
+    "kind": "paragraph",
+    "locator": "text; element[965] <p>"
+  },
+  {
+    "text": "инструкции по эксплуатации фильтровентиляционного и другого инженерного оборудования, правила пользования приборами;",
+    "kind": "paragraph",
+    "locator": "text; element[968] <p>"
+  },
+  {
+    "text": "журнал эксплуатации фильтровентиляционного оборудования;",
+    "kind": "paragraph",
+    "locator": "text; element[971] <p>"
+  },
+  {
+    "text": "инструкция по обслуживанию и журнал учета работы ДЭС;",
+    "kind": "paragraph",
+    "locator": "text; element[974] <p>"
+  },
+  {
+    "text": "журнал результатов осмотров и контрольных проверок фильтров-поглотителей, фильтров ФГ-70, устройств регенерации и подпора воздуха;",
+    "kind": "paragraph",
+    "locator": "text; element[977] <p>"
+  },
+  {
+    "text": "формуляр фильтровентиляционного агрегата;",
+    "kind": "paragraph",
+    "locator": "text; element[980] <p>"
+  },
+  {
+    "text": "указания о порядке проветривания защитных сооружений;",
+    "kind": "paragraph",
+    "locator": "text; element[983] <p>"
+  },
+  {
+    "text": "инструкция по противопожарной безопасности;",
+    "kind": "paragraph",
+    "locator": "text; element[986] <p>"
+  },
+  {
+    "text": "список сигналов оповещения гражданской обороны;",
+    "kind": "paragraph",
+    "locator": "text; element[989] <p>"
+  },
+  {
+    "text": "список телефонов.",
+    "kind": "paragraph",
+    "locator": "text; element[992] <p>"
+  },
+  {
+    "text": "3.5. Состояние защитных сооружений проверяется при ежегодных и специальных (внеочередных) осмотрах.",
+    "kind": "paragraph",
+    "locator": "text; element[995] <p>"
+  },
+  {
+    "text": "Ежегодные и специальные осмотры производятся в порядке, устанавливаемом руководителями предприятий, организаций и учреждений, эксплуатирующих защитные сооружения в мирное время.",
+    "kind": "paragraph",
+    "locator": "text; element[1001] <p>"
+  },
+  {
+    "text": "Специальные осмотры производятся после пожаров, землетрясений, ураганов, ливней, наводнений.",
+    "kind": "paragraph",
+    "locator": "text; element[1004] <p>"
+  },
+  {
+    "text": "При осмотрах защитных сооружений должны проверяться:",
+    "kind": "paragraph",
+    "locator": "text; element[1007] <p>"
+  },
+  {
+    "text": "общее состояние сооружения и состояние входов, аварийных выходов, воздухозаборных и выхлопных каналов;",
+    "kind": "paragraph",
+    "locator": "text; element[1010] <p>"
+  },
+  {
+    "text": "состояние обвалования в отдельно стоящих и подсыпки покрытия во встроенных сооружениях, состояние кровли и боковых поверхностей горных выработок, крепи и защитно-герметических перемычек;",
+    "kind": "paragraph",
+    "locator": "text; element[1013] <p>"
+  },
+  {
+    "text": "исправность дверей (ворот, ставен) и механизмов задраивания;",
+    "kind": "paragraph",
+    "locator": "text; element[1016] <p>"
+  },
+  {
+    "text": "исправность защитных устройств, систем вентиляции, водоснабжения, канализации, электроснабжения, связи, автоматики и другого инженерного оборудования;",
+    "kind": "paragraph",
+    "locator": "text; element[1019] <p>"
+  },
+  {
+    "text": "использование площадей помещений для нужд народного хозяйства и обслуживания населения;",
+    "kind": "paragraph",
+    "locator": "text; element[1022] <p>"
+  },
+  {
+    "text": "наличие и состояние средств пожаротушения;",
+    "kind": "paragraph",
+    "locator": "text; element[1025] <p>"
+  },
+  {
+    "text": "отсутствие протечек и просачивания грунтовых и поверхностных вод;",
+    "kind": "paragraph",
+    "locator": "text; element[1028] <p>"
+  },
+  {
+    "text": "температура и относительная влажность воздуха в помещениях.",
+    "kind": "paragraph",
+    "locator": "text; element[1031] <p>"
+  },
+  {
+    "text": "Результаты систематического осмотра записываются в журнал проверки состояния сооружения.",
+    "kind": "paragraph",
+    "locator": "text; element[1034] <p>"
+  },
+  {
+    "text": "3.6. Комплексную проверку защитного сооружения необходимо проводить один раз в три года. При этом должны проверяться:",
+    "kind": "paragraph",
+    "locator": "text; element[1037] <p>"
+  },
+  {
+    "text": "герметичность убежища в соответствии с требованиями п. 2.9 настоящего СНиП;",
+    "kind": "paragraph",
+    "locator": "text; element[1043] <p>"
+  },
+  {
+    "text": "работоспособность всех систем инженерно-технического оборудования и защитных устройств;",
+    "kind": "paragraph",
+    "locator": "text; element[1046] <p>"
+  },
+  {
+    "text": "возможность приведения защитного сооружения в готовность в соответствии с планом;",
+    "kind": "paragraph",
+    "locator": "text; element[1049] <p>"
+  },
+  {
+    "text": "эксплуатация в режиме защитного сооружения в течение 6 ч с проверкой работы по режимам чистой вентиляции и фильтровентиляции.",
+    "kind": "paragraph",
+    "locator": "text; element[1052] <p>"
+  },
+  {
+    "text": "3.7. Входы в защитные сооружения не допускается загромождать. Застройка участков вблизи входов, аварийных выходов и наружных воздухозаборных и вытяжных устройств без согласования со штабом гражданской обороны области (города, района) не допускается.",
+    "kind": "paragraph",
+    "locator": "text; element[1055] <p>"
+  },
+  {
+    "text": "Защитно-герметические и герметические двери в период использования сооружения в мирное время должны находиться в открытом состоянии на подставках и прикрываться легкими съемными экранами. Для закрывания дверных проемов устраиваются обычные двери.",
+    "kind": "paragraph",
+    "locator": "text; element[1061] <p>"
+  },
+  {
+    "text": "3.8. Помещения защитных сооружений должны быть сухими. Температура в этих помещениях в зимнее и летнее время должна поддерживаться в соответствии с требованиями по эксплуатации сооружения в мирное время. Поддержание помещений защитных сооружений и ремонт их производятся в соответствии с действующими положениями о проведении планово-предупредительных ремонтов зданий и сооружений в зависимости от их назначения в мирное время.",
+    "kind": "paragraph",
+    "locator": "text; element[1064] <p>"
+  },
+  {
+    "text": "Защитные сооружения должны быть оборудованы в противопожарном отношении и иметь в зависимости от установленных в них технических средств необходимые средства пожаротушения в соответствии с действующими нормативами и проектом.",
+    "kind": "paragraph",
+    "locator": "text; element[1070] <p>"
+  },
+  {
+    "text": "СОДЕРЖАНИЕ ИНЖЕНЕРНО-ТЕХНИЧЕСКОГО ОБОРУДОВАНИЯ",
+    "kind": "heading",
+    "locator": "text; element[1075] <h2>"
+  },
+  {
+    "text": "3.9. Инженерно-техническое оборудование защитных сооружений должно содержаться в исправности и готовности к использованию по назначению.",
+    "kind": "paragraph",
+    "locator": "text; element[1081] <p>"
+  },
+  {
+    "text": "Содержание, эксплуатация, текущий и плановый ремонты инженерно-технического оборудования осуществляются в соответствии с инструкциями заводов-изготовителей, уточненными с учетом особенностей эксплуатации защитных сооружений.",
+    "kind": "paragraph",
+    "locator": "text; element[1087] <p>"
+  },
+  {
+    "text": "3.10. Системы и элементы инженерно-технического оборудования убежищ, кроме вентиляционных систем ДЭС, фильтров-поглотителей, предфильтров, фильтров для очистки воздуха от окиси углерода, средств регенерации, гравийных воздухоохладителей, следует эксплуатировать при использовании этих сооружений в мирное время.",
+    "kind": "paragraph",
+    "locator": "text; element[1090] <p>"
+  },
+  {
+    "text": "Масляные противопыльные фильтры в случае неиспользования их в мирное время рекомендуется демонтировать и хранить в фильтровентиляционном помещении.",
+    "kind": "paragraph",
+    "locator": "text; element[1096] <p>"
+  },
+  {
+    "text": "Герметические клапаны до и после фильтров-поглотителей, устройств регенерации и фильтров для очистки воздуха от окиси углерода должны быть закрыты, за исключением периода работы системы фильтровентиляции при проверках.",
+    "kind": "paragraph",
+    "locator": "text; element[1099] <p>"
+  },
+  {
+    "text": "Системы и элементы инженерно-технического оборудования противорадиационных укрытий должны эксплуатироваться в мирное время в необходимых объемах.",
+    "kind": "paragraph",
+    "locator": "text; element[1102] <p>"
+  },
+  {
+    "text": "3.11. Исправность систем вентиляции следует проверять не реже одного раза в год путем проверки исправности вентиляторов приточных и вытяжных систем, фильтров-поглотителей, регенеративных установок, герметических клапанов, герметических соединений воздуховодов, воздухозаборных и вытяжных каналов и противовзрывных устройств.",
+    "kind": "paragraph",
+    "locator": "text; element[1105] <p>"
+  },
+  {
+    "text": "При использовании системы чистой вентиляции в мирное время допускается увеличение сопротивления противопыльных фильтров (ФЯР) не более чем в 2 раза (запыление 50 %).",
+    "kind": "paragraph",
+    "locator": "text; element[1111] <p>"
+  },
+  {
+    "text": "Примечание. Сопротивление фильтра определяется по разности статических давлений до и после фильтра.",
+    "kind": "paragraph",
+    "locator": "text; element[1116] <p>"
+  },
+  {
+    "text": "3.12. Помещения защитных сооружений, в которых в мирное время не предусматривается постоянная работа вентиляционных систем, следует периодически проветривать наружным воздухом. При проветривании необходимо учитывать состояние наружного воздуха в зависимости от времени года и характера погоды: нельзя проветривать помещение влажным воздухом, т.е. во время дождя или сразу после него, а также в сырую туманную погоду. Нормальной в защитном сооружении (в мирное время) считается относительная влажность не выше 65-70 %.",
+    "kind": "paragraph",
+    "locator": "text; element[1122] <p>"
+  },
+  {
+    "text": "Относительная влажность воздуха в сооружении измеряется психрометром.",
+    "kind": "paragraph",
+    "locator": "text; element[1128] <p>"
+  },
+  {
+    "text": "Проветривание производится периодически. Периодичность проветривания определяется службой эксплуатации с учетом местных условий.",
+    "kind": "paragraph",
+    "locator": "text; element[1131] <p>"
+  },
+  {
+    "text": "3.15. Исправность систем водоснабжения и канализации следует проверять не реже одного раза в год с опробованием вентилей, задвижек и водоразборных кранов.",
+    "kind": "paragraph",
+    "locator": "text; element[1134] <p>"
+  },
+  {
+    "text": "В напорных емкостях аварийного запаса питьевой воды должен обеспечиваться проток воды с полным обменом ее в течение 2 сут.",
+    "kind": "paragraph",
+    "locator": "text; element[1140] <p>"
+  },
+  {
+    "text": "Аварийные безнапорные емкости для питьевой воды должны содержаться в чистоте и заполняться водой при переводе на режим убежища (укрытия) после освидетельствования их представителем медицинской службы.",
+    "kind": "paragraph",
+    "locator": "text; element[1143] <p>"
+  },
+  {
+    "text": "Водозаборные скважины, устраиваемые в качестве источника водоснабжения. следует периодически (не реже одного раза в месяц) включать на 2-3 ч для откачки воды.",
+    "kind": "paragraph",
+    "locator": "text; element[1146] <p>"
+  },
+  {
+    "text": "3.14. Аварийные резервуары для сбора фекалий должны быть закрыты, пользоваться ими в мирное время запрещается. Задвижки на выпуске из резервуаров должны быть закрыты.",
+    "kind": "paragraph",
+    "locator": "text; element[1149] <p>"
+  },
+  {
+    "text": "Санузлы, не используемые в мирное время, должны быть закрыты и опечатаны. Допускается использование их при учениях, но при этом следует производить периодический осмотр и ремонт.",
+    "kind": "paragraph",
+    "locator": "text; element[1155] <p>"
+  },
+  {
+    "text": "Допускается использование помещений санузлов под кладовые, склады и другие подсобные помещения. В этом случае санузел отключается от системы канализации, а смонтированное оборудование (унитазы и смывные бачки) консервируется без его демонтажа. Расконсервация санузлов должна выполняться в установленные сроки при переводе защитного сооружения на режим убежища (укрытия).",
+    "kind": "paragraph",
+    "locator": "text; element[1158] <p>"
+  },
+  {
+    "text": "3.15. Дизельные электростанции после испытаний подлежат консервации.",
+    "kind": "paragraph",
+    "locator": "text; element[1161] <p>"
+  },
+  {
+    "text": "Расконсервация их производится в период перевода защитного сооружения на режим убежища и в период учений. После расконсервации не реже одного раза в неделю следует запускать дизель-агрегат и испытывать его под нагрузкой 30 мин.",
+    "kind": "paragraph",
+    "locator": "text; element[1167] <p>"
+  },
+  {
+    "text": "Во время испытаний следует осуществлять контроль согласно требованиям п. 2.23 настоящего СНиП.",
+    "kind": "paragraph",
+    "locator": "text; element[1170] <p>"
+  },
+  {
+    "text": "У агрегатов, имеющих электрический пуск, необходимо контролировать зарядку аккумуляторных батарей. У агрегатов, имеющих пуск сжатым воздухом, контролируется давление в пусковых баллонах.",
+    "kind": "paragraph",
+    "locator": "text; element[1173] <p>"
+  },
+  {
+    "text": "ПРИЛОЖЕНИЕ 1",
+    "kind": "heading",
+    "locator": "text; element[1176] <h1>"
+  },
+  {
+    "text": "Обязательное",
+    "kind": "heading",
+    "locator": "text; element[1180] <h1>"
+  },
+  {
+    "text": "ПАСПОРТ УБЕЖИЩА",
+    "kind": "heading",
+    "locator": "text; element[1187] <h1>"
+  },
+  {
+    "text": "(ПРОТИВОРАДИАЦИОННОГО УКРЫТИЯ) №.",
+    "kind": "heading",
+    "locator": "text; element[1190] <h1>"
+  },
+  {
+    "text": "ОБЩИЕ СВЕДЕНИЯ",
+    "kind": "paragraph",
+    "locator": "text; element[1193] <p>"
+  },
+  {
+    "text": "1. Адрес ___________________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1199] <p>"
+  },
+  {
+    "text": "(город, район, улица. № дома)",
+    "kind": "paragraph",
+    "locator": "text; element[1202] <p>"
+  },
+  {
+    "text": "2. Кому принадлежит ________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1204] <p>"
+  },
+  {
+    "text": "[ к какому предприятию приписано",
+    "kind": "paragraph",
+    "locator": "text; element[1207] <p>"
+  },
+  {
+    "text": "___________________________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1209] <p>"
+  },
+  {
+    "text": "убежище (противорадиационное укрытие)]",
+    "kind": "paragraph",
+    "locator": "text; element[1212] <p>"
+  },
+  {
+    "text": "3. Наименование проектной организации и кем утвержден проект __",
+    "kind": "paragraph",
+    "locator": "text; element[1214] <p>"
+  },
+  {
+    "text": "___________________________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1217] <p>"
+  },
+  {
+    "text": "4. Наименование строительно-монтажной организации, возводившей убежище (противорадиационное укрытие) ______________________",
+    "kind": "paragraph",
+    "locator": "text; element[1220] <p>"
+  },
+  {
+    "text": "5. Назначение убежища (противорадиационного укрытия) в мирное время",
+    "kind": "paragraph",
+    "locator": "text; element[1223] <p>"
+  },
+  {
+    "text": "___________________________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1226] <p>"
+  },
+  {
+    "text": "6. Организация, эксплуатирующая убежище (противорадиационное укрытие) в мирное время _______________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1229] <p>"
+  },
+  {
+    "text": "7. Дата приемки в эксплуатацию_______________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1232] <p>"
+  },
+  {
+    "text": "(год, месяц, число)",
+    "kind": "paragraph",
+    "locator": "text; element[1235] <p>"
+  },
+  {
+    "text": "8. Время приведения убежища (противорадиационного укрытия) в готовность _______________ ч",
+    "kind": "paragraph",
+    "locator": "text; element[1237] <p>"
+  },
+  {
+    "text": "ТЕХНИЧЕСКАЯ ХАРАКТЕРИСТИКА УБЕЖИЩА (ПРОТИВОРАДИАЦИОННОГО УКРЫТИЯ)",
+    "kind": "paragraph",
+    "locator": "text; element[1242] <p>"
+  },
+  {
+    "text": "1. Вместимость, чел. __________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1248] <p>"
+  },
+  {
+    "text": "2. Общая площадь, м^{2} _________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1251] <p>"
+  },
+  {
+    "text": "3. Общий объем, м^{3} ___________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1259] <p>"
+  },
+  {
+    "text": "4. Расположение убежища (противорадиационного укрытия):",
+    "kind": "paragraph",
+    "locator": "text; element[1267] <p>"
+  },
+  {
+    "text": "встроенное в здание _____________________________________ этажей",
+    "kind": "paragraph",
+    "locator": "text; element[1270] <p>"
+  },
+  {
+    "text": "отдельно стоящее _____________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1273] <p>"
+  },
+  {
+    "text": "в горных выработках __________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1276] <p>"
+  },
+  {
+    "text": "5. Количество входов __________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1279] <p>"
+  },
+  {
+    "text": "6. Количество аварийных выходов _______________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1282] <p>"
+  },
+  {
+    "text": "7. Количество дверей и ставен (с указанием марки или шифра):",
+    "kind": "paragraph",
+    "locator": "text; element[1285] <p>"
+  },
+  {
+    "text": "защитно-герметических герметических ____________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1288] <p>"
+  },
+  {
+    "text": "8. Класс убежища (группа укрытия) _______________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1291] <p>"
+  },
+  {
+    "text": "ТЕХНИЧЕСКАЯ ХАРАКТЕРИСТИКА СИСТЕМ ВЕНТИЛЯЦИИ",
+    "kind": "paragraph",
+    "locator": "text; element[1298] <p>"
+  },
+  {
+    "text": "\n\nТаблица источника 3 (стрелки указывают исходную объединенную ячейку строка:столбец):\n\n| Столбец 1 | Столбец 2 | Столбец 3 | Столбец 4 | Столбец 5 | Столбец 6 | Столбец 7 | Столбец 8 | Столбец 9 | Столбец 10 | Столбец 11 | Столбец 12 | Столбец 13 | Столбец 14 | Столбец 15 | Столбец 16 | Столбец 17 | Столбец 18 | Столбец 19 | Столбец 20 | Столбец 21 | Столбец 22 | Столбец 23 | Столбец 24 | Столбец 25 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Вентиляционная | Вентиляторы | ← ячейка 1:2 | ← ячейка 1:2 | ← ячейка 1:2 | Фильтры и средства регенерации | ← ячейка 1:6 | ← ячейка 1:6 | Герметические клапаны | ← ячейка 1:9 | ← ячейка 1:9 | Противовзрывные устройства | ← ячейка 1:12 | ← ячейка 1:12 | Насосы | ← ячейка 1:15 | ← ячейка 1:15 | ← ячейка 1:15 | Калориферы или воздухоохладители | ← ячейка 1:19 | ← ячейка 1:19 | ← ячейка 1:19 | Холодильные машины | ← ячейка 1:23 | ← ячейка 1:23 |\n| система | Тип | Кол-во | Производительность | Тип | ← ячейка 2:5 | Кол-во | Тип | ← ячейка 2:8 | Кол-во | Тип | ← ячейка 2:11 | Кол-во | Тип | ← ячейка 2:14 | Кол-во | Производительность | Тип | ← ячейка 2:18 | Кол-во | Производительность | Тип | ← ячейка 2:22 | Кол-во | Производительность |\n| 1 | 2 | 3 | 4 | 5 | ← ячейка 3:5 | 6 | 7 | ← ячейка 3:8 | 8 | 9 | ← ячейка 3:11 | 10 | 11 | ← ячейка 3:14 | 12 | 13 | 14 | ← ячейка 3:18 | 15 | 16 | 17 | ← ячейка 3:22 | 18 | 19 |\n|  |  |  |  |  | ← ячейка 4:5 |  |  | ← ячейка 4:8 |  |  | ← ячейка 4:11 |  |  | ← ячейка 4:14 |  |  |  | ← ячейка 4:18 |  |  |  | ← ячейка 4:22 |  |  |\n",
+    "kind": "table",
+    "locator": "text; element[1305] <table>",
+    "table_id": 3
+  },
+  {
+    "text": "10. Наличие и перечень измерительных приборов __________________",
+    "kind": "paragraph",
+    "locator": "text; element[1581] <p>"
+  },
+  {
+    "text": "11. Степень герметичности (величина подпора воздуха) _____________",
+    "kind": "paragraph",
+    "locator": "text; element[1584] <p>"
+  },
+  {
+    "text": "12. Система отопления _________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1587] <p>"
+  },
+  {
+    "text": "13. Система энергоснабжения ___________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1590] <p>"
+  },
+  {
+    "text": "14. Система водоснабжения _____________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1593] <p>"
+  },
+  {
+    "text": "___________________________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1596] <p>"
+  },
+  {
+    "text": "(вид водопровода, скважина, емкость аварийных резервуаров)",
+    "kind": "paragraph",
+    "locator": "text; element[1599] <p>"
+  },
+  {
+    "text": "15. Тип канализации и количество санитарно-технических приборов ___",
+    "kind": "paragraph",
+    "locator": "text; element[1601] <p>"
+  },
+  {
+    "text": "___________________________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1604] <p>"
+  },
+  {
+    "text": "16. Инструмент, инвентарь и оборудование, имеющиеся в убежище (противорадиационном укрытии) _________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1607] <p>"
+  },
+  {
+    "text": "17. Дата заполнения паспорта ___________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1610] <p>"
+  },
+  {
+    "text": "Ответственный представитель организации, эксплуатирующей защитное сооружение _____________",
+    "kind": "paragraph",
+    "locator": "text; element[1613] <p>"
+  },
+  {
+    "text": "(подпись)",
+    "kind": "paragraph",
+    "locator": "text; element[1616] <p>"
+  },
+  {
+    "text": "Представитель штаба гражданской обороны области (города, района)",
+    "kind": "paragraph",
+    "locator": "text; element[1618] <p>"
+  },
+  {
+    "text": "_____________",
+    "kind": "paragraph",
+    "locator": "text; element[1621] <p>"
+  },
+  {
+    "text": "(подпись)",
+    "kind": "paragraph",
+    "locator": "text; element[1624] <p>"
+  },
+  {
+    "text": "Примечание. Паспорт составляется в трех экземплярах: 1-й экз. находится в убежище (укрытии), 2-й — в службе убежищ объекта, 3-й — в штабе гражданской обороны области (города, района).",
+    "kind": "paragraph",
+    "locator": "text; element[1629] <p>"
+  },
+  {
+    "text": "ПРИЛОЖЕНИЕ 2",
+    "kind": "heading",
+    "locator": "text; element[1637] <h1>"
+  },
+  {
+    "text": "Обязательное",
+    "kind": "heading",
+    "locator": "text; element[1641] <h1>"
+  },
+  {
+    "text": "ЖУРНАЛ ПРОВЕРКИ СОСТОЯНИЯ УБЕЖИЩА (ПРОТИВОРАДИАЦИОННОГО УКРЫТИЯ) № __",
+    "kind": "heading",
+    "locator": "text; element[1648] <h1>"
+  },
+  {
+    "text": "_____________________________________________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1653] <p>"
+  },
+  {
+    "text": "[наименование организации, которой принадлежит убежище (противорадиационное , ________ расположенное по адресу _______________________________",
+    "kind": "paragraph",
+    "locator": "text; element[1656] <p>"
+  },
+  {
+    "text": "укрытие)]",
+    "kind": "paragraph",
+    "locator": "text; element[1660] <p>"
+  },
+  {
+    "text": "\n\nТаблица источника 4 (стрелки указывают исходную объединенную ячейку строка:столбец):\n\n| Столбец 1 | Столбец 2 | Столбец 3 | Столбец 4 | Столбец 5 | Столбец 6 |\n| --- | --- | --- | --- | --- | --- |\n| Дата проверки | Должности, фамилии и инициалы проверяющих | Проверенные конструкции, узлы, механизмы и оборудование | Результаты осмотра и замеченные недостатки | Срок устранения недостатков | Дата устранения недостатков и подпись ответственного лица |\n| 1 | 2 | 3 | 4 | 5 | 6 |\n|  |  |  |  |  |  |\n",
+    "kind": "table",
+    "locator": "text; element[1667] <table>",
+    "table_id": 4
+  },
+  {
+    "text": "Примечание. Журнал хранится в убежище (противорадиационном укрытии).",
+    "kind": "paragraph",
+    "locator": "text; element[1749] <p>"
+  }
+]

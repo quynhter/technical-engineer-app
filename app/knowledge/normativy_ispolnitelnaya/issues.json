@@ -1,0 +1,101 @@
+[
+  {
+    "type": "unavailable_image",
+    "url": "http://docs.cntd.ru/picture/get?id=P0025&doc_id=1200004717&size=small",
+    "error": "HTTP Error 307: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nTemporary Redirect",
+    "parents": [
+      "https://www.ispolnitelnaya.ru/normativdocs/GOST/%D0%93%D0%9E%D0%A1%D0%A2%208639-82.html"
+    ]
+  },
+  {
+    "type": "unavailable_source",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%93%D0%9E%D0%A1%D0%A2%20530-2012",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "type": "draft_instead_of_standard",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/GOST/ISO2015.pdf",
+    "detail": "Каталог обозначает ГОСТ Р ИСО 9001-2015, но PDF содержит рабочий перевод окончательного проекта ISO/FDIS 9001:2015(E). Полный текст этого неофициального перевода не импортирован; сохранены карточка, ссылка и хеш."
+  },
+  {
+    "type": "unavailable_source",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/RD/%D0%A2%D0%A0%20%D0%95%D0%90%D0%A1%20042_2017.pdf",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "type": "unavailable_source",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp46133302012.files/izm4-k-sp-46.pdf",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "type": "unavailable_source",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp46133302012.files/izm3-k-sp-46.pdf",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "type": "unavailable_source",
+    "url": "http://кафедрагс.рф/uploadedFiles/files/SP_78.13330.2012.pdf",
+    "error": "<urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+    "type": "unavailable_source",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20163.1325800.2014.pdf",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "type": "unavailable_source",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp385.1325800.2018/SP-385.pdf",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-4c73316167fc22be",
+    "detail": "В каталоге лишняя точка перед дефисом года; исходное обозначение сохранено."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-968997428a37a040",
+    "detail": "В DOC вместо установленного стандарта — текст с пометой «Настоящий проект не подлежит применению до его принятия». Сохранен как проект, не утвержденный ГОСТ."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-19f3fed44cdb7ad1",
+    "detail": "Источник — рабочий перевод ISO/FDIS 9001:2015, а не обозначенный в каталоге ГОСТ Р ИСО 9001-2015. В базу добавлена только карточка со ссылками и описанием расхождения."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-cafa214e425d77a8",
+    "detail": "Дата в каталоге 02.12.2023; заголовок и текст источника указывают 02.12.2022."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-e9ead5b5fc683966",
+    "detail": "Ссылка сайта возвращает 404. Использованы отдельные файлы официальной публикации ЕАЭС от 2017 года; проверка последующих изменений не выполнена."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-83a1ee9106691d56",
+    "detail": "В каталоге 3.01.09-87; текст и адрес источника обозначают 3.01.09-84."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-543f8846e507ef66",
+    "detail": "Строка каталога СНиП 3.05.03-85 открывает текст СП 74.13330.2011."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-1e18281bd6a1cd89",
+    "detail": "Адрес и строка СНиП относятся к старому обозначению; страница публикует СП 75.13330.2011."
+  },
+  {
+    "type": "identity_or_edition_conflict",
+    "catalog_id": "doc-90848acb354c2210",
+    "detail": "Адрес и строка СНиП относятся к старому обозначению; страница публикует СП 75.13330.2011."
+  },
+  {
+    "type": "wrong_target",
+    "catalog_id": "doc-19f3fed44cdb7ad1",
+    "url": "https://www.ispolnitelnaya.ru/normativdocs/GOST/9.014-78.doc",
+    "detail": "Ссылка названия ГОСТ Р ИСО 9001-2015 ведет на DOC ГОСТ 9.014-78. Это отдельный документ, не версия ISO 9001."
+  }
+]

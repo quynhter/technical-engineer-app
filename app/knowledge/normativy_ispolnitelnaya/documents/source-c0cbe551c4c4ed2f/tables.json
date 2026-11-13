@@ -1,0 +1,2503 @@
+[
+  {
+    "number": 1,
+    "locator": "element[671]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Условный проход труб, мм",
+          "1": "Наибольшие допустимые расстояния между точками крепления, м",
+          "2": "Условный проход труб, мм",
+          "3": "Наибольшие допустимые расстояния между точками крепления, м"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Условный проход труб, мм"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наибольшие допустимые расстояния между точками крепления, м"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Условный проход труб, мм"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наибольшие допустимые расстояния между точками крепления, м"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "15-20",
+          "1": "2,5",
+          "2": "40-80",
+          "3": "3,5-4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15-20"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,5"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "40-80"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,5-4"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "25-32",
+          "1": "3,0",
+          "2": "100",
+          "3": "6,0"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "25-32"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,0"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "100"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6,0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "locator": "element[800]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наружный диаметр трубы, мм",
+          "1": "Расстояния между точками крепления при горизонтальной и вертикальной прокладке, мм",
+          "2": "Наружный диаметр трубы, мм",
+          "3": "Расстояния между точками крепления при горизонтальной и вертикальной прокладке, мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наружный диаметр трубы, мм"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Расстояния между точками крепления при горизонтальной и вертикальной прокладке, мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наружный диаметр трубы, мм"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Расстояния между точками крепления при горизонтальной и вертикальной прокладке, мм"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "20",
+          "1": "1000",
+          "2": "50",
+          "3": "1700"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1000"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "50"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1700"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "25",
+          "1": "1100",
+          "2": "63",
+          "3": "2000"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "25"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1100"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "63"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2000"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "32",
+          "1": "1400",
+          "2": "75",
+          "3": "2300"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "32"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1400"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "75"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2300"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "40",
+          "1": "1600",
+          "2": "90",
+          "3": "2500"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "40"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1600"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "90"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2500"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "locator": "element[960]",
+    "columns": 10,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Сечение кабеля, мм^{2}",
+          "1": "Усилия тяжения за алюминиевую оболочку, кН, кабеля напряжением, кВ",
+          "2": "← ячейка 1:2",
+          "3": "← ячейка 1:2",
+          "4": "← ячейка 1:2",
+          "5": "Усилия тяжения за жилы, кН, кабеля до 35, кВ",
+          "6": "← ячейка 1:6",
+          "7": "← ячейка 1:6",
+          "8": "← ячейка 1:6",
+          "9": "← ячейка 1:6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Сечение кабеля, мм^{2}"
+          },
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 4,
+            "text": "Усилия тяжения за алюминиевую оболочку, кН, кабеля напряжением, кВ"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 5,
+            "text": "Усилия тяжения за жилы, кН, кабеля до 35, кВ"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:2",
+          "3": "↑ ячейка 1:2",
+          "4": "↑ ячейка 1:2",
+          "5": "медные",
+          "6": "← ячейка 2:6",
+          "7": "алюминиевые многопроволочные",
+          "8": "← ячейка 2:8",
+          "9": "алюминиевые однопроволочные"
+        },
+        "source_cells": [
+          {
+            "column": 6,
+            "rowspan": 2,
+            "colspan": 2,
+            "text": "медные"
+          },
+          {
+            "column": 8,
+            "rowspan": 2,
+            "colspan": 2,
+            "text": "алюминиевые многопроволочные"
+          },
+          {
+            "column": 10,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "алюминиевые однопроволочные"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "5": "↑ ячейка 2:6",
+          "6": "↑ ячейка 2:6",
+          "7": "↑ ячейка 2:8",
+          "8": "↑ ячейка 2:8",
+          "9": "↑ ячейка 2:10",
+          "1": "1",
+          "2": "6",
+          "3": "10"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "3?25",
+          "1": "1,7",
+          "2": "2,8",
+          "3": "3,7",
+          "4": "3,4",
+          "5": "← ячейка 4:5",
+          "6": "2,9",
+          "7": "← ячейка 4:7",
+          "8": "2,9",
+          "9": "← ячейка 4:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?25"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1,7"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,8"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,7"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "3,4"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "2,9"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "2,9"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "3?35",
+          "1": "1,8",
+          "2": "2,9",
+          "3": "3,9",
+          "4": "4,9",
+          "5": "← ячейка 5:5",
+          "6": "3,9",
+          "7": "← ячейка 5:7",
+          "8": "3,9",
+          "9": "← ячейка 5:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?35"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1,8"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,9"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,9"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "4,9"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "3,9"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "3,9"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "3?50",
+          "1": "2,3",
+          "2": "3,4",
+          "3": "4,4",
+          "4": "7,0",
+          "5": "← ячейка 6:5",
+          "6": "5,9",
+          "7": "← ячейка 6:7",
+          "8": "5,9",
+          "9": "← ячейка 6:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?50"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,3"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,4"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "7,0"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "5,9"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "5,9"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "3?70",
+          "1": "2,9",
+          "2": "3,9",
+          "3": "4,9",
+          "4": "10,0",
+          "5": "← ячейка 7:5",
+          "6": "8,2",
+          "7": "← ячейка 7:7",
+          "8": "3,9*",
+          "9": "← ячейка 7:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?70"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,9"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,9"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,9"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "10,0"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "8,2"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "3,9*"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "3?95",
+          "1": "3,4",
+          "2": "4,4",
+          "3": "5,7",
+          "4": "13,7",
+          "5": "← ячейка 8:5",
+          "6": "10,8",
+          "7": "← ячейка 8:7",
+          "8": "5,4*",
+          "9": "← ячейка 8:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?95"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,4"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,4"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5,7"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "13,7"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "10,8"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "5,4*"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "3?120",
+          "1": "3,9",
+          "2": "4,9",
+          "3": "6,4",
+          "4": "17,6",
+          "5": "← ячейка 9:5",
+          "6": "13,7",
+          "7": "← ячейка 9:7",
+          "8": "6,4*",
+          "9": "← ячейка 9:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?120"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,9"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,9"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6,4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "17,6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "13,7"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "6,4*"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "3?150",
+          "1": "5,9",
+          "2": "6,4",
+          "3": "7,4",
+          "4": "22,0",
+          "5": "← ячейка 10:5",
+          "6": "17,6",
+          "7": "← ячейка 10:7",
+          "8": "8,8*",
+          "9": "← ячейка 10:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?150"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5,9"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6,4"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7,4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "22,0"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "17,6"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "8,8*"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "3?185",
+          "1": "6,4",
+          "2": "7,4",
+          "3": "8,3",
+          "4": "26,0",
+          "5": "← ячейка 11:5",
+          "6": "21,6",
+          "7": "← ячейка 11:7",
+          "8": "10,8*",
+          "9": "← ячейка 11:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?185"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6,4"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7,4"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8,3"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "26,0"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "21,6"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "10,8*"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "3?240",
+          "1": "7,4",
+          "2": "9,3",
+          "3": "9,8",
+          "4": "35,0",
+          "5": "← ячейка 12:5",
+          "6": "27,4",
+          "7": "← ячейка 12:7",
+          "8": "13,7*",
+          "9": "← ячейка 12:9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?240"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7,4"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9,3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9,8"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "35,0"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "27,4"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "13,7*"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "locator": "element[1454]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Жилы небронированного кабеля со свинцовой оболочкой",
+          "1": "Сечение кабеля, мм^{2}",
+          "2": "Допустимое усилие тяжения, кН",
+          "3": "Требуемое усилие тяжения на 100 м кабеля, кН, напряжением, кВ",
+          "4": "← ячейка 1:4",
+          "5": "← ячейка 1:4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Жилы небронированного кабеля со свинцовой оболочкой"
+          },
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Сечение кабеля, мм^{2}"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Допустимое усилие тяжения, кН"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Требуемое усилие тяжения на 100 м кабеля, кН, напряжением, кВ"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "↑ ячейка 1:2",
+          "2": "↑ ячейка 1:3",
+          "3": "1",
+          "4": "6",
+          "5": "10"
+        },
+        "source_cells": [
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Медные",
+          "1": "3?50",
+          "2": "6,4",
+          "3": "1,7",
+          "4": "2,3",
+          "5": "2,7"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 6,
+            "colspan": 1,
+            "text": "Медные"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?50"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6,4"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1,7"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,3"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,7"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "↑ ячейка 3:1",
+          "1": "3?70",
+          "2": "8,9",
+          "3": "2,2",
+          "4": "2,8",
+          "5": "3,2"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?70"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8,9"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,2"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,8"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,2"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "↑ ячейка 3:1",
+          "1": "3?95",
+          "2": "12,0",
+          "3": "2,8",
+          "4": "3,5",
+          "5": "4,0"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?95"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "12,0"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,8"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,5"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,0"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "↑ ячейка 3:1",
+          "1": "3?120",
+          "2": "15,3",
+          "3": "3,4",
+          "4": "4,2",
+          "5": "4,6"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?120"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15,3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,4"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,2"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,6"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "↑ ячейка 3:1",
+          "1": "3?150",
+          "2": "19,0",
+          "3": "4,2",
+          "4": "5,3",
+          "5": "5,5"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?150"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "19,0"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,2"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5,3"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5,5"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "↑ ячейка 3:1",
+          "1": "3?185",
+          "2": "23,5",
+          "3": "5,1",
+          "4": "5,7",
+          "5": "6,3"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?185"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "23,5"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5,1"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5,7"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6,3"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "Алюминиевые",
+          "1": "3?95",
+          "2": "7,45",
+          "3": "1,8",
+          "4": "2,4",
+          "5": "2,9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 4,
+            "colspan": 1,
+            "text": "Алюминиевые"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?95"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7,45"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1,8"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,4"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,9"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "↑ ячейка 9:1",
+          "1": "3?120",
+          "2": "9,40",
+          "3": "2,1",
+          "4": "2,9",
+          "5": "3,3"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?120"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9,40"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,1"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,9"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,3"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "↑ ячейка 9:1",
+          "1": "3?150",
+          "2": "11,80",
+          "3": "2,6",
+          "4": "3,6",
+          "5": "3,8"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?150"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11,80"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2,6"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,6"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,8"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "↑ ячейка 9:1",
+          "1": "3?185",
+          "2": "14,50",
+          "3": "3,1",
+          "4": "3,7",
+          "5": "4,3"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3?185"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14,50"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,1"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3,7"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4,3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "locator": "element[2170]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Отклонения",
+          "1": "Допуски для опор",
+          "2": "← ячейка 1:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Отклонения"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Допуски для опор"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "свободно стоящих",
+          "2": "с оттяжками"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "свободно стоящих"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "с оттяжками"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Уровней дна котлованов",
+          "1": "10 мм",
+          "2": "10 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Уровней дна котлованов"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10 мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10 мм"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Расстояний между осями фундаментов в плане",
+          "1": "± 20 мм",
+          "2": "± 50 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Расстояний между осями фундаментов в плане"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "± 20 мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "± 50 мм"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Отметок верха фундаментов*",
+          "1": "20 мм",
+          "2": "20 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Отметок верха фундаментов*"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20 мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20 мм"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Угла наклона продольной оси стойки фундамента",
+          "1": "0° 30’",
+          "2": "± 1° 30’"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Угла наклона продольной оси стойки фундамента"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0° 30’"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "± 1° 30’"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Угла наклона оси V-образного анкерного болта",
+          "1": "-",
+          "2": "± 2° 30’"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Угла наклона оси V-образного анкерного болта"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "± 2° 30’"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Смещение центра фундамента в плане",
+          "1": "-",
+          "2": "50 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Смещение центра фундамента в плане"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "50 мм"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "locator": "element[2366]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Отклонения",
+          "1": "Допуски для опор",
+          "2": "← ячейка 1:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Отклонения"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Допуски для опор"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "деревянных",
+          "2": "железобетонных"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "деревянных"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "железобетонных"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Опоры от вертикальной оси вдоль и поперек оси линии (отношение отклонения верхнего конца стойки опоры к ее высоте)",
+          "1": "1/100 высоты опоры",
+          "2": "1/150 высоты опоры"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Опоры от вертикальной оси вдоль и поперек оси линии (отношение отклонения верхнего конца стойки опоры к ее высоте)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/100 высоты опоры"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/150 высоты опоры"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Опоры из створа линии при длине пролета, м:",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Опоры из створа линии при длине пролета, м:"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "до 200",
+          "1": "100 мм",
+          "2": "100 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "до 200"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "100 мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "100 мм"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "св. 200",
+          "1": "200 мм",
+          "2": "200 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 200"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "200 мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "200 мм"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Траверсы от горизонтальной оси",
+          "1": "1/50 длины траверсы",
+          "2": "1/100 длины траверсы"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Траверсы от горизонтальной оси"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/50 длины траверсы"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/100 длины траверсы"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Траверсы относительно линии, перпендикулярной оси ВЛ (для угловой опоры относительно биссектрисы угла поворота ВЛ)",
+          "1": "1/50 длины траверсы",
+          "2": "1/100 длины траверсы"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Траверсы относительно линии, перпендикулярной оси ВЛ (для угловой опоры относительно биссектрисы угла поворота ВЛ)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/50 длины траверсы"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/100 длины траверсы"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "locator": "element[2477]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Отклонения",
+          "1": "Допуски"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Отклонения"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Допуски"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Опоры от вертикальной оси (отношение отклонения верхнего конца стойки опоры к ее высоте)",
+          "1": "1/100 высоты опоры"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Опоры от вертикальной оси (отношение отклонения верхнего конца стойки опоры к ее высоте)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/100 высоты опоры"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Расстояния между стойками опоры",
+          "1": "± 100 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Расстояния между стойками опоры"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "± 100 мм"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Выход опоры из створа",
+          "1": "200 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Выход опоры из створа"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "200 мм"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Отметок траверс в местах крепления их к стойкам опоры",
+          "1": "80 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Отметок траверс в местах крепления их к стойкам опоры"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "80 мм"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Отметок между местами сопряжения траверс (стыков) и осями болтов, служащих для крепления траверс к стойке опоры",
+          "1": "50 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Отметок между местами сопряжения траверс (стыков) и осями болтов, служащих для крепления траверс к стойке опоры"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "50 мм"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Стоек опоры от оси трассы",
+          "1": "±50 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Стоек опоры от оси трассы"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "±50 мм"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Траверсы от горизонтальной оси при длине траверсы, м:",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Траверсы от горизонтальной оси при длине траверсы, м:"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "до 15",
+          "1": "1/150 длины траверсы"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "до 15"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/150 длины траверсы"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "св. 15",
+          "1": "1/250 длины траверсы"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 15"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/250 длины траверсы"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "locator": "element[2579]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Отклонения",
+          "1": "Допуски"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Отклонения"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Допуски"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Опоры от вертикальной оси вдоль и поперек оси линии",
+          "1": "1/200 высоты опоры"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Опоры от вертикальной оси вдоль и поперек оси линии"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/200 высоты опоры"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Траверсы от линии, перпендикулярной оси трассы",
+          "1": "100 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Траверсы от линии, перпендикулярной оси трассы"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "100 мм"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Траверсы от горизонтальной оси (линии) при длине траверсы, м:",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Траверсы от горизонтальной оси (линии) при длине траверсы, м:"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "до 15",
+          "1": "1/150 длины траверсы"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "до 15"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/150 длины траверсы"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "св. 15",
+          "1": "1/250 длины траверсы"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 15"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/250 длины траверсы"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Опоры из створа линии при длине пролета, м:",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Опоры из створа линии при длине пролета, м:"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "до 200",
+          "1": "100 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "до 200"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "100 мм"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "от 200 до 300",
+          "1": "200 \""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "от 200 до 300"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "200 \""
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "св. 300",
+          "1": "300 \""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 300"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "300 \""
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "Стрелы прогиба (кривизны) траверсы",
+          "1": "1/300 длины траверсы"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Стрелы прогиба (кривизны) траверсы"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/300 длины траверсы"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "Стрелы прогиба (кривизны) стоек и подкосов",
+          "1": "1/750 длины, но не более 20 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Стрелы прогиба (кривизны) стоек и подкосов"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/750 длины, но не более 20 мм"
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "Поясных уголков и элементов решетки (в любой плоскости) в пределах панели",
+          "1": "1/750 длины"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Поясных уголков и элементов решетки (в любой плоскости) в пределах панели"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1/750 длины"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "locator": "element[2997]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Операции",
+          "1": "Направление движения",
+          "2": "← ячейка 1:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Операции"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Направление движения"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "↑ ячейка 1:1",
+          "1": "штурвала",
+          "2": "рукоятки"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "штурвала"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "рукоятки"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Включение",
+          "1": "По часовой стрелке",
+          "2": "Вверх или направо"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Включение"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "По часовой стрелке"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Вверх или направо"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Отключение",
+          "1": "Против часовой стрелки",
+          "2": "Вниз или налево"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Отключение"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Против часовой стрелки"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Вниз или налево"
+          }
+        ]
+      }
+    ]
+  }
+]

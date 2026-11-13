@@ -1,0 +1,6759 @@
+[
+  {
+    "number": 1,
+    "locator": "element[1005]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Максимальная температура окружающего воздуха, °С",
+          "1": "Спринклер с температурой разрушения теплового замка, °С"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Максимальная температура окружающего воздуха, °С"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Спринклер с температурой разрушения теплового замка, °С"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "До 50",
+          "1": "72"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "До 50"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "72"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "51-70",
+          "1": "93"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "51-70"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "93"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "71-100",
+          "1": "141"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "71-100"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "141"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "101-140",
+          "1": "182"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "101-140"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "182"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "141-200",
+          "1": "240"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "141-200"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "240"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "locator": "element[6261]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер трубной проводки по проекту",
+          "1": "Длина трубной проводки, м",
+          "2": "Испытательное давление, МПа (кгс/см [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] )",
+          "3": "← ячейка 1:3",
+          "4": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер трубной проводки по проекту"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Длина трубной проводки, м"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Испытательное давление, МПа (кгс/см [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] )"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "на прочность",
+          "3": "на герметичность",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "на прочность"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "на герметичность"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "locator": "element[6486]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Арматура",
+          "1": "Д, мм",
+          "2": "Фигура",
+          "3": "Заводской номер",
+          "4": "Давление, МПа (кг/с м [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] )"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Арматура"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Д, мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фигура"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заводской номер"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Давление, МПа (кг/с м [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] )"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "locator": "element[7019]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Оборудование",
+          "1": "Краткая техническая характеристика",
+          "2": "Число единиц"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Оборудование"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Краткая техническая характеристика"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Число единиц"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "locator": "element[7183]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Прибор",
+          "1": "Тип",
+          "2": "Номер прибора",
+          "3": "Шкала",
+          "4": "Класс точности",
+          "5": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Прибор"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер прибора"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Шкала"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Класс точности"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "locator": "element[7291]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Маркировка провода (кабеля) по чертежу, номер позиции",
+          "1": "Марка провода (кабеля)",
+          "2": "Число и площадь сечения жил, мм [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif]",
+          "3": "Сопротивление изоляции, МОм",
+          "4": "← ячейка 1:4",
+          "5": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Маркировка провода (кабеля) по чертежу, номер позиции"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка провода (кабеля)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Число и площадь сечения жил, мм [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif]"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Сопротивление изоляции, МОм"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "между проводами (жилами).",
+          "4": "относи- тельно",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "между проводами (жилами)."
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "относи- тельно"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "locator": "element[7530]",
+    "columns": 9,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер бара- бана",
+          "1": "Марка кабеля",
+          "2": "Число жил и площадь сечения, мм [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif]",
+          "3": "Длина кабеля, м",
+          "4": "Темпе- ратура в начале про грева, °С",
+          "5": "Напря- жение, В",
+          "6": "Ток, А",
+          "7": "Темпе- ратура в конце про- грева, °С",
+          "8": "Темпе- ратура воздуха в месте про- кладки кабеля, °С"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер бара- бана"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка кабеля"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Число жил и площадь сечения, мм [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif]"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Длина кабеля, м"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Темпе- ратура в начале про грева, °С"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Напря- жение, В"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ток, А"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Темпе- ратура в конце про- грева, °С"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Темпе- ратура воздуха в месте про- кладки кабеля, °С"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "locator": "element[8027]",
+    "columns": 7,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер трубной проводки по проекту",
+          "1": "D [Изображение: 1; ../../originals/images/2d6bb94ef878c5109478573d.gif] , мм",
+          "2": "Номер коробки с раздели- тельным уплотнением по проекту",
+          "3": "Испыта- тельное давление, МПа (кгс/см [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] )",
+          "4": "Время выдержки, ч",
+          "5": "Падение давления, % в ч",
+          "6": "Допус- тимое давление, % в ч"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер трубной проводки по проекту"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "D [Изображение: 1; ../../originals/images/2d6bb94ef878c5109478573d.gif] , мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер коробки с раздели- тельным уплотнением по проекту"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Испыта- тельное давление, МПа (кгс/см [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] )"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Время выдержки, ч"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Падение давления, % в ч"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Допус- тимое давление, % в ч"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "locator": "element[8705]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наиме- нование",
+          "1": "Тип",
+          "2": "Заводской номер",
+          "3": "Срок годности",
+          "4": "Масса без заряда",
+          "5": "Масса с зарядом",
+          "6": "Масса заряда",
+          "7": "Давление в баллонах после контроль- ного взвеши- вания"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наиме- нование"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заводской номер"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Срок годности"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Масса без заряда"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Масса с зарядом"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Масса заряда"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Давление в баллонах после контроль- ного взвеши- вания"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "locator": "element[8912]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер позиции и спецификации проекта",
+          "1": "Наименование",
+          "2": "Тип",
+          "3": "Заводской номер",
+          "4": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер позиции и спецификации проекта"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заводской номер"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 11,
+    "locator": "element[9230]",
+    "columns": 7,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Секция",
+          "1": "Защища- емое помещение",
+          "2": "Время возникно- вения очага пожара, ч-мин",
+          "3": "Время вскрытия сприн- клерного оросителя (извеща- теля), ч-мин",
+          "4": "Время появления воды (пены, газа), ч-мин",
+          "5": "Полное тушение очага пожара, ч-мин",
+          "6": "Приме- чание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Секция"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Защища- емое помещение"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Время возникно- вения очага пожара, ч-мин"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Время вскрытия сприн- клерного оросителя (извеща- теля), ч-мин"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Время появления воды (пены, газа), ч-мин"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Полное тушение очага пожара, ч-мин"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Приме- чание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 12,
+    "locator": "element[9748]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Документ",
+          "1": "Содержание документа",
+          "2": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Документ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Содержание документа"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "1. Акт обследования",
+          "1": "Наименование объекта, количество зданий, помещений, этажность, вид строения, указание о типе извещателей, приемно-контрольных приборов, оповещателей и местах их установки для каждого здания (помещения); указание о протяженности, видах прокладки проводов и их защите; указание об электропитании, сметной стоимости и планируемом сроке по монтажу; подписи представителей заказчика, органов государственного пожарного надзора",
+          "2": "К акту прилагают смету на монтажно-наладочные работы, план-схему объекта. Акт оформляется при отсутствии проекта"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1. Акт обследования"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование объекта, количество зданий, помещений, этажность, вид строения, указание о типе извещателей, приемно-контрольных приборов, оповещателей и местах их установки для каждого здания (помещения); указание о протяженности, видах прокладки проводов и их защите; указание об электропитании, сметной стоимости и планируемом сроке по монтажу; подписи представителей заказчика, органов государственного пожарного надзора"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "К акту прилагают смету на монтажно-наладочные работы, план-схему объекта. Акт оформляется при отсутствии проекта"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "2. Акт передачи оборудования, изделий и материалов в монтаж",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2. Акт передачи оборудования, изделий и материалов в монтаж"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "3. Акт готовности зданий, сооружений к производству монтажных работ",
+          "1": "",
+          "2": "По форме приложения 11"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3. Акт готовности зданий, сооружений к производству монтажных работ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "По форме приложения 11"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "4. Акт освидетельствова- ния скрытых работ (при монтаже электрических проводок)",
+          "1": "Составляется на работы, выполненные в стенах, потолках, полу, земле, по канализации",
+          "2": "По форме приложения 21"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4. Акт освидетельствова- ния скрытых работ (при монтаже электрических проводок)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Составляется на работы, выполненные в стенах, потолках, полу, земле, по канализации"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "По форме приложения 21"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "5. Акт о проведении входного контроля",
+          "1": "Наименование, тип и марка, заводской номер или маркировка изделия, предприятие-изготовитель, дата изготовления и поступления; заключение о готовности; подпись ответственного представителя организации, выполнившей входной контроль",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5. Акт о проведении входного контроля"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование, тип и марка, заводской номер или маркировка изделия, предприятие-изготовитель, дата изготовления и поступления; заключение о готовности; подпись ответственного представителя организации, выполнившей входной контроль"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "6. Протокол прогрева кабеля на барабанах",
+          "1": "Номер барабана; марка кабеля, число жил и сечение (мм [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] ); длина кабеля (м); температура в начале и конце прогрева (°С); напряжение (В); ток (А); температура воздуха в месте прокладки кабеля (°С); дата окончания работ по прокладке; подписи представителей заказчика, монтажной организации",
+          "2": "Составляется в том случае, когда монтаж кабеля производится при отрицательных температурах (по форме приложения 20)"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6. Протокол прогрева кабеля на барабанах"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер барабана; марка кабеля, число жил и сечение (мм [Изображение: 1; ../../originals/images/dda9333e2384acf93cf4de4c.gif] ); длина кабеля (м); температура в начале и конце прогрева (°С); напряжение (В); ток (А); температура воздуха в месте прокладки кабеля (°С); дата окончания работ по прокладке; подписи представителей заказчика, монтажной организации"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Составляется в том случае, когда монтаж кабеля производится при отрицательных температурах (по форме приложения 20)"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "7. Акт испытания защитных трубопроводов с разделительными уплотнениями на герметичность",
+          "1": "Номер трубной проводки; условный диаметр (мм); испытательное давление (кПа), время выдержки (ч); падение давления (% в ч); допустимая величина давления (кПа); заключение о пригодности трубопроводов для эксплуатации с указанием класса взрывоопасной зоны. Подписи представителей заказчика к монтажной организации",
+          "2": "Составляется при монтаже технических средств сигнализации во взрывоопасных зонах (по форме приложения 22)"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7. Акт испытания защитных трубопроводов с разделительными уплотнениями на герметичность"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер трубной проводки; условный диаметр (мм); испытательное давление (кПа), время выдержки (ч); падение давления (% в ч); допустимая величина давления (кПа); заключение о пригодности трубопроводов для эксплуатации с указанием класса взрывоопасной зоны. Подписи представителей заказчика к монтажной организации"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Составляется при монтаже технических средств сигнализации во взрывоопасных зонах (по форме приложения 22)"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "8. Протокол измерения сопротивления изоляции электропроводок",
+          "1": "Наименование и номер позиции по рабочим чертежам; данные контрольных приборов; данные испытаний: марка провода (кабеля), количество и сечение жил, сопротивление изоляции. Заключение об испытании. Подписи представителей заказчика, монтажной организации",
+          "2": "По форме приложения 19"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8. Протокол измерения сопротивления изоляции электропроводок"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование и номер позиции по рабочим чертежам; данные контрольных приборов; данные испытаний: марка провода (кабеля), количество и сечение жил, сопротивление изоляции. Заключение об испытании. Подписи представителей заказчика, монтажной организации"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "По форме приложения 19"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "9. Акт об окончании монтажных работ",
+          "1": "Наименование смонтированных средств сигнализации, наименование объекта, организации-разработчика проекта (акта обследования); монтажной организации; период выполнения работ, результат проверки, заключение комиссии; подписи представителей заказчика, монтажной и пусконаладочной организации",
+          "2": "Составляется (по форме приложения 12) в том случае, если монтажная организация выполняла только монтаж. К акту прилагается ведомость смонтированных ППКП (ППУ) и извещателей"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9. Акт об окончании монтажных работ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование смонтированных средств сигнализации, наименование объекта, организации-разработчика проекта (акта обследования); монтажной организации; период выполнения работ, результат проверки, заключение комиссии; подписи представителей заказчика, монтажной и пусконаладочной организации"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Составляется (по форме приложения 12) в том случае, если монтажная организация выполняла только монтаж. К акту прилагается ведомость смонтированных ППКП (ППУ) и извещателей"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "10. Акт об окончании пусконаладочных работ",
+          "1": "Период проведения пуско-наладочных работ, наименование смонтированного комплекса сигнализации; дата и номер договора; перечень выполненных работ, заключение комиссии; подписи представителей заказчика и пусконаладочной организации",
+          "2": "По форме приложения 24"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10. Акт об окончании пусконаладочных работ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Период проведения пуско-наладочных работ, наименование смонтированного комплекса сигнализации; дата и номер договора; перечень выполненных работ, заключение комиссии; подписи представителей заказчика и пусконаладочной организации"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "По форме приложения 24"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "11. Ведомость смонтированных ППКП (ППУ) и извещателей",
+          "1": "Наименование объекта, смонтированных средств сигнализации, номер позиции спецификации проекта, наименование, тип, предприятие изготовитель, количество; подписи представителей монтажно-наладочной организации и заказчика",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11. Ведомость смонтированных ППКП (ППУ) и извещателей"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование объекта, смонтированных средств сигнализации, номер позиции спецификации проекта, наименование, тип, предприятие изготовитель, количество; подписи представителей монтажно-наладочной организации и заказчика"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 13,
+    "locator": "element[10000]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Документ",
+          "1": "Содержание документа",
+          "2": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Документ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Содержание документа"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Акт о выявленных дефектах",
+          "1": "Наименование, дата монтажа технических средств; перечень дефектов; заключение комиссии (ответственный исполнитель и сроки устранения дефектов), подписи представителей заказчика, монтажной организации, органов государственного пожарного надзора",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Акт о выявленных дефектах"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование, дата монтажа технических средств; перечень дефектов; заключение комиссии (ответственный исполнитель и сроки устранения дефектов), подписи представителей заказчика, монтажной организации, органов государственного пожарного надзора"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 14,
+    "locator": "element[10072]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Документ",
+          "1": "Содержание документа",
+          "2": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Документ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Содержание документа"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Акт о приемке системы пожарной сигнализации в эксплуатацию",
+          "1": "Наименование смонтированных средств сигнализации объекта, организации, разработавшей проект; наименование монтажной организации, период выполнения работ, сметная и фактическая стоимость монтажных работ; наименование пусконаладочной организации; период выполнения работ, сметная и фактическая стоимость пусконаладочных работ; результаты измерений сопротивления изоляции шлейфа сигнализации и сопротивления шлейфа сигнализации; результат проведения испытаний работоспособности технических средств; заключение комиссии, подписи представителей заказчика, монтажной, пусконаладочной организации, органов государственного пожарного надзора",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Акт о приемке системы пожарной сигнализации в эксплуатацию"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование смонтированных средств сигнализации объекта, организации, разработавшей проект; наименование монтажной организации, период выполнения работ, сметная и фактическая стоимость монтажных работ; наименование пусконаладочной организации; период выполнения работ, сметная и фактическая стоимость пусконаладочных работ; результаты измерений сопротивления изоляции шлейфа сигнализации и сопротивления шлейфа сигнализации; результат проведения испытаний работоспособности технических средств; заключение комиссии, подписи представителей заказчика, монтажной, пусконаладочной организации, органов государственного пожарного надзора"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 15,
+    "locator": "element[10167]",
+    "columns": 7,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "№ п/п",
+          "1": "Дата и время отказа элемента или его составной части",
+          "2": "Характер- ные внешние прояв- ления неисправ- ности",
+          "3": "Причина неисправ- ности (отказа), количество часов работы отказавшего элемента",
+          "4": "Принятие мер по устране- нию неисправ- ностей, расход ЗИП",
+          "5": "Подпись устранив- шего неисправ- ность",
+          "6": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п/п"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Дата и время отказа элемента или его составной части"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Характер- ные внешние прояв- ления неисправ- ности"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Причина неисправ- ности (отказа), количество часов работы отказавшего элемента"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Принятие мер по устране- нию неисправ- ностей, расход ЗИП"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Подпись устранив- шего неисправ- ность"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 16,
+    "locator": "element[10555]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Заказчик ____________________________ (подпись, инициалы, фамилия) \"____\"___________19___ г. М.П.",
+          "1": "Исполнитель ____________________________ (подпись, инициалы, фамилия) \"____\"___________19___ г. М.П."
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заказчик ____________________________ (подпись, инициалы, фамилия) \"____\"___________19___ г. М.П."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Исполнитель ____________________________ (подпись, инициалы, фамилия) \"____\"___________19___ г. М.П."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 17,
+    "locator": "element[10677]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование установок, их технических средств",
+          "1": "Кол-во",
+          "2": "№ позиции прейскуранта",
+          "3": "Цена за единицу",
+          "4": "Общая стоимость"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование установок, их технических средств"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кол-во"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ позиции прейскуранта"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Цена за единицу"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Общая стоимость"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 18,
+    "locator": "element[10760]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Заказчик ___________________ \"____\"___________19___ г. М.П.",
+          "1": "Исполнитель ________________ \"____\"___________19___ г. М.П."
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заказчик ___________________ \"____\"___________19___ г. М.П."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Исполнитель ________________ \"____\"___________19___ г. М.П."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 19,
+    "locator": "element[10851]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование защищаемого объекта",
+          "1": "Тип установки",
+          "2": "Наименование организации, выполнившей проект, № проекта, дата выпуска проекта",
+          "3": "Наименование организации, выполнившей монтаж и наладку, дата сдачи в эксплуатацию"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование защищаемого объекта"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип установки"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование организации, выполнившей проект, № проекта, дата выпуска проекта"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование организации, выполнившей монтаж и наладку, дата сдачи в эксплуатацию"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 20,
+    "locator": "element[10926]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер установки",
+          "1": "Состав",
+          "2": "Количество",
+          "3": "Год выпуска"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер установки"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Состав"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Количество"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Год выпуска"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 21,
+    "locator": "element[11064]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Номер установки",
+          "1": "Наименование замененного узла, ТС, элемента",
+          "2": "Дата",
+          "3": "Обоснование"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер установки"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование замененного узла, ТС, элемента"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Дата"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Обоснование"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 22,
+    "locator": "element[11133]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Паспорт составлен \"___\"____________19___ г. ______________________________ (должность исполнителя, ф. и. о., подпись)",
+          "1": "Согласовано \"___\"____________19___ г. ______________________________ (должность заказчика, ф. и. о., подпись)"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Паспорт составлен \"___\"____________19___ г. ______________________________ (должность исполнителя, ф. и. о., подпись)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Согласовано \"___\"____________19___ г. ______________________________ (должность заказчика, ф. и. о., подпись)"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "Согласовано \"___\"____________19___ г. ______________________________ (должность представителя ГПН, ф. и. о., подпись)"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Согласовано \"___\"____________19___ г. ______________________________ (должность представителя ГПН, ф. и. о., подпись)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 23,
+    "locator": "element[11427]",
+    "columns": 14,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "I квартал",
+          "3": "← ячейка 1:3",
+          "4": "← ячейка 1:3",
+          "5": "II квартал",
+          "6": "← ячейка 1:6",
+          "7": "← ячейка 1:6",
+          "8": "III квартал",
+          "9": "← ячейка 1:9",
+          "10": "← ячейка 1:9",
+          "11": "IV квартал",
+          "12": "← ячейка 1:12",
+          "13": "← ячейка 1:12"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "I квартал"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "II квартал"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "III квартал"
+          },
+          {
+            "column": 12,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "IV квартал"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Тип устано- вок, ТС, узлов",
+          "1": "Вид работ (внешний осмотр, проверка работо- способ- ности, профи- лактика)",
+          "2": "янв.",
+          "3": "фев.",
+          "4": "март",
+          "5": "апр.",
+          "6": "май",
+          "7": "июнь",
+          "8": "июль",
+          "9": "авг.",
+          "10": "сен.",
+          "11": "окт.",
+          "12": "нояб.",
+          "13": "дек."
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип устано- вок, ТС, узлов"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Вид работ (внешний осмотр, проверка работо- способ- ности, профи- лактика)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "янв."
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "фев."
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "март"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "апр."
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "май"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "июнь"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "июль"
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "авг."
+          },
+          {
+            "column": 11,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "сен."
+          },
+          {
+            "column": 12,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "окт."
+          },
+          {
+            "column": 13,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "нояб."
+          },
+          {
+            "column": 14,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "дек."
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": "",
+          "9": "",
+          "10": "",
+          "11": "",
+          "12": "",
+          "13": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 11,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 12,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 13,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 14,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": "",
+          "9": "",
+          "10": "",
+          "11": "",
+          "12": "",
+          "13": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 11,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 12,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 13,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 14,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 24,
+    "locator": "element[11726]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Исполнитель \"____\"_______________19 __ г. __________________________ (ф. и. о., подпись)",
+          "1": "Заказчик \"____\"_______________19 __ г. __________________________ (ф. и. о., подпись)"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Исполнитель \"____\"_______________19 __ г. __________________________ (ф. и. о., подпись)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Заказчик \"____\"_______________19 __ г. __________________________ (ф. и. о., подпись)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 25,
+    "locator": "element[11795]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "Периодичность обслуживания",
+          "3": "← ячейка 1:3",
+          "4": "← ячейка 1:3"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Периодичность обслуживания"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "№ п/п",
+          "1": "Перечень работ",
+          "2": "заказчиком",
+          "3": "исполнителем",
+          "4": "← ячейка 2:4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п/п"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Перечень работ"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заказчиком"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "исполнителем"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "1-й вариант",
+          "4": "2-й вариант"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1-й вариант"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2-й вариант"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "1",
+          "1": "Внешний осмотр составных частей установки (технологической части - трубопроводов, оросителей, обратных клапанов, дозирующих устройств, запорной арматуры, манометров, пневмобака, насосов и т. д.; электротехнической части - шкафов электроуправления, электродвигателей и т. д.; сигнализационной части - приемно-контрольных устройств (приборов), шлейфов сигнализации, извещателей, оповещателей и т. п.) на отсутствие повреждений, коррозии, грязи, течи, прочность крепления, наличие пломб и т. п.",
+          "2": "Ежедневно",
+          "3": "Ежемесячно",
+          "4": "Ежеквар- тально"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Внешний осмотр составных частей установки (технологической части - трубопроводов, оросителей, обратных клапанов, дозирующих устройств, запорной арматуры, манометров, пневмобака, насосов и т. д.; электротехнической части - шкафов электроуправления, электродвигателей и т. д.; сигнализационной части - приемно-контрольных устройств (приборов), шлейфов сигнализации, извещателей, оповещателей и т. п.) на отсутствие повреждений, коррозии, грязи, течи, прочность крепления, наличие пломб и т. п."
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежедневно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежеквар- тально"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "2",
+          "1": "Контроль давления, уровня воды, рабочего положения запорной арматуры и т. д.",
+          "2": "То же",
+          "3": "То же",
+          "4": "То же"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль давления, уровня воды, рабочего положения запорной арматуры и т. д."
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "3",
+          "1": "Контроль основного и резервного источников питания и проверка автоматического переключения питания с рабочего ввода на резервный",
+          "2": "Ежене- дельно",
+          "3": "-\"-",
+          "4": "-\"-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль основного и резервного источников питания и проверка автоматического переключения питания с рабочего ввода на резервный"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежене- дельно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "4",
+          "1": "Проверка качества пенообразователя (пенораствора) на кратность и стойкость пены",
+          "2": "-",
+          "3": "Ежеквар- тально",
+          "4": "-\"-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка качества пенообразователя (пенораствора) на кратность и стойкость пены"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежеквар- тально"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "",
+          "1": "Перемешивание раствора",
+          "2": "-",
+          "3": "Ежемесячно",
+          "4": "Ежеквар- тально"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Перемешивание раствора"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежеквар- тально"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "5",
+          "1": "Проверка работоспособности составных частей установки (технологической части, электротехнической части, сигнализационной части)",
+          "2": "-",
+          "3": "То же",
+          "4": "Ежемесячно"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности составных частей установки (технологической части, электротехнической части, сигнализационной части)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "6",
+          "1": "Профилактические работы",
+          "2": "-",
+          "3": "-\"-",
+          "4": "То же"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Профилактические работы"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "7",
+          "1": "Проверка работоспособности установки в ручном (местном дистанционном) и автоматическом режимах",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности установки в ручном (местном дистанционном) и автоматическом режимах"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "8",
+          "1": "Промывка трубопроводов и смена воды в установке и резервуарах",
+          "2": "Ежегодно",
+          "3": "Ежегодно",
+          "4": "Ежегодно"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Промывка трубопроводов и смена воды в установке и резервуарах"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "9",
+          "1": "Метрологическая проверка КИП",
+          "2": "То же",
+          "3": "-",
+          "4": "-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Метрологическая проверка КИП"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 14,
+        "grid": {
+          "0": "10",
+          "1": "Измерение сопротивления защитного и рабочего заземления",
+          "2": "-\"-",
+          "3": "-",
+          "4": "-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления защитного и рабочего заземления"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 15,
+        "grid": {
+          "0": "11",
+          "1": "Измерение сопротивления изоляции электрических цепей",
+          "2": "1 раз в 3 года",
+          "3": "-",
+          "4": "-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления изоляции электрических цепей"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в 3 года"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 16,
+        "grid": {
+          "0": "12",
+          "1": "Гидравлические и пневматические испытания трубопроводов на герметичность и прочность",
+          "2": "1 раз в 3,5 года",
+          "3": "-",
+          "4": "-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "12"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Гидравлические и пневматические испытания трубопроводов на герметичность и прочность"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в 3,5 года"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 17,
+        "grid": {
+          "0": "13",
+          "1": "Техническое освидетельствование составных частей установки, работающих под давлением",
+          "2": "В соответ- ствии с нормами Госгор- технадзора",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "13"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Техническое освидетельствование составных частей установки, работающих под давлением"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "В соответ- ствии с нормами Госгор- технадзора"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 26,
+    "locator": "element[12281]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "Периодичность обслуживания",
+          "3": "← ячейка 1:3",
+          "4": "← ячейка 1:3",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Периодичность обслуживания"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "№ п/п",
+          "1": "Перечень работ",
+          "2": "заказчиком",
+          "3": "исполнителем",
+          "4": "← ячейка 2:4",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п/п"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Перечень работ"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заказчиком"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "исполнителем"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "1-й вар.",
+          "4": "2-й вар.",
+          "5": "← ячейка 3:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1-й вар."
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "2-й вар."
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "1",
+          "1": "Внешний осмотр составных частей установки (технологической части - трубопроводов, оросителей, запорной арматуры, баллонов с огнетушащим веществом и сжатым воздухом, манометров, распределительных устройств и т д.; сигнализационной части - приемно-контрольных приборов (устройств), шлейфа сигнализации, извещателей, оповещателей и т. д.) на отсутствие механических повреждений, грязи, прочность крепления, наличие пломб",
+          "2": "Ежедневно",
+          "3": "Ежемесячно",
+          "4": "Ежеквар- тально",
+          "5": "← ячейка 4:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Внешний осмотр составных частей установки (технологической части - трубопроводов, оросителей, запорной арматуры, баллонов с огнетушащим веществом и сжатым воздухом, манометров, распределительных устройств и т д.; сигнализационной части - приемно-контрольных приборов (устройств), шлейфа сигнализации, извещателей, оповещателей и т. д.) на отсутствие механических повреждений, грязи, прочность крепления, наличие пломб"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежедневно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Ежеквар- тально"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "2",
+          "1": "Контроль рабочего положения запорной арматуры, давления в побудительной сети и пусковых баллонах",
+          "2": "То же",
+          "3": "То же",
+          "4": "То же",
+          "5": "← ячейка 5:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль рабочего положения запорной арматуры, давления в побудительной сети и пусковых баллонах"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "3",
+          "1": "Контроль основного и резервного источников питания, проверка автоматического переключения питания с рабочего ввода на резервный",
+          "2": "Ежене- дельно",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 6:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль основного и резервного источников питания, проверка автоматического переключения питания с рабочего ввода на резервный"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежене- дельно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "4",
+          "1": "Контроль количества огнетушащего вещества",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 7:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль количества огнетушащего вещества"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "5",
+          "1": "Проверка работоспособности составных частей установки (технологической части, электротехнической части, сигнализационной части)",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 8:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности составных частей установки (технологической части, электротехнической части, сигнализационной части)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "6",
+          "1": "Профилактические работы",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 9:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Профилактические работы"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "7",
+          "1": "Проверка работоспособности установки в ручном (местном, дистанционном) и автоматическом режимах",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 10:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности установки в ручном (местном, дистанционном) и автоматическом режимах"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "8",
+          "1": "Метрологическая проверка КИП",
+          "2": "Ежегодно",
+          "3": "-",
+          "4": "-",
+          "5": "← ячейка 11:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Метрологическая проверка КИП"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "9",
+          "1": "Измерение сопротивления защитного и рабочего заземления",
+          "2": "То же",
+          "3": "-",
+          "4": "-",
+          "5": "← ячейка 12:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "9"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления защитного и рабочего заземления"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "10",
+          "1": "Измерение сопротивления изоляции электрических цепей",
+          "2": "1 раз в 3 года",
+          "3": "-",
+          "4": "-",
+          "5": "← ячейка 13:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления изоляции электрических цепей"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в 3 года"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 14,
+        "grid": {
+          "0": "11",
+          "1": "Гидравлические и пневматические испытания трубопроводов на герметичность и прочность",
+          "2": "1 раз в 3,5 года",
+          "3": "-",
+          "4": "-",
+          "5": "← ячейка 14:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Гидравлические и пневматические испытания трубопроводов на герметичность и прочность"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в 3,5 года"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 15,
+        "grid": {
+          "0": "12",
+          "1": "Техническое освидетельствование составных частей установки, работающих под давлением",
+          "2": "В соответствии с нормами Госгор- технадзора",
+          "3": "-",
+          "4": "-",
+          "5": "← ячейка 15:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "12"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Техническое освидетельствование составных частей установки, работающих под давлением"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "В соответствии с нормами Госгор- технадзора"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-"
+          }
+        ]
+      },
+      {
+        "row": 16,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 27,
+    "locator": "element[12674]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "Периодичность обслуживания",
+          "3": "← ячейка 1:3",
+          "4": "← ячейка 1:3",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Периодичность обслуживания"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "№ п/п",
+          "1": "Перечень работ",
+          "2": "заказчиком",
+          "3": "исполнителем",
+          "4": "← ячейка 2:4",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п/п"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Перечень работ"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заказчиком"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "исполнителем"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "1-й вар.",
+          "4": "2-й вар.",
+          "5": "← ячейка 3:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1-й вар."
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "2-й вар."
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "1",
+          "1": "Внешний осмотр составных частей установки (ГОА, узлов пуска ГОА, электропроводки) на сохранение целостности, отсутствие механических повреждений, коррозии, грязи, прочности крепления, соответствия установки проектным решениям, наличие пломб",
+          "2": "Ежедневно",
+          "3": "Ежемесячно",
+          "4": "Ежеквар- тально",
+          "5": "← ячейка 4:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Внешний осмотр составных частей установки (ГОА, узлов пуска ГОА, электропроводки) на сохранение целостности, отсутствие механических повреждений, коррозии, грязи, прочности крепления, соответствия установки проектным решениям, наличие пломб"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежедневно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Ежеквар- тально"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "2",
+          "1": "Контроль основного и резервного источников питания и проверка автоматического переключения с рабочего ввода на резервный",
+          "2": "Еже- недельно",
+          "3": "Ежене- дельно",
+          "4": "Ежене- дельно",
+          "5": "← ячейка 5:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль основного и резервного источников питания и проверка автоматического переключения с рабочего ввода на резервный"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Еже- недельно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежене- дельно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Ежене- дельно"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "3",
+          "1": "Проверка работоспособности составных частей установки (технологической части, электротехнической части, сигнализационной части)",
+          "2": "То же",
+          "3": "То же",
+          "4": "То же",
+          "5": "← ячейка 6:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности составных частей установки (технологической части, электротехнической части, сигнализационной части)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "4",
+          "1": "Проверка работоспособности установки и ручном (дистанционном) и автоматическом режимах (без запуска ГОА)",
+          "2": "-\"-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 7:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности установки и ручном (дистанционном) и автоматическом режимах (без запуска ГОА)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "5",
+          "1": "Метрологическая проверка КИП и гарантийных сроков эксплуатации составных элементов и частей установки",
+          "2": "Ежегодно",
+          "3": "Ежегодно",
+          "4": "Ежегодно",
+          "5": "← ячейка 8:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Метрологическая проверка КИП и гарантийных сроков эксплуатации составных элементов и частей установки"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Ежегодно"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "6",
+          "1": "Измерение сопротивления защитного и рабочего заземления",
+          "2": "То же",
+          "3": "То же",
+          "4": "То же",
+          "5": "← ячейка 9:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления защитного и рабочего заземления"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "7",
+          "1": "Измерение сопротивления изоляции электрических цепей",
+          "2": "1 раз в 3 года",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 10:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления изоляции электрических цепей"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в 3 года"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 28,
+    "locator": "element[12982]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Перечень работ",
+          "1": "Периодичность обслуживания службой эксплуатации предприятия",
+          "2": "Периодичность обслуживания специализи- рованными предприятиями"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Перечень работ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Периодичность обслуживания службой эксплуатации предприятия"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Периодичность обслуживания специализи- рованными предприятиями"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Внешний осмотр составных частей системы (трубопроводов, распылителей, модулей с порошком, баллонов со сжатым газом, манометров, и т. д.; электротехнической части шкафов электроавтоматики и т. д.; сигнализационной части приемно-контрольных при боров, извещателей и т. д.) на отсутствие механических повреждений, грязи, прочности креплений и т. п.",
+          "1": "Ежедневно",
+          "2": "Ежемесячно"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Внешний осмотр составных частей системы (трубопроводов, распылителей, модулей с порошком, баллонов со сжатым газом, манометров, и т. д.; электротехнической части шкафов электроавтоматики и т. д.; сигнализационной части приемно-контрольных при боров, извещателей и т. д.) на отсутствие механических повреждений, грязи, прочности креплений и т. п."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежедневно"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Контроль давления в модулях и пусковых баллонах",
+          "1": "То же",
+          "2": "То же"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль давления в модулях и пусковых баллонах"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Контроль основного и резервного источников питания, проверка автоматического переключения питания с рабочего ввода на резервный",
+          "1": "Еженедельно",
+          "2": "То же"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль основного и резервного источников питания, проверка автоматического переключения питания с рабочего ввода на резервный"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Еженедельно"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Контроль качества огнетушащего порошка",
+          "1": "В соответствии с ТД на модуль",
+          "2": "В соответствии с ТД на модуль"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль качества огнетушащего порошка"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "В соответствии с ТД на модуль"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "В соответствии с ТД на модуль"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Проверка работоспособности составных частей системы (технологической части, электротехнической части, сигнализационной)",
+          "1": "Ежемесячно",
+          "2": "Ежемесячно"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности составных частей системы (технологической части, электротехнической части, сигнализационной)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Профилактические работы",
+          "1": "То же",
+          "2": "То же"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Профилактические работы"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Проверка работоспособности системы в ручном (местном, дистанционном) и автоматическом режимах",
+          "1": "Не реже двух раз в год",
+          "2": "Не реже двух раз в год"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности системы в ручном (местном, дистанционном) и автоматическом режимах"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Не реже двух раз в год"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Не реже двух раз в год"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "Метрологическая проверка КИП",
+          "1": "Ежегодно",
+          "2": "Ежегодно"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Метрологическая проверка КИП"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "Измерение сопротивления защитного и рабочего заземления",
+          "1": "То же",
+          "2": "То же"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления защитного и рабочего заземления"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "Измерение сопротивления изоляции электрических цепей",
+          "1": "Один раз в три года",
+          "2": "Один раз в три года"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления изоляции электрических цепей"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Один раз в три года"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Один раз в три года"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 29,
+    "locator": "element[13201]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "Периодичность обслуживания",
+          "3": "← ячейка 1:3",
+          "4": "← ячейка 1:3",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Периодичность обслуживания"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "№ п/п",
+          "1": "Перечень работ",
+          "2": "заказчиком",
+          "3": "исполнителем",
+          "4": "← ячейка 2:4",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п/п"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Перечень работ"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "заказчиком"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "исполнителем"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "1-й вар.",
+          "4": "2-й вар.",
+          "5": "← ячейка 3:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1-й вар."
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "2-й вар."
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "1",
+          "1": "Внешний осмотр составных частей установки (приемно-контрольного прибора, извещателей, оповещателей, шлейфов сигнализации и др. средств) на отсутствие механических повреждений, коррозии, грязи, прочность креплений и т. п.",
+          "2": "Ежене- дельно",
+          "3": "Ежемесячно",
+          "4": "Еже- квартально",
+          "5": "← ячейка 4:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Внешний осмотр составных частей установки (приемно-контрольного прибора, извещателей, оповещателей, шлейфов сигнализации и др. средств) на отсутствие механических повреждений, коррозии, грязи, прочность креплений и т. п."
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежене- дельно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежемесячно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Еже- квартально"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "2",
+          "1": "Контроль рабочего положения выключателей и переключателей, исправности световой индикации, наличие пломб на приемно-контрольном приборе",
+          "2": "То же",
+          "3": "То же",
+          "4": "То же",
+          "5": "← ячейка 5:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль рабочего положения выключателей и переключателей, исправности световой индикации, наличие пломб на приемно-контрольном приборе"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "То же"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "То же"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "3",
+          "1": "Контроль основного и резервного источников питания, проверка автоматического переключения питания с рабочего ввода на резервный",
+          "2": "1 раз в полугодие",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 6:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Контроль основного и резервного источников питания, проверка автоматического переключения питания с рабочего ввода на резервный"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в полугодие"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "4",
+          "1": "Проверка работоспособности составных частей установки (приемно-контрольного устройства или прибора, извещателей, оповещателей, измерение параметров шлейфов сигнализации и т. п.)",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 7:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности составных частей установки (приемно-контрольного устройства или прибора, извещателей, оповещателей, измерение параметров шлейфов сигнализации и т. п.)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "5",
+          "1": "Профилактические работы",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 8:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Профилактические работы"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "6",
+          "1": "Проверка работоспособности установки",
+          "2": "-",
+          "3": "-\"-",
+          "4": "-\"-",
+          "5": "← ячейка 9:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Проверка работоспособности установки"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-\"-"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "-\"-"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "7",
+          "1": "Измерение сопротивления защитного и рабочего заземления",
+          "2": "Ежегодно",
+          "3": "Ежегодно",
+          "4": "Ежегодно",
+          "5": "← ячейка 10:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления защитного и рабочего заземления"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ежегодно"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Ежегодно"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "8",
+          "1": "Измерение сопротивления изоляции электрических целей",
+          "2": "1 раз в 3 года",
+          "3": "1 раз в 3 года",
+          "4": "1 раз в 3 года",
+          "5": "← ячейка 11:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Измерение сопротивления изоляции электрических целей"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в 3 года"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1 раз в 3 года"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "1 раз в 3 года"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 30,
+    "locator": "element[13608]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Перечень ТС",
+          "1": "Метод проверки, инструмент",
+          "2": "Основные технические характеристики, определяющие работоспособность",
+          "3": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Перечень ТС"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Метод проверки, инструмент"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Основные технические характеристики, определяющие работоспособность"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 31,
+    "locator": "element[13689]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Наименование проверки",
+          "1": "Метод проверки, инструмент",
+          "2": "Результат проверки",
+          "3": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование проверки"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Метод проверки, инструмент"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Результат проверки"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 32,
+    "locator": "element[13771]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "Согласовано Исполнитель __________________________ (должность) __________________________ (ф. и. о., подпись) \"____\" ____________ 19___ г.",
+          "1": "Согласовано Заказчик __________________________ (должность) __________________________ (ф. и. о., подпись) \"____\" ____________ 19___ г."
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Согласовано Исполнитель __________________________ (должность) __________________________ (ф. и. о., подпись) \"____\" ____________ 19___ г."
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Согласовано Заказчик __________________________ (должность) __________________________ (ф. и. о., подпись) \"____\" ____________ 19___ г."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 33,
+    "locator": "element[13894]",
+    "columns": 7,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "№ п/п",
+          "1": "Наименование прибора",
+          "2": "Тип прибора",
+          "3": "Номер прибора",
+          "4": "Шкала",
+          "5": "Класс",
+          "6": "Примечание"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п/п"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование прибора"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тип прибора"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер прибора"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Шкала"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Класс"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Примечание"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 34,
+    "locator": "element[14016]",
+    "columns": 6,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "Напряжение электрических пусковых цепей, В",
+          "2": "← ячейка 1:2",
+          "3": "← ячейка 1:2",
+          "4": "Ток контроля электрических пусковых цепей, А",
+          "5": "← ячейка 1:5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Напряжение электрических пусковых цепей, В"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Ток контроля электрических пусковых цепей, А"
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "№ п/п",
+          "1": "согласно проекту",
+          "2": "результаты испытаний",
+          "3": "согласно проекту",
+          "4": "← ячейка 2:4",
+          "5": "результаты испытаний"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "№ п/п"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "согласно проекту"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "результаты испытаний"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "согласно проекту"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "результаты испытаний"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "← ячейка 3:4",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "← ячейка 4:4",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  }
+]

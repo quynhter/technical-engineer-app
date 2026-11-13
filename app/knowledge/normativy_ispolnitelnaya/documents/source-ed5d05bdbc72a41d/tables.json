@@ -1,0 +1,1367 @@
+[
+  {
+    "number": 1,
+    "locator": "element[46]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Краткое наименование страны по МК (ИСО 3166) 004-97",
+          "1": "Код страны по МК (ИСО 3166) 004-97",
+          "2": "Сокращенное наименование национального органа по стандартизации"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Краткое наименование страны по МК (ИСО 3166) 004-97"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Код страны по МК (ИСО 3166) 004-97"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Сокращенное наименование национального органа по стандартизации"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Армения",
+          "1": "AM",
+          "2": "Минэкономики Республики Армения"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Армения"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "AM"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Минэкономики Республики Армения"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Беларусь",
+          "1": "BY",
+          "2": "Госстандарт Республики Беларусь"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Беларусь"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "BY"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Госстандарт Республики Беларусь"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Киргизия",
+          "1": "KG",
+          "2": "Кыргызстандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Киргизия"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "KG"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кыргызстандарт"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Молдова",
+          "1": "MD",
+          "2": "Молдова-Стандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Молдова"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "MD"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Молдова-Стандарт"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Россия",
+          "1": "RU",
+          "2": "Росстандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Россия"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "RU"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Росстандарт"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "locator": "element[220]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Группа песка",
+          "1": "Модуль крупности Мк"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Группа песка"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Модуль крупности Мк"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Повышенной крупности",
+          "1": "Св.3,0 до 3,5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Повышенной крупности"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Св.3,0 до 3,5"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Крупный",
+          "1": "\" 2,5 до 3,0"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Крупный"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 2,5 до 3,0"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Средний",
+          "1": "\" 2,0 \" 2,5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Средний"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 2,0 \" 2,5"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Мелкий",
+          "1": "\" 1,5 \" 2,0"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Мелкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 1,5 \" 2,0"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Очень мелкий",
+          "1": "\" 1,0 \" 1,5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Очень мелкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 1,0 \" 1,5"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Тонкий",
+          "1": "\" 0,7 \" 1,0"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тонкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 0,7 \" 1,0"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "Очень тонкий",
+          "1": "До 0,7"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Очень тонкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "До 0,7"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "locator": "element[283]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Группа песка",
+          "1": "Полный остаток на сите N 063"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Группа песка"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Полный остаток на сите N 063"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Повышенной крупности",
+          "1": "Св. 65 до 75"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Повышенной крупности"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Св. 65 до 75"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Крупный",
+          "1": "\" 45 \" 65"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Крупный"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 45 \" 65"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Средний",
+          "1": "\" 30 \" 45"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Средний"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 30 \" 45"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Мелкий",
+          "1": "\" 10 \" 30"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Мелкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\" 10 \" 30"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Очень мелкий",
+          "1": "До 10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Очень мелкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "До 10"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Тонкий",
+          "1": "Не нормируется"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тонкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Не нормируется"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "Очень тонкий",
+          "1": "\""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Очень тонкий"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "\""
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "Примечание - По согласованию предприятия-изготовителя с потребителем в песке класса II допускается отклонение полного остатка на сите N 063 от вышеуказанных не более чем на ±5%.",
+          "1": "← ячейка 10:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Примечание - По согласованию предприятия-изготовителя с потребителем в песке класса II допускается отклонение полного остатка на сите N 063 от вышеуказанных не более чем на ±5%."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "locator": "element[350]",
+    "columns": 5,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Класс песка",
+          "1": "Группа песка",
+          "2": "Содержание зерен крупностью",
+          "3": "← ячейка 2:3",
+          "4": "← ячейка 2:3"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Класс песка"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Группа песка"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Содержание зерен крупностью"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "Св. 10 мм",
+          "3": "Св. 5 мм",
+          "4": "Менее 0,16 мм"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Св. 10 мм"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Св. 5 мм"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Менее 0,16 мм"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "I",
+          "1": "Повышенной крупности, крупный и средний",
+          "2": "0,5",
+          "3": "5",
+          "4": "5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "I"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Повышенной крупности, крупный и средний"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,5"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "",
+          "1": "Мелкий",
+          "2": "0,5",
+          "3": "5",
+          "4": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Мелкий"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,5"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "II",
+          "1": "Повышенной крупности",
+          "2": "5",
+          "3": "20",
+          "4": "10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "II"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Повышенной крупности"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "",
+          "1": "Крупный и средний",
+          "2": "5",
+          "3": "15",
+          "4": "15"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Крупный и средний"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "",
+          "1": "Мелкий и очень мелкий",
+          "2": "0,5",
+          "3": "10",
+          "4": "20"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Мелкий и очень мелкий"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,5"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "",
+          "1": "Тонкий и очень тонкий",
+          "2": "Не допускается",
+          "3": "← ячейка 9:3",
+          "4": "Не нормируется"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тонкий и очень тонкий"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Не допускается"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Не нормируется"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "locator": "element[453]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Класс песка",
+          "1": "Группа песка",
+          "2": "Содержание пылевидных и глинистых частиц",
+          "3": "Содержание глины в комках"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Класс песка"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Группа песка"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Содержание пылевидных и глинистых частиц"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Содержание глины в комках"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "I",
+          "1": "Повышенной крупности, крупный и средний",
+          "2": "2",
+          "3": "0,25"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "I"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Повышенной крупности, крупный и средний"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,25"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "Мелкий",
+          "2": "3",
+          "3": "0,35"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Мелкий"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,35"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "II",
+          "1": "Повышенной крупности, крупный и средний",
+          "2": "3",
+          "3": "0,5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "II"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Повышенной крупности, крупный и средний"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,5"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "",
+          "1": "Мелкий и очень мелкий",
+          "2": "5",
+          "3": "0,5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Мелкий и очень мелкий"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,5"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "",
+          "1": "Тонкий и очень тонкий",
+          "2": "10",
+          "3": "1,0"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Тонкий и очень тонкий"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1,0"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Примечание - Содержание пылевидных и глинистых частиц в очень мелком песке класса II по согласованию с потребителем допускается до 7% по массе.",
+          "1": "← ячейка 8:1",
+          "2": "← ячейка 8:1",
+          "3": "← ячейка 8:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 4,
+            "text": "Примечание - Содержание пылевидных и глинистых частиц в очень мелком песке класса II по согласованию с потребителем допускается до 7% по массе."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "locator": "element[705]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "при объеме партии",
+          "1": "350 м^{3}",
+          "2": "10;"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "при объеме партии"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "350 м^{3}"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10;"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "св. 350 до 700 м^{3}",
+          "2": "15;"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 350 до 700 м^{3}"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15;"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "св. 700 м^{3}",
+          "2": "20."
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 700 м^{3}"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20."
+          }
+        ]
+      }
+    ]
+  }
+]

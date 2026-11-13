@@ -1,0 +1,33 @@
+{
+  "corpus": "normativy_ispolnitelnaya",
+  "root_url": "https://www.ispolnitelnaya.ru/Normativ%20doc.html",
+  "retrieved_at": "2026-11-13",
+  "catalog_entries": 105,
+  "category_counts": {
+    "ГОСТ": 42,
+    "РД, Приказы": 9,
+    "СНиП": 11,
+    "СП": 28,
+    "ВСН": 13,
+    "Инструкции": 2
+  },
+  "catalog_urls": 109,
+  "supplement_urls": 74,
+  "source_variants": 181,
+  "text_chunks": 20348,
+  "source_characters": 20593830,
+  "images": 1168,
+  "unavailable_images": 1,
+  "unavailable_main_urls": 2,
+  "unavailable_supplement_urls": 5,
+  "binary_pages": 4477,
+  "ocr_pages_processed": 989,
+  "issues": 19,
+  "legal_status": "not_verified",
+  "limitations": [
+    "Каталог и полные тексты версий, опубликованных по найденным ссылкам; юридическая актуальность не установлена.",
+    "OCR и таблицы требуют визуальной сверки; формулы-изображения сохранены файлами и связями, их смысл не преобразован в правила.",
+    "Отдельные PDF-дубликаты HTML содержат сканированные страницы без OCR: основной текст этих документов доступен из HTML.",
+    "clause — составной локатор извлечения; source_clause — обнаруженная нумерация, не юридическая аттестация пункта."
+  ]
+}

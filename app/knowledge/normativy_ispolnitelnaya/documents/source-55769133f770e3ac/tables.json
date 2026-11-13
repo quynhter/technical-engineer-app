@@ -1,0 +1,4803 @@
+[
+  {
+    "number": 1,
+    "locator": "element[47]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Наименование государства",
+          "1": "Наименование национального органа по стандартизации"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование государства"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Наименование национального органа по стандартизации"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Азербайджанская Республика",
+          "1": "Азгосстандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Азербайджанская Республика"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Азгосстандарт"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "Республика Армения",
+          "1": "Армгосстандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Республика Армения"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Армгосстандарт"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Республика Беларусь",
+          "1": "Госстандарт Республики Беларусь"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Республика Беларусь"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Госстандарт Республики Беларусь"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Республика Казахстан",
+          "1": "Госстандарт Республики Казахстан"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Республика Казахстан"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Госстандарт Республики Казахстан"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Кыргызская Республика",
+          "1": "Кыргызстандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кыргызская Республика"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кыргызстандарт"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "Республика Молдова",
+          "1": "Молдовастандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Республика Молдова"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Молдовастандарт"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "Российская Федерация",
+          "1": "Госстандарт России"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Российская Федерация"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Госстандарт России"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "Республика Таджикистан",
+          "1": "Таджикгосстандарт"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Республика Таджикистан"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Таджикгосстандарт"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "Туркменистан",
+          "1": "Главгосинспекция \"Туркменстандартлары\""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Туркменистан"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Главгосинспекция \"Туркменстандартлары\""
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "Украина",
+          "1": "Госстандарт Украины"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Украина"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Госстандарт Украины"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "locator": "element[142]",
+    "columns": 2,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Обозначение НД, на который дана ссылка",
+          "1": "Номер пункта"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Обозначение НД, на который дана ссылка"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Номер пункта"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "ГОСТ 162-90",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 162-90"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "ГОСТ 166-89",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 166-89"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "ГОСТ 380-94*",
+          "1": "2.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 380-94*"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.2"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "________________ * См. примечания ФГУП \"СТАНДАРТИНФОРМ\"",
+          "1": "← ячейка 6:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "________________ * См. примечания ФГУП \"СТАНДАРТИНФОРМ\""
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "ГОСТ 427-75",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 427-75"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "ГОСТ 1050-88",
+          "1": "2.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 1050-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.2"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "ГОСТ 2015-84",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 2015-84"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "ГОСТ 2216-84",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 2216-84"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "ГОСТ 3728-78",
+          "1": "2.16; 4.10"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 3728-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.16; 4.10"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "ГОСТ 3845-75",
+          "1": "2.11; 3.3а; 4.13"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 3845-75"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.11; 3.3а; 4.13"
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "ГОСТ 5378-88",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 5378-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 14,
+        "grid": {
+          "0": "ГОСТ 6507-90",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 6507-90"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 15,
+        "grid": {
+          "0": "ГОСТ 6996-66",
+          "1": "4.12"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 6996-66"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.12"
+          }
+        ]
+      },
+      {
+        "row": 16,
+        "grid": {
+          "0": "ГОСТ 7268-82",
+          "1": "4.6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 7268-82"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.6"
+          }
+        ]
+      },
+      {
+        "row": 17,
+        "grid": {
+          "0": "ГОСТ 7502-98",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 7502-98"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 18,
+        "grid": {
+          "0": "ГОСТ 7565-81",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 7565-81"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 19,
+        "grid": {
+          "0": "ГОСТ 8026-92",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8026-92"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 20,
+        "grid": {
+          "0": "ГОСТ 8693-80",
+          "1": "4.11"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8693-80"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.11"
+          }
+        ]
+      },
+      {
+        "row": 21,
+        "grid": {
+          "0": "ГОСТ 8694-75",
+          "1": "4.9"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8694-75"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.9"
+          }
+        ]
+      },
+      {
+        "row": 22,
+        "grid": {
+          "0": "ГОСТ 8695-75",
+          "1": "4.8"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 8695-75"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.8"
+          }
+        ]
+      },
+      {
+        "row": 23,
+        "grid": {
+          "0": "ГОСТ 9045-93",
+          "1": "2.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 9045-93"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.2"
+          }
+        ]
+      },
+      {
+        "row": 24,
+        "grid": {
+          "0": "ГОСТ 9454-78",
+          "1": "4.5"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 9454-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.5"
+          }
+        ]
+      },
+      {
+        "row": 25,
+        "grid": {
+          "0": "ГОСТ 10006-80",
+          "1": "4.7"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 10006-80"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.7"
+          }
+        ]
+      },
+      {
+        "row": 26,
+        "grid": {
+          "0": "ГОСТ 10692-80",
+          "1": "3.1, 5.1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 10692-80"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.1, 5.1"
+          }
+        ]
+      },
+      {
+        "row": 27,
+        "grid": {
+          "0": "ГОСТ 10704-91",
+          "1": "1.1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 10704-91"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1.1"
+          }
+        ]
+      },
+      {
+        "row": 28,
+        "grid": {
+          "0": "ГОСТ 11358-89",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 11358-89"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 29,
+        "grid": {
+          "0": "ГОСТ 12344-2003",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12344-2003"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 30,
+        "grid": {
+          "0": "ГОСТ 12345-2001",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12345-2001"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 31,
+        "grid": {
+          "0": "ГОСТ 12346-78",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12346-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 32,
+        "grid": {
+          "0": "ГОСТ 12347-77",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12347-77"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 33,
+        "grid": {
+          "0": "ГОСТ 12348-78",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12348-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 34,
+        "grid": {
+          "0": "ГОСТ 12349-83",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12349-83"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 35,
+        "grid": {
+          "0": "ГОСТ 12350-78",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12350-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 36,
+        "grid": {
+          "0": "ГОСТ 12351-2003",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12351-2003"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 37,
+        "grid": {
+          "0": "ГОСТ 12352-81",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12352-81"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 38,
+        "grid": {
+          "0": "ГОСТ 12353-78",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12353-78"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 39,
+        "grid": {
+          "0": "ГОСТ 12354-81",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 12354-81"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 40,
+        "grid": {
+          "0": "ГОСТ 14637-89",
+          "1": "2.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 14637-89"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.2"
+          }
+        ]
+      },
+      {
+        "row": 41,
+        "grid": {
+          "0": "ГОСТ 14810-69",
+          "1": "4.4"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 14810-69"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.4"
+          }
+        ]
+      },
+      {
+        "row": 42,
+        "grid": {
+          "0": "ГОСТ 16523-97",
+          "1": "2.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 16523-97"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.2"
+          }
+        ]
+      },
+      {
+        "row": 43,
+        "grid": {
+          "0": "ГОСТ 18242-72*, **",
+          "1": "3.3"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 18242-72*, **"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "3.3"
+          }
+        ]
+      },
+      {
+        "row": 44,
+        "grid": {
+          "0": "________________ * На территории Российской Федерации действует ГОСТ Р ИСО 2859-1-2007; ** См. примечания ФГУП \"СТАНДАРТИНФОРМ\" .",
+          "1": "← ячейка 44:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "________________ * На территории Российской Федерации действует ГОСТ Р ИСО 2859-1-2007; ** См. примечания ФГУП \"СТАНДАРТИНФОРМ\" ."
+          }
+        ]
+      },
+      {
+        "row": 45,
+        "grid": {
+          "0": "ГОСТ 19281-89 (ИСО 4950-2-81, ИСО 4950-3-81, ИСО 4951-79, ИСО 4995-78, ИСО 4996-78, ИСО 5952-83)",
+          "1": "2.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 19281-89 (ИСО 4950-2-81, ИСО 4950-3-81, ИСО 4951-79, ИСО 4995-78, ИСО 4996-78, ИСО 5952-83)"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "2.2"
+          }
+        ]
+      },
+      {
+        "row": 46,
+        "grid": {
+          "0": "ГОСТ 22536.0-87",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.0-87"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 47,
+        "grid": {
+          "0": "ГОСТ 22536.1-88",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.1-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 48,
+        "grid": {
+          "0": "ГОСТ 22536.2-87",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.2-87"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 49,
+        "grid": {
+          "0": "ГОСТ 22536.3-88",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.3-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 50,
+        "grid": {
+          "0": "ГОСТ 22536.4-88",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.4-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 51,
+        "grid": {
+          "0": "ГОСТ 22536.5-87",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.5-87"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      },
+      {
+        "row": 52,
+        "grid": {
+          "0": "ГОСТ 22536.6-88",
+          "1": "4.2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "ГОСТ 22536.6-88"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4.2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "locator": "element[684]",
+    "columns": 11,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": "",
+          "8": "",
+          "9": "",
+          "10": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 11,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Массовая доля элементов, %",
+          "2": "← ячейка 2:2",
+          "3": "← ячейка 2:2",
+          "4": "← ячейка 2:2",
+          "5": "← ячейка 2:2",
+          "6": "← ячейка 2:2",
+          "7": "← ячейка 2:2",
+          "8": "← ячейка 2:2",
+          "9": "← ячейка 2:2",
+          "10": "← ячейка 2:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 10,
+            "text": "Массовая доля элементов, %"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "Углерод",
+          "2": "Кремний",
+          "3": "Марганец",
+          "4": "Алюминий",
+          "5": "Титан",
+          "6": "Хром",
+          "7": "Азот",
+          "8": "Кальций",
+          "9": "Сера",
+          "10": "Фосфор"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Углерод"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кремний"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марганец"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Алюминий"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Титан"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Хром"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Азот"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Кальций"
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Сера"
+          },
+          {
+            "column": 11,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Фосфор"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "не более",
+          "6": "← ячейка 4:6",
+          "7": "← ячейка 4:6",
+          "8": "← ячейка 4:6",
+          "9": "← ячейка 4:6",
+          "10": "← ячейка 4:6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 6,
+            "text": "не более"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "22ГЮ",
+          "1": "0,15-0,22",
+          "2": "0,15-0,30",
+          "3": "1,20-1,40",
+          "4": "0,02-0,05",
+          "5": "0,03",
+          "6": "0,4",
+          "7": "0,012",
+          "8": "0,02",
+          "9": "0,01",
+          "10": "0,02"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "22ГЮ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,15-0,22"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,15-0,30"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "1,20-1,40"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,02-0,05"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,03"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,4"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,012"
+          },
+          {
+            "column": 9,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,02"
+          },
+          {
+            "column": 10,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,01"
+          },
+          {
+            "column": 11,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,02"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "Примечание. Допускаемые отклонения по массовой доле элементов от норм, приведенных в таблице, должны соответствовать ГОСТ 19281",
+          "1": "← ячейка 6:1",
+          "2": "← ячейка 6:1",
+          "3": "← ячейка 6:1",
+          "4": "← ячейка 6:1",
+          "5": "← ячейка 6:1",
+          "6": "← ячейка 6:1",
+          "7": "← ячейка 6:1",
+          "8": "← ячейка 6:1",
+          "9": "← ячейка 6:1",
+          "10": "← ячейка 6:1"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 11,
+            "text": "Примечание. Допускаемые отклонения по массовой доле элементов от норм, приведенных в таблице, должны соответствовать ГОСТ 19281"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "locator": "element[788]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Временное сопротивление разрыву σ_{в}, H/мм^{2}(кгс/мм^{2})",
+          "2": "Предел текучести σ_{т}, H/мм^{2}(кгс/мм^{2})",
+          "3": "Относительное удлинение δ_{5}, %"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Временное сопротивление разрыву σ_{в}, H/мм^{2}(кгс/мм^{2})"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Предел текучести σ_{т}, H/мм^{2}(кгс/мм^{2})"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Относительное удлинение δ_{5}, %"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "",
+          "1": "не менее",
+          "2": "← ячейка 3:2",
+          "3": "← ячейка 3:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "не менее"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "08Ю",
+          "1": "255(26)",
+          "2": "174(18)",
+          "3": "30"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08Ю"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "255(26)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "174(18)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "30"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "08кп",
+          "1": "294(30)",
+          "2": "174(18)",
+          "3": "27"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294(30)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "174(18)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "27"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "08, 08пс, 10кп",
+          "1": "314(32)",
+          "2": "196(20)",
+          "3": "25"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08, 08пс, 10кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "196(20)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "25"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "10, 10пс, 15кп, Ст2сп, Ст2пс, Ст2кп",
+          "1": "333(34)",
+          "2": "206(21)",
+          "3": "24"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10, 10пс, 15кп, Ст2сп, Ст2пс, Ст2кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333(34)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "206(21)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "24"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "15, 15пс, 20кп, Ст3сп, Ст3пс, Ст3кп",
+          "1": "372(38)",
+          "2": "225(23)",
+          "3": "22"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15, 15пс, 20кп, Ст3сп, Ст3пс, Ст3кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "225(23)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "22"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "20, 20пс, Ст4сп, Ст4пс, Ст4кп",
+          "1": "412(42)",
+          "2": "245(25)",
+          "3": "21"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20, 20пс, Ст4сп, Ст4пс, Ст4кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "412(42)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "245(25)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "20Ф, 20-КСХ, 06ГБ",
+          "1": "470 (48)",
+          "2": "294 (30,0)",
+          "3": "20,0"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20Ф, 20-КСХ, 06ГБ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "470 (48)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294 (30,0)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20,0"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "09Г2С, 09ГСФ, 13ХФА, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА",
+          "1": "490 (50)",
+          "2": "343 (35,0)",
+          "3": "20,0"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "09Г2С, 09ГСФ, 13ХФА, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490 (50)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "343 (35,0)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20,0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "locator": "element[920]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Временное сопротивление разрыву σ_{в}, H/мм^{2}(кгс/мм^{2}), при наружном диаметре труб D, мм",
+          "2": "← ячейка 2:2",
+          "3": "← ячейка 2:2",
+          "4": "Предел текучести σ_{т}, H/мм^{2}(кгс/мм^{2})",
+          "5": "Относительное удлинение δ_{5}, % при наружном диаметре труб D, мм",
+          "6": "← ячейка 2:6",
+          "7": "← ячейка 2:6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Временное сопротивление разрыву σ_{в}, H/мм^{2}(кгс/мм^{2}), при наружном диаметре труб D, мм"
+          },
+          {
+            "column": 5,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Предел текучести σ_{т}, H/мм^{2}(кгс/мм^{2})"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Относительное удлинение δ_{5}, % при наружном диаметре труб D, мм"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "↑ ячейка 2:1",
+          "4": "↑ ячейка 2:5",
+          "1": "от 10 до 19",
+          "2": "св. 19 до 60",
+          "3": "св. 60 до 152",
+          "5": "от 10 до 60 при толщине стенки",
+          "6": "← ячейка 3:6",
+          "7": "св. 60 до 152"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "от 10 до 19"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "св. 19 до 60"
+          },
+          {
+            "column": 4,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "св. 60 до 152"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "от 10 до 60 при толщине стенки"
+          },
+          {
+            "column": 8,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "св. 60 до 152"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "↑ ячейка 2:1",
+          "4": "↑ ячейка 2:5",
+          "1": "↑ ячейка 3:2",
+          "2": "↑ ячейка 3:3",
+          "3": "↑ ячейка 3:4",
+          "7": "↑ ячейка 3:8",
+          "5": "более 0,06D",
+          "6": "0,06D и менее"
+        },
+        "source_cells": [
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "более 0,06D"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "0,06D и менее"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "",
+          "1": "не менее",
+          "2": "← ячейка 5:2",
+          "3": "← ячейка 5:2",
+          "4": "← ячейка 5:2",
+          "5": "← ячейка 5:2",
+          "6": "← ячейка 5:2",
+          "7": "← ячейка 5:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 7,
+            "text": "не менее"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "08Ю",
+          "1": "314(32)",
+          "2": "294(30)",
+          "3": "264(27)",
+          "4": "176(18)",
+          "5": "7",
+          "6": "16",
+          "7": "25"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08Ю"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294(30)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "264(27)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "176(18)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "16"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "25"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "08пс, 08кп Ст1пс, Ст1кп",
+          "1": "372(38)",
+          "2": "314(32)",
+          "3": "294(30)",
+          "4": "176(18)",
+          "5": "6",
+          "6": "15",
+          "7": "23"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08пс, 08кп Ст1пс, Ст1кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294(30)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "176(18)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "23"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "08, Ст1сп",
+          "1": "372(38)",
+          "2": "314(32)",
+          "3": "294(30)",
+          "4": "186(19)",
+          "5": "6",
+          "6": "15",
+          "7": "23"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08, Ст1сп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "294(30)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "186(19)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "23"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "10кп, Ст2кп",
+          "1": "372(38)",
+          "2": "333(34)",
+          "3": "314(32)",
+          "4": "176(18)",
+          "5": "6",
+          "6": "15",
+          "7": "23"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10кп, Ст2кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333(34)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "176(18)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "23"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "10пс, Ст2пс",
+          "1": "372(38)",
+          "2": "333(34)",
+          "3": "314(32)",
+          "4": "186(19)",
+          "5": "6",
+          "6": "15",
+          "7": "23"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10пс, Ст2пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333(34)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "186(19)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "23"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "10, Ст2сп",
+          "1": "372(38)",
+          "2": "333(34)",
+          "3": "314(32)",
+          "4": "196(20)",
+          "5": "6",
+          "6": "15",
+          "7": "23"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10, Ст2сп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "333(34)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "196(20)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "23"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "15кп",
+          "1": "441(45)",
+          "2": "372(38)",
+          "3": "353(36)",
+          "4": "186(19)",
+          "5": "5",
+          "6": "14",
+          "7": "21"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353(36)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "186(19)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "15пс, 20кп",
+          "1": "441(45)",
+          "2": "372(38)",
+          "3": "353(36)",
+          "4": "196(20)",
+          "5": "5",
+          "6": "14",
+          "7": "21"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15пс, 20кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353(36)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "196(20)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          }
+        ]
+      },
+      {
+        "row": 14,
+        "grid": {
+          "0": "15, 20пс",
+          "1": "441(45)",
+          "2": "372(38)",
+          "3": "353(36)",
+          "4": "206(21)",
+          "5": "5",
+          "6": "14",
+          "7": "21"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15, 20пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353(36)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "206(21)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          }
+        ]
+      },
+      {
+        "row": 15,
+        "grid": {
+          "0": "20",
+          "1": "441(45)",
+          "2": "372(38)",
+          "3": "353(36)",
+          "4": "216(22)",
+          "5": "5",
+          "6": "14",
+          "7": "21"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353(36)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "216(22)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "21"
+          }
+        ]
+      },
+      {
+        "row": 16,
+        "grid": {
+          "0": "Ст3кп",
+          "1": "441(45)",
+          "2": "392(40)",
+          "3": "372(38)",
+          "4": "196(20)",
+          "5": "5",
+          "6": "13",
+          "7": "20"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст3кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "392(40)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "196(20)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "13"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "row": 17,
+        "grid": {
+          "0": "Ст3пс",
+          "1": "441(45)",
+          "2": "392(40)",
+          "3": "372(38)",
+          "4": "206(21)",
+          "5": "5",
+          "6": "13",
+          "7": "20"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст3пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "392(40)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "206(21)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "13"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "row": 18,
+        "grid": {
+          "0": "Ст3сп",
+          "1": "441(45)",
+          "2": "392(40)",
+          "3": "372(38)",
+          "4": "216(22)",
+          "5": "5",
+          "6": "13",
+          "7": "20"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст3сп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "441(45)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "392(40)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "372(38)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "216(22)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "5"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "13"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "row": 19,
+        "grid": {
+          "0": "Ст4кп, Ст4пс",
+          "1": "490(50)",
+          "2": "431(44)",
+          "3": "412(42)",
+          "4": "216(22)",
+          "5": "4",
+          "6": "11",
+          "7": "19"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст4кп, Ст4пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490(50)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "431(44)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "412(42)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "216(22)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "19"
+          }
+        ]
+      },
+      {
+        "row": 20,
+        "grid": {
+          "0": "Ст4сп",
+          "1": "490(50)",
+          "2": "431(44)",
+          "3": "412(42)",
+          "4": "225(23)",
+          "5": "4",
+          "6": "11",
+          "7": "19"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст4сп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490(50)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "431(44)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "412(42)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "225(23)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "19"
+          }
+        ]
+      },
+      {
+        "row": 21,
+        "grid": {
+          "0": "22ГЮ",
+          "1": "-",
+          "2": "-",
+          "3": "490(50)",
+          "4": "344(35)",
+          "5": "-",
+          "6": "-",
+          "7": "15"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "22ГЮ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490(50)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "344(35)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          }
+        ]
+      },
+      {
+        "row": 22,
+        "grid": {
+          "0": "20Ф, 20-КСХ, 06ГБ",
+          "1": "-",
+          "2": "-",
+          "3": "470 (48)",
+          "4": "265 (27)",
+          "5": "-",
+          "6": "-",
+          "7": "18"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20Ф, 20-КСХ, 06ГБ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "470 (48)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "265 (27)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          }
+        ]
+      },
+      {
+        "row": 23,
+        "grid": {
+          "0": "09Г2С, 09ГСФ, 13ХФА, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА",
+          "1": "-",
+          "2": "-",
+          "3": "490 (50)",
+          "4": "323 (33)",
+          "5": "-",
+          "6": "-",
+          "7": "18"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "09Г2С, 09ГСФ, 13ХФА, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490 (50)"
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "323 (33)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "locator": "element[1318]",
+    "columns": 8,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "6": "",
+          "7": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 5,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Толщина стенки, мм",
+          "2": "Временное сопротивление разрыву σ_{в}, H/мм^{2}(кгс/мм^{2})",
+          "3": "← ячейка 2:3",
+          "4": "Предел текучести σ_{т}, H/мм^{2}(кгс/мм^{2})",
+          "5": "Относительное удлинение δ_{5}, % при наружном диаметре труб D, мм",
+          "6": "← ячейка 2:6",
+          "7": "← ячейка 2:6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Толщина стенки, мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 2,
+            "text": "Временное сопротивление разрыву σ_{в}, H/мм^{2}(кгс/мм^{2})"
+          },
+          {
+            "column": 5,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Предел текучести σ_{т}, H/мм^{2}(кгс/мм^{2})"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Относительное удлинение δ_{5}, % при наружном диаметре труб D, мм"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "↑ ячейка 2:1",
+          "1": "↑ ячейка 2:2",
+          "2": "↑ ячейка 2:3",
+          "3": "↑ ячейка 2:3",
+          "4": "↑ ячейка 2:5",
+          "5": "св. 152 до 244,4",
+          "6": "св. 244,5 до 377",
+          "7": "св. 377 до 630"
+        },
+        "source_cells": [
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 152 до 244,4"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 244,5 до 377"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "св. 377 до 630"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "↑ ячейка 2:1",
+          "1": "↑ ячейка 2:2",
+          "2": "не менее",
+          "3": "← ячейка 4:3",
+          "4": "← ячейка 4:3",
+          "5": "← ячейка 4:3",
+          "6": "← ячейка 4:3",
+          "7": "← ячейка 4:3"
+        },
+        "source_cells": [
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 6,
+            "text": "не менее"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "08, 08пс, 08кп, 10, 10пс, 10кп, Ст2кп",
+          "1": "6 и менее",
+          "2": "314(32)",
+          "3": "196(20)",
+          "4": "← ячейка 5:4",
+          "5": "18",
+          "6": "20",
+          "7": "20"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "08, 08пс, 08кп, 10, 10пс, 10кп, Ст2кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6 и менее"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "314(32)"
+          },
+          {
+            "column": 4,
+            "rowspan": 2,
+            "colspan": 2,
+            "text": "196(20)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "↑ ячейка 5:1",
+          "2": "↑ ячейка 5:3",
+          "3": "↑ ячейка 5:4",
+          "4": "↑ ячейка 5:4",
+          "1": "Более 6",
+          "5": "15",
+          "6": "15",
+          "7": "16"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Более 6"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "16"
+          }
+        ]
+      },
+      {
+        "row": 7,
+        "grid": {
+          "0": "Ст2сп, Ст2пс",
+          "1": "6 и менее",
+          "2": "333(34)",
+          "3": "206(21)",
+          "4": "← ячейка 7:4",
+          "5": "17",
+          "6": "18",
+          "7": "20"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Ст2сп, Ст2пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6 и менее"
+          },
+          {
+            "column": 3,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "333(34)"
+          },
+          {
+            "column": 4,
+            "rowspan": 2,
+            "colspan": 2,
+            "text": "206(21)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "17"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "row": 8,
+        "grid": {
+          "0": "↑ ячейка 7:1",
+          "2": "↑ ячейка 7:3",
+          "3": "↑ ячейка 7:4",
+          "4": "↑ ячейка 7:4",
+          "1": "Более 6",
+          "5": "14",
+          "6": "14",
+          "7": "15"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Более 6"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          }
+        ]
+      },
+      {
+        "row": 9,
+        "grid": {
+          "0": "15, 15пс, 15кп, 20, 20пс, 20кп",
+          "1": "6 и менее",
+          "2": "353(36)",
+          "3": "216(22)",
+          "4": "← ячейка 9:4",
+          "5": "17",
+          "6": "18",
+          "7": "20"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15, 15пс, 15кп, 20, 20пс, 20кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6 и менее"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353(36)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "216(22)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "17"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "row": 10,
+        "grid": {
+          "0": "",
+          "1": "Более 6",
+          "2": "",
+          "3": "",
+          "4": "← ячейка 10:4",
+          "5": "14",
+          "6": "14",
+          "7": "15"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Более 6"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          }
+        ]
+      },
+      {
+        "row": 11,
+        "grid": {
+          "0": "Ст3пс, Ст3пс, Ст3кп",
+          "1": "6 и менее",
+          "2": "353(36)",
+          "3": "216(22)",
+          "4": "← ячейка 11:4",
+          "5": "17",
+          "6": "17",
+          "7": "19"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст3пс, Ст3пс, Ст3кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6 и менее"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "353(36)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "216(22)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "17"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "17"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "19"
+          }
+        ]
+      },
+      {
+        "row": 12,
+        "grid": {
+          "0": "",
+          "1": "Более 6",
+          "2": "",
+          "3": "",
+          "4": "← ячейка 12:4",
+          "5": "14",
+          "6": "14",
+          "7": "14"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Более 6"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "14"
+          }
+        ]
+      },
+      {
+        "row": 13,
+        "grid": {
+          "0": "Ст4пс, Ст4пс, Ст4кп",
+          "1": "6 и менее",
+          "2": "402(41)",
+          "3": "225(23)",
+          "4": "← ячейка 13:4",
+          "5": "15",
+          "6": "17",
+          "7": "18"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст4пс, Ст4пс, Ст4кп"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6 и менее"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "402(41)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "225(23)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "17"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          }
+        ]
+      },
+      {
+        "row": 14,
+        "grid": {
+          "0": "",
+          "1": "Более 6",
+          "2": "",
+          "3": "",
+          "4": "← ячейка 14:4",
+          "5": "11",
+          "6": "12",
+          "7": "13"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Более 6"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": ""
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "11"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "12"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "13"
+          }
+        ]
+      },
+      {
+        "row": 15,
+        "grid": {
+          "0": "22ГЮ",
+          "1": "Все толщины",
+          "2": "490(50)",
+          "3": "344(35)",
+          "4": "← ячейка 15:4",
+          "5": "15",
+          "6": "15",
+          "7": "15"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "22ГЮ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Все толщины"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490(50)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "344(35)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "15"
+          }
+        ]
+      },
+      {
+        "row": 16,
+        "grid": {
+          "0": "20Ф, 20-КСХ, 06ГБ",
+          "1": "Все толщины",
+          "2": "470 (48)",
+          "3": "265 (27)",
+          "4": "← ячейка 16:4",
+          "5": "18",
+          "6": "18",
+          "7": "18"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20Ф, 20-КСХ, 06ГБ"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Все толщины"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "470 (48)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "265 (27)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          }
+        ]
+      },
+      {
+        "row": 17,
+        "grid": {
+          "0": "09Г2С, 09ГСФ, 13ХФА, 13ГС, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА",
+          "1": "Все толщины",
+          "2": "490 (50)",
+          "3": "323 (33)",
+          "4": "← ячейка 17:4",
+          "5": "18",
+          "6": "18",
+          "7": "18"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "09Г2С, 09ГСФ, 13ХФА, 13ГС, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Все толщины"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "490 (50)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "323 (33)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          }
+        ]
+      },
+      {
+        "row": 18,
+        "grid": {
+          "0": "13Г1С-У",
+          "1": "Все толщины",
+          "2": "540 (55)",
+          "3": "373 (38)",
+          "4": "← ячейка 18:4",
+          "5": "18",
+          "6": "18",
+          "7": "18"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "13Г1С-У"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Все толщины"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "540 (55)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "373 (38)"
+          },
+          {
+            "column": 6,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 7,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          },
+          {
+            "column": 8,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "18"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "locator": "element[1677]",
+    "columns": 4,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": "",
+          "3": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Ударная вязкость KCU, Дж/см^{2} (кгс·м/см^{2}), при температуре испытания, °С",
+          "2": "← ячейка 2:2",
+          "3": "← ячейка 2:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 3,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "Ударная вязкость KCU, Дж/см^{2} (кгс·м/см^{2}), при температуре испытания, °С"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "↑ ячейка 2:1",
+          "1": "+20",
+          "2": "-20",
+          "3": "+20 (после механического старения)"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "+20"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-20"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "+20 (после механического старения)"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "↑ ячейка 2:1",
+          "1": "не менее",
+          "2": "← ячейка 4:2",
+          "3": "← ячейка 4:2"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 3,
+            "text": "не менее"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "Ст3сп, Ст3пс, 10, 15, 20",
+          "1": "78,4 (8,0)",
+          "2": "39,2 (4,0)",
+          "3": "39,2 (4,0)"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Ст3сп, Ст3пс, 10, 15, 20"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "78,4 (8,0)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "39,2 (4,0)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "39,2 (4,0)"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "20Ф, 20-КСХ, 06ГБ, 09Г2С, 09ГСФ, 13ХФА, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА",
+          "1": "78,4 (8,0)",
+          "2": "39,2 (4,0)",
+          "3": "-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20Ф, 20-КСХ, 06ГБ, 09Г2С, 09ГСФ, 13ХФА, 17ГС, 17Г1С, 17Г1С-У, 08ХМФЧА, 22ГФ, 26ХМА"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "78,4 (8,0)"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "39,2 (4,0)"
+          },
+          {
+            "column": 4,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "locator": "element[1782]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "Марка стали",
+          "1": "Увеличение наружного диаметра труб, %, при толщине стенки",
+          "2": "← ячейка 2:2"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 2,
+            "colspan": 1,
+            "text": "Марка стали"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 2,
+            "text": "Увеличение наружного диаметра труб, %, при толщине стенки"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "↑ ячейка 2:1",
+          "1": "до 4 мм",
+          "2": "4 мм и более"
+        },
+        "source_cells": [
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "до 4 мм"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "4 мм и более"
+          }
+        ]
+      },
+      {
+        "row": 4,
+        "grid": {
+          "0": "08Ю, 08, 08кп, 08пс",
+          "1": "12",
+          "2": "8"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "08Ю, 08, 08кп, 08пс"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "12"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "row": 5,
+        "grid": {
+          "0": "10, 10кп, 10пс, 15, 15кп, 15пс, Ст2",
+          "1": "10",
+          "2": "7"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10, 10кп, 10пс, 15, 15кп, 15пс, Ст2"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "10"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "row": 6,
+        "grid": {
+          "0": "20, 20кп, 20пс, Ст3, Ст4",
+          "1": "8",
+          "2": "6"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "20, 20кп, 20пс, Ст3, Ст4"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "8"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 9,
+    "locator": "element[2128]",
+    "columns": 3,
+    "rows": [
+      {
+        "row": 1,
+        "grid": {
+          "0": "",
+          "1": "",
+          "2": ""
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "row": 2,
+        "grid": {
+          "0": "В каком месте",
+          "1": "Напечатано",
+          "2": "Должно быть"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "В каком месте"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Напечатано"
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Должно быть"
+          }
+        ]
+      },
+      {
+        "row": 3,
+        "grid": {
+          "0": "Пункт 3.3а. Восьмой-десятый абзацы",
+          "1": "При контроле качества шва неразрушающими методами проводится дополнительный контроль гидравлическим давлением на 15% труб от партии. По согласованию изготовителя с потребителем испытание труб гидравлическим давлением не проводится. (Введен дополнительно, Изм. N 3).",
+          "2": "-"
+        },
+        "source_cells": [
+          {
+            "column": 1,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "Пункт 3.3а. Восьмой-десятый абзацы"
+          },
+          {
+            "column": 2,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "При контроле качества шва неразрушающими методами проводится дополнительный контроль гидравлическим давлением на 15% труб от партии. По согласованию изготовителя с потребителем испытание труб гидравлическим давлением не проводится. (Введен дополнительно, Изм. N 3)."
+          },
+          {
+            "column": 3,
+            "rowspan": 1,
+            "colspan": 1,
+            "text": "-"
+          }
+        ]
+      }
+    ]
+  }
+]

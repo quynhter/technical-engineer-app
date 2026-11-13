@@ -125,9 +125,10 @@ source_page: null
 
     def test_all_supplied_corpora_and_multiple_chunks(self):
         rows, _ = kb.load_sources(kb.default_root())
-        self.assertEqual(set(r['corpus'] for r in rows), {'sp77', 'i_1_13_07', 'prikaz_344pr', 'rd78_145_93'})
+        self.assertEqual(set(r['corpus'] for r in rows), {'sp77', 'i_1_13_07', 'prikaz_344pr', 'rd78_145_93', 'perechni_ispolnitelnaya', 'normativy_ispolnitelnaya'})
         for corpus in set(r['corpus'] for r in rows):
-            self.assertTrue(any(r['kind'] == 'rule' and r['corpus'] == corpus for r in rows))
+            if corpus != 'normativy_ispolnitelnaya':
+                self.assertTrue(any(r['kind'] == 'rule' and r['corpus'] == corpus for r in rows))
             self.assertTrue(any(r['kind'] == 'chunk' and r['corpus'] == corpus for r in rows))
         self.md.write_text(self.md.read_text() + '\n' + self.md.read_text().replace('"4.2"', '"4.3"'))
         rows, _ = kb.load_sources(self.root)

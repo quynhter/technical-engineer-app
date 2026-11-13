@@ -1,0 +1,3077 @@
+{
+  "result": "passed",
+  "entries": 20454,
+  "catalog_rows": 105,
+  "source_variants": 181,
+  "checks": {
+    "asset_hashes": 1358,
+    "extraction_blocks": 53636,
+    "binary_pages": 4430,
+    "html_leaf_paragraphs": 39156,
+    "html_tables": 1329,
+    "search_and_show": 8
+  },
+  "html_paragraph_mismatches": [],
+  "empty_or_sparse_pages": [
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/GOST/%D0%93%D0%9E%D0%A1%D0%A2%2019281-2014.pdf",
+      "page": 5,
+      "method": "no_text_detected"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/GOST/GOST%20530-2012.doc",
+      "page": 36,
+      "method": "no_text_detected"
+    },
+    {
+      "url": "https://files.stroyinf.ru/Data/581/58183.pdf",
+      "page": 6,
+      "method": "no_text_detected"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/GOST/9.014-78.doc",
+      "page": 13,
+      "method": "no_text_detected"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 17,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 18,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 19,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 20,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 21,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 22,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 23,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 24,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 25,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 26,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 27,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 28,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20344/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%9C%D0%B8%D0%BD%D1%81%D1%82%D1%80%D0%BE%D1%8F%20%E2%84%96344.pdf",
+      "page": 29,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%201026%20%D0%96%D1%83%D1%80%D0%BD%D0%B0%D0%BB.pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 17,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 18,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 19,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 20,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 21,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 22,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 23,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 24,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 25,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 26,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 27,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 28,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 29,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 30,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 31,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 32,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 33,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 34,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 35,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 36,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 37,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 38,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 39,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 40,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 41,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 42,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 43,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 44,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 45,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 46,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 47,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 48,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 49,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 50,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 51,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 52,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 53,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 54,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 55,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 56,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 57,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 58,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 59,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 60,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 61,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 62,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 63,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 64,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 65,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 66,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 67,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 68,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 69,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 70,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 71,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 72,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 73,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 74,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 75,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 76,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 77,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 78,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 79,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 80,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 81,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 82,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 83,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 84,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 85,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 86,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 87,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 88,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 89,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 90,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 91,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 92,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 93,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 94,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 95,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 96,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 97,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 98,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 99,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 100,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 101,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 102,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 103,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 104,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 105,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 106,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 107,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 108,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 109,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 110,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 111,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 112,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 113,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 114,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 115,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 116,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 117,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 118,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 119,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 120,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 121,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 122,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 123,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 124,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 125,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 126,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 127,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 128,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 129,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 130,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 131,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 132,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 133,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 134,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 135,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 136,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 137,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 138,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 139,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 140,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 141,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 142,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 143,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 144,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 145,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 146,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 147,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 148,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 149,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 150,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 151,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 152,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 153,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 154,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 155,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 156,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 157,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 158,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 159,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 160,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 161,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 162,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 163,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 164,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 165,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 166,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 167,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 168,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 169,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 170,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 171,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 172,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 173,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 174,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 175,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 176,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 177,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 178,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp45.13330.2017/sp-45(2).pdf",
+      "page": 179,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 17,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 18,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 19,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 20,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 21,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 22,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 23,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 24,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 25,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 26,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 27,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 28,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 29,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 30,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 31,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 32,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 33,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 34,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 35,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 36,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 37,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 38,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 39,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 40,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 41,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 42,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 43,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 44,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 45,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 46,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 47,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 48,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 49,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 50,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 51,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 52,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 53,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 54,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 55,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 56,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 57,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 58,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 59,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 60,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 61,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 62,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 63,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 64,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 65,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 66,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 67,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 68,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 69,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 70,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 71,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 72,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 73,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 74,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 75,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 76,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 77,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 78,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 79,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 80,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 81,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 82,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 83,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 84,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 85,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 86,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 87,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 88,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 89,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 90,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 91,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 92,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 93,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 94,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 95,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 96,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 97,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 98,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 99,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2048.13330.2019.pdf",
+      "page": 100,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 17,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 18,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 19,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 20,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 21,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 22,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 23,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 24,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 25,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 26,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 27,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 28,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 29,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 30,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 31,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 32,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 33,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 34,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 35,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 36,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 37,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 38,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 39,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 40,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 41,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 42,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 43,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 44,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 45,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 46,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 47,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 48,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 49,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://minstroyrf.gov.ru/upload/iblock/96f/SP-68.pdf",
+      "page": 50,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 17,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 18,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 19,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 20,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 21,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 22,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 23,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 24,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 25,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 26,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 27,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 28,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 29,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 30,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 31,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 32,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 33,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 34,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 35,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 36,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 37,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 38,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 39,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 40,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 41,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 42,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 43,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 44,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 45,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 46,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 47,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 48,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 49,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 50,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 51,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 52,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 53,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 54,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 55,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 56,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 57,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 58,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 59,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 60,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 61,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 62,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 63,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 64,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 65,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 66,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 67,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 68,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 69,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/SP%2072.13330.2016/sp-72.pdf",
+      "page": 70,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 17,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 18,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 19,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 20,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 21,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 22,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 23,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 24,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 25,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 26,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 27,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 28,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 29,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 30,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 31,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 32,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 33,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 34,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 35,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 36,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 37,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 38,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 39,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 40,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 41,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 42,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 43,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 44,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 45,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 46,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 47,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 48,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 49,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%2074.13330.2023_files/SP-74.pdf",
+      "page": 50,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp119.13330.2017/SP-119.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp119.13330.2017/SP-119.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp119.13330.2017/SP-119.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/sp119.13330.2017/SP-119.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20126.13330.2017.pdf",
+      "page": 7,
+      "method": "no_text_detected"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 4,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 5,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 6,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 7,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 8,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 9,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 10,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 11,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 12,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 13,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 14,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 15,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 16,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 17,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 18,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 19,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 20,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 21,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 22,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 23,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 24,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 25,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 26,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 27,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 28,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 29,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 30,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 31,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 32,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 33,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 34,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 35,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 36,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 37,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 38,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 39,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 40,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 41,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 42,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 43,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 44,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 45,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 46,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 47,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 48,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 49,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 50,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 51,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 52,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 53,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 54,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 55,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 56,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 57,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 58,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 59,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 60,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 61,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 62,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 63,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 64,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 65,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 66,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 67,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 68,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 69,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 70,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 71,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 72,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 73,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 74,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 75,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 76,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 77,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 78,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 79,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 80,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 81,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 82,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 83,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 84,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 85,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 86,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 87,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 88,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 89,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 90,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20129.13330.2019.pdf",
+      "page": 91,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20433.1325800.2019.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20433.1325800.2019.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20433.1325800.2019.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20520/SP-520.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20520/SP-520.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20520/SP-520.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20522/SP-522.pdf",
+      "page": 1,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20522/SP-522.pdf",
+      "page": 2,
+      "method": "sparse_native_text_requires_review"
+    },
+    {
+      "url": "https://www.ispolnitelnaya.ru/normativdocs/SP/%D0%A1%D0%9F%20522/SP-522.pdf",
+      "page": 3,
+      "method": "sparse_native_text_requires_review"
+    }
+  ],
+  "queries": [
+    {
+      "query": "испытан герметич",
+      "id": "normativy_ispolnitelnaya/documents/source-510ad4a9fcb1638a/00267.md#chunk-1",
+      "doc_id": "СП 62.13330.2011"
+    },
+    {
+      "query": "геодезическ",
+      "id": "normativy_ispolnitelnaya/documents/source-1ac6982d5d08a6d1/00075.md#chunk-1",
+      "doc_id": "ГОСТ Р 51872-2024"
+    },
+    {
+      "query": "заземлен",
+      "id": "normativy_ispolnitelnaya/documents/source-edf9fc6415716bde/00024.md#chunk-1",
+      "doc_id": "ВСН 332-74"
+    },
+    {
+      "query": "взрывоопас",
+      "id": "normativy_ispolnitelnaya/documents/source-29714f546e90f235/00276.md#chunk-1",
+      "doc_id": "СП 77.13330.2016"
+    },
+    {
+      "query": "бетон",
+      "id": "normativy_ispolnitelnaya/documents/source-c2510b51270b800e/00007.md#chunk-1",
+      "doc_id": "Проект ГОСТ: Смеси бетонные (файл каталога ГОСТ 7473-2010)"
+    },
+    {
+      "query": "6.7.26",
+      "id": "normativy_ispolnitelnaya/documents/source-a25df17e7d660cd5/00242.md#chunk-1",
+      "doc_id": "СП 129.13330.2019"
+    },
+    {
+      "query": "детских игровых",
+      "id": "normativy_ispolnitelnaya/00_catalog.md#chunk-51",
+      "doc_id": "ТР ЕАЭС 042/2017"
+    },
+    {
+      "query": "проект",
+      "id": "normativy_ispolnitelnaya/documents/source-7583673af186de05/00005.md#chunk-1",
+      "doc_id": "СП 48.13330.2019"
+    }
+  ],
+  "seconds": 90.0,
+  "legal_accuracy": "not_verified",
+  "ocr_accuracy": "sample_visual_review_only"
+}
