@@ -1,4 +1,4 @@
-import React,{useState,useMemo,useEffect} from 'react';
+import React,{useState,useMemo,useEffect,useLayoutEffect,useRef} from 'react';
 import {Button,TextInput,CheckboxInput,Popover,Pagination,EmptyState,PowerSearch,MoreMenu,Collapsible} from '@astryxdesign/core';
 import {Table,useTableColumnResize,useTableColumnSettings,useTableColumnSettingsState,useTableFiltering,useTableFilterState,toSearchFilters,useTableSortable,useTableSortableState,useTableGroupedRows,useTableSelection,pixel,proportional} from '@astryxdesign/core/Table';
 import {usePowerSearchConfig} from '@astryxdesign/core/PowerSearch';
@@ -24,21 +24,44 @@ function cellContent(html){
  return [...template.content.childNodes].map((el,i)=>node(el,i));
 }
 function Cell({html}){return useMemo(()=>cellContent(html),[html]);}
+const gutterColumn={key:'_gutter',header:'',width:proportional(1,{minWidth:1}),resizable:true,sortable:false,renderCell:()=>null};
+function headerMinimum(header){return Math.max(header.action?112:64,Math.ceil(header.label.length*7+(header.action?32:80)));}
 function BrowseTable({snapshot}){
  const {key,headers,rows,hasGroups,selectable,exportRows,syncChoices,nativeFilters}=snapshot;
+ const gridRef=useRef(null);
+ const [minimums,setMinimums]=useState(()=>Object.fromEntries(headers.map(h=>[h.key,headerMinimum(h)])));
  const saved=useMemo(()=>readPrefs(key),[key]);
  const [query,setQuery]=useState(saved.query||''),[page,setPage]=useState(1),[size,setSize]=useState([25,50,100].includes(saved.size)?saved.size:50),[powerFilters,setPowerFilters]=useState(saved.powerFilters||[]),[widths,setWidths]=useState(saved.widths||{}),[sort,setSort]=useState(saved.sort||[]),[collapsed,setCollapsed]=useState(new Set()),[selected,setSelected]=useState(new Set(rows.filter(r=>r._checked).map(r=>r._key)));
  const allKeys=useMemo(()=>headers.map(h=>h.key),[headers]);
  const [activeKeys,setActiveKeys]=useState(()=>saved.activeKeys?.filter(k=>allKeys.includes(k))||allKeys);
  const columnOptions=useMemo(()=>headers.map((h,i)=>({key:h.key,label:h.label||'Действия',isAlwaysVisible:i===0})),[headers]);
  const columnState=useTableColumnSettingsState({columns:columnOptions,activeColumnKeys:activeKeys,onChangeActiveColumnKeys:setActiveKeys,defaultColumnKeys:allKeys});
- const settingsPlugin=useTableColumnSettings(columnState.columnSettingsConfig);
+ const visibleColumns=useTableColumnSettings(columnState.columnSettingsConfig);
+ // Astryx keeps its last column flexible. Give that role to an empty gutter,
+ // so every business column, including Actions, can resize without a jump.
+ const settingsPlugin=useMemo(()=>({...visibleColumns,transformColumns:columns=>[...visibleColumns.transformColumns(columns),gutterColumn]}),[visibleColumns]);
  const {filters,onFilterChange,clearAll}=useTableFilterState(saved.filters||{});
  const fields=useMemo(()=>headers.filter(h=>!h.action).map(h=>({key:h.key,type:'string',label:h.label})),[headers]);
  const {config,applyFilters}=usePowerSearchConfig(fields,'ИТД');
- const columns=useMemo(()=>headers.map(h=>({key:h.key,header:h.label,width:h.action?pixel(112):/наименование|название|описание|журнал|документ/i.test(h.label)?proportional(2,{minWidth:280}):pixel(h.type==='number'?140:h.type==='date'?160:180),resizable:!h.action,sortable:!h.action,filter:h.action?undefined:h.key,align:h.type==='number'?'end':h.type==='date'?'center':'start',renderCell:item=><Cell html={item._cells[h.index]?.html||''}/>})),[headers]);
+ const columns=useMemo(()=>headers.map(h=>({key:h.key,header:h.label,width:pixel(minimums[h.key]||headerMinimum(h)),resizable:true,sortable:!h.action,filter:h.action?undefined:h.key,align:h.type==='number'?'end':h.type==='date'?'center':'start',renderCell:item=><Cell html={item._cells[h.index]?.html||''}/>})),[headers,minimums]);
+ const effectiveWidths=useMemo(()=>Object.fromEntries(headers.map(h=>[h.key,Math.max(minimums[h.key]||headerMinimum(h),widths[h.key]??(h.action?112:/наименование|название|описание|журнал|документ/i.test(h.label)?280:h.type==='number'?140:h.type==='date'?160:180))])),[headers,widths,minimums]);
+ const resizeColumns=useMemo(()=>[...columns,gutterColumn],[columns]);
  const filterPlugin=useTableFiltering({filters,onFilterChange,searchConfig:config,variant:'popover'});
- const resizePlugin=useTableColumnResize({columns,columnWidths:widths,onColumnResizeEnd:updates=>setWidths(previous=>({...previous,...updates})),minWidth:64,maxWidth:1200});
+ const resizePlugin=useTableColumnResize({columns:resizeColumns,columnWidths:effectiveWidths,onColumnResizeEnd:updates=>setWidths(previous=>({...previous,...updates})),maxWidth:1600});
+ useLayoutEffect(()=>{
+  let active=true;
+  function measure(){if(!active||!gridRef.current)return;const next={};
+   for(const h of headers){const th=gridRef.current.querySelector('th[data-column-key="'+h.key+'"]');if(!th){next[h.key]=minimums[h.key]||headerMinimum(h);continue;}
+    const clone=th.cloneNode(true),style=getComputedStyle(th);clone.querySelectorAll('[role="separator"],[role="status"],[hidden]').forEach(node=>node.remove());clone.removeAttribute('id');clone.querySelectorAll('[id]').forEach(node=>node.removeAttribute('id'));
+    clone.style.cssText='position:fixed;visibility:hidden;pointer-events:none;display:inline-flex;box-sizing:border-box;width:max-content;min-width:0;max-width:none;white-space:nowrap;font:'+style.font+';padding:'+style.padding;
+    clone.querySelectorAll('button').forEach(node=>{node.style.width='max-content';node.style.flex='0 0 auto';});document.body.append(clone);const width=clone.getBoundingClientRect().width;clone.remove();
+    next[h.key]=width?Math.max(h.action?112:64,Math.ceil(width)+8):headerMinimum(h);
+   }
+   setMinimums(previous=>JSON.stringify(previous)===JSON.stringify(next)?previous:next);
+  }
+  measure();document.fonts?.ready.then(measure);const refresh=()=>requestAnimationFrame(measure);document.addEventListener('itd:appearance',refresh);
+  return()=>{active=false;document.removeEventListener('itd:appearance',refresh);};
+ },[headers]);
  const matched=useMemo(()=>{const filtered=applyFilters([...toSearchFilters(filters,columns,config),...powerFilters],rows),term=query.toLocaleLowerCase('ru').replaceAll('ё','е').trim();return term?filtered.filter(row=>row._search.includes(term)):filtered;},[applyFilters,filters,powerFilters,columns,config,rows,query]);
  const comparators=useMemo(()=>Object.fromEntries(headers.map(h=>[h.key,(a,b)=>{const x=a[h.key]||'',y=b[h.key]||'';if(h.type==='number'){const n=s=>Number(s.replace(/\s/g,'').replace(',','.'));if(x&&y&&Number.isFinite(n(x))&&Number.isFinite(n(y)))return n(x)-n(y);}if(h.type==='date'){const iso=s=>/^\d{2}\.\d{2}\.\d{4}$/.test(s)?s.split('.').reverse().join('-'):s;return collator.compare(iso(x),iso(y));}return collator.compare(x,y);} ])),[headers]);
  const {sortedData,sortConfig}=useTableSortableState({data:matched,sort,onSortChange:setSort,comparators,isMultiSortEnabled:true});
@@ -64,7 +87,7 @@ function BrowseTable({snapshot}){
    <PowerSearch config={config} filters={powerFilters} onChange={setPowerFilters} label="Условия поиска" placeholder="Выберите столбец и условие…" size="md" resultCount={matched.length}/>
    <Button label="Сбросить фильтры" variant="ghost" onClick={()=>{clearAll();setPowerFilters([]);}} data-table-control="reset"/>
   </Collapsible>
-  <div className="astryx-data-grid"><Table data={hasGroups?grouped.data:pageRows} columns={columns} idKey={hasGroups?grouped.idKey:'_key'} plugins={plugins} density="balanced" hasHover textOverflow="truncate" aria-label={snapshot.title} emptyState={<EmptyState title={rows.length?'Нет совпадений':'Записей пока нет'} description={rows.length?'Измените поиск или условия фильтра.':'Добавьте первую запись кнопкой над таблицей.'}/>}/></div>
+  <div className="astryx-data-grid" ref={gridRef}><Table data={hasGroups?grouped.data:pageRows} columns={columns} idKey={hasGroups?grouped.idKey:'_key'} plugins={plugins} density="balanced" hasHover textOverflow="truncate" aria-label={snapshot.title} emptyState={<EmptyState title={rows.length?'Нет совпадений':'Записей пока нет'} description={rows.length?'Измените поиск или условия фильтра.':'Добавьте первую запись кнопкой над таблицей.'}/>}/></div>
   <div className="astryx-data-footer">{totals&&<p className="astryx-table-totals">{totals}</p>}<div className="astryx-page-line"><span role="status">{matched.length?(currentPage-1)*size+1:0}–{Math.min(currentPage*size,matched.length)} из {matched.length}</span><Pagination page={currentPage} onChange={setPage} totalItems={matched.length} pageSize={size} pageSizeOptions={[25,50,100]} onPageSizeChange={setSize} label={'Страницы: '+snapshot.title}/></div>{picked.length>0&&<div className="astryx-table-selection"><span>Выбрано: {picked.length}</span><Button label="Экспорт выбранных" variant="secondary" onClick={()=>exportRows(picked.map(r=>r._source))}/><Button label="Снять выбор" variant="ghost" onClick={()=>choose(picked,false)}/></div>}</div>
  </div>;
 }
@@ -76,7 +99,7 @@ export function createTableAdapter(mount){
   let state=states.get(table);if(!state){const host=document.createElement('div');host.className='astryx-data-view';scroll.after(host);state={host};states.set(table,state);}
   if(!state.host.isConnected)scroll.after(state.host);
   scroll.hidden=true;model.controls.hidden=true;model.footer.hidden=true;model.panel.hidden=!model.nativeFields;
-  const sourceHeaders=model.headers.map((th,index)=>({index,key:'c'+index,label:th.textContent.trim(),type:th.classList.contains('table-number')?'number':th.classList.contains('table-date')?'date':'text',check:!!th.querySelector('input')||th.classList.contains('table-check'),action:th.hasAttribute('data-delete-column')}));
+  const sourceHeaders=model.headers.map((th,index)=>({index,key:'c'+index,label:th.textContent.trim()||(th.hasAttribute('data-delete-column')?'Действия':''),type:th.classList.contains('table-number')?'number':th.classList.contains('table-date')?'date':'text',check:!!th.querySelector('input')||th.classList.contains('table-check'),action:th.hasAttribute('data-delete-column')}));
   const selectable=sourceHeaders.some(h=>h.check),headers=sourceHeaders.filter(h=>!selectable||!h.check);
   const admitted=new Set(model.matched);let group='';const rows=[];
   for(const [index,row] of model.rows.entries()){

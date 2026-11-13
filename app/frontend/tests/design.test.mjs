@@ -17,6 +17,7 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  let clicks=0,profiles=0;button.addEventListener('click',e=>{e.preventDefault();clicks++;});avatar.addEventListener('click',()=>profiles++);
  w.eval(bundle);w.ITDDesign.renderNav([['overview','Обзор',''],['registry','Исполнительная документация','']],'registry',()=>{});
  await until(()=>d.querySelector('.tabs[data-astryx-island] [data-tab="1"]')&&d.querySelector('.account-control #account-open'));
+ assert.equal(d.querySelectorAll('#workspace-status').length,1);assert.ok(d.querySelector('.workspace-nav #workspace-status'));
  assert.equal(d.getElementById('kept-input'),input);assert.equal(input.value,'Несохранённое значение');
  button.click();assert.equal(clicks,1);assert.match(button.className,/astryx-button/);assert.ok(button.querySelector('[data-itd-button-body]'));
  assert.equal(d.getElementById('account-open'),avatar);avatar.click();assert.equal(profiles,1);
@@ -35,10 +36,12 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  w.ITDDesign.enhanceTable(source,model,()=>{});await until(()=>d.querySelector('.astryx-data-view table'));
  const view=d.querySelector('.astryx-data-view');assert.equal(scroll.hidden,true);assert.equal(controls.hidden,true);assert.equal(footer.hidden,true);
  assert.ok(view.querySelector('[data-table-hooks="columnResize columnSettings filtering"]'));
- assert.equal(view.querySelectorAll('thead [role="separator"]').length,1);assert.equal(view.querySelectorAll('thead [aria-haspopup]').length,2);
+ assert.equal(view.querySelectorAll('thead [role="separator"]').length,2);assert.equal(view.querySelectorAll('thead [aria-haspopup]').length,2);
+ const lastHandle=[...view.querySelectorAll('thead [role="separator"]')].at(-1),beforeWidth=Number(lastHandle.getAttribute('aria-valuenow'));
+ lastHandle.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Home',bubbles:true}));await tick();assert.equal(Number(lastHandle.getAttribute('aria-valuenow')),Number(lastHandle.getAttribute('aria-valuemin')));assert.ok(Number(lastHandle.getAttribute('aria-valuenow'))<beforeWidth,'The final business column must resize independently of the flexible gutter');
  assert.equal(view.querySelectorAll('tbody tr').length,50);view.querySelector('[aria-label="Перейти на страницу 2"]').click();await tick();assert.equal(view.querySelectorAll('tbody tr').length,13);assert.match(view.textContent,/51.*63.*63/s);
  view.querySelector('[data-table-control="columns"]').click();await until(()=>d.querySelector('.astryx-column-picker'));
- [...d.querySelectorAll('.astryx-column-picker input')].at(-1).click();await tick();assert.equal(view.querySelectorAll('thead th').length,1);
+ [...d.querySelectorAll('.astryx-column-picker input')].at(-1).click();await tick();assert.equal(view.querySelectorAll('thead th').length,2);
  assert.ok(input.parentElement.classList.contains('itd-field-control'),'Native input must retain the complete field frame');
  d.documentElement.dataset.theme='dark';d.dispatchEvent(new w.Event('itd:appearance'));await tick();
  d.getElementById('content').innerHTML='<nav class="tabs"><button data-tab="0" class="active">Новая вкладка</button></nav>';
