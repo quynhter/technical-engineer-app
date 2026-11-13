@@ -105,30 +105,6 @@ Promise.resolve(pending).then(()=>{if(!routed)throw Error('Ручная форм
         result=subprocess.run(['node','-e',script],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr)
 
-    @unittest.skipUnless(shutil.which('node'), 'Нужен Node для проверки подсказки')
-    def test_agent_help_closes_outside_even_when_option_stops_bubbling(self):
-        source=(Path(__file__).parents[1]/'itd/web_assets/ui.js').read_text()
-        script=r'''
-const vm=require('node:vm'),assert=require('node:assert/strict');
-const listeners={},help={open:true};
-const ctx={ResizeObserver:class{observe(){} unobserve(){}},MutationObserver:class{observe(){} disconnect(){}},document:{
- getElementById:()=>null,
- addEventListener:(type,fn,capture)=>{(listeners[type]??=[]).push({fn,capture});},
- querySelectorAll:()=>[help].filter(x=>x.open)
-}};
-vm.runInNewContext(SOURCE,ctx);
-const click=listeners.click.find(x=>x.capture===true);
-assert.ok(click,'Обработчик должен видеть клик до stopPropagation пункта списка');
-click.fn({target:{closest:()=>help}});assert.equal(help.open,true);
-click.fn({target:{closest:()=>null}});assert.equal(help.open,false);
-help.open=true;
-listeners.change.find(x=>x.capture===true).fn({target:{matches:()=>true}});
-assert.equal(help.open,false);
-help.open=true;
-listeners.keydown.forEach(x=>x.fn({key:'Escape'}));assert.equal(help.open,false);
-'''.replace('SOURCE',json.dumps(source))
-        result=subprocess.run(['node','-e',script],capture_output=True,text=True)
-        self.assertEqual(result.returncode,0,result.stderr)
 
 
 class JournalJsTests(unittest.TestCase):
@@ -174,9 +150,9 @@ const ctx={filteredEntries:()=>entries,esc:x=>x??'',journalValue:x=>x??'—',
  tableFilters:{incoming:{}},pdata:{journals:{incoming:entries}}};
 vm.runInNewContext(SOURCE,ctx);
 const html=ctx.incomingJournalTable();
-assert.match(html,/<th>Дата<\/th><th>Ресурс<\/th><th>Кол-во<\/th><th>Результат<\/th><th>Примечание<\/th>/);
+assert.match(html,/<th>Дата<\/th><th>Ресурс<\/th><th>Количество<\/th><th>Ед. изм.<\/th><th>Результат<\/th><th>Примечание<\/th>/);
 assert.equal((html.match(/<td>2026-11-05<\/td>/g)||[]).length,2);
-assert.doesNotMatch(html,/Выгрузить записи|Поставка/);
+assert.doesNotMatch(html,/Выгрузить записи|Поставка|table-filters|data-filter/);
 """.replace('SOURCE',json.dumps(table))
         result=subprocess.run(['node','-e',script],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr)

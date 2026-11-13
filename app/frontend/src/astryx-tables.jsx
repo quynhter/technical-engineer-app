@@ -1,3 +1,4 @@
+import {filterValue} from './table-values.js';
 import React,{useState,useMemo,useEffect,useLayoutEffect,useRef} from 'react';
 import {Button,TextInput,CheckboxInput,Popover,Pagination,EmptyState,PowerSearch,MoreMenu,Collapsible} from '@astryxdesign/core';
 import {Table,useTableColumnResize,useTableColumnSettings,useTableColumnSettingsState,useTableFiltering,useTableFilterState,toSearchFilters,useTableSortable,useTableSortableState,useTableGroupedRows,useTableSelection,pixel,proportional} from '@astryxdesign/core/Table';
@@ -41,7 +42,7 @@ function BrowseTable({snapshot}){
  // so every business column, including Actions, can resize without a jump.
  const settingsPlugin=useMemo(()=>({...visibleColumns,transformColumns:columns=>[...visibleColumns.transformColumns(columns),gutterColumn]}),[visibleColumns]);
  const {filters,onFilterChange,clearAll}=useTableFilterState(saved.filters||{});
- const fields=useMemo(()=>headers.filter(h=>!h.action).map(h=>({key:h.key,type:'string',label:h.label})),[headers]);
+ const fields=useMemo(()=>headers.filter(h=>!h.action).map(h=>({key:h.key,type:h.type==='text'?'string':h.type,label:h.label})),[headers]);
  const {config,applyFilters}=usePowerSearchConfig(fields,'ИТД');
  const columns=useMemo(()=>headers.map(h=>({key:h.key,header:h.label,width:pixel(minimums[h.key]||headerMinimum(h)),resizable:true,sortable:!h.action,filter:h.action?undefined:h.key,align:h.type==='number'?'end':h.type==='date'?'center':'start',renderCell:item=><Cell html={item._cells[h.index]?.html||''}/>})),[headers,minimums]);
  const effectiveWidths=useMemo(()=>Object.fromEntries(headers.map(h=>[h.key,Math.max(minimums[h.key]||headerMinimum(h),widths[h.key]??(h.action?112:/наименование|название|описание|журнал|документ/i.test(h.label)?280:h.type==='number'?140:h.type==='date'?160:180))])),[headers,widths,minimums]);
@@ -62,7 +63,13 @@ function BrowseTable({snapshot}){
   measure();document.fonts?.ready.then(measure);const refresh=()=>requestAnimationFrame(measure);document.addEventListener('itd:appearance',refresh);
   return()=>{active=false;document.removeEventListener('itd:appearance',refresh);};
  },[headers]);
- const matched=useMemo(()=>{const filtered=applyFilters([...toSearchFilters(filters,columns,config),...powerFilters],rows),term=query.toLocaleLowerCase('ru').replaceAll('ё','е').trim();return term?filtered.filter(row=>row._search.includes(term)):filtered;},[applyFilters,filters,powerFilters,columns,config,rows,query]);
+ const matched=useMemo(()=>{
+  const conditions=[...toSearchFilters(filters,columns,config),...powerFilters];
+  const typedRows=rows.map(row=>({...row,...Object.fromEntries(headers.map(h=>[h.key,filterValue(row[h.key],h.type)]))}));
+  const hits=new Set(applyFilters(conditions,typedRows).map(row=>row._key));
+  const filtered=rows.filter(row=>hits.has(row._key)),term=query.toLocaleLowerCase('ru').replaceAll('ё','е').trim();
+  return term?filtered.filter(row=>row._search.includes(term)):filtered;
+ },[applyFilters,filters,powerFilters,columns,config,rows,query,headers]);
  const comparators=useMemo(()=>Object.fromEntries(headers.map(h=>[h.key,(a,b)=>{const x=a[h.key]||'',y=b[h.key]||'';if(h.type==='number'){const n=s=>Number(s.replace(/\s/g,'').replace(',','.'));if(x&&y&&Number.isFinite(n(x))&&Number.isFinite(n(y)))return n(x)-n(y);}if(h.type==='date'){const iso=s=>/^\d{2}\.\d{2}\.\d{4}$/.test(s)?s.split('.').reverse().join('-'):s;return collator.compare(iso(x),iso(y));}return collator.compare(x,y);} ])),[headers]);
  const {sortedData,sortConfig}=useTableSortableState({data:matched,sort,onSortChange:setSort,comparators,isMultiSortEnabled:true});
  const sortPlugin=useTableSortable(sortConfig);
@@ -85,7 +92,7 @@ function BrowseTable({snapshot}){
   </div>
   <Collapsible className="astryx-column-filters" trigger={'Фильтр'+(Object.keys(filters).length+powerFilters.length?' ('+(Object.keys(filters).length+powerFilters.length)+')':'')} defaultIsOpen={false} density="compact">
    <PowerSearch config={config} filters={powerFilters} onChange={setPowerFilters} label="Условия поиска" placeholder="Выберите столбец и условие…" size="md" resultCount={matched.length}/>
-   <Button label="Сбросить фильтры" variant="ghost" onClick={()=>{clearAll();setPowerFilters([]);}} data-table-control="reset"/>
+   <Button label="Сбросить фильтры" variant="secondary" onClick={()=>{clearAll();setPowerFilters([]);}} data-table-control="reset"/>
   </Collapsible>
   <div className="astryx-data-grid" ref={gridRef}><Table data={hasGroups?grouped.data:pageRows} columns={columns} idKey={hasGroups?grouped.idKey:'_key'} plugins={plugins} density="balanced" hasHover textOverflow="truncate" aria-label={snapshot.title} emptyState={<EmptyState title={rows.length?'Нет совпадений':'Записей пока нет'} description={rows.length?'Измените поиск или условия фильтра.':'Добавьте первую запись кнопкой над таблицей.'}/>}/></div>
   <div className="astryx-data-footer">{totals&&<p className="astryx-table-totals">{totals}</p>}<div className="astryx-page-line"><span role="status">{matched.length?(currentPage-1)*size+1:0}–{Math.min(currentPage*size,matched.length)} из {matched.length}</span><Pagination page={currentPage} onChange={setPage} totalItems={matched.length} pageSize={size} pageSizeOptions={[25,50,100]} onPageSizeChange={setSize} label={'Страницы: '+snapshot.title}/></div>{picked.length>0&&<div className="astryx-table-selection"><span>Выбрано: {picked.length}</span><Button label="Экспорт выбранных" variant="secondary" onClick={()=>exportRows(picked.map(r=>r._source))}/><Button label="Снять выбор" variant="ghost" onClick={()=>choose(picked,false)}/></div>}</div>

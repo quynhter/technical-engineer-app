@@ -182,6 +182,30 @@ class ResourceOjrTests(WorkspaceFixture,unittest.TestCase):
             self.assertEqual(c.execute('SELECT count(*) FROM act_signatories WHERE act_id=?',(aid,)).fetchone()[0],0)
             self.assertEqual(c.execute('SELECT count(*) FROM act_execution_status').fetchone()[0],0)
 
+    def test_signing_date_cannot_precede_work_end_certificate_or_be_in_future(self):
+        with connect(self.path) as c:
+            register_form(c,code='A',name='Акт',fields=[{'key':'builder','kind':'signatory','role':'builder','required':True}])
+            aid=add_act(c,project_id=self.pid,act_type='A')
+            set_act_people(c,self.pid,aid,{'builder':self.person})
+            c.execute("INSERT INTO work_facts(project_id,resource_id,source_key,location,work_description,quantity,unit,start_date,end_date,source,reported_by,status) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+                      (self.pid,self.rid,'fact-1','Оси А–Б','Прокладка',5,'м','2026-10-01','2026-11-05','Журнал','Монтажник','confirmed'))
+            c.execute('INSERT INTO act_facts(act_id,fact_id) VALUES(?,?)',(aid,c.execute('SELECT last_insert_rowid()').fetchone()[0]))
+            c.execute("INSERT INTO attachments(sha256,storage_path,original_name,byte_size,doc_type,title,doc_date) VALUES(?,?,?,?,?,?,?)",
+                      ('a'*64,'aa/cert.pdf','cert.pdf',10,'certificate','Сертификат на кабель','2026-11-10'))
+            c.execute('INSERT INTO resource_attachments(resource_id,attachment_id) VALUES(?,?)',(self.rid,c.execute('SELECT last_insert_rowid()').fetchone()[0]))
+            set_resources(c,aid,[self.rid])
+            base=dict(act_id=aid,state='signed',work_description='Прокладка',basis='Подписанный экземпляр получен',expected_revision=0)
+            with self.assertRaisesRegex(ValueError,'окончания работ'):
+                sign_act(c,self.pid,{**base,'signed_date':'2026-11-04'})
+            c.execute("UPDATE work_facts SET end_date='2026-11-01'")
+            with self.assertRaisesRegex(ValueError,'сертификата'):
+                sign_act(c,self.pid,{**base,'signed_date':'2026-11-06'})
+            with self.assertRaisesRegex(ValueError,'в будущем'):
+                sign_act(c,self.pid,{**base,'signed_date':'2099-01-01'})
+            self.assertIsNone(c.execute('SELECT 1 FROM act_execution_status WHERE act_id=?',(aid,)).fetchone())
+            result=sign_act(c,self.pid,{**base,'signed_date':'2026-11-12'})
+            self.assertEqual(result['state'],'signed')
+
     def test_rejected_legacy_allocation_is_visible_as_a_conflict(self):
         from itd.inventory import material_issues
         with connect(self.path) as c:

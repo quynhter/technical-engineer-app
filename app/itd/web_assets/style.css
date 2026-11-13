@@ -470,7 +470,7 @@ button.signature-toggle[aria-pressed="true"]{color:var(--signature-ok);border-co
 button.signature-toggle[aria-pressed="false"]{color:var(--error);border-color:var(--error);background:color-mix(in srgb,var(--error) 9%,var(--surface))}
 /* Поля и действия в строках подписантов стоят на одной нижней линии. */
 .version-signer .signer-controls{align-items:flex-end}
-.version-signer :is(.smart-input,input[type="date"],button){min-height:44px;height:44px}
+.version-signer :is(.smart-input,input[type="date"],.signer-controls>button){min-height:44px;height:44px}
 .version-signer .signer-controls button{display:inline-flex;align-items:center;justify-content:center;margin:0;white-space:nowrap}
 #document-version-form .toolbar{align-items:flex-end}
 #document-version-form .toolbar>button{min-height:44px;height:44px;margin:0}
@@ -641,8 +641,8 @@ body[data-role="viewer"] #editor-content .ux-form-intro{display:none}
 }
 
 /* One browsing shell for native journal filters and generated column filters. */
-.resource-fact-picker{margin:0 0 16px}
-.resource-fact-picker .data-table-filters{padding:16px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.resource-fact-picker{margin:0}
+.resource-fact-picker .data-table-filters{padding:0;border:0;background:none}
 .resource-fact-picker .field{flex:1;min-width:200px}
 .data-table-controls input[data-filter="search"]{height:44px;min-height:44px}
 .data-table-filters>.choice{min-height:44px;margin:0}

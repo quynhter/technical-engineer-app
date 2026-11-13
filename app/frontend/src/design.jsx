@@ -5,28 +5,27 @@ import React,{useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {Theme} from '@astryxdesign/core/theme';
 import {stoneTheme} from '@astryxdesign/theme-stone/built';
-import {matchaTheme} from '@astryxdesign/theme-matcha/built';
 import {butterTheme} from '@astryxdesign/theme-butter/built';
 import {gothicTheme} from '@astryxdesign/theme-gothic/built';
 import {y2kTheme} from '@astryxdesign/theme-y2k/built';
 import {neutralTheme} from '@astryxdesign/theme-neutral/built';
 import {InternationalizationProvider} from '@astryxdesign/core/i18n';
-import {AppShell,TopNav,TopNavHeading,Selector,SideNav,SideNavItem,SideNavSection,Button,TabList,Tab,Pagination,Breadcrumbs,BreadcrumbItem,Dialog,DialogHeader,TextInput,EmptyState,Kbd,DropdownMenu,Heading} from '@astryxdesign/core';
+import {AppShell,TopNav,TopNavHeading,Selector,SideNav,SideNavItem,SideNavSection,Button,TabList,Tab,Pagination,Breadcrumbs,BreadcrumbItem,Dialog,DialogHeader,TextInput,EmptyState,Kbd,Heading} from '@astryxdesign/core';
 import ru from '@astryxdesign/core/locales/ru-RU.json';
 import recipes from './primitives.json';
+import headerLogo from '../../itd/web_assets/logo.svg';
 
 import '@astryxdesign/core/reset.css';
 import '@astryxdesign/core/astryx.css';
 import '@astryxdesign/theme-neutral/theme.css';
 import '@astryxdesign/theme-stone/theme.css';
-import '@astryxdesign/theme-matcha/theme.css';
 import '@astryxdesign/theme-butter/theme.css';
 import '@astryxdesign/theme-gothic/theme.css';
 import '@astryxdesign/theme-y2k/theme.css';
 
 import './workspace.css';
 const islands=new Map();
-const themes={neutral:neutralTheme,stone:stoneTheme,matcha:matchaTheme,butter:butterTheme,gothic:gothicTheme,y2k:y2kTheme};
+const themes={neutral:neutralTheme,stone:stoneTheme,butter:butterTheme,gothic:gothicTheme,y2k:y2kTheme};
 let selectedTheme="neutral";try{const saved=localStorage.getItem("itd.design.theme");if(themes[saved])selectedTheme=saved;}catch(_){}
 function Providers({children}){return <Theme theme={themes[selectedTheme]} mode={document.documentElement.dataset.theme||'light'}><InternationalizationProvider locale="ru-RU" messages={{'ru-RU':ru}}>{children}</InternationalizationProvider></Theme>;}
 // One provider owns <html>; portals share its context across legacy DOM slots.
@@ -53,7 +52,7 @@ function enhancePrimitives(){
   if(isReactOwned(button)||button.matches('.swatch,.brand,.account-avatar,.object-tile,.journal-task,.cell-open,.record-name,.journey-link,.link-button,.table-sort,.table-chip')||button.closest('.org-list,.tabs,.panel-nav,.journal-sections'))continue;
   primitive(button,'button-'+(button.classList.contains('danger')?'destructive':button.classList.contains('ghost')?'ghost':button.classList.contains('secondary')?'secondary':'primary'));
  }
- for(const [selector,key] of [['.card:not(details)','card'],['.pill','badge'],['.table-scroll table','table']])document.querySelectorAll(selector).forEach(node=>{if(!isReactOwned(node))primitive(node,key);});
+ for(const [selector,key] of [['.card:not(details)','card'],['.pill','badge'],['.table-scroll table','table']])document.querySelectorAll(selector).forEach(node=>{if(!isReactOwned(node)&&!node.closest('.knowledge-text'))primitive(node,key);});
  for(const node of document.querySelectorAll('h1,h2,h3,h4'))if(!isReactOwned(node))primitive(node,'heading-'+node.tagName.slice(1));
 }
 const selectHosts=new WeakMap();
@@ -97,24 +96,22 @@ const statusParking=document.createElement('div');statusParking.hidden=true;docu
 function WorkspaceStatus(){const ref=React.useRef(null);React.useLayoutEffect(()=>{const slot=ref.current;statusSlots.add(slot);if(workspaceStatus)slot.append(workspaceStatus);return()=>{statusSlots.delete(slot);if(workspaceStatus?.parentElement===slot){const next=[...statusSlots].find(node=>node.isConnected);(next||statusParking).append(workspaceStatus);}};},[]);return <div className="nav-status" data-native-content="" ref={ref}/>;}
 function LegacyContent(){const ref=React.useRef(null);React.useLayoutEffect(()=>{if(ref.current)ref.current.append(...legacyNodes);},[]);return <div className="workspace-content" ref={ref}/>;}
 function changeTheme(value){selectedTheme=value;try{localStorage.setItem('itd.design.theme',value);}catch(_){}document.dispatchEvent(new Event('itd:appearance'));}
-const accountNodes=['account-open','session-resume'].map(id=>document.getElementById(id)).filter(Boolean);
+const accountNodes=['account-open','session-logout','session-resume'].map(id=>document.getElementById(id)).filter(Boolean);
 const accountParking=document.getElementById('legacy-controls')||document.body;
 function AccountControl(){
- const ref=React.useRef(null),[avatar,setAvatar]=useState({html:'',label:'Профиль'});
- React.useLayoutEffect(()=>{const source=accountNodes.find(node=>node.id==='account-open');if(!source)return;const slot=ref.current;slot.append(...accountNodes);const sync=()=>setAvatar({html:source.innerHTML,label:source.getAttribute('aria-label')||'Профиль'});const observer=new MutationObserver(sync);observer.observe(source,{childList:true,subtree:true,attributes:true,attributeFilter:['aria-label']});sync();return()=>{observer.disconnect();for(const node of accountNodes)if(node.parentElement===slot)accountParking.append(node);};},[]);
- function profile(section){document.getElementById('account-open')?.click();if(!section)return;const content=document.getElementById('account-content');const focus=()=>{const target=content?.querySelector(section);if(!target)return false;target.scrollIntoView({block:'start'});return true;};if(!focus()&&content){const observer=new MutationObserver(()=>{if(focus())observer.disconnect();});observer.observe(content,{childList:true,subtree:true});setTimeout(()=>observer.disconnect(),5000);}}
- const items=[{label:'Настройки профиля',onClick:()=>profile()},...(document.body.dataset.role==='admin'?[{label:'Пользователи',onClick:()=>profile('[data-account-action="role"]')},{label:'Локальные данные',onClick:()=>profile('[data-account-action="settings"]')}]:[]),{type:'divider'},{label:'База знаний',onClick:()=>document.getElementById('knowledge-open')?.click()}];
- return <div className="account-control"><div className="profile-source" ref={ref}/><DropdownMenu items={items} alignment="end" renderTrigger={props=><Button {...props} label={avatar.label} icon={<span dangerouslySetInnerHTML={{__html:avatar.html}}/>} isIconOnly className="account-avatar" variant="ghost"/>}/></div>;
+ const ref=React.useRef(null);
+ React.useLayoutEffect(()=>{const slot=ref.current;slot.append(...accountNodes);return()=>{for(const node of accountNodes)if(node.parentElement===slot)accountParking.append(node);};},[]);
+ return <div className="account-control" ref={ref} data-native-content=""/>;
 }
 function SectionSearch(){return <Button className="workspace-search-button" label="Найти раздел" icon={glyph('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>')} endContent={<Kbd keys="mod+k"/>} variant="secondary" onClick={()=>document.dispatchEvent(new Event('itd:search'))}/>;}
-function Header(){const [,redraw]=useState(0);React.useEffect(()=>{const refresh=()=>redraw(n=>n+1);document.addEventListener('itd:appearance',refresh);return()=>document.removeEventListener('itd:appearance',refresh);},[]);return <TopNav label="ИТД" heading={<TopNavHeading heading="ИТД" logo={<img src="/logo.svg" alt="" width="30" height="30"/>}/>} centerContent={<SectionSearch/>} endContent={<div className="header-actions"><Selector label="Тема оформления" isLabelHidden variant="ghost" value={selectedTheme} options={Object.keys(themes).map(value=>({value,label:({neutral:'Neutral',stone:'Stone',matcha:'Matcha',butter:'Butter',gothic:'Gothic',y2k:'Y2K'})[value]}))} onChange={changeTheme}/><Button label={document.documentElement.dataset.theme==='dark'?'Светлая тема':'Тёмная тема'} variant="ghost" onClick={()=>document.getElementById('theme-toggle')?.click()}/><AccountControl/></div>}/>;}
+function Header(){const [,redraw]=useState(0);React.useEffect(()=>{const refresh=()=>redraw(n=>n+1);document.addEventListener('itd:appearance',refresh);return()=>document.removeEventListener('itd:appearance',refresh);},[]);return <TopNav label="ИТД" heading={<TopNavHeading heading="ИТД" logo={<span className="workspace-logo" aria-hidden="true" dangerouslySetInnerHTML={{__html:headerLogo}}/>}/>} centerContent={<SectionSearch/>} endContent={<div className="header-actions"><Selector label="Тема оформления" isLabelHidden variant="ghost" value={selectedTheme} options={Object.keys(themes).map(value=>({value,label:({neutral:'Neutral',stone:'Stone',butter:'Butter',gothic:'Gothic',y2k:'Y2K'})[value]}))} onChange={changeTheme}/><Button label={document.documentElement.dataset.theme==='dark'?'Светлая тема':'Тёмная тема'} variant="ghost" onClick={()=>document.getElementById('theme-toggle')?.click()}/><AccountControl/></div>}/>;}
 function WorkspaceShell({rail,view}){const [isOpen,onOpenChange]=useState(false);React.useEffect(()=>onOpenChange(false),[view]);return <AppShell variant="section" contentPadding={0} topNav={<Header/>} sideNav={rail} mobileNav={{breakpoint:'md',isOpen,onOpenChange}}><LegacyContent/></AppShell>;}
-function renderNav(items,view,go){
+function renderNav(items,view,go,trail=[]){
  navigation=items;navigate=go;
- const rail=<SideNav className="workspace-nav" aria-label="Рабочее пространство" footer={<WorkspaceStatus/>} resizable={{defaultWidth:244,minWidth:220,maxWidth:340}}><SideNavSection title="Объект">{items.map(([key,label,svg])=><SideNavItem key={key} label={label} title={label} icon={glyph(svg)} isSelected={view===key||key==='registry'&&['documents','schemes','resources','ojr','journal','work','incoming','facts','check','delivery'].includes(view)} onClick={()=>go(key)}/>)}</SideNavSection><SideNavSection title="Инструменты"><SideNavItem label="Все объекты" isSelected={view==='objects'} onClick={()=>go('objects')}/><SideNavItem label="База знаний" onClick={()=>document.getElementById('knowledge-open')?.click()}/></SideNavSection></SideNav>;
+ const rail=<SideNav className="workspace-nav" aria-label="Рабочее пространство" footer={<WorkspaceStatus/>} resizable={{defaultWidth:244,minWidth:220,maxWidth:340}}><SideNavSection title="Объект">{items.map(([key,label,svg])=><SideNavItem key={key} label={label} title={label} icon={glyph(svg)} isSelected={view===key||key==='registry'&&['documents','schemes','resources','ojr','journal','work','incoming','facts','check','delivery'].includes(view)} onClick={()=>go(key)}/>)}</SideNavSection><SideNavSection title="Инструменты"><SideNavItem label="Все объекты" isSelected={view==='objects'} onClick={()=>go('objects')}/></SideNavSection></SideNav>;
  mount(shellHost,<WorkspaceShell rail={rail} view={view}/>);
- const label=items.find(([key])=>key===view)?.[1]||({objects:'Все объекты',resources:'Ресурсы',ojr:'Общий журнал работ',journal:'Журналы',check:'Проверка',delivery:'Сдача',work:'Работы',incoming:'Входной контроль'})[view]||'Исполнительная документация';
- const crumbs=document.getElementById('breadcrumbs');if(crumbs)mount(crumbs,<Breadcrumbs aria-label="Путь страницы"><BreadcrumbItem onClick={()=>go('objects')}>Объекты</BreadcrumbItem><BreadcrumbItem isCurrent>{label}</BreadcrumbItem></Breadcrumbs>);schedule();
+
+ const crumbs=document.getElementById('breadcrumbs');if(crumbs)mount(crumbs,<Breadcrumbs aria-label="Путь страницы">{trail.map((crumb,i)=>i<trail.length-1&&crumb.view?<BreadcrumbItem key={i} onClick={()=>go(crumb.view)}>{crumb.label}</BreadcrumbItem>:<BreadcrumbItem key={i} isCurrent>{crumb.label}</BreadcrumbItem>)}</Breadcrumbs>);schedule();
 }
 function CommandPalette(){
  const [open,setOpen]=useState(false),[query,setQuery]=useState('');

@@ -100,7 +100,7 @@ function showWorkspaceErrors(fields){
  for(const field of fields){const el=[...document.querySelectorAll('[data-path]')].find(el=>el.dataset.path===field.path);if(el)markInvalid(el);}
  const target=document.querySelector('[aria-invalid="true"]');target?.focus();
 }
-function updateDatabaseStatus(state){const el=document.querySelector('#database-status');if(!el||el.dataset.state===state)return;el.dataset.state=state;el.querySelector('span').textContent={ready:'База подключена',offline:'Нет связи с базой',session:'Сеанс завершён',checking:'Проверка базы…'}[state];}
+function updateDatabaseStatus(state){const el=document.querySelector('#database-status');if(!el||el.dataset.state===state)return;el.dataset.state=state;el.querySelector('span').textContent={ready:'Соединение есть',offline:'Нет связи с базой',session:'Сеанс завершён',checking:'Проверка базы…'}[state];}
 async function checkDatabaseStatus(){
  if(!token||sessionSuspended)return;
  const requestToken=token;
@@ -109,12 +109,6 @@ async function checkDatabaseStatus(){
 }
 document.addEventListener('input',e=>{if(e.target.closest('.field-invalid'))clearInvalid(e.target);});
 document.addEventListener('change',e=>{if(e.target.closest('.field-invalid'))clearInvalid(e.target);});
-
-function closeAgentHelp(){document.querySelectorAll('.agent-help[open]').forEach(help=>help.open=false);}
-// Capture нужен и для пунктов списков, которые останавливают всплытие клика.
-document.addEventListener('click',e=>{if(!e.target.closest('.agent-help'))closeAgentHelp();},true);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAgentHelp();});
-document.addEventListener('change',e=>{if(e.target.matches('#object-select,#project-select'))closeAgentHelp();},true);
 
 // Общие правила таблиц: одна типографика и одинаковое поведение во всех вкладках.
 function displayTableDate(value){return /^\d{4}-\d{2}-\d{2}$/.test(value||'')?value.split('-').reverse().join('.'):value;}
@@ -139,7 +133,7 @@ function decorateDataTables(root=document){
  const scrolls=root.matches?.('.table-scroll')?[root]:root.querySelectorAll('.table-scroll');
  scrolls.forEach(scroll=>{
   scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Таблица. Прокрутите для просмотра всех колонок');
-  const table=scroll.querySelector('table');if(!table||scroll.closest('[data-version-table]'))return;
+  const table=scroll.querySelector('table');if(!table||scroll.closest('[data-version-table],.knowledge-text'))return;
   table.querySelectorAll('[data-table-fill]').forEach(el=>el.remove());
   const headers=[...table.querySelectorAll('thead th')];
   const nameIndex=headers.findIndex(th=>/наименование|название|описание|материал|содержание|ресурс|работы|журнал|документ/i.test(th.textContent));
@@ -178,7 +172,7 @@ const tableObserver=new MutationObserver(records=>{
 function observeTables(){for(const id of ['content','editor-content','knowledge-results']){const el=document.getElementById(id);if(el)tableObserver.observe(el,{childList:true,subtree:true});}}
 observeTables();
 function tableLoading(){
- const saved=[...document.querySelectorAll('#content table tbody')].map(body=>({body,html:body.innerHTML}));
+ const saved=[...document.querySelectorAll('#content .table-scroll table tbody')].map(body=>({body,html:body.innerHTML}));
  tableObserver.disconnect();
  saved.forEach(({body})=>{const count=body.closest('table').querySelectorAll('th').length||5;body.innerHTML=Array.from({length:4},()=>'<tr aria-hidden="true">'+Array.from({length:count},()=>'<td><span class="table-skeleton"></span></td>').join('')+'</tr>').join('');body.closest('.table-scroll').setAttribute('aria-busy','true');});
  return ()=>{saved.forEach(({body,html})=>{if(body.isConnected){body.innerHTML=html;body.closest('.table-scroll').removeAttribute('aria-busy');}});decorateDataTables();observeTables();};

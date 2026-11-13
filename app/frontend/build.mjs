@@ -26,7 +26,7 @@ bake('badge',h(Badge,{label:'Status'}),'span');
 const table=h(Table,{data:[{id:1,name:'Item'}],columns:[{key:'name',header:'Name'}],hasHover:true});
 for(const [key,sel] of Object.entries({table:'table',thead:'thead',tbody:'tbody',th:'th',td:'td',tr:'tbody tr'}))bake(key,table,sel);
 await writeFile('src/primitives.json',JSON.stringify(recipes,null,2)+'\n');
-await build({loader:{'.woff2':'dataurl','.woff':'dataurl'},entryPoints:['src/design.jsx'],bundle:true,minify:true,format:'iife',target:['es2022'],outfile:'../itd/web_assets/design.js',legalComments:'eof',define:{'process.env.NODE_ENV':'"production"'},metafile:true}).then(async result=>{
+await build({loader:{'.svg':'text','.woff2':'dataurl','.woff':'dataurl'},entryPoints:['src/design.jsx'],bundle:true,minify:true,format:'iife',target:['es2022'],outfile:'../itd/web_assets/design.js',legalComments:'eof',define:{'process.env.NODE_ENV':'"production"'},metafile:true}).then(async result=>{
  await writeFile('bundle-meta.json',JSON.stringify({inputs:Object.keys(result.metafile.inputs).length,outputs:result.metafile.outputs},null,2)+'\n');
 });
 const license=await readFile('ASTRYX-LICENSE.txt','utf8');

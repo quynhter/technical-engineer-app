@@ -79,7 +79,7 @@ class BrowserStateTests(unittest.TestCase):
         source=(ASSETS/'app.js').read_text();source=source[source.index('async function loadProject('):source.index('async function loadObject(')]
         self.run_js(source,"""
 let restored=0;const select={value:'2',dispatchEvent(){}};
-const ctx={projectId:1,pdata:{project:{id:1}},editEntry:{id:7},selectedEntries:new Set([7]),currentUser:{role:'editor'},closeAgentHelp(){},tableLoading:()=>()=>restored++,Event:class{},$:()=>select,api:async()=>{throw Error('offline')}};
+const ctx={projectId:1,pdata:{project:{id:1}},editEntry:{id:7},selectedEntries:new Set([7]),currentUser:{role:'editor'},tableLoading:()=>()=>restored++,Event:class{},$:()=>select,api:async()=>{throw Error('offline')}};
 ""","""
 await assert.rejects(ctx.loadProject(2));assert.equal(ctx.projectId,1);assert.equal(ctx.pdata.project.id,1);assert(ctx.selectedEntries.has(7));assert.equal(select.value,1);assert.equal(restored,1);
 ctx.api=async path=>{if(path==='/api/activate')throw Error('denied');return {project:{id:2}}};

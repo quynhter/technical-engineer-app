@@ -37,7 +37,7 @@ assert.match(uploadZone('sheet','Выбрать',{maxMB:8,accept:'.xlsx,.csv'}),
         script=r'''
 const assert=require('node:assert/strict');let allowed=false,closed=0;const listeners={};
 const dialog={open:true,querySelector:()=>({textContent:''}),addEventListener:(name,fn)=>listeners[name]=fn,close(){closed++;this.open=false}};
-const document={getElementById:()=>dialog};
+const document={getElementById:()=>dialog},window={};
 FUNCTIONS
 createWorkspaceDialog('editor',{beforeClose:()=>allowed});
 const event={target:{closest:()=>({closest:()=>dialog})}};

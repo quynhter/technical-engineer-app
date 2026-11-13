@@ -25,7 +25,7 @@ const journalHelp={
  '2':'Запишите выдачу или передачу специального журнала.',
  '3':'Записывайте выполненные работы. Эти же записи доступны для подготовки актов.',
  '4':'Опишите проведённый контроль. Недостатки и их устранение укажите, если эти сведения известны.',
- '5':'Здесь автоматически появляются зарегистрированные документы всех разделов объекта.',
+ '5':'Здесь показаны подписанные акты всех разделов объекта. Состав подписантов фиксируется при подтверждении подписания.',
  '6':'Внесите сведения о состоявшемся мероприятии госстройнадзора.'
 };
 function generalJournalPage(){
@@ -53,12 +53,11 @@ const documentReviewNames={matches:'Соответствует',mismatch:'Выя
 function incomingJournalBody(){
  return filteredEntries('incoming').map(e=>{
   const w=e.work_fields,s=e.supply,outcome=w.incoming_result||'pending';
-  return `<tr><td>${journalValue(e.entry_date)}</td><td><button type="button" class="cell-open" data-edit-entry="${e.id}">${esc(e.resource?.name||e.title)}</button></td><td>${journalValue(e.quantity??s?.quantity)} ${esc(e.unit||s?.unit||e.resource?.unit)}</td><td>${esc(incomingResultNames[outcome])}</td><td>${esc(e.details)}</td></tr>`;
- }).join('')||'<tr><td colspan="5" class="empty">За выбранный период записей нет.</td></tr>';
+  return `<tr><td>${journalValue(e.entry_date)}</td><td><button type="button" class="cell-open" data-edit-entry="${e.id}">${esc(e.resource?.name||e.title)}</button></td><td>${journalValue(e.quantity??s?.quantity)}</td><td>${esc(e.unit||s?.unit||e.resource?.unit)}</td><td>${esc(incomingResultNames[outcome])}</td><td>${esc(e.details)}</td></tr>`;
+ }).join('')||'<tr><td colspan="6" class="empty">Записей входного контроля пока нет.</td></tr>';
 }
 function incomingJournalTable(){
- const f=tableFilters.incoming;
- return `<div class="toolbar"><button data-editor="incoming">Добавить запись</button><input data-filter="search" data-kind="incoming" aria-label="Поиск записей" placeholder="Найти ресурс…" value="${esc(f.search)}"></div><div class="table-filters"><fieldset class="table-date-range"><legend>Дата</legend><label class="field"><span>С</span><input type="date" aria-label="Дата с" data-filter="from" data-kind="incoming" value="${esc(f.from)}"></label><label class="field"><span>По</span><input type="date" aria-label="Дата по" data-filter="to" data-kind="incoming" value="${esc(f.to)}"></label></fieldset><button type="button" class="secondary" data-reset-filters="incoming">Сбросить фильтр</button></div><div class="table-count" id="table-count" hidden data-total="${pdata.journals.incoming.length}">Показано ${filteredEntries('incoming').length} из ${pdata.journals.incoming.length}</div><div class="table-scroll"><table><thead><tr><th>Дата</th><th>Ресурс</th><th>Кол-во</th><th>Результат</th><th>Примечание</th></tr></thead><tbody id="entry-rows">${incomingJournalBody()}</tbody></table></div>`;
+ return `<div class="toolbar"><button data-editor="incoming">Добавить запись</button></div><div class="table-scroll"><table><thead><tr><th>Дата</th><th>Ресурс</th><th>Количество</th><th>Ед. изм.</th><th>Результат</th><th>Примечание</th></tr></thead><tbody id="entry-rows">${incomingJournalBody()}</tbody></table></div>`;
 }
 function entryResourceSelect(e){return `<label class="field wide"><span>Материал или оборудование</span><select name="resource_id"><option value="">Укажу вручную</option>${pdata.resources.map(r=>option(r.id,r.name,e.resource_id)).join('')}</select></label>`;}
 let incomingBlockNumber=0;

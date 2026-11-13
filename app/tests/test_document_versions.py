@@ -165,6 +165,25 @@ class DocumentVersionTests(WorkspaceFixture,unittest.TestCase):
             self.assertEqual(saved['object'],before['object'])
             self.assertEqual(saved['projects'][0]['name'],'Изменённый раздел')
 
+    def test_object_configuration_includes_permits_and_accepts_legacy_files(self):
+        with connect(self.path) as c:
+            original=snapshot(c,self.oid)
+            exported=export_configuration(c,self.oid,'object')
+            self.assertIn('permit_num',exported['data']['object'])
+            self.assertIn('expertise_date',exported['data']['object'])
+            legacy=export_configuration(c,self.oid,'permits')
+            legacy['data']['object'].update(permit_num='РС-123',expertise_date='2026-11-01')
+            preview=prepare_import(c,self.oid,'object',legacy)
+            self.assertEqual(preview['state']['object']['permit_num'],'РС-123')
+            self.assertEqual(preview['state']['object']['name'],original['object']['name'])
+            self.assertEqual(snapshot(c,self.oid),original)
+            # Прежний экспорт объекта без разрешений оставляет их без изменений.
+            old_object=export_configuration(c,self.oid,'object')
+            for key in legacy['data']['object']:old_object['data']['object'].pop(key)
+            self.assertEqual(prepare_import(c,self.oid,'object',old_object)['changes'],[])
+            legacy['data']['object']['name']='Недопустимое поле старой вкладки'
+            with self.assertRaises(ValueError):prepare_import(c,self.oid,'object',legacy)
+
     def test_import_rejects_foreign_scope_object_and_unexpected_fields(self):
         with connect(self.path) as c:
             exported=export_configuration(c,self.oid,'rd')

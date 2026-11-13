@@ -25,7 +25,7 @@ def export_configuration(c, oid, scope):
             row['representatives']=[pick(p,('id',*REP_FIELDS,'document_roles')) for p in org['representatives']]
             values['participants'].append(row)
     else:
-        keys = PERMITS if scope == 'permits' else [k for k in OBJECT_FIELDS if k not in (*PERMITS,*PARTICIPANT_FLAGS)]
+        keys = PERMITS if scope == 'permits' else [k for k in OBJECT_FIELDS if k not in PARTICIPANT_FLAGS]
         values = {'object':pick(state['object'],keys)}
     return dict(format='itd-configuration',version=1,scope=scope,object_id=oid,data=values)
 
@@ -33,11 +33,14 @@ def export_configuration(c, oid, scope):
 def prepare_import(c, oid, scope, document):
     if not isinstance(document,dict) or document.get('format')!='itd-configuration' or document.get('version')!=1:
         raise ValueError('Выберите файл, созданный кнопкой «Экспорт» этой вкладки')
-    if scope not in SCOPES or document.get('scope')!=scope: raise ValueError('Файл относится к другой вкладке')
+    source_scope = document.get('scope')
+    # Старые файлы отдельной вкладки принимаются в объединённой карточке объекта.
+    if scope not in SCOPES or (source_scope != scope and not (scope == 'object' and source_scope == 'permits')):
+        raise ValueError('Файл относится к другой вкладке')
     # ID и ссылки архивных приказов не переносим между объектами автоматически.
     if document.get('object_id')!=oid: raise ValueError('Конфигурация относится к другому объекту')
     current=snapshot(c,oid); candidate=deepcopy(current)
-    allowed=export_configuration(c,oid,scope)['data']; incoming=document.get('data')
+    allowed=export_configuration(c,oid,source_scope)['data']; incoming=document.get('data')
     if not isinstance(incoming,dict) or set(incoming)!=set(allowed): raise ValueError('Неверный состав конфигурации')
     def merge(target, source, keys):
         if not isinstance(source,dict) or set(source)-set(keys): raise ValueError('Недопустимые поля конфигурации')

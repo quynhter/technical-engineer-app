@@ -7,7 +7,7 @@ const tick=()=>new Promise(resolve=>setTimeout(resolve,60));
 async function until(fn){for(let i=0;i<40;i++){if(fn())return;await tick();}assert.ok(fn(),'UI did not settle');}
 test('Astryx preserves account actions, native form data, delegated tabs and table controls',async()=>{
  const errors=[],log=new VirtualConsole();log.on('jsdomError',e=>errors.push(e));log.on('error',e=>errors.push(e));
- const dom=new JSDOM(`<html data-theme="light"><body><header class="topbar"><button id="theme-toggle">Тема</button><button id="knowledge-open">База</button><button id="account-open" class="account-avatar">ИИ</button><button id="session-resume" hidden>Войти</button></header><div class="context"><select id="object-select"><option value="">Выберите объект</option></select><button id="new-object">Новый объект</button></div><nav id="steps"></nav><div id="breadcrumbs"></div><main class="no-sidebar"><div id="content"><nav class="tabs"><button data-tab="0" class="active">Акты</button><button data-tab="1">Ресурсы</button></nav><form id="kept-form"><label class="field"><span>Категория</span><select name="category"><option value="a">Приборы</option><option value="b">Кабель</option></select></label><input id="kept-input" name="note" value="Несохранённое значение"><button id="kept-button" class="secondary">Действие</button></form><button class="object-tile">Полное название объекта</button><div class="data-table-footer"><button data-table-control="next">Следующая страница</button></div></div><div id="actions"></div></main><footer id="workspace-status"></footer><div id="editor-content"></div><div id="editor-footer"></div><div id="account-content"></div><div id="prompt-content"></div><div id="knowledge-results"></div><div id="command-root"></div></body></html>`,{url:'http://localhost/?view=registry',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:log});
+ const dom=new JSDOM(`<html data-theme="light"><body><header class="topbar"><button id="theme-toggle">Тема</button><button id="knowledge-open">База</button><button id="account-open" class="account-avatar">ИИ</button><button id="session-resume" hidden>Войти</button><button id="session-logout">Выйти из системы</button></header><div class="context"><select id="object-select"><option value="">Выберите объект</option></select><button id="new-object">Новый объект</button></div><nav id="steps"></nav><div id="breadcrumbs"></div><main class="no-sidebar"><div id="content"><nav class="tabs"><button data-tab="0" class="active">Акты</button><button data-tab="1">Ресурсы</button></nav><form id="kept-form"><label class="field"><span>Категория</span><select name="category"><option value="a">Приборы</option><option value="b">Кабель</option></select></label><input id="kept-input" name="note" value="Несохранённое значение"><button id="kept-button" class="secondary">Действие</button></form><button class="object-tile">Полное название объекта</button><div class="data-table-footer"><button data-table-control="next">Следующая страница</button></div></div><div id="actions"></div></main><footer id="workspace-status"><details class="table-filter-disclosure resource-fact-picker"><summary>Монтаж по ресурсу</summary><div class="data-table-filters">Выберите ресурс</div></details></footer><div id="editor-content"></div><div id="editor-footer"></div><div id="account-content"></div><div id="prompt-content"></div><div id="knowledge-results"></div><div id="command-root"></div></body></html>`,{url:'http://localhost/?view=registry',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:log});
  const w=dom.window,d=w.document;
  w.CSS={supports:()=>false,escape:value=>String(value).replace(/[^a-zA-Z0-9_-]/g,c=>'\\'+c)};
  w.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
@@ -17,7 +17,19 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  let clicks=0,profiles=0;button.addEventListener('click',e=>{e.preventDefault();clicks++;});avatar.addEventListener('click',()=>profiles++);
  w.eval(bundle);w.ITDDesign.renderNav([['overview','Обзор',''],['registry','Исполнительная документация','']],'registry',()=>{});
  await until(()=>d.querySelector('.tabs[data-astryx-island] [data-tab="1"]')&&d.querySelector('.account-control #account-open'));
+ assert.equal(d.querySelector('.account-control [aria-haspopup=menu]'),null);assert.ok(d.querySelector('.account-control #session-logout'));
  assert.equal(d.querySelectorAll('#workspace-status').length,1);assert.ok(d.querySelector('.workspace-nav #workspace-status'));
+
+ const help=d.querySelector('.resource-fact-picker');
+ await until(()=>help.querySelector('button[aria-expanded]'));
+ const trigger=help.querySelector('button[aria-expanded]');
+ assert.equal(help.tagName,'DIV');assert.equal(trigger.textContent.trim(),'Монтаж по ресурсу');
+ assert.equal(trigger.getAttribute('aria-expanded'),'false');
+ trigger.focus();assert.equal(d.activeElement,trigger);
+ trigger.click();await tick();assert.equal(trigger.getAttribute('aria-expanded'),'true');
+ assert.match(help.textContent,/Выберите ресурс/);
+ button.click();await tick();assert.equal(trigger.getAttribute('aria-expanded'),'true');clicks=0;
+ trigger.click();await tick();assert.equal(trigger.getAttribute('aria-expanded'),'false');
  assert.equal(d.getElementById('kept-input'),input);assert.equal(input.value,'Несохранённое значение');
  button.click();assert.equal(clicks,1);assert.match(button.className,/astryx-button/);assert.ok(button.querySelector('[data-itd-button-body]'));
  assert.equal(d.getElementById('account-open'),avatar);avatar.click();assert.equal(profiles,1);
@@ -44,9 +56,29 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  [...d.querySelectorAll('.astryx-column-picker input')].at(-1).click();await tick();assert.equal(view.querySelectorAll('thead th').length,2);
  assert.ok(input.parentElement.classList.contains('itd-field-control'),'Native input must retain the complete field frame');
  d.documentElement.dataset.theme='dark';d.dispatchEvent(new w.Event('itd:appearance'));await tick();
+ trigger.click();await tick();assert.equal(trigger.getAttribute('aria-expanded'),'true');trigger.click();await tick();assert.equal(trigger.getAttribute('aria-expanded'),'false');
  d.getElementById('content').innerHTML='<nav class="tabs"><button data-tab="0" class="active">Новая вкладка</button></nav>';
  w.ITDDesign.renderNav([['overview','Обзор','']],'overview',()=>{});
  await until(()=>d.querySelector('.tabs[data-astryx-island] [data-tab]'));await tick();
  assert.equal(d.documentElement.dataset.astryxTheme,'neutral','Unmounting a tab must not remove the root theme');assert.equal(d.documentElement.dataset.theme,'dark');
  assert.equal(errors.length,0,errors.map(e=>e.detail?.stack||e.message).join('\n'));dom.window.close();
+});
+
+
+test('Legacy loading leaves the React table intact and restores source rows',async()=>{
+ const source=await readFile(new URL('../../itd/web_assets/ui.js',import.meta.url),'utf8');
+ const loading=source.slice(source.indexOf('function tableLoading(){'),source.indexOf('// Подсказка открывается'));
+ const dom=new JSDOM('<div id="content"><div class="table-scroll"><table><thead><tr><th>Название</th></tr></thead><tbody><tr><td>Исходная строка</td></tr></tbody></table></div><div class="astryx-data-grid"><table><tbody><tr><td>Строка React</td></tr></tbody></table></div></div>',{runScripts:'outside-only'});
+ const w=dom.window,d=w.document;
+ w.eval('const tableObserver={disconnect(){}};const decorateDataTables=()=>{},observeTables=()=>{};'+loading);
+ const react=d.querySelector('.astryx-data-grid tbody'),original=react.firstElementChild;
+ const restore=w.tableLoading();
+ assert.equal(react.firstElementChild,original);
+ assert.equal(d.querySelector('.table-scroll').getAttribute('aria-busy'),'true');
+ assert.ok(d.querySelector('.table-skeleton'));
+ restore();
+ assert.equal(d.querySelector('.table-scroll').hasAttribute('aria-busy'),false);
+ assert.equal(d.querySelector('.table-scroll tbody').textContent,'Исходная строка');
+ assert.equal(react.firstElementChild,original);
+ dom.window.close();
 });

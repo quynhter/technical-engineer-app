@@ -221,7 +221,7 @@ function versionTables(fields,headers,locked){
   const width=templateHeader[0]?.reduce((sum,cell)=>sum+cell.span,0);
   const header=width===columns.length?templateHeader:[columns.map(c=>({label:c.label||c.key,span:1,rowspan:1}))];
   const title=!field.label||/^Таблица\s+\d+$/i.test(field.label)?`Таблица ${index+1}`:field.label;
-  return `<div data-version-table="${esc(field.key)}" data-locked="${locked}">
+  return `<div class="workspace-stack" data-version-table="${esc(field.key)}" data-locked="${locked}">
    ${tables.length>1?`<h4>${esc(title)}</h4>`:''}
    <div class="toolbar"><button type="button" class="secondary" data-version-table-add>${locked?'Создать версию и добавить строку':'Добавить строку'}</button></div>
    <div class="table-scroll"><table><thead>${header.map((row,index)=>`<tr>${row.map(c=>`<th colspan="${c.span}" rowspan="${c.rowspan||1}">${esc(c.label)}</th>`).join('')}${locked||index?'':`<th rowspan="${header.length}" class="version-row-action" aria-label="Действия"></th>`}</tr>`).join('')}</thead>

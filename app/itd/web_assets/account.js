@@ -82,13 +82,17 @@ function setProfile(user){
   readOnly();
  }
  const avatar=$('#account-open');
- const initials=[user.first_name,user.last_name].map(name=>Array.from(name)[0]).join('').toLocaleUpperCase('ru');
- avatar.textContent=initials;
- if(user.role==='admin'){
-  avatar.insertAdjacentHTML('beforeend','<span class="account-gear" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M10 2h4l.7 3.1 2 .9 2.8-1.5 2 3.5-2.1 2.3v3.4l2.1 2.3-2 3.5-2.8-1.5-2 .9L14 22h-4l-.7-3.1-2-.9-2.8 1.5-2-3.5 2.1-2.3v-3.4L2.5 8l2-3.5L7.3 6l2-.9z"/><circle cx="12" cy="12" r="3"/></svg></span>');
- }
- avatar.setAttribute('aria-label',`Настройки профиля · ${user.first_name} ${user.last_name} · ${roleNames[user.role]}`);
+ avatar.textContent='Настройки';
+ avatar.setAttribute('aria-label','Настройки');
+ avatar.title=`${user.first_name} ${user.last_name} · ${roleNames[user.role]}`;
  avatar.hidden=false;
+ $('#session-logout').hidden=false;
+}
+
+async function logoutWorkspace(){
+ if((dirty||formDirty)&&!await confirmWorkspace('Выйти без сохранения изменений?','Выйти'))return;
+ try{await api('/api/logout',{});}catch(error){if(error.status!==403)throw error;}
+ leaveWorkspace();
 }
 
 function accountNames(user={}){
@@ -226,6 +230,7 @@ function startAccount(){
   const raw=form.elements.code.value.trim();
   signIn(raw.includes('/#')?raw.split('/#').pop():raw);
  });
+ $('#session-logout').addEventListener('click',()=>accountAction(logoutWorkspace));
  $('#account-open').addEventListener('click',()=>accountAction(async()=>{
   await updateAccount();
   accountWindow.open({focus:$('#account-content input')});
@@ -270,9 +275,7 @@ function startAccount(){
    const task=button.dataset.accountTask;
    const id=Number($('[data-account-action="role"]')?.elements.id.value);
    if(task==='logout'){
-    if((dirty||formDirty)&&!await confirmWorkspace('Выйти без сохранения изменений?','Выйти'))return;
-    try{await api('/api/logout',{});}catch(error){if(error.status!==403)throw error;}
-    leaveWorkspace();
+    await logoutWorkspace();
    }else if(task==='delete'){
     if(!await confirmWorkspace('Удалить выбранного пользователя? Его сеансы завершатся.','Удалить'))return;
     await api('/api/admin/delete',{id});

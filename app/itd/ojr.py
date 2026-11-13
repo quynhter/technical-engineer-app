@@ -1,4 +1,5 @@
 """Объектный ОЖР: единый реестр журналов, персонал и подтверждение подписания."""
+import datetime
 import json
 
 from .changes import log_event
@@ -166,6 +167,15 @@ def act_people(c,aid):
     return result
 
 
+def signing_date_issues(c,act_id,date):
+    if date > datetime.date.today().isoformat(): raise ValueError('Дата подписания не может быть в будущем')
+    work_end=c.execute("SELECT MAX(f.end_date) FROM act_facts af JOIN work_facts f ON f.id=af.fact_id WHERE af.act_id=? AND f.status!='void'",(act_id,)).fetchone()[0]
+    if work_end and date<work_end: raise ValueError(f'Дата подписания раньше окончания работ ({work_end})')
+    document_date=c.execute("""SELECT MAX(a.doc_date) FROM act_resources ar JOIN resource_attachments ra ON ra.resource_id=ar.resource_id
+        JOIN attachments a ON a.id=ra.attachment_id WHERE ar.act_id=? AND (a.doc_type IN ('certificate','passport') OR a.file_kind='quality') AND a.doc_date IS NOT NULL""",(act_id,)).fetchone()[0]
+    if document_date and date<document_date: raise ValueError(f'Дата подписания раньше даты сертификата или паспорта ({document_date})')
+
+
 @atomic_operation
 def sign_act(c,pid,data):
     act=same_project(c,'acts',data['act_id'],pid)
@@ -185,6 +195,7 @@ def sign_act(c,pid,data):
     people=act_people(c,act['id'])
     if state=='signed':
         if not act['is_active'] or not date or not people: raise ValueError('Для подписания нужны активный акт, дата и выбранные подписанты')
+        signing_date_issues(c,act['id'],date)
         for role,p in people.items():
             try:
                 from .document_versions import validate_signer

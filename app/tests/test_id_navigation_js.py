@@ -74,7 +74,7 @@ const assert=require('node:assert/strict');
 let workspaceView,step,tab,editEntry,journalSection,packagePanel,resourcePanel;
 const state={object:{id:1},projects:[]},pdata={};
 const location={href:'http://127.0.0.1/?view=overview'},history={replaceState(){}};
-const window={scrollTo(){}},closeAgentHelp=()=>{},notice=()=>{},render=()=>{},refreshJournals=()=>{};
+const window={scrollTo(){}},notice=()=>{},render=()=>{},refreshJournals=()=>{};
 const title=name=>'<h1>'+name+'</h1>',projectSelector=()=>'<select id="project-select"></select>',icon=()=>'',card=()=>'';
 const packagePage=()=>'',workPage=()=>'',incomingPage=()=>'',journalsPage=()=>'<nav>Разделы ОЖР</nav>',schemesPage=()=>'<section>SCHEMES CONTENT</section>',factsPage=()=>'',checkPage=()=>'';
 const resourcePage=()=>'<section>RESOURCE CONTENT</section>',ojrPage=()=>'<nav aria-label="Разделы ОЖР">Титульный лист / Раздел 1</nav>';
@@ -94,6 +94,8 @@ navigate('facts');assert.equal(idViews[tab],'resources');
 navigate('check');assert.equal(idViews[tab],'documents');assert.equal(packagePanel,'check');
 navigate('delivery');assert.equal(idViews[tab],'documents');assert.equal(packagePanel,'delivery');
 navigate('incoming');assert.equal(idViews[tab],'resources');assert.equal(resourcePanel,'incoming');
+const disclosure={open:false},document={querySelector:()=>disclosure};
+navigate('permits');assert.equal(workspaceView,'object');assert.equal(step,0);assert.equal(disclosure.open,true);
 '''.replace('CONSTANTS',constants).replace('NAVIGATE',navigate).replace('PAGE',page))
 
     def test_ojr_work_section_uses_the_project_work_editor(self):

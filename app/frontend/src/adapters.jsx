@@ -2,10 +2,10 @@ import React,{useEffect,useLayoutEffect,useRef,useState} from 'react';
 import {Banner,ClickableCard,Collapsible,DateInput,Dialog,Skeleton} from '@astryxdesign/core';
 
 // These slots retain business DOM, listeners, validation and native FormData.
-export function NativeContent({nodes,version}){
+export function NativeContent({nodes,version,className}){
  const ref=useRef(null);
  useLayoutEffect(()=>{if(ref.current)ref.current.append(...nodes);},[nodes,version]);
- return <div data-native-content="" ref={ref}/>;
+ return <div className={className} data-native-content="" ref={ref}/>;
 }
 export function createAdapters({mount,primitive,isReactOwned,flush}){
  const dates=new WeakMap(),cards=new WeakSet(),banners=new WeakMap(),dialogs=new WeakMap();
@@ -31,14 +31,14 @@ export function createAdapters({mount,primitive,isReactOwned,flush}){
  }
  function enhanceCards(){for(const source of document.querySelectorAll('button.object-tile,button.journal-task')){
   if(cards.has(source)||isReactOwned(source))continue;cards.add(source);const content=source.cloneNode(true);if(source.classList.contains('object-tile'))content.querySelector('.tile-icon')?.remove();source.hidden=true;const host=document.createElement('div');host.className='clickable-card-host';source.after(host);
-  mount(host,<ClickableCard label={source.querySelector('strong')?.textContent||source.textContent.trim()} padding={4} variant="bordered" width="100%" onClick={()=>source.click()}><div className="clickable-card-content" dangerouslySetInnerHTML={{__html:content.innerHTML}}/></ClickableCard>);
+  mount(host,<ClickableCard label={source.querySelector('strong')?.textContent||source.textContent.trim()} padding={4} variant="default" width="100%" onClick={()=>source.click()}><div className="clickable-card-content" dangerouslySetInnerHTML={{__html:content.innerHTML}}/></ClickableCard>);
  }}
- function enhanceDisclosures(){for(const source of document.querySelectorAll('details:not(.agent-help,.help-tip)')){
+ function enhanceDisclosures(){for(const source of document.querySelectorAll('details:not(.help-tip)')){
   if(isReactOwned(source)||source.closest('.astryx-data-view')||source.querySelector(':scope > summary button,:scope > summary input'))continue;
   const summary=source.querySelector(':scope > summary');if(!summary)continue;
   const nodes=[...source.childNodes].filter(node=>node!==summary),host=document.createElement('div');for(const attr of source.attributes)if(attr.name!=='open')host.setAttribute(attr.name,attr.value);host.dataset.disclosure='';host.classList.add('disclosure-adapter');let open=source.open;
   source.replaceWith(host);
-  const render=()=>mount(host,<Collapsible trigger={summary.textContent.trim()} isOpen={open} onOpenChange={value=>{host.open=value;}} density="compact"><NativeContent nodes={nodes}/></Collapsible>);
+  const render=()=>mount(host,<Collapsible trigger={summary.textContent.trim()} isOpen={open} onOpenChange={value=>{host.open=value;}} density={host.classList.contains('table-filter-disclosure')?'compact':'balanced'}><NativeContent nodes={nodes} className="workspace-stack"/></Collapsible>);
   Object.defineProperty(host,'open',{get:()=>open,set:value=>{open=Boolean(value);render();host.dispatchEvent(new Event('toggle'));}});render();
  }}
  function enhanceBanners(){for(const source of document.querySelectorAll('#notice,#editor-notice,.account-message')){

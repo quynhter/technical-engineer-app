@@ -69,7 +69,7 @@ function factCardRow(r){
 }
 function resourceFactsEditor(r){
  const summary=pdata.workflow.facts.find(f=>f.resource_id===r.id);
- return `<section class="resource-card-block"><h3>Смонтировано</h3><div class="grid" data-card-total>${manualField('qty_fact','Общий итог для ведомости','number',null,r.qty_fact)}</div><p class="hint">Подтверждено записями: ${esc(summary?.confirmed_ids?.length?summary.confirmed_total:'Не внесено')} ${esc(r.unit)}. Итог и записи не складываются.</p><div id="resource-card-facts">${resourceCardOriginal.facts.map(factCardRow).join('')||'<p class="hint" data-card-empty>Записей монтажа пока нет.</p>'}</div></section>`;
+ return `<section class="resource-card-block"><h3>Смонтировано</h3><div class="grid" data-card-total>${manualField('qty_fact','Общий итог для ведомости','number',null,r.qty_fact)}</div><p class="hint">Подтверждено записями: ${esc(summary?.confirmed_ids?.length?summary.confirmed_total:'Не внесено')} ${esc(r.unit)}. Итог и записи не складываются.</p><div id="resource-card-facts" class="workspace-stack">${resourceCardOriginal.facts.map(factCardRow).join('')||'<p class="hint" data-card-empty>Записей монтажа пока нет.</p>'}</div></section>`;
 }
 function resourceCardEditor(r,kind){
  const body=kind==='fact'?resourceFactsEditor(r):
