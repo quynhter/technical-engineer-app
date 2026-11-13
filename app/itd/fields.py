@@ -170,7 +170,8 @@ def resolve_fields(fields, roots, *, draft=True, prefix="", diagnostics=None):
     """Вернуть контекст и список пропусков; обязательные пропуски блокируют финал."""
     validate_fields(fields)
     context = {}
-    roots={**roots,"field_values":context}
+    roots={**roots,"field_values":context,
+           "date_inputs": {f['key']: f.get('value') for f in fields if f['kind'] == 'literal'}}
     missing = []
     for field in fields:
         key = field["key"]

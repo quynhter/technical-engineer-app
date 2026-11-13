@@ -18,13 +18,13 @@
 
 - Основная БД: таблиц — **54**, колонок — **391**, компонентов внешних ключей — **107**; миграции 001–021.
 - Форм / DOCX / JSON-определений — **91**, включая титульник и две общие формы из `form_catalog.catalog()`.
-- **2389 эффективных определений**, включая каждую колонку вложенных таблиц: literal: 861, reference: 1207, signatory: 267, table: 54.
+- **2389 эффективных определений**, включая каждую колонку вложенных таблиц: literal: 754, reference: 1314, signatory: 267, table: 54.
 - Ошибок проверенных контрактов: **0**. Проверены уникальность кодов и файлов, ключи bindings, существование колонок источников, порядок field_values, Jinja AST всех XML-частей DOCX, поля циклов, два рендера каждой формы (контекст пустого тестового объекта и непустые синтетические строки), целостность XML результата, SQLite integrity_check и foreign_key_check на тестовой БД.
 - Результаты штатных тестов и ограничения их запуска фиксируются в CHANGELOG.md; аудит запускается отдельно.
 
 ### Что не означает «всё автоматически связано»
 
-- **855 пустых literal-полей** ожидают индивидуальные сведения. Это явный ручной ввод в `acts.fields`, а не потерянная связь. Нельзя достоверно вывести результаты измерений, заключения, даты испытаний и объёмы из спецификации.
+- **748 пустых literal-полей** ожидают индивидуальные сведения. Это явный ручной ввод в `acts.fields`, а не потерянная связь. Нельзя достоверно вывести результаты измерений, заключения, даты испытаний и объёмы из спецификации.
 - **50 ручных таблиц** хранят строки в `acts.fields[].value`. Каждая их ячейка перечислена ниже. Пустое обязательное значение блокирует финал.
 - `role_slot` — намеренно незавершённый выбор роли по варианту бланка; варианты указаны у соответствующих полей. Несколько представителей одной роли требуют выбора в документе.
 - Не каждое поле БД печатается в документе: ключи, ревизии, хеши, пути и служебные состояния поддерживают учёт. У каждой колонки ниже показаны прямые потребители форм; «нет прямой привязки» не означает ошибку.
@@ -99,7 +99,7 @@ flowchart LR
 <a id="table-act_attachments"></a>
 #### act_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/web.py](app/itd/web.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -122,7 +122,7 @@ CREATE TABLE act_attachments (
 <a id="table-act_entry_sources"></a>
 #### act_entry_sources — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -145,7 +145,7 @@ CREATE TABLE act_entry_sources (
 <a id="table-act_execution_status"></a>
 #### act_execution_status — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -174,7 +174,7 @@ CREATE TABLE act_execution_status (
 <a id="table-act_facts"></a>
 #### act_facts — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -243,7 +243,7 @@ CREATE TABLE act_materials (
 <a id="table-act_organizations"></a>
 #### act_organizations — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/ojr.py](app/itd/ojr.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -268,7 +268,7 @@ CREATE TABLE act_organizations (
 <a id="table-act_resources"></a>
 #### act_resources — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -309,7 +309,7 @@ END;
 <a id="table-act_schemes"></a>
 #### act_schemes — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -350,7 +350,7 @@ END;
 <a id="table-act_signatories"></a>
 #### act_signatories — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/registry.py](app/itd/registry.py), [app/itd/web.py](app/itd/web.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/registry.py](app/itd/registry.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -374,7 +374,7 @@ CREATE TABLE act_signatories (
 <a id="table-acts"></a>
 #### acts — Основные документы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -383,9 +383,9 @@ CREATE TABLE act_signatories (
 | `act_type` | TEXT; NOT NULL | FK #0.0 → document_types.code; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `sequence_no` | INTEGER; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `act_num` | TEXT; NOT NULL | Прямые привязки: 5; [список](#source-acts-act_num) |
-| `date_signed` | TEXT | Прямые привязки: 141; [список](#source-acts-date_signed) |
+| `date_signed` | TEXT | Прямые привязки: 140; [список](#source-acts-date_signed) |
 | `is_active` | INTEGER; NOT NULL; DEFAULT 1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `fields` | TEXT; NOT NULL; DEFAULT '[]' | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `fields` | TEXT; NOT NULL; DEFAULT '[]' | Прямые привязки: 102; [список](#source-acts-fields) |
 | `sheets_count` | INTEGER | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `registry_note` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `filename_title` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
@@ -421,7 +421,7 @@ END;
 <a id="table-agent_state"></a>
 #### agent_state — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/web.py](app/itd/web.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -442,7 +442,7 @@ CREATE TABLE agent_state (
 <a id="table-attachments"></a>
 #### attachments — Архив исходных файлов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/archive.py](app/itd/archive.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/archive.py](app/itd/archive.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -513,7 +513,7 @@ CREATE TABLE audit_events (
 <a id="table-deliveries"></a>
 #### deliveries — Сдача
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -543,7 +543,7 @@ CREATE INDEX deliveries_project ON deliveries(project_id);
 <a id="table-delivery_events"></a>
 #### delivery_events — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -636,7 +636,7 @@ CREATE TABLE document_counters (
 <a id="table-document_types"></a>
 #### document_types — Зарегистрированные формы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -664,7 +664,7 @@ CREATE TABLE document_types (
 <a id="table-document_versions"></a>
 #### document_versions — Карточки версий документов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -703,7 +703,7 @@ CREATE TABLE document_versions (
 <a id="table-file_operations"></a>
 #### file_operations — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/web.py](app/itd/web.py), [app/itd/file_manager.py](app/itd/file_manager.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -729,7 +729,7 @@ CREATE TABLE file_operations (
 <a id="table-final_reviews"></a>
 #### final_reviews — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/web.py](app/itd/web.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -787,7 +787,7 @@ CREATE TABLE generated_documents (
 <a id="table-object_attachments"></a>
 #### object_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/web.py](app/itd/web.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -810,7 +810,7 @@ CREATE TABLE object_attachments (
 <a id="table-object_participants"></a>
 #### object_participants — Роли участников объекта
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -861,7 +861,7 @@ CREATE TABLE object_units (
 <a id="table-objects"></a>
 #### objects — Объекты
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -899,7 +899,7 @@ CREATE TABLE objects (
 <a id="table-organization_assignments"></a>
 #### organization_assignments — Назначения организаций для документов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -929,7 +929,7 @@ CREATE UNIQUE INDEX org_role_project ON organization_assignments(project_id, rol
 <a id="table-organizations"></a>
 #### organizations — Участники: организации
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1040,7 +1040,7 @@ CREATE TABLE participant_periods (
 <a id="table-project_attachments"></a>
 #### project_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1089,7 +1089,7 @@ CREATE INDEX project_files_attachment ON project_files(attachment_id,project_id)
 <a id="table-projects"></a>
 #### projects — Разделы РД
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/configuration.py](app/itd/configuration.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/configuration.py](app/itd/configuration.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1099,8 +1099,8 @@ CREATE INDEX project_files_attachment ON project_files(attachment_id,project_id)
 | `code` | TEXT; NOT NULL | Прямые привязки: 26; [список](#source-projects-code) |
 | `name` | TEXT; NOT NULL | Прямые привязки: 5; [список](#source-projects-name) |
 | `city` | TEXT | Прямые привязки: 56; [список](#source-projects-city) |
-| `smr_start` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `smr_end` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `smr_start` | TEXT | Прямые привязки: 3; [список](#source-projects-smr_start) |
+| `smr_end` | TEXT | Прямые привязки: 3; [список](#source-projects-smr_end) |
 | `pnr_start` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `pnr_end` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `gip` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
@@ -1139,7 +1139,7 @@ CREATE INDEX projects_code_idx ON projects(code);
 <a id="table-quality_reviews"></a>
 #### quality_reviews — Проверки документов качества
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1177,7 +1177,7 @@ CREATE INDEX quality_reviews_resource ON quality_reviews(resource_id,attachment_
 <a id="table-release_operations"></a>
 #### release_operations — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/releases.py](app/itd/releases.py), [app/itd/web.py](app/itd/web.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/releases.py](app/itd/releases.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1211,7 +1211,7 @@ CREATE UNIQUE INDEX release_pending_move ON release_operations(release_id) WHERE
 <a id="table-releases"></a>
 #### releases — Выпуски файлов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1255,7 +1255,7 @@ CREATE UNIQUE INDEX releases_selected_xlsx ON releases(project_id) WHERE selecte
 <a id="table-resource_attachments"></a>
 #### resource_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1371,7 +1371,7 @@ CREATE TABLE resource_sources (
 <a id="table-resources"></a>
 #### resources — Ресурсы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1449,7 +1449,7 @@ CREATE TABLE schema_migrations (version INTEGER PRIMARY KEY, name TEXT NOT NULL)
 <a id="table-scheme_attachments"></a>
 #### scheme_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/web.py](app/itd/web.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1472,7 +1472,7 @@ CREATE TABLE scheme_attachments (
 <a id="table-schemes"></a>
 #### schemes — Схемы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1511,7 +1511,7 @@ END;
 <a id="table-signatories"></a>
 #### signatories — Участники: представители
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1554,7 +1554,7 @@ CREATE TABLE signatories (
 <a id="table-signatory_assignments"></a>
 #### signatory_assignments — Назначения представителей для документов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1584,7 +1584,7 @@ CREATE UNIQUE INDEX signer_role_project ON signatory_assignments(project_id, rol
 <a id="table-special_journals"></a>
 #### special_journals — Специальные журналы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1622,7 +1622,7 @@ CREATE INDEX special_journals_object ON special_journals(object_id);
 <a id="table-specification_pending"></a>
 #### specification_pending — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1693,7 +1693,7 @@ CREATE INDEX supplies_project ON supplies(project_id,resource_id);
 <a id="table-work_facts"></a>
 #### work_facts — Факт монтажа
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1773,7 +1773,7 @@ CREATE TABLE work_material_allocations (
 <a id="table-work_materials"></a>
 #### work_materials — Ресурсы записи работ
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/fields.py](app/itd/fields.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/fields.py](app/itd/fields.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1802,7 +1802,7 @@ CREATE INDEX work_materials_resource ON work_materials(resource_id);
 <a id="table-workspace_entries"></a>
 #### workspace_entries — Записи ОЖР / ЖВК / работ
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/web.py](app/itd/web.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1876,7 +1876,7 @@ CREATE TABLE document_roots (
 <a id="table-settings"></a>
 #### settings — Выбранная БД и рабочая папка
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](app/itd/titles.py), [app/itd/web.py](app/itd/web.py), [app/itd/accounts.py](app/itd/accounts.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](app/itd/titles.py), [app/itd/accounts.py](app/itd/accounts.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1899,7 +1899,7 @@ CREATE TABLE settings (
 <a id="table-users"></a>
 #### users — Пользователи
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/web.py](app/itd/web.py), [app/itd/accounts.py](app/itd/accounts.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/accounts.py](app/itd/accounts.py), [app/itd/web.py](app/itd/web.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -2171,12 +2171,12 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 <a id="source-acts-date_signed"></a>
 ### `acts.date_signed`
 
-`И_1_13_07_02.day`, `И_1_13_07_02.month`, `И_1_13_07_02.year`, `И_1_13_07_03.day`, `И_1_13_07_03.month`, `И_1_13_07_03.year`, `И_1_13_07_04.day`, `И_1_13_07_04.month`, `И_1_13_07_04.year`, `И_1_13_07_05.day`, `И_1_13_07_05.month`, `И_1_13_07_05.year`, `И_1_13_07_06.day`, `И_1_13_07_06.month`, `И_1_13_07_06.year`, `И_1_13_07_06а.day`, `И_1_13_07_06а.month`, `И_1_13_07_06а.year`, `И_1_13_07_06б.day`, `И_1_13_07_06б.month`, `И_1_13_07_06б.year`, `И_1_13_07_07.day`, `И_1_13_07_07.month`, `И_1_13_07_07.year`, `И_1_13_07_09.day`, `И_1_13_07_09.month`, `И_1_13_07_09.year`, `И_1_13_07_10.day`, `И_1_13_07_10.month`, `И_1_13_07_10.year`, `И_1_13_07_11.day`, `И_1_13_07_11.month`, `И_1_13_07_11.year`, `И_1_13_07_12.day`, `И_1_13_07_12.month`, `И_1_13_07_12.year`, `И_1_13_07_14а.day`, `И_1_13_07_14а.month`, `И_1_13_07_14а.year`, `И_1_13_07_15.day`, `И_1_13_07_15.month`, `И_1_13_07_15.year`, `И_1_13_07_16.day`, `И_1_13_07_16.month`, `И_1_13_07_16.year`, `И_1_13_07_17.day`, `И_1_13_07_17.month`, `И_1_13_07_17.year`, `И_1_13_07_18.day`, `И_1_13_07_18.month`, `И_1_13_07_18.year`, `И_1_13_07_19.day`, `И_1_13_07_19.month`, `И_1_13_07_19.year`, `И_1_13_07_20.day`, `И_1_13_07_20.month`, `И_1_13_07_20.year`, `И_1_13_07_21.day`, `И_1_13_07_21.month`, `И_1_13_07_21.year`, `И_1_13_07_22.day`, `И_1_13_07_22.month`, `И_1_13_07_22.year`, `И_1_13_07_23.day`, `И_1_13_07_23.month`, `И_1_13_07_23.year`, `И_1_13_07_24.day`, `И_1_13_07_24.month`, `И_1_13_07_24.year`, `МИНСТРОЙ_344_АОГРО.signed_day`, `МИНСТРОЙ_344_АОГРО.signed_month`, `МИНСТРОЙ_344_АОГРО.signed_year`, `МИНСТРОЙ_344_АООК.signed_day`, `МИНСТРОЙ_344_АООК.signed_month`, `МИНСТРОЙ_344_АООК.signed_year`, `МИНСТРОЙ_344_АОСР.signed_day`, `МИНСТРОЙ_344_АОСР.signed_month`, `МИНСТРОЙ_344_АОСР.signed_year`, `МИНСТРОЙ_344_АОУСИТО.signed_day`, `МИНСТРОЙ_344_АОУСИТО.signed_month`, `МИНСТРОЙ_344_АОУСИТО.signed_year`, `МИНСТРОЙ_344_АРООКС.signed_day`, `МИНСТРОЙ_344_АРООКС.signed_month`, `МИНСТРОЙ_344_АРООКС.signed_year`, `СП_68_М.date_0_2`, `СП_68_М.date_0_4`, `СП_68_М.date_0_6`, `СП_68_Н.date_6_2`, `СП_68_Н.date_6_4`, `СП_68_Н.date_6_6`, `СП_70_И.date_0_4`, `СП_70_И.date_0_6`, `СП_70_И.date_0_8`, `СП_71_Г.t0_r0_c0`, `СП_71_В.t0_r0_c0`, `СП_72_Д.t1_r0_c7`, `СП_74_Б.date_0_3`, `СП_74_Б.date_0_5`, `СП_74_Б.date_0_7`, `СП_74_Г.date_0_3`, `СП_74_Г.date_0_5`, `СП_74_Г.date_0_7`, `СП_74_Д.date_0_3`, `СП_74_Д.date_0_5`, `СП_74_Д.date_0_7`, `СП_74_А.date_0_3`, `СП_74_А.date_0_5`, `СП_74_А.date_0_7`, `СП_77_А_2.date_0_3`, `СП_77_А_2.date_0_5`, `СП_77_А_2.date_0_7`, `СП_77_А_9.date_5_3`, `СП_77_А_9.date_5_5`, `СП_77_А_9.date_5_7`, `СП_77_А_5.date_0_3`, `СП_77_А_5.date_0_5`, `СП_77_А_5.date_0_7`, `СП_77_А_1.date_0_3`, `СП_77_А_1.date_0_5`, `СП_77_А_1.date_0_7`, `СП_77_А_3.date_0_3`, `СП_77_А_3.date_0_5`, `СП_77_А_3.date_0_7`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_3`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_5`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_7`, `СП_77_А_16.date_6_3`, `СП_77_А_16.date_6_5`, `СП_77_А_16.date_6_7`, `СП_77_А_17.date_6_3`, `СП_77_А_17.date_6_5`, `СП_77_А_17.date_6_7`, `СП_77_А_24.p32_1`, `СП_77_А_24.p32_2`, `СП_77_А_24.p32_3`, `СП_77_А_20.date_0_3`, `СП_77_А_20.date_0_5`, `СП_77_А_20.date_0_7`, `СП_77_А_21.day`, `СП_77_А_21.month`, `СП_77_А_21.year`
+`И_1_13_07_02.day`, `И_1_13_07_02.month`, `И_1_13_07_02.year`, `И_1_13_07_03.day`, `И_1_13_07_03.month`, `И_1_13_07_03.year`, `И_1_13_07_04.day`, `И_1_13_07_04.month`, `И_1_13_07_04.year`, `И_1_13_07_05.day`, `И_1_13_07_05.month`, `И_1_13_07_05.year`, `И_1_13_07_06.day`, `И_1_13_07_06.month`, `И_1_13_07_06.year`, `И_1_13_07_06а.day`, `И_1_13_07_06а.month`, `И_1_13_07_06а.year`, `И_1_13_07_06б.day`, `И_1_13_07_06б.month`, `И_1_13_07_06б.year`, `И_1_13_07_07.day`, `И_1_13_07_07.month`, `И_1_13_07_07.year`, `И_1_13_07_09.day`, `И_1_13_07_09.month`, `И_1_13_07_09.year`, `И_1_13_07_10.day`, `И_1_13_07_10.month`, `И_1_13_07_10.year`, `И_1_13_07_11.day`, `И_1_13_07_11.month`, `И_1_13_07_11.year`, `И_1_13_07_12.day`, `И_1_13_07_12.month`, `И_1_13_07_12.year`, `И_1_13_07_14а.day`, `И_1_13_07_14а.month`, `И_1_13_07_14а.year`, `И_1_13_07_15.day`, `И_1_13_07_15.month`, `И_1_13_07_15.year`, `И_1_13_07_16.day`, `И_1_13_07_16.month`, `И_1_13_07_16.year`, `И_1_13_07_17.day`, `И_1_13_07_17.month`, `И_1_13_07_17.year`, `И_1_13_07_18.day`, `И_1_13_07_18.month`, `И_1_13_07_18.year`, `И_1_13_07_19.day`, `И_1_13_07_19.month`, `И_1_13_07_19.year`, `И_1_13_07_20.day`, `И_1_13_07_20.month`, `И_1_13_07_20.year`, `И_1_13_07_21.day`, `И_1_13_07_21.month`, `И_1_13_07_21.year`, `И_1_13_07_22.day`, `И_1_13_07_22.month`, `И_1_13_07_22.year`, `И_1_13_07_23.day`, `И_1_13_07_23.month`, `И_1_13_07_23.year`, `И_1_13_07_24.day`, `И_1_13_07_24.month`, `И_1_13_07_24.year`, `МИНСТРОЙ_344_АОГРО.signed_day`, `МИНСТРОЙ_344_АОГРО.signed_month`, `МИНСТРОЙ_344_АОГРО.signed_year`, `МИНСТРОЙ_344_АООК.signed_day`, `МИНСТРОЙ_344_АООК.signed_month`, `МИНСТРОЙ_344_АООК.signed_year`, `МИНСТРОЙ_344_АОСР.signed_day`, `МИНСТРОЙ_344_АОСР.signed_month`, `МИНСТРОЙ_344_АОСР.signed_year`, `МИНСТРОЙ_344_АОУСИТО.signed_day`, `МИНСТРОЙ_344_АОУСИТО.signed_month`, `МИНСТРОЙ_344_АОУСИТО.signed_year`, `МИНСТРОЙ_344_АРООКС.signed_day`, `МИНСТРОЙ_344_АРООКС.signed_month`, `МИНСТРОЙ_344_АРООКС.signed_year`, `СП_68_М.date_0_2`, `СП_68_М.date_0_4`, `СП_68_М.date_0_6`, `СП_68_Н.date_6_2`, `СП_68_Н.date_6_4`, `СП_68_Н.date_6_6`, `СП_70_И.date_0_4`, `СП_70_И.date_0_6`, `СП_70_И.date_0_8`, `СП_71_Г.t0_r0_c0`, `СП_71_В.t0_r0_c0`, `СП_74_Б.date_0_3`, `СП_74_Б.date_0_5`, `СП_74_Б.date_0_7`, `СП_74_Г.date_0_3`, `СП_74_Г.date_0_5`, `СП_74_Г.date_0_7`, `СП_74_Д.date_0_3`, `СП_74_Д.date_0_5`, `СП_74_Д.date_0_7`, `СП_74_А.date_0_3`, `СП_74_А.date_0_5`, `СП_74_А.date_0_7`, `СП_77_А_2.date_0_3`, `СП_77_А_2.date_0_5`, `СП_77_А_2.date_0_7`, `СП_77_А_9.date_5_3`, `СП_77_А_9.date_5_5`, `СП_77_А_9.date_5_7`, `СП_77_А_5.date_0_3`, `СП_77_А_5.date_0_5`, `СП_77_А_5.date_0_7`, `СП_77_А_1.date_0_3`, `СП_77_А_1.date_0_5`, `СП_77_А_1.date_0_7`, `СП_77_А_3.date_0_3`, `СП_77_А_3.date_0_5`, `СП_77_А_3.date_0_7`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_3`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_5`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_7`, `СП_77_А_16.date_6_3`, `СП_77_А_16.date_6_5`, `СП_77_А_16.date_6_7`, `СП_77_А_17.date_6_3`, `СП_77_А_17.date_6_5`, `СП_77_А_17.date_6_7`, `СП_77_А_24.p32_1`, `СП_77_А_24.p32_2`, `СП_77_А_24.p32_3`, `СП_77_А_20.date_0_3`, `СП_77_А_20.date_0_5`, `СП_77_А_20.date_0_7`, `СП_77_А_21.day`, `СП_77_А_21.month`, `СП_77_А_21.year`
 
 <a id="source-acts-fields"></a>
 ### `acts.fields`
 
-
+`СП_42_101_2003_П.t1_r0_c6`, `СП_42_101_2003_П.t1_r0_c8`, `СП_42_101_2003_П.t7_r0_c5`, `СП_42_101_2003_П.t7_r0_c7`, `СП_42_101_2003_П.t7_r2_c4`, `СП_42_101_2003_П.t7_r2_c6`, `СП_42_101_2003_Т.t7_r0_c4`, `СП_42_101_2003_Т.t7_r0_c6`, `СП_42_101_2003_Т.t7_r2_c4`, `СП_42_101_2003_Т.t7_r2_c6`, `СП_42_101_2003_С.t7_r0_c4`, `СП_42_101_2003_С.t7_r0_c6`, `СП_42_101_2003_С.t7_r2_c4`, `СП_42_101_2003_С.t7_r2_c6`, `СП_42_101_2003_Р.t11_r0_c4`, `СП_42_101_2003_Р.t11_r0_c6`, `СП_42_101_2003_Р.t11_r2_c4`, `СП_42_101_2003_Р.t11_r2_c6`, `СП_45_Ю.t4_r3_c6`, `СП_45_Ю.t4_r3_c8`, `СП_45_Щ.t4_r3_c6`, `СП_45_Щ.t4_r3_c8`, `СП_45_1.t1_r0_c3`, `СП_45_1.t1_r0_c5`, `СП_45_1.t1_r2_c3`, `СП_45_1.t1_r2_c5`, `СП_48_И.t1_r0_c3`, `СП_48_И.t1_r0_c5`, `СП_48_И.t1_r2_c3`, `СП_48_И.t1_r2_c5`, `СП_68_М.t3_r0_c4`, `СП_68_М.t3_r0_c6`, `СП_68_Н.t0_r46_c4`, `СП_68_Н.t0_r46_c6`, `СП_68_Н.t0_r46_c12`, `СП_68_Н.t0_r46_c14`, `СП_68_Н.t0_r63_c3`, `СП_68_Н.t0_r63_c5`, `СП_70_И.t2_r0_c4`, `СП_70_И.t2_r0_c6`, `СП_70_В.t5_r0_c4`, `СП_70_В.t5_r0_c6`, `СП_70_В.t6_r0_c4`, `СП_70_В.t6_r0_c6`, `СП_70_Д.t5_r0_c4`, `СП_70_Д.t5_r0_c6`, `СП_70_Д.t6_r0_c4`, `СП_70_Д.t6_r0_c6`, `СП_70_Г.t5_r0_c4`, `СП_70_Г.t5_r0_c6`, `СП_70_Г.t6_r0_c4`, `СП_70_Г.t6_r0_c6`, `СП_70_А.t6_r0_c4`, `СП_70_А.t6_r0_c6`, `СП_70_А.t7_r0_c4`, `СП_70_А.t7_r0_c6`, `СП_70_Б.t5_r0_c4`, `СП_70_Б.t5_r0_c6`, `СП_70_Б.t6_r0_c4`, `СП_70_Б.t6_r0_c6`, `СП_72_Д.t1_r0_c5`, `СП_72_Д.t1_r0_c7`, `СП_73_В.t1_r2_c5`, `СП_73_В.t1_r2_c7`, `СП_73_Д.t1_r0_c5`, `СП_73_Д.t1_r0_c7`, `СП_73_Г.t1_r2_c5`, `СП_73_Г.t1_r2_c7`, `СП_76_Б.t2_r0_c6`, `СП_76_Б.t2_r0_c8`, `СП_76_Б.t4_r0_c5`, `СП_76_Б.t4_r0_c7`, `СП_76_Б.t5_r0_c4`, `СП_76_Б.t5_r0_c6`, `СП_77_А_8.p36_2`, `СП_77_А_8.p36_3`, `СП_77_А_7.p35_2`, `СП_77_А_7.p35_3`, `СП_77_А_22.t1_r0_c3`, `СП_77_А_22.t1_r0_c5`, `СП_77_А_22.t2_r0_c5`, `СП_77_А_22.t2_r0_c7`, `СП_77_А_23.t1_r0_c3`, `СП_77_А_23.t1_r0_c5`, `СП_77_А_23.t2_r0_c5`, `СП_77_А_23.t2_r0_c7`, `СП_77_А_23.t4_r0_c3`, `СП_77_А_23.t4_r0_c5`, `СП_77_А_23.t8_r0_c3`, `СП_77_А_23.t8_r0_c5`, `СП_77_А_23.t8_r0_c9`, `СП_77_А_23.t8_r0_c11`, `СП_77_А_13.p260_2`, `СП_77_А_13.p260_3`, `СП_77_А_13.p261_5`, `СП_77_А_13.p261_6`, `СП_77_А_19_МУФТА.p58_2`, `СП_77_А_19_МУФТА.p58_3`, `СП_77_А_19_УЧАСТОК.p58_2`, `СП_77_А_19_УЧАСТОК.p58_3`, `СП_77_А_18.t0_r12_c4`, `СП_77_А_18.t0_r12_c6`
 
 <a id="source-acts-filename_title"></a>
 ### `acts.filename_title`
@@ -3126,12 +3126,12 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 <a id="source-projects-smr_end"></a>
 ### `projects.smr_end`
 
-
+`СП_77_А_5.t5_r0_c2`, `СП_77_А_5.t5_r0_c4`, `СП_77_А_5.t5_r0_c6`
 
 <a id="source-projects-smr_start"></a>
 ### `projects.smr_start`
 
-
+`СП_77_А_5.t4_r0_c2`, `СП_77_А_5.t4_r0_c4`, `СП_77_А_5.t4_r0_c6`
 
 <a id="source-projects-unit_id"></a>
 ### `projects.unit_id`
@@ -5544,9 +5544,9 @@ SHA-256 рабочего DOCX: `678847e30c1c3956927900a534d7f3cab4065b89a71dedd2
 | `p120_3` | 2. Предъявленное к приемке газооборудование считать принятым с "…"… 20… г. для проведения комплексного опробования (пусконаладочных работ). | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r0_c0` | Объект и адрес | reference; required=true | project_documentation.object_description (вычисляется form_defaults.documentation_context) ← objects.address, objects.name | DOCX; word/document.xml |
 | `t1_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c4` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c6` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c8` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c4` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c6` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r0_c8` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r1_c0` | Председатель комиссии от заказчика | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t2_r4_c1` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t2_r6_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -5561,12 +5561,12 @@ SHA-256 рабочего DOCX: `678847e30c1c3956927900a534d7f3cab4065b89a71dedd2
 | `t5_r1_c1` | (месяц, год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t5_r1_c3` | (месяц, год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t6_r1_c0` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t7_r0_c3` | от « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c5` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c7` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r0_c3` | Дата договора | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r0_c5` | Дата договора | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r0_c7` | Дата договора | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r2_c2` | Срок окончания работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r2_c4` | Срок окончания работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r2_c6` | Срок окончания работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t8_r0_c0` | (виды испытаний) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 
 <a id="form-34"></a>
@@ -5602,12 +5602,12 @@ SHA-256 рабочего DOCX: `dbc07f7112f793118eca971c84c7c97af805716b989d5a14
 | `t5_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t6_r1_c0` | (наименование проектной организации, дата выпуска проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t6_r3_c1` | с учетом согласованных изменений, внесенных в рабочие чертежи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r0_c2` | Дата начала строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r0_c4` | Дата начала строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r0_c6` | Дата начала строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r2_c2` | Дата окончания строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r2_c4` | Дата окончания строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r2_c6` | Дата окончания строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t8_r0_c1` | Главный инженер монтажной организации | signatory; required=true | Роль chief_engineer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
 | `t8_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 
@@ -5649,12 +5649,12 @@ SHA-256 рабочего DOCX: `40cba17b75603b41e7885847b8b94f057ad4d73648706a57
 | `t5_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t6_r1_c0` | (наименование проектной организации, дата выпуска проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t6_r3_c1` | с учетом согласованных изменений, внесенных в рабочие чертежи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r0_c2` | Дата начала строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r0_c4` | Дата начала строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r0_c6` | Дата начала строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r2_c2` | Дата окончания строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r2_c4` | Дата окончания строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r2_c6` | Дата окончания строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t8_r0_c1` | Главный инженер монтажной организации | signatory; required=true | Роль chief_engineer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
 | `t8_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 
@@ -5724,12 +5724,12 @@ SHA-256 рабочего DOCX: `66c0f2df410265b84c833bededf6c65e3d497ab2c3c8f2f5
 | `t9_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t10_r1_c0` | (наименование проектной организации, дата выпуска проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t10_r3_c1` | с учетом согласованных изменений, внесенных в рабочие чертежи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r2_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r2_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r2_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t11_r0_c2` | Дата начала строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t11_r0_c4` | Дата начала строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t11_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t11_r0_c6` | Дата начала строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t11_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t11_r2_c2` | Дата окончания строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t11_r2_c4` | Дата окончания строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t11_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t11_r2_c6` | Дата окончания строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t11_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t12_r0_c1` | Главный инженер монтажной организации | signatory; required=true | Роль chief_engineer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
 | `t12_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 
@@ -5823,9 +5823,9 @@ SHA-256 рабочего DOCX: `fd6da226090d9c8edc9d1b51834f403e8787bc99b8cfd041
 | `t3_r9_c1` | на строительной площадке и установили: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r1_c1` | (наименование работ и конструкций) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r3_c2` | Начать бетонирование не позднее | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c4` | ч. « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c6` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c8` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r3_c4` | Предельная дата начала бетонирования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r3_c6` | Предельная дата начала бетонирования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t4_r3_c8` | Предельная дата начала бетонирования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t5_r1_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
 | `t5_r3_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
 | `t5_r5_c0` | производство последующих работ по устройству (монтажу){{ t4_r1_c1 }}(наименование работ и конструкций)2.Начать бетонирование не позднее{{ t4_r3_c2 }}ч. «{{ t4_r3_c4 }}»{{ t4_r3_c6 }}20{{ t4_r3_c8 }}г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
@@ -5856,9 +5856,9 @@ SHA-256 рабочего DOCX: `27c7c3e80a39ab39974b87f4820674886519615a6f66e4f0
 | `t3_r9_c1` | на строительной площадке и установили: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r1_c1` | (наименование работ и конструкций) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r3_c2` | Начать бетонирование не позднее | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c4` | ч. « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c6` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c8` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r3_c4` | Предельная дата начала бетонирования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r3_c6` | Предельная дата начала бетонирования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t4_r3_c8` | Предельная дата начала бетонирования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t5_r1_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
 | `t5_r3_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
 | `t5_r5_c0` | производство последующих работ по устройству (монтажу){{ t4_r1_c1 }}(наименование работ и конструкций)2.Начать бетонирование не позднее{{ t4_r3_c2 }}ч. «{{ t4_r3_c4 }}»{{ t4_r3_c6 }}20{{ t4_r3_c8 }}г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
@@ -5877,12 +5877,12 @@ SHA-256 рабочего DOCX: `2341942e6cbf24924a2a7f7787e25655630b34dafdf5d6d7
 | `t0_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t0_r2_c1` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
 | `t0_r4_c1` | Наименование строительной организации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | Начат « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c1` | Окончен « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c3` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c1` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c3` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r0_c5` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r2_c1` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r2_c3` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r2_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r2_c5` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r2_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_2_3` | Начат «{{ t1_r0_c1 }}»{{ t1_r0_c3 }}20{{ t1_r0_c5 }}г.Окончен «{{ t1_r2_c1 }}»{{ t1_r2_c3 }}20{{ t1_r2_c5 }}г. | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_2_3.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_2_3.c2` | Время проб отбора / Дата | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -5912,12 +5912,12 @@ SHA-256 рабочего DOCX: `efd9a5f3bf41058596a88f52475b631bc05cc3894af1ae75
 | `t0_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t0_r2_c1` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
 | `t0_r4_c1` | Наименование строительной организации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | Начат « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c1` | Окончен « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c3` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c1` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c3` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r0_c5` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r2_c1` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r2_c3` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r2_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r2_c5` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r2_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_2_2` | Начат «{{ t1_r0_c1 }}»{{ t1_r0_c3 }}20{{ t1_r0_c5 }}г.Окончен «{{ t1_r2_c1 }}»{{ t1_r2_c3 }}20{{ t1_r2_c5 }}г. | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_2_2.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_2_2.c2` | Дата доставки | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -5968,9 +5968,9 @@ SHA-256 рабочего DOCX: `a5bec185fa1218f4e53b6fa7def1876344ec0a8fe016d591
 | `t2_r35_c1` | (месяц и год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t2_r37_c1` | (месяц и год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t2_r40_c0` | (наименование испытаний) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t3_r0_c2` | Дата начала работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t3_r0_c4` | Дата начала работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t3_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t3_r0_c6` | Дата начала работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t3_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t4_r1_c0` | с«{{ t3_r0_c2 }}»{{ t3_r0_c4 }}20{{ t3_r0_c6 }}г.для комплексного опробования. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r2_c0` | с«{{ t3_r0_c2 }}»{{ t3_r0_c4 }}20{{ t3_r0_c6 }}г.для комплексного опробования. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r2_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r2_c0 этой же формы | DOCX; word/document.xml |
@@ -6008,18 +6008,18 @@ SHA-256 рабочего DOCX: `e28b93d2ef330f3544566c450e84694a2fb82f853ccae468
 | `t0_r38_c0` | (при необходимости указывается в приложении к акту)] | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r40_c1` | смонтированное в | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r42_c1` | входящего в состав | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c10` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c12` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c14` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t0_r46_c2` | Дата начала комплексного опробования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t0_r46_c4` | Дата начала комплексного опробования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r46_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t0_r46_c6` | Дата начала комплексного опробования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r46_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t0_r46_c10` | Дата окончания комплексного опробования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t0_r46_c12` | Дата окончания комплексного опробования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r46_c10; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t0_r46_c14` | Дата окончания комплексного опробования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r46_c10; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t0_r48_c1` | в течение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r50_c1` | и по | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r53_c0` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r63_c1` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r63_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r63_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t0_r63_c1` | Дата приёмки оборудования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t0_r63_c3` | Дата приёмки оборудования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r63_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t0_r63_c5` | Дата приёмки оборудования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r63_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t0_r68_c1` | таблица 0, строка 68, ячейка 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r69_c1` | таблица 0, строка 69, ячейка 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r69_c9` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r69_c1 этой же формы | DOCX; word/document.xml |
@@ -6040,9 +6040,9 @@ SHA-256 рабочего DOCX: `cab3fdf8c5ec75addfe8e51439e8225dfcb6e639809ca172
 | `date_0_8` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
 | `t0_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
 | `t1_r0_c0` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r0_c2` | « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c4` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c2` | Дата приказа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c4` | Дата приказа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t2_r0_c6` | Дата приказа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r0_c9` | № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r0_c0` | Председатель комиссии от заказчика | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t4_r0_c0` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -6086,12 +6086,12 @@ SHA-256 рабочего DOCX: `2603e89d0991691d4f80e274d9261f28321a2a738e149f57
 | `t3_r4_c1` | Предприятие, изготовившее конструкции | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r5_c1` | Шифр заказа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_7_2` | Журнал окончен "{{ t6_r0_c2 }}"{{ t6_r0_c4 }}20{{ t6_r0_c6 }}г. | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_7_2.c1` | Дата выполнения работ | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_7_2.c2` | Наименование соединяемых элементов и материал антикоррозионного покрытия закладных изделий, нанесённого на заводе | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -6172,12 +6172,12 @@ SHA-256 рабочего DOCX: `d7d33a4a3c8a9ce398d9fb1537208793d9f7d6837e482f7d
 | `t3_r5_c1` | Шифр заказа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r5_c3` | Диаметры и классы прочности болтов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_7_2` | и лиц, ответственных за выполнение работ и ведение журнала | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_7_2.c1` | Фамилия, имя, отчество | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_7_2.c2` | Присвоенный разряд | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -6221,12 +6221,12 @@ SHA-256 рабочего DOCX: `f54cdf6d6e668330bb36cf804b8899975fb2d8baf269936b
 | `t3_r4_c1` | Предприятие, изготовившее конструкции | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r5_c1` | Шифр заказа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_7_2` | Журнал окончен "{{ t6_r0_c2 }}"{{ t6_r0_c4 }}20{{ t6_r0_c6 }}г. | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_7_2.c1` | Дата замоноличивания | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_7_2.c2` | Наименование стыков и узлов, место или номер по чертежу или схеме | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -6287,12 +6287,12 @@ SHA-256 рабочего DOCX: `47b2745245090f0e4ffd457fe0af71839949b4eff9770112
 | `t5_r0_c1` | Объем работ: стальных конструкций, т | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t5_r1_c1` | сборных железобетонных конструкций, м³ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t5_r2_c1` | деревянных конструкций, м³ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t6_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t6_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t7_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t7_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_8_1` | инженерно-технического персонала, занятого на монтаже здания (сооружения) | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_8_1.c1` | Фамилия, имя, отчество | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_8_1.c2` | Специальность и образование | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -6340,12 +6340,12 @@ SHA-256 рабочего DOCX: `c0a72f1b3cf5ed2757f8966e1c5855e5962a00bdd57657b6
 | `t3_r4_c1` | Предприятие, изготовившее стальные конструкции, арматурные и закладные изделия | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r5_c1` | Шифр документа о качестве | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_7_1` | инженерно-технического персонала, занятого выполнением сварочных работ | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_7_1.c1` | Фамилия, имя, отчество | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_7_1.c2` | Специальность и образование | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -6445,9 +6445,9 @@ SHA-256 рабочего DOCX: `6dd9a96f5936472c17c948bfd58675488bb7a07e5403810a
 |---|---|---|---|---|
 | `t0_r0_c1` | АКТ № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t1_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c7` | {{ t1_r0_c5 }} | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
+| `t1_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r0_c0` | (наименование) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t4_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -6507,9 +6507,9 @@ SHA-256 рабочего DOCX: `dd7b6e1b109bd4784e721efcf38b104413d3d8c7f79b7e59
 | `t0_r0_c0` | (наименование системы) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t1_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t1_r2_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r2_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c7` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r2_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r2_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r2_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t4_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -6534,9 +6534,9 @@ SHA-256 рабочего DOCX: `645431beb3ee8488503aaff6f72655700a62ac4dcf131f8a
 |---|---|---|---|---|
 | `t0_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t1_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c7` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t4_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -6557,9 +6557,9 @@ SHA-256 рабочего DOCX: `95932453b42e8bb95b459976c5a9786d3edf4c98e3c688d6
 | `t0_r0_c0` | (наименование системы) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t1_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t1_r2_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r2_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c7` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r2_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r2_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r2_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t4_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -6882,20 +6882,20 @@ SHA-256 рабочего DOCX: `34b128c0bee380caf33d8df9f6c516c653acaebf43617122
 | `t1_r2_c1` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
 | `t1_r3_c0` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t2_r0_c1` | 1. В соответствии с договором № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c6` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c8` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c4` | Дата договора | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c6` | Дата договора | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t2_r0_c8` | Дата договора | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r1_c1` | заключённым между | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t2_r2_c1` | и | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t2_r4_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t2_r6_c0` | установила следующее: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t3_r0_c0` | 2. Работы выполнены на следующих электроустановках | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c7` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r0_c3` | Дата начала работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r0_c5` | Дата начала работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t4_r0_c7` | Дата начала работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t5_r0_c2` | Дата окончания работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t5_r0_c4` | Дата окончания работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t5_r0_c6` | Дата окончания работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t6_r0_c0` | 4. Результаты пусконаладочных работ приведены в представленной технической документации в составе: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t7_r0_c0` | 6. Дополнительные замечания: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t8_r1_c2` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
@@ -6946,9 +6946,9 @@ SHA-256 рабочего DOCX: `3504e92cb4766e99461f1dee8fc93496604b5a6aab6161bc
 
 | Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
 |---|---|---|---|---|
-| `p36_1` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p36_2` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p36_3` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p36_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p36_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p36_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `p36_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p36_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `p83_4` | в начале испытания … °C | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `p84_5` | в конце испытания … °C | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `p151_6` | Установлено … заглушек. Снято после испытаний … заглушек.Согласно приведенным результатам испытаний и осмотру монтаж трубных проводок выполнен в соответствии с рабочей документацией и СП 77.13330 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
@@ -6995,9 +6995,9 @@ SHA-256 рабочего DOCX: `211174706f6e1f43e8a5404c88bd1b0ef99f3e7251f1a510
 
 | Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
 |---|---|---|---|---|
-| `p35_1` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p35_2` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p35_3` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p35_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p35_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p35_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `p35_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p35_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `p93_4` | Установлено … заглушек. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `p94_5` | Снято после испытания … заглушек. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `rows_0_21` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
@@ -7063,12 +7063,12 @@ SHA-256 рабочего DOCX: `4d3f74488ba27fb41a1a1e1ad50d035bfc1dfd863cb94b82
 | `t2_r5_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
 | `t2_r6_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t3_r0_c0` | Объект и шифр РД | reference; required=true | project_documentation.object_and_project (вычисляется form_defaults.documentation_context) ← objects.name, projects.code | DOCX; word/document.xml |
-| `t4_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r0_c2` | Монтажные работы начаты | reference; required=true; format=day_2digits; value_type=date | project.smr_start ← projects.smr_start | DOCX; word/document.xml |
+| `t4_r0_c4` | Монтажные работы начаты | reference; required=true; format=month_genitive_ru; value_type=date | project.smr_start ← projects.smr_start | DOCX; word/document.xml |
+| `t4_r0_c6` | Монтажные работы начаты | reference; required=true; format=year_4digits; value_type=date | project.smr_start ← projects.smr_start | DOCX; word/document.xml |
+| `t5_r0_c2` | Монтажные работы окончены | reference; required=true; format=day_2digits; value_type=date | project.smr_end ← projects.smr_end | DOCX; word/document.xml |
+| `t5_r0_c4` | Монтажные работы окончены | reference; required=true; format=month_genitive_ru; value_type=date | project.smr_end ← projects.smr_end | DOCX; word/document.xml |
+| `t5_r0_c6` | Монтажные работы окончены | reference; required=true; format=year_4digits; value_type=date | project.smr_end ← projects.smr_end | DOCX; word/document.xml |
 | `t6_r0_c1` | Перечень прилагаемой к акту документации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t6_r1_c0` | кументацией. Смонтированные приборы, средства автоматизации и вспомогательная аппаратура перечислены в ведомости смонтированных технических средств систем автоматизации, прилагаемой к настоящему акту. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 
@@ -7151,13 +7151,13 @@ SHA-256 рабочего DOCX: `99f2475e1e8d635db7a0d261bfc02e137f922141a0fe2a93
 |---|---|---|---|---|
 | `t0_r1_c0` | Обозначение формы | literal; required=false | Значение по умолчанию: "Приложение А.22" | DOCX; word/document.xml |
 | `t0_r2_c0` | Обозначение формы | literal; required=false | Значение по умолчанию: "Приложение А.22" | DOCX; word/document.xml |
-| `t1_r0_c1` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c1` | Дата утверждения акта | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c3` | Дата утверждения акта | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r0_c5` | Дата утверждения акта | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t2_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c7` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t2_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t3_r0_c0` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
 | `t4_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t4_r2_c0` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -7185,17 +7185,17 @@ SHA-256 рабочего DOCX: `d81167f45ba0d017af34a8fd1b8973da53050db8b0fd0b6b
 | `p86_3` | Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r1_c0` | Организация, утверждающая акт | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
 | `t0_r2_c0` | Представитель, утверждающий акт | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r0_c1` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c1` | Дата утверждения акта | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t1_r0_c3` | Дата утверждения акта | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t1_r0_c5` | Дата утверждения акта | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t2_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t2_r0_c3` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c5` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c7` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t2_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t2_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t3_r0_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t4_r0_c1` | приказом от « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c3` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r0_c1` | Дата приказа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t4_r0_c3` | Дата приказа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t4_r0_c5` | Дата приказа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t4_r0_c7` | г. № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t5_r0_c0` | Председатель комиссии от заказчика | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t6_r0_c1` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
@@ -7204,12 +7204,12 @@ SHA-256 рабочего DOCX: `d81167f45ba0d017af34a8fd1b8973da53050db8b0fd0b6b
 | `t7_r2_c1` | (обозначение проекта, дата разработки) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t7_r4_c1` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
 | `t7_r6_c1` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t8_r0_c1` | с « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c3` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c5` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c7` | г. по « | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c9` | » | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c11` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t8_r0_c1` | Дата начала работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t8_r0_c3` | Дата начала работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t8_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t8_r0_c5` | Дата начала работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t8_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t8_r0_c7` | Дата окончания работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t8_r0_c9` | Дата окончания работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t8_r0_c7; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t8_r0_c11` | Дата окончания работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t8_r0_c7; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t9_r0_c0` | Перечень прилагаемой к акту документации: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 
 <a id="form-76"></a>
@@ -7223,12 +7223,12 @@ SHA-256 рабочего DOCX: `3db3aa15f4588ccc8f2a4f1077b7de4c68b65a34eb8319f9
 
 | Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
 |---|---|---|---|---|
-| `p260_1` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p260_2` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p260_3` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p261_4` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p261_5` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p261_6` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p260_1` | Дата подписи руководителя монтажных работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p260_2` | Дата подписи руководителя монтажных работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p260_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `p260_3` | Дата подписи руководителя монтажных работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p260_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `p261_4` | Дата подписи руководителя сварочных работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p261_5` | Дата подписи руководителя сварочных работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p261_4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `p261_6` | Дата подписи руководителя сварочных работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p261_4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_0_8` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_0_8.c1` | (N чертежей расположения трубопроводов, буквенно-цифровое обозначение участков) / № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_0_8.c2` | (наименование и месторасположение объекта) / Номер сварного соединения по чертежам (исполнительным чертежам) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -7346,9 +7346,9 @@ SHA-256 рабочего DOCX: `c917925b4db2576445ee5b6162dd233f17e338fcd2e95e10
 
 | Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
 |---|---|---|---|---|
-| `p58_1` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p58_2` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p58_3` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p58_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p58_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `p58_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
 | `t0_r7_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t0_r8_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
@@ -7391,9 +7391,9 @@ SHA-256 рабочего DOCX: `3fc17b18f89969ae1a90e36f4436809591f4bbd936b45884
 
 | Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
 |---|---|---|---|---|
-| `p58_1` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p58_2` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p58_3` | "…" … 20… г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p58_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `p58_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `p58_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `rows_0_18` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
 | `rows_0_18.c1` | Графа 1 | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_0_18.c2` | НаправлениеА-Б / Pвх | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
@@ -7529,9 +7529,9 @@ SHA-256 рабочего DOCX: `e0e1cf65d22f4c2f2a8b1f6c90160b961a9e48e5be64fe1c
 | `t0_r10_c0` | (подразделение) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
 | `t0_r10_c3` | (объект) | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
 | `t0_r12_c0` | (участок) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c2` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c4` | " | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c6` | 20 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t0_r12_c2` | Дата испытания / проверки | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
+| `t0_r12_c4` | Дата испытания / проверки | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r12_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
+| `t0_r12_c6` | Дата испытания / проверки | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r12_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
 | `t0_r17_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t0_r20_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
 | `t0_r33_c1` | Испытательное давление измерено манометром, заводской номер | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |

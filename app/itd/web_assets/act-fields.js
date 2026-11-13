@@ -37,6 +37,7 @@ function fieldSourceLabel(field){
  return 'Из сохранённых сведений раздела';
 }
 function actAutomaticValue(field,roots){
+ if(field.source?.startsWith('date_inputs.')){const key=field.source.split('.')[1],input=document.querySelector(`[data-act-field="${key}"]`)||document.querySelector(`[name="version_field_${key}"]`);roots={...roots,date_inputs:{[key]:input?.value}};}
  let value;
  if(field.kind==='signatory'){
   const person=roots.signatories?.[field.role];
@@ -49,7 +50,7 @@ function actAutomaticValue(field,roots){
  if(value===null||value===undefined||value==='')return field.source==='act.date_signed'?'Выберите дату подписания выше':'Не заполнено — уточните исходные сведения';
  if(field.format||field.value_type==='date'){
   const parts=String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  if(parts){const [,year,month,day]=parts;const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];value=({day_2digits:day,month_genitive_ru:months[Number(month)-1],year_4digits:year})[field.format]||`${day}.${month}.${year}`;}
+  if(parts){const [,year,month,day]=parts;const months=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];value=({day_2digits:day,month_genitive_ru:months[Number(month)-1],year_4digits:year})[field.date_group?null:field.format]||`${day}.${month}.${year}`;}
  }
  return String(value);
 }
@@ -79,7 +80,7 @@ function renderActFields(code){
  if($('#act-resources'))syncLinkedActResources();
  const people=$('#act-people-fields');if(people){people.outerHTML=actPeopleSelects(null,form);decorateSelects();}
  const fields=actFieldDefinitions(form).filter(f=>!['hidden','not_applicable'].includes(f.state)),roots=actInputRoots();
- const literals=fields.filter(f=>f.kind==='literal'&&!f.readonly),automatic=fields.filter(f=>['reference','signatory'].includes(f.kind));
+ const literals=fields.filter(f=>f.kind==='literal'&&!f.readonly),automatic=fields.filter(f=>['reference','signatory'].includes(f.kind)&&(!f.date_group||f.date_group===f.key));
  const objectInfo=f=>/^(object|project|project_documentation)\./.test(f.source||'')?0:1;
  automatic.sort((a,b)=>objectInfo(a)-objectInfo(b));
  $('#act-fields').innerHTML=documentCreationGuidance(form)+participantRoleChoosers(fields)+organizationSelects(fields)+`<h3 class="rep">Сведения документа</h3><p class="hint">Обязательные сведения отмечены *. Можно сохранить незаполненный документ для дальнейшей подготовки; пропуски будут показаны при проверке.</p><div class="grid">${literals.map(f=>{
@@ -116,8 +117,28 @@ function syncLinkedActResources(){
 
 // Эта же явная карта применяется сервером при формировании документа.
 function normalizeFormFields(code,fields){
+ fields=normalizeDateFields(code,fields);
  const bindings=pdata.form_bindings?.[code]||{};
  return fields.map(field=>{const binding=bindings[field.key];if(binding&&field.kind==='literal'&&(field.value===null||field.value===undefined||field.value==='')&&!['hidden','not_applicable'].includes(field.state)){field={...field};for(const key of ['value','source','role','template','presentation'])delete field[key];field={...field,...binding};}return {...field,label:cleanFieldLabel(field.label||field.key)};});
+}
+function normalizeDateFields(code,fields){
+ const updates=new Map(),formats={day:'day_2digits',month:'month_genitive_ru',year:'year_4digits'};
+ for(const group of pdata.date_groups?.[code]||[]){
+  const first=fields.find(f=>f.key===group.parts.day);if(!first)continue;
+  const legacy=Object.values(group.parts).some(key=>{const f=fields.find(f=>f.key===key);return f?.kind==='literal'&&f.value!==null&&f.value!==undefined&&f.value!==''&&!/^\d{4}-\d{2}-\d{2}$/.test(String(f.value));});
+  for(const [part,key] of Object.entries(group.parts)){
+   const original=fields.find(f=>f.key===key);if(!original)continue;
+   if(legacy){const f={...original};if(f.kind==='literal'&&f.value!==null&&f.value!==undefined&&f.value!==''){for(const attr of ['format','value_type','input_type','date_group'])delete f[attr];}updates.set(key,{...f,label:group.label+' — '+({day:'день',month:'месяц',year:'год'})[part]});continue;}
+   let source=first.kind==='literal'&&first.value?null:group.source;
+   if(!source&&first.kind==='reference'&&!first.date_group)source=first.source;
+   const f={...original};delete f.source;delete f.value;delete f.input_type;
+   if(source)Object.assign(f,{kind:'reference',source});
+   else if(part==='day')Object.assign(f,{kind:'literal',value:first.value??null});
+   else Object.assign(f,{kind:'reference',source:'date_inputs.'+group.parts.day});
+   updates.set(key,{...f,label:group.label,value_type:'date',format:formats[part],date_group:group.parts.day,input_type:'date'});
+  }
+ }
+ return fields.map(f=>updates.get(f.key)||f);
 }
 function organizationRoles(fields){const roles=new Set();for(const f of fields){if(['hidden','not_applicable'].includes(f.state))continue;if(f.source?.startsWith('organizations.'))roles.add(f.source.split('.')[1]);}return [...roles];}
 function organizationSelects(fields,values={},choices=pdata.participant_choices?.organizations||{},locked=false){
@@ -149,7 +170,7 @@ function handleActParticipantChange(e){
 }
 
 function automaticCardFields(fields,roots){
- const seen=new Set();const items=fields.filter(f=>{if(f.kind!=='reference'||!f.source||!f.source.startsWith('object.')&&!f.source.startsWith('project.')&&!f.source.startsWith('project_documentation.')&&!/^(Object|Project)\./.test(f.source))return false;const id=f.source+'|'+(f.format||'');if(seen.has(id))return false;seen.add(id);return true;});
+ const seen=new Set();const items=fields.filter(f=>{if(f.date_group&&f.date_group!==f.key)return false;if(f.kind!=='reference'||!f.source||!f.source.startsWith('object.')&&!f.source.startsWith('project.')&&!f.source.startsWith('project_documentation.')&&!/^(Object|Project)\./.test(f.source))return false;const id=f.source+'|'+(f.format||'');if(seen.has(id))return false;seen.add(id);return true;});
  return items.length?`<section class="preview-section"><h3>Связи</h3><dl class="preview-fields">${items.map(f=>`<div><dt>${esc(f.label||f.key)}</dt><dd>${esc(actAutomaticValue(f,roots))}</dd></div>`).join('')}</dl></section>`:'';
 }
 function participantRoleLabel(role,fields=[]){return meta.document_roles[role]||fields.find(f=>f.kind==='signatory'&&f.role===role)?.label||fields.find(f=>f.source?.startsWith('organizations.'+role+'.'))?.label||'Представитель документа';}

@@ -94,6 +94,8 @@ def project_data(c, project_id):
     result['form_roots']['project'] = document_project(dict(project), result['form_roots']['object'])
     result['form_roots']['project_documentation'] = documentation_context(c, dict(project), result['participants']['organizations'])
     result['form_bindings']=field_bindings()
+    from .form_defaults import date_groups
+    result['date_groups'] = date_groups()
     from .document_versions import candidates
     from .act_participants import organization_candidates
     result['participant_choices']={'people':candidates(c,project_id),'organizations':organization_candidates(c,project_id)}

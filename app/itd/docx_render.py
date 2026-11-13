@@ -7,7 +7,31 @@
 import json
 import os
 import tempfile
+import re
 from pathlib import Path
+
+
+def _date_centuries(document, code, context):
+    """Убирает печатное «20» только перед подставляемым полным годом даты."""
+    from .form_defaults import date_groups
+    from .template_objects import field_contract
+    from .fields import lookup
+    from docx.oxml.ns import qn
+    spec = field_contract(code)
+    paths = {'document.date.year'}
+    paths.update(spec[g['parts']['year']]['path'] for g in date_groups().get(code, [])
+                 if g['parts']['year'] in spec)
+    paths = {p for p in paths if re.fullmatch(r'\d{4}', str(lookup(p, context) or ''))}
+    if not paths:
+        return
+    marker = r'{{\s*(?:' + '|'.join(re.escape(p) for p in paths) + r')\s*}}'
+    texts = list(document._element.iter(qn('w:t')))
+    for index, node in enumerate(texts):
+        value = node.text or ''
+        value = re.sub(r'20\s*(?=' + marker + ')', '', value)
+        if re.search(r'20\s*$', value) and re.match(r'\s*' + marker, ''.join(t.text or '' for t in texts[index + 1:index + 8])):
+            value = re.sub(r'20\s*$', '', value)
+        node.text = value
 
 
 def _draft_display(value):
@@ -49,13 +73,11 @@ def render_docx(template: str | Path, context: dict, output: str | Path, *, draf
     environment = TemplateEnvironment(undefined=StrictUndefined, autoescape=True, finalize=display_object)
     environment.globals.clear()
     document = DocxTemplate(template)
+    document.init_docx()
+    _date_centuries(document.docx, template.stem, context)
     document.render(context, jinja_env=environment, autoescape=True)
-    for person in context.get('_additional_signatories', []):
-        paragraph = document.docx.add_paragraph()
-        paragraph.paragraph_format.keep_together = True
-        paragraph.add_run(person['role'] + ': ').bold = True
-        paragraph.add_run(', '.join(filter(None, [person['position'], person['organization'], person['fio'], person['authority']])))
-        paragraph.add_run('    ____________ (подпись)')
+    from .signature_layout import append_signatories
+    append_signatories(document.docx, context.get('_additional_signatories', []))
     output.parent.mkdir(parents=True, exist_ok=True)
     handle, temp_name = tempfile.mkstemp(prefix=".itd-", suffix=".docx", dir=output.parent)
     os.close(handle)

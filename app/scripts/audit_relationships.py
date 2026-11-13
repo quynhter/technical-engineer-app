@@ -265,6 +265,8 @@ def source_columns(source, schemas, item_source=None):
         return [], 'Порядковый номер строки, начиная с 1; не ID БД'
     elif root == 'field_values' and len(bits) == 2:
         return [], 'Уже разрешённое поле ' + bits[1] + ' этой же формы'
+    elif root == 'date_inputs' and len(bits) == 2:
+        return ['acts.fields'], 'Исходная календарная дата поля ' + bits[1] + '; часть даты для печати'
     else:
         raise ValueError('Неописанный источник: ' + source)
     if table not in schemas or column not in {c['name'] for c in schemas[table]['columns']}:

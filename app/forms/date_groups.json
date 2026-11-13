@@ -1,0 +1,541 @@
+{
+  "СП_77_А_8": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "p36_1",
+        "month": "p36_2",
+        "year": "p36_3"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_77_А_7": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "p35_1",
+        "month": "p35_2",
+        "year": "p35_3"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_77_А_22": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t1_r0_c1",
+        "month": "t1_r0_c3",
+        "year": "t1_r0_c5"
+      },
+      "label": "Дата утверждения акта"
+    },
+    {
+      "path": "form.test_date_2",
+      "parts": {
+        "day": "t2_r0_c3",
+        "month": "t2_r0_c5",
+        "year": "t2_r0_c7"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_77_А_23": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t1_r0_c1",
+        "month": "t1_r0_c3",
+        "year": "t1_r0_c5"
+      },
+      "label": "Дата утверждения акта"
+    },
+    {
+      "path": "form.test_date_2",
+      "parts": {
+        "day": "t2_r0_c3",
+        "month": "t2_r0_c5",
+        "year": "t2_r0_c7"
+      },
+      "label": "Дата документа"
+    },
+    {
+      "path": "form.commission_order.date",
+      "parts": {
+        "day": "t4_r0_c1",
+        "month": "t4_r0_c3",
+        "year": "t4_r0_c5"
+      },
+      "label": "Дата приказа"
+    },
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t8_r0_c1",
+        "month": "t8_r0_c3",
+        "year": "t8_r0_c5"
+      },
+      "label": "Дата начала работ"
+    },
+    {
+      "path": "form.work_end",
+      "parts": {
+        "day": "t8_r0_c7",
+        "month": "t8_r0_c9",
+        "year": "t8_r0_c11"
+      },
+      "label": "Дата окончания работ"
+    }
+  ],
+  "СП_77_А_13": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "p260_1",
+        "month": "p260_2",
+        "year": "p260_3"
+      },
+      "label": "Дата подписи руководителя монтажных работ"
+    },
+    {
+      "path": "form.test_date_2",
+      "parts": {
+        "day": "p261_4",
+        "month": "p261_5",
+        "year": "p261_6"
+      },
+      "label": "Дата подписи руководителя сварочных работ"
+    }
+  ],
+  "СП_77_А_19_МУФТА": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "p58_1",
+        "month": "p58_2",
+        "year": "p58_3"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_77_А_19_УЧАСТОК": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "p58_1",
+        "month": "p58_2",
+        "year": "p58_3"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_77_А_18": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t0_r12_c2",
+        "month": "t0_r12_c4",
+        "year": "t0_r12_c6"
+      },
+      "label": "Дата испытания / проверки"
+    }
+  ],
+  "СП_77_А_5": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t4_r0_c2",
+        "month": "t4_r0_c4",
+        "year": "t4_r0_c6"
+      },
+      "label": "Монтажные работы начаты",
+      "source": "project.smr_start"
+    },
+    {
+      "path": "form.work_end_2",
+      "parts": {
+        "day": "t5_r0_c2",
+        "month": "t5_r0_c4",
+        "year": "t5_r0_c6"
+      },
+      "label": "Монтажные работы окончены",
+      "source": "project.smr_end"
+    }
+  ],
+  "СП_42_101_2003_П": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t1_r0_c4",
+        "month": "t1_r0_c6",
+        "year": "t1_r0_c8"
+      },
+      "label": "Дата документа"
+    },
+    {
+      "path": "form.number_fibre",
+      "parts": {
+        "day": "t7_r0_c3",
+        "month": "t7_r0_c5",
+        "year": "t7_r0_c7"
+      },
+      "label": "Дата договора"
+    },
+    {
+      "path": "form.date_work",
+      "parts": {
+        "day": "t7_r2_c2",
+        "month": "t7_r2_c4",
+        "year": "t7_r2_c6"
+      },
+      "label": "Срок окончания работ"
+    }
+  ],
+  "СП_42_101_2003_Р": [
+    {
+      "path": "form.ready_date",
+      "parts": {
+        "day": "t11_r2_c2",
+        "month": "t11_r2_c4",
+        "year": "t11_r2_c6"
+      },
+      "label": "Дата окончания строительства"
+    },
+    {
+      "path": "form.date",
+      "parts": {
+        "day": "t11_r0_c2",
+        "month": "t11_r0_c4",
+        "year": "t11_r0_c6"
+      },
+      "label": "Дата начала строительства"
+    }
+  ],
+  "СП_42_101_2003_С": [
+    {
+      "path": "form.ready_date",
+      "parts": {
+        "day": "t7_r2_c2",
+        "month": "t7_r2_c4",
+        "year": "t7_r2_c6"
+      },
+      "label": "Дата окончания строительства"
+    },
+    {
+      "path": "form.date",
+      "parts": {
+        "day": "t7_r0_c2",
+        "month": "t7_r0_c4",
+        "year": "t7_r0_c6"
+      },
+      "label": "Дата начала строительства"
+    }
+  ],
+  "СП_42_101_2003_Т": [
+    {
+      "path": "form.ready_date",
+      "parts": {
+        "day": "t7_r2_c2",
+        "month": "t7_r2_c4",
+        "year": "t7_r2_c6"
+      },
+      "label": "Дата окончания строительства"
+    },
+    {
+      "path": "form.date",
+      "parts": {
+        "day": "t7_r0_c2",
+        "month": "t7_r0_c4",
+        "year": "t7_r0_c6"
+      },
+      "label": "Дата начала строительства"
+    }
+  ],
+  "СП_68_М": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t3_r0_c2",
+        "month": "t3_r0_c4",
+        "year": "t3_r0_c6"
+      },
+      "label": "Дата начала работ"
+    }
+  ],
+  "СП_68_Н": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t0_r46_c2",
+        "month": "t0_r46_c4",
+        "year": "t0_r46_c6"
+      },
+      "label": "Дата начала комплексного опробования"
+    },
+    {
+      "path": "form.work_start_2",
+      "parts": {
+        "day": "t0_r46_c10",
+        "month": "t0_r46_c12",
+        "year": "t0_r46_c14"
+      },
+      "label": "Дата окончания комплексного опробования"
+    },
+    {
+      "path": "form.test_date_3",
+      "parts": {
+        "day": "t0_r63_c1",
+        "month": "t0_r63_c3",
+        "year": "t0_r63_c5"
+      },
+      "label": "Дата приёмки оборудования"
+    }
+  ],
+  "СП_70_И": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t2_r0_c2",
+        "month": "t2_r0_c4",
+        "year": "t2_r0_c6"
+      },
+      "label": "Дата приказа"
+    }
+  ],
+  "СП_70_В": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t5_r0_c2",
+        "month": "t5_r0_c4",
+        "year": "t5_r0_c6"
+      },
+      "label": "Дата начала журнала"
+    },
+    {
+      "path": "form.work_end_2",
+      "parts": {
+        "day": "t6_r0_c2",
+        "month": "t6_r0_c4",
+        "year": "t6_r0_c6"
+      },
+      "label": "Дата окончания журнала"
+    }
+  ],
+  "СП_70_Д": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t5_r0_c2",
+        "month": "t5_r0_c4",
+        "year": "t5_r0_c6"
+      },
+      "label": "Дата начала журнала"
+    },
+    {
+      "path": "form.work_end_2",
+      "parts": {
+        "day": "t6_r0_c2",
+        "month": "t6_r0_c4",
+        "year": "t6_r0_c6"
+      },
+      "label": "Дата окончания журнала"
+    }
+  ],
+  "СП_70_Г": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t5_r0_c2",
+        "month": "t5_r0_c4",
+        "year": "t5_r0_c6"
+      },
+      "label": "Дата начала журнала"
+    },
+    {
+      "path": "form.work_end_2",
+      "parts": {
+        "day": "t6_r0_c2",
+        "month": "t6_r0_c4",
+        "year": "t6_r0_c6"
+      },
+      "label": "Дата окончания журнала"
+    }
+  ],
+  "СП_70_А": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t6_r0_c2",
+        "month": "t6_r0_c4",
+        "year": "t6_r0_c6"
+      },
+      "label": "Дата начала журнала"
+    },
+    {
+      "path": "form.work_end_2",
+      "parts": {
+        "day": "t7_r0_c2",
+        "month": "t7_r0_c4",
+        "year": "t7_r0_c6"
+      },
+      "label": "Дата окончания журнала"
+    }
+  ],
+  "СП_70_Б": [
+    {
+      "path": "form.work_start",
+      "parts": {
+        "day": "t5_r0_c2",
+        "month": "t5_r0_c4",
+        "year": "t5_r0_c6"
+      },
+      "label": "Дата начала журнала"
+    },
+    {
+      "path": "form.work_end_2",
+      "parts": {
+        "day": "t6_r0_c2",
+        "month": "t6_r0_c4",
+        "year": "t6_r0_c6"
+      },
+      "label": "Дата окончания журнала"
+    }
+  ],
+  "СП_72_Д": [
+    {
+      "path": "form.signed_date",
+      "parts": {
+        "day": "t1_r0_c3",
+        "month": "t1_r0_c5",
+        "year": "t1_r0_c7"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_73_В": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t1_r2_c3",
+        "month": "t1_r2_c5",
+        "year": "t1_r2_c7"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_73_Д": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t1_r0_c3",
+        "month": "t1_r0_c5",
+        "year": "t1_r0_c7"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_73_Г": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t1_r2_c3",
+        "month": "t1_r2_c5",
+        "year": "t1_r2_c7"
+      },
+      "label": "Дата документа"
+    }
+  ],
+  "СП_76_Б": [
+    {
+      "path": "form.test_date",
+      "parts": {
+        "day": "t2_r0_c4",
+        "month": "t2_r0_c6",
+        "year": "t2_r0_c8"
+      },
+      "label": "Дата договора"
+    },
+    {
+      "path": "form.work_start_2",
+      "parts": {
+        "day": "t4_r0_c3",
+        "month": "t4_r0_c5",
+        "year": "t4_r0_c7"
+      },
+      "label": "Дата начала работ"
+    },
+    {
+      "path": "form.work_end_3",
+      "parts": {
+        "day": "t5_r0_c2",
+        "month": "t5_r0_c4",
+        "year": "t5_r0_c6"
+      },
+      "label": "Дата окончания работ"
+    }
+  ],
+  "СП_45_Ю": [
+    {
+      "path": "form.duration",
+      "parts": {
+        "day": "t4_r3_c4",
+        "month": "t4_r3_c6",
+        "year": "t4_r3_c8"
+      },
+      "label": "Предельная дата начала бетонирования"
+    }
+  ],
+  "СП_45_Щ": [
+    {
+      "path": "form.duration",
+      "parts": {
+        "day": "t4_r3_c4",
+        "month": "t4_r3_c6",
+        "year": "t4_r3_c8"
+      },
+      "label": "Предельная дата начала бетонирования"
+    }
+  ],
+  "СП_45_1": [
+    {
+      "path": "form.date",
+      "parts": {
+        "day": "t1_r0_c1",
+        "month": "t1_r0_c3",
+        "year": "t1_r0_c5"
+      },
+      "label": "Дата начала журнала"
+    },
+    {
+      "path": "form.date_4",
+      "parts": {
+        "day": "t1_r2_c1",
+        "month": "t1_r2_c3",
+        "year": "t1_r2_c5"
+      },
+      "label": "Дата окончания журнала"
+    }
+  ],
+  "СП_48_И": [
+    {
+      "path": "form.date",
+      "parts": {
+        "day": "t1_r0_c1",
+        "month": "t1_r0_c3",
+        "year": "t1_r0_c5"
+      },
+      "label": "Дата начала журнала"
+    },
+    {
+      "path": "form.date_4",
+      "parts": {
+        "day": "t1_r2_c1",
+        "month": "t1_r2_c3",
+        "year": "t1_r2_c5"
+      },
+      "label": "Дата окончания журнала"
+    }
+  ]
+}

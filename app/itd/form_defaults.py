@@ -2,6 +2,7 @@
 from functools import lru_cache
 import json
 from pathlib import Path
+import re
 
 
 FIELD_CONTINUATIONS = {
@@ -16,6 +17,51 @@ FIELD_CONTINUATIONS = {
 @lru_cache(maxsize=1)
 def field_bindings():
     return json.loads((Path(__file__).parents[1]/'forms'/'bindings.json').read_text(encoding='utf-8'))
+
+
+@lru_cache(maxsize=1)
+def date_groups():
+    return json.loads((Path(__file__).parents[1]/'forms'/'date_groups.json').read_text(encoding='utf-8'))
+
+
+def apply_date_fields(code, fields):
+    """Одна календарная дата вместо трёх строк; старый ручной текст сохраняется."""
+    groups = date_groups().get(code, [])
+    definitions = {f['key']: f for f in fields}
+    updates = {}
+    formats = {'day': 'day_2digits', 'month': 'month_genitive_ru', 'year': 'year_4digits'}
+    for group in groups:
+        parts = group['parts']
+        first = definitions.get(parts['day'])
+        if not first:
+            continue
+        legacy = any(f.get('kind') == 'literal' and f.get('value') not in (None, '')
+                     and not re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(f['value']))
+                     for key in parts.values() if (f := definitions.get(key)))
+        for part, key in parts.items():
+            if key not in definitions:
+                continue
+            field = definitions[key]
+            label = group['label'] + (' — ' + {'day': 'день', 'month': 'месяц', 'year': 'год'}[part] if legacy else '')
+            if legacy:
+                if field['kind'] == 'literal' and field.get('value') not in (None, ''):
+                    field = {k: v for k, v in field.items() if k not in ('format', 'value_type', 'input_type', 'date_group')}
+                updates[key] = {**field, 'label': label}
+                continue
+            # Ручная календарная дата выше автоматической связи раздела.
+            source = (None if first['kind'] == 'literal' and first.get('value') else group.get('source'))
+            if not source and first['kind'] == 'reference' and not first.get('date_group'):
+                source = first.get('source')
+            field = {k: v for k, v in field.items() if k not in ('source', 'value', 'input_type')}
+            if source:
+                field.update(kind='reference', source=source)
+            elif part == 'day':
+                field.update(kind='literal', value=first.get('value'))
+            else:
+                field.update(kind='reference', source='date_inputs.' + parts['day'])
+            updates[key] = {**field, 'label': label, 'value_type': 'date', 'format': formats[part],
+                            'date_group': parts['day']}
+    return [updates.get(f['key'], f) for f in fields]
 
 
 def document_project(project, obj):
@@ -71,7 +117,7 @@ def apply_form_defaults(code, fields):
                 extra = [{'key': key, 'kind': 'reference', 'source': 'item.' + key}
                          for key in ('number_date', 'organization', 'pages') if key not in keys]
                 result[i] = {**field, 'fields': columns + extra}
-    return result
+    return apply_date_fields(code, result)
 
 
 def documentation_context(connection, project, organizations):

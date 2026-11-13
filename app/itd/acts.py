@@ -161,7 +161,7 @@ def build_context(connection, act_id, *, draft=True):
     # Дополнительные участники выбираются в карточке, хотя исходный бланк
     # обычно не содержит строк для них. Передаём только явный выбор акта.
     from .workspace import OTHER_SIGNER_ROLES
-    explicit_people = act_people(connection, act_id)
+    explicit_people = selected_people if execution else act_people(connection, act_id)
     additional_signatories = [
         {'role': label, 'fio': short_fio(person), 'position': person['position'],
          'organization': person['organization'].get('short_name') or person['organization']['full_name'],
