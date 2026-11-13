@@ -30,8 +30,8 @@ export function createAdapters({mount,primitive,isReactOwned,flush}){
   }
  }
  function enhanceCards(){for(const source of document.querySelectorAll('button.object-tile,button.journal-task')){
-  if(cards.has(source)||isReactOwned(source))continue;cards.add(source);source.hidden=true;const host=document.createElement('div');host.className='clickable-card-host';source.after(host);
-  mount(host,<ClickableCard label={source.querySelector('strong')?.textContent||source.textContent.trim()} padding={4} variant="bordered" width="100%" onClick={()=>source.click()}><div className="clickable-card-content" dangerouslySetInnerHTML={{__html:source.innerHTML}}/></ClickableCard>);
+  if(cards.has(source)||isReactOwned(source))continue;cards.add(source);const content=source.cloneNode(true);if(source.classList.contains('object-tile'))content.querySelector('.tile-icon')?.remove();source.hidden=true;const host=document.createElement('div');host.className='clickable-card-host';source.after(host);
+  mount(host,<ClickableCard label={source.querySelector('strong')?.textContent||source.textContent.trim()} padding={4} variant="bordered" width="100%" onClick={()=>source.click()}><div className="clickable-card-content" dangerouslySetInnerHTML={{__html:content.innerHTML}}/></ClickableCard>);
  }}
  function enhanceDisclosures(){for(const source of document.querySelectorAll('details:not(.agent-help,.help-tip)')){
   if(isReactOwned(source)||source.closest('.astryx-data-view')||source.querySelector(':scope > summary button,:scope > summary input'))continue;

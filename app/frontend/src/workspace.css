@@ -15,7 +15,7 @@ body{margin:0;display:block;color:var(--ink);background:var(--paper)}
 .nav-glyph{display:inline-flex;align-items:center;flex:none}.nav-glyph svg{width:20px;height:20px}
 .workspace-content{min-width:0;padding:18px 24px 16px;max-width:1560px;width:100%;margin-inline:auto}
 .context{margin:0 0 14px;padding:0 0 14px;width:100%;max-width:none;border-bottom:1px solid var(--line);gap:16px;display:flex;align-items:end}
-.context>div{flex:1;min-width:0;max-width:820px}.context-label{font-size:11px;font-weight:600;color:var(--muted);display:block;margin-bottom:6px}
+.context>div{flex:1;min-width:0;max-width:none}.context-label{display:block;margin-bottom:6px}
 .context .smart-input{font-size:14px;font-weight:500;background:var(--surface)}
 #breadcrumbs{margin:0 0 12px;font-size:12px}
 main,main.no-sidebar{display:grid;width:100%;max-width:none;margin:0;padding:0;gap:24px;grid-template-columns:220px minmax(0,1fr)}
@@ -23,7 +23,7 @@ main.no-sidebar{grid-template-columns:minmax(0,1fr)}.main-content{min-width:0;wi
 .title-row{margin-bottom:16px;align-items:center}.title-row h1{font-size:var(--text-heading-2-size,26px);font-weight:600;line-height:1.35;letter-spacing:-.5px;margin:0 0 8px;overflow-wrap:anywhere}.subtitle{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
 .content-stack{display:flex;flex-direction:column;gap:12px}.content-stack>.title-row{margin-bottom:0}.content-stack>.card,.content-stack>.tabs,.content-stack>.panel-nav,.content-stack>.section-toolbar{margin-bottom:0}
 .card{margin:0 0 16px;box-shadow:none}.card-title{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:16px;font-weight:600;line-height:1.5}.card-title>.icon{width:auto;height:auto;background:none;color:var(--muted);display:inline-flex}
-.grid{gap:20px}.grid.three{gap:20px}.field{min-width:0}.field>span{font-size:13px;font-weight:500;line-height:1.5;margin-bottom:6px;color:var(--ink)}
+.grid{gap:20px}.grid.three{gap:20px}.field{min-width:0}.field>span,.context-label,.astryx-side-nav-section>div:first-child>span>span:first-child{font-size:13px;font-weight:500;line-height:1.5;color:var(--ink);letter-spacing:normal;text-transform:none}.field>span{margin-bottom:6px}
 /* Native form controls use the same real Astryx frame as React fields. */
 .itd-field-control{width:100%;min-width:0;box-sizing:border-box}
 .itd-field-control>input,.itd-field-control>textarea{width:100%;min-width:0;min-height:0;margin:0;border:0;border-radius:0;background:transparent;color:inherit;font:inherit;box-shadow:none;outline:none}
@@ -36,7 +36,7 @@ main.no-sidebar{grid-template-columns:minmax(0,1fr)}.main-content{min-width:0;wi
 .date-island{width:100%;min-width:0}
 
 .smart-select{--select-bg:var(--surface)}.smart-options{background:var(--color-background-popover);border:1px solid var(--line);border-radius:var(--radius-container);padding:4px;box-shadow:var(--shadow-med,0 6px 24px #0002)}.smart-option{font-size:14px;padding:8px 10px;border-radius:var(--radius-inner)}.smart-option.highlighted,.smart-option:hover{background:var(--subtle)}
-.hint,.small{font-size:12px;color:var(--muted);line-height:1.65}.hint{margin-top:10px}.section-toolbar{background:none;padding:0;border:0;gap:12px;align-items:end;margin-bottom:20px}.section-toolbar>.field{max-width:740px}
+.hint,.small{font-size:12px;color:var(--muted);line-height:1.65}.hint{margin-top:10px}.section-toolbar{background:none;padding:0;border:0;gap:12px;align-items:end;margin-bottom:20px}.section-toolbar>.field{flex:1 1 0;width:100%;max-width:none}
 .toolbar,.quick-actions,.table-actions,.ux-form-actions,.footer-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-start}.toolbar{margin-bottom:16px}
 [data-itd-button-body]{display:inline-flex;align-items:center;gap:6px;min-width:0}.ui-icon{display:inline-block;flex:none;vertical-align:middle}
 .tabs,.panel-nav,.journal-sections{padding:0;margin:0 0 20px;border:0;display:block;overflow:visible;background:none;min-width:0}
@@ -61,12 +61,12 @@ main.no-sidebar{grid-template-columns:minmax(0,1fr)}.main-content{min-width:0;wi
 #actions:empty{display:none}#actions{position:sticky;bottom:0;z-index:35;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between;padding:12px 16px;margin:16px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-container);box-shadow:none}.status-text{display:flex;align-items:center;min-height:36px;margin:0;padding:0;font-size:13px;line-height:20px;color:var(--muted);max-width:none}
 #workspace-status{width:100%;max-width:none;margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line);background:none;z-index:40}#workspace-status .connection-tools{gap:16px}.agent-status{border:0;background:none;color:var(--muted)}.agent-popover{background:var(--color-background-popover);color:var(--ink);border-color:var(--line)}
 #toast{background:var(--ink);color:var(--paper);border-radius:var(--radius-container);padding:12px 20px;box-shadow:var(--shadow-med);z-index:100}
-.command-content{padding:24px}.command-results{display:grid;gap:4px;margin:16px 0}.command-results button{justify-content:flex-start}.command-content .hint{margin-top:16px}
+.command-content{padding:24px}.command-results{display:grid;gap:4px;margin:16px 0}.command-results button{justify-content:flex-start}.command-header{padding:0;margin-bottom:12px}.command-shortcuts{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;min-height:36px;color:var(--muted);font-size:12px}.command-shortcuts>span{display:inline-flex;align-items:center;gap:6px}
 :focus-visible{outline-offset:3px}#content h1:focus:not(:focus-visible){outline:none}
 @media(min-width:1800px){.workspace-content{padding:32px 48px}}
 @media(max-width:1100px){.header-actions{gap:4px}}
 @media(max-width:760px){.workspace-content{padding:16px}.context{align-items:end;gap:12px}.context .smart-input{font-size:13px}main,main.no-sidebar{display:block}.title-row h1{font-size:22px}.grid,.grid.three{grid-template-columns:1fr;gap:16px}.object-cards{grid-template-columns:1fr}.journey-next{display:block;padding:20px}.journey-next button{margin-top:14px}.quick-actions{gap:8px}.section-toolbar{flex-wrap:wrap}.section-toolbar>.field{flex-basis:100%;max-width:none}.summary-grid{gap:8px}.summary-grid>div{padding:14px 10px}.table-pagination>div{gap:12px}.workspace-dialog,.workspace-dialog--wide{width:calc(100vw - 16px);max-height:94dvh}.workspace-dialog .dialog-bar{padding:16px;gap:8px}.dialog-content{padding:16px}.workspace-dialog>.dialog-footer{padding:16px}.dialog-tools{gap:4px}.document-actions,.journal-tasks{grid-template-columns:1fr}.command-content{padding:16px}#sidebar{margin-bottom:20px}.table-pagination nav{max-width:100%;flex-wrap:wrap}}
-@media(max-width:480px){.header-actions{gap:0}.header-actions button{font-size:12px}.context-label{font-size:10px}.dialog-tools button:not([data-dialog-close]){display:none}.journey-next h2{font-size:20px}}
+@media(max-width:480px){.header-actions{gap:0}.header-actions button{font-size:12px}.dialog-tools button:not([data-dialog-close]){display:none}.journey-next h2{font-size:20px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 [hidden]{display:none!important}
 
@@ -103,7 +103,7 @@ button.account-avatar{width:36px;height:36px;min-height:36px;border-radius:50%;p
 .object-tile{display:flex;flex-direction:column;align-items:flex-start;gap:14px;white-space:normal;overflow:hidden}
 .object-tile>strong{display:block;max-width:100%;overflow-wrap:anywhere;font-size:16px;line-height:1.6}
 .object-tile .tile-link{margin-top:auto;display:inline-flex;align-items:center;gap:6px}
-.workspace-nav button span{white-space:normal;text-overflow:clip}
+/* Keep Astryx SideNavItem single-line ellipsis and full accessible labels. */
 
 /* Actual Astryx Table and its stateful plugins own browsing geometry. */
 .astryx-data-view{min-width:0;width:100%;margin-top:12px}
@@ -150,3 +150,8 @@ body[data-auth="pending"]>.itd-dialog{visibility:visible}
 /* Legacy disclosures added margins to every direct div, including Astryx. */
 .disclosure-adapter>.astryx-collapsible{margin:0;width:100%;max-width:100%}
 .astryx-collapsible-trigger{min-height:36px;box-sizing:border-box}
+
+/* Inner editors stay borderless; their Astryx frame owns focus feedback. */
+.date-island input,.date-island input:focus,.date-island input:focus-visible{border:0;outline:none;box-shadow:none;background:transparent;min-height:0;padding:0}
+.astryx-selector-search input{min-height:0;height:20px;line-height:20px;padding:0;border:0;box-shadow:none;background:transparent}
+#knowledge-search{min-width:88px;flex-shrink:0}
