@@ -87,7 +87,7 @@ function validateInputs(root){
  const controls=[...root.querySelectorAll('input,select,textarea')].filter(el=>!el.classList.contains('smart-input')&&!el.disabled);
  const invalid=controls.filter(el=>{const bad=(el.required&&(!el.value.trim()||el.type==='checkbox'&&!el.checked))||!el.checkValidity();if(bad)markInvalid(el);else clearInvalid(el);return bad;});
  if(!invalid.length)return true;
- for(const control of invalid){for(let parent=control.parentElement;parent&&parent!==root;parent=parent.parentElement)if(parent.tagName==='DETAILS')parent.open=true;}
+ for(const control of invalid){for(let parent=control.parentElement;parent&&parent!==root;parent=parent.parentElement)if((parent.tagName==='DETAILS'||parent.hasAttribute('data-disclosure')))parent.open=true;}
  const missing=invalid.filter(el=>el.required&&!el.value.trim());
  notice(missing.length===invalid.length?validationMessage(invalid.map(fieldLabel)):'Пожалуйста, проверьте заполнение полей:\n'+invalid.map(el=>'• «'+fieldLabel(el)+'»').join('\n'));
  const el=invalid[0];(el.closest('.smart-select')?.querySelector('.smart-input')||el).focus();return false;

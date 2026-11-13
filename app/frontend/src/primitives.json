@@ -40,6 +40,34 @@
   "input": {
     "class": "x1lliihq x98rzlu xeuugli xc342km xng3xce x1717udv x9ynric xjm74w1 xf9zqsd xw6l6zx x1tgivj0 xjbqb8w x1a2a7pz xeyghm5"
   },
+  "input-wrapper": {
+    "class": "astryx-text-input x9f619 x1n2onr6 x1vjfegm x78zum5 x6s0dn4 x1txdalj xu0wf1k xf314gf x1litavf x1y0btm7 xvy26l8 x6q1khz xohk9ji x1832zxr xvdfih8 x10xzikg x12zzom9 xlr8y92 x1gnnqk1 x1xqjsvb xuihb5h x1a2a7pz xuedmi6 xuh6ohu xzyh0sv x1ueg155",
+    "data-size": "md"
+  },
+  "textarea-wrapper": {
+    "class": "astryx-text-area x9f619 x1n2onr6 x6s0dn4 x1txdalj x1litavf x1y0btm7 xvy26l8 x6q1khz xohk9ji x1832zxr xvdfih8 x10xzikg x12zzom9 xlr8y92 x1gnnqk1 x1xqjsvb xuihb5h x1a2a7pz xuedmi6 xuh6ohu xzyh0sv x1vjfegm x1lliihq xt970qd xnjsko4 x1kdpo6e",
+    "data-size": "md"
+  },
+  "heading-1": {
+    "class": "astryx-heading x1tgivj0 xcg7oai xfmsba7 x1v68xuy x1lliihq xh015us",
+    "data-level": "1",
+    "data-color": "primary"
+  },
+  "heading-2": {
+    "class": "astryx-heading x1tgivj0 x1xvnhcw x1cpk1wn x12yy4cs x1lliihq xh015us",
+    "data-level": "2",
+    "data-color": "primary"
+  },
+  "heading-3": {
+    "class": "astryx-heading x1tgivj0 xii13ha xwjzt0u x1jcxfy8 x1lliihq xh015us",
+    "data-level": "3",
+    "data-color": "primary"
+  },
+  "heading-4": {
+    "class": "astryx-heading x1tgivj0 x8tkxat xqerer x2hcmsi x1lliihq xh015us",
+    "data-level": "4",
+    "data-color": "primary"
+  },
   "textarea": {
     "class": "astryx-text-area-control x1lliihq xh8yej3 x9f619 xeuugli xc342km xng3xce xu0wf1k x1w6f3ag x9ynric xjm74w1 xf9zqsd xw6l6zx x1tgivj0 xjbqb8w x1a2a7pz xeyghm5 x288g5"
   },

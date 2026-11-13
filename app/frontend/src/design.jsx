@@ -1,3 +1,5 @@
+import {createAdapters} from './adapters.jsx';
+import {createPortal,flushSync} from 'react-dom';
 import {createTableAdapter} from './astryx-tables.jsx';
 import React,{useState} from 'react';
 import {createRoot} from 'react-dom/client';
@@ -9,7 +11,7 @@ import {gothicTheme} from '@astryxdesign/theme-gothic/built';
 import {y2kTheme} from '@astryxdesign/theme-y2k/built';
 import {neutralTheme} from '@astryxdesign/theme-neutral/built';
 import {InternationalizationProvider} from '@astryxdesign/core/i18n';
-import {AppShell,TopNav,TopNavHeading,Selector,SideNav,SideNavItem,SideNavSection,Button,TabList,Tab,Pagination,Breadcrumbs,BreadcrumbItem,Dialog,DialogHeader,TextInput,EmptyState,Kbd} from '@astryxdesign/core';
+import {AppShell,TopNav,TopNavHeading,Selector,SideNav,SideNavItem,SideNavSection,Button,TabList,Tab,Pagination,Breadcrumbs,BreadcrumbItem,Dialog,DialogHeader,TextInput,EmptyState,Kbd,DropdownMenu,Heading} from '@astryxdesign/core';
 import ru from '@astryxdesign/core/locales/ru-RU.json';
 import recipes from './primitives.json';
 
@@ -27,8 +29,14 @@ const islands=new Map();
 const themes={neutral:neutralTheme,stone:stoneTheme,matcha:matchaTheme,butter:butterTheme,gothic:gothicTheme,y2k:y2kTheme};
 let selectedTheme="neutral";try{const saved=localStorage.getItem("itd.design.theme");if(themes[saved])selectedTheme=saved;}catch(_){}
 function Providers({children}){return <Theme theme={themes[selectedTheme]} mode={document.documentElement.dataset.theme||'light'}><InternationalizationProvider locale="ru-RU" messages={{'ru-RU':ru}}>{children}</InternationalizationProvider></Theme>;}
-function mount(host,element){let item=islands.get(host);if(!item){host.dataset.astryxIsland='';item={root:createRoot(host)};islands.set(host,item);}item.element=element;item.root.render(<Providers>{element}</Providers>);}
-function cleanup(){for(const [host,item] of islands)if(!host.isConnected){item.root.unmount();islands.delete(host);}}
+// One provider owns <html>; portals share its context across legacy DOM slots.
+// Independent root Themes previously removed global attributes when tabs unmounted.
+const providerHost=document.createElement('div');providerHost.id='design-provider-root';document.body.append(providerHost);
+const providerRoot=createRoot(providerHost);let nextIsland=0;
+function renderIslands(){providerRoot.render(<Providers>{[...islands].map(([host,item])=>createPortal(item.element,host,item.key))}</Providers>);}
+function mount(host,element){if(!host)return;let item=islands.get(host);if(!item){host.dataset.astryxIsland='';item={key:String(++nextIsland)};islands.set(host,item);}item.element=element;renderIslands();}
+function cleanup(){let changed=false;for(const [host] of islands)if(!host.isConnected){islands.delete(host);changed=true;}if(changed)renderIslands();}
+
 function primitive(node,key){
  const attrs=recipes[key];if(!attrs)return;
  if(node.dataset.primitive===key&&(!attrs.content||node.querySelector('[data-itd-button-body]')))return;
@@ -39,13 +47,14 @@ function primitive(node,key){
  if(attrs.content){const body=document.createElement('template');body.innerHTML=attrs.content;const walker=document.createTreeWalker(body.content,NodeFilter.SHOW_TEXT);let text;while(text=walker.nextNode())if(text.textContent==='__ITD_LABEL__'){const slot=text.parentElement;slot.dataset.itdButtonBody='';slot.replaceChildren(...node.childNodes);break;}node.replaceChildren(body.content);}
  node.dataset.primitive=key;
 }
-function isReactOwned(node){const island=node.closest?.('[data-astryx-island]');return island&&(island.id!=='shell-root'||!node.closest('.workspace-content'));}
+function isReactOwned(node){const island=node.closest?.('[data-astryx-island]');return island&&!(node.closest('[data-native-content]')&&island.contains(node.closest('[data-native-content]')))&&(island.id!=='shell-root'||!node.closest('.workspace-content'));}
 function enhancePrimitives(){
  for(const button of document.querySelectorAll('button')){
   if(isReactOwned(button)||button.matches('.swatch,.brand,.account-avatar,.object-tile,.journal-task,.cell-open,.record-name,.journey-link,.link-button,.table-sort,.table-chip')||button.closest('.org-list,.tabs,.panel-nav,.journal-sections'))continue;
   primitive(button,'button-'+(button.classList.contains('danger')?'destructive':button.classList.contains('ghost')?'ghost':button.classList.contains('secondary')?'secondary':'primary'));
  }
- for(const [selector,key] of [['.card:not(details)','card'],['input:not([type=checkbox],[type=radio],[type=file],[type=hidden])','input'],['textarea','textarea'],['.pill','badge'],['.table-scroll table','table']])document.querySelectorAll(selector).forEach(node=>{if(!isReactOwned(node))primitive(node,key);});
+ for(const [selector,key] of [['.card:not(details)','card'],['.pill','badge'],['.table-scroll table','table']])document.querySelectorAll(selector).forEach(node=>{if(!isReactOwned(node))primitive(node,key);});
+ for(const node of document.querySelectorAll('h1,h2,h3,h4'))if(!isReactOwned(node))primitive(node,'heading-'+node.tagName.slice(1));
 }
 const selectHosts=new WeakMap();
 function NativeSelector({select,label,value:externalValue}){
@@ -85,7 +94,13 @@ const oldNav=document.getElementById('steps');if(oldNav)oldNav.hidden=true;
 const shellHost=document.createElement('div');shellHost.id='shell-root';document.body.prepend(shellHost);
 function LegacyContent(){const ref=React.useRef(null);React.useLayoutEffect(()=>{if(ref.current)ref.current.append(...legacyNodes);},[]);return <div className="workspace-content" ref={ref}/>;}
 function changeTheme(value){selectedTheme=value;try{localStorage.setItem('itd.design.theme',value);}catch(_){}document.dispatchEvent(new Event('itd:appearance'));}
-function AccountControl(){const ref=React.useRef(null);React.useLayoutEffect(()=>{for(const id of ['session-resume','account-open']){const node=document.getElementById(id);if(node)ref.current.append(node);}},[]);return <div className="account-control" ref={ref}/>;}
+function AccountControl(){
+ const ref=React.useRef(null),[avatar,setAvatar]=useState({html:'',label:'Профиль'});
+ React.useLayoutEffect(()=>{const source=document.getElementById('account-open');if(!source)return;ref.current.append(source);const resume=document.getElementById('session-resume');if(resume)ref.current.append(resume);const sync=()=>setAvatar({html:source.innerHTML,label:source.getAttribute('aria-label')||'Профиль'});const observer=new MutationObserver(sync);observer.observe(source,{childList:true,subtree:true,attributes:true,attributeFilter:['aria-label']});sync();return()=>observer.disconnect();},[]);
+ function profile(section){document.getElementById('account-open')?.click();if(!section)return;const content=document.getElementById('account-content');const focus=()=>{const target=content?.querySelector(section);if(!target)return false;target.scrollIntoView({block:'start'});return true;};if(!focus()&&content){const observer=new MutationObserver(()=>{if(focus())observer.disconnect();});observer.observe(content,{childList:true,subtree:true});setTimeout(()=>observer.disconnect(),5000);}}
+ const items=[{label:'Настройки профиля',onClick:()=>profile()},...(document.body.dataset.role==='admin'?[{label:'Пользователи',onClick:()=>profile('[data-account-action="role"]')},{label:'База данных и папка ИТД',onClick:()=>profile('[data-account-action="settings"]')}]:[]),{type:'divider'},{label:'База знаний',onClick:()=>document.getElementById('knowledge-open')?.click()}];
+ return <div className="account-control"><div className="profile-source" ref={ref}/><DropdownMenu items={items} alignment="end" renderTrigger={props=><Button {...props} label={avatar.label} icon={<span dangerouslySetInnerHTML={{__html:avatar.html}}/>} isIconOnly className="account-avatar" variant="ghost"/>}/></div>;
+}
 function Header(){const [,redraw]=useState(0);React.useEffect(()=>{const refresh=()=>redraw(n=>n+1);document.addEventListener('itd:appearance',refresh);return()=>document.removeEventListener('itd:appearance',refresh);},[]);return <TopNav label="ИТД" heading={<TopNavHeading heading="ИТД" logo={<img src="/logo.svg" alt="" width="30" height="30"/>}/>} centerContent={<Button className="workspace-search-button" label="Найти раздел" icon={glyph('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>')} endContent={<Kbd keys="mod+k"/>} variant="secondary" onClick={()=>document.dispatchEvent(new Event('itd:search'))}/>} endContent={<div className="header-actions"><Selector label="Тема оформления" isLabelHidden variant="ghost" value={selectedTheme} options={Object.keys(themes).map(value=>({value,label:({neutral:'Neutral',stone:'Stone',matcha:'Matcha',butter:'Butter',gothic:'Gothic',y2k:'Y2K'})[value]}))} onChange={changeTheme}/><Button label={document.documentElement.dataset.theme==='dark'?'Светлая тема':'Тёмная тема'} variant="ghost" onClick={()=>document.getElementById('theme-toggle')?.click()}/><AccountControl/></div>}/>;}
 function WorkspaceShell({rail,view}){const [isOpen,onOpenChange]=useState(false);React.useEffect(()=>onOpenChange(false),[view]);return <AppShell variant="section" contentPadding={0} topNav={<Header/>} sideNav={rail} mobileNav={{breakpoint:'md',isOpen,onOpenChange}}><LegacyContent/></AppShell>;}
 function renderNav(items,view,go){
@@ -102,10 +117,11 @@ function CommandPalette(){
  return <Dialog isOpen={open} onOpenChange={setOpen} width={560} aria-label="Быстрый переход"><div className="command-content"><DialogHeader title="Быстрый переход" onOpenChange={setOpen}/><TextInput label="Найти раздел" value={query} onChange={setQuery} placeholder="Объект, участники, документация…" size="lg"/><div className="command-results">{items.map(([key,label,svg])=><Button key={key} label={label} icon={glyph(svg)} variant="ghost" width="100%" onClick={()=>{setOpen(false);navigate(key);}}/>)}{!items.length&&<EmptyState title="Ничего не найдено" description="Попробуйте другое название раздела."/>}</div><p className="hint"><Kbd keys="escape"/> Закрыть · <Kbd keys="mod+k"/> Открыть</p></div></Dialog>;
 }
 let pending=false;
-function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;observer.disconnect();cleanup();enhancePrimitives();enhanceTabs();observe();});}
+function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;observer.disconnect();cleanup();adapters.enhance();enhancePrimitives();enhanceTabs();observe();});}
 const observer=new MutationObserver(records=>{if(records.some(r=>!isReactOwned(r.target)))schedule();});
-function observe(){for(const id of ['content','editor-content','editor-footer','actions','knowledge-results','account-content','prompt-content','login-form']){const host=document.getElementById(id);if(host)observer.observe(host,{childList:true,subtree:true});}}
+function observe(){for(const id of ['content','editor-content','editor-footer','actions','knowledge-results','account-content','prompt-content','login-form','notice','editor-notice']){const host=document.getElementById(id);if(host)observer.observe(host,{childList:true,subtree:true,characterData:true});}}
+const adapters=createAdapters({mount,primitive,isReactOwned,flush:()=>flushSync(renderIslands)});
 const enhanceTable=createTableAdapter(mount);
-window.ITDDesign={renderNav,enhanceSelect,enhanceTable,refresh:schedule};
-document.addEventListener('itd:appearance',()=>{for(const [host,item] of islands)if(host.isConnected)item.root.render(<Providers>{item.element}</Providers>);});
+window.ITDDesign={renderNav,enhanceSelect,enhanceTable,refresh:schedule,openDialog:adapters.openDialog,closeDialog:adapters.closeDialog,setLoading:adapters.setLoading};
+document.addEventListener('itd:appearance',renderIslands);
 mount(document.getElementById('command-root'),<CommandPalette/>);observe();schedule();

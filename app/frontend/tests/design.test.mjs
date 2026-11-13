@@ -6,9 +6,10 @@ const bundle=await readFile(new URL('../../itd/web_assets/design.js',import.meta
 const tick=()=>new Promise(resolve=>setTimeout(resolve,60));
 async function until(fn){for(let i=0;i<40;i++){if(fn())return;await tick();}assert.ok(fn(),'UI did not settle');}
 test('Astryx preserves account actions, native form data, delegated tabs and table controls',async()=>{
- const errors=[],log=new VirtualConsole();log.on('jsdomError',e=>errors.push(e));
+ const errors=[],log=new VirtualConsole();log.on('jsdomError',e=>errors.push(e));log.on('error',e=>errors.push(e));
  const dom=new JSDOM(`<html data-theme="light"><body><header class="topbar"><button id="theme-toggle">Тема</button><button id="knowledge-open">База</button><button id="account-open" class="account-avatar">ИИ</button><button id="session-resume" hidden>Войти</button></header><div class="context"><select id="object-select"><option value="">Выберите объект</option></select><button id="new-object">Новый объект</button></div><nav id="steps"></nav><div id="breadcrumbs"></div><main class="no-sidebar"><div id="content"><nav class="tabs"><button data-tab="0" class="active">Акты</button><button data-tab="1">Ресурсы</button></nav><form id="kept-form"><label class="field"><span>Категория</span><select name="category"><option value="a">Приборы</option><option value="b">Кабель</option></select></label><input id="kept-input" name="note" value="Несохранённое значение"><button id="kept-button" class="secondary">Действие</button></form><button class="object-tile">Полное название объекта</button><div class="data-table-footer"><button data-table-control="next">Следующая страница</button></div></div><div id="actions"></div></main><footer id="workspace-status"></footer><div id="editor-content"></div><div id="editor-footer"></div><div id="account-content"></div><div id="prompt-content"></div><div id="knowledge-results"></div><div id="command-root"></div></body></html>`,{url:'http://localhost/?view=registry',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:log});
  const w=dom.window,d=w.document;
+ w.CSS={supports:()=>false,escape:value=>String(value).replace(/[^a-zA-Z0-9_-]/g,c=>'\\'+c)};
  w.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
  w.ResizeObserver=class{observe(){}unobserve(){}disconnect(){}};w.IntersectionObserver=class{observe(){}unobserve(){}disconnect(){}};
  w.HTMLElement.prototype.scrollIntoView=function(){};w.HTMLElement.prototype.scrollTo=function(){};
@@ -38,5 +39,11 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  assert.equal(view.querySelectorAll('tbody tr').length,50);view.querySelector('[aria-label="Перейти на страницу 2"]').click();await tick();assert.equal(view.querySelectorAll('tbody tr').length,13);assert.match(view.textContent,/51.*63.*63/s);
  view.querySelector('[data-table-control="columns"]').click();await until(()=>d.querySelector('.astryx-column-picker'));
  [...d.querySelectorAll('.astryx-column-picker input')].at(-1).click();await tick();assert.equal(view.querySelectorAll('thead th').length,1);
+ assert.ok(input.parentElement.classList.contains('itd-field-control'),'Native input must retain the complete field frame');
+ d.documentElement.dataset.theme='dark';d.dispatchEvent(new w.Event('itd:appearance'));await tick();
+ d.getElementById('content').innerHTML='<nav class="tabs"><button data-tab="0" class="active">Новая вкладка</button></nav>';
+ w.ITDDesign.renderNav([['overview','Обзор','']],'overview',()=>{});
+ await until(()=>d.querySelector('.tabs[data-astryx-island] [data-tab]'));await tick();
+ assert.equal(d.documentElement.dataset.astryxTheme,'neutral','Unmounting a tab must not remove the root theme');assert.equal(d.documentElement.dataset.theme,'dark');
  assert.equal(errors.length,0,errors.map(e=>e.detail?.stack||e.message).join('\n'));dom.window.close();
 });

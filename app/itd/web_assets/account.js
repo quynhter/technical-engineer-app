@@ -66,6 +66,8 @@ function setProfile(user){
    document.querySelectorAll('#editor-dialog [data-action="cancel-entry"]').forEach(button=>{if(button.textContent!=='Закрыть')button.textContent='Закрыть';});
    document.querySelectorAll('#content :is(input,textarea,select),#editor-content :is(input,textarea,select)').forEach(el=>{
     if(el.closest('.astryx-data-view'))return;
+    const nativeInput=el.closest('.date-island')?._nativeInput;
+    if(nativeInput?.matches('[data-filter],[data-table-control]'))return;
     const nativeSelect=el.closest('.select-island')?._nativeSelect;
     if(nativeSelect?.matches('#project-select,#resource-activity-select,[data-journal-project],[data-table-control]'))return;
     if(el.matches('#object-search,#project-select,#resource-activity-select,[data-filter],[data-check-search],[data-table-control]')||
@@ -162,7 +164,9 @@ async function accountAction(run, message=$('#account-content .account-message')
 }
 
 async function updateAccount(){
- drawAccount(currentUser.role==='admin'?await api('/api/admin'):null);
+ const content=$('#account-content');window.ITDDesign?.setLoading(true,content);
+ try{drawAccount(currentUser.role==='admin'?await api('/api/admin'):null);}
+ finally{window.ITDDesign?.setLoading(false,content);}
 }
 
 function suspendWorkspace(){

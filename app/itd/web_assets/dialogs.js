@@ -17,11 +17,11 @@ function createWorkspaceDialog(id,{beforeClose=()=>true,onClose=()=>{}}={}){
    }
    if(!allowed)return false;
   }
-  dialog.close();return true;
+  if(!window.ITDDesign?.closeDialog(dialog))dialog.close();return true;
  }
  function open({title,focus}={}){
   if(title)setTitle(title);
-  if(!dialog.open){dialog.showModal();dialog.scrollTop=0;}
+  if(!dialog.open){if(window.ITDDesign?.openDialog)window.ITDDesign.openDialog(dialog);else dialog.showModal();dialog.scrollTop=0;}
   if(focus)focus.focus();
  }
  dialog.addEventListener('click',event=>{if(event.target.closest('[data-dialog-close]')?.closest('dialog')===dialog)close();});

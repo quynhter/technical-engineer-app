@@ -19,7 +19,7 @@
  async function find() {
   const current = ++generation;
   button.disabled = true;
-  results.replaceChildren(); message.textContent = 'Поиск…';
+  results.replaceChildren(); window.ITDDesign?.setLoading(true,results); message.textContent = 'Поиск…';
   try {
    const params = new URLSearchParams({query: query.value});
    if (corpus.value) params.set('corpus', corpus.value);
@@ -48,7 +48,7 @@
     article.append(more); results.append(article);
    }
   } catch (error) { if (current === generation) message.textContent = error.message; }
-  finally { if (current === generation) button.disabled = false; }
+  finally { if (current === generation) {button.disabled = false;window.ITDDesign?.setLoading(false,results);} }
  }
  document.addEventListener('click', async event => {
   if (!event.target.closest('[data-open-knowledge]')) return;

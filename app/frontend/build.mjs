@@ -3,7 +3,7 @@ import {createElement as h} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {JSDOM} from 'jsdom';
 import {writeFile, readFile, access} from 'node:fs/promises';
-import {Button, Card, TextInput, TextArea, Badge, Table} from '@astryxdesign/core';
+import {Button, Card, TextInput, TextArea, Badge, Table, Heading} from '@astryxdesign/core';
 
 // Bake the actual library's primitive attributes, not a hand-copied imitation.
 // Existing business forms retain their DOM nodes, listeners and native values.
@@ -18,6 +18,9 @@ function bake(key,element,selector){
 for(const variant of ['primary','secondary','ghost','destructive'])bake('button-'+variant,h(Button,{label:'__ITD_LABEL__',variant,size:'md'}),'button');
 bake('card',h(Card,{padding:4},'Content'),'div');
 bake('input',h(TextInput,{label:'Field',size:'lg'}),'input');
+bake('input-wrapper',h(TextInput,{label:'Field',size:'md',value:''}),'.astryx-text-input');
+bake('textarea-wrapper',h(TextArea,{label:'Field',value:''}),'.astryx-text-area');
+for(const level of [1,2,3,4])bake('heading-'+level,h(Heading,{level,hasCapsize:false},'Heading'),'h'+level);
 bake('textarea',h(TextArea,{label:'Field'}),'textarea');
 bake('badge',h(Badge,{label:'Status'}),'span');
 const table=h(Table,{data:[{id:1,name:'Item'}],columns:[{key:'name',header:'Name'}],hasHover:true});
