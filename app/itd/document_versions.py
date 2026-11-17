@@ -1,5 +1,6 @@
 """Карточки версий акта. Исторические версии не меняют текущий акт."""
 import json
+from pathlib import Path
 from .db import atomic_operation, calendar_date
 from .workflow import same_project
 from .changes import log_event, update_record
@@ -13,6 +14,7 @@ def required_roles(c, aid):
         for f in fields:
             if f.get('state') in ('hidden','not_applicable'): continue
             if f['kind']=='signatory' and f.get('required'): result.add(f['role'])
+            if f.get('binding_role') and f.get('required'): result.add(f['binding_role'])
             if f.get('required') and f.get('source','').startswith('signatories.'): result.add(f['source'].split('.')[1])
             if f['kind']=='table': visit(f.get('fields',f.get('columns',[])))
     from .form_defaults import apply_form_defaults
@@ -170,10 +172,26 @@ def save(c,pid,data):
     remember_fallback_roles(c,pid,[(s['role'],s['person_id']) for s in saved])
     set_act_people(c,pid,aid,primary)
     required = set(required_roles(c,aid))
-    required_signers = [s for s in saved if not required or s['role'] in required]
     if saved and all(s['signed'] for s in saved) and required - primary.keys():
         raise ValueError('Выберите подписантов всех обязательных ролей формы')
-    if required_signers and not (required - primary.keys()) and all(s['signed'] for s in required_signers):
+    completed = bool(saved) and not (required - primary.keys()) and all(s['signed'] for s in saved)
+    signed_attachment = data.get('signed_attachment_id', current.get('signed_attachment_id'))
+    if completed:
+        if not signed_attachment:
+            raise ValueError('Загрузите подписанный документ после подтверждения всех подписантов')
+        attachment = c.execute('''SELECT a.* FROM attachments a JOIN project_attachments p ON p.attachment_id=a.id
+                                  WHERE p.project_id=? AND a.id=?''', (pid, signed_attachment)).fetchone()
+        if not attachment:
+            raise ValueError('Подписанный файл не принадлежит текущему разделу')
+        if Path(attachment['original_name']).suffix.lower() not in ('.pdf', '.docx', '.doc', '.png', '.jpg', '.jpeg'):
+            raise ValueError('Загрузите подписанный документ в формате PDF, Word или изображения')
+        from .archive import archived_path, digest
+        database = Path(c.execute('PRAGMA database_list').fetchone()[2])
+        path = archived_path(database.parent / 'archive', attachment['storage_path'])
+        if not path.is_file() or not path.stat().st_size or digest(path) != attachment['sha256']:
+            raise ValueError('Подписанный оригинал отсутствует или изменён')
+        from .archive import link_file
+        link_file(c, attachment_id=signed_attachment, entity='act', entity_id=aid)
         signed = [s for s in saved if s['signed']]
         name = c.execute('SELECT d.name FROM document_types d JOIN acts a ON a.act_type=d.code WHERE a.id=?', (aid,)).fetchone()[0]
         sign_act(c,pid,{'act_id':aid,'state':'signed','signed_date':max(s['signed_date'] for s in signed),'basis':'Подписание версии подтверждено пользователем','work_description':data.get('work_description') or name,'expected_revision':status['revision'] if status else 0})
@@ -184,8 +202,8 @@ def save(c,pid,data):
         c.execute('UPDATE act_execution_status SET signers_json=? WHERE act_id=?',(json.dumps(signed_people,ensure_ascii=False),aid))
     from .acts import build_context
     resolved=current['snapshot'] if current['release_id'] and current['snapshot'] else build_context(c,aid,draft=True)['context']
-    c.execute('UPDATE document_versions SET card_json=?,signers_json=?,snapshot_json=?,revision=revision+1 WHERE id=?',
-              (json.dumps({**card(c,aid),'work_description':data.get('work_description',old.get('work_description'))},ensure_ascii=False),json.dumps(saved,ensure_ascii=False),json.dumps(resolved,ensure_ascii=False),current['id']))
+    c.execute('UPDATE document_versions SET card_json=?,signers_json=?,snapshot_json=?,signed_attachment_id=?,revision=revision+1 WHERE id=?',
+              (json.dumps({**card(c,aid),'work_description':data.get('work_description',old.get('work_description'))},ensure_ascii=False),json.dumps(saved,ensure_ascii=False),json.dumps(resolved,ensure_ascii=False),signed_attachment if completed else None,current['id']))
     log_event(c,'document-version-save',entity='acts',entity_id=aid,after={'version_id':current['id']})
     return versions(c,pid,aid)
 
@@ -236,3 +254,157 @@ def prepare_generation(c,aid):
             if person:
                 selected.append({'role':role,'person_id':person['id'],'person':person,'signed':False,'signed_date':None})
         c.execute('UPDATE document_versions SET signers_json=? WHERE id=?',(json.dumps(selected,ensure_ascii=False),current['id']))
+
+
+def checked_version(c, pid, data):
+    items = versions(c, pid, data['act_id'])
+    selected = next((v for v in items if v['id'] == data.get('id')), None)
+    if selected is None or selected['revision'] != data.get('revision'):
+        raise ValueError('Версия уже изменена. Обновите карточку')
+    return items, selected
+
+
+@atomic_operation
+def delete(c, pid, data):
+    items, selected = checked_version(c, pid, data)
+    if len(items) == 1:
+        raise ValueError('Нельзя удалить единственную версию документа')
+    if data.get('expected') != [{'id': v['id'], 'revision': v['revision']} for v in items]:
+        raise ValueError('Список версий изменён. Обновите карточку')
+    aid = data['act_id']
+    c.execute('DELETE FROM document_versions WHERE id=?', (selected['id'],))
+    # Сначала уводим номера за прежний диапазон, чтобы не нарушить UNIQUE.
+    remaining = [v for v in items if v['id'] != selected['id']]
+    offset = max(v['ordinal'] for v in items)
+    c.execute('UPDATE document_versions SET ordinal=ordinal+? WHERE act_id=?', (offset, aid))
+    for number, version in enumerate(remaining, 1):
+        c.execute('UPDATE document_versions SET ordinal=?,revision=revision+1 WHERE id=?', (number, version['id']))
+    if selected['release_id']:
+        from .releases import unselect_release
+        unselect_release(c, selected['release_id'])
+    if selected['id'] == items[-1]['id']:
+        last = remaining[-1]
+        # Восстанавливаем именно сохранённую карточку, а не создаём новую версию
+        # из оставшихся текущих реквизитов удалённой версии.
+        c.execute("UPDATE act_execution_status SET state='draft',revision=revision+1 WHERE act_id=?", (aid,))
+        old = card(c, aid)
+        restored = last['card']
+        changes = {k: restored.get(k) for k in old if k not in ('organizations', 'work_description') and old[k] != restored.get(k)}
+        if changes:
+            update_record(c, entity='acts', record_id=aid, changes=changes)
+        # Исторические назначения не требуют действующих сегодня полномочий.
+        companies = {role: identity for role, identity in restored.get('organizations', {}).items()
+                     if c.execute('SELECT 1 FROM organizations WHERE id=?', (identity,)).fetchone()}
+        c.execute('DELETE FROM act_organizations WHERE act_id=?', (aid,))
+        c.executemany('INSERT INTO act_organizations(act_id,role_key,org_id) VALUES(?,?,?)',
+                      [(aid, role, identity) for role, identity in companies.items()])
+        if companies != restored.get('organizations', {}):
+            restored = {**restored, 'organizations': companies}
+            c.execute('UPDATE document_versions SET card_json=? WHERE id=?', (json.dumps(restored, ensure_ascii=False), last['id']))
+        c.execute('DELETE FROM act_signatories WHERE act_id=?', (aid,))
+        people = {}
+        for signer in last['signers']:
+            if c.execute('SELECT 1 FROM signatories WHERE id=?', (signer['person_id'],)).fetchone():
+                people.setdefault(signer['role'], signer)
+        for role, signer in people.items():
+            c.execute('INSERT INTO act_signatories(act_id,role_key,signatory_id) VALUES(?,?,?)', (aid, role, signer['person_id']))
+        completed = bool(last['signers']) and all(s.get('signed') for s in last['signers'])
+        if completed:
+            snapshot_people = {}
+            for signer in last['signers']:
+                if signer.get('person'):
+                    key = signer['role'] if signer['role'] not in snapshot_people else signer['role']+'__'+str(signer['person_id'])
+                    snapshot_people[key] = signer['person']
+            date = max(s['signed_date'] for s in last['signers'])
+            payload = (aid, 'signed', restored.get('work_description') or '', 'Восстановление сохранённой версии',
+                       json.dumps(snapshot_people, ensure_ascii=False), date)
+            c.execute('''INSERT INTO act_execution_status(act_id,state,work_description,basis,signers_json,signed_date)
+                         VALUES(?,?,?,?,?,?) ON CONFLICT(act_id) DO UPDATE SET state=excluded.state,
+                         work_description=excluded.work_description,basis=excluded.basis,
+                         signers_json=excluded.signers_json,signed_date=excluded.signed_date,revision=revision+1''', payload)
+        else:
+            c.execute('UPDATE act_execution_status SET work_description=?,signers_json=?,signed_date=NULL WHERE act_id=?',
+                      (restored.get('work_description') or '', '{}', aid))
+        if last['release_id']:
+            # Выбор сохраняется даже для утратившегося файла: восстановление
+            # карточки не утверждает его целостность; скачивание проверяет хеш.
+            c.execute('UPDATE releases SET selected=0 WHERE act_id=?', (aid,))
+            c.execute('UPDATE releases SET selected=1 WHERE id=?', (last['release_id'],))
+    log_event(c, 'document-version-delete', entity='acts', entity_id=aid,
+              before={'version_id': selected['id'], 'ordinal': selected['ordinal']},
+              after={'version_ids': [v['id'] for v in remaining]})
+    return versions(c, pid, aid)
+
+
+def regenerate(c, pid, data, templates_dir):
+    """Обновить черновик из БД; исторический/подписанный файл — из снимка."""
+    import uuid
+    from . import releases
+    from .acts import find_template, build_context
+    from .archive import digest
+    from .docx_render import render_docx
+    items, selected = checked_version(c, pid, data)
+    if selected['attachment_id'] and not selected['release_id']:
+        raise ValueError('Загруженный оригинал нельзя пересоздать из шаблона')
+    if not selected['snapshot'] and selected['id'] != items[-1]['id']:
+        raise ValueError('Для этой исторической версии не сохранён контекст печати')
+    if not selected['release_id'] and selected['id'] == items[-1]['id']:
+        prepare_generation(c, data['act_id'])
+        selected = versions(c, pid, data['act_id'])[-1]
+    act = same_project(c, 'acts', data['act_id'], pid)
+    form = c.execute('SELECT * FROM document_types WHERE code=?', (act['act_type'],)).fetchone()
+    old_release = c.execute('SELECT * FROM releases WHERE id=?', (selected['release_id'],)).fetchone()
+    draft = not old_release or old_release['mode'] == 'draft'
+    status = c.execute('SELECT state FROM act_execution_status WHERE act_id=?', (act['id'],)).fetchone()
+    refresh = selected['id'] == items[-1]['id'] and draft and not (status and status['state'] == 'signed')
+    context = (build_context(c, act['id'], draft=draft)['context'] if refresh else
+               selected['snapshot'] or build_context(c, act['id'], draft=draft)['context'])
+    template = find_template(templates_dir, act['act_type'])
+    if old_release:
+        old_template = c.execute('SELECT template_sha256 FROM generated_documents WHERE id=?', (old_release['generated_id'],)).fetchone()
+        if old_template and old_template[0] != digest(template):
+            raise ValueError('Шаблон изменён после выпуска. Создайте новую версию')
+    staging = releases.service_directory(c) / 'work' / '.itd-staging' / (uuid.uuid4().hex+'.docx')
+    try:
+        with _generation_transaction(c):
+            from .titles import CODE
+            render_docx(template, context, staging, draft=draft, font=context.get('font') if act['act_type'] == CODE else None)
+            gid = c.execute('''INSERT INTO generated_documents(act_id,output_path,sha256,mode,context_json,template_sha256)
+                               VALUES(?,?,?,?,?,?)''', (act['id'], str(staging), digest(staging), 'draft' if draft else 'final', json.dumps(context, ensure_ascii=False), digest(template))).lastrowid
+            rid = releases.register_release(c, project_id=pid, act_id=act['id'], generated_id=gid,
+                                           kind='docx', title=form['name'], path=staging, mode='draft' if draft else 'final')
+            c.execute('UPDATE document_versions SET release_id=?,snapshot_json=?,revision=revision+1 WHERE id=?',
+                      (rid, json.dumps(context, ensure_ascii=False), selected['id']))
+            log_event(c, 'document-version-regenerate', entity='acts', entity_id=act['id'],
+                      after={'version_id': selected['id'], 'release_id': rid})
+    except Exception:
+        staging.unlink(missing_ok=True)
+        raise
+    c.commit()
+    if selected['id'] == items[-1]['id']:
+        target = releases.default_output(c, project_id=pid, title=selected['card'].get('filename_title') or act['act_num'],
+                                         kind='docx', group=form['form_group'], identity=act['id'], draft=draft)
+        previous = c.execute('SELECT * FROM releases WHERE act_id=? AND selected=1', (act['id'],)).fetchone()
+        if previous and not releases.actual_path(c, previous['path']).exists():
+            releases.unselect_release(c, previous['id'])
+            c.commit()
+        published = releases.publish(c, rid, target)
+    else:
+        target = releases.service_directory(c) / 'История выпусков' / str(rid) / (staging.name)
+        published = releases.move_release(c, rid, target)
+    return {'versions': versions(c, pid, act['id']), 'release_id': rid, 'output': str(target)}
+
+
+# Локальная атомарная часть регенерации; publish ведёт собственный журнал ФС.
+from contextlib import contextmanager
+
+@contextmanager
+def _generation_transaction(c):
+    c.execute('SAVEPOINT regenerate_version')
+    try:
+        yield
+        c.execute('RELEASE regenerate_version')
+    except Exception:
+        c.execute('ROLLBACK TO regenerate_version')
+        c.execute('RELEASE regenerate_version')
+        raise

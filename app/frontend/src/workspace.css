@@ -28,7 +28,7 @@ main.no-sidebar{grid-template-columns:minmax(0,1fr)}.main-content{min-width:0;wi
 .itd-field-control{width:100%;min-width:0;box-sizing:border-box}
 .itd-field-control>input,.itd-field-control>textarea{width:100%;min-width:0;min-height:0;margin:0;border:0;border-radius:0;background:transparent;color:inherit;font:inherit;box-shadow:none;outline:none}
 .itd-field-control>input{height:100%;flex:1;padding:0}
-.itd-field-control.astryx-text-area{height:auto;min-height:88px}
+.itd-field-control.astryx-text-area{height:auto;min-height:0}
 .itd-field-control>textarea{min-height:86px;resize:vertical;padding:var(--spacing-3,12px);box-sizing:border-box}
 .itd-field-control:has(:disabled){opacity:.6}
 .itd-field-control:has([readonly]){background:var(--subtle)}
@@ -71,7 +71,7 @@ main.no-sidebar{grid-template-columns:minmax(0,1fr)}.main-content{min-width:0;wi
 [hidden]{display:none!important}
 
 /* User requirements apply to every official theme, including portalled dialogs. */
-[data-astryx-theme]{--font-family-body:"Open Sans",sans-serif;--font-family-heading:"Open Sans",sans-serif;--font-family-code:"Open Sans",sans-serif;--size-element-sm:36px;--size-element-md:36px;--size-element-lg:36px}
+[data-astryx-theme]{--font-family-body:"Open Sans",sans-serif!important;--font-family-heading:"Open Sans",sans-serif!important;--font-family-code:"Open Sans",sans-serif!important;--size-element-sm:36px;--size-element-md:36px;--size-element-lg:36px}
 body,button,input,select,textarea,pre,code{font-family:"Open Sans",sans-serif}
 .workspace-search-button{width:clamp(280px,32vw,420px);justify-content:space-between}
 .workspace-search-button>span:first-child{width:100%}
@@ -234,3 +234,53 @@ body[data-auth="pending"]>.itd-dialog{visibility:visible}
 .dialog-content .preview-fields>div{gap:var(--workspace-gap);padding:0}
 .dialog-content #review-form{margin:0;padding-top:var(--workspace-padding);gap:var(--workspace-gap)}
 .dialog-content .preview-steps{margin:0;gap:var(--workspace-gap)}
+
+/* Индикатор закреплён у верхнего правого края названия. */
+.brand-title{position:relative;display:inline-block;padding-right:12px}
+.brand-connection{position:absolute;top:0;right:0;display:flex}
+.brand-connection .connection-status{display:inline-flex;line-height:0}
+.brand-connection .connection-status i{display:block;width:7px;height:7px}
+#workspace-status:has(.connection-tools:empty){display:none}
+
+/* Функции полей используют общие элементы формы и остаются доступны с клавиатуры. */
+.document-function-field>label{font-size:13px;font-weight:500;line-height:1.5;color:var(--ink);margin-bottom:6px}
+.document-function-control{display:flex;align-items:flex-start;gap:var(--workspace-gap)}
+.document-function-control>[data-function-control]{flex:1;min-width:0}
+.document-function-control textarea{min-height:60px}
+.document-function-control .itd-field-control{width:100%}
+.document-function-control .function-toggle{flex:0 0 36px;width:36px;height:36px;padding:0;font-style:italic;font-weight:700}
+.document-function-control .function-toggle[aria-pressed="true"]{color:var(--teal);border:1px solid var(--teal);background:var(--soft)}
+.function-source:empty{display:none}
+.document-function-field .function-source{margin:4px 0 0;overflow-wrap:anywhere}
+#signed-document-section{display:flex;flex-direction:column;gap:var(--workspace-gap)}
+#signed-document-section[hidden]{display:none}
+#signed-document-section>.hint{margin:0}
+.table-function-cell>label{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.table-function-cell textarea{min-height:36px}
+.table-function-cell{min-width:180px;gap:0}
+
+/* Значок функции не зависит от обрезки наклонного символа в подписи кнопки. */
+.document-function-control .function-toggle [data-itd-button-body]{overflow:visible;flex:none;display:flex;align-items:center;justify-content:center}
+.function-icon{display:block;width:20px;height:20px;flex:none}
+/* Таблицы исходного документа сохраняют колонки и прокручиваются целиком. */
+.version-tables .table-scroll{min-width:0;overflow-x:auto}
+.version-tables .table-scroll table{display:table;table-layout:auto;width:max-content;min-width:100%;max-width:none}
+.version-tables .table-scroll thead{display:table-header-group}
+.version-tables .table-scroll tbody{display:table-row-group}
+.version-tables .table-scroll tr{display:table-row}
+.version-tables .table-scroll :is(th,td){display:table-cell;width:auto;max-width:none}
+.version-tables .table-scroll td:not(.version-row-action){min-width:260px}
+.version-tables .table-scroll td::before{display:none}
+.version-tables .table-function-cell{min-width:240px;width:100%}
+.version-tables .table-scroll .version-row-action{min-width:52px;width:52px}
+
+/* Таблица внутри документа сохраняет структуру бланка и общую прокрутку. */
+.document-preview-table{min-width:0;overflow:auto}
+.document-preview-table table{display:table;table-layout:auto;width:max-content;min-width:100%;max-width:none}
+.document-preview-table thead{display:table-header-group}
+.document-preview-table tbody{display:table-row-group}
+.document-preview-table tr{display:table-row}
+.document-preview-table :is(th,td){display:table-cell;min-width:160px;max-width:360px;white-space:normal;overflow-wrap:anywhere;vertical-align:top}
+.document-preview-table td::before{display:none}
+.document-preview-table th{text-align:center;position:static}
+.document-preview-table .preview-text{white-space:pre-wrap}

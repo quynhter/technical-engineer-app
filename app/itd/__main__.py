@@ -51,6 +51,7 @@ def main(argv=None):
     web = commands.add_parser("web", help="Открыть локальную форму ИТД")
     web.add_argument("--port", type=int, default=None, help="Порт (по умолчанию 8765 или свободный); 0 — свободный")
     web.add_argument("--no-browser", action="store_true")
+    web.add_argument('--host', default='127.0.0.1', help='IPv4-адрес сервера; 0.0.0.0 — доступ по сети')
     wizard = commands.add_parser("workspace-save", help="Сохранить JSON локальной формы атомарно")
     wizard.add_argument("--data", type=Path, required=True)
     manual = commands.add_parser('workspace-action', help='Общие ручные операции веб/CLI')
@@ -266,7 +267,7 @@ def main(argv=None):
                                           form=args.form, limit=args.limit)
         elif args.command == "web":
             from .web import serve
-            serve(args.db, args.port, not args.no_browser)
+            serve(args.db, args.port, not args.no_browser, host=args.host)
             return
         elif args.command == 'template-schema':
             from .template_objects import template_schema

@@ -88,6 +88,8 @@ class DocumentVersionTests(WorkspaceFixture,unittest.TestCase):
             data=self.draft(c);data['signers'][0].update(signed=True,signed_date=None)
             with self.assertRaises(ValueError):versions.save(c,self.pid,data)
             data['signers'][0]['signed_date']='2026-11-03'
+            with self.assertRaisesRegex(ValueError,'Загрузите подписанный'):versions.save(c,self.pid,data)
+            data['signed_attachment_id']=self.signed_file(c)
             saved=versions.save(c,self.pid,data)[0]
             self.assertTrue(saved['signers'][0]['signed'])
             self.assertEqual(c.execute('SELECT state FROM act_execution_status').fetchone()[0],'signed')
@@ -117,7 +119,7 @@ class DocumentVersionTests(WorkspaceFixture,unittest.TestCase):
             with self.assertRaises(ValueError):versions.save(c,self.pid,data)
             self.assertIsNone(c.execute('SELECT * FROM act_execution_status').fetchone())
 
-    def test_contractor_can_sign_as_general_contractor_without_optional_signature(self):
+    def test_all_selected_signers_and_signed_file_are_required(self):
         from itd.act_participants import organization_candidates
         from itd.acts import build_context
 
@@ -137,9 +139,15 @@ class DocumentVersionTests(WorkspaceFixture,unittest.TestCase):
             data['signers'].append(dict(role='general_contractor', person_id=self.person, signed=True,
                                         signed_date='2026-11-03'))
             versions.save(c, self.pid, data)
-            status = c.execute('SELECT state, signers_json FROM act_execution_status').fetchone()
-            self.assertEqual(status['state'], 'signed')
-            self.assertEqual(set(json.loads(status['signers_json'])), {'general_contractor'})
+            self.assertIsNone(c.execute('SELECT state FROM act_execution_status').fetchone())
+            data=self.draft(c)
+            data['signers']=[{**s,'signed':True,'signed_date':'2026-11-03'} for s in versions.versions(c,self.pid,self.aid)[-1]['signers']]
+            with self.assertRaisesRegex(ValueError,'Загрузите подписанный'):versions.save(c,self.pid,data)
+            data['signed_attachment_id']=self.signed_file(c)
+            versions.save(c,self.pid,data)
+            status=c.execute('SELECT state,signers_json FROM act_execution_status').fetchone()
+            self.assertEqual(status['state'],'signed')
+            self.assertEqual(set(json.loads(status['signers_json'])),{'customer_control','general_contractor'})
             self.assertEqual(build_context(c, self.aid)['context']['company'], 'Застройщик')
 
     def test_stale_revision_and_other_project_cannot_update_version(self):
@@ -238,3 +246,144 @@ class DocumentVersionTests(WorkspaceFixture,unittest.TestCase):
             self.assertEqual([v['release_id'] for v in result],[first['release_id'],second['release_id'],None])
             self.assertEqual(result[0]['snapshot']['works'],'Монтаж')
             self.assertEqual(result[0]['signers'],[])
+
+
+    def signed_file(self,c):
+        from itd.archive import import_file,link_file
+        source=self.path.parent/'signed.pdf';source.write_bytes(b'%PDF-1.4\nSigned test document')
+        result=import_file(c,archive_root=self.path.parent/'archive',source=source,doc_type='other',title='Подписанный документ')
+        link_file(c,attachment_id=result['id'],entity='project',entity_id=self.pid)
+        return result['id']
+
+    def delete_payload(self,c,selected):
+        items=versions.versions(c,self.pid,self.aid)
+        return dict(act_id=self.aid,id=selected['id'],revision=selected['revision'],expected=[{'id':v['id'],'revision':v['revision']} for v in items])
+
+    def test_delete_renumbers_and_restores_latest_card_without_resurrecting_it(self):
+        with connect(self.path) as c:
+            first=versions.save(c,self.pid,self.draft(c))[-1]
+            second=versions.create(c,self.pid,self.aid,{'id':first['id'],'revision':first['revision']})[-1]
+            data=self.draft(c);data['card']['filename_title']='Вторая';second=versions.save(c,self.pid,data)[-1]
+            third=versions.create(c,self.pid,self.aid,{'id':second['id'],'revision':second['revision']})[-1]
+            data=self.draft(c);data['card']['filename_title']='Третья';versions.save(c,self.pid,data)
+            items=versions.versions(c,self.pid,self.aid)
+            versions.delete(c,self.pid,self.delete_payload(c,items[1]))
+            items=versions.versions(c,self.pid,self.aid)
+            self.assertEqual([v['ordinal'] for v in items],[1,2])
+            self.assertEqual(items[-1]['card']['filename_title'],'Третья')
+            versions.delete(c,self.pid,self.delete_payload(c,items[-1]))
+            self.assertEqual(versions.ensure(c,self.pid,self.aid)[0]['card'],first['card'])
+            self.assertEqual(len(versions.ensure(c,self.pid,self.aid)),1)
+            with self.assertRaisesRegex(ValueError,'единственную'):versions.delete(c,self.pid,self.delete_payload(c,versions.versions(c,self.pid,self.aid)[0]))
+
+    def test_delete_rejects_stale_list_and_foreign_project(self):
+        with connect(self.path) as c:
+            first=versions.ensure(c,self.pid,self.aid)[0]
+            stale=self.delete_payload(c,first)
+            versions.create(c,self.pid,self.aid,{'id':first['id'],'revision':first['revision']})
+            with self.assertRaisesRegex(ValueError,'Список'):versions.delete(c,self.pid,stale)
+            with self.assertRaises(ValueError):versions.delete(c,999,self.delete_payload(c,first))
+            self.assertEqual(len(versions.versions(c,self.pid,self.aid)),2)
+
+    def test_regenerate_same_version_preserves_snapshot_and_recovers_missing_file(self):
+        from docx import Document
+        from itd.acts import generate
+        from itd.archive import digest
+        with connect(self.path) as c:
+            template=self.path.parent/'templates';template.mkdir()
+            doc=Document();doc.add_paragraph('{{ works }}');doc.save(template/'VERSION_TEST.docx')
+            first=generate(c,act_id=self.aid,templates_dir=template,output=self.path.parent/'first.docx')
+            selected=versions.versions(c,self.pid,self.aid)[0]
+            result=versions.regenerate(c,self.pid,dict(act_id=self.aid,id=selected['id'],revision=selected['revision']),template)
+            current=versions.versions(c,self.pid,self.aid)[0]
+            self.assertEqual(current['id'],selected['id']);self.assertEqual(len(result['versions']),1)
+            self.assertEqual(current['snapshot'],selected['snapshot'])
+            self.assertNotEqual(current['release_id'],first['release_id'])
+            Path=__import__('pathlib').Path
+            Path(result['output']).unlink()
+            again=versions.regenerate(c,self.pid,dict(act_id=self.aid,id=current['id'],revision=current['revision']),template)
+            self.assertTrue(Path(again['output']).is_file())
+            release=c.execute('SELECT * FROM releases WHERE id=?',(again['release_id'],)).fetchone()
+            self.assertEqual(release['sha256'],digest(again['output']))
+
+    def test_function_sources_are_scoped_and_preserve_explicit_overrides(self):
+        from itd.document_bindings import catalog,records
+        from itd.acts import build_context
+        from itd.form_defaults import apply_form_defaults,field_bindings
+        with connect(self.path) as c:
+            sources=catalog(c,self.pid,self.aid)
+            self.assertIn('object.name',{item['source'] for item in sources})
+            self.assertFalse(any('users' in item['source'] or 'storage_path' in item['source'] for item in sources))
+            data=self.draft(c)
+            source=f'records.organizations.r{self.org}.full_name'
+            data['card']['fields']=[{'key':'works','kind':'reference','source':source,'binding_explicit':True,'required':True}]
+            versions.save(c,self.pid,data)
+            self.assertEqual(build_context(c,self.aid)['context']['works'],'Застройщик')
+            self.assertIn('organizations',records(c,self.pid))
+            code,bindings=next((code,b) for code,b in field_bindings().items() if b)
+            key=next(iter(bindings))
+            field={'key':key,'kind':'literal','value':None,'binding_explicit':True}
+            result=apply_form_defaults(code,[field])[0]
+            self.assertEqual(result['kind'],'literal')
+
+    def test_function_in_table_cell_reads_scoped_data_and_keeps_other_cells_literal(self):
+        from itd.acts import build_context
+        with connect(self.path) as c:
+            data=self.draft(c)
+            data['card']['fields'].append({'key':'rows','kind':'table','value':[{'name':{'__itd_source':f'records.organizations.r{self.org}.full_name','value_type':'text'},'amount':0}],
+                'fields':[{'key':'name','kind':'reference','source':'item.name'},{'key':'amount','kind':'reference','source':'item.amount','value_type':'number'}]})
+            versions.save(c,self.pid,data)
+            self.assertEqual(build_context(c,self.aid)['context']['rows'],[{'name':'Застройщик','amount':0}])
+            c.execute('UPDATE organizations SET full_name=? WHERE id=?',('Новое имя',self.org))
+            self.assertEqual(build_context(c,self.aid)['context']['rows'][0]['name'],'Новое имя')
+
+    def test_function_override_preserves_required_signatory_role(self):
+        with connect(self.path) as c:
+            data=self.draft(c)
+            data['card']['fields'].append({'key':'person','kind':'reference','source':f'records.signatories.r{self.person}.fio','required':True,'binding_role':'customer_control','binding_explicit':True})
+            versions.save(c,self.pid,data)
+            self.assertEqual(versions.required_roles(c,self.aid),['customer_control'])
+
+    def test_regenerate_historical_draft_does_not_regenerate_or_create_latest_version(self):
+        from docx import Document
+        with connect(self.path) as c:
+            template=self.path.parent/'templates';template.mkdir()
+            doc=Document();doc.add_paragraph('{{ works }}');doc.save(template/'VERSION_TEST.docx')
+            first=versions.save(c,self.pid,self.draft(c))[-1]
+            latest=versions.create(c,self.pid,self.aid,{'id':first['id'],'revision':first['revision']})[-1]
+            result=versions.regenerate(c,self.pid,dict(act_id=self.aid,id=first['id'],revision=first['revision']),template)
+            items=versions.versions(c,self.pid,self.aid)
+            self.assertEqual(len(items),2);self.assertEqual(items[-1],latest)
+            self.assertEqual(items[0]['release_id'],result['release_id'])
+            self.assertEqual(c.execute('SELECT selected FROM releases WHERE id=?',(result['release_id'],)).fetchone()[0],0)
+
+    def test_deleting_latest_restores_signed_snapshot_with_original_role_keys(self):
+        from itd.acts import build_context
+        with connect(self.path) as c:
+            data=self.draft(c);data['signers'][0].update(signed=True,signed_date='2026-11-03')
+            data['signed_attachment_id']=self.signed_file(c)
+            first=versions.save(c,self.pid,data)[-1]
+            latest=versions.create(c,self.pid,self.aid,{'id':first['id'],'revision':first['revision']})[-1]
+            versions.delete(c,self.pid,self.delete_payload(c,latest))
+            status=c.execute('SELECT * FROM act_execution_status WHERE act_id=?',(self.aid,)).fetchone()
+            self.assertEqual(status['state'],'signed')
+            self.assertIn('customer_control',json.loads(status['signers_json']))
+            self.assertIn('Иванов',build_context(c,self.aid)['context']['person'])
+            self.assertEqual(len(versions.ensure(c,self.pid,self.aid)),1)
+
+    def test_regenerate_latest_draft_refreshes_binding_without_changing_historical_release(self):
+        from docx import Document
+        from itd.acts import generate
+        with connect(self.path) as c:
+            register_form(c,code='VERSION_TEST',name='Акт',fields=[{'key':'works','kind':'reference','source':'object.name'}])
+            template=self.path.parent/'templates';template.mkdir()
+            doc=Document();doc.add_paragraph('{{ works }}');doc.save(template/'VERSION_TEST.docx')
+            generated=generate(c,act_id=self.aid,templates_dir=template,output=self.path.parent/'first.docx')
+            first=versions.versions(c,self.pid,self.aid)[0]
+            old_context=json.loads(c.execute('SELECT context_json FROM generated_documents WHERE id=(SELECT generated_id FROM releases WHERE id=?)',(generated['release_id'],)).fetchone()[0])
+            c.execute('UPDATE objects SET name=? WHERE id=?',('Обновлённое имя',self.oid))
+            versions.regenerate(c,self.pid,dict(act_id=self.aid,id=first['id'],revision=first['revision']),template)
+            current=versions.versions(c,self.pid,self.aid)[0]
+            self.assertEqual(current['snapshot']['works'],'Обновлённое имя')
+            self.assertEqual(len(versions.versions(c,self.pid,self.aid)),1)
+            self.assertEqual(json.loads(c.execute('SELECT context_json FROM generated_documents WHERE id=(SELECT generated_id FROM releases WHERE id=?)',(generated['release_id'],)).fetchone()[0]),old_context)

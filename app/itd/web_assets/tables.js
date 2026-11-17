@@ -281,7 +281,7 @@ function handleRowSelection(table,model,e){
   applyDataTable(table,model);
 }
 function enhanceDataTable(table){
-  if(!table.closest('#content')||table.closest('form,[data-version-table]')||!table.tHead||!table.tBodies[0])return;
+  if(!table.closest('#content')||table.closest('form,[data-version-table],[data-document-table]')||!table.tHead||!table.tBodies[0])return;
   if(typeof enhanceRowDeletion==='function')enhanceRowDeletion(table);
   const scroll=table.closest('.table-scroll'),body=table.tBodies[0];
   const headers=[...table.tHead.rows[0].cells].filter(cell=>!cell.hasAttribute('data-table-fill'));

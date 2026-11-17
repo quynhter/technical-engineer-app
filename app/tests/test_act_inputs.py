@@ -30,11 +30,13 @@ class ActInputTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'Нужен Node')
     def test_form_render_types_serialization_and_live_sources(self):
         source=(Path(__file__).parents[1]/'itd/web_assets/act-fields.js').read_text()
+        functions=(Path(__file__).parents[1]/'itd/web_assets/field-functions.js').read_text()
         versions=(Path(__file__).parents[1]/'itd/web_assets/document-versions.js').read_text()
-        table_functions=versions[versions.index('function versionTableColumns('):versions.index('async function downloadDocumentVersion(')]+versions[versions.index('function versionTables('):]
+        table_functions=versions[versions.index('function versionTableColumns('):versions.index('async function downloadDocumentVersion(')]+versions[versions.index('function versionTables('):versions.index('function versionFieldRoots(')]
         script=r'''
 const assert=require('node:assert/strict');
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const document={querySelector:()=>null,addEventListener(){}};
 let html='',signed='2026-10-31';
 const host={set innerHTML(v){html=v;}};
 const $=s=>s==='#act-fields'?host:s.includes('date_signed')?{value:signed}:null;
@@ -53,18 +55,21 @@ const pdata={form_roots:{object:{},project:{},organizations:{customer:{full_name
  workspace_entries:[{id:7,resource_id:12},{id:8,resource_id:null}],workflow:{fact_records:[{id:4,resource_id:13}]}};
 const actForms=()=>[def];
 SOURCE
+FUNCTIONS
 renderActFields('TEST');
 assert.ok(html.includes('type="number"'));
 assert.ok(html.includes('type="date"'));
 assert.ok(!html.includes('Из БД:'));
-assert.ok(!html.includes('act.date_signed'));
+assert.ok(html.includes('data-field-function'));
 assert.ok(html.includes('&lt;Заказчик&gt;'));
-assert.ok(!html.includes('data-act-field="customer_name"'));
+assert.ok(html.includes('data-act-field="customer_name"'));
+assert.ok(html.includes('readonly'));
 assert.equal(actAutomaticValue(definitions[3],actInputRoots()),'31');
 signed='2026-11-02';
 assert.equal(actAutomaticValue(definitions[3],actInputRoots()),'02');
 assert.equal(actAutomaticValue({kind:'reference',source:'object.name'},{}),'Не заполнено — уточните исходные сведения');
-const fakeForm={querySelectorAll:selector=>selector==='[data-version-table]'?[]:[{dataset:{actField:'copies_count'},value:'0'},{dataset:{actField:'work_start'},value:'2026-10-30'}]};
+const rows=definitions.slice(0,2).map((field,i)=>({closest:()=>null,dataset:{fieldDefinition:JSON.stringify(field)},querySelector:()=>({disabled:false,value:['0','2026-10-30'][i]})}));
+const fakeForm={querySelectorAll:selector=>selector==='[data-document-field]'?rows:[]};
 const fields=collectActFields(fakeForm,def);
 assert.equal(fields[0].value,0);
 assert.equal(typeof fields[0].value,'number');
@@ -91,6 +96,6 @@ assert.match(rendered,/value="0"/);
 assert.match(rendered,/&lt;Проверено&gt;/);
 const automatic={...saved[0],source:'resources'};delete automatic.value;
 assert.equal(versionTables([automatic],{},false),'');
-'''.replace('SOURCE',source).replace('TABLE_FUNCTIONS',table_functions)
+'''.replace('SOURCE',source).replace('TABLE_FUNCTIONS',table_functions).replace('FUNCTIONS',functions)
         result=subprocess.run(['node','-e',script],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr)

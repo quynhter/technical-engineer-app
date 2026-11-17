@@ -50,6 +50,8 @@ def apply_date_fields(code, fields):
                 continue
             # Ручная календарная дата выше автоматической связи раздела.
             source = (None if first['kind'] == 'literal' and first.get('value') else group.get('source'))
+            if first.get('binding_explicit'):
+                source = first.get('source') if first['kind'] == 'reference' else None
             if not source and first['kind'] == 'reference' and not first.get('date_group'):
                 source = first.get('source')
             field = {k: v for k, v in field.items() if k not in ('source', 'value', 'input_type')}
@@ -96,7 +98,7 @@ def apply_form_defaults(code, fields):
         binding=bindings.get(field['key'])
         if code == 'СП_77_А_23' and field['key'] in ('t0_r1_c0', 't0_r2_c0') and field.get('value') == 'Приложение А.23':
             field = {**field, 'value': None}
-        if binding and field['kind']=='literal' and field.get('value') in (None,'') and field.get('state') not in ('hidden','not_applicable'):
+        if binding and field['kind']=='literal' and field.get('value') in (None,'') and not field.get('binding_explicit') and field.get('state') not in ('hidden','not_applicable'):
             field={k:v for k,v in field.items() if k not in ('value','source','role','template','presentation')}
             field={**field,**binding}
         result.append(field)

@@ -125,11 +125,14 @@ function previewFieldLabel(field){
  const suffix={day_2digits:' — день',month_genitive_ru:' — месяц',year_4digits:' — год'};
  return field.label+(suffix[field.format]||'');
 }
-function previewValue(value,field={}){
+function previewValue(value,field={},templateHeader=[]){
  if(Array.isArray(value)){
-  if(!value.length)return '<span class="small">Строки не добавлены</span>';
   const columns=field.columns||[];
-  if(columns.length)return `<div class="table-scroll"><table><thead><tr>${columns.map(c=>`<th scope="col">${esc(c.label)}</th>`).join('')}</tr></thead><tbody>${value.map(row=>`<tr>${columns.map(c=>`<td>${previewValue(row[c.key],c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  if(columns.length){
+   const header=templateHeader[0]?.reduce((sum,c)=>sum+c.span,0)===columns.length?templateHeader:[columns.map(c=>({label:c.label,span:1,rowspan:1}))];
+   return `<div class="table-scroll document-preview-table" data-document-table><table><thead>${header.map(row=>`<tr>${row.map(c=>`<th scope="${c.span>1?'colgroup':'col'}" colspan="${c.span}" rowspan="${c.rowspan||1}">${esc(c.label)}</th>`).join('')}</tr>`).join('')}</thead><tbody>${value.map(row=>`<tr>${columns.map(c=>`<td>${previewValue(row[c.key],c)}</td>`).join('')}</tr>`).join('')||`<tr><td colspan="${columns.length}">Строки не добавлены</td></tr>`}</tbody></table></div>`;
+  }
+  if(!value.length)return '<span class="small">Строки не добавлены</span>';
   return `<ul>${value.map(v=>`<li>${previewValue(v)}</li>`).join('')}</ul>`;
  }
  if(value&&typeof value==='object')return '<dl class="preview-fields">'+Object.entries(value).map(([key,v],i)=>`<div><dt>Сведение ${i+1}</dt><dd>${previewValue(v)}<details class="technical-detail"><summary>Код поля</summary>${esc(key)}</details></dd></div>`).join('')+'</dl>';
@@ -151,13 +154,14 @@ function previewContent(value){
  return groups.map(group=>{
   const items=fields.filter(f=>f.group===group&&!['hidden','not_applicable'].includes(f.state));
   if(!items.length)return '';
-  return `<section class="preview-section"><h3>${group}</h3>${group==='Таблицы и перечни'?items.map(f=>`<h4>${esc(f.label)}${f.required?' *':''}</h4>${previewValue(value.context[f.key],f)}`).join(''):`<dl class="preview-fields">${items.map(f=>`<div><dt>${esc(previewFieldLabel(f))}${f.required?' *':''}</dt><dd>${previewValue(value.context[f.key],f)}</dd></div>`).join('')}</dl>`}</section>`;
+  return `<section class="preview-section"><h3>${group}</h3>${group==='Таблицы и перечни'?items.map(f=>`<h4>${esc(f.label)}${f.required?' *':''}</h4>${previewValue(value.context[f.key],f,value.table_headers?.[f.key]||[])}`).join(''):`<dl class="preview-fields">${items.map(f=>`<div><dt>${esc(previewFieldLabel(f))}${f.required?' *':''}</dt><dd>${previewValue(value.context[f.key],f)}</dd></div>`).join('')}</dl>`}</section>`;
  }).join('');
 }
 function syncPreviewActions(){
  document.querySelectorAll('[data-preview-blocked]').forEach(b=>b.disabled=busy||b.dataset.previewBlocked==='true');
 }
 function previewActHtml(id,value){
+ if(typeof currentUser!=='undefined'&&currentUser?.role==='viewer')return card('Просмотр документа',`<p class="preview-act-name">${esc(value.act_num)} «${esc(value.form_name||value.act_type)}»</p><p class="hint">Сведения текущей карточки документа. Доступен только просмотр.</p>${previewContent(value)}<div class="ux-form-actions"><button type="button" class="secondary" data-action="cancel-entry">Закрыть</button></div>`,'file');
  const fields=value.preview_fields||[],missing=value.missing||[],issues=value.source_issues||[],claims=value.static_claims||[];
  const blocked=!!(missing.length||issues.length||value.template_error),needsReview=claims.length&&!value.review_current;
  const issuesHtml=issues.map(issue=>`<li>${esc(findingNames[issue.code]||'Нужно проверить связь с источником')}${issue.entry_id?' · запись № '+Number(issue.entry_id):''}${issue.supply_id?' · поставка № '+Number(issue.supply_id):''}</li>`).join('');
@@ -172,7 +176,7 @@ function previewActHtml(id,value){
 async function previewAct(id){
  const value=await api('/api/context?project_id='+projectId+'&act_id='+id);
  openEditor('preview');
- editorWindow.setTitle('Проверка и создание документа');
+ editorWindow.setTitle(typeof currentUser!=='undefined'&&currentUser?.role==='viewer'?'Просмотр документа':'Проверка и создание документа');
  $('#editor-content').innerHTML=previewActHtml(id,value);
  $('#editor-dialog').scrollTop=0;
  syncPreviewActions();

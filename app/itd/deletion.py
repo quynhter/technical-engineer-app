@@ -163,17 +163,27 @@ def _build(c,pid,table,identity):
             else:
                 for col in matches:fields[col]=None
                 change('workspace_entries',item,{'work_fields':json.dumps(fields,ensure_ascii=False)},reason)
-        if parent in ('organizations','signatories'):
+        from .document_bindings import TABLES as binding_tables
+        if parent in binding_tables:
             # Явные ссылки на идентификаторы в полях бланка.
             prefix='Organisation' if parent=='organizations' else 'Representative'
             def clean_fields(fields):
                 result=[];required=False;changed=False
                 for f in fields:
                     f=dict(f)
-                    if (f.get('source') or '').startswith(f'{prefix}.{row["id"]}.'):
+                    if ((parent in ('organizations','signatories') and (f.get('source') or '').startswith(f'{prefix}.{row["id"]}.'))
+                            or (f.get('source') or '').startswith(f'records.{parent}.r{row["id"]}.')):
                         changed=True;required=required or bool(f.get('required') and f.get('state') not in ('hidden','not_applicable'))
                         for k in ('source','role','presentation','template'):f.pop(k,None)
                         f.update(kind='literal',value=None)
+                    if f.get('kind') == 'table' and isinstance(f.get('value'), list):
+                        for table_row in f['value']:
+                            if not isinstance(table_row, dict):continue
+                            for key, cell in list(table_row.items()):
+                                if isinstance(cell, dict) and str(cell.get('__itd_source', '')).startswith(f'records.{parent}.r{row["id"]}.'):
+                                    table_row[key] = None;changed = True
+                                    required |= any(column.get('source') == 'item.'+key and column.get('required')
+                                                    for column in f.get('fields', []))
                     for col in ('fields','columns'):
                         if isinstance(f.get(col),list):
                             f[col],req,diff=clean_fields(f[col]);required|=req;changed|=diff
@@ -190,12 +200,12 @@ def _build(c,pid,table,identity):
                     reason=f'{LABELS[parent]} {_caption(parent,row)}. Поля документа'
                     if required:remove('acts',item,reason)
                     else:change('acts',item,{'fields':json.dumps(fields,ensure_ascii=False)},reason)
-            for item in c.execute('SELECT rowid AS __rowid,* FROM document_versions WHERE release_id IS NULL AND attachment_id IS NULL'):
+            for item in c.execute('SELECT rowid AS __rowid,* FROM document_versions WHERE release_id IS NULL AND attachment_id IS NULL AND signed_attachment_id IS NULL'):
                 item=dict(item);key=('document_versions',item['__rowid']);values=updated.get(key,{}).get('values',{})
                 card=json.loads(values.get('card_json',item['card_json']));signers=json.loads(values.get('signers_json',item['signers_json']))
                 before=json.dumps([card,signers],sort_keys=True)
                 if parent=='organizations':card['organizations']={k:v for k,v in card.get('organizations',{}).items() if v!=row['id']}
-                else:signers=[s for s in signers if s.get('person_id')!=row['id']]
+                elif parent=='signatories':signers=[s for s in signers if s.get('person_id')!=row['id']]
                 fields,required,diff=clean_fields(card.get('fields',[]))
                 if diff:card['fields']=fields
                 if required:remove('document_versions',item,'Обязательное поле версии')
@@ -204,7 +214,7 @@ def _build(c,pid,table,identity):
     # Удаляем ссылки из текущей карточки версии, когда они очищены в акте.
     for (t,rid),change_item in list(updated.items()):
         if t=='acts' and 'fields' in change_item['values']:
-            for item in c.execute('SELECT rowid AS __rowid,* FROM document_versions WHERE act_id=? AND release_id IS NULL AND attachment_id IS NULL',(rid,)):
+            for item in c.execute('SELECT rowid AS __rowid,* FROM document_versions WHERE act_id=? AND release_id IS NULL AND attachment_id IS NULL AND signed_attachment_id IS NULL',(rid,)):
                 item=dict(item);key=('document_versions',item['__rowid']);card=json.loads(updated.get(key,{}).get('values',{}).get('card_json',item['card_json']))
                 card['fields']=json.loads(change_item['values']['fields'])
                 change('document_versions',item,{'card_json':json.dumps(card,ensure_ascii=False)},'Обновлены ссылки в полях документа')

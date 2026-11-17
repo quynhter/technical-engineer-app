@@ -156,6 +156,8 @@ def build_context(connection, act_id, *, draft=True):
         from .registry import registry_rows
         roots["registry"] = registry_rows(connection, act["project_id"], registry_act_id=act_id, detailed=act["act_type"] == "РЕЕСТР_ИТД")
     fields = apply_form_defaults(act["act_type"], merge_fields(json.loads(form["fields"]), json.loads(act["fields"])))
+    from .document_bindings import records
+    roots['records'] = records(connection, act['project_id'])
     diagnostics = []
     context, missing = resolve_fields(fields, roots, draft=draft, diagnostics=diagnostics)
     # Дополнительные участники выбираются в карточке, хотя исходный бланк

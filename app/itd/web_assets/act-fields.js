@@ -57,6 +57,7 @@ function actAutomaticValue(field,roots){
 function updateActAutomaticValues(){
  const code=$('#act-type')?.value,form=actForms().find(f=>f.code===code);if(!form)return;
  const fields=actFieldDefinitions(form),roots=actInputRoots();
+ updateFunctionValues($('#act-form'),roots);
  document.querySelectorAll('[data-act-auto]').forEach(el=>{const field=fields.find(f=>f.key===el.dataset.actAuto);if(field)el.textContent=actAutomaticValue(field,roots);});
 }
 function renderActFields(code){
@@ -80,15 +81,7 @@ function renderActFields(code){
  if($('#act-resources'))syncLinkedActResources();
  const people=$('#act-people-fields');if(people){people.outerHTML=actPeopleSelects(null,form);decorateSelects();}
  const fields=actFieldDefinitions(form).filter(f=>!['hidden','not_applicable'].includes(f.state)),roots=actInputRoots();
- const literals=fields.filter(f=>f.kind==='literal'&&!f.readonly),automatic=fields.filter(f=>['reference','signatory'].includes(f.kind)&&(!f.date_group||f.date_group===f.key));
- const objectInfo=f=>/^(object|project|project_documentation)\./.test(f.source||'')?0:1;
- automatic.sort((a,b)=>objectInfo(a)-objectInfo(b));
- $('#act-fields').innerHTML=documentCreationGuidance(form)+participantRoleChoosers(fields)+organizationSelects(fields)+`<h3 class="rep">Сведения документа</h3><p class="hint">Обязательные сведения отмечены *. Можно сохранить незаполненный документ для дальнейшей подготовки; пропуски будут показаны при проверке.</p><div class="grid">${literals.map(f=>{
-  const type=fieldInputType(f),long=type==='text'&&(/описан|перечень|приложен|работ|решени|замечан|услови|основан|материал|испытан|документ|регламент/i.test(f.label)||String(f.value||'').length>100);
-  const attrs=`data-act-field="${esc(f.key)}" ${f.key==='work_description'?'placeholder="Можно оставить пустым: подставится из выбранных работ"':''}`;
-  return `<label class="field ${type==='text'?'wide':''}"><span>${esc(f.label||f.key)}${f.required?' *':''}</span>${long?`<textarea ${attrs}>${esc(f.value)}</textarea>`:`<input ${attrs} type="${type}" ${type==='number'?'step="any"':''} value="${esc(f.value)}">`}</label>`;
- }).join('')||'<p class="hint">Индивидуальных текстовых полей в этой форме нет.</p>'}</div>
- ${automatic.length?`<details class="act-auto-block"><summary>Реквизиты из карточек и назначений (${automatic.length})</summary><p class="hint">Эти значения подставляются автоматически и обновляются при создании DOCX. Организации и представители берутся по назначенным ролям. Организации и представителей изменяйте в «Участниках строительства»; подписантов документа выбирайте в его карточке.</p><dl class="preview-fields">${automatic.map(f=>`<div><dt>${esc(f.label||f.key)}${f.required?' *':''}<small>${esc(fieldSourceLabel(f))}</small></dt><dd><output data-act-auto="${esc(f.key)}">${esc(actAutomaticValue(f,roots))}</output></dd></div>`).join('')}</dl></details>`:''}
+ $('#act-fields').innerHTML=documentCreationGuidance(form)+participantRoleChoosers(fields)+organizationSelects(fields)+`<h3 class="rep">Сведения документа</h3><p class="hint">Обязательные сведения отмечены *. Можно сохранить незаполненный документ для дальнейшей подготовки; пропуски будут показаны при проверке.</p><div class="grid">${documentScalarFields(fields).map(f=>functionField(f,false,'creation',roots)).join('')}</div>
  ${versionTables(fields,{},false)}
  ${fields.some(f=>f.kind==='table'&&f.source)?`<details class="act-auto-block"><summary>Автоматические таблицы и перечни</summary><ul>${fields.filter(f=>f.kind==='table'&&f.source).map(f=>`<li>${esc(f.label||'Перечень')} — из связанных сведений раздела и выбранных ресурсов</li>`).join('')}</ul></details>`:''}`;
  decorateSelects();
@@ -96,11 +89,7 @@ function renderActFields(code){
 function collectActFields(form,definition){
  const fields=actFieldDefinitions(definition);
  const roleChanges=fields.filter(f=>f.role_slot&&(f.role&&f.role!==f.role_slot||f.source?.startsWith('organizations.')&&f.source.split('.')[1]!==f.role_slot));
- return roleChanges.concat(collectCreationTables(form,fields),[...form.querySelectorAll('[data-act-field]')].filter(el=>el.value!=='').map(el=>{
-  const def=fields.find(f=>f.key===el.dataset.actField),type=fieldInputType(def);
-  return {key:def.key,label:def.label,kind:'literal',value:type==='number'?Number(el.value):el.value,required:def.required||false,
-   ...(type==='date'?{value_type:'date',format:def.format||'date_ru'}:type==='number'?{value_type:'number'}:def.value_type?{value_type:def.value_type}:{})};
- }));
+ return [...new Map([...roleChanges,...collectCreationTables(form,fields),...collectFunctionFields(form)].map(field=>[field.key,field])).values()];
 }
 function linkedActResourceIds(entryIds,factIds=[]){
  return new Set([...pdata.workspace_entries.filter(e=>entryIds.includes(e.id)).map(e=>e.resource_id),...(pdata.work_materials||[]).filter(m=>entryIds.includes(m.entry_id)).map(m=>m.resource_id),...pdata.workflow.fact_records.filter(f=>factIds.includes(f.id)).map(f=>f.resource_id)].filter(Boolean));
@@ -119,7 +108,7 @@ function syncLinkedActResources(){
 function normalizeFormFields(code,fields){
  fields=normalizeDateFields(code,fields);
  const bindings=pdata.form_bindings?.[code]||{};
- return fields.map(field=>{const binding=bindings[field.key];if(binding&&field.kind==='literal'&&(field.value===null||field.value===undefined||field.value==='')&&!['hidden','not_applicable'].includes(field.state)){field={...field};for(const key of ['value','source','role','template','presentation'])delete field[key];field={...field,...binding};}return {...field,label:cleanFieldLabel(field.label||field.key)};});
+ return fields.map(field=>{const binding=bindings[field.key];if(binding&&field.kind==='literal'&&!field.binding_explicit&&(field.value===null||field.value===undefined||field.value==='')&&!['hidden','not_applicable'].includes(field.state)){field={...field};for(const key of ['value','source','role','template','presentation'])delete field[key];field={...field,...binding};}return {...field,label:cleanFieldLabel(field.label||field.key)};});
 }
 function normalizeDateFields(code,fields){
  const updates=new Map(),formats={day:'day_2digits',month:'month_genitive_ru',year:'year_4digits'};
@@ -130,6 +119,7 @@ function normalizeDateFields(code,fields){
    const original=fields.find(f=>f.key===key);if(!original)continue;
    if(legacy){const f={...original};if(f.kind==='literal'&&f.value!==null&&f.value!==undefined&&f.value!==''){for(const attr of ['format','value_type','input_type','date_group'])delete f[attr];}updates.set(key,{...f,label:group.label+' — '+({day:'день',month:'месяц',year:'год'})[part]});continue;}
    let source=first.kind==='literal'&&first.value?null:group.source;
+   if(first.binding_explicit)source=first.kind==='reference'?first.source:null;
    if(!source&&first.kind==='reference'&&!first.date_group)source=first.source;
    const f={...original};delete f.source;delete f.value;delete f.input_type;
    if(source)Object.assign(f,{kind:'reference',source});
@@ -154,7 +144,7 @@ function applyParticipantRole(fields,slot,role){return fields.map(f=>{if(f.role_
 function handleActParticipantChange(e){
  const el=e.target;if(el.dataset.participantRole&&el.value){
   const form=el.closest('form');if(form?.id==='act-form'){
-   const definition=actForms().find(f=>f.code===form.elements.namedItem('act_type').value),fields=applyParticipantRole(actFieldDefinitions(definition),el.dataset.participantRole,el.value);
+   const definition=actForms().find(f=>f.code===form.elements.namedItem('act_type').value),fields=applyParticipantRole(actFieldDefinitions(definition).map(f=>({...f,...collectFunctionFields(form).find(x=>x.key===f.key)})),el.dataset.participantRole,el.value);
    const literalValues=Object.fromEntries([...form.querySelectorAll('[data-act-field]')].map(el=>[el.dataset.actField,el.value]));
    const people=selectedActPeople(form),organizations=selectedActOrganizations(form);
    definition.fields=fields;definition.ui_fields=fields;renderActFields(definition.code);
@@ -169,10 +159,6 @@ function handleActParticipantChange(e){
  if(el.dataset.organizationRole){const role=el.dataset.organizationRole,form=el.closest('form');const personSelect=form?.querySelector(`[name="signer_${role}"]`);if(personSelect){const selectedId=Number(personSelect.value),choices=actRoleCandidates(role).filter(p=>!el.value||p.org_id===Number(el.value));personSelect.innerHTML='<option value="">Выберите представителя…</option>'+choices.map(p=>option(p.id,representativeLabel(p),choices.some(p=>p.id===selectedId)?selectedId:choices.length===1?choices[0].id:null)).join('');enhanceSelect(personSelect);}updateActAutomaticValues();}
 }
 
-function automaticCardFields(fields,roots){
- const seen=new Set();const items=fields.filter(f=>{if(f.date_group&&f.date_group!==f.key)return false;if(f.kind!=='reference'||!f.source||!f.source.startsWith('object.')&&!f.source.startsWith('project.')&&!f.source.startsWith('project_documentation.')&&!/^(Object|Project)\./.test(f.source))return false;const id=f.source+'|'+(f.format||'');if(seen.has(id))return false;seen.add(id);return true;});
- return items.length?`<section class="preview-section"><h3>Связи</h3><dl class="preview-fields">${items.map(f=>`<div><dt>${esc(f.label||f.key)}</dt><dd>${esc(actAutomaticValue(f,roots))}</dd></div>`).join('')}</dl></section>`:'';
-}
 function participantRoleLabel(role,fields=[]){return meta.document_roles[role]||fields.find(f=>f.kind==='signatory'&&f.role===role)?.label||fields.find(f=>f.source?.startsWith('organizations.'+role+'.'))?.label||'Представитель документа';}
 
 function actResourceRemovals(form,fd){
@@ -199,6 +185,6 @@ function collectCreationTables(form,fields){
   const field=fields.find(f=>f.key===table.dataset.versionTable);
   return {...field,value:[...table.querySelectorAll('tbody tr')].map(row=>Object.fromEntries(
    [...row.querySelectorAll('[data-table-column]')].map(input=>[input.dataset.tableColumn,
-    input.value===''?null:input.type==='number'?Number(input.value):input.value])))};
+    collectFunctionTableCell(input)])))};
  });
 }

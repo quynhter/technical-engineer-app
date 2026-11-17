@@ -69,6 +69,39 @@ class WebAccountTests(unittest.TestCase):
         self.assertEqual(saved['object']['name'], 'Тестовый объект')
         self.assertEqual(self.request('bootstrap', viewer)['objects'][0]['name'], 'Тестовый объект')
 
+    def test_viewer_document_context_preserves_template_headers_without_business_writes(self):
+        from unittest.mock import patch
+        from docx import Document
+        from itd.acts import register_form, add_act
+        with connect(self.database) as c:
+            oid = add_object(c, name='Объект просмотра')
+            pid = add_project(c, object_id=oid, name='Раздел', code='РД', section_code='АВК')
+            register_form(c, code='VIEWER_READ', name='Акт просмотра', fields=[
+                {'key': 'city', 'label': 'Город', 'kind': 'literal', 'value': 'Москва'},
+                {'key': 'rows', 'label': 'Документы', 'kind': 'table', 'value': [{'name': 'Чертёж'}],
+                 'fields': [{'key': 'name', 'label': 'Название', 'kind': 'reference', 'source': 'item.name'}]}])
+            aid = add_act(c, project_id=pid, act_type='VIEWER_READ')
+        templates = self.root / 'templates'
+        templates.mkdir()
+        doc = Document()
+        table = doc.add_table(rows=4, cols=1)
+        for row, text in zip(table.rows, ['Документация', '{%tr for item in rows %}', '{{ item.name }}', '{%tr endfor %}']):
+            row.cells[0].text = text
+        doc.save(templates / 'VIEWER_READ.docx')
+        _, code = self.add_user('viewer')
+        viewer = self.login(code)
+        with connect(self.database) as c:
+            before = '\n'.join(c.iterdump())
+        with patch('itd.web.default_templates', return_value=templates):
+            value = self.request(f'context?project_id={pid}&act_id={aid}', viewer)
+        self.assertEqual(value['context']['rows'], [{'name': 'Чертёж'}])
+        self.assertEqual(value['table_headers']['rows'][0][0]['label'], 'Документация')
+        with connect(self.database) as c:
+            self.assertEqual('\n'.join(c.iterdump()), before)
+        for route in ('generate', 'review', 'versions/save', 'versions/create', 'versions/delete'):
+            self.request(route, viewer, {'project_id': pid, 'act_id': aid}, status=403)
+        self.request(f'context?project_id={pid+100}&act_id={aid}', viewer, status=400)
+
     def test_login_logout_rotation_and_role_changes_revoke_sessions(self):
         user_id, code = self.add_user('viewer')
         first, second = self.login(code), self.login(code)

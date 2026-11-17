@@ -127,3 +127,12 @@ class DeletionTests(WorkspaceFixture, unittest.TestCase):
             self.assertFalse(c.execute('SELECT 1 FROM acts WHERE id=?',(self.act,)).fetchone())
             field=json.loads(c.execute('SELECT fields FROM acts WHERE id=?',(another,)).fetchone()[0])[0]
             self.assertIsNone(field['value']);self.assertNotIn('source',field)
+
+    def test_function_reference_to_deleted_resource_clears_without_rebinding_reused_id(self):
+        with connect(self.path) as c:
+            fields=[{'key':'resource_name','kind':'reference','source':f'records.resources.r{self.rid}.name','binding_explicit':True}]
+            c.execute('UPDATE acts SET fields=? WHERE id=?',(json.dumps(fields),self.act))
+            self.delete(c,'resources',self.rid)
+            field=json.loads(c.execute('SELECT fields FROM acts WHERE id=?',(self.act,)).fetchone()[0])[0]
+            self.assertEqual(field['kind'],'literal');self.assertIsNone(field['value'])
+            self.assertNotIn('source',field);self.assertTrue(field['binding_explicit'])

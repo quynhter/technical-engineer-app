@@ -32,7 +32,7 @@ function workEntryEditor(e){
 }
 function actRoles(definition){
  const result=new Set();
- function visit(fields){for(const f of fields||[]){if(['hidden','not_applicable'].includes(f.state))continue;if(f.kind==='signatory')result.add(f.role);if(f.source?.startsWith('signatories.'))result.add(f.source.split('.')[1]);if(f.kind==='table')visit(f.fields||f.columns);}}
+ function visit(fields){for(const f of fields||[]){if(['hidden','not_applicable'].includes(f.state))continue;if(f.kind==='signatory')result.add(f.role);if(f.binding_role)result.add(f.binding_role);if(f.source?.startsWith('signatories.'))result.add(f.source.split('.')[1]);if(f.kind==='table')visit(f.fields||f.columns);}}
  visit(definition?.ui_fields||definition?.fields);return [...result];
 }
 function actPeopleSelects(aid=null,definition=null){

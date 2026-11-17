@@ -35,11 +35,11 @@ test('calendar input has a visible label, accepts focus and saves ISO in both th
   const dom=new JSDOM(`<html data-theme="${theme}"><body><form id="act-form"><div id="act-fields"></div></form></body></html>`,{runScripts:'outside-only'});
   const w=dom.window,group=groups['СП_77_А_8'][0];
   const definition={code:'СП_77_А_8',name:'Проверка даты',fields:Object.values(group.parts).map(key=>({key,kind:'literal',value:null,required:true}))};
-  Object.assign(w,{pdata:{date_groups:groups},meta:{document_roles:{}},$:s=>w.document.querySelector(s),esc:v=>String(v??''),cleanFieldLabel:v=>v,actForms:()=>[definition],decorateSelects:()=>{},versionTables:()=>''});
-  w.eval(source+'\nactInputRoots=()=>({});Object.assign(window,{renderActFields,collectActFields});');w.renderActFields(definition.code);
+  Object.assign(w,{pdata:{date_groups:groups},meta:{document_roles:{}},$:s=>w.document.querySelector(s),esc:v=>String(v??'').replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;'),cleanFieldLabel:v=>v,actForms:()=>[definition],decorateSelects:()=>{},versionTables:()=>''});
+  w.eval(fs.readFileSync(new URL('app/itd/web_assets/field-functions.js',root),'utf8')+'\n'+source+'\nactInputRoots=()=>({});Object.assign(window,{renderActFields,collectActFields});');w.renderActFields(definition.code);
   const input=w.document.querySelector('input[type=date]');
   assert.equal(w.document.querySelectorAll('input').length,1);
-  assert.equal(input.closest('label').querySelector('span').textContent,'Дата документа *');
+  assert.equal(w.document.querySelector('label[for="'+input.id+'"]').textContent,'Дата документа *');
   input.focus();assert.equal(w.document.activeElement,input);
   input.value='2024-02-29';
   const saved=w.collectActFields(w.document.querySelector('form'),definition);

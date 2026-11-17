@@ -11,6 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import hashlib
 import hmac
+from ipaddress import IPv4Address
 import logging
 import mimetypes
 from pathlib import Path
@@ -93,6 +94,8 @@ def project_data(c, project_id):
     from .form_defaults import apply_form_defaults, documentation_context,field_bindings,document_project
     result['form_roots']['project'] = document_project(dict(project), result['form_roots']['object'])
     result['form_roots']['project_documentation'] = documentation_context(c, dict(project), result['participants']['organizations'])
+    from .document_bindings import catalog
+    result['binding_sources']=catalog(c,project_id)
     result['form_bindings']=field_bindings()
     from .form_defaults import date_groups
     result['date_groups'] = date_groups()
@@ -239,7 +242,8 @@ class WorkspaceServer(ThreadingHTTPServer):
 
     @property
     def origin(self):
-        return f'http://127.0.0.1:{self.server_port}'
+        host = self.server_address[0]
+        return f'http://{"127.0.0.1" if host == "0.0.0.0" else host}:{self.server_port}'
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -269,11 +273,19 @@ class Handler(BaseHTTPRequestHandler):
     def send_json(self, value, status=200):
         self.send_bytes(json.dumps(value, ensure_ascii=False, allow_nan=False).encode(), status=status)
 
-    def check_origin(self):
-        if self.headers.get('Host') != urlsplit(self.server.origin).netloc:
+    def check_host(self):
+        # Адрес интерфейса, принявшего соединение, известен ОС, а не клиенту.
+        # Это поддерживает все интерфейсы без доверия произвольному Host/DNS.
+        address, port = self.connection.getsockname()[:2]
+        host = f'{address}:{port}'
+        if self.headers.get_all('Host') != [host]:
             raise PermissionError('Недопустимый адрес сервера')
+        return 'http://' + host
+
+    def check_origin(self):
+        expected_origin = self.check_host()
         origin = self.headers.get('Origin')
-        if origin and origin != self.server.origin:
+        if origin and origin != expected_origin:
             raise PermissionError('Запрос с другого сайта отклонён')
     def authenticate(self):
         self.check_origin()
@@ -301,9 +313,8 @@ class Handler(BaseHTTPRequestHandler):
     def get_route(self):
         try:
             url = urlsplit(self.path)
-            if url.path in ('/', '/design.js', '/design.css', '/design-LICENSE.txt', '/logo.svg', '/favicon.svg', '/deletion.js', '/tables.js', '/account.js', '/configuration.js', '/document-versions.js', '/act-fields.js', '/journals.js', '/resources.js', '/ojr-ui.js', '/dialogs.js', '/app.js', '/knowledge.js', '/knowledge-markdown.js', '/manual.js', '/ui.js', '/style.css', '/open-sans-regular.ttf', '/open-sans-semibold.ttf', '/open-sans-bold.ttf', '/open-sans-LICENSE.txt'):
-                if self.headers.get('Host') != urlsplit(self.server.origin).netloc:
-                    raise PermissionError('Недопустимый адрес сервера')
+            if url.path in ('/', '/design.js', '/design.css', '/design-LICENSE.txt', '/logo.svg', '/favicon.svg', '/deletion.js', '/tables.js', '/account.js', '/configuration.js', '/document-versions.js', '/field-functions.js', '/act-fields.js', '/journals.js', '/resources.js', '/ojr-ui.js', '/dialogs.js', '/app.js', '/knowledge.js', '/knowledge-markdown.js', '/manual.js', '/ui.js', '/style.css', '/open-sans-regular.ttf', '/open-sans-semibold.ttf', '/open-sans-bold.ttf', '/open-sans-LICENSE.txt'):
+                self.check_host()
                 path = ASSETS / ('index.html' if url.path == '/' else url.path[1:])
                 self.send_bytes(path.read_bytes(), mimetypes.guess_type(path)[0] + '; charset=utf-8')
                 return
@@ -370,6 +381,8 @@ class Handler(BaseHTTPRequestHandler):
                     result['source_issues']=source_issues(c,aid)
                     try:
                         template=find_template(default_templates(),result['act_type'])
+                        from .field_ui import table_headers
+                        result['table_headers']=table_headers(template)
                         result['static_claims']=template_claims(template)
                         from .archive import digest
                         from .acts import context_digest
@@ -497,11 +510,15 @@ class Handler(BaseHTTPRequestHandler):
                     headers = {}
                 else:
                     headers = table_headers(template)
-                return {'versions':versions.ensure(c,pid,aid),'candidates':versions.candidates(c,pid),
+                from .document_bindings import catalog
+                return {'binding_sources':catalog(c,pid,aid),'versions':versions.ensure(c,pid,aid),'candidates':versions.candidates(c,pid),
                         'required_roles':versions.required_roles(c,aid),'organization_candidates':organization_candidates(c,pid),
                         'table_headers':headers, 'field_continuations':FIELD_CONTINUATIONS.get(act['act_type'], {})}
             if route=='/api/versions/create': return {'versions':versions.create(c,pid,aid,data.get('expected'))}
             if route=='/api/versions/save': return {'versions':versions.save(c,pid,data)}
+            if route=='/api/versions/delete': return {'versions':versions.delete(c,pid,data)}
+            if route=='/api/versions/regenerate':
+                return versions.regenerate(c,pid,data,default_templates())
             raise ValueError('Неизвестное действие с версиями')
         if route.startswith('/api/resource-import/'):
             from . import resource_import
@@ -677,13 +694,17 @@ class Handler(BaseHTTPRequestHandler):
         self.send_bytes(path.read_bytes(), 'application/octet-stream', filename=path.name)
 
 
-def create_server(database, port=None):
+def create_server(database, port=None, host='127.0.0.1'):
     """По умолчанию допускаем свободный порт; явный выбор не подменяем."""
     requested_port = 8765 if port is None else port
+    try:
+        host = str(IPv4Address(host))
+    except ValueError as error:
+        raise ValueError('Укажите IPv4-адрес для --host; 0.0.0.0 — все сетевые интерфейсы') from error
     if not 0 <= requested_port <= 65535:
         raise ValueError('Порт должен быть от 0 до 65535; 0 — выбрать свободный порт')
     try:
-        return WorkspaceServer(('127.0.0.1', requested_port), database)
+        return WorkspaceServer((host, requested_port), database)
     except OSError as error:
         if error.errno != errno.EADDRINUSE:
             raise
@@ -693,20 +714,23 @@ def create_server(database, port=None):
                 'откройте её прежнюю ссылку. Для другого сервера укажите '
                 '--port 0 (свободный порт) или другой --port.'
             ) from error
-        print('Порт 8765 уже занят; выбираем свободный локальный порт. '
+        print('Порт 8765 уже занят; выбираем свободный порт. '
               'Если форма этой папки уже работает, используйте её прежнюю ссылку.', flush=True)
-        return WorkspaceServer(('127.0.0.1', 0), database)
+        return WorkspaceServer((host, 0), database)
 
 
-def serve(database, port=None, open_browser=True):
+def serve(database, port=None, open_browser=True, host='127.0.0.1'):
     # Сначала занимаем порт: не создаём и не обновляем БД при конфликте.
-    server = create_server(database, port)
+    server = create_server(database, port, host)
     try:
         from .logging_setup import configure
         configure(ROOT / 'logs')
         backup, code = server.prepare()
         url = server.origin + '/' + ('#' + code if code else '')
         print(f'Локальная форма ИТД: {url}', flush=True)
+        if host == '0.0.0.0':
+            print(f'Доступ по сети: http://<IPv4-адрес этого компьютера>:{server.server_port}/ '
+                  '(вход по индивидуальному коду пользователя).', flush=True)
         if backup:
             print(f'Резервная копия перед обновлением: {backup}', flush=True)
         print('Остановить сервер: Ctrl+C. Данные сохраняются кнопкой в форме.', flush=True)
@@ -723,10 +747,11 @@ def main():
     parser = argparse.ArgumentParser(description='Локальная форма ИТД')
     parser.add_argument('--db', type=Path, default=default_database())
     parser.add_argument('--port', type=int, default=None, help='Порт (по умолчанию 8765 или свободный); 0 — свободный')
+    parser.add_argument('--host', default='127.0.0.1', help='IPv4-адрес сервера; 0.0.0.0 — доступ по сети')
     parser.add_argument('--no-browser', action='store_true')
     args = parser.parse_args()
     try:
-        serve(args.db, args.port, not args.no_browser)
+        serve(args.db, args.port, not args.no_browser, host=args.host)
     except (ValueError, OSError, sqlite3.Error) as error:
         parser.exit(1, f'Ошибка: {error}\n')
 

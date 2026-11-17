@@ -100,7 +100,7 @@ function showWorkspaceErrors(fields){
  for(const field of fields){const el=[...document.querySelectorAll('[data-path]')].find(el=>el.dataset.path===field.path);if(el)markInvalid(el);}
  const target=document.querySelector('[aria-invalid="true"]');target?.focus();
 }
-function updateDatabaseStatus(state){const el=document.querySelector('#database-status');if(!el||el.dataset.state===state)return;el.dataset.state=state;el.querySelector('span').textContent={ready:'Соединение есть',offline:'Нет связи с базой',session:'Сеанс завершён',checking:'Проверка базы…'}[state];}
+function updateDatabaseStatus(state){const el=document.querySelector('#database-status');if(!el||el.dataset.state===state)return;el.dataset.state=state;el.title=el.querySelector('span').textContent={ready:'Соединение есть',offline:'Нет связи с базой',session:'Сеанс завершён',checking:'Проверка базы…'}[state];}
 async function checkDatabaseStatus(){
  if(!token||sessionSuspended)return;
  const requestToken=token;
@@ -133,7 +133,7 @@ function decorateDataTables(root=document){
  const scrolls=root.matches?.('.table-scroll')?[root]:root.querySelectorAll('.table-scroll');
  scrolls.forEach(scroll=>{
   scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Таблица. Прокрутите для просмотра всех колонок');
-  const table=scroll.querySelector('table');if(!table||scroll.closest('[data-version-table],.knowledge-text'))return;
+  const table=scroll.querySelector('table');if(!table||scroll.closest('[data-version-table],[data-document-table],.knowledge-text'))return;
   table.querySelectorAll('[data-table-fill]').forEach(el=>el.remove());
   const headers=[...table.querySelectorAll('thead th')];
   const nameIndex=headers.findIndex(th=>/наименование|название|описание|материал|содержание|ресурс|работы|журнал|документ/i.test(th.textContent));

@@ -232,7 +232,7 @@ class EvidenceWorkflowTests(unittest.TestCase):
             self.assertEqual(before,[tuple(r) for r in c.execute('SELECT * FROM resources')])
             self.assertEqual(c.execute('SELECT name FROM objects').fetchone()[0],'Полное прежнее название')
             self.assertEqual(c.execute('SELECT COUNT(*) FROM work_facts').fetchone()[0],0)
-            self.assertEqual(c.execute('SELECT MAX(version) FROM schema_migrations').fetchone()[0],21)
+            self.assertEqual(c.execute('SELECT MAX(version) FROM schema_migrations').fetchone()[0],22)
             self.assertEqual(dict(c.execute('SELECT * FROM releases WHERE id=?',(release_id,)).fetchone()),release_before)
             self.assertEqual(original.read_bytes(),b'unchanged legacy release')
 

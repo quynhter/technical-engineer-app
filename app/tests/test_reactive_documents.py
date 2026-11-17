@@ -88,7 +88,7 @@ class ReactiveDocumentTests(WorkspaceFixture,unittest.TestCase):
 
 class ReactiveDownloadJsTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'),'Нужен Node')
-    def test_latest_draft_refreshes_but_historical_and_signed_download_exact_file(self):
+    def test_downloads_saved_file_for_every_version_and_generates_only_when_missing(self):
         source=(Path(__file__).parents[1]/'itd/web_assets/document-versions.js').read_text()
         source=source[source.index('async function downloadDocumentVersion('):source.index('function versionTables(')]
         script=r'''
@@ -98,11 +98,13 @@ const calls=[],ctx={documentVersionState:{aid:1,selected:2,versions:[{id:1,relea
  api:async()=>{calls.push(['generate']);return {release_id:30}},loadProject:async()=>{},render:()=>{},openDocumentVersions:async()=>{}};
 vm.runInNewContext(SOURCE,ctx);
 (async()=>{
- await ctx.downloadDocumentVersion();assert.deepEqual(calls,[['generate'],['download',30]]);
+ await ctx.downloadDocumentVersion();assert.deepEqual(calls,[['download',20]]);
  calls.length=0;ctx.documentVersionState.selected=1;
  await ctx.downloadDocumentVersion();assert.deepEqual(calls,[['download',10]]);
  calls.length=0;ctx.documentVersionState.selected=2;ctx.pdata.act_statuses=[{act_id:1,state:'signed'}];
  await ctx.downloadDocumentVersion();assert.deepEqual(calls,[['download',20]]);
+ calls.length=0;ctx.documentVersionState.versions[1].release_id=null;ctx.pdata.act_statuses=[];
+ await ctx.downloadDocumentVersion();assert.deepEqual(calls,[['generate'],['download',30]]);
 })().catch(e=>{console.error(e);process.exitCode=1});
 '''.replace('SOURCE',json.dumps(source))
         result=subprocess.run(['node','-e',script],capture_output=True,text=True)

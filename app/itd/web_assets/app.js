@@ -192,7 +192,7 @@ function packagePage(){
  if(packagePanel==='check')return nav+workflowLinks+`<div class="content-stack">${checkPage()}</div>`;
  if(packagePanel==='delivery')return nav+workflowLinks+`<div class="content-stack">${deliveryPage()}</div>`;
  return nav+card('Основные документы',`<div class="toolbar" id="package-panel-title"><button data-editor="act">${icon('plus')}Создать</button><button class="secondary" data-upload-act>${icon('upload')}Загрузить</button></div>`+
- journalTable(['Номер','Название','Дата подписания','Статус'],acts.map(a=>[esc(a.act_num),`<button class="record-name" ${currentUser?.role==='viewer'?'data-preview':'data-version-act'}="${a.id}">${esc(actName(a))}</button>`,esc(displayTableDate(a.date_signed)||'Не указана'),esc(pdata.act_statuses.find(s=>s.act_id===a.id)?.state==='signed'?'Подписан':'В подготовке')]),{ids:acts.map(a=>a.id),entity:'acts'}),'clipboard');
+ journalTable(['Номер','Название','Дата подписания','Статус'],acts.map(a=>[esc(a.act_num),`<button class="record-name" ${currentUser?.role==='viewer'?'data-preview':'data-version-act'}="${a.id}">${esc(actName(a))}</button>`,esc(displayTableDate(a.date_signed)||'Не указана'),esc(pdata.act_statuses.find(s=>s.act_id===a.id)?.state==='signed'?'Подписан':'Сформирован')]),{ids:acts.map(a=>a.id),entity:'acts'}),'clipboard');
 }
 const sourceTypeNames={contract:'Договор',order:'Распорядительный документ',quality:'Документ, подтверждающий качество',scheme:'Схема',rd:'Рабочая документация',other:'Другой файл'};
 function sourceType(a){return a.file_kind||(['certificate','passport'].includes(a.doc_type)?'quality':a.doc_type);}

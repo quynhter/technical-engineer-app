@@ -11,6 +11,61 @@ from itd.web import WorkspaceServer, create_server, serve
 
 
 class WebStartupTests(unittest.TestCase):
+    def test_network_listener_accepts_interface_origin_and_rejects_forged_hosts(self):
+        import json
+        import threading
+        from urllib.error import HTTPError
+        from urllib.request import Request, build_opener, ProxyHandler
+
+        with tempfile.TemporaryDirectory() as folder:
+            server = create_server(Path(folder) / 'network.db', 0, '0.0.0.0')
+            try:
+                _, code = server.prepare()
+                thread = threading.Thread(target=server.serve_forever, daemon=True)
+                thread.start()
+                try:
+                    # Другой адрес интерфейса проверяет отсутствие привязки к 127.0.0.1.
+                    origin = f'http://127.0.0.2:{server.server_port}'
+                    opener = build_opener(ProxyHandler({}))
+                    with opener.open(origin + '/', timeout=5) as response:
+                        self.assertEqual(response.status, 200)
+                    login = Request(origin + '/api/login',
+                                    headers={'Content-Type': 'application/json', 'Origin': origin},
+                                    data=json.dumps({'code': code}).encode())
+                    with opener.open(login, timeout=5) as response:
+                        session = json.load(response)['session']
+                    request = Request(origin + '/api/status',
+                                      headers={'X-ITD-Token': session, 'Origin': origin})
+                    with opener.open(request, timeout=5) as response:
+                        self.assertEqual(json.load(response)['database'], 'ready')
+                    for route, headers in (
+                        ('/', {'Host': 'evil.test'}),
+                        ('/api/status', {}),
+                        ('/api/status', {'X-ITD-Token': session, 'Origin': server.origin}),
+                        ('/api/status', {'X-ITD-Token': session, 'Host': 'evil.test'}),
+                    ):
+                        with self.subTest(route=route, headers=list(headers)):
+                            with self.assertRaises(HTTPError) as denied:
+                                opener.open(Request(origin + route, headers=headers), timeout=5)
+                            self.assertEqual(denied.exception.code, 403)
+                            denied.exception.close()
+                finally:
+                    server.shutdown()
+                    thread.join(timeout=5)
+            finally:
+                server.server_close()
+
+    def test_host_validation_and_busy_network_port_fallback(self):
+        for host in ('evil.test', '::1', '999.0.0.1'):
+            with self.assertRaisesRegex(ValueError, 'IPv4'):
+                create_server(Path('unused.db'), 0, host)
+        with patch('itd.web.WorkspaceServer') as factory:
+            factory.side_effect = [OSError(errno.EADDRINUSE, 'busy'), factory.return_value]
+            with contextlib.redirect_stdout(io.StringIO()):
+                create_server(Path('unused.db'), host='0.0.0.0')
+            self.assertEqual([call.args[0] for call in factory.call_args_list],
+                             [('0.0.0.0', 8765), ('0.0.0.0', 0)])
+
     def test_default_busy_port_falls_back_and_serves_loopback(self):
         calls = []
 
@@ -107,7 +162,7 @@ class WebStartupTests(unittest.TestCase):
                         command = ([sys.executable, '-m', 'app.itd', '--db', str(database), 'web']
                                    if entry == 'cli' else
                                    [sys.executable, str(root/'app/scripts/start_web.py'), '--db', str(database)])
-                        process = subprocess.Popen(command + ports + ['--no-browser'], cwd=root,
+                        process = subprocess.Popen(command + ports + ['--no-browser', '--host', '0.0.0.0'], cwd=root,
                                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                                    text=True)
                         lines = queue.Queue()

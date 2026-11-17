@@ -204,7 +204,17 @@ def resolve_fields(fields, roots, *, draft=True, prefix="", diagnostics=None):
                 missing.extend(gaps)
             value = rows
         else:
-            value = formatted(value, field)
+            if field.get('source', '').startswith('item.') and isinstance(value, dict) and '__itd_source' in value:
+                # Явная связь отдельной ячейки ручной таблицы. Только lookup
+                # в том же разрешённом контексте, без SQL и исполнения кода.
+                if not source_path(value['__itd_source']) or set(value) - {'__itd_source', 'value_type', 'format'}:
+                    raise ValueError('Некорректная связь ячейки таблицы')
+                effective = {**field, 'value_type': value.get('value_type'), 'format': value.get('format')}
+                validate_fields([effective])
+                value = lookup(value['__itd_source'], roots)
+                value = formatted(value, effective)
+            else:
+                value = formatted(value, field)
         empty = value is None or value == "" or value == [] or (isinstance(value, str) and not value.strip())
         if empty:
             if diagnostics is not None:

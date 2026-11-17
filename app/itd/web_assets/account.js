@@ -4,6 +4,19 @@ const roleNames = {admin:'Администратор', editor:'Редактор'
 let currentUser;
 let sessionSuspended=false;
 let viewerObserver;
+const viewerRestrictions=new Map();
+function clearViewerRestrictions(){
+ viewerObserver?.disconnect();viewerObserver=undefined;
+ for(const [control,properties] of viewerRestrictions)for(const [name,value] of Object.entries(properties))control[name]=value;
+ viewerRestrictions.clear();
+ document.querySelectorAll('[data-read-only-note]').forEach(note=>note.remove());
+}
+function restrictViewerControl(control,property){
+ if(control[property])return;
+ const properties=viewerRestrictions.get(control)||{};
+ if(!Object.hasOwn(properties,property))properties[property]=control[property];
+ viewerRestrictions.set(control,properties);control[property]=true;
+}
 let finishPrompt;
 let promptAccepted=false;
 const promptWindow = createWorkspaceDialog('prompt-dialog', {
@@ -58,8 +71,10 @@ function setProfile(user){
  user={...user,workspace_id:user.workspace_id??currentUser?.workspace_id};
  currentUser=user;
  document.body.dataset.role=user.role;
+ if(user.role!=='viewer')clearViewerRestrictions();
  if(user.role==='viewer'&&!viewerObserver){
   const readOnly=()=>{
+   for(const control of viewerRestrictions.keys())if(!control.isConnected)viewerRestrictions.delete(control);
    const content=document.getElementById('editor-content');
    if(content.firstElementChild&&!content.querySelector('[data-read-only-note]')){const note=document.createElement('p');note.dataset.readOnlyNote='';note.className='hint';note.textContent='Просмотр · изменение сведений недоступно для вашей роли.';content.prepend(note);}
 
@@ -73,8 +88,7 @@ function setProfile(user){
     if(el.matches('#object-search,#project-select,#resource-activity-select,[data-filter],[data-check-search],[data-table-control]')||
        el.closest('.smart-select')?.querySelector('select')?.matches('#project-select,#resource-activity-select,[data-journal-project],[data-table-control]')||
        el.matches('[data-journal-project]'))return;
-    if(el.matches('select,input[type=checkbox],input[type=radio],input[type=file],.smart-input'))el.disabled=true;
-    else el.readOnly=true;
+    restrictViewerControl(el,el.matches('select,input[type=checkbox],input[type=radio],input[type=file],.smart-input')?'disabled':'readOnly');
    });
   };
   viewerObserver=new MutationObserver(readOnly);
