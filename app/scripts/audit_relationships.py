@@ -47,6 +47,7 @@ TABLE_LABELS = {
     'releases': 'Выпуски файлов', 'generated_documents': 'История генерации DOCX',
     'attachments': 'Архив исходных файлов', 'project_files': 'Файлы раздела',
     'package_requirements': 'Состав комплекта', 'deliveries': 'Сдача',
+    'read_events': 'Аудит выдачи ZIP (вне деловой БД)',
     'users': 'Пользователи', 'settings': 'Выбранная БД и рабочая папка',
     'document_roots': 'Разрешённые рабочие папки', 'knowledge_entries': 'Фрагменты нормативов',
     'knowledge_meta': 'Манифест индекса', 'knowledge_fts': 'Полнотекстовый поиск',
@@ -107,7 +108,7 @@ def schema(c):
 def auxiliary_schema():
     """Извлекаем именно DDL из кода; ни аккаунты, ни индекс пользователя не открываем."""
     result = {}
-    for module in ('accounts', 'knowledge'):
+    for module in ('accounts', 'knowledge', 'read_audit'):
         tree = ast.parse((ROOT / f'app/itd/{module}.py').read_text())
         statements = []
         for node in ast.walk(tree):
@@ -435,7 +436,7 @@ def render_map(result):
             for col in row['columns']:
                 reverse[col].append(form['item']['code'] + '.' + row['path'])
     lines = ['# Карта данных, полей и шаблонов ИТД', '',
-             'Снимок структуры на 10.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. '
+             'Снимок структуры на 18.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. '
              'Рабочие БД и документы пользователя не открывались и не изменялись.', '',
              '## Навигация', '',
              '- [Итоги и границы проверки](#audit)', '- [Экран → сущности → документы](#screens)',
@@ -444,7 +445,7 @@ def render_map(result):
              '- [Общая ведомость XLSX](#xlsx)', '- [Как обновить карту](#update)', '',
              '<a id="audit"></a>', '## Итоги проверки', '',
              f'- Основная БД: таблиц — **{len(tables)}**, колонок — **{sum(len(t["columns"]) for t in tables.values())}**, '
-             f'компонентов внешних ключей — **{sum(len(t["fks"]) for t in tables.values())}**; миграции 001–021.',
+             f'компонентов внешних ключей — **{sum(len(t["fks"]) for t in tables.values())}**; миграции 001–023.',
              f'- Форм / DOCX / JSON-определений — **{len(forms)}**, включая титульник и две общие формы из `form_catalog.catalog()`.',
              f'- **{len(rows)} эффективных определений**, включая каждую колонку вложенных таблиц: ' + ', '.join(f'{k}: {v}' for k, v in sorted(counts.items())) + '.',
              f'- Ошибок проверенных контрактов: **{len(result["errors"])}**. '
@@ -482,8 +483,8 @@ def render_map(result):
              'Точные ключи и подписи перечислены ниже со статусом «Рукописная подпись». '
              'Некоторые подписи совмещены с ФИО/должностью в заголовке; автоматическое заполнение '
              'этих частей требует отдельной сверки бланка с оригиналом.',
-             '- В README шаблонов была ссылка на отсутствующий `audit_form_bindings.py` и несуществующий `app/.venv`. '
-             'Ссылка заменена действующим аудитом `audit_relationships.py` и корневой `.venv`.',
+             '- В README шаблонов были устаревшие ссылки на скрипт аудита и окружение Python. '
+             'Они заменены действующим аудитом `audit_relationships.py` и корневой `.venv`.',
              '- У общего реестра `registry.number`, `registry.date`, `registry.note` остаются в контексте, '
              'но текущий DOCX их отдельно не печатает; номер и дата объединены в `number_date`. '
              '`registry.organization` вычисляется только при единственном исполнителе ролей `work_performer` / `builder`; '
@@ -495,6 +496,7 @@ def render_map(result):
              'для этих назначений при создании титульника требуется явное сопоставление `roles` в `titles.add_title`. '
              'Без него необязательные организации могут быть пустыми. Автоматическое переименование ролей здесь не выполнялось.', '',
              '<a id="screens"></a>', '## Экран → сущности → документы', '',
+             'Реестр ИД: `app/frontend/src/registry.jsx` → `/api/v1/project`, `/api/v1/registry/export`, `/api/v1/package` → общие сервисы. Список исходных файлов: `app/frontend/src/source-files.jsx` → `/api/v1/project`, `/api/v1/upload`; карточка оригинала и файловая проверка используют общие сервисы. Списки схем, основных документов, спецификации ресурсов, факта монтажа, входного контроля и ЖПК: `app/frontend/src/project-records.jsx` → `/api/v1/project`; формы сохраняют прежние сервисы. Работы ОЖР: `work-records.jsx`; остальные таблицы ОЖР: `journal-records.jsx`; проверка/сдача: `workflow-records.jsx`; ручное ведение: `manual-records.jsx` — из `app/frontend/src` через `/api/v1/project`. Действующие native формы, версии, файловые операции, настройки и знания сохраняют контроллеры `app/itd/web_assets` и Astryx-адаптеры; схема данных и источники полей не меняются.', '',
              '| Раздел интерфейса | Хранилище и связи | Использование |', '|---|---|---|',
              '| Объект, реквизиты, разрешения | objects → projects; object_units | object.*, project.*, unit.*; реестр и титульник |',
              '| Участники | organizations → signatories; object_participants; organization_assignments; signatory_assignments; participant_periods | organizations.<роль>.*, signatories.<роль>.*, companies; выбор акта через act_organizations / act_signatories |',
@@ -570,6 +572,8 @@ def render_map(result):
     modules = {p.stem: p.read_text() for p in (ROOT / 'app/itd').glob('*.py')}
     for title, group in groups:
         lines += ['### ' + title, '']
+        if title.endswith('read_audit'):
+            lines += ['Файл `<путь БД>.audit.sqlite3` создаётся при выдаче ZIP. Идентификаторы раздела, выпусков и пользователя логические, без FK между файлами. Содержимое документов, полные аргументы и пути не сохраняются.', '']
         if title.endswith('knowledge'):
             lines += ['`knowledge_fts` — виртуальная FTS5-таблица. Её внутренние shadow-таблицы управляются SQLite и не являются деловыми сущностями. '
                       'Связь knowledge_entries.id ↔ knowledge_fts.id логическая, без FK.', '']

@@ -51,17 +51,17 @@ Markdown отображается как таблицы, списки и выд�
 рендерером без сторонних библиотек. HTML из нормативов не исполняется.
 Хеши и служебные метаданные доступны агенту через CLI; в веб-поиске они скрыты.
 
-Из корня проекта (Windows: Python `app/.venv/Scripts/python.exe`):
+Из корня проекта (Windows: Python `.venv/Scripts/python.exe`):
 
 ```bash
-app/.venv/bin/python -m app.itd knowledge-status
-app/.venv/bin/python -m app.itd knowledge-validate
-app/.venv/bin/python -m app.itd knowledge-index
-app/.venv/bin/python -m app.itd knowledge-search --query 'изоляц' --corpus sp77
-app/.venv/bin/python -m app.itd knowledge-search --kind rule --clause '6.7.26' --corpus sp77
-app/.venv/bin/python -m app.itd knowledge-search --work 'испытания' --form 'Протокол'
-app/.venv/bin/python -m app.itd knowledge-show --id 'sp77/rules.jsonl#rule-14'
-app/.venv/bin/python -m app.itd knowledge-export --output db/work/knowledge-export.jsonl
+.venv/bin/python -m app.itd knowledge-status
+.venv/bin/python -m app.itd knowledge-validate
+.venv/bin/python -m app.itd knowledge-index
+.venv/bin/python -m app.itd knowledge-search --query 'изоляц' --corpus sp77
+.venv/bin/python -m app.itd knowledge-search --kind rule --clause '6.7.26' --corpus sp77
+.venv/bin/python -m app.itd knowledge-search --work 'испытания' --form 'Протокол'
+.venv/bin/python -m app.itd knowledge-show --id 'sp77/rules.jsonl#rule-14'
+.venv/bin/python -m app.itd knowledge-export --output db/work/knowledge-export.jsonl
 ```
 
 `--corpus` — имя подпапки: i_1_13_07, rd78_145_93, prikaz_344pr, sp77.
@@ -84,7 +84,7 @@ app/.venv/bin/python -m app.itd knowledge-export --output db/work/knowledge-expo
 
 Исходники — `app/knowledge/<corpus>/*.md` и `*.jsonl`, UTF-8.
 README.md служат навигацией и не индексируются. Формат входа и примеры:
-[references/format.md](../../app/skills/construction-norm-parser/references/format.md).
+[references/format.md](../../skills/construction-norm-parser/references/format.md).
 
 Индекс — `db/knowledge.db`, производный кэш SQLite FTS5. При `--db` в другой
 папке индекс располагается рядом с указанной БД. Рабочая `db/itd.db` и её
@@ -107,23 +107,11 @@ fingerprint и missing/ready/stale/invalid для индекса. `doctor` пр�
 Скилл — инструкция для модели о повторяемой работе. Он помогает разобрать
 документ, но сам не выполняет OCR или перевод без участия агента.
 Проектная версия адаптирована из предоставленного пользователем SKILL.md:
-[construction-norm-parser](../../app/skills/construction-norm-parser/SKILL.md).
+[construction-norm-parser](../../skills/construction-norm-parser/SKILL.md).
 
-Установка в локальный каталог обнаружения Codex:
+Для работы из корня проекта передайте агенту инструкцию:
 
-```bash
-app/.venv/bin/python app/scripts/install_project_skills.py
-```
-
-Скрипт копирует только этот скилл в `.agents/skills/construction-norm-parser`,
-не меняет глобальные настройки и не заменяет существующий скилл. После установки
-откройте новый чат проекта, если текущий ещё не видит его в списке. Пример вызова:
-
-> $construction-norm-parser Разбери переданный СП для базы знаний этого проекта.
-
-При недоступности каталога скиллов можно написать в Codex или OpenCode:
-
-> Прочитай app/skills/construction-norm-parser/SKILL.md и подготовь этот норматив.
+> Прочитай skills/construction-norm-parser/SKILL.md и подготовь этот норматив.
 
 AGENTS.md также указывает этот путь, поэтому инструкция доступна агенту без
 установки. Порядок: оригинал и редакция → отдельная staging-папка → пункты,

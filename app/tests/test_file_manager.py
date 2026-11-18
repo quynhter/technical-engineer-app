@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from itd.archive import import_file, link_file, publish_project_file, file_type, archived_path
 from itd.db import initialize, connect, add_object, add_project
-from itd.file_manager import make_plan, apply_plan
+from itd.file_manager import make_plan, apply_plan, recover_files
 
 
 class FileManagerTests(unittest.TestCase):
@@ -172,13 +172,40 @@ class FileManagerTests(unittest.TestCase):
             self.assertIsNotNone(c.execute('SELECT * FROM attachments WHERE id=?',(aid,)).fetchone())
             self.assertEqual(c.execute('SELECT state FROM file_operations').fetchone()[0],'rolled_back')
 
-    def test_interrupted_pending_operation_is_recovered_before_next_check(self):
-        aid,visible,archived=self.add();stage=self.root/'work'/'file-operations'/('a'*32);stage.mkdir(parents=True)
+    def test_interrupted_pending_operation_requires_explicit_recovery(self):
+        aid,visible,archived=self.add();old_plan=self.plan()
+        stage=self.root/'work'/'file-operations'/('a'*32);stage.mkdir(parents=True)
         from itd.archive import digest
         move={'path':str(visible.relative_to(self.root)),'saved':'0-0','sha256':digest(visible)}
         with connect(self.db) as c:c.execute("INSERT INTO file_operations(id,state,moves_json) VALUES(?,'pending',?)",('a'*32,json.dumps([move])))
         visible.rename(stage/'0-0')
+        with connect(self.db) as c:before='\n'.join(c.iterdump())
+        for pid in (self.pid, self.pid+999):
+            with self.assertRaisesRegex(ValueError, 'Сначала выполните восстановление' if pid==self.pid else 'Выберите раздел'):
+                make_plan(self.db,pid)
+            with connect(self.db) as c:self.assertEqual(before,'\n'.join(c.iterdump()))
+            self.assertFalse(visible.exists());self.assertEqual((stage/'0-0').read_bytes(),archived.read_bytes())
+        with self.assertRaisesRegex(ValueError,'Сначала выполните восстановление'):
+            self.apply(old_plan)
+        with connect(self.db) as c:self.assertEqual(before,'\n'.join(c.iterdump()))
+        recover_files(self.db,self.pid)
         self.assertEqual(self.plan()['plan']['actions'],[]);self.assertTrue(visible.exists());self.assertTrue(archived.exists())
+
+    def test_applied_cleanup_requires_explicit_recovery_and_preserves_files(self):
+        aid,visible,archived=self.add()
+        stage=self.root/'work'/'file-operations'/('b'*32);stage.mkdir(parents=True)
+        from itd.archive import digest
+        saved=stage/'0-0';saved.write_bytes(visible.read_bytes())
+        move={'path':str(visible.relative_to(self.root)),'saved':'0-0','sha256':digest(visible)}
+        with connect(self.db) as c:c.execute("INSERT INTO file_operations(id,state,moves_json) VALUES(?,'applied',?)",('b'*32,json.dumps([move])))
+        with connect(self.db) as c:before='\n'.join(c.iterdump())
+        for pid in (self.pid,self.pid+999):
+            with self.assertRaises(ValueError):make_plan(self.db,pid)
+            with connect(self.db) as c:self.assertEqual(before,'\n'.join(c.iterdump()))
+            self.assertTrue(saved.exists());self.assertEqual(visible.read_bytes(),archived.read_bytes())
+        recover_files(self.db,self.pid)
+        self.assertFalse(saved.exists());self.assertEqual(visible.read_bytes(),archived.read_bytes())
+        self.assertEqual(self.plan()['plan']['actions'],[])
 
     def test_missing_archive_is_repaired_from_visible_file(self):
         aid,visible,archived=self.add();archived.unlink()

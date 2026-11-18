@@ -1,27 +1,35 @@
-function automaticJournalsPage(){
- const rows=pdata.journals.automatic;
- return card('Журналы по текущим записям',`<p class="hint">ОЖР и ЖВК появляются автоматически после первой записи. Это переходы к текущим записям; печатный выпуск оформляется отдельно.</p><div class="toolbar"><button class="secondary" data-view="participants">Открыть участников строительства</button><button class="secondary" data-manual="assign">Назначить представителя раздела</button></div>`+journalTable(['Журнал','Раздел','Записей'],rows.map(j=>[`<button type="button" class="cell-open" data-auto-journal="${j.kind}" data-journal-project="${j.project_id}">${esc(j.name)}</button>`,esc(j.section_code||'Весь объект'),String(j.count)])),'list');
-}
 'use strict';
 let workMaterialsDraft=[];
-function specialRegistryPage(){
- const j=pdata.journals;
- return card('Перечень специальных журналов и журналов авторского надзора',`<p class="hint">Журналы объекта, их выдача и передача заказчику.</p><button data-special-new>Добавить специальный журнал</button>`+journalTable(['Журнал / дата выдачи','Организация','Ответственный за ведение','Передан заказчику','Принял'],j.special.map(s=>[`<button type="button" class="cell-open" data-special-edit="${s.id}">${esc(s.name)}</button>`+'<br>'+journalValue(s.issued_date),journalValue(s.organization?.full_name),journalValue(s.keeper?[[s.keeper.position,s.keeper.fio].filter(Boolean).join(' '),s.keeper.order_doc].filter(Boolean).join(' · '):null),journalValue(s.transfer_date),journalValue(s.recipient?[s.recipient.position,s.recipient.fio].filter(Boolean).join(' '):null)])),'list')+(j.sections['2'].length?card('Прежние записи раздела 2',journalTable(['Название','Дата','Сведения'],j.sections['2'].map(e=>[journalEntryName(e),journalValue(e.work_fields.issued_date),journalEntryAction(e)]))+'<p class="hint">Прежние записи сохранены. Они не дублируются в новом реестре автоматически.</p>','file'):'');
-}
 function specialEditor(record={}){
  const d=pdata.journals.directory;
  return `<form id="special-journal-form" data-record="${record.id||''}" data-revision="${record.revision||''}"><div class="grid">${input('name','Наименование специального журнала *',record.name,'text',true)}${input('issued_date','Дата выдачи',record.issued_date,'date')}<label class="field"><span>Организация, ведущая журнал</span><select name="org_id"><option value="">Не выбрана</option>${d.organizations.map(o=>option(o.id,o.full_name,record.org_id)).join('')}</select></label><label class="field wide"><span>Ответственный за ведение</span><select name="keeper_id"><option value="">Не выбран</option>${d.people.filter(p=>p.status==='Действует'||p.id===record.keeper_id).map(p=>option(p.id,representativeLabel(p),record.keeper_id)).join('')}</select></label>${input('transfer_date','Дата передачи застройщику / заказчику',record.transfer_date,'date')}<label class="field"><span>Представитель, принявший журнал</span><select name="recipient_id"><option value="">Не выбран</option>${d.people.filter(p=>p.status==='Действует'||p.id===record.recipient_id).map(p=>option(p.id,representativeLabel(p),record.recipient_id)).join('')}</select></label>${input('note','Примечание',record.note,'text',true)}</div><div class="ux-form-actions"><button type="submit">Сохранить журнал</button><button type="button" class="secondary" data-action="cancel-entry">Отменить</button></div></form>`;
 }
 function ojrPage(){
- let html=`<nav class="tabs" aria-label="Разделы ОЖР">${[['0','Титульный лист'],...Object.entries(pdata.journals.section_names).map(([k,v])=>[k,({1:'Персонал',2:'Журналы',3:'Работы',4:'Строительный контроль',5:'Документы',6:'Госстройнадзор'})[k]])].map(([key,label])=>`<button data-ojr-section="${key}" class="${journalSection===key?'active':''}" ${journalSection===key?'aria-current="page"':''}>${esc(label)}</button>`).join('')}</nav>`;
- if(journalSection==='2')return html+specialRegistryPage();
- if(journalSection==='3')return html+`<p class="journal-purpose">Работы выбранного раздела: ${esc(pdata.project.section_code)}. Выберите записи для подготовки акта.</p>`+workPage();
- if(journalSection==='0')return html+generalJournalPage()+(pdata.journals.legacy.length?`<details class="ux-disclosure card"><summary>Прежние записи без раздела (${pdata.journals.legacy.length})</summary>${journalTable(['Дата','Содержание','Источник'],pdata.journals.legacy.map(e=>[journalValue(e.entry_date),journalEntryName(e),journalEntryAction(e)]))}</details>`:'');
- return html+generalJournalPage();
+ const nav=`<nav class="tabs" aria-label="Разделы ОЖР">${[['0','Титульный лист'],['1','Персонал'],['2','Журналы'],['3','Работы'],['4','Строительный контроль'],['5','Документы'],['6','Госстройнадзор']].map(([key,label])=>`<button data-ojr-section="${key}" class="${journalSection===key?'active':''}" ${journalSection===key?'aria-current="page"':''}>${esc(label)}</button>`).join('')}</nav>`;
+ return nav+(journalSection==='3'?`<p class="journal-purpose">Работы выбранного раздела: ${esc(pdata.project.section_code)}. Выберите записи для подготовки акта.</p>`+workPage():`<div id="journal-app" data-section="${esc(journalSection)}"></div>`);
 }
-function titleAssignmentsEditor(){
- const rows=pdata.journals.title_assignments;
- return card('Уполномоченные представители',`<p class="hint">Назначения из участников строительства и всех разделов объекта. На одну роль можно назначить нескольких представителей. Подписант конкретного акта выбирается отдельно.</p><div class="toolbar"><button class="secondary" data-view="participants">Открыть участников строительства</button><button class="secondary" data-manual="assign">Назначить представителя раздела</button></div>`+journalTable(['Роль в документах','Организация','Представитель','Основание полномочий','Назначение'],rows.map(r=>[esc(meta.document_roles[r.role_key]||r.role_key),journalValue(r.organization?.full_name),r.person?esc([[r.person.position,r.person.fio].filter(Boolean).join(' '),r.person.status].filter(Boolean).join(' · ')):'Не назначен',journalValue(r.person?.order_doc),esc(r.section_code?'Раздел '+r.section_code:'Весь объект')]),{records:rows.map(r=>({entity:r.record_entity,id:r.record_id}))}),'user');
+function journalTool(tool,section){
+ if(tool==='object')navigate('object');
+ if(tool==='participants'||tool==='participantsShort')navigate('participants');
+ if(tool==='documents')navigate('documents');
+ if(tool==='assign')openManual('assign');
+ if(tool==='entry')openEditor('journal',{kind:'journal',work_fields:{journal_section:section}});
+ if(tool==='special')openSpecialJournal({});
+}
+function openSpecialJournal(record){openEditor('manual');$('#editor-content').innerHTML=specialEditor(record);decorateSelects();}
+function openJournalRecord(kind,record){
+ if(kind==='special'){openSpecialJournal(record);return;}
+ return action(async()=>{
+  if(kind==='automatic'){if(record.project_id!==projectId)await loadProject(record.project_id,true);if(record.kind==='ojr')journalSection='0';navigate(record.kind==='ojr'?'ojr':'incoming');return;}
+  if(record.project_id!==projectId)await loadProject(record.project_id,true);
+  openEditor(record.kind,record);
+ });
+}
+function mountJournal(){
+ const host=$('#journal-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderJournalRecords(host,{projectId:pid,workspaceId:workspace,role:currentUser.role,section:host.dataset.section,roles:{roles:meta.roles,document_roles:meta.document_roles},
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onTool:journalTool,onOpen:openJournalRecord,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
 }
 function responsibleSelect(e){return `<label class="field wide"><span>Ответственный исполнитель из раздела 1 ОЖР</span><select name="responsible_id"><option value="">Не выбран</option>${pdata.journals.roster.map(p=>option(p.id,representativeLabel(p),e.responsible_id)).join('')}</select></label>${!pdata.journals.roster.length?'<p class="hint wide">Добавьте исполнителя в раздел 1 ОЖР. Для этого закройте форму и откройте «Журналы» → «ОЖР» → раздел 1.</p>':''}`;}
 function usedMaterialsHtml(){return workMaterialsDraft.map((m,i)=>`<div class="used-material-row"><label class="field"><span>Ресурс</span><select data-material-index="${i}" data-material-field="resource_id"><option value="">Выберите ресурс</option>${pdata.resources.map(r=>option(r.id,resourceLabel(r.id)+' · '+r.unit,m.resource_id)).join('')}</select></label><label class="field"><span>Использовано</span><input type="number" min="0" step="any" data-material-index="${i}" data-material-field="quantity" value="${esc(m.quantity)}"></label><button type="button" class="secondary" data-material-remove="${i}">Убрать</button></div>`).join('')||'<p class="hint">Ресурсы ещё не выбраны.</p>';}
@@ -63,7 +71,6 @@ async function submitArchitectureForm(form){
 }
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
  if(b.dataset.ojrSection){if(formDirty)return;journalSection=b.dataset.ojrSection;render();}
- if(b.hasAttribute('data-special-new')||b.dataset.specialEdit){if(formDirty)return;const record=pdata.journals.special.find(s=>s.id===Number(b.dataset.specialEdit))||{};openEditor('manual');$('#editor-content').innerHTML=specialEditor(record);decorateSelects();}
  if(b.hasAttribute('data-material-add')){workMaterialsDraft.push({resource_id:null,quantity:null});$('#used-materials').innerHTML=usedMaterialsHtml();decorateSelects();formDirty=true;}
  if(b.dataset.materialRemove!==undefined){workMaterialsDraft.splice(Number(b.dataset.materialRemove),1);$('#used-materials').innerHTML=usedMaterialsHtml();decorateSelects();formDirty=true;}
  if(b.dataset.actStatus){if(formDirty)return;openEditor('manual');$('#editor-content').innerHTML=actStatusEditor(Number(b.dataset.actStatus));decorateSelects();}
@@ -79,7 +86,6 @@ document.addEventListener('change',e=>{if(e.target.closest('#act-form')&&e.targe
 
 document.addEventListener('change',e=>{const form=e.target.closest('#entry-form');if(form?.dataset.kind!=='journal'||e.target.name!=='work_person_id')return;const person=pdata.journals.directory.people.find(p=>p.id===Number(e.target.value));if(person){const org=form.elements.namedItem('work_org_id');org.value=String(person.org_id);org.dispatchEvent(new Event('smart-sync'));const title=form.elements.namedItem('title');if(!title.value.trim())title.value=person.fio;}});
 
-document.addEventListener('click',e=>{const b=e.target.closest('[data-auto-journal]');if(!b||formDirty||dirty)return;action(async()=>{if(Number(b.dataset.journalProject)!==projectId)await loadProject(Number(b.dataset.journalProject),true);if(b.dataset.autoJournal==='ojr')journalSection='0';navigate(b.dataset.autoJournal==='ojr'?'ojr':'incoming');});});
 
 function actRoleCandidates(role){
  const all=pdata.journals.directory.people.filter(p=>p.status==='Действует');

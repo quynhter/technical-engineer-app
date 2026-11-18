@@ -57,11 +57,12 @@ assert.equal(tableColumnType('Наименование'),'text');assert.equal(ta
 
     def test_duplicate_is_in_work_card_and_source_actions_are_in_file_card(self):
         app=(ASSETS/'app.js').read_text();ojr=(ASSETS/'ojr-ui.js').read_text()
-        body=app[app.index('function entryBody('):app.index('function input(')]
-        self.assertNotIn('data-copy-entry',body);self.assertNotIn('<th>Действия',body)
+        body=(ASSETS.parents[1]/'frontend/src/work-records.jsx').read_text()
+        self.assertNotIn('data-copy-entry',body);self.assertNotIn('Дублировать',body)
         self.assertIn('data-copy-entry="${e.id}"',ojr[ojr.index('function workEntryEditor('):ojr.index('function actRoles(')])
-        source=app[app.index('function sourceFilesPage('):app.index('function openSourceFileCard(')]
-        self.assertIn('data-file-card',source);self.assertNotIn('data-file-delete',source)
+        source=(ASSETS.parents[1]/'frontend/src/source-files.jsx').read_text()
+        self.assertIn('data-source-files-api',source);self.assertIn('onOpen?.(file)',source)
+        self.assertNotIn('data-file-delete',source)
         card=app[app.index('function openSourceFileCard('):app.index('let filePlan=')]
         self.assertIn('data-file-delete',card);self.assertIn('data-original',card)
         journals=app[app.index('function journalsPage('):app.index('function resourceSelect(')]

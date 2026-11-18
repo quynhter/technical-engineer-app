@@ -1,6 +1,13 @@
 import {createAdapters} from './adapters.jsx';
 import {createPortal,flushSync} from 'react-dom';
 import {createTableAdapter} from './astryx-tables.jsx';
+import {Registry} from './registry.jsx';
+import {SourceFiles} from './source-files.jsx';
+import {ProjectRecords} from './project-records.jsx';
+import {ManualRecords} from './manual-records.jsx';
+import {WorkflowRecords} from './workflow-records.jsx';
+import {JournalRecords} from './journal-records.jsx';
+import {WorkRecords} from './work-records.jsx';
 import React,{useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {Theme} from '@astryxdesign/core/theme';
@@ -87,17 +94,15 @@ function enhanceTabs(){
 }
 let navigation=[],navigate=()=>{};
 function glyph(markup){return <span className="nav-glyph" aria-hidden="true" dangerouslySetInnerHTML={{__html:markup}}/>;}
-const legacyNodes=['.context','#breadcrumbs','main'].map(sel=>document.querySelector(sel)).filter(Boolean);
-const oldHeader=document.querySelector('.topbar');if(oldHeader){oldHeader.hidden=true;oldHeader.id='legacy-controls';}
-const oldNav=document.getElementById('steps');if(oldNav)oldNav.hidden=true;
+const nativeContentNodes=['.context','#breadcrumbs','main'].map(sel=>document.querySelector(sel)).filter(Boolean);
 const shellHost=document.createElement('div');shellHost.id='shell-root';document.body.prepend(shellHost);
 const workspaceStatus=document.getElementById('workspace-status'),statusSlots=new Set();
 const statusParking=document.createElement('div');statusParking.hidden=true;document.body.append(statusParking);if(workspaceStatus)statusParking.append(workspaceStatus);
 function WorkspaceStatus(){const ref=React.useRef(null);React.useLayoutEffect(()=>{const slot=ref.current;statusSlots.add(slot);if(workspaceStatus)slot.append(workspaceStatus);return()=>{statusSlots.delete(slot);if(workspaceStatus?.parentElement===slot){const next=[...statusSlots].find(node=>node.isConnected);(next||statusParking).append(workspaceStatus);}};},[]);return <div className="nav-status" data-native-content="" ref={ref}/>;}
-function LegacyContent(){const ref=React.useRef(null);React.useLayoutEffect(()=>{if(ref.current)ref.current.append(...legacyNodes);},[]);return <div className="workspace-content" ref={ref}/>;}
+function NativeContent(){const ref=React.useRef(null);React.useLayoutEffect(()=>{if(ref.current)ref.current.append(...nativeContentNodes);},[]);return <div className="workspace-content" ref={ref}/>;}
 function changeTheme(value){selectedTheme=value;try{localStorage.setItem('itd.design.theme',value);}catch(_){}document.dispatchEvent(new Event('itd:appearance'));}
 const accountNodes=['account-open','session-logout','session-resume'].map(id=>document.getElementById(id)).filter(Boolean);
-const accountParking=document.getElementById('legacy-controls')||document.body;
+const accountParking=document.createElement('div');accountParking.hidden=true;accountParking.id='account-control-storage';document.body.append(accountParking);
 function AccountControl(){
  const ref=React.useRef(null);
  React.useLayoutEffect(()=>{const slot=ref.current;slot.append(...accountNodes);return()=>{for(const node of accountNodes)if(node.parentElement===slot)accountParking.append(node);};},[]);
@@ -109,11 +114,11 @@ function ConnectionIndicator(){
  React.useLayoutEffect(()=>{const indicator=document.getElementById('database-status');if(indicator)ref.current.append(indicator);return()=>{if(indicator)statusParking.append(indicator);};},[]);
  return <span className="brand-connection" ref={ref} data-native-content=""/>;
 }
-function Header(){const [,redraw]=useState(0);React.useEffect(()=>{const refresh=()=>redraw(n=>n+1);document.addEventListener('itd:appearance',refresh);return()=>document.removeEventListener('itd:appearance',refresh);},[]);return <TopNav label="ИТД" heading={<TopNavHeading heading={<span className="brand-title">ИТД<ConnectionIndicator/></span>} logo={<span className="workspace-logo" aria-hidden="true" dangerouslySetInnerHTML={{__html:headerLogo}}/>}/>} centerContent={<SectionSearch/>} endContent={<div className="header-actions"><Selector label="Тема оформления" isLabelHidden variant="ghost" value={selectedTheme} options={Object.keys(themes).map(value=>({value,label:({neutral:'Neutral',stone:'Stone',butter:'Butter',gothic:'Gothic',y2k:'Y2K'})[value]}))} onChange={changeTheme}/><Button label={document.documentElement.dataset.theme==='dark'?'Светлая тема':'Тёмная тема'} variant="ghost" onClick={()=>document.getElementById('theme-toggle')?.click()}/><AccountControl/></div>}/>;}
-function WorkspaceShell({rail,view}){const [isOpen,onOpenChange]=useState(false);React.useEffect(()=>onOpenChange(false),[view]);return <AppShell variant="section" contentPadding={0} topNav={<Header/>} sideNav={rail} mobileNav={{breakpoint:'md',isOpen,onOpenChange}}><LegacyContent/></AppShell>;}
+function Header(){const [,redraw]=useState(0);React.useEffect(()=>{const refresh=()=>redraw(n=>n+1);document.addEventListener('itd:appearance',refresh);return()=>document.removeEventListener('itd:appearance',refresh);},[]);return <TopNav label="ИТД" heading={<TopNavHeading heading={<span className="brand-title">ИТД<ConnectionIndicator/></span>} logo={<span className="workspace-logo" aria-hidden="true" dangerouslySetInnerHTML={{__html:headerLogo}}/>}/>} centerContent={<SectionSearch/>} endContent={<div className="header-actions"><Selector label="Тема оформления" isLabelHidden variant="ghost" value={selectedTheme} options={Object.keys(themes).map(value=>({value,label:({neutral:'Neutral',stone:'Stone',butter:'Butter',gothic:'Gothic',y2k:'Y2K'})[value]}))} onChange={changeTheme}/><Button label={document.documentElement.dataset.theme==='dark'?'Светлая тема':'Тёмная тема'} variant="ghost" onClick={()=>document.dispatchEvent(new Event('itd:theme-toggle'))}/><Selector label="Акцентный цвет" isLabelHidden variant="ghost" value={document.documentElement.dataset.accent||'blue'} options={Object.entries({teal:'Зелёный',blue:'Синий',violet:'Фиолетовый',amber:'Янтарный',rose:'Розовый'}).map(([value,label])=>({value,label}))} onChange={value=>document.dispatchEvent(new CustomEvent('itd:accent',{detail:value}))}/><AccountControl/></div>}/>;}
+function WorkspaceShell({rail,view}){const [isOpen,onOpenChange]=useState(false);React.useEffect(()=>onOpenChange(false),[view]);return <AppShell variant="section" contentPadding={0} topNav={<Header/>} sideNav={rail} mobileNav={{breakpoint:'md',isOpen,onOpenChange}}><NativeContent/></AppShell>;}
 function renderNav(items,view,go,trail=[]){
- navigation=items;navigate=go;
- const rail=<SideNav className="workspace-nav" aria-label="Рабочее пространство" footer={<WorkspaceStatus/>} collapsible resizable={{defaultWidth:244,minWidth:160,maxWidth:340,autoSaveId:"itd.workspace.nav"}}><SideNavSection title="Объект">{items.map(([key,label,svg])=><SideNavItem key={key} label={label} title={label} icon={glyph(svg)} isSelected={view===key||key==='registry'&&['documents','schemes','resources','ojr','journal','work','incoming','facts','check','delivery'].includes(view)} onClick={()=>go(key)}/>)}</SideNavSection><SideNavSection title="Инструменты"><SideNavItem label="Все объекты" title="Все объекты" icon={glyph('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>')} isSelected={view==='objects'} onClick={()=>go('objects')}/></SideNavSection></SideNav>;
+ navigation=[...items,['manage','Ручное ведение','']];navigate=go;
+ const rail=<SideNav className="workspace-nav" aria-label="Рабочее пространство" footer={<WorkspaceStatus/>} collapsible resizable={{defaultWidth:244,minWidth:160,maxWidth:340,autoSaveId:"itd.workspace.nav"}}><SideNavSection title="Объект">{items.map(([key,label,svg])=><SideNavItem key={key} label={label} title={label} icon={glyph(svg)} isSelected={view===key||key==='registry'&&['documents','schemes','resources','ojr','journal','work','incoming','facts','check','delivery'].includes(view)} onClick={()=>go(key)}/>)}</SideNavSection><SideNavSection title="Инструменты"><SideNavItem label="Все объекты" title="Все объекты" icon={glyph('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>')} isSelected={view==='objects'} onClick={()=>go('objects')}/><SideNavItem label="Ручное ведение" title="Ручное ведение" isSelected={view==='manage'} onClick={()=>go('manage')}/><SideNavItem label="База знаний" title="База знаний" data-open-knowledge=""/></SideNavSection></SideNav>;
  mount(shellHost,<WorkspaceShell rail={rail} view={view}/>);
 
  const crumbs=document.getElementById('breadcrumbs');if(crumbs)mount(crumbs,<Breadcrumbs aria-label="Путь страницы">{trail.map((crumb,i)=>i<trail.length-1&&crumb.view?<BreadcrumbItem key={i} onClick={()=>go(crumb.view)}>{crumb.label}</BreadcrumbItem>:<BreadcrumbItem key={i} isCurrent>{crumb.label}</BreadcrumbItem>)}</Breadcrumbs>);schedule();
@@ -126,10 +131,10 @@ function CommandPalette(){
 }
 let pending=false;
 function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;observer.disconnect();cleanup();adapters.enhance();enhancePrimitives();enhanceTabs();observe();});}
-const observer=new MutationObserver(records=>{if(records.some(r=>!isReactOwned(r.target)))schedule();});
-function observe(){for(const id of ['content','editor-content','editor-footer','actions','knowledge-results','account-content','prompt-content','login-form','notice','editor-notice']){const host=document.getElementById(id);if(host)observer.observe(host,{childList:true,subtree:true,characterData:true});}}
+const observer=new MutationObserver(records=>{if(records.some(r=>r.target===document.body?[...r.addedNodes].some(node=>node.matches?.('.workspace-dialog')):!isReactOwned(r.target)))schedule();});
+function observe(){observer.observe(document.body,{childList:true});for(const dialog of document.querySelectorAll('.workspace-dialog'))observer.observe(dialog,{childList:true,subtree:true,characterData:true});for(const id of ['content','editor-content','editor-footer','actions','knowledge-results','account-content','prompt-content','login-form','notice','editor-notice']){const host=document.getElementById(id);if(host)observer.observe(host,{childList:true,subtree:true,characterData:true});}}
 const adapters=createAdapters({mount,primitive,isReactOwned,flush:()=>flushSync(renderIslands)});
 const enhanceTable=createTableAdapter(mount);
-window.ITDDesign={renderNav,enhanceSelect,enhanceTable,refresh:schedule,openDialog:adapters.openDialog,closeDialog:adapters.closeDialog,setLoading:adapters.setLoading};
+window.ITDDesign={renderManualRecords:(host,props)=>mount(host,<ManualRecords key={props.workspaceId+":"+props.projectId+":"+props.role} {...props}/>),renderWorkflowRecords:(host,props)=>mount(host,<WorkflowRecords key={props.workspaceId+":"+props.projectId+":"+props.role+":"+props.kind} {...props}/>),renderJournalRecords:(host,props)=>mount(host,<JournalRecords key={props.workspaceId+":"+props.projectId+":"+props.role+":"+props.section} {...props}/>),renderNav,enhanceSelect,enhanceTable,renderRegistry:(host,props)=>mount(host,<Registry {...props}/>),renderSourceFiles:(host,props)=>mount(host,<SourceFiles {...props}/>),renderProjectRecords:(host,props)=>mount(host,<ProjectRecords {...props}/>),renderWorkRecords:(host,props)=>mount(host,<WorkRecords key={props.workspaceId+":"+props.projectId+":"+props.role} {...props}/>),refresh:schedule,openDialog:adapters.openDialog,closeDialog:adapters.closeDialog,setLoading:adapters.setLoading};
 document.addEventListener('itd:appearance',renderIslands);
 mount(document.getElementById('command-root'),<CommandPalette/>);observe();schedule();

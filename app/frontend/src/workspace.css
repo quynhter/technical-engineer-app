@@ -284,3 +284,48 @@ body[data-auth="pending"]>.itd-dialog{visibility:visible}
 .document-preview-table td::before{display:none}
 .document-preview-table th{text-align:center;position:static}
 .document-preview-table .preview-text{white-space:pre-wrap}
+
+/* Shared spacing covers dynamically inserted blocks, without changing source
+   document cells or the internal geometry of Astryx controls. */
+:is(.workspace-dialog,.itd-dialog){--dialog-line:var(--color-border-emphasized,var(--line))}
+.workspace-dialog,.itd-dialog{border:1px solid var(--dialog-line)}
+/* The retained native dialog supplies content, not a second frame. */
+.workspace-dialog.dialog-bridge-source{border:0;box-shadow:none;outline:none}
+.workspace-dialog .dialog-bar{border-bottom:1px solid var(--dialog-line);box-shadow:none;position:sticky;top:0;z-index:5}
+.workspace-dialog>.dialog-footer{border-top:1px solid var(--dialog-line)}
+.workspace-dialog>.dialog-footer .ux-form-actions{position:static;margin:0;padding:0;border:0;border-radius:0;gap:var(--workspace-gap)}
+:is(.content-stack,.workspace-stack,.card,.dialog-content,.disclosure-body,.account-section)>:is(.hint,.subtitle,h2,h3,h4){padding-bottom:var(--workspace-caption-space)}
+:is(.toolbar,.quick-actions,.table-actions,.ux-form-actions,.footer-right,.dialog-tools,.account-actions,.knowledge-tools,.knowledge-controls,.section-heading,.split,.data-table-panel,.data-table-filters,.data-table-chips,.table-selection,.journal-context,.journal-shortcuts,.astryx-data-toolbar,.astryx-filter-fields,.astryx-page-line,.command-shortcuts){gap:var(--workspace-gap)}
+:is(.knowledge-controls,#knowledge-results,.delete-plan-section,.delete-plan-list,.delete-plan-list li){display:flex;flex-direction:column;gap:var(--workspace-gap);min-width:0}
+:is(.knowledge-controls,#knowledge-results,.delete-plan-section,.delete-plan-list,.delete-plan-list li)>:not([hidden]){margin-block:0}
+:is(.summary-grid>div,.journey-next,.object-tile,.callout,.act-auto-block,.file-drop,.dropzone,.disclosure-body,.astryx-column-picker,.astryx-data-footer,.data-table-footer .table-footer-line,.knowledge-result,.delete-plan-list li){padding:var(--workspace-padding);gap:var(--workspace-gap)}
+:is(.id-workspace,.id-workspace>.content-stack,.clickable-card-content,.loading-skeleton,.command-content){gap:var(--workspace-gap)}
+.id-workspace .card{padding:var(--workspace-padding)}
+:is(.file-drop,.dropzone,.data-table-panel,.astryx-data-toolbar,.astryx-filter-fields){margin:0}
+.command-content{display:flex;flex-direction:column}
+.command-content>.command-header,.command-content>.command-results{margin:0}
+.command-results{gap:var(--workspace-gap)}
+.delete-plan-section{margin:0}
+.delete-plan-section>h3{padding-bottom:var(--workspace-caption-space)}
+.delete-plan-list{list-style:none;padding:0;margin:0;max-height:none;overflow:visible}
+.delete-plan-list li{border:1px solid var(--line);border-radius:var(--radius-container);overflow-wrap:anywhere}
+.delete-plan-list li>strong{font-weight:600}
+.delete-plan-warning{padding:var(--workspace-padding);border:1px solid var(--line);border-radius:var(--radius-container);background:var(--subtle)}
+[data-delete-error]:not([hidden]){padding:var(--workspace-padding);border:1px solid var(--color-border-danger,var(--dialog-line));border-radius:var(--radius-container);color:var(--color-text-danger,var(--ink))}
+/* Astryx React cards and disclosures share the same layout contract as the
+   retained native forms. The animated disclosure wrapper stays untouched. */
+.astryx-card{display:flex;flex-direction:column;padding:var(--workspace-padding);gap:var(--workspace-gap);min-width:0;margin:0}
+.astryx-card>:not([hidden]){margin-block:0}
+.astryx-card>:is(h2,h3,h4,.hint,.subtitle){padding-bottom:var(--workspace-caption-space)}
+.astryx-collapsible-content>div{display:flex;flex-direction:column;gap:var(--workspace-gap);min-width:0}
+.astryx-collapsible-content>div>:not([hidden]){margin-block:0}
+.astryx-collapsible-content[data-open]>div{padding-top:var(--workspace-gap)}
+.astryx-collapsible-content>div>:is(h2,h3,h4,.hint,.subtitle){padding-bottom:var(--workspace-caption-space)}
+.knowledge-hit{display:flex;flex-direction:column;padding:var(--workspace-padding);gap:var(--workspace-gap)}
+.knowledge-hit>:not([hidden]){margin-block:0}
+/* Scroll only the body: header/footer dividers span the whole dialog, without
+   a permanently reserved scrollbar gutter along their right edge. */
+.dialog-scroll-content{display:flex;flex-direction:column;overflow:hidden;scrollbar-gutter:auto}
+.dialog-scroll-content>[data-native-content]{display:contents}
+.dialog-scroll-content .workspace-dialog>.dialog-bar,.dialog-scroll-content .workspace-dialog>.dialog-footer{flex:none}
+.dialog-scroll-content .workspace-dialog>.dialog-content{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}

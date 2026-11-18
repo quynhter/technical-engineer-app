@@ -1,7 +1,7 @@
 # Формат локальной базы
 
-Команды выполняются как `app/.venv/bin/python -m app.itd <команда>`
-(Windows: `app/.venv/Scripts/python.exe`). Каноническая документация:
+Команды выполняются как `.venv/bin/python -m app.itd <команда>`
+(Windows: `.venv/Scripts/python.exe`). Каноническая документация:
 `app/knowledge/README.md`. Структура: `<root>/<corpus>/*.md`, `rules.jsonl`.
 README.md не индексируется. Во входе только UTF-8; символическая ссылка
 вместо файла не допускается. Файл в корне без подпапки набора не принимается.

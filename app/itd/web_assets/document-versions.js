@@ -16,11 +16,15 @@ function versionEffectiveFields(a,version){const definition=pdata.forms.find(f=>
  return normalizeFormFields(a.act_type,fields);}
 async function openDocumentVersions(aid){
  const result=await api('/api/versions/list',{project_id:projectId,act_id:aid});
- documentVersionState={...result,aid,selected:result.versions.at(-1).id};
+ documentVersionState={...result,aid,selected:result.versions.at(-1)?.id};
  openEditor('manual');editorWindow.setTitle('Изменить документ');renderDocumentVersion();
 }
 function renderDocumentVersion(){
  const model=documentVersionState,a=pdata.acts.find(a=>a.id===model.aid),version=model.versions.find(v=>v.id===model.selected),last=model.versions.at(-1);
+ if(!version){
+  $('#editor-content').innerHTML='<p role="status">Карточка документа ещё не создана.</p><div class="toolbar"><button type="button" data-version-ensure>Создать карточку</button></div>';
+  return;
+ }
  const signed=pdata.act_statuses.some(status=>status.act_id===a.id&&status.state==='signed');
  const locked=version.id!==last.id||signed;
  const contentLocked=locked||!!version.release_id;
@@ -128,7 +132,6 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   }else addVersionTableRow(table);
  }
  if(b.hasAttribute('data-version-table-remove')){b.closest('tr').remove();formDirty=true;}
- if(b.dataset.versionAct)action(()=>openDocumentVersions(Number(b.dataset.versionAct)));
  if(b.dataset.documentVersion){if(formDirty){notice('Сохраните изменения перед выбором другой версии.');return;}documentVersionState.pendingSignedFile=null;documentVersionState.selected=Number(b.dataset.documentVersion);renderDocumentVersion();}
  if(b.hasAttribute('data-version-add'))action(createDocumentVersion);
  if(b.hasAttribute('data-signature-toggle')){
@@ -163,7 +166,6 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(b.hasAttribute('data-delete-document-version'))action(deleteDocumentVersion);
  if(b.hasAttribute('data-download-signed'))action(downloadSignedDocument);
  if(b.hasAttribute('data-download-document'))action(downloadDocumentVersion);
- if(b.hasAttribute('data-upload-act'))openUploadedAct();
 });
 for(const type of ['input','change'])document.addEventListener(type,e=>{if(e.target.closest('#document-version-form'))formDirty=true;});
 
@@ -308,3 +310,13 @@ function documentRequiredRoles(fields){
  }
  return [...result];
 }
+
+async function initializeDocumentVersion(){
+ const model=documentVersionState;
+ const result=await api('/api/versions/ensure',{project_id:projectId,act_id:model.aid});
+ model.versions=result.versions;model.selected=result.versions.at(-1)?.id;
+ renderDocumentVersion();
+}
+document.addEventListener('click',e=>{
+ if(e.target.closest('[data-version-ensure]'))action(initializeDocumentVersion);
+});

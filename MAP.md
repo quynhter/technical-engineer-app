@@ -1,6 +1,6 @@
 # Карта данных, полей и шаблонов ИТД
 
-Снимок структуры на 10.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. Рабочие БД и документы пользователя не открывались и не изменялись.
+Снимок структуры на 18.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. Рабочие БД и документы пользователя не открывались и не изменялись.
 
 ## Навигация
 
@@ -16,7 +16,7 @@
 <a id="audit"></a>
 ## Итоги проверки
 
-- Основная БД: таблиц — **54**, колонок — **392**, компонентов внешних ключей — **108**; миграции 001–021.
+- Основная БД: таблиц — **54**, колонок — **397**, компонентов внешних ключей — **108**; миграции 001–023.
 - Форм / DOCX / JSON-определений — **91**, включая титульник и две общие формы из `form_catalog.catalog()`.
 - **2389 эффективных определений**, включая каждую колонку вложенных таблиц: literal: 754, reference: 1314, signatory: 267, table: 54.
 - Ошибок проверенных контрактов: **0**. Проверены уникальность кодов и файлов, ключи bindings, существование колонок источников, порядок field_values, Jinja AST всех XML-частей DOCX, поля циклов, два рендера каждой формы (контекст пустого тестового объекта и непустые синтетические строки), целостность XML результата, SQLite integrity_check и foreign_key_check на тестовой БД.
@@ -37,13 +37,15 @@
 
 - Исправлен разрыв `СП_70_А.rows_9_2.c3`: «Дата подписания акта» была определена в JSON, но отсутствовала в строке DOCX. Теперь маркер печатается и поле обязательно; генератор исходных форм отличает дату подписания от места для подписи. В ZIP шаблона изменён только word/document.xml, остальные части сохранены побайтно. Исходный бланк и зарегистрированные настройки рабочих БД не изменялись.
 - 16 дочерних колонок блоков подписей намеренно остаются пустыми в DOCX. Их JSON-определения существуют, но введённый в них текст не печатается. Точные ключи и подписи перечислены ниже со статусом «Рукописная подпись». Некоторые подписи совмещены с ФИО/должностью в заголовке; автоматическое заполнение этих частей требует отдельной сверки бланка с оригиналом.
-- В README шаблонов была ссылка на отсутствующий `audit_form_bindings.py` и несуществующий `app/.venv`. Ссылка заменена действующим аудитом `audit_relationships.py` и корневой `.venv`.
+- В README шаблонов были устаревшие ссылки на скрипт аудита и окружение Python. Они заменены действующим аудитом `audit_relationships.py` и корневой `.venv`.
 - У общего реестра `registry.number`, `registry.date`, `registry.note` остаются в контексте, но текущий DOCX их отдельно не печатает; номер и дата объединены в `number_date`. `registry.organization` вычисляется только при единственном исполнителе ролей `work_performer` / `builder`; пустое значение не заменяется произвольной организацией.
 - У титульника `copies`, `volumes`, `font` — управляющие поля. `pages` и `contractors_info` создаются `titles.prepare_context`, хотя их нет в JSON. Это проверенное исключение, а не неопределённые маркеры.
 - Титульник по умолчанию использует прежние русские ключи ролей (`Заказчик`, `Технический_заказчик`, `Генподрядчик`, `Подрядчик`). Веб-карточка участников использует английские ключи; для этих назначений при создании титульника требуется явное сопоставление `roles` в `titles.add_title`. Без него необязательные организации могут быть пустыми. Автоматическое переименование ролей здесь не выполнялось.
 
 <a id="screens"></a>
 ## Экран → сущности → документы
+
+Реестр ИД: `app/frontend/src/registry.jsx` → `/api/v1/project`, `/api/v1/registry/export`, `/api/v1/package` → общие сервисы. Список исходных файлов: `app/frontend/src/source-files.jsx` → `/api/v1/project`, `/api/v1/upload`; карточка оригинала и файловая проверка используют общие сервисы. Списки схем, основных документов, спецификации ресурсов, факта монтажа, входного контроля и ЖПК: `app/frontend/src/project-records.jsx` → `/api/v1/project`; формы сохраняют прежние сервисы. Работы ОЖР: `work-records.jsx`; остальные таблицы ОЖР: `journal-records.jsx`; проверка/сдача: `workflow-records.jsx`; ручное ведение: `manual-records.jsx` — из `app/frontend/src` через `/api/v1/project`. Действующие native формы, версии, файловые операции, настройки и знания сохраняют контроллеры `app/itd/web_assets` и Astryx-адаптеры; схема данных и источники полей не меняются.
 
 | Раздел интерфейса | Хранилище и связи | Использование |
 |---|---|---|
@@ -101,7 +103,7 @@ flowchart LR
 <a id="table-act_attachments"></a>
 #### act_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -147,7 +149,7 @@ CREATE TABLE act_entry_sources (
 <a id="table-act_execution_status"></a>
 #### act_execution_status — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -176,7 +178,7 @@ CREATE TABLE act_execution_status (
 <a id="table-act_facts"></a>
 #### act_facts — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -270,7 +272,7 @@ CREATE TABLE act_organizations (
 <a id="table-act_resources"></a>
 #### act_resources — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -311,7 +313,7 @@ END;
 <a id="table-act_schemes"></a>
 #### act_schemes — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -352,7 +354,7 @@ END;
 <a id="table-act_signatories"></a>
 #### act_signatories — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/registry.py](app/itd/registry.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/registry.py](app/itd/registry.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -376,7 +378,7 @@ CREATE TABLE act_signatories (
 <a id="table-acts"></a>
 #### acts — Основные документы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -423,7 +425,7 @@ END;
 <a id="table-agent_state"></a>
 #### agent_state — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -444,7 +446,7 @@ CREATE TABLE agent_state (
 <a id="table-attachments"></a>
 #### attachments — Архив исходных файлов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/archive.py](app/itd/archive.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/archive.py](app/itd/archive.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -495,6 +497,11 @@ CREATE TABLE attachments (
 | `entity_id` | INTEGER | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `before_json` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `after_json` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `actor_id` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `actor_role` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `source` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `on_behalf_of` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `result` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
 
@@ -507,7 +514,7 @@ CREATE TABLE audit_events (
     entity_id INTEGER,
     before_json TEXT,
     after_json TEXT
-);
+, actor_id TEXT, actor_role TEXT, source TEXT, on_behalf_of TEXT, result TEXT);
 ```
 
 </details>
@@ -515,7 +522,7 @@ CREATE TABLE audit_events (
 <a id="table-deliveries"></a>
 #### deliveries — Сдача
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -545,7 +552,7 @@ CREATE INDEX deliveries_project ON deliveries(project_id);
 <a id="table-delivery_events"></a>
 #### delivery_events — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -638,7 +645,7 @@ CREATE TABLE document_counters (
 <a id="table-document_types"></a>
 #### document_types — Зарегистрированные формы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -666,7 +673,7 @@ CREATE TABLE document_types (
 <a id="table-document_versions"></a>
 #### document_versions — Карточки версий документов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -706,7 +713,7 @@ CREATE TABLE document_versions (
 <a id="table-file_operations"></a>
 #### file_operations — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/file_manager.py](app/itd/file_manager.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -732,7 +739,7 @@ CREATE TABLE file_operations (
 <a id="table-final_reviews"></a>
 #### final_reviews — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -790,7 +797,7 @@ CREATE TABLE generated_documents (
 <a id="table-object_attachments"></a>
 #### object_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -813,7 +820,7 @@ CREATE TABLE object_attachments (
 <a id="table-object_participants"></a>
 #### object_participants — Роли участников объекта
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/participants.py](app/itd/participants.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -864,7 +871,7 @@ CREATE TABLE object_units (
 <a id="table-objects"></a>
 #### objects — Объекты
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -932,7 +939,7 @@ CREATE UNIQUE INDEX org_role_project ON organization_assignments(project_id, rol
 <a id="table-organizations"></a>
 #### organizations — Участники: организации
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/form_defaults.py](app/itd/form_defaults.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1043,7 +1050,7 @@ CREATE TABLE participant_periods (
 <a id="table-project_attachments"></a>
 #### project_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1092,7 +1099,7 @@ CREATE INDEX project_files_attachment ON project_files(attachment_id,project_id)
 <a id="table-projects"></a>
 #### projects — Разделы РД
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/configuration.py](app/itd/configuration.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/layout.py](app/itd/layout.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/titles.py](app/itd/titles.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/form_catalog.py](app/itd/form_catalog.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/act_participants.py](app/itd/act_participants.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/configuration.py](app/itd/configuration.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1142,7 +1149,7 @@ CREATE INDEX projects_code_idx ON projects(code);
 <a id="table-quality_reviews"></a>
 #### quality_reviews — Проверки документов качества
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1180,7 +1187,7 @@ CREATE INDEX quality_reviews_resource ON quality_reviews(resource_id,attachment_
 <a id="table-release_operations"></a>
 #### release_operations — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/releases.py](app/itd/releases.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/releases.py](app/itd/releases.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1214,7 +1221,7 @@ CREATE UNIQUE INDEX release_pending_move ON release_operations(release_id) WHERE
 <a id="table-releases"></a>
 #### releases — Выпуски файлов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/releases.py](app/itd/releases.py), [app/itd/managed.py](app/itd/managed.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1258,7 +1265,7 @@ CREATE UNIQUE INDEX releases_selected_xlsx ON releases(project_id) WHERE selecte
 <a id="table-resource_attachments"></a>
 #### resource_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1374,7 +1381,7 @@ CREATE TABLE resource_sources (
 <a id="table-resources"></a>
 #### resources — Ресурсы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/statement.py](app/itd/statement.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/revision_compare.py](app/itd/revision_compare.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_import.py](app/itd/resource_import.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py), [app/itd/http_api.py](app/itd/http_api.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1434,7 +1441,7 @@ END;
 <a id="table-schema_migrations"></a>
 #### schema_migrations — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](app/itd/db.py), [app/itd/server_state.py](app/itd/server_state.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1452,7 +1459,7 @@ CREATE TABLE schema_migrations (version INTEGER PRIMARY KEY, name TEXT NOT NULL)
 <a id="table-scheme_attachments"></a>
 #### scheme_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](app/itd/archive.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1475,7 +1482,7 @@ CREATE TABLE scheme_attachments (
 <a id="table-schemes"></a>
 #### schemes — Схемы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1514,7 +1521,7 @@ END;
 <a id="table-signatories"></a>
 #### signatories — Участники: представители
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/fields.py](app/itd/fields.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/participants.py](app/itd/participants.py), [app/itd/registry.py](app/itd/registry.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/document_preview.py](app/itd/document_preview.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/document_versions.py](app/itd/document_versions.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/template_objects.py](app/itd/template_objects.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1625,7 +1632,7 @@ CREATE INDEX special_journals_object ON special_journals(object_id);
 <a id="table-specification_pending"></a>
 #### specification_pending — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/specification.py](app/itd/specification.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1696,7 +1703,7 @@ CREATE INDEX supplies_project ON supplies(project_id,resource_id);
 <a id="table-work_facts"></a>
 #### work_facts — Факт монтажа
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/resources.py](app/itd/resources.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1776,7 +1783,7 @@ CREATE TABLE work_material_allocations (
 <a id="table-work_materials"></a>
 #### work_materials — Ресурсы записи работ
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/fields.py](app/itd/fields.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/fields.py](app/itd/fields.py), [app/itd/changes.py](app/itd/changes.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/resource_card.py](app/itd/resource_card.py), [app/itd/deletion.py](app/itd/deletion.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1805,7 +1812,7 @@ CREATE INDEX work_materials_resource ON work_materials(resource_id);
 <a id="table-workspace_entries"></a>
 #### workspace_entries — Записи ОЖР / ЖВК / работ
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](app/itd/__main__.py), [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/web.py](app/itd/web.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](app/itd/acts.py), [app/itd/workflow.py](app/itd/workflow.py), [app/itd/workspace.py](app/itd/workspace.py), [app/itd/manual.py](app/itd/manual.py), [app/itd/journals.py](app/itd/journals.py), [app/itd/inventory.py](app/itd/inventory.py), [app/itd/file_manager.py](app/itd/file_manager.py), [app/itd/incoming.py](app/itd/incoming.py), [app/itd/deletion.py](app/itd/deletion.py), [app/itd/ojr.py](app/itd/ojr.py), [app/itd/document_bindings.py](app/itd/document_bindings.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1853,6 +1860,26 @@ CREATE INDEX workspace_entries_project ON workspace_entries(project_id, kind);
 
 ### Отдельная БД: accounts
 
+<a id="table-account_schema_migrations"></a>
+#### account_schema_migrations — Связующая / служебная сущность
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/accounts.py](app/itd/accounts.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `version` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `name` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE account_schema_migrations (
+                    version INTEGER PRIMARY KEY, name TEXT NOT NULL
+                );
+```
+
+</details>
+
 <a id="table-document_roots"></a>
 #### document_roots — Разрешённые рабочие папки
 
@@ -1876,10 +1903,39 @@ CREATE TABLE document_roots (
 
 </details>
 
+<a id="table-sessions"></a>
+#### sessions — Связующая / служебная сущность
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/accounts.py](app/itd/accounts.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `token_hash` | TEXT; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `user_id` | INTEGER; NOT NULL | FK #0.0 → users.id; DELETE CASCADE, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `created_at` | REAL; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `used_at` | REAL; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `expires_at` | REAL; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `idle_expires_at` | REAL; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE sessions (
+                    token_hash TEXT PRIMARY KEY CHECK(length(token_hash)=64),
+                    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+                    created_at REAL NOT NULL, used_at REAL NOT NULL,
+                    expires_at REAL NOT NULL, idle_expires_at REAL NOT NULL
+                );
+-- sqlite_autoindex_sessions_1: реализует PK/UNIQUE из CREATE TABLE
+CREATE INDEX sessions_user ON sessions(user_id);
+```
+
+</details>
+
 <a id="table-settings"></a>
 #### settings — Выбранная БД и рабочая папка
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](app/itd/titles.py), [app/itd/accounts.py](app/itd/accounts.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](app/itd/titles.py), [app/itd/accounts.py](app/itd/accounts.py), [app/itd/web.py](app/itd/web.py), [app/itd/server_state.py](app/itd/server_state.py), [app/itd/http_api.py](app/itd/http_api.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1902,7 +1958,7 @@ CREATE TABLE settings (
 <a id="table-users"></a>
 #### users — Пользователи
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/accounts.py](app/itd/accounts.py), [app/itd/web.py](app/itd/web.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/accounts.py](app/itd/accounts.py), [app/itd/web.py](app/itd/web.py), [app/itd/http_api.py](app/itd/http_api.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1991,10 +2047,55 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 </details>
 
+### Отдельная БД: read_audit
+
+Файл `<путь БД>.audit.sqlite3` создаётся при выдаче ZIP. Идентификаторы раздела, выпусков и пользователя логические, без FK между файлами. Содержимое документов, полные аргументы и пути не сохраняются.
+
+<a id="table-read_events"></a>
+#### read_events — Аудит выдачи ZIP (вне деловой БД)
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/read_audit.py](app/itd/read_audit.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `id` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `created_at` | TEXT; NOT NULL; DEFAULT CURRENT_TIMESTAMP | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `operation` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `project_id` | INTEGER; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `release_ids` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `source` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `user_id` | INTEGER | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `actor_id` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `actor_role` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `on_behalf_of` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `result` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE read_events (
+            id INTEGER PRIMARY KEY, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            operation TEXT NOT NULL, project_id INTEGER NOT NULL,
+            release_ids TEXT NOT NULL, source TEXT NOT NULL, user_id INTEGER,
+            actor_id TEXT, actor_role TEXT, on_behalf_of TEXT, result TEXT);
+```
+
+</details>
+
 <a id="sources"></a>
 ## Источники и обратные связи
 
 Ниже обратный индекс **прямых** источников: физическая колонка → код формы.ключ. Для вычисляемых источников включены известные составляющие. Составы актов, условия отбора, FK и JSON-снимки — косвенные зависимости, они описаны в таблицах и порядке разрешения. Ручное значение сохраняется в acts.fields и не требует отдельной физической колонки.
+
+<a id="source-account_schema_migrations-name"></a>
+### `account_schema_migrations.name`
+
+
+
+<a id="source-account_schema_migrations-version"></a>
+### `account_schema_migrations.version`
+
+
 
 <a id="source-act_attachments-act_id"></a>
 ### `act_attachments.act_id`
@@ -2286,6 +2387,16 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 
 
+<a id="source-audit_events-actor_id"></a>
+### `audit_events.actor_id`
+
+
+
+<a id="source-audit_events-actor_role"></a>
+### `audit_events.actor_role`
+
+
+
 <a id="source-audit_events-after_json"></a>
 ### `audit_events.after_json`
 
@@ -2316,8 +2427,23 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 
 
+<a id="source-audit_events-on_behalf_of"></a>
+### `audit_events.on_behalf_of`
+
+
+
 <a id="source-audit_events-operation"></a>
 ### `audit_events.operation`
+
+
+
+<a id="source-audit_events-result"></a>
+### `audit_events.result`
+
+
+
+<a id="source-audit_events-source"></a>
+### `audit_events.source`
 
 
 
@@ -3196,6 +3322,61 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 
 
+<a id="source-read_events-actor_id"></a>
+### `read_events.actor_id`
+
+
+
+<a id="source-read_events-actor_role"></a>
+### `read_events.actor_role`
+
+
+
+<a id="source-read_events-created_at"></a>
+### `read_events.created_at`
+
+
+
+<a id="source-read_events-id"></a>
+### `read_events.id`
+
+
+
+<a id="source-read_events-on_behalf_of"></a>
+### `read_events.on_behalf_of`
+
+
+
+<a id="source-read_events-operation"></a>
+### `read_events.operation`
+
+
+
+<a id="source-read_events-project_id"></a>
+### `read_events.project_id`
+
+
+
+<a id="source-read_events-release_ids"></a>
+### `read_events.release_ids`
+
+
+
+<a id="source-read_events-result"></a>
+### `read_events.result`
+
+
+
+<a id="source-read_events-source"></a>
+### `read_events.source`
+
+
+
+<a id="source-read_events-user_id"></a>
+### `read_events.user_id`
+
+
+
 <a id="source-release_operations-created_at"></a>
 ### `release_operations.created_at`
 
@@ -3538,6 +3719,36 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 <a id="source-schemes-sheets_count"></a>
 ### `schemes.sheets_count`
+
+
+
+<a id="source-sessions-created_at"></a>
+### `sessions.created_at`
+
+
+
+<a id="source-sessions-expires_at"></a>
+### `sessions.expires_at`
+
+
+
+<a id="source-sessions-idle_expires_at"></a>
+### `sessions.idle_expires_at`
+
+
+
+<a id="source-sessions-token_hash"></a>
+### `sessions.token_hash`
+
+
+
+<a id="source-sessions-used_at"></a>
+### `sessions.used_at`
+
+
+
+<a id="source-sessions-user_id"></a>
+### `sessions.user_id`
 
 
 

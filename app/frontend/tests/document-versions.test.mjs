@@ -18,7 +18,7 @@ function fixture(theme='light'){
  w.eval(asset('act-fields.js')+'\n'+asset('field-functions.js')+'\n'+asset('document-versions.js')+`
  documentVersionState={aid:1,selected:11,required_roles:['first','second'],candidates:{first:[{id:1,fio:'Первый'}],second:[{id:2,fio:'Второй'}]},versions:[{id:11,ordinal:1,revision:1,card:{fields:[],date_signed:null},signers:[{role:'first',person_id:1,signed:false},{role:'second',person_id:2,signed:false}]}],binding_sources:[{source:'object.city',group:'Объект',label:'Город',value:'Москва'},{source:'project.name',group:'Раздел',label:'Название раздела',value:'Раздел 1'}]};
  renderDocumentVersion();
- window.saveDocumentVersion=saveDocumentVersion;window.collect=collectVersionDraft;window.model=()=>documentVersionState;window.renderCard=renderDocumentVersion;
+ window.openDocumentVersions=openDocumentVersions;window.saveDocumentVersion=saveDocumentVersion;window.collect=collectVersionDraft;window.model=()=>documentVersionState;window.renderCard=renderDocumentVersion;
  `);
  return dom;
 }
@@ -149,5 +149,35 @@ test('switching an automatic date to manual retains a valid ISO calendar value',
  row.querySelector('button').click();row.querySelector('select').value='__manual__';row.querySelector('button').click();
  assert.equal(d.querySelector('[data-document-field="day"] input').value,'2026-11-03');
  assert.equal(w.collect().card.fields.find(f=>f.key==='day').value,'2026-11-03');
+ dom.window.close();
+});
+
+
+test('empty version list offers an explicit card action in both themes',async()=>{
+ for(const theme of ['light','dark']){
+  const dom=fixture(theme),w=dom.window,d=w.document,calls=[];
+  w.openEditor=()=>{};w.editorWindow={setTitle:()=>{}};
+  w.api=async(path)=>{calls.push(path);return {versions:[]};};
+  await w.openDocumentVersions(1);
+  assert.deepEqual(calls,['/api/versions/list']);
+  const button=d.querySelector('[data-version-ensure]');
+  assert.equal(button.textContent,'Создать карточку');
+  assert.ok(d.querySelector('[role="status"]').textContent.includes('ещё не создана'));
+  button.focus();assert.equal(d.activeElement,button);
+  assert.equal(d.querySelector('#document-version-form'),null);
+  dom.window.close();
+ }
+});
+
+test('card initialization writes only after the explicit button action',async()=>{
+ const dom=fixture(),w=dom.window,d=w.document;
+ const versions=w.model().versions;
+ w.model().versions=[];w.model().selected=null;w.renderCard();
+ const calls=[];
+ w.api=async(path)=>{calls.push(path);return {versions};};
+ let pending;w.action=fn=>{pending=fn();};
+ d.querySelector('[data-version-ensure]').click();await pending;
+ assert.deepEqual(calls,['/api/versions/ensure']);
+ assert.ok(d.querySelector('#document-version-form'));
  dom.window.close();
 });

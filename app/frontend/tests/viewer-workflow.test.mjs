@@ -46,17 +46,24 @@ test('source-document tables retain their merged headers and cells when decorate
 
 test('viewer restrictions are removed on role change without unlocking intrinsic readonly fields',async()=>{
  const dom=new JSDOM('<div id="content"><input id="editable"><input id="automatic" readonly><input id="object-search"><select id="choice"><option>A</option></select><select id="locked" disabled><option>B</option></select></div><div id="editor-content"></div><div id="editor-footer"></div><button id="account-open"></button><button id="session-logout"></button>',{runScripts:'outside-only'}),w=dom.window,d=w.document;
+ d.querySelector('#editor-footer').innerHTML='<button id="save" type="submit" style="display:inline-flex">Сохранить</button><button id="locked-action" type="submit" disabled>Недоступно</button><button id="close" type="button" data-action="cancel-entry">Отменить</button>';
+ d.querySelector('#content').insertAdjacentHTML('beforeend','<button id="disclosure" type="button" aria-expanded="false">Сведения</button><button id="original" type="button" data-original="1">Скачать оригинал</button>');
+ d.body.insertAdjacentHTML('beforeend','<button id="new-object">Новый объект</button><form id="account-form"><button type="submit" id="profile-save">Сохранить имя</button></form>');
  w.$=s=>d.querySelector(s);w.createWorkspaceDialog=()=>({});w.eval(asset('account.js')+'\nwindow.setProfile=setProfile;');
  const profile=role=>({role,first_name:'Иван',last_name:'Иванов'});
  w.setProfile(profile('viewer'));
  assert.equal(d.querySelector('#editable').readOnly,true);assert.equal(d.querySelector('#choice').disabled,true);
  assert.equal(d.querySelector('#object-search').readOnly,false);
- d.querySelector('#editor-content').innerHTML='<input id="new-field">';
+ assert.equal(d.querySelector('#save').disabled,true);assert.equal(d.querySelector('#save').style.getPropertyValue('display'),'none');assert.equal(d.querySelector('#save').style.getPropertyPriority('display'),'important');
+ assert.equal(d.querySelector('#new-object').disabled,true);assert.equal(d.querySelector('#close').disabled,false);assert.equal(d.querySelector('#disclosure').disabled,false);assert.equal(d.querySelector('#original').disabled,false);assert.equal(d.querySelector('#profile-save').disabled,false);
+ d.querySelector('#editor-content').innerHTML='<input id="new-field"><button id="late-save" type="submit">Сохранить</button>';
  await new Promise(resolve=>setTimeout(resolve,0));assert.equal(d.querySelector('#new-field').readOnly,true);
+ assert.equal(d.querySelector('#late-save').disabled,true);
  w.setProfile(profile('editor'));
  assert.equal(d.querySelector('#editable').readOnly,false);assert.equal(d.querySelector('#choice').disabled,false);
  assert.equal(d.querySelector('#automatic').readOnly,true);assert.equal(d.querySelector('#locked').disabled,true);
  assert.equal(d.querySelector('#new-field').readOnly,false);assert.equal(d.querySelector('[data-read-only-note]'),null);
+ assert.equal(d.querySelector('#save').disabled,false);assert.equal(d.querySelector('#save').style.getPropertyValue('display'),'inline-flex');assert.equal(d.querySelector('#save').style.getPropertyPriority('display'),'');assert.equal(d.querySelector('#late-save').disabled,false);assert.equal(d.querySelector('#locked-action').disabled,true);assert.equal(d.querySelector('#new-object').disabled,false);
  d.querySelector('#editor-content').innerHTML='<input id="editor-field">';
  await new Promise(resolve=>setTimeout(resolve,0));assert.equal(d.querySelector('#editor-field').readOnly,false);
  dom.window.close();

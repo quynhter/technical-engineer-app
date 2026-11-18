@@ -43,17 +43,19 @@ async function previewRecordDeletion(entity,id){
  const plan=await api('/api/action',{project_id:pid,action:'delete-preview',data:{entity,id}});
  let dialog=document.getElementById('record-delete-dialog');
  if(!dialog){
-  dialog=document.createElement('dialog');dialog.id='record-delete-dialog';dialog.className='workspace-dialog';
+  dialog=document.createElement('dialog');dialog.id='record-delete-dialog';dialog.className='workspace-dialog workspace-dialog--settings';
   dialog.setAttribute('aria-labelledby','record-delete-title');
-  dialog.innerHTML='<div class="dialog-bar"><h2 id="record-delete-title" class="dialog-title">Удаление записи</h2><button type="button" class="secondary" data-dialog-close aria-label="Закрыть">×</button></div><div class="dialog-content"></div>';
+  dialog.setAttribute('aria-describedby','record-delete-description');
+  dialog.innerHTML='<div class="dialog-bar"><h2 id="record-delete-title" class="dialog-title">Удаление записи</h2><button type="button" class="secondary" data-dialog-close aria-label="Закрыть">×</button></div><div class="dialog-content"></div><div class="dialog-footer"><div class="ux-form-actions"><button type="button" class="secondary" data-dialog-close>Отмена</button><button type="button" class="danger" data-confirm-record-delete>Удалить</button></div></div>';
   document.body.append(dialog);recordDeleteWindow=createWorkspaceDialog(dialog.id);
  }
  const groups=[['delete','Будут удалены'],['clear','Будут очищены ссылки']];
- dialog.querySelector('.dialog-content').innerHTML=`<p>Удаление выбранной записи и обязательных дочерних записей нельзя отменить. Проверьте весь список последствий.</p>${groups.map(([action,label])=>{
+ dialog.querySelector('.dialog-content').innerHTML=`<p id="record-delete-description" class="delete-plan-warning">Удаление выбранной записи и обязательных дочерних записей нельзя отменить. Проверьте весь список последствий.</p>${groups.map(([action,label])=>{
   const items=plan.items.filter(item=>item.action===action);if(!items.length)return '';
   return `<section class="delete-plan-section"><h3>${label}: ${items.length}</h3><ul class="delete-plan-list">${items.map(item=>`<li><strong>${esc(item.entity)}. ${esc(item.name)}</strong>${item.scope?`<p>${esc(item.scope)}</p>`:''}<p class="hint">${esc(item.reason)}</p></li>`).join('')}</ul></section>`;
- }).join('')}<p class="hint">${esc(plan.archive_note)}</p><p role="alert" data-delete-error></p><div class="ux-form-actions"><button type="button" class="secondary danger" data-confirm-record-delete>Удалить</button><button type="button" class="secondary" data-dialog-close>Отмена</button></div>`;
- dialog.querySelector('[data-confirm-record-delete]').addEventListener('click',async event=>{
+ }).join('')}<p class="hint">${esc(plan.archive_note)}</p><p role="alert" data-delete-error hidden></p>`;
+ dialog.querySelector('[data-confirm-record-delete]').disabled=false;
+ dialog.querySelector('[data-confirm-record-delete]').onclick=async event=>{
   const button=event.currentTarget;button.disabled=true;
   try{
    if(pid!==projectId||objectId!==state.object.id)throw Error('Выбран другой объект или раздел. Откройте предупреждение заново.');
@@ -65,8 +67,8 @@ async function previewRecordDeletion(entity,id){
     await loadProject(state.projects.some(p=>p.id===pid)?pid:state.projects[0]?.id||null);
    }else{state={object:{},participants:[],projects:[],token:null};await loadProject(null);workspaceView='objects';}
    render();toast('Запись удалена. Связанные данные обновлены.');
-  }catch(error){dialog.querySelector('[data-delete-error]').textContent=error.message;button.disabled=false;}
- });
+  }catch(error){const message=dialog.querySelector('[data-delete-error]');message.textContent=error.message;message.hidden=false;button.disabled=false;}
+ };
  recordDeleteWindow.open({focus:dialog.querySelector('.ux-form-actions [data-dialog-close]')});
 }
 document.addEventListener('click',event=>{

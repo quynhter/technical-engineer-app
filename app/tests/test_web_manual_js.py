@@ -30,20 +30,15 @@ assert.equal(ctx.representativeLabel({position:'Мастер',fio:'Петров 
 
     @unittest.skipUnless(shutil.which('node'), 'Нужен Node')
     def test_findings_resolve_resource_names_and_link_exact_card(self):
-        source=(Path(__file__).parents[1]/'itd/web_assets/app.js').read_text()
-        functions=source[source.index('function resourceLabel('):source.index('function findingDestination(')]
-        script=r"""
+        module=(Path(__file__).parents[1]/'frontend/src/workflow-model.mjs').resolve().as_uri()
+        script='import('+json.dumps(module)+').then(({findingPresentation,findingResource})=>{'+r"""
 const assert=require('node:assert/strict');
 const pdata={resources:[{id:7,spec_num:'12',name:'Кабель <А>',type_mark:'КПС'}],acts:[],attachments:[],releases:[],workspace_entries:[],quality_reviews:[],manual:{supplies:[]},workflow:{fact_records:[{id:21,resource_id:7,work_description:'Прокладка',location:'Этаж 2'}],matrix:{requirements:[]},deliveries:[],remarks:[]}};
-const esc=v=>String(v).replaceAll('<','&lt;').replaceAll('>','&gt;'),actName=()=>'';
-FUNCTIONS
+const {findingDetails,resourceLabel}=findingPresentation(pdata);
 const details=findingDetails({code:'qty_fact_unknown',resource_id:7,fact_id:21});
-assert.match(details,/Поз\. 12\. Кабель <А>\. КПС/);assert.match(details,/Этаж 2/);
-assert.doesNotMatch(details,/Ресурс №|Факт №/);
-const link=findingSubjectLink({fact_id:21});
-assert.match(link,/data-resource-card="7"/);assert.match(link,/Кабель &lt;А&gt;/);
-assert.match(resourceLabel(999),/недоступен/);
-""".replace('FUNCTIONS',functions)
+assert.match(details,/Поз\. 12\. Кабель <А>\. КПС/);assert.match(details,/Этаж 2/);assert.doesNotMatch(details,/Ресурс №|Факт №/);
+assert.equal(findingResource({fact_id:21},pdata),7);assert.match(resourceLabel(999),/недоступен/);
+"""+'});'
         result=subprocess.run(['node','-e',script],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr)
 
@@ -112,7 +107,7 @@ class JournalJsTests(unittest.TestCase):
     def test_live_refresh_preserves_input_and_rejects_stale_responses(self):
         source=(Path(__file__).parents[1]/'itd/web_assets/journals.js').read_text()
         start=source.index('async function refreshJournals()')
-        refresh=source[start:source.index("document.addEventListener('click'", start)]
+        refresh=source[start:source.index("setInterval(refreshJournals", start)]
         script=r'''
 const vm=require('node:vm'),assert=require('node:assert/strict');
 let requests=0,renders=0,resolve;

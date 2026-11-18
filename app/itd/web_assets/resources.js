@@ -1,48 +1,20 @@
 'use strict';
 let resourceImport=null,resourceImportConfig=null;
-function installedValue(resource,summary){
- // A work already creates a fact: never add consumed, confirmed_total and qty_fact.
- if(resource.qty_fact!=null)return {value:resource.qty_fact,label:'Итог ведомости'};
- if(summary?.confirmed_ids?.length)return {value:summary.confirmed_total,label:'По подтверждённым записям'};
- return {value:null,label:'Не внесено'};
-}
-function resourceFactPicker(){
- if(!pdata.resources.length)return '';
- return `<details class="table-filter-disclosure resource-fact-picker"><summary>Монтаж по ресурсу</summary><div class="data-table-filters"><label class="field"><span>Ресурс</span><select id="resource-activity-select"><option value="">Выберите ресурс…</option>${pdata.resources.map(r=>option(r.id,resourceLabel(r.id))).join('')}</select></label><button type="button" class="secondary" data-resource-facts>Открыть монтаж по ресурсу</button></div></details>`;
-}
 function resourcePage(){
  const nav=`<nav class="panel-nav" aria-label="Учёт ресурсов">${[['list','resources','Спецификация'],['incoming','incoming','Входной контроль'],['facts','facts','Факт монтажа']].map(([key,view,label])=>`<button class="${resourcePanel===key?'active':'secondary'}" data-view="${view}" ${resourcePanel===key?'aria-current="page"':''}>${label}</button>`).join('')}</nav>`;
- const resourceName=id=>pdata.resources.find(r=>r.id===id)?.name;
- const workLink=id=>{
-  const work=pdata.workspace_entries.find(e=>e.id===id);
-  return work?`<button class="cell-open" data-edit-entry="${work.id}">${esc(work.title)}</button>`:'';
- };
  if(resourcePanel==='incoming')return nav+incomingPage();
- if(resourcePanel==='facts'){const facts=pdata.workflow.fact_records.filter(f=>f.status!=='void').sort((a,b)=>(b.end_date||b.start_date||'').localeCompare(a.end_date||a.start_date||''));return nav+card('Факт монтажа','<div class="toolbar"><button data-editor="fact">Добавить факт</button></div>'+resourceFactPicker()+
-  journalTable(['Дата','Материал','Количество','Ед. изм.','Место','Работа в ОЖР','Статус'],facts.map(f=>{
-    const work=pdata.work_materials.find(m=>m.fact_id===f.id);
-    return [journalValue(f.end_date||f.start_date),esc(resourceName(f.resource_id)),journalValue(f.quantity),esc(f.unit),
-     esc(f.location),workLink(f.work_entry_id||work?.entry_id),
-     f.status==='confirmed'?'Подтверждён':'Ожидает проверки'];
-   }),{records:facts.map(f=>({entity:'work_facts',id:f.id}))}),'list');}
- return nav+card('Спецификация','<div class="toolbar"><button data-resource-import>Импорт Excel / CSV</button><button class="secondary" data-manual="resource-add">Добавить ресурс</button></div>'+
-  journalTable(['Позиция','Наименование','Категория','Марка / тип','Производитель','Поставщик','Ед. изм.','По проекту','Смонтировано','Комментарий'],pdata.inventory.map(r=>{
-   const summary=pdata.workflow.facts.find(f=>f.resource_id===r.id);
-   return [esc(r.spec_num),`<button class="cell-open" data-resource-card="${r.id}">${esc(r.name)}</button>`,
-    esc(r.category),esc(r.type_mark),esc(r.manufacturer),esc(r.supplier),esc(r.unit),journalValue(r.qty_proj),
-    journalValue(installedValue(r,summary).value),esc(r.note)];
-  })),'list');
+ if(resourcePanel==='facts')return nav+'<div id="facts-app"></div>';
+ return nav+'<div id="resource-list-app"></div>';
 }
 function importPayload(){return {...resourceImportConfig,project_id:projectId,import_id:resourceImport.import_id};}
 function importEditor(){
- if(!resourceImport)return `<p>Выберите ведомость. Сопоставление и проверка появятся после загрузки.</p>${uploadZone('resource-import-file','Выбрать ведомость',{accept:'.xlsx,.csv',maxMB:8})}<p class="hint">До 8 МБ, до 10 000 строк. Исходный файл сохраняется в архиве при импорте.</p>`;
+ if(!resourceImport)return `<p>Выберите ведомость. Загрузка сохраняет файл в очереди. Ресурсы добавляются после подтверждения импорта.</p>${uploadZone('resource-import-file','Загрузить в очередь',{accept:'.xlsx,.csv',maxMB:8})}<p class="hint">До 8 МБ, до 10 000 строк. Исходный файл сохраняется в архиве при импорте.</p>`;
  const v=resourceImport,c=resourceImportConfig;
  return `<form id="resource-import-form"><p><strong>${esc(v.filename)}</strong> · строк данных: ${v.count}</p><div class="grid"><label class="field"><span>Лист</span><select name="sheet">${v.sheets.map(s=>option(s,s,c.sheet)).join('')}</select></label>${input('header_row','Строка заголовков',c.header_row,'number')}<label class="field"><span>Категория для пустых ячеек</span><select name="default_category"><option value="">Не задана</option>${meta.categories.map(s=>option(s,s,c.defaults?.category)).join('')}</select></label>${input('default_unit','Единица для пустых ячеек',c.defaults?.unit)}</div><h3 class="rep">Сопоставьте колонки</h3><p class="hint">Выберите колонку для наименования, единицы и категории. Единицу и категорию можно задать выше для всего файла. Импортируются сведения спецификации и проектные количества.</p><div class="grid">${Object.entries(v.fields).filter(([key])=>key!=='qty_received').map(([key,label])=>`<label class="field"><span>${esc(label)}</span><select name="map_${key}"><option value="">Не импортировать</option>${v.headers.map((h,i)=>option(i,(i+1)+'. '+(h||'Без заголовка'),c.mapping?.[key])).join('')}</select></label>`).join('')}</div>${v.category_values?.some(value=>!meta.categories.includes(value))?`<h3 class="rep">Категории из файла</h3><p class="hint">Для каждого обозначения выберите категорию ресурсов. Названия в исходном файле сохраняются без изменений.</p><div class="grid">${v.category_values.map((value,i)=>`<label class="field"><span>${esc(value)}</span><select name="category_${i}"><option value="">${meta.categories.includes(value)?"Совпадает со справочником":"Выберите категорию…"}</option>${meta.categories.map(cat=>option(cat,cat,c.category_map?.[value])).join('')}</select></label>`).join('')}</div>`:''}<details class="ux-disclosure"><summary>Исходные строки</summary>${journalTable(v.headers,v.sample.map(row=>v.headers.map((_,i)=>esc(row[i]))))}</details><div class="toolbar rep"><button type="submit">Проверить сопоставление</button></div>${c.checked?`<h3>Предпросмотр изменений</h3>${!v.valid?`<div class="callout" role="status"><strong>Импорт пока недоступен</strong><ul>${v.rows.filter(r=>r.errors.length).slice(0,10).map(r=>`<li>Строка ${r.row}: ${esc(r.errors.join('; '))}</li>`).join('')}</ul><p>Если категория или единица пропущены в файле, задайте их для пустых ячеек выше, затем повторите проверку.</p></div>`:''}<p>Новых ресурсов: ${v.new_count}. Ранее импортировано: ${v.count-v.new_count}.</p>${journalTable(['Строка','Ресурс','Ед. изм.','Проект','Проверка'],v.rows.slice(0,100).map(r=>[String(r.row),esc(r.values.name),esc(r.values.unit),journalValue(r.values.qty_proj),esc(r.errors.join('; ')||(r.duplicate?'Уже импортировано':'Будет добавлен новый ресурс'))]))}${v.count>100?'<p class="hint">Показаны первые 100 строк; проверены все строки.</p>':''}<p class="hint">Существующие ресурсы не перезаписываются. Повторный импорт тех же строк не увеличивает количества.</p><button type="button" data-resource-import-commit ${!v.valid?'disabled':''}>Импортировать ${v.new_count} ресурсов</button>`:''}</form>`;
 }
 function showImport(){editEntry=null;formDirty=false;$('#editor-content').innerHTML=importEditor();decorateSelects();editorWindow.open({title:'Импорт ресурсов'});}
 function readImportConfig(form){const fd=new FormData(form);return {sheet:fd.get('sheet'),header_row:Number(fd.get('header_row')),defaults:{category:fd.get('default_category')||null,unit:fd.get('default_unit')||null},category_map:Object.fromEntries((resourceImport.category_values||[]).map((v,i)=>[v,fd.get('category_'+i)]).filter(([,v])=>v)),mapping:Object.fromEntries([...fd].filter(([k,v])=>k.startsWith('map_')&&v!=='').map(([k,v])=>[k.slice(4),Number(v)]))};}
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
- if(b.hasAttribute('data-resource-import')){if(formDirty)return;resourceImport=null;resourceImportConfig=null;showImport();}
  if(b.hasAttribute('data-resource-import-commit'))action(async()=>{const form=$('#resource-import-form'),current=readImportConfig(form);if(JSON.stringify(current)!==JSON.stringify(Object.fromEntries(Object.entries(resourceImportConfig).filter(([k])=>k!=='checked'))))throw Error('Сопоставление изменилось. Нажмите «Проверить сопоставление».');const result=await api('/api/resource-import/commit',{...importPayload(),preview_token:resourceImport.preview_token});closeEditor(true);await loadProject(projectId);render();toast('Добавлено ресурсов: '+result.imported+'; повторов пропущено: '+result.skipped);});
 });
 document.addEventListener('change',e=>{if(e.target.id==='resource-import-file')action(async()=>{const f=e.target.files[0];if(!f)return;if(f.size>8*1024*1024)throw Error('Допустимый размер ведомости — 8 МБ');const content=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=()=>reject(Error('Не удалось прочитать файл'));reader.readAsDataURL(f);});resourceImport=await api('/api/resource-import/stage',{project_id:projectId,filename:f.name,content});resourceImportConfig={sheet:resourceImport.sheet,header_row:resourceImport.header_row,defaults:{category:null,unit:null},category_map:{},mapping:suggestResourceColumns(resourceImport.headers)};showImport();});
@@ -110,11 +82,6 @@ async function submitResourceCard(form){
 }
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
  if(b.dataset.resourceCard)openResourceCard(b.dataset.resourceCard);
- if(b.hasAttribute('data-resource-facts')){
-  const select=$('#resource-activity-select');
-  if(select.value)openResourceCard(select.value,'fact');
-  else toast('Выберите ресурс');
- }
  if(b.dataset.resourceWork){if(formDirty){notice('Сначала сохраните карточку ресурса или отмените изменения.');return;}const entry=pdata.workspace_entries.find(e=>e.id===Number(b.dataset.resourceWork));if(!entry)return;closeEditor(true);openEditor('work',entry);}
 });
 for(const event of ['input','change'])document.addEventListener(event,e=>{if(e.target.closest('#resource-card-form'))formDirty=true;});

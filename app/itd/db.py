@@ -16,6 +16,17 @@ MIGRATIONS = Path(__file__).parent / "migrations"
 DATE_FIELDS = ("smr_start", "smr_end", "pnr_start", "pnr_end")
 
 
+def enable_wal(path):
+    """An explicit preparation step, never invoked by a read connection."""
+    connection = sqlite3.connect(path, timeout=10)
+    try:
+        mode = connection.execute('PRAGMA journal_mode=WAL').fetchone()[0]
+        if mode.lower() != 'wal':
+            raise ValueError('Не удалось включить WAL для выбранной БД')
+    finally:
+        connection.close()
+
+
 @contextmanager
 def connect(path: str | Path, *, transaction=True):
     """Транзакция с внешними ключами и закрытием соединения."""
@@ -75,6 +86,7 @@ def initialize(path: str | Path) -> None:
             except Exception:
                 connection.rollback()
                 raise
+    enable_wal(path)
 
 
 def required_text(value: str, label: str) -> str:

@@ -5,7 +5,7 @@ import re
 import secrets
 import sqlite3
 from threading import RLock
-from time import monotonic
+from time import time as monotonic  # Compatibility clock name; persistent sessions use epoch seconds.
 from contextlib import closing
 
 ROLES = ('admin', 'editor', 'viewer')
@@ -39,18 +39,19 @@ def names(data):
 class Accounts:
     def __init__(self, path):
         self.path = Path(path)
-        self.sessions = {}
         self.session_lock = RLock()
 
     def connect(self):
         connection = sqlite3.connect(self.path)
         connection.row_factory = sqlite3.Row
+        connection.execute('PRAGMA foreign_keys=ON')
         return closing(connection)
 
     def initialize(self):
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.path.touch(mode=0o600, exist_ok=True)
         with self.connect() as c, c:
+            c.execute('PRAGMA journal_mode=WAL')
             c.executescript("""
                 CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -69,8 +70,19 @@ class Accounts:
                     path TEXT NOT NULL,
                     PRIMARY KEY (database_path, path)
                 );
+                CREATE TABLE IF NOT EXISTS account_schema_migrations (
+                    version INTEGER PRIMARY KEY, name TEXT NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS sessions (
+                    token_hash TEXT PRIMARY KEY CHECK(length(token_hash)=64),
+                    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+                    created_at REAL NOT NULL, used_at REAL NOT NULL,
+                    expires_at REAL NOT NULL, idle_expires_at REAL NOT NULL
+                );
+                CREATE INDEX IF NOT EXISTS sessions_user ON sessions(user_id);
             """)
             c.execute('BEGIN IMMEDIATE')
+            c.execute("INSERT OR IGNORE INTO account_schema_migrations VALUES(1,'persistent_sessions')")
             if c.execute('SELECT 1 FROM users LIMIT 1').fetchone():
                 return None
             key = secrets.token_urlsafe(32)
@@ -86,28 +98,39 @@ class Accounts:
             return dict(row)
 
     def _prune_sessions(self, now):
-        for token, (_, created, used) in list(self.sessions.items()):
-            if now - created >= SESSION_LIFETIME or now - used >= SESSION_IDLE:
-                self.sessions.pop(token, None)
+        with self.connect() as c, c:
+            c.execute('DELETE FROM sessions WHERE expires_at<=? OR idle_expires_at<=?', (now, now))
+
+    @property
+    def sessions(self):
+        """Read-only compatibility snapshot: only hashes, never recoverable tokens."""
+        with self.connect() as c:
+            return {r['token_hash']: (r['user_id'], r['created_at'], r['used_at'])
+                    for r in c.execute('SELECT * FROM sessions')}
 
     def session(self, user_id):
         now = monotonic()
-        with self.session_lock:
-            self._prune_sessions(now)
-            owned = [token for token, value in self.sessions.items() if value[0] == user_id]
-            for token in owned[:max(0, len(owned) - MAX_USER_SESSIONS + 1)]:
-                self.sessions.pop(token, None)
+        with self.session_lock, self.connect() as c, c:
+            c.execute('BEGIN IMMEDIATE')
+            c.execute('DELETE FROM sessions WHERE expires_at<=? OR idle_expires_at<=?', (now, now))
+            count = c.execute('SELECT count(*) FROM sessions WHERE user_id=?', (user_id,)).fetchone()[0]
+            if count >= MAX_USER_SESSIONS:
+                c.execute('DELETE FROM sessions WHERE token_hash IN (SELECT token_hash FROM sessions WHERE user_id=? ORDER BY created_at,rowid LIMIT ?)',
+                          (user_id, count - MAX_USER_SESSIONS + 1))
             token = secrets.token_urlsafe(32)
-            self.sessions[token] = (user_id, now, now)
+            c.execute('INSERT INTO sessions VALUES(?,?,?,?,?,?)',
+                      (key_digest(token), user_id, now, now, now + SESSION_LIFETIME, now + SESSION_IDLE))
         return token
 
     def discard_session(self, token):
-        with self.session_lock:
-            self.sessions.pop(token, None)
+        if not isinstance(token, str) or not KEY_PATTERN.fullmatch(token):
+            return
+        with self.session_lock, self.connect() as c, c:
+            c.execute('DELETE FROM sessions WHERE token_hash=?', (key_digest(token),))
 
     def clear_sessions(self):
-        with self.session_lock:
-            self.sessions.clear()
+        with self.session_lock, self.connect() as c, c:
+            c.execute('DELETE FROM sessions')
 
     def login(self, key):
         with self.connect() as c:
@@ -118,21 +141,24 @@ class Accounts:
 
     def authenticate(self, token, *, touch=True):
         now = monotonic()
-        with self.session_lock:
-            self._prune_sessions(now)
-            session = self.sessions.get(token)
+        if not isinstance(token, str) or not KEY_PATTERN.fullmatch(token):
+            raise SessionExpired('Сеанс завершён. Войдите по коду доступа')
+        with self.session_lock, self.connect() as c, c:
+            if touch:
+                c.execute('BEGIN IMMEDIATE')
+            session = c.execute('SELECT * FROM sessions WHERE token_hash=? AND expires_at>? AND idle_expires_at>?',
+                                (key_digest(token), now, now)).fetchone()
             if session is None:
                 raise SessionExpired('Сеанс завершён. Войдите по коду доступа')
-            user_id, created, used = session
+            user_id = session['user_id']
             if touch:
-                self.sessions[token] = (user_id, created, now)
+                c.execute('UPDATE sessions SET used_at=?,idle_expires_at=? WHERE token_hash=?',
+                          (now, now + SESSION_IDLE, key_digest(token)))
         return self.get(user_id)
 
     def revoke(self, user_id):
-        with self.session_lock:
-            for token, value in list(self.sessions.items()):
-                if value[0] == user_id:
-                    self.sessions.pop(token, None)
+        with self.session_lock, self.connect() as c, c:
+            c.execute('DELETE FROM sessions WHERE user_id=?', (user_id,))
 
     def list(self):
         with self.connect() as c:

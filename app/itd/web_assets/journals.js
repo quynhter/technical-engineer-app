@@ -18,8 +18,6 @@ function journalTable(headers,rows,{ids=null,entity=null,records=null}={}){
  return `<div class="table-scroll"><table${selectable?' data-selectable':''}><thead><tr>${head}<th class="table-fill" data-table-fill aria-hidden="true"></th></tr></thead><tbody>${rows.length?body:`<tr><td colspan="${columns+1}" class="empty">Сведения пока не внесены.</td></tr>`}</tbody></table></div>`;
 }
 function journalValue(value){return esc(value==null?'Не указано':typeof value==='number'?formatTableNumber(value):displayTableDate(value));}
-function journalEntryAction(e){return `<small>${esc(e.section_code)} · Запись № ${e.id}</small>`;}
-function journalEntryName(e,text=e.title){return `<button type="button" class="cell-open" data-journal-edit="${e.id}">${esc(text)}</button>`;}
 const journalHelp={
  '1':'Укажите работника, вид работ и известные сроки его участия.',
  '2':'Запишите выдачу или передачу специального журнала.',
@@ -28,26 +26,6 @@ const journalHelp={
  '5':'Здесь показаны подписанные акты всех разделов объекта. Состав подписантов фиксируется при подтверждении подписания.',
  '6':'Внесите сведения о состоявшемся мероприятии госстройнадзора.'
 };
-function generalJournalPage(){
- const j=pdata.journals;
- let html='';
- if(journalHelp[journalSection])html+=`<p class="journal-purpose">${esc(journalHelp[journalSection])}</p>`;
- if(journalSection==='0'){
-  const o=j.object;
-  html+=card('Сведения об объекте','<p class="hint">Сроки автоматически рассчитываются по датам СМР и ПНР всех разделов объекта: самое раннее начало и самое позднее окончание. При отсутствии дат разделов показаны сроки из карточки объекта.</p><div class="toolbar"><button class="secondary" data-view="object">Открыть карточку объекта</button></div>'+journalTable(['Сведения','Текущее значение'],[['Наименование',o.name],['Адрес',o.address],['Вид строительства',o.construction_type],['Начало строительства объекта',j.construction_dates.start],['Окончание строительства объекта',j.construction_dates.end],['Разрешение: номер, дата, орган',[o.permit_num,displayTableDate(o.permit_date),o.permit_authority].filter(Boolean).join(' · ')||null],['Экспертиза: номер, дата, орган',[o.expertise_num,displayTableDate(o.expertise_date),o.expertise_authority].filter(Boolean).join(' · ')||null],['Дело ГСН',o.gsn_case]].map(row=>row.map(journalValue))),'building');
-  html+=titleAssignmentsEditor();
-  html+=card('Участники объекта','<div class="toolbar"><button class="secondary" data-view="participants">Открыть участников</button></div>'+journalTable(['Организация','Роли','Представители и основания'],j.participants.map(o=>[esc(o.full_name),esc(o.roles.map(r=>meta.roles[r]||r).join(', ')),o.representatives.map(r=>esc([[r.position,r.fio].filter(Boolean).join(' '),r.order_doc,r.status].filter(Boolean).join(' · '))).join('<br>')]),{records:j.participants.map(o=>({entity:'organizations',id:o.id}))})+'<p class="hint">Указаны участники объекта. Назначения документов в отдельных разделах могут отличаться. Полномочия и подписи проверяются отдельно.</p>','user');
- }else if(journalSection==='3'){
-  html+=workPage();
- }else if(journalSection==='5'){
-  html+=card('5. Исполнительная документация',`<button class="secondary" data-view="documents">Открыть документы раздела</button><p class="hint">Здесь показаны акты со статусом «Подписан». Реквизиты и состав подписантов зафиксированы при подтверждении статуса.</p>`+journalTable(['Раздел','Документ','Работы и место','Дата подписания','Подписанты'],j.sections['5'].map(a=>[esc(a.section_code),esc(a.act_num+' «'+a.form_name+'»'),esc(a.work_description),journalValue(a.date_signed),esc(a.signed_by.map(p=>[[p.position,p.fio].filter(Boolean).join(' '),p.organization?.full_name].filter(Boolean).join(' · ')).join('; '))]),{records:j.sections['5'].map(a=>({entity:'acts',id:a.id}))}),'file');
- }else{
-  const legacy=journalSection==='legacy',entries=legacy?j.legacy:j.sections[journalSection],fields=journalFields[journalSection]||{};
-  html+=card(legacy?'Прежние записи без раздела':journalSection+'. '+j.section_names[journalSection],(legacy?'<p class="hint">Существующие записи сохранены. При редактировании можно явно выбрать раздел ОЖР.</p>':`<button data-journal-new="${journalSection}">${{'1':'Добавить работника','2':'Добавить журнал','4':'Внести проверку','6':'Добавить мероприятие'}[journalSection]}</button>`)+journalTable(['Дата','Содержание',...Object.values(fields),'Ответственный','Источник'],entries.map(e=>[journalValue(e.entry_date),journalEntryName(e,[e.title,e.details].filter(Boolean).join(' · ')),...Object.keys(fields).map(k=>journalValue(e.resolved_fields[k])),journalValue(e.responsible_person?[e.responsible_person.position,e.responsible_person.fio].filter(Boolean).join(' '):e.responsible),journalEntryAction(e)])),'list');
-  if(journalSection==='2')html+=card('Подключённые формы журналов',journalTable(['Раздел','Форма','Источник'],j.connected.map(j=>[esc(j.section_code),esc(j.act_num+' «'+j.name+'»'),esc({work:'Работы',incoming:'Входной контроль',journal:'Записи журналов'}[j.entry_kind])]))+'<p class="hint">Подключение формы не означает выдачу или передачу специального журнала. Эти события внесите отдельной записью выше.</p>','file');
- }
- return html;
-}
 const incomingResultNames={pending:'Проверка не завершена',accepted:'Входной контроль пройден',rejected:'Не принято'};
 const documentReviewNames={matches:'Соответствует',mismatch:'Выявлено несоответствие',uncertain:'Применимость не подтверждена'};
 function incomingJournalBody(){
@@ -194,11 +172,6 @@ async function refreshJournals(){
  if(pdata?._revision)pdata._checkedAt=Date.now();
  }catch(_){/* Статус соединения отображается отдельно; введённые данные сохраняются. */}finally{journalRefreshBusy=false;}
 }
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||formDirty)return;
- if(b.dataset.journalSection){journalSection=b.dataset.journalSection;render();}
- if(b.dataset.journalNew)openEditor('journal',{kind:'journal',work_fields:{journal_section:b.dataset.journalNew}});
- if(b.dataset.journalEdit)action(async()=>{const j=pdata.journals;const entry=[...Object.values(j.sections).flat(),...j.legacy].find(x=>x.id===Number(b.dataset.journalEdit)&&x.kind);if(!entry)return;if(entry.project_id!==projectId)await loadProject(entry.project_id,true);openEditor(entry.kind,entry);});
-});
 setInterval(refreshJournals,5000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshJournals();});
 

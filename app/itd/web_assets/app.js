@@ -41,27 +41,16 @@ try {
 function applyAppearance() {
  document.documentElement.dataset.theme = appearance.theme;
  document.documentElement.dataset.accent = appearance.accent;
- const dark = appearance.theme === 'dark';
- $('#theme-toggle').innerHTML = icon(dark ? 'sun' : 'moon') + (dark ? 'Светлая тема' : 'Тёмная тема');
- $('#theme-toggle').setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
- document.querySelectorAll('.swatch').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.accent === appearance.accent)));
  try { localStorage.setItem(appearanceKey, JSON.stringify(appearance)); } catch (_) {}
  document.dispatchEvent(new Event('itd:appearance'));
 }
 applyAppearance();
-$('#theme-toggle').addEventListener('click', () => {
- appearance.theme = appearance.theme === 'light' ? 'dark' : 'light';
- applyAppearance();
-});
-document.querySelectorAll('.swatch').forEach(b => b.addEventListener('click', () => {
- appearance.accent = b.dataset.accent;
- applyAppearance();
-}));
+document.addEventListener('itd:theme-toggle',()=>{appearance.theme=appearance.theme==='light'?'dark':'light';applyAppearance();});
+document.addEventListener('itd:accent',event=>{if(['teal','blue','violet','amber','rose'].includes(event.detail)){appearance.accent=event.detail;applyAppearance();}});
 let token=sessionStorage.getItem('itd-session')||'';
 let meta, state={object:{},participants:[],projects:[],token:null}, step=0, tab=0, orgIndex=0, projectId=null, pdata=null, dirty=false, formDirty=false, busy=false, pending=[], editEntry=null;
 let workspaceView='overview', selectedEntries=new Set();
 const tableFilters=Object.fromEntries(['work','incoming','journal'].map(k=>[k,{search:'',unbound:false,group:false,from:'',to:''}]));
-const steps=['Информация об объекте','Участники строительства','Рабочая документация','Исполнительная документация'];
 const idViews=['documents','resources','schemes','ojr'];
 let packagePanel='registry',resourcePanel='list';
 const tabs=['Комплект ИД','Ресурсы','Схемы','Журналы'];
@@ -71,7 +60,7 @@ function crumbTrail(view){
  const idTab={registry:0,documents:0,check:0,delivery:0,resources:1,incoming:1,facts:1,schemes:2,ojr:3,journal:3,cable:3,work:3}[view];
  if(idTab===undefined){
   if(view==='objects')return [{label:'Объекты',view:'objects'}];
-  const labels={object:'Объект',participants:'Участники',rd:'Разделы',permits:'Разрешительная документация',overview:'Обзор'};
+  const labels={object:'Объект',participants:'Участники',rd:'Разделы',permits:'Разрешительная документация',overview:'Обзор',manage:'Ручное ведение'};
   return [root,{label:labels[view]||'Обзор',view}];
  }
  const trail=[root,{label:'Исполнительная документация',view:'registry'},{label:tabs[idTab],view:tabViews[idTab]}];
@@ -134,13 +123,121 @@ function navigate(view){const revealPermits=view==='permits';if(revealPermits)vi
 function render(){
  const nav=[['overview','Обзор','home'],['object','Объект','building'],['rd','Разделы','file'],['participants','Участники','user'],['registry','Исполнительная документация','list']];
  if(window.ITDDesign)window.ITDDesign.renderNav(nav.map(([v,n,i])=>[v,n,icon(i)]),workspaceView,navigate,crumbTrail(workspaceView));
- else $('#steps').innerHTML=nav.map(([v,n,i])=>`<button data-view="${v}" class="${workspaceView===v||(v==='registry'&&step===3)?'active':''}" ${workspaceView===v||(v==='registry'&&step===3)?'aria-current="page"':''}>${icon(i)}${n}</button>`).join('');
  $('#sidebar').innerHTML=step===1&&workspaceView==='participants'?orgSidebar():'';
  $('#sidebar').hidden=!(step===1&&workspaceView==='participants');
  $('main').classList.toggle('no-sidebar',$('#sidebar').hidden);
  $('#content').innerHTML=workspaceView==='objects'?objectsPage():workspaceView==='overview'?overviewPage():[objectPage,participantsPage,rdPage,idPage,manualPage][step]();
  $('#actions').innerHTML=!dirty&&!['object','participants','rd'].includes(workspaceView)?'':`<span id="save-status" class="status-text ${dirty?'unsaved':''}">${dirty?'Есть несохранённые изменения':state.object.id?'Сведения сохранены':'Новый объект · пока не сохранён'}</span><div class="footer-right">${state.object.id?'<button class="secondary" data-action="import">Импорт</button><button class="secondary" data-action="export">Экспорт</button>':''}<button data-action="save">Сохранить сведения</button></div>`;
+ mountRegistry();
+ mountSourceFiles();
+ mountSchemes();
+ mountDocuments();
+ mountResources();
+ mountFacts();
+ mountIncoming();
+ mountCable();
+ mountWork();
+ mountJournal();
+ mountWorkflow();
+ mountManual();
  decorateSelects();
+}
+function registryToken(){return token;}
+function registryDirty(){return dirty||formDirty||sessionSuspended;}
+function registryChanged(host,pid,workspace,value){if(host.isConnected&&projectId===pid&&currentUser?.workspace_id===workspace)pdata=value;}
+function openRegistryItem(item){
+ if(dirty||formDirty){notice('Сначала сохраните изменения.');return;}
+ if(sessionSuspended){notice('Сеанс завершён. Войдите снова.');return;}
+ if(item.entity==='act'){action(()=>currentUser?.role==='viewer'?previewAct(Number(item.id)):openDocumentVersions(Number(item.id)));return;}
+ if(item.entity==='scheme'){openManual('scheme-edit',item.id);return;}
+ if(item.entity==='attachment'){openSourceFileCard(Number(item.id));return;}
+ if(item.entity==='release'){action(()=>downloadRelease(Number(item.id)));return;}
+ if(item.entity==='journal')navigate(item.id==='incoming'?'journal':item.id);
+}
+function mountRegistry(){
+ const host=$('#registry-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderRegistry(host,{projectId:pid,role:currentUser.role,workspaceId:workspace,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onOpen:openRegistryItem,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function openSourceItem(file){openSourceFileCard(Number(file.id));}
+function checkSourceFiles(){return previewFiles('check');}
+function mountSourceFiles(){
+ const host=$('#source-files-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderSourceFiles(host,{projectId:pid,role:currentUser.role,workspaceId:workspace,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onOpen:openSourceItem,onDelete:deleteProjectRecord,onCheck:checkSourceFiles,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function createScheme(){openManual('scheme-add');}
+function openScheme(item){openManual('scheme-edit',item.id);}
+function deleteProjectRecord(entity,id){return action(()=>previewRecordDeletion(entity,id));}
+function mountSchemes(){
+ const host=$('#schemes-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderProjectRecords(host,{kind:'schemes',projectId:pid,workspaceId:workspace,role:currentUser.role,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onCreate:createScheme,onOpen:openScheme,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function createDocument(){openEditor('act');}
+function importDocument(){openUploadedAct();}
+function openDocumentItem(item){openRegistryItem({...item,entity:'act'});}
+function mountDocuments(){
+ const host=$('#documents-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderProjectRecords(host,{kind:'documents',projectId:pid,workspaceId:workspace,role:currentUser.role,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onCreate:createDocument,onImport:importDocument,onOpen:openDocumentItem,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function createResource(){openManual('resource-add');}
+function importResources(){resourceImport=null;resourceImportConfig=null;showImport();}
+function openResourceItem(item){openResourceCard(item.id);}
+function mountResources(){
+ const host=$('#resource-list-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderProjectRecords(host,{kind:'resources',projectId:pid,workspaceId:workspace,role:currentUser.role,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onCreate:createResource,onImport:importResources,onOpen:openResourceItem,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function createFact(){openEditor('fact');}
+function openFactResource(id){openResourceCard(id,'fact');}
+function openFactWork(item,project){const workId=item.work_entry_id||(project.work_materials||[]).find(material=>material.fact_id===item.id)?.entry_id;const entry=project.workspace_entries.find(entry=>entry.id===workId);if(entry)openEditor(entry.kind,{...entry});}
+function mountFacts(){
+ const host=$('#facts-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderProjectRecords(host,{kind:'facts',projectId:pid,workspaceId:workspace,role:currentUser.role,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onCreate:createFact,onOpen:openFactWork,onResource:openFactResource,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function createIncoming(){openEditor('incoming');}
+function openIncomingItem(item,project){const entry=project.workspace_entries.find(entry=>entry.id===item.id);if(entry)openEditor(entry.kind,{...entry});}
+function mountIncoming(){
+ const host=$('#incoming-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderProjectRecords(host,{kind:'incoming',projectId:pid,workspaceId:workspace,role:currentUser.role,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onCreate:createIncoming,onOpen:openIncomingItem,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function createCableWork(){openEditor('work',{kind:'work',work_type:'cable'});}
+function mountCable(){
+ const host=$('#cable-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderProjectRecords(host,{kind:'cable',projectId:pid,workspaceId:workspace,role:currentUser.role,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onCreate:createCableWork,onOpen:openIncomingItem,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function createWork(){openEditor('work');}
+function previewWorkAct(id){return action(()=>previewAct(id));}
+function mountWork(){
+ const host=$('#work-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ const active=()=>host.isConnected&&projectId===pid&&currentUser?.workspace_id===workspace;
+ window.ITDDesign.renderWorkRecords(host,{projectId:pid,workspaceId:workspace,role:currentUser.role,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onCreate:createWork,onCreateAct:createDocument,onOpen:openIncomingItem,onActPreview:previewWorkAct,onDelete:deleteProjectRecord,
+  initialSelected:[...selectedEntries],initialFilters:tableFilters.work,onSelectionChange:ids=>{if(active())selectedEntries=new Set(ids);},onFiltersChange:filters=>{if(active())tableFilters.work=filters;},
+  onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+}
+function openResourceItemById(id){openResourceCard(id);}
+function openWorkflowManual(operation,id){openManual(operation,id);}
+function mountWorkflow(){
+ const host=$('#workflow-app');if(!host)return;
+ const pid=projectId,workspace=currentUser.workspace_id;
+ window.ITDDesign.renderWorkflowRecords(host,{kind:host.dataset.kind,projectId:pid,workspaceId:workspace,role:currentUser.role,statusNames,findingNames,
+  getToken:registryToken,onSessionExpired:suspendWorkspace,onManual:openWorkflowManual,onNavigate:navigate,onResource:openResourceItemById,onActPreview:previewWorkAct,onDelete:deleteProjectRecord,
+  onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
 }
 function objectsPage(){return title('Объекты','Все объекты и разделы в вашей локальной базе.','Рабочее пространство')+`<div class="toolbar"><input id="object-search" aria-label="Поиск объектов" placeholder="Найти объект по названию…"><button data-action="new-object">${icon('plus')}Новый объект</button></div><div class="object-cards">${meta.objects.map(o=>`<button class="object-tile" data-open-object="${o.id}" data-object-search="${esc(o.name.toLowerCase())}"><span class="tile-icon">${icon('building')}</span><strong>${esc(o.name)}</strong><span class="small">Разделы РД: ${meta.projects.filter(p=>p.object_id===o.id).length}</span><span class="tile-link">Открыть объект ${icon('right')}</span></button>`).join('')||'<div class="empty">Объектов пока нет.</div>'}</div><p id="object-empty" class="empty" hidden>Объекты по этому запросу не найдены.</p>`;}
 function overviewPage(){
@@ -174,33 +271,27 @@ function developerPanel(){return `<div class="callout"><h3>Как организ
 function repPanel(p,j,r){p+=`.representatives.${j}`;return `<details class="rep" open><summary>${esc(r.fio||[r.last_name,r.first_name,r.middle_name].filter(Boolean).join(' ')||'Новый представитель')}</summary>${!r.id?`<button class="ghost danger" data-remove-rep="${j}">Убрать несохранённого представителя</button>`:''}<div class="grid">${field(p+'.position','Должность <span class="required">*</span>')}${field(p+'.email','E-mail','email')}${field(p+'.last_name','Фамилия')}${field(p+'.first_name','Имя')}${field(p+'.middle_name','Отчество')}${field(p+'.nrs_id','Номер в НРС')}${field(p+'.fio','Полное ФИО (при необходимости)','text',true)}${select(p+'.authority_type','Распорядительный документ',{'Приказ':'Приказ','Распоряжение':'Распоряжение','Доверенность':'Доверенность','Указания':'Указания','Постановления и решения':'Постановления и решения'})}${field(p+'.authority_num','Номер документа')}${field(p+'.authority_date','Дата документа','date')}<label class="field"><span>Архивный приказ</span><select data-path="${p}.order_attachment_id"><option value="">Не выбран</option>${(pdata?.attachments||[]).filter(a=>a.doc_type==='order').map(a=>option(a.id,a.title,r.order_attachment_id)).join('')}</select></label>${select(p+'.status','Статус',{'Действует':'Действует','Отозван':'Отозван'})}</div><h3 class="rep">Роли представителя в документах</h3>${roleChecks(p+'.document_roles',r.document_roles||[],meta.document_roles)}<p class="hint">Укажите роль по распорядительному документу. Одна подпись в договоре не подтверждает полномочия на подписание актов.</p></details>`;}
 function projectsPanel(){return card('Разделы рабочей документации',state.projects.map((p,i)=>`<div class="rep"><div class="split"><h3>${esc(p.name||'Новый раздел')}</h3>${!p.id?`<button class="ghost danger" data-remove-project="${i}">Убрать</button>`:''}${p.id?`<button class="ghost" data-project="${p.id}">${p.id===projectId?icon('check')+'Выбран':'Выбрать'}</button>`:''}</div><div class="grid">${field(`projects.${i}.section_code`,'Обозначение раздела','text',false,p.id?'readonly':'')}${field(`projects.${i}.code`,'Шифр РД')}${field(`projects.${i}.name`,'Полное название раздела','text',true)}${field(`projects.${i}.city`,'Город')}${field(`projects.${i}.gip`,'Главный инженер проекта (ГИП)')}${field(`projects.${i}.inv_num`,'Инвентарный номер проекта')}${field(`projects.${i}.smr_start`,'Начало СМР раздела','date')}${field(`projects.${i}.smr_end`,'Окончание СМР раздела','date')}${field(`projects.${i}.pnr_start`,'Начало ПНР раздела','date')}${field(`projects.${i}.pnr_end`,'Окончание ПНР раздела','date')}${select(`projects.${i}.form_set`,'Комплект форм',{'СП 77.13330.2016':'СП 77.13330.2016','И 1.13-07':'И 1.13-07','Иной согласованный комплект':'Иной согласованный комплект'})}</div></div>`).join('')+`<button class="secondary add-project" data-action="add-project">${icon('plus')}Добавить раздел</button><p class="hint">Шифр и название перепишите из РД. Комплект форм выбирается отдельно; дополнительные акты Минстроя подключаются по составу работ.</p>`,'file');}
 function projectSelector(){return `<label class="field"><span>Рабочий раздел</span><select id="project-select"><option value="">Выберите раздел…</option>${state.projects.filter(p=>p.id).map(p=>option(p.id,p.code+' «'+p.name+'»',projectId)).join('')}</select></label>`;}
-function rdPage(){return title('Рабочая документация','Добавьте разделы и файлы рабочей документации.','Источники')+projectsPanel()+card('Файлы рабочей документации',projectSelector()+`<p class="hint">РД сохраняется в папку раздела «Рабочая документация». Сначала сохраните карточку и выберите раздел.</p>${uploadZone('file-input','Добавить файлы РД',{multiple:true})}<ul class="file-list">${pending.map((f,i)=>`<li><span>${esc(f.name)} <small>ожидает сохранения</small></span><button class="ghost" data-remove-file="${i}">Убрать</button></li>`).join('')}${(pdata?.attachments||[]).filter(a=>a.doc_type==='rd').map(a=>`<li><span><button class="record-name" data-original="${a.id}">${esc(a.original_name)}</button><br><small>${a.doc_date?esc(displayTableDate(a.doc_date)):'Дата документа не указана'}</small></span><span class="pill" tabindex="0" title="Оригинал сохранён в локальном архиве и связан с разделом. Это не означает проверку документа или включение в ZIP выпусков.">Оригинал сохранён</span></li>`).join('')}</ul>`,'upload')+(pdata?sourceFilesPage():'');}
+function rdPage(){return title('Рабочая документация','Добавьте разделы и файлы рабочей документации.','Источники')+projectsPanel()+card('Файлы рабочей документации',projectSelector()+`<p class="hint">РД сохраняется в папку раздела «Рабочая документация». Сначала сохраните карточку и выберите раздел.</p>${uploadZone('file-input','Добавить файлы РД',{multiple:true})}<ul class="file-list">${pending.map((f,i)=>`<li><span>${esc(f.name)} <small>ожидает сохранения</small></span><button class="ghost" data-remove-file="${i}">Убрать</button></li>`).join('')}${(pdata?.attachments||[]).filter(a=>a.doc_type==='rd').map(a=>`<li><span><button class="record-name" data-original="${a.id}">${esc(a.original_name)}</button><br><small>${a.doc_date?esc(displayTableDate(a.doc_date)):'Дата документа не указана'}</small></span><span class="pill" tabindex="0" title="Оригинал сохранён в локальном архиве и связан с разделом. Это не означает проверку документа или включение в ZIP выпусков.">Оригинал сохранён</span></li>`).join('')}</ul>`,'upload')+(pdata?'<div id="source-files-app"></div>':'');}
 function idPage(){
  const descriptions=['Реестр и основные документы.','Спецификация, входной контроль и монтаж.','Исполнительные схемы.','Журналы производства и контроля работ.'];
  let html=title('Исполнительная документация',descriptions[tab])+`<div class="section-toolbar">${projectSelector()}</div><nav class="tabs" aria-label="Разделы ИД">${tabs.map((t,i)=>`<button data-tab="${i}" class="${i===tab?'active':''}" ${i===tab?'aria-current="page"':''}>${t}</button>`).join('')}</nav>`;
  if(!pdata)html+=card(state.object.id?'Выберите рабочий раздел':'Сначала выберите объект',`<p>${!state.object.id?'Выберите объект в верхней части страницы.':state.projects.some(p=>p.id)?'Выберите рабочий раздел выше.':'Добавьте раздел РД, чтобы сохранять работы и документы.'}</p>${state.object.id&&!state.projects.some(p=>p.id)?'<button data-view="rd">Добавить раздел РД</button>':''}`);
- else html+=`<div class="content-stack">${[packagePage,resourcePage,schemesPage,journalsPage][tab]()}</div>`;
+ else html+=`<div class="content-stack">${[packagePage,resourcePage,()=>'<div id="schemes-app"></div>',journalsPage][tab]()}</div>`;
  return `<div class="content-stack id-workspace">${html}</div>`;
 }
 function actName(act){return pdata.forms.find(f=>f.code===act.act_type)?.name||act.act_type;}
 function helpTip(label,text){return `<details class="help-tip"><summary aria-label="${esc(label)}" title="${esc(label)}"><span aria-hidden="true">?</span></summary><p>${esc(text)}</p></details>`;}
 function packagePage(){
- const acts=pdata.acts.filter(a=>a.is_active);
  const nav=`<nav class="panel-nav" aria-label="Подготовка комплекта">${[['registry','Реестр ИД'],['documents','Основные документы']].map(([key,label])=>`<button class="${packagePanel===key?'active':'secondary'}" data-package-panel="${key}" ${packagePanel===key?'aria-current="page"':''}>${label}</button>`).join('')}</nav>`;
  const workflowLinks='<div class="toolbar"><button class="secondary" data-view="check">Проверка</button><button class="secondary" data-view="delivery">Сдача</button></div>';
- if(packagePanel==='registry')return nav+registryPage();
+ if(packagePanel==='registry')return nav+'<div id="registry-app"></div>';
  if(packagePanel==='check')return nav+workflowLinks+`<div class="content-stack">${checkPage()}</div>`;
  if(packagePanel==='delivery')return nav+workflowLinks+`<div class="content-stack">${deliveryPage()}</div>`;
- return nav+card('Основные документы',`<div class="toolbar" id="package-panel-title"><button data-editor="act">${icon('plus')}Создать</button><button class="secondary" data-upload-act>${icon('upload')}Загрузить</button></div>`+
- journalTable(['Номер','Название','Дата подписания','Статус'],acts.map(a=>[esc(a.act_num),`<button class="record-name" ${currentUser?.role==='viewer'?'data-preview':'data-version-act'}="${a.id}">${esc(actName(a))}</button>`,esc(displayTableDate(a.date_signed)||'Не указана'),esc(pdata.act_statuses.find(s=>s.act_id===a.id)?.state==='signed'?'Подписан':'Сформирован')]),{ids:acts.map(a=>a.id),entity:'acts'}),'clipboard');
+ return nav+'<div id="documents-app"></div>';
 }
 const sourceTypeNames={contract:'Договор',order:'Распорядительный документ',quality:'Документ, подтверждающий качество',scheme:'Схема',rd:'Рабочая документация',other:'Другой файл'};
 function sourceType(a){return a.file_kind||(['certificate','passport'].includes(a.doc_type)?'quality':a.doc_type);}
 function sourceTypeOptions(value='contract'){return Object.entries(sourceTypeNames).map(([k,v])=>option(k,v,value)).join('');}
-function sourceFilesPage(){
- const files=pdata.source_files||pdata.attachments.filter(a=>pdata.project_attachment_ids.includes(a.id));
- return `<details class="ux-disclosure card"><summary>Исходные файлы <span class="pill">${files.length}</span></summary><div class="disclosure-body"><label class="field source-type-field"><span>Что загружаете</span><select id="source-type">${sourceTypeOptions()}</select></label>${uploadZone('source-file','Добавить файлы',{multiple:true,extra:'<button type="button" class="secondary" data-files-check>Проверить файлы</button>'})}${journalTable(['Наименование','Тип файла'],files.map(a=>[`<button class="record-name" data-file-card="${a.id}">${esc(a.original_name||a.title)}</button>`,esc(sourceTypeNames[sourceType(a)]||'Другой файл')]))}</div></details>`;
-}
 function openSourceFileCard(id){
  const file=pdata.source_files?.find(a=>a.id===id)||pdata.attachments.find(a=>a.id===id);if(!file)return;
  openEditor('manual');editorWindow.setTitle('Исходный файл');
@@ -210,40 +301,27 @@ let filePlan=null;
 async function previewFiles(purpose,attachmentId=null){
  if(dirty||formDirty)throw Error('Сначала сохраните изменения.');
  if(!projectId)throw Error('Выберите раздел');
- filePlan=await api('/api/files/plan',{project_id:projectId,purpose,attachment_id:attachmentId});
+ try{
+  filePlan=await api('/api/files/plan',{project_id:projectId,purpose,attachment_id:attachmentId});
+ }catch(error){
+  if(!error.message.includes('Сначала выполните восстановление'))throw error;
+  if(!await confirmWorkspace('Восстановить незавершённые файловые операции и повторить проверку?', 'Восстановить файлы'))return;
+  await api('/api/files/recover',{project_id:projectId,confirmed:true});
+  filePlan=await api('/api/files/plan',{project_id:projectId,purpose,attachment_id:attachmentId});
+ }
  const labels={repair:'Восстановить архивную копию',add:'Добавить',remove:'Удалить из БД и с диска',detach:'Убрать из раздела; сохранить в других разделах',restore:'Вернуть копию из архива'};
  openEditor('manual');editorWindow.setTitle(purpose==='delete'?'Удаление файла':'Проверка файлов');
  $('#editor-content').innerHTML=`<p>${filePlan.plan.actions.length?'Проверьте изменения перед применением.':'Изменений не требуется.'}</p>${filePlan.plan.actions.length?journalTable(['Файл','Изменение'],filePlan.plan.actions.map(a=>[`<span class="cell-text">${esc(a.name)}</span>${a.path?`<small>${esc(a.path)}</small>`:''}`,`${esc(labels[a.action])}${a.unlink_resources?.length?`<p>Будут сняты связи с ресурсами этого раздела: ${a.unlink_resources.length}.</p>`:''}${a.action==='add'&&!a.existing&&a.type!=='rd'?`<label class="field"><span>Тип файла</span><select data-plan-type="${esc(a.path)}">${sourceTypeOptions(a.type)}</select></label>`:''}${a.paths?.length?`<details class="technical-detail"><summary>Файлы на диске: ${a.paths.length}</summary>${a.paths.map(p=>`<p>${esc(p)}</p>`).join('')}</details>`:''}`])):''}${filePlan.plan.blocked.length?'<h3>Сохранены без изменений</h3><ul>'+filePlan.plan.blocked.map(a=>`<li><strong>${esc(a.name)}</strong><p>${esc(a.reason)}</p></li>`).join('')+'</ul>':''}<div class="toolbar rep">${filePlan.plan.actions.length?`<button type="button" data-files-apply>${purpose==='delete'?'Удалить':'Применить изменения'}</button>`:''}<button type="button" class="secondary" data-dialog-close>Закрыть</button></div>`;
  decorateSelects();
 }
 
-function workPage(){return card('Сведения о выполнении работ',entryTable('work'),'list');}
-function incomingPage(){return card('Входной контроль',incomingJournalTable(),'list');}
-function schemesPage(){
- return card('Схемы','<div class="toolbar"><button data-manual="scheme-add">Добавить схему</button></div>'+journalTable(
-  ['Номер','Наименование','Референс','Комментарий'],pdata.schemes.map(s=>[
-   esc(s.num),`<button class="cell-open" data-scheme-card="${s.id}">${esc(s.name)}</button>`,esc(s.ref_code),esc(s.note)]),{ids:pdata.schemes.map(s=>s.id),entity:'schemes'}),'file');
-}
-function registryPage(){
- const rows=pdata.registry||[];
- return card('Реестр ИД','<div class="toolbar"><button data-registry-export>Экспорт DOCX</button></div>'+journalTable(
-  ['№ п/п','Наименование документа','Номер и дата документа','Организация, составившая документ','Кол-во листов','Номера страниц'],rows.map(r=>{
-   const target={act:currentUser?.role==='viewer'?'data-preview':'data-version-act',scheme:'data-scheme-card',attachment:'data-file-card',release:'data-download'}[r.entity];
-   const name=r.entity==='journal'?`<button class="cell-open" data-view="${esc(r.id==='incoming'?'journal':r.id)}">${esc(r.name)}</button>`:target?`<button class="cell-open" ${target}="${r.id}">${esc(r.name)}</button>`:esc(r.name);
-   return [r.no,name,esc([r.number,displayTableDate(r.date)].filter(Boolean).join(' · ')),esc(r.organization),esc(r.sheets_count),esc(r.pages)];
-  }),{ids:rows.map(r=>`${r.entity}:${r.id}`)}),'list');
-}
+function workPage(){return '<div id="work-app"></div>';}
+function incomingPage(){return '<div id="incoming-app"></div>';}
 function journalsPage(){
  const active=['journal','cable'].includes(workspaceView)?workspaceView:'ojr';
  const nav=`<nav class="panel-nav" aria-label="Виды журналов">${[['ojr','ОЖР'],['journal','ЖВК'],['cable','ЖПК']].map(([key,label])=>`<button class="${active===key?'active':'secondary'}" data-view="${key}" ${active===key?'aria-current="page"':''}>${label}</button>`).join('')}</nav>`;
  if(active==='journal')return nav+incomingPage();
- if(active==='cable'){
-  const entries=pdata.workspace_entries.filter(e=>e.kind==='work'&&e.work_type==='cable');
-  return nav+card('ЖПК','<p class="subtitle">Журнал прокладки кабеля</p>'+
-   '<div class="toolbar"><button data-editor="cable">Записать прокладку кабеля</button></div>'+
-   journalTable(['Дата','Работа','Место'],entries.map(e=>[journalValue(e.entry_date),
-    `<button class="cell-open" data-edit-entry="${e.id}">${esc(e.title)}</button>`,esc(e.details)])),'list');
- }
+ if(active==='cable')return nav+'<div id="cable-app"></div>';
  return nav+ojrPage();
 }
 const statusNames={pending:'Ожидает подтверждения',confirmed:'Подтверждено',void:'Отозвано',matches:'Соответствует',mismatch:'Несоответствие',uncertain:'Не удалось подтвердить',sent:'Передано',remarks:'Получены замечания',corrected:'Исправлено',accepted:'Принято',open:'Открыто',resolved:'Устранено',required:'Требуется',not_applicable:'Не применяется',prepared:'Файл ещё не создан',draft:'Черновик',final:'Окончательная версия',file_present:'Оригинал в архиве',registered:'Зарегистрировано',available:'Есть документ',missing:'Документ отсутствует',inactive:'Документ неактивен',unselected:'Версия не выбрана',binding_mismatch:'Связь не соответствует требованию'};
@@ -259,64 +337,9 @@ function resourceLabel(id){
  const parts=[r.spec_num?'Поз. '+r.spec_num:null,r.name,r.type_mark].filter(Boolean);
  return parts.map((part,index)=>index===parts.length-1?part:String(part).trimEnd().replace(/\.+$/,'')).join('. ');
 }
-function factLabel(id){
- const f=pdata.workflow.fact_records.find(f=>f.id===Number(id));
- return f?[resourceLabel(f.resource_id),f.work_description,f.location].filter(Boolean).join(' · '):'Запись монтажа недоступна (ID '+id+')';
-}
-function findingResource(f){
- return f.resource_id||(f.resource_ids||[])[0]||pdata.workflow.fact_records.find(item=>item.id===Number(f.fact_id||(f.fact_ids||[])[0]))?.resource_id;
-}
-function findingSubjectLink(f){
- const rid=findingResource(f);
- if(rid&&pdata.resources.some(r=>r.id===Number(rid)))return `<button class="record-name" data-resource-card="${rid}">${esc(resourceLabel(rid))}</button>`;
- const act=pdata.acts.find(a=>a.id===Number(f.act_id));
- if(act)return `<button class="record-name" data-preview="${act.id}">${esc(act.act_num+' «'+actName(act)+'»')}</button>`;
- return '';
-}
-function findingDetails(f){
- const labels={resource_id:'Материал / оборудование',resource_ids:'Материалы / оборудование',fact_id:'Монтаж',fact_ids:'Монтаж',act_id:'Акт',release_id:'Файл',attachment_id:'Исходный файл',review_id:'Контроль качества',requirement_id:'Документ комплекта',delivery_id:'Передача',remark_id:'Замечание',pending_ids:'Вопросы по спецификации',fields:'Поля',message:'Описание',confirmed_total:'Подтверждено записями',qty_fact:'Итог ведомости',unit:'Единица',confirmed_ids:'Подтверждённые записи',unknown_quantity_ids:'Монтаж с неизвестным количеством',note:'Пояснение'};
- const find=(rows,id)=>rows?.find(r=>r.id===Number(id));
- const display=(key,id)=>{
-  if(['resource_id','resource_ids'].includes(key))return resourceLabel(id);
-  if(['fact_id','fact_ids','confirmed_ids','unknown_quantity_ids'].includes(key))return factLabel(id);
-  if(key==='act_id'){const a=find(pdata.acts,id);return a?a.act_num+' «'+actName(a)+'»':'Акт недоступен';}
-  if(key==='attachment_id')return find(pdata.attachments,id)?.title||'Исходный файл недоступен';
-  if(key==='release_id')return find(pdata.releases,id)?.title||'Версия файла недоступна';
-  if(key==='requirement_id')return find(pdata.workflow.matrix.requirements,id)?.title||'Документ комплекта недоступен';
-  if(key==='delivery_id')return find(pdata.workflow.deliveries,id)?.recipient||'Передача недоступна';
-  if(key==='remark_id')return find(pdata.workflow.remarks,id)?.description||'Замечание недоступно';
-  if(key==='review_id'){const q=find(pdata.quality_reviews,id);return q?[resourceLabel(q.resource_id),q.checked_date,q.checked_by].filter(Boolean).join(' · '):'Проверка недоступна';}
-  if(key==='supply_id'){const s=find(pdata.manual?.supplies,id);return s?[resourceLabel(s.resource_id),s.batch_num,s.supply_date].filter(Boolean).join(' · '):'Поставка недоступна';}
-  if(key==='entry_id')return find(pdata.workspace_entries,id)?.title||'Запись работ недоступна';
-  return typeof id==='object'?JSON.stringify(id):id??'Неизвестно';
- };
- return Object.entries(f).filter(([k])=>k!=='code').map(([k,v])=>(labels[k]||({supply_id:'Поставка',entry_id:'Работа'})[k]||k)+': '+(Array.isArray(v)?v.map(id=>display(k,id)).join('; '):display(k,v))).join(' · ');
-}
-function findingDestination(code){
- if(code==='requirements_not_configured'||code.startsWith('requirement_'))return ['requirements','Состав комплекта'];
- if(code==='open_remark')return ['delivery','Замечания'];
- if(code.startsWith('quality_')||code==='work_supply_invalid'||code==='supply_overallocated')return ['incoming','Входной контроль'];
- if(code.startsWith('fact_')||code.startsWith('facts_')||code==='qty_fact_unknown'||code==='specification_pending')return ['resources','Ресурсы и монтаж'];
- return ['documents','Документы'];
-}
-function checkPage(){
- const findings=pdata.check.findings,requirements=pdata.workflow.matrix.requirements;
- const groups=Object.groupBy(findings,f=>findingDestination(f.code)[0]);
- return card('Что исправить',`<h3 class="sr" id="package-panel-title">Проверка документов</h3><p class="hint">${findings.length?'Вопросов: '+findings.length+'. Откройте группу и проверьте сведения.':'Расхождений во внесённых данных не найдено.'} Проверка базы не подтверждает приёмку.</p><div class="disclosure-group">${Object.entries(groups).map(([view,items])=>`<details class="check-group" ${Object.keys(groups).length===1?'open':''}><summary>${esc(findingDestination(items[0].code)[1])}<span class="pill">${items.length}</span></summary><ul class="file-list">${items.map(f=>`<li><div><strong>${esc(findingNames[f.code]||'Проверьте сведения')}</strong>${findingSubjectLink(f)}<details class="ux-row-source"><summary>Подробности</summary><p>${esc(findingDetails(f))}</p></details></div></li>`).join('')}</ul>${view==='requirements'?'<button class="secondary" data-requirements-open>Открыть состав комплекта</button>':`<button class="secondary" data-view="${view}">Перейти</button>`}</details>`).join('')}</div>`,'check')+
- `<details class="ux-disclosure card" id="requirements-panel"><summary>Состав комплекта <span class="pill">${requirements.length}</span></summary><p class="hint">Документы по вашим работам и основаниям.</p><button class="secondary" data-manual="requirement-add">Добавить документ</button><ul class="file-list">${requirements.map(r=>`<li><div><strong>${esc(r.title)}</strong><small>${esc(statusNames[r.state]||r.state)} · ${esc(statusNames[r.availability]||r.availability)}</small><details class="ux-row-source"><summary>Работы и основание</summary><p>${esc(r.work_scope)}<br>${esc(r.basis)}${r.reason?'<br>'+esc(r.reason):''}</p></details></div><button class="ghost" data-manual="requirement-set" data-manual-record="${r.id}">Изменить</button>${recordDeleteButton('package_requirements',r.id)}</li>`).join('')||'<li class="empty">Укажите документы, согласованные для этого раздела.</li>'}</ul></details>`;
-}
-function deliveryPage(){
- const w=pdata.workflow,open=w.remarks.filter(r=>r.status==='open');
- return card('Передача документов',`<h3 class="sr" id="package-panel-title">Сдача документов</h3><div class="section-heading"><p class="hint">Запишите уже состоявшуюся передачу. Файлы отсюда не отправляются.</p><button data-manual="delivery-add">Учесть передачу</button></div><ul class="file-list">${w.deliveries.map(d=>`<li><div><strong>${esc(d.recipient)}</strong><small>${esc(statusNames[d.status]||d.status)} · версия № ${d.release_id}</small><details class="ux-row-source"><summary>История</summary>${pdata.delivery_events.filter(e=>e.delivery_id===d.id).map(e=>'<p>'+esc(displayTableDate(e.event_date))+' · '+esc(statusNames[e.status]||e.status)+'<br>'+esc(e.source)+' · '+esc(e.note)+'</p>').join('')}</details></div><div class="table-actions"><button class="secondary" data-manual="delivery-set" data-manual-record="${d.id}">Изменить статус</button><button class="ghost" data-manual="remark-add" data-manual-record="${d.id}">Добавить замечание</button>${recordDeleteButton('deliveries',d.id)}</div></li>`).join('')||'<li class="empty">Передач пока нет.</li>'}</ul>`,'file')+
- card('Замечания'+(open.length?' (открыто: '+open.length+')':''),`<ul class="file-list">${w.remarks.map(r=>`<li><div><strong>${esc(r.description)}</strong><small>${esc(statusNames[r.status]||r.status)} · передача № ${r.delivery_id}</small></div>${r.status==='open'?`<button class="secondary" data-manual="remark-resolve" data-manual-record="${r.id}">Закрыть с основанием</button>`:''}${recordDeleteButton('delivery_remarks',r.id)}</li>`).join('')||'<li class="empty">Замечаний нет.</li>'}</ul>`,'clipboard');
-}
+function checkPage(){return '<div id="workflow-app" data-kind="check"></div>';}
+function deliveryPage(){return '<div id="workflow-app" data-kind="delivery"></div>';}
 function filteredEntries(kind){const f=tableFilters[kind];const entries=kind==='incoming'?pdata.journals.incoming.map(e=>({...e,entry_date:e.entry_date||'',search_fields:[JSON.stringify(e.work_fields),e.resource?.name,e.supply?.supplier,e.supply?.batch_num,e.quality_review?.note].join(' ')})):pdata.workspace_entries;return entries.filter(e=>e.kind===kind&&(!f.unbound||!e.act_id)&&(!f.from||(e.entry_date&&e.entry_date>=f.from))&&(!f.to||(e.entry_date&&e.entry_date<=f.to))&&[e.title,e.details,e.responsible,e.conditions,e.unit,e.quantity,e.search_fields].join(' ').toLowerCase().includes(f.search.toLowerCase())).sort((a,b)=>(b.entry_date||'').localeCompare(a.entry_date||'')||b.id-a.id);}
-function entryBody(kind){if(kind==='incoming')return incomingJournalBody();const list=filteredEntries(kind),f=tableFilters[kind],columns=kind==='work'?7:5;let date;return list.map(e=>{let heading='';if(f.group&&date!==e.entry_date){date=e.entry_date;heading=`<tr class="date-group"><td colspan="${columns}">${esc(displayTableDate(date)||'Дата не указана')}</td></tr>`;}return heading+`<tr>${kind==='work'?`<td class="row-check">${!e.act_id?`<input type="checkbox" data-select-entry="${e.id}" aria-label="Выбрать запись № ${e.id}" ${selectedEntries.has(e.id)?'checked':''}>`:''}</td>`:''}<td>${esc(displayTableDate(e.entry_date)||'Не указана')}</td><td class="description"><button type="button" class="cell-open" data-edit-entry="${e.id}"><strong>${esc(e.title)}</strong></button>${e.details?`<p class="hint">${esc(e.details)}</p>`:''}</td>${kind==='work'?`<td>${esc((pdata.work_materials||[]).filter(m=>m.entry_id===e.id).map(m=>(pdata.resources.find(r=>r.id===m.resource_id)?.name||'Ресурс')+' · '+formatTableNumber(m.quantity)+' '+m.unit).join('; '))}</td>`:''}<td>${esc(e.conditions||'')}${e.quantity!=null?'<br>'+esc(formatTableNumber(e.quantity))+' '+esc(e.unit||''):''}</td><td>${esc(e.responsible_display||e.responsible||'Не указан')}</td><td class="work-links"><div class="record-link"><span class="record-link-label">Акт</span>${e.act_id?`<button class="link-button" data-preview="${e.act_id}">${esc((pdata.acts||[]).find(a=>a.id===e.act_id)?.act_num||e.act_id)}</button>`:'<span class="small">Не сформирован</span>'}</div><div class="record-link"><span class="record-link-label">Источник</span>${e.attachment_id?`<span class="cell-text" title="${esc(pdata.attachments.find(a=>a.id===e.attachment_id)?.title||'Архивный документ')}">${esc(pdata.attachments.find(a=>a.id===e.attachment_id)?.title||'Архивный документ')}</span>`:'<span class="small">Не указан</span>'}</div></td></tr>`;}).join('')||`<tr><td colspan="${columns}" class="empty">${pdata.workspace_entries.some(e=>e.kind===kind)?'По заданным условиям записей не найдено. <button type="button" class="secondary" data-reset-filters="'+kind+'">Сбросить фильтры</button>':'Записей пока нет.'}</td></tr>`;}
-
-let entrySearchTimer;
-function scheduleEntrySearch(kind){clearTimeout(entrySearchTimer);entrySearchTimer=setTimeout(()=>{if($('#entry-rows')&&$('#entry-search,[data-kind="'+kind+'"]'))updateEntryTable(kind);},180);}
-function updateEntryTable(kind){$('#entry-rows').innerHTML=entryBody(kind);$('#table-count').dataset.total=String((kind==='incoming'?pdata.journals.incoming:pdata.workspace_entries.filter(e=>e.kind===kind)).length);$('#table-count').textContent='Показано '+filteredEntries(kind).length+' из '+(kind==='incoming'?pdata.journals.incoming:pdata.workspace_entries.filter(e=>e.kind===kind)).length;const bulk=$('#bulk-act');if(bulk)bulk.hidden=!selectedEntries.size;const count=$('#selected-count');if(count)count.textContent=selectedEntries.size?' · выбрано '+selectedEntries.size:'';}
-function entryTable(kind){const f=tableFilters[kind];return `<div class="toolbar"><div class="table-actions"><button data-editor="${kind}">${icon('plus')}Добавить запись</button>${kind==='work'?'<button class="secondary" data-editor="act" id="bulk-act" '+(selectedEntries.size?'':'hidden')+'>Сформировать акт<span id="selected-count">'+(selectedEntries.size?' · выбрано '+selectedEntries.size:'')+'</span></button>':''}<button class="secondary" data-action="export-entries">Экспорт</button></div><input id="entry-search" data-filter="search" data-kind="${kind}" aria-label="Поиск записей" placeholder="Поиск по работам, месту, ответственному…" value="${esc(f.search)}"></div><div class="table-filters">${kind==='work'?`<label class="choice"><input type="checkbox" data-filter="unbound" data-kind="${kind}" ${f.unbound?'checked':''}>Только работы без актов</label>`:''}<label class="choice"><input type="checkbox" data-filter="group" data-kind="${kind}" ${f.group?'checked':''}>Группировать по дате</label><fieldset class="table-date-range"><legend>Дата</legend><label class="field"><span>С</span><input type="date" aria-label="Дата с" data-filter="from" data-kind="${kind}" value="${esc(f.from)}"></label><label class="field"><span>По</span><input type="date" aria-label="Дата по" data-filter="to" data-kind="${kind}" value="${esc(f.to)}"></label></fieldset><button type="button" class="secondary" data-reset-filters="${kind}">Сбросить фильтр</button></div><div class="table-count" id="table-count" hidden data-total="${pdata.workspace_entries.filter(e=>e.kind===kind).length}">Показано ${filteredEntries(kind).length} из ${pdata.workspace_entries.filter(e=>e.kind===kind).length}</div><div class="table-scroll"><table><thead><tr>${kind==='work'?'<th class="row-check"><span class="sr">Выбор</span></th>':''}<th>Дата</th><th>Описание</th>${kind==='work'?'<th>Использованные ресурсы</th>':''}<th>Условия / количество</th><th>Ответственный</th><th>Акт и источник</th></tr></thead><tbody id="entry-rows">${entryBody(kind)}</tbody></table></div>`;}
 function input(name,label,value='',type='text',wide=false){return `<label class="field ${wide?'wide':''}"><span>${label}</span><input name="${esc(name)}" value="${esc(value)}" type="${type}" ${type==='number'?'step="any" min="0"':''} ${name==='title'||label.includes('*')?'required':''}></label>`;}
 function entryEditor(kind){const e=editEntry?.kind===kind?editEntry:{};return kind==='work'?workEntryEditor(e):specializedEntryEditor(kind,e);}
 function actForms(){return pdata.available_forms||pdata.forms;}
@@ -349,29 +372,26 @@ async function uploadPending(){while(pending.length){await uploadFile(pending[0]
 async function exportHandoff(name){if(dirty)throw Error('Сначала сохраните карточку.');state=await api('/api/workspace?object_id='+state.object.id);const projects=await Promise.all(state.projects.filter(p=>p.id).map(p=>api('/api/project?project_id='+p.id)));downloadJson({...state,project_data:projects},name);}
 function downloadJson(value,name){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 async function downloadRelease(id){const r=await fetch('/api/download?project_id='+projectId+'&release_id='+id,{headers:{'X-ITD-Token':token}});if(!r.ok)throw Error((await r.json()).error);const blob=await r.blob();const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;const rel=pdata.releases.find(x=>x.id===id);a.download=rel?.path.split(/[\\/]/).pop()||'Документ';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-document.addEventListener('input',e=>{const el=e.target;if(el.closest('#act-form')&&el.name==='date_signed')updateActAutomaticValues();if(el.closest('#entry-form, #incoming-day-form, #act-form, #fact-form, #manual-form, #review-form'))formDirty=true;if(el.dataset.path){put(el.dataset.path,el.type==='checkbox'?Number(el.checked):el.dataset.path.endsWith('order_attachment_id')?(el.value?Number(el.value):null):el.value||null);}if(el.dataset.filter==='search'){tableFilters[el.dataset.kind].search=el.value;scheduleEntrySearch(el.dataset.kind);}if(el.id==='object-search'){const tiles=[...document.querySelectorAll('[data-object-search]')];tiles.forEach(tile=>tile.hidden=!tile.dataset.objectSearch.includes(el.value.toLowerCase()));$('#object-empty').hidden=tiles.length===0||tiles.some(tile=>!tile.hidden);}});
-document.addEventListener('change',e=>{const el=e.target;if(el.dataset.filter){tableFilters[el.dataset.kind][el.dataset.filter]=el.type==='checkbox'?el.checked:el.value;updateEntryTable(el.dataset.kind);}if(el.dataset.selectEntry){const id=Number(el.dataset.selectEntry);if(el.checked)selectedEntries.add(id);else selectedEntries.delete(id);updateEntryTable('work');}if(el.closest('#entry-form, #incoming-day-form, #act-form, #fact-form, #manual-form, #review-form'))formDirty=true;if(el.dataset.array){let old=get(el.dataset.array)||[];put(el.dataset.array,el.checked?[...old,el.value]:old.filter(v=>v!==el.value));render();}if(['object.developer_functions','object.control_self','object.control_external','object.author_supervision'].includes(el.dataset.path)){render();}if(el.id==='object-select')action(async()=>{if((dirty||formDirty)&&!await confirmWorkspace('Есть несохранённые изменения. Перейти к другому объекту?')){el.value=state.object.id||'';return;}await loadObject(el.value);navigate(state.object.id?'overview':'object');});if(el.id==='project-select')action(async()=>{if(formDirty){el.value=projectId||'';throw Error('Сначала сохраните запись или отмените ввод в форме ниже.');}if(pending.length&&projectId&&Number(el.value)!==projectId)throw Error('Сначала сохраните ожидающие файлы в выбранном разделе или уберите их из списка.');await loadProject(el.value,true);render();});if(el.id==='file-input')addFiles(el.files);if(el.id==='source-file')action(async()=>{if(dirty||formDirty)throw Error('Сначала сохраните изменения.');if(!projectId)throw Error('Выберите раздел');const type=$('#source-type').value;try{for(const file of el.files){if(file.size>32*1024*1024)throw Error('Файл больше 32 МБ: '+file.name);await uploadFile(file,type);}}finally{await loadProject(projectId);render();}toast('Файлы сохранены в папке раздела');});if(el.id==='act-type')renderActFields(el.value);if(el.matches('#act-form [name=resource_ids]'))el.dataset.manualChoice='1';if(el.closest('#act-form')&&['entry_ids','fact_ids'].includes(el.name))syncLinkedActResources();});
+document.addEventListener('input',e=>{const el=e.target;if(el.closest('#act-form')&&el.name==='date_signed')updateActAutomaticValues();if(el.closest('#entry-form, #incoming-day-form, #act-form, #fact-form, #manual-form, #review-form'))formDirty=true;if(el.dataset.path){put(el.dataset.path,el.type==='checkbox'?Number(el.checked):el.dataset.path.endsWith('order_attachment_id')?(el.value?Number(el.value):null):el.value||null);}if(el.id==='object-search'){const tiles=[...document.querySelectorAll('[data-object-search]')];tiles.forEach(tile=>tile.hidden=!tile.dataset.objectSearch.includes(el.value.toLowerCase()));$('#object-empty').hidden=tiles.length===0||tiles.some(tile=>!tile.hidden);}});
+document.addEventListener('change',e=>{const el=e.target;if(el.closest('#entry-form, #incoming-day-form, #act-form, #fact-form, #manual-form, #review-form'))formDirty=true;if(el.dataset.array){let old=get(el.dataset.array)||[];put(el.dataset.array,el.checked?[...old,el.value]:old.filter(v=>v!==el.value));render();}if(['object.developer_functions','object.control_self','object.control_external','object.author_supervision'].includes(el.dataset.path)){render();}if(el.id==='object-select')action(async()=>{if((dirty||formDirty)&&!await confirmWorkspace('Есть несохранённые изменения. Перейти к другому объекту?')){el.value=state.object.id||'';return;}await loadObject(el.value);navigate(state.object.id?'overview':'object');});if(el.id==='project-select')action(async()=>{if(formDirty){el.value=projectId||'';throw Error('Сначала сохраните запись или отмените ввод в форме ниже.');}if(pending.length&&projectId&&Number(el.value)!==projectId)throw Error('Сначала сохраните ожидающие файлы в выбранном разделе или уберите их из списка.');await loadProject(el.value,true);render();});if(el.id==='file-input')addFiles(el.files);if(el.id==='act-type')renderActFields(el.value);if(el.matches('#act-form [name=resource_ids]'))el.dataset.manualChoice='1';if(el.closest('#act-form')&&['entry_ids','fact_ids'].includes(el.name))syncLinkedActResources();});
 document.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b||b.closest('#account-dialog,#prompt-dialog,#login-dialog'))return;
  if(b.hasAttribute('data-open-knowledge')||b.hasAttribute('data-dialog-close')||b.closest('#knowledge-dialog'))return;
- if(b.id==='account-open'||b.id==='theme-toggle'||b.classList.contains('swatch'))return;
+ if(b.id==='account-open')return;
  if(formDirty&&!b.closest('form')&&!b.form&&b.dataset.action!=='close-editor'){notice('Сначала сохраните запись или отмените ввод в форме ниже.');return;}
  if(b.dataset.step!==undefined){step=Number(b.dataset.step);editEntry=null;notice();render();return;}
  if(b.dataset.tab!==undefined){navigate(Number(b.dataset.tab)===0?'registry':idViews[Number(b.dataset.tab)]);return;}
  if(b.dataset.packagePanel){navigate(({registry:'registry',documents:'documents',check:'check',delivery:'delivery'})[b.dataset.packagePanel]);return;}
- if(b.hasAttribute('data-requirements-open')){const panel=$('#requirements-panel');panel.open=true;panel.scrollIntoView({block:'start'});panel.querySelector('summary').focus();return;}
  if(b.dataset.org!==undefined){orgIndex=Number(b.dataset.org);render();return;}
  if(b.dataset.removeRep!==undefined){state.participants[orgIndex].representatives.splice(Number(b.dataset.removeRep),1);dirty=true;render();return;}
  if(b.dataset.removeProject!==undefined){state.projects.splice(Number(b.dataset.removeProject),1);dirty=true;render();return;}
  if(b.dataset.removeFile!==undefined){pending.splice(Number(b.dataset.removeFile),1);render();return;}
  if(b.dataset.project){action(async()=>{await loadProject(b.dataset.project,true);render();});return;}
- if(b.dataset.schemeCard){if(formDirty)return;openManual('scheme-edit',b.dataset.schemeCard);return;}
- if(b.hasAttribute('data-registry-export')){action(async()=>{const r=await api('/api/registry/export',{project_id:projectId});await loadProject(projectId);render();await downloadRelease(r.release_id);});return;}
  if(b.dataset.download){action(()=>downloadRelease(Number(b.dataset.download)));return;}
  if(b.dataset.generate){action(async()=>{const r=await api('/api/generate',{project_id:projectId,act_id:Number(b.dataset.generate)});await loadProject(projectId);render();toast('Создан черновик DOCX, версия № '+r.release_id);});return;}
  if(b.dataset.editEntry||b.dataset.copyEntry){const entry={...pdata.workspace_entries.find(x=>x.id===Number(b.dataset.editEntry||b.dataset.copyEntry))};if(b.dataset.copyEntry){if(formDirty&&!await confirmWorkspace('Оставить изменения без сохранения и создать копию?'))return;delete entry.id;delete entry.revision;entry.act_id=null;entry.title='Копия: '+entry.title;}if(b.dataset.copyEntry&&$('#editor-dialog').open){editEntry=entry;formDirty=false;$('#editor-content').innerHTML=entryEditor(entry.kind);editorWindow.setTitle('Копия работы');decorateSelects();}else openEditor(entry.kind,entry);return;}
  if(b.id==='new-object'||b.dataset.action==='new-object'){action(async()=>{if((dirty||formDirty)&&!await confirmWorkspace('Оставить несохранённые изменения и открыть новый объект?'))return;await loadObject(null);$('#object-select').value='';navigate('object');});return;}
  if(b.dataset.view){navigate(b.dataset.view);return;}
- if(b.dataset.editor){if(b.dataset.editor==='cable')openEditor('work',{kind:'work',work_type:'cable'});else openEditor(b.dataset.editor);return;}
+ if(b.dataset.editor){openEditor(b.dataset.editor);return;}
  if(b.dataset.openObject){action(async()=>{if((dirty||formDirty)&&!await confirmWorkspace('Оставить несохранённые изменения?'))return;await loadObject(b.dataset.openObject);navigate('overview');});return;}
  const a=b.dataset.action;
  if(a==='objects'){navigate('objects');return;}
@@ -385,7 +405,6 @@ document.addEventListener('click',async e=>{const b=e.target.closest('button');i
  if(a==='save'||a==='finish')action(async()=>{await save();if(a==='finish'){await exportHandoff('Сведения ИТД — объект '+state.object.id+'.json');toast('Сохранено. JSON со сведениями подготовлен для агента.');}});
  if(a==='export')action(()=>exportConfiguration());
  if(a==='import')chooseConfiguration();
- if(a==='export-entries')downloadJson(filteredEntries(['work','incoming','journal'].includes(workspaceView)?workspaceView:'work'),'Записи журналов.json');
  if(a==='statement')action(async()=>{const r=await api('/api/statement',{project_id:projectId});await loadProject(projectId);render();toast('Ведомость создана, версия № '+r.release_id);});
  if(a==='cancel-entry')closeEditor();
 });
@@ -397,13 +416,11 @@ async function startWorkspace(){window.ITDDesign?.setLoading(true);checkDatabase
 try{await refreshMeta();const active=meta.projects.find(p=>p.id===meta.active_project_id);await loadObject(active?.object_id||null);const view=new URLSearchParams(location.search).get('view');navigate(['objects','overview','object','participants','rd','permits','documents','registry','schemes','work','incoming','journal','cable','facts','check','delivery','manage','resources','ojr'].includes(view)?view:state.object.id?'overview':(meta.objects.length||currentUser?.role==='viewer')?'objects':'object');}catch(e){if(e.fields)showWorkspaceErrors(e.fields);notice(e.message);$('#content').textContent='Не удалось открыть базу. Проверьте подключение к серверу.';}finally{window.ITDDesign?.setLoading(false);}}
 startAccount();
 
-document.addEventListener('click',e=>{const b=e.target.closest('[data-reset-filters]');if(!b)return;const kind=b.dataset.resetFilters;tableFilters[kind]={search:'',unbound:false,group:false,from:'',to:''};render();});
 
 document.addEventListener('click',e=>{
  const card=e.target.closest('[data-file-card]');if(card)openSourceFileCard(Number(card.dataset.fileCard));
  const remove=e.target.closest('[data-file-delete]');
  if(remove)action(()=>previewFiles('delete',Number(remove.dataset.fileDelete)));
- if(e.target.closest('[data-files-check]'))action(()=>previewFiles('check'));
  if(e.target.closest('[data-files-apply]'))action(async()=>{
   const types={};document.querySelectorAll('[data-plan-type]').forEach(el=>types[el.dataset.planType]=el.value);
   const result=await api('/api/files/apply',{...filePlan,types});

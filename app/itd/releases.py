@@ -293,7 +293,7 @@ def publish(connection, release_id, target):
     return {'release_id':release_id,'output':str(target),'selected':True}
 
 
-def export_package(connection, project_id, output, *, include_originals=False):
+def build_package(connection, project_id, output, *, include_originals=False):
     output=Path(output).resolve()
     if output.exists():
         raise FileExistsError('Архив уже существует')
@@ -347,8 +347,23 @@ def export_package(connection, project_id, output, *, include_originals=False):
         except Exception:
             output.unlink(missing_ok=True)
             raise
-    log_event(connection,'package-export',after={'project_id':project_id,'output':str(output),'releases':manifest})
     return {'output':str(output),'releases':manifest,'attachments':originals,'note':'Выбранные выпуски и связанные оригиналы.' if include_originals else 'Только выбранные сформированные выпуски; исходные приложения в ZIP не добавляются.'}
+
+
+def export_package(connection, project_id, output, *, include_originals=False,
+                   source='cli', user_id=None):
+    """Сборка и обязательный аудит в отдельном файле; деловая БД не меняется."""
+    result = build_package(connection, project_id, output, include_originals=include_originals)
+    from .read_audit import record
+    database = connection.execute('PRAGMA database_list').fetchone()[2]
+    try:
+        record(database, 'package-export', project_id=project_id,
+               release_ids=[item['release_id'] for item in result['releases']],
+               source=source, user_id=user_id)
+    except Exception:
+        Path(result['output']).unlink(missing_ok=True)
+        raise
+    return result
 
 
 def reconcile(connection, items, *, apply=False):

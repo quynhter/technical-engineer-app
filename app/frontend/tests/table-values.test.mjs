@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createPowerSearchConfig} from '@astryxdesign/core/PowerSearch';
-import {filterValue} from '../src/table-values.js';
+import {filterValue,installedValue,tableValue} from '../src/table-values.js';
 
 test('PowerSearch compares Russian quantities numerically and calendar dates chronologically',()=>{
  const {config,applyFilters}=createPowerSearchConfig([{key:'quantity',type:'number'},{key:'date',type:'date'}]);
@@ -15,4 +15,14 @@ test('PowerSearch compares Russian quantities numerically and calendar dates chr
  const date=(operator,text)=>({field:'date',operator,value:{type:'date_absolute',unixSeconds:filterValue(text,'date').getTime()/1000}});
  assert.deepEqual(applyFilters([date('before','10.11.2026')],rows).map(r=>r.id),[0,3]);
  assert.deepEqual(applyFilters([date('after','10.11.2026'),number('equals',100)],rows).map(r=>r.id),[1]);
+});
+
+test('installation total selects one source, preserving explicit zero and unknown quantities',()=>{
+ const summary={confirmed_ids:[1,2],confirmed_total:8};
+ assert.equal(installedValue({qty_fact:10,consumed:8},summary).value,10);
+ assert.equal(installedValue({qty_fact:0},summary).value,0);
+ assert.equal(installedValue({qty_fact:null},summary).value,8);
+ assert.equal(installedValue({qty_fact:null},{confirmed_ids:[],confirmed_total:null}).value,null);
+ assert.equal(installedValue({qty_fact:null},{confirmed_ids:[1],confirmed_total:null}).value,null);
+ assert.equal(tableValue(null),'Не указано');assert.equal(tableValue(0),'0');assert.equal(tableValue(12.34567),'12,346');
 });

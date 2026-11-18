@@ -5,11 +5,21 @@ let currentUser;
 let sessionSuspended=false;
 let viewerObserver;
 const viewerRestrictions=new Map();
+const viewerActionStyles=new Map();
+const viewerWriteActions='[type="submit"],[data-action="save"],[data-action="new-object"],[data-action="import"],[data-editor],[data-manual],[data-upload-target],[data-files-check],[data-files-apply],[data-file-delete],[data-record-delete],[data-remove-project],[data-remove-rep],[data-remove-file],[data-copy-entry],[data-material-add],[data-material-remove],[data-incoming-add],[data-incoming-remove],[data-final],[data-preview-draft],[data-resource-import-commit],[data-version-add],[data-signer-remove],[data-signature-toggle],[data-delete-document-version],[data-regenerate-document]';
 function clearViewerRestrictions(){
  viewerObserver?.disconnect();viewerObserver=undefined;
  for(const [control,properties] of viewerRestrictions)for(const [name,value] of Object.entries(properties))control[name]=value;
  viewerRestrictions.clear();
+ for(const [control,style] of viewerActionStyles){if(style.value)control.style.setProperty('display',style.value,style.priority);else control.style.removeProperty('display');}
+ viewerActionStyles.clear();
  document.querySelectorAll('[data-read-only-note]').forEach(note=>note.remove());
+}
+function restrictViewerAction(control){
+ restrictViewerControl(control,'disabled');
+ if(!viewerActionStyles.has(control))viewerActionStyles.set(control,{value:control.style.getPropertyValue('display'),priority:control.style.getPropertyPriority('display')});
+ // Inline important also wins over the library's layered display rules.
+ control.style.setProperty('display','none','important');
 }
 function restrictViewerControl(control,property){
  if(control[property])return;
@@ -75,18 +85,20 @@ function setProfile(user){
  if(user.role==='viewer'&&!viewerObserver){
   const readOnly=()=>{
    for(const control of viewerRestrictions.keys())if(!control.isConnected)viewerRestrictions.delete(control);
+   for(const control of viewerActionStyles.keys())if(!control.isConnected)viewerActionStyles.delete(control);
    const content=document.getElementById('editor-content');
    if(content.firstElementChild&&!content.querySelector('[data-read-only-note]')){const note=document.createElement('p');note.dataset.readOnlyNote='';note.className='hint';note.textContent='Просмотр · изменение сведений недоступно для вашей роли.';content.prepend(note);}
 
    document.querySelectorAll('#editor-dialog [data-action="cancel-entry"]').forEach(button=>{if(button.textContent!=='Закрыть')button.textContent='Закрыть';});
+   document.querySelectorAll('#new-object,:is(#content,#editor-content,#editor-footer,#actions,#sidebar) button:is('+viewerWriteActions+')').forEach(restrictViewerAction);
    document.querySelectorAll('#content :is(input,textarea,select),#editor-content :is(input,textarea,select)').forEach(el=>{
-    if(el.closest('.astryx-data-view'))return;
+    if(el.closest('.astryx-data-view,.astryx-table-workspace'))return;
     const nativeInput=el.closest('.date-island')?._nativeInput;
     if(nativeInput?.matches('[data-filter],[data-table-control]'))return;
     const nativeSelect=el.closest('.select-island')?._nativeSelect;
-    if(nativeSelect?.matches('#project-select,#resource-activity-select,[data-journal-project],[data-table-control]'))return;
-    if(el.matches('#object-search,#project-select,#resource-activity-select,[data-filter],[data-check-search],[data-table-control]')||
-       el.closest('.smart-select')?.querySelector('select')?.matches('#project-select,#resource-activity-select,[data-journal-project],[data-table-control]')||
+    if(nativeSelect?.matches('#project-select,[data-journal-project],[data-table-control]'))return;
+    if(el.matches('#object-search,#project-select,[data-filter],[data-check-search],[data-table-control]')||
+       el.closest('.smart-select')?.querySelector('select')?.matches('#project-select,[data-journal-project],[data-table-control]')||
        el.matches('[data-journal-project]'))return;
     restrictViewerControl(el,el.matches('select,input[type=checkbox],input[type=radio],input[type=file],.smart-input')?'disabled':'readOnly');
    });

@@ -26,6 +26,16 @@ EDITABLE['projects'].update(('unit_id','designer_org_id'))
 
 
 def log_event(connection, operation, *, entity=None, entity_id=None, before=None, after=None):
+    from .services.context import current_actor
+    actor = current_actor.get()
+    if actor is not None:
+        # Public service calls never persist document data, credentials or payloads.
+        connection.execute('''INSERT INTO audit_events
+            (operation,entity,entity_id,actor_id,actor_role,source,on_behalf_of,result)
+            VALUES(?,?,?,?,?,?,?,?)''',
+            (operation,entity,entity_id,str(actor.user_id),actor.role,actor.source,
+             str(actor.on_behalf_of) if actor.on_behalf_of is not None else None,'success'))
+        return
     encode = lambda value: json.dumps(value, ensure_ascii=False, allow_nan=False) if value is not None else None
     connection.execute("INSERT INTO audit_events (operation, entity, entity_id, before_json, after_json) VALUES (?, ?, ?, ?, ?)",
                        (operation, entity, entity_id, encode(before), encode(after)))

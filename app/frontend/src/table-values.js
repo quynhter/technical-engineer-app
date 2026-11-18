@@ -11,3 +11,14 @@ export function filterValue(text,type){
  }
  return text;
 }
+
+export function installedValue(resource,summary){
+ if(resource.qty_fact!=null)return {value:resource.qty_fact,label:'Итог ведомости'};
+ if(summary?.confirmed_ids?.length)return {value:summary.confirmed_total,label:'По подтверждённым записям'};
+ return {value:null,label:'Не внесено'};
+}
+export function tableValue(value){
+ if(value==null)return 'Не указано';
+ if(typeof value==='number'&&Number.isFinite(value))return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:3,useGrouping:false}).format(value);
+ return /^\d{4}-\d{2}-\d{2}$/.test(value)?value.split('-').reverse().join('.'):value;
+}

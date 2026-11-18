@@ -27,12 +27,12 @@ function cellContent(html){
 function Cell({html}){return useMemo(()=>cellContent(html),[html]);}
 const gutterColumn={key:'_gutter',header:'',width:proportional(1,{minWidth:1}),resizable:true,sortable:false,renderCell:()=>null};
 function headerMinimum(header){return Math.max(header.action?112:64,Math.ceil(header.label.length*7+(header.action?32:80)));}
-function BrowseTable({snapshot}){
+export function BrowseTable({snapshot}){
  const {key,headers,rows,hasGroups,selectable,exportRows,syncChoices,nativeFilters}=snapshot;
  const gridRef=useRef(null);
  const [minimums,setMinimums]=useState(()=>Object.fromEntries(headers.map(h=>[h.key,headerMinimum(h)])));
  const saved=useMemo(()=>readPrefs(key),[key]);
- const [query,setQuery]=useState(saved.query||''),[page,setPage]=useState(1),[size,setSize]=useState([25,50,100].includes(saved.size)?saved.size:50),[powerFilters,setPowerFilters]=useState(saved.powerFilters||[]),[widths,setWidths]=useState(saved.widths||{}),[sort,setSort]=useState(saved.sort||[]),[collapsed,setCollapsed]=useState(new Set()),[selected,setSelected]=useState(new Set(rows.filter(r=>r._checked).map(r=>r._key)));
+ const [query,setQuery]=useState(saved.query??snapshot.initialQuery??''),[page,setPage]=useState(1),[size,setSize]=useState([25,50,100].includes(saved.size)?saved.size:50),[powerFilters,setPowerFilters]=useState(saved.powerFilters||[]),[widths,setWidths]=useState(saved.widths||{}),[sort,setSort]=useState(saved.sort||[]),[collapsed,setCollapsed]=useState(new Set()),[selected,setSelected]=useState(new Set(rows.filter(r=>r._checked).map(r=>r._key)));
  const allKeys=useMemo(()=>headers.map(h=>h.key),[headers]);
  const [activeKeys,setActiveKeys]=useState(()=>saved.activeKeys?.filter(k=>allKeys.includes(k))||allKeys);
  const columnOptions=useMemo(()=>headers.map((h,i)=>({key:h.key,label:h.label||'Действия',isAlwaysVisible:i===0})),[headers]);
@@ -44,7 +44,7 @@ function BrowseTable({snapshot}){
  const {filters,onFilterChange,clearAll}=useTableFilterState(saved.filters||{});
  const fields=useMemo(()=>headers.filter(h=>!h.action).map(h=>({key:h.key,type:h.type==='text'?'string':h.type,label:h.label})),[headers]);
  const {config,applyFilters}=usePowerSearchConfig(fields,'ИТД');
- const columns=useMemo(()=>headers.map(h=>({key:h.key,header:h.label,width:pixel(minimums[h.key]||headerMinimum(h)),resizable:true,sortable:!h.action,filter:h.action?undefined:h.key,align:h.type==='number'?'end':h.type==='date'?'center':'start',renderCell:item=><Cell html={item._cells[h.index]?.html||''}/>})),[headers,minimums]);
+ const columns=useMemo(()=>headers.map(h=>({key:h.key,header:h.label,width:pixel(minimums[h.key]||headerMinimum(h)),resizable:true,sortable:!h.action,filter:h.action?undefined:h.key,align:h.type==='number'?'end':h.type==='date'?'center':'start',renderCell:item=>item._cells[h.index]?.content??<Cell html={item._cells[h.index]?.html||''}/>})),[headers,minimums]);
  const effectiveWidths=useMemo(()=>Object.fromEntries(headers.map(h=>[h.key,Math.max(minimums[h.key]||headerMinimum(h),widths[h.key]??(h.action?112:/наименование|название|описание|журнал|документ/i.test(h.label)?280:h.type==='number'?140:h.type==='date'?160:180))])),[headers,widths,minimums]);
  const resizeColumns=useMemo(()=>[...columns,gutterColumn],[columns]);
  const filterPlugin=useTableFiltering({filters,onFilterChange,searchConfig:config,variant:'popover'});
@@ -77,13 +77,14 @@ function BrowseTable({snapshot}){
  const pageRows=useMemo(()=>sortedData.slice((currentPage-1)*size,currentPage*size),[sortedData,currentPage,size]);
  const grouped=useTableGroupedRows({data:pageRows,groupBy:row=>row._group,collapsedGroups:collapsed,onToggleGroup:key=>setCollapsed(prev=>{const next=new Set(prev);next.has(key)?next.delete(key):next.add(key);return next;}),getRowKey:row=>row._key});
  function choose(items,checked){setSelected(prev=>{const next=new Set(prev);items.forEach(row=>checked?next.add(row._key):next.delete(row._key));return next;});syncChoices(items,checked);}
- const selectionPlugin=useTableSelection({getIsItemSelected:row=>selected.has(row._key),onSelectItem:({item,isSelected})=>choose([item],isSelected),onSelectAll:({isAllSelected})=>choose(pageRows.filter(r=>r._checkbox&&!r._checkbox.disabled),isAllSelected),getIsAllSelected:()=>pageRows.some(r=>r._checkbox)&&pageRows.filter(r=>r._checkbox).every(r=>selected.has(r._key)),getIsIndeterminate:()=>pageRows.some(r=>selected.has(r._key))&&!pageRows.every(r=>selected.has(r._key)),getIsItemSelectable:row=>Boolean(row._checkbox),getIsItemEnabled:row=>!row._checkbox?.disabled,getRowLabel:row=>headers.map(h=>row[h.key]).find(Boolean)||'Запись'});
+ const selectionPlugin=useTableSelection({getIsItemSelected:row=>selected.has(row._key),onSelectItem:({item,isSelected})=>choose([item],isSelected),onSelectAll:({isAllSelected})=>choose(pageRows.filter(r=>r._checkbox&&!r._checkbox.disabled),isAllSelected),getIsAllSelected:()=>pageRows.some(r=>r._checkbox)&&pageRows.filter(r=>r._checkbox).every(r=>selected.has(r._key)),getIsIndeterminate:()=>pageRows.some(r=>selected.has(r._key))&&!pageRows.every(r=>selected.has(r._key)),getIsItemSelectable:row=>Boolean(row._checkbox),getIsItemEnabled:row=>!row._checkbox?.disabled,getRowLabel:row=>row._label||headers.map(h=>row[h.key]).find(Boolean)||'Запись'});
  const plugins={columnSettings:settingsPlugin,filter:filterPlugin,sort:sortPlugin,resize:resizePlugin,...(hasGroups?{group:grouped.plugin}:{}),...(selectable?{selection:selectionPlugin}:{})};
  useEffect(()=>{setPage(1);},[query,filters,powerFilters,size]);
+ useEffect(()=>{snapshot.onQueryChange?.(query);},[query,snapshot.onQueryChange]);
  useEffect(()=>{savePrefs(key,{query,size,widths,activeKeys,sort,filters,powerFilters});},[key,query,size,widths,activeKeys,sort,filters,powerFilters]);
  useEffect(()=>{setSelected(new Set(rows.filter(r=>r._checked).map(r=>r._key)));},[rows]);
  const picked=rows.filter(row=>selected.has(row._key));
- const totals=useMemo(()=>{const unit=headers.find(h=>/^ед\.?\s*изм\.?$|единица измерения/i.test(h.label));return headers.filter(h=>h.type==='number').flatMap(h=>{const groups=new Map();for(const row of matched){const value=row[h.key].replace(/\s/g,'').replace(',','.');if(!/^-?\d+(\.\d+)?$/.test(value))continue;const u=unit?row[unit.key]:'';groups.set(u,(groups.get(u)||0)+Number(value));}return [...groups].map(([u,sum])=>`${h.label}: ${new Intl.NumberFormat('ru',{maximumFractionDigits:3}).format(sum)}${u?' '+u:''}`);}).join(' · ');},[headers,matched]);
+ const totals=useMemo(()=>{if(snapshot.showTotals===false)return '';const unit=headers.find(h=>/^ед\.?\s*изм\.?$|единица измерения/i.test(h.label));return headers.filter(h=>h.type==='number'&&h.total!==false).flatMap(h=>{const groups=new Map();for(const row of matched){const value=row[h.key].replace(/\s/g,'').replace(',','.');if(!/^-?\d+(\.\d+)?$/.test(value))continue;const u=unit?row[unit.key]:'';groups.set(u,(groups.get(u)||0)+Number(value));}return [...groups].map(([u,sum])=>`${h.label}: ${new Intl.NumberFormat('ru',{maximumFractionDigits:3}).format(sum)}${u?' '+u:''}`);}).join(' · ');},[headers,matched,snapshot.showTotals]);
  return <div className="astryx-table-workspace" data-table-hooks="columnResize columnSettings filtering">
   <div className="astryx-data-toolbar">
    <TextInput label="Поиск в таблице" value={query} onChange={setQuery} placeholder="Поиск по всем столбцам…" data-table-control="search" containerClassName="astryx-table-search"/>
@@ -91,8 +92,9 @@ function BrowseTable({snapshot}){
    <MoreMenu label="Действия с таблицей" alignment="end" items={[{label:'Экспорт CSV',isDisabled:!matched.length,onClick:()=>exportRows(sortedData.map(r=>r._source))},{label:'Сбросить ширину колонок',onClick:()=>setWidths({})},{label:'Показать все столбцы',onClick:columnState.showAllColumns}]}/>
   </div>
   <Collapsible className="astryx-column-filters" trigger={'Фильтр'+(Object.keys(filters).length+powerFilters.length?' ('+(Object.keys(filters).length+powerFilters.length)+')':'')} defaultIsOpen={false} density="compact">
+   {snapshot.extraFilters}
    <PowerSearch config={config} filters={powerFilters} onChange={setPowerFilters} label="Условия поиска" placeholder="Выберите столбец и условие…" size="md" resultCount={matched.length}/>
-   <Button label="Сбросить фильтры" variant="secondary" onClick={()=>{clearAll();setPowerFilters([]);}} data-table-control="reset"/>
+   <Button label="Сбросить фильтры" variant="secondary" onClick={()=>{clearAll();setPowerFilters([]);setQuery('');snapshot.resetExtraFilters?.();}} data-table-control="reset"/>
   </Collapsible>
   <div className="astryx-data-grid" ref={gridRef}><Table data={hasGroups?grouped.data:pageRows} columns={columns} idKey={hasGroups?grouped.idKey:'_key'} plugins={plugins} density="balanced" hasHover textOverflow="truncate" aria-label={snapshot.title} emptyState={<EmptyState title={rows.length?'Нет совпадений':'Записей пока нет'} description={rows.length?'Измените поиск или условия фильтра.':'Добавьте первую запись кнопкой над таблицей.'}/>}/></div>
   <div className="astryx-data-footer">{totals&&<p className="astryx-table-totals">{totals}</p>}<div className="astryx-page-line"><span role="status">{matched.length?(currentPage-1)*size+1:0}–{Math.min(currentPage*size,matched.length)} из {matched.length}</span><Pagination page={currentPage} onChange={setPage} totalItems={matched.length} pageSize={size} pageSizeOptions={[25,50,100]} onPageSizeChange={setSize} label={'Страницы: '+snapshot.title}/></div>{picked.length>0&&<div className="astryx-table-selection"><span>Выбрано: {picked.length}</span><Button label="Экспорт выбранных" variant="secondary" onClick={()=>exportRows(picked.map(r=>r._source))}/><Button label="Снять выбор" variant="ghost" onClick={()=>choose(picked,false)}/></div>}</div>

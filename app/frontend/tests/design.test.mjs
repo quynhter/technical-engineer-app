@@ -7,7 +7,7 @@ const tick=()=>new Promise(resolve=>setTimeout(resolve,60));
 async function until(fn){for(let i=0;i<40;i++){if(fn())return;await tick();}assert.ok(fn(),'UI did not settle');}
 test('Astryx preserves account actions, native form data, delegated tabs and table controls',async()=>{
  const errors=[],log=new VirtualConsole();log.on('jsdomError',e=>errors.push(e));log.on('error',e=>errors.push(e));
- const dom=new JSDOM(`<html data-theme="light"><body><header class="topbar"><button id="theme-toggle">Тема</button><button id="knowledge-open">База</button><button id="account-open" class="account-avatar">ИИ</button><button id="session-resume" hidden>Войти</button><button id="session-logout">Выйти из системы</button></header><div class="context"><select id="object-select"><option value="">Выберите объект</option></select><button id="new-object">Новый объект</button></div><nav id="steps"></nav><div id="breadcrumbs"></div><main class="no-sidebar"><div id="content"><nav class="tabs"><button data-tab="0" class="active">Акты</button><button data-tab="1">Ресурсы</button></nav><form id="kept-form"><label class="field"><span>Категория</span><select name="category"><option value="a">Приборы</option><option value="b">Кабель</option></select></label><input id="kept-input" name="note" value="Несохранённое значение"><button id="kept-button" class="secondary">Действие</button></form><button class="object-tile">Полное название объекта</button><div class="data-table-footer"><button data-table-control="next">Следующая страница</button></div></div><div id="actions"></div></main><footer id="workspace-status"><details class="table-filter-disclosure resource-fact-picker"><summary>Монтаж по ресурсу</summary><div class="data-table-filters">Выберите ресурс</div></details></footer><div id="editor-content"></div><div id="editor-footer"></div><div id="account-content"></div><div id="prompt-content"></div><div id="knowledge-results"></div><div id="command-root"></div></body></html>`,{url:'http://localhost/?view=registry',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:log});
+ const dom=new JSDOM(`<html data-theme="light"><body><div id="account-controls" hidden><button id="account-open" class="account-avatar">ИИ</button><button id="session-resume" hidden>Войти</button><button id="session-logout">Выйти из системы</button></div><div class="context"><select id="object-select"><option value="">Выберите объект</option></select><button id="new-object">Новый объект</button></div><nav id="steps"></nav><div id="breadcrumbs"></div><main class="no-sidebar"><div id="content"><nav class="tabs"><button data-tab="0" class="active">Акты</button><button data-tab="1">Ресурсы</button></nav><form id="kept-form"><label class="field"><span>Категория</span><select name="category"><option value="a">Приборы</option><option value="b">Кабель</option></select></label><input id="kept-input" name="note" value="Несохранённое значение"><button id="kept-button" class="secondary">Действие</button></form><button class="object-tile">Полное название объекта</button><div class="data-table-footer"><button data-table-control="next">Следующая страница</button></div></div><div id="actions"></div></main><footer id="workspace-status"><details class="table-filter-disclosure resource-fact-picker"><summary>Монтаж по ресурсу</summary><div class="data-table-filters">Выберите ресурс</div></details></footer><div id="editor-content"></div><div id="editor-footer"></div><div id="account-content"></div><div id="prompt-content"></div><div id="knowledge-results"></div><div id="command-root"></div></body></html>`,{url:'http://localhost/?view=registry',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:log});
  const w=dom.window,d=w.document;
  w.CSS={supports:()=>false,escape:value=>String(value).replace(/[^a-zA-Z0-9_-]/g,c=>'\\'+c)};
  w.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
@@ -17,6 +17,7 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  let clicks=0,profiles=0;button.addEventListener('click',e=>{e.preventDefault();clicks++;});avatar.addEventListener('click',()=>profiles++);
  w.eval(bundle);w.ITDDesign.renderNav([['overview','Обзор',''],['registry','Исполнительная документация','']],'registry',()=>{});
  await until(()=>d.querySelector('.tabs[data-astryx-island] [data-tab="1"]')&&d.querySelector('.account-control #account-open'));
+ let themeEvents=0;d.addEventListener('itd:theme-toggle',()=>themeEvents++);const themeButton=[...d.querySelectorAll('button')].find(button=>button.textContent==='Тёмная тема');themeButton.click();assert.equal(themeEvents,1);assert.equal(d.querySelector('#theme-toggle'),null);assert.ok(d.querySelector('[data-open-knowledge]'));
  assert.equal(d.querySelector('.account-control [aria-haspopup=menu]'),null);assert.ok(d.querySelector('.account-control #session-logout'));
  assert.equal(d.querySelectorAll('#workspace-status').length,1);assert.ok(d.querySelector('.workspace-nav #workspace-status'));
 
@@ -61,6 +62,10 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  w.ITDDesign.renderNav([['overview','Обзор','']],'overview',()=>{});
  await until(()=>d.querySelector('.tabs[data-astryx-island] [data-tab]'));await tick();
  assert.equal(d.documentElement.dataset.astryxTheme,'neutral','Unmounting a tab must not remove the root theme');assert.equal(d.documentElement.dataset.theme,'dark');
+ const dynamicDialog=d.createElement('dialog');dynamicDialog.className='workspace-dialog';dynamicDialog.innerHTML='<div class="dialog-content"><button>Первое действие</button></div>';d.body.append(dynamicDialog);
+ await until(()=>dynamicDialog.querySelector('button').dataset.primitive==='button-primary');
+ dynamicDialog.querySelector('.dialog-content').innerHTML='<div class="workspace-stack"><button class="secondary">Появившееся действие</button></div>';
+ await until(()=>dynamicDialog.querySelector('button').dataset.primitive==='button-secondary');
  assert.equal(errors.length,0,errors.map(e=>e.detail?.stack||e.message).join('\n'));dom.window.close();
 });
 
@@ -81,4 +86,10 @@ test('Legacy loading leaves the React table intact and restores source rows',asy
  assert.equal(d.querySelector('.table-scroll tbody').textContent,'Исходная строка');
  assert.equal(react.firstElementChild,original);
  dom.window.close();
+});
+
+
+test('appearance changes persist without old header controls',async()=>{
+ const source=await readFile(new URL('../../itd/web_assets/app.js',import.meta.url),'utf8'),code=source.slice(source.indexOf("const appearanceKey ="),source.indexOf('let token='));
+ const dom=new JSDOM('<html><body></body></html>',{url:'http://localhost',runScripts:'outside-only'}),w=dom.window,d=w.document;w.$=selector=>d.querySelector(selector);w.icon=()=>'';w.eval(code);assert.equal(d.documentElement.dataset.theme,'light');d.dispatchEvent(new w.Event('itd:theme-toggle'));assert.equal(d.documentElement.dataset.theme,'dark');d.dispatchEvent(new w.CustomEvent('itd:accent',{detail:'rose'}));assert.equal(d.documentElement.dataset.accent,'rose');assert.equal(JSON.parse(w.localStorage.getItem('itd-appearance')).accent,'rose');d.dispatchEvent(new w.CustomEvent('itd:accent',{detail:'invalid'}));assert.equal(d.documentElement.dataset.accent,'rose');dom.window.close();
 });

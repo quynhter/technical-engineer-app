@@ -222,9 +222,28 @@ def _recover(c, database):
     c.commit()
 
 
+def recover_files(database, project_id):
+    with _LOCK, connect(database, transaction=False) as c:
+        _folders(c, database, project_id)
+        _recover(c, database)
+        log_event(c, 'file-recover', entity='projects', entity_id=project_id)
+        return {'ok': True}
+
+
+def _require_recovered(c, database):
+    for row in c.execute("SELECT id,state FROM file_operations WHERE state IN ('pending','applied')"):
+        if not re.fullmatch(r'[0-9a-f]{32}', row['id']):
+            raise ValueError('Повреждён идентификатор операции восстановления')
+        stage = Path(database).parent/'work'/'file-operations'/row['id']
+        if row['state'] == 'pending' or stage.exists():
+            raise ValueError('Сначала выполните восстановление файлов')
+
+
 def make_plan(database, project_id, purpose='check', attachment_id=None, secret=''):
     with _LOCK, connect(database, transaction=False) as c:
-        _recover(c, database)
+        c.execute('PRAGMA query_only = ON')
+        _folders(c, database, project_id)
+        _require_recovered(c, database)
         plan = _build(c, database, project_id, purpose, attachment_id)
         return {'plan': plan, 'token': _signature(plan, secret)}
 
@@ -235,7 +254,8 @@ def apply_plan(database, plan, token, types, secret):
     if not isinstance(types, dict) or any(v not in KINDS for v in types.values()):
         raise ValueError('Неизвестный тип файла')
     with _LOCK, connect(database, transaction=False) as c:
-        _recover(c, database)
+        _folders(c, database, plan['project_id'])
+        _require_recovered(c, database)
         current = _build(c, database, plan['project_id'], plan['purpose'], plan['attachment_id'])
         if current != plan:
             raise ValueError('Файлы или записи изменились. Повторите проверку.')
