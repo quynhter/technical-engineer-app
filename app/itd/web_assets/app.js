@@ -32,21 +32,18 @@ function icon(name) {
 }
 function decorateSelects(){decorateDataTables();enhanceEditorActions();enhanceCheckLists();document.querySelectorAll('select').forEach(enhanceSelect);document.querySelectorAll('form').forEach(form=>form.noValidate=true);}
 const appearanceKey = 'itd-appearance';
-let appearance = {theme: 'light', accent: 'blue'};
+let appearance = {theme: 'light'};
 try {
  const saved = JSON.parse(localStorage.getItem(appearanceKey) || '{}');
  if (['light','dark'].includes(saved.theme)) appearance.theme = saved.theme;
- if (['teal','blue','violet','amber','rose'].includes(saved.accent)) appearance.accent = saved.accent;
 } catch (_) { /* Недоступное хранилище не мешает работе формы. */ }
 function applyAppearance() {
  document.documentElement.dataset.theme = appearance.theme;
- document.documentElement.dataset.accent = appearance.accent;
  try { localStorage.setItem(appearanceKey, JSON.stringify(appearance)); } catch (_) {}
  document.dispatchEvent(new Event('itd:appearance'));
 }
 applyAppearance();
 document.addEventListener('itd:theme-toggle',()=>{appearance.theme=appearance.theme==='light'?'dark':'light';applyAppearance();});
-document.addEventListener('itd:accent',event=>{if(['teal','blue','violet','amber','rose'].includes(event.detail)){appearance.accent=event.detail;applyAppearance();}});
 let token=sessionStorage.getItem('itd-session')||'';
 let meta, state={object:{},participants:[],projects:[],token:null}, step=0, tab=0, orgIndex=0, projectId=null, pdata=null, dirty=false, formDirty=false, busy=false, pending=[], editEntry=null;
 let workspaceView='overview', selectedEntries=new Set();

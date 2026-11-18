@@ -17,7 +17,7 @@ test('Astryx preserves account actions, native form data, delegated tabs and tab
  let clicks=0,profiles=0;button.addEventListener('click',e=>{e.preventDefault();clicks++;});avatar.addEventListener('click',()=>profiles++);
  w.eval(bundle);w.ITDDesign.renderNav([['overview','Обзор',''],['registry','Исполнительная документация','']],'registry',()=>{});
  await until(()=>d.querySelector('.tabs[data-astryx-island] [data-tab="1"]')&&d.querySelector('.account-control #account-open'));
- let themeEvents=0;d.addEventListener('itd:theme-toggle',()=>themeEvents++);const themeButton=[...d.querySelectorAll('button')].find(button=>button.textContent==='Тёмная тема');themeButton.click();assert.equal(themeEvents,1);assert.equal(d.querySelector('#theme-toggle'),null);assert.ok(d.querySelector('[data-open-knowledge]'));
+ let themeEvents=0;d.addEventListener('itd:theme-toggle',()=>themeEvents++);const themeButton=[...d.querySelectorAll('button')].find(button=>button.textContent==='Тёмная тема');themeButton.click();assert.equal(themeEvents,1);assert.equal(d.querySelector('#theme-toggle'),null);assert.doesNotMatch(d.querySelector('.header-actions').textContent,/Акцентный цвет|Синий|Зелёный/);assert.equal(d.querySelectorAll('.header-actions [role=combobox]').length,1);assert.match(d.querySelector('.header-actions').textContent,/Neutral/);assert.ok(d.querySelector('[data-open-knowledge]'));
  assert.equal(d.querySelector('.account-control [aria-haspopup=menu]'),null);assert.ok(d.querySelector('.account-control #session-logout'));
  assert.equal(d.querySelectorAll('#workspace-status').length,1);assert.ok(d.querySelector('.workspace-nav #workspace-status'));
 
@@ -89,7 +89,16 @@ test('Legacy loading leaves the React table intact and restores source rows',asy
 });
 
 
-test('appearance changes persist without old header controls',async()=>{
+test('appearance keeps the saved mode and drops the legacy accent preference',async()=>{
  const source=await readFile(new URL('../../itd/web_assets/app.js',import.meta.url),'utf8'),code=source.slice(source.indexOf("const appearanceKey ="),source.indexOf('let token='));
- const dom=new JSDOM('<html><body></body></html>',{url:'http://localhost',runScripts:'outside-only'}),w=dom.window,d=w.document;w.$=selector=>d.querySelector(selector);w.icon=()=>'';w.eval(code);assert.equal(d.documentElement.dataset.theme,'light');d.dispatchEvent(new w.Event('itd:theme-toggle'));assert.equal(d.documentElement.dataset.theme,'dark');d.dispatchEvent(new w.CustomEvent('itd:accent',{detail:'rose'}));assert.equal(d.documentElement.dataset.accent,'rose');assert.equal(JSON.parse(w.localStorage.getItem('itd-appearance')).accent,'rose');d.dispatchEvent(new w.CustomEvent('itd:accent',{detail:'invalid'}));assert.equal(d.documentElement.dataset.accent,'rose');dom.window.close();
+ const dom=new JSDOM('<html><body></body></html>',{url:'http://localhost',runScripts:'outside-only'}),w=dom.window,d=w.document;
+ w.localStorage.setItem('itd-appearance',JSON.stringify({theme:'dark',accent:'rose'}));
+ w.eval(code);
+ assert.equal(d.documentElement.dataset.theme,'dark');
+ assert.equal(d.documentElement.hasAttribute('data-accent'),false);
+ assert.deepEqual(JSON.parse(w.localStorage.getItem('itd-appearance')),{theme:'dark'});
+ d.dispatchEvent(new w.Event('itd:theme-toggle'));
+ assert.equal(d.documentElement.dataset.theme,'light');
+ assert.deepEqual(JSON.parse(w.localStorage.getItem('itd-appearance')),{theme:'light'});
+ dom.window.close();
 });
