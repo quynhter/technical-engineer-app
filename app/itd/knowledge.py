@@ -21,7 +21,7 @@ NOTICE = ('Материалы подготовлены ИИ; редакция, �
 
 
 def default_root():
-    return ROOT / 'app' / 'knowledge'
+    return ROOT / 'ai' / 'knowledge'
 
 
 def default_index(database):

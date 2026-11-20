@@ -1,0 +1,8 @@
+{
+  "own": {
+    "protocol": "chat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OWN_LLM_API_KEY",
+    "allow_anonymous": true
+  }
+}

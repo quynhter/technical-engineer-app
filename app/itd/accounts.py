@@ -1,5 +1,6 @@
 """Учетные записи локального веб-приложения, отдельно от данных ИТД."""
 import hashlib
+import math
 from pathlib import Path
 import re
 import secrets
@@ -14,6 +15,7 @@ PUBLIC_FIELDS = 'id, first_name, last_name, role'
 SESSION_LIFETIME = 8 * 60 * 60
 SESSION_IDLE = 30 * 60
 MAX_USER_SESSIONS = 10
+TOKEN_FIELDS = 'id, user_id, name, created_at, expires_at, last_used_at, revoked_at'
 
 
 class SessionExpired(PermissionError):
@@ -83,6 +85,44 @@ class Accounts:
             """)
             c.execute('BEGIN IMMEDIATE')
             c.execute("INSERT OR IGNORE INTO account_schema_migrations VALUES(1,'persistent_sessions')")
+            if not c.execute('SELECT 1 FROM account_schema_migrations WHERE version=2').fetchone():
+                c.execute('''CREATE TABLE api_tokens (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+                    name TEXT NOT NULL CHECK(length(name) BETWEEN 1 AND 80),
+                    token_hash TEXT NOT NULL UNIQUE CHECK(length(token_hash)=64),
+                    created_at REAL NOT NULL, expires_at REAL NOT NULL,
+                    last_used_at REAL, revoked_at REAL,
+                    CHECK(expires_at>created_at)
+                )''')
+                c.execute('CREATE INDEX api_tokens_user ON api_tokens(user_id)')
+                c.execute("INSERT INTO account_schema_migrations VALUES(2,'api_tokens')")
+            if not c.execute('SELECT 1 FROM account_schema_migrations WHERE version=3').fetchone():
+                c.execute('''CREATE TABLE IF NOT EXISTS assistants (
+                    id INTEGER PRIMARY KEY, name TEXT NOT NULL, instruction TEXT NOT NULL,
+                    provider TEXT NOT NULL, model TEXT NOT NULL, allowed_tools TEXT NOT NULL,
+                    knowledge_bases TEXT NOT NULL, active INTEGER NOT NULL CHECK(active IN (0,1)),
+                    skill_path TEXT NOT NULL, skill_version TEXT NOT NULL)''')
+                c.execute('''CREATE TABLE IF NOT EXISTS threads (
+                    id INTEGER PRIMARY KEY, assistant_id INTEGER NOT NULL REFERENCES assistants(id),
+                    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+                    workspace TEXT NOT NULL, object_id INTEGER, project_id INTEGER,
+                    title TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    skill_path TEXT NOT NULL, skill_version TEXT NOT NULL)''')
+                c.execute('''CREATE TABLE IF NOT EXISTS messages (
+                    id INTEGER PRIMARY KEY, thread_id INTEGER NOT NULL REFERENCES threads(id) ON DELETE CASCADE,
+                    sender TEXT NOT NULL CHECK(sender IN ('user','assistant')), text TEXT NOT NULL DEFAULT '',
+                    tool_calls TEXT NOT NULL DEFAULT '[]', events TEXT NOT NULL DEFAULT '[]',
+                    status TEXT NOT NULL, request_key TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    UNIQUE(thread_id,request_key))''')
+                c.execute('CREATE INDEX IF NOT EXISTS threads_owner ON threads(user_id,workspace,id)')
+                c.execute('CREATE INDEX IF NOT EXISTS messages_thread ON messages(thread_id,id)')
+                c.execute("INSERT INTO account_schema_migrations VALUES(3,'assistants')")
+            if not c.execute('SELECT 1 FROM account_schema_migrations WHERE version=4').fetchone():
+                if 'attachments' not in {r[1] for r in c.execute('PRAGMA table_info(messages)')}:
+                    c.execute("ALTER TABLE messages ADD COLUMN attachments TEXT NOT NULL DEFAULT '[]'")
+                c.execute("INSERT INTO account_schema_migrations VALUES(4,'chat_attachments')")
+            c.execute("UPDATE messages SET status='interrupted' WHERE status='running'")
             if c.execute('SELECT 1 FROM users LIMIT 1').fetchone():
                 return None
             key = secrets.token_urlsafe(32)
@@ -160,6 +200,56 @@ class Accounts:
         with self.session_lock, self.connect() as c, c:
             c.execute('DELETE FROM sessions WHERE user_id=?', (user_id,))
 
+    def create_token(self, user_id, data):
+        name = data.get('name')
+        if not isinstance(name, str) or not 1 <= len(name.strip()) <= 80:
+            raise ValueError('Укажите название токена (до 80 символов)')
+        now = monotonic()
+        expires = data.get('expires_at')
+        if type(expires) not in (int, float) or not math.isfinite(expires) or expires <= now:
+            raise ValueError('Укажите будущий срок действия токена')
+        token = secrets.token_urlsafe(32)
+        with self.connect() as c, c:
+            token_id = c.execute('''INSERT INTO api_tokens
+                (user_id,name,token_hash,created_at,expires_at) VALUES(?,?,?,?,?)''',
+                (user_id, name.strip(), key_digest(token), now, expires)).lastrowid
+        return {'id': token_id, 'token': token}
+
+    def list_tokens(self, user_id=None):
+        with self.connect() as c:
+            return [dict(row) for row in c.execute(
+                f'SELECT {TOKEN_FIELDS} FROM api_tokens' +
+                (' WHERE user_id=?' if user_id is not None else '') + ' ORDER BY id DESC',
+                (user_id,) if user_id is not None else ())]
+
+    def revoke_token(self, token_id, user_id=None):
+        if type(token_id) is not int:
+            raise ValueError('Выберите токен')
+        with self.connect() as c, c:
+            updated = c.execute('UPDATE api_tokens SET revoked_at=COALESCE(revoked_at,?) WHERE id=?' +
+                                (' AND user_id=?' if user_id is not None else ''),
+                                (monotonic(), token_id, user_id) if user_id is not None else (monotonic(), token_id))
+            if not updated.rowcount:
+                raise ValueError('Токен не найден')
+        return {'ok': True}
+
+    def authenticate_token(self, token, *, touch=True):
+        if not isinstance(token, str) or not KEY_PATTERN.fullmatch(token):
+            raise SessionExpired('Токен недействителен или отозван')
+        now = monotonic()
+        with self.connect() as c, c:
+            if touch:
+                c.execute('BEGIN IMMEDIATE')
+            row = c.execute('''SELECT users.id,first_name,last_name,role FROM api_tokens
+                JOIN users ON users.id=api_tokens.user_id
+                WHERE token_hash=? AND revoked_at IS NULL AND expires_at>?''',
+                (key_digest(token), now)).fetchone()
+            if row is None:
+                raise SessionExpired('Токен недействителен или отозван')
+            if touch:
+                c.execute('UPDATE api_tokens SET last_used_at=? WHERE token_hash=?', (now, key_digest(token)))
+            return dict(row)
+
     def list(self):
         with self.connect() as c:
             return [dict(row) for row in c.execute(f'SELECT {PUBLIC_FIELDS} FROM users ORDER BY last_name,first_name,id')]
@@ -199,6 +289,8 @@ class Accounts:
                 if role not in ROLES:
                     raise ValueError('Выберите роль пользователя')
                 c.execute('UPDATE users SET role=? WHERE id=?', (role, target))
+                c.execute('UPDATE api_tokens SET revoked_at=COALESCE(revoked_at,?) WHERE user_id=?',
+                          (monotonic(), target))
             else:
                 raise ValueError('Неизвестное действие с пользователем')
         self.revoke(target)

@@ -1,0 +1,21 @@
+# Only application code, AI resources and the launcher enter the build context.
+**
+!Dockerfile
+!run.py
+!app/
+!app/**
+!ai/
+!ai/**
+**/__pycache__
+**/*.py[cod]
+**/node_modules
+**/.venv
+**/*.egg-info
+**/bundle-meta.json
+**/.env
+**/.env.*
+**/llm-providers.json
+**/*.llm-providers.json
+**/*.db
+**/*.db-*
+**/*.sqlite*

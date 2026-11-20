@@ -4,9 +4,14 @@ function specialEditor(record={}){
  const d=pdata.journals.directory;
  return `<form id="special-journal-form" data-record="${record.id||''}" data-revision="${record.revision||''}"><div class="grid">${input('name','Наименование специального журнала *',record.name,'text',true)}${input('issued_date','Дата выдачи',record.issued_date,'date')}<label class="field"><span>Организация, ведущая журнал</span><select name="org_id"><option value="">Не выбрана</option>${d.organizations.map(o=>option(o.id,o.full_name,record.org_id)).join('')}</select></label><label class="field wide"><span>Ответственный за ведение</span><select name="keeper_id"><option value="">Не выбран</option>${d.people.filter(p=>p.status==='Действует'||p.id===record.keeper_id).map(p=>option(p.id,representativeLabel(p),record.keeper_id)).join('')}</select></label>${input('transfer_date','Дата передачи застройщику / заказчику',record.transfer_date,'date')}<label class="field"><span>Представитель, принявший журнал</span><select name="recipient_id"><option value="">Не выбран</option>${d.people.filter(p=>p.status==='Действует'||p.id===record.recipient_id).map(p=>option(p.id,representativeLabel(p),record.recipient_id)).join('')}</select></label>${input('note','Примечание',record.note,'text',true)}</div><div class="ux-form-actions"><button type="submit">Сохранить журнал</button><button type="button" class="secondary" data-action="cancel-entry">Отменить</button></div></form>`;
 }
+const ojrSectionItems=[['0','Титульный лист'],['1','Персонал'],['2','Журналы'],['3','Работы'],['4','Строительный контроль'],['5','Документы'],['6','Госстройнадзор']];
+function selectOjrSection(key){
+ if(formDirty)return;
+ journalSection=key;
+ if(journalView()==='ojr')render();else navigate('ojr');
+}
 function ojrPage(){
- const nav=`<nav class="tabs" aria-label="Разделы ОЖР">${[['0','Титульный лист'],['1','Персонал'],['2','Журналы'],['3','Работы'],['4','Строительный контроль'],['5','Документы'],['6','Госстройнадзор']].map(([key,label])=>`<button data-ojr-section="${key}" class="${journalSection===key?'active':''}" ${journalSection===key?'aria-current="page"':''}>${esc(label)}</button>`).join('')}</nav>`;
- return nav+(journalSection==='3'?`<p class="journal-purpose">Работы выбранного раздела: ${esc(pdata.project.section_code)}. Выберите записи для подготовки акта.</p>`+workPage():`<div id="journal-app" data-section="${esc(journalSection)}"></div>`);
+ return journalSection==='3'?`<p class="journal-purpose">Работы выбранного раздела: ${esc(pdata.project.section_code)}. Выберите записи для подготовки акта.</p>`+workPage():`<div id="journal-app" data-section="${esc(journalSection)}"></div>`;
 }
 function journalTool(tool,section){
  if(tool==='object')navigate('object');
@@ -29,10 +34,10 @@ function mountJournal(){
  const host=$('#journal-app');if(!host)return;
  const pid=projectId,workspace=currentUser.workspace_id;
  window.ITDDesign.renderJournalRecords(host,{projectId:pid,workspaceId:workspace,role:currentUser.role,section:host.dataset.section,roles:{roles:meta.roles,document_roles:meta.document_roles},
-  getToken:registryToken,onSessionExpired:suspendWorkspace,onTool:journalTool,onOpen:openJournalRecord,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+  initialProject:pdata,getToken:registryToken,onSessionExpired:suspendWorkspace,onTool:journalTool,onOpen:openJournalRecord,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
 }
 function responsibleSelect(e){return `<label class="field wide"><span>Ответственный исполнитель из раздела 1 ОЖР</span><select name="responsible_id"><option value="">Не выбран</option>${pdata.journals.roster.map(p=>option(p.id,representativeLabel(p),e.responsible_id)).join('')}</select></label>${!pdata.journals.roster.length?'<p class="hint wide">Добавьте исполнителя в раздел 1 ОЖР. Для этого закройте форму и откройте «Журналы» → «ОЖР» → раздел 1.</p>':''}`;}
-function usedMaterialsHtml(){return workMaterialsDraft.map((m,i)=>`<div class="used-material-row"><label class="field"><span>Ресурс</span><select data-material-index="${i}" data-material-field="resource_id"><option value="">Выберите ресурс</option>${pdata.resources.map(r=>option(r.id,resourceLabel(r.id)+' · '+r.unit,m.resource_id)).join('')}</select></label><label class="field"><span>Использовано</span><input type="number" min="0" step="any" data-material-index="${i}" data-material-field="quantity" value="${esc(m.quantity)}"></label><button type="button" class="secondary" data-material-remove="${i}">Убрать</button></div>`).join('')||'<p class="hint">Ресурсы ещё не выбраны.</p>';}
+function usedMaterialsHtml(){return workMaterialsDraft.map((m,i)=>`<div class="used-material-row"><label class="field"><span>Ресурс</span><select data-material-index="${i}" data-material-field="resource_id"><option value="">Выберите ресурс</option>${pdata.resources.map(r=>option(r.id,resourceLabel(r.id)+'. '+r.unit,m.resource_id)).join('')}</select></label><label class="field"><span>Использовано</span><input type="number" min="0" step="any" data-material-index="${i}" data-material-field="quantity" value="${esc(m.quantity)}"></label><button type="button" class="secondary" data-material-remove="${i}">Убрать</button></div>`).join('')||'<p class="hint">Ресурсы ещё не выбраны.</p>';}
 function workEntryEditor(e){
  workMaterialsDraft=pdata.work_materials.filter(m=>m.entry_id===e.id).map(m=>({resource_id:m.resource_id,quantity:m.quantity}));
  const w=typeof e.work_fields==='string'?JSON.parse(e.work_fields):e.work_fields||{};
@@ -70,7 +75,6 @@ async function submitArchitectureForm(form){
  closeEditor(true);formDirty=false;if(id!=='ojr-title-form')await reloadJournalWorkspace();await loadProject(projectId);render();toast('Сохранено');
 }
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
- if(b.dataset.ojrSection){if(formDirty)return;journalSection=b.dataset.ojrSection;render();}
  if(b.hasAttribute('data-material-add')){workMaterialsDraft.push({resource_id:null,quantity:null});$('#used-materials').innerHTML=usedMaterialsHtml();decorateSelects();formDirty=true;}
  if(b.dataset.materialRemove!==undefined){workMaterialsDraft.splice(Number(b.dataset.materialRemove),1);$('#used-materials').innerHTML=usedMaterialsHtml();decorateSelects();formDirty=true;}
  if(b.dataset.actStatus){if(formDirty)return;openEditor('manual');$('#editor-content').innerHTML=actStatusEditor(Number(b.dataset.actStatus));decorateSelects();}

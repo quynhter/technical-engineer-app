@@ -31,8 +31,13 @@ dist/
 *~
 
 # Local backup of the retired repository
-.repository-backups/
+development/repository-backups/
 
 # Frontend build dependencies
 node_modules/
 app/frontend/bundle-meta.json
+
+# Local development evidence and server-only LLM credentials
+development/work/
+llm-providers.json
+*.llm-providers.json

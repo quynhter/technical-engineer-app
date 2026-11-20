@@ -246,7 +246,7 @@ def save_title(c,pid,data):
 
 def act_work_description(c,aid):
     entries=c.execute('SELECT e.title,e.details FROM workspace_entries e JOIN act_entry_sources s ON s.entry_id=e.id WHERE s.act_id=? ORDER BY e.entry_date,e.id',(aid,)).fetchall()
-    if entries: return '; '.join(' · '.join(v for v in (e['title'],e['details']) if v) for e in entries)
+    if entries: return '; '.join('. '.join(v for v in (e['title'],e['details']) if v) for e in entries)
     from .fields import merge_fields
     row=c.execute('SELECT a.fields,d.fields AS definitions FROM acts a JOIN document_types d ON d.code=a.act_type WHERE a.id=?',(aid,)).fetchone()
     if row:

@@ -1,16 +1,16 @@
 import {tableValue} from './table-values.js';
 
-export const workLabels=['Дата','Описание','Использованные ресурсы','Условия / количество','Ответственный','Акт и источник'];
+export const workLabels=['Дата','Наименование работы','Описание','Использованные ресурсы','Условия','Количество','Единица измерения','Ответственный','Акт','Источник'];
 export function workSources(entry,project){
  return {act:entry.act_id?String(project.acts?.find(act=>act.id===entry.act_id)?.act_num||entry.act_id):null,
   attachment:entry.attachment_id?(project.attachments?.find(file=>file.id===entry.attachment_id)?.title||'Архивный документ'):null};
 }
 export function workValues(entry,project){
  const sources=workSources(entry,project);
- const materials=(project.work_materials||[]).filter(item=>item.entry_id===entry.id).map(item=>(project.resources?.find(resource=>resource.id===item.resource_id)?.name||'Ресурс')+' · '+tableValue(item.quantity)+' '+(item.unit||'')).join('; ');
- return [entry.entry_date?tableValue(entry.entry_date):'Не указана',[entry.title,entry.details].filter(Boolean).join('\n'),materials,
-  [entry.conditions,entry.quantity!=null?tableValue(entry.quantity)+' '+(entry.unit||''):null].filter(Boolean).join('\n'),entry.responsible_display||entry.responsible||'Не указан',
-  'Акт: '+(sources.act||'Не сформирован')+'\nИсточник: '+(sources.attachment||'Не указан')];
+ const materials=(project.work_materials||[]).filter(item=>item.entry_id===entry.id).map(item=>(project.resources?.find(resource=>resource.id===item.resource_id)?.name||'Ресурс')+'. '+tableValue(item.quantity)+' '+(item.unit||'')).join('; ');
+ return [entry.entry_date?tableValue(entry.entry_date):'Не указана',entry.title||'',entry.details||'',materials,
+  entry.conditions||'',entry.quantity!=null?tableValue(entry.quantity):'',entry.unit||'',entry.responsible_display||entry.responsible||'Не указан',
+  sources.act||'Не сформирован',sources.attachment||'Не указан'];
 }
 export function workSearch(entry,project){return workValues(entry,project).join(' ').toLocaleLowerCase('ru').replaceAll('ё','е');}
 export function workRows(project,{unbound=false,from='',to='',query=''}={}){

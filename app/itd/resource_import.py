@@ -15,7 +15,7 @@ from pathlib import Path
 from .db import required_text,atomic_operation
 from .resources import CATEGORIES,add_resource,quantity
 
-FIELDS={'name':'Наименование','unit':'Единица измерения','category':'Категория','spec_num':'Позиция спецификации',
+FIELDS={'id':'ID','name':'Наименование','unit':'Единица измерения','category':'Категория','spec_num':'Позиция спецификации',
         'type_mark':'Тип / марка','manufacturer':'Изготовитель','supplier':'Поставщик','serial_num':'Заводские номера',
         'qty_proj':'Количество по проекту','qty_received':'Приход','note':'Примечание'}
 MAX_ROWS=10000
@@ -133,10 +133,12 @@ def inspect(c,pid,data):
         raise ValueError('Сопоставьте категории файла с категориями ресурсов')
     category_values=sorted({str(row[mapping['category']]).strip() for _,row in raw if 'category' in mapping and mapping['category']<len(row) and row[mapping['category']] not in (None,'')})
     preview=[]
+    seen_ids=set()
     for number,row in raw:
         values={k:(row[i] if i<len(row) else None) for k,i in mapping.items()}
         errors=[]
         for key in FIELDS:
+            if key=='id': continue
             v=values.get(key)
             if key in ('qty_proj','qty_received'):
                 try:
@@ -153,15 +155,30 @@ def inspect(c,pid,data):
         # Формулы не исполняются и не превращаются в реквизиты/количества.
         if any(isinstance(row[i],str) and row[i].startswith('=') for i in mapping.values() if i<len(row)):
             errors.append('В сопоставленной ячейке формула; замените её значением в копии ведомости')
+        target=None
+        identity=values.get('id')
+        if identity not in (None,''):
+            if not re.fullmatch(r'[1-9][0-9]*',str(identity).strip()):
+                errors.append('ID должен быть положительным целым числом')
+            else:
+                identity=int(identity);values['id']=identity
+                target=c.execute('SELECT * FROM resources WHERE id=? AND project_id=?',(identity,pid)).fetchone()
+                if target is None: errors.append('ID ресурса не найден в выбранном разделе')
+                if identity in seen_ids: errors.append('ID ресурса повторяется в файле')
+                seen_ids.add(identity)
+                if values.get('qty_received') is not None: errors.append('Для обновления по ID нельзя импортировать приход')
+        elif 'id' in values:
+            values.pop('id')
         existing=c.execute('SELECT * FROM resource_import_rows WHERE project_id=? AND sha256=? AND sheet=? AND row_num=?',
             (pid,record['sha256'],sheet,number)).fetchone()
         encoded=json.dumps(values,ensure_ascii=False,sort_keys=True,allow_nan=False)
         if existing and existing['data_json']!=encoded: errors.append('Эта строка уже импортирована с другим сопоставлением; повторная запись не разрешена')
-        preview.append({'row':number,'values':values,'errors':errors,'duplicate':bool(existing)})
+        preview.append({'row':number,'values':values,'errors':errors,'duplicate':bool(existing),**({'expected':dict(target)} if target is not None else {})})
     result={'import_id':record['id'],'filename':record['filename'],'sha256':record['sha256'],'sheets':names,'sheet':sheet,
             'header_row':header,'headers':headers,'category_values':category_values,'sample':[[str(v) if v is not None else '' for v in row] for _,row in raw[:10]],
             'fields':FIELDS,'rows':preview,'count':len(preview),'valid':bool(preview) and all(not r['errors'] for r in preview),
-            'new_count':sum(not r['duplicate'] for r in preview)}
+            'new_count':sum(not r['duplicate'] and not r.get('expected') for r in preview),
+            'update_count':sum(not r['duplicate'] and bool(r.get('expected')) for r in preview)}
     payload={'sha256':record['sha256'],'sheet':sheet,'header_row':header,'rows':preview}
     result['preview_token']=hashlib.sha256(json.dumps(payload,ensure_ascii=False,sort_keys=True,allow_nan=False).encode()).hexdigest()
     return result
@@ -183,12 +200,20 @@ def commit(c,pid,data,archive_root):
             imported=import_file(c,archive_root=archive_root,source=path,doc_type='other',title=record['filename'])
         attachment=imported['id'];link_file(c,attachment_id=attachment,entity='project',entity_id=pid)
         c.execute('UPDATE resource_imports SET attachment_id=? WHERE id=?',(attachment,view['import_id']))
-    ids=[]
+    ids=[];updated=[]
     from .manual import add_supply
     for row in view['rows']:
         if row['duplicate']: continue
         v=dict(row['values']);received=v.pop('qty_received',None);serial=v.pop('serial_num',None)
-        rid=add_resource(c,project_id=pid,serial_numbers=serial.splitlines() if serial else None,**v)
+        identity=v.pop('id',None)
+        if identity is not None:
+            from .changes import update_record
+            changes={key:value for key,value in v.items() if key in data.get('mapping',{}) and value!=row['expected'][key]}
+            if 'serial_num' in data.get('mapping',{}) and serial!=row['expected']['serial_num']: changes['serial_num']=serial
+            if changes: update_record(c,entity='resources',record_id=identity,changes=changes,expected=row['expected'])
+            rid=identity;updated.append(rid)
+        else:
+            rid=add_resource(c,project_id=pid,serial_numbers=serial.splitlines() if serial else None,**v)
         c.execute('INSERT INTO resource_sources(project_id,resource_id,attachment_id,source_key,sheet,locator) VALUES(?,?,?,?,?,?)',
                   (pid,rid,attachment,f"table:{view['sheet']}:header:{view['header_row']}:row:{row['row']}",view['sheet'],f"Строка {row['row']}"))
         if received is not None:
@@ -200,7 +225,7 @@ def commit(c,pid,data,archive_root):
             json.dumps(row['values'],ensure_ascii=False,sort_keys=True,allow_nan=False)))
         ids.append(rid)
     from .changes import log_event
-    log_event(c,'resource-import',entity='projects',entity_id=pid,after={'resource_ids':ids,'attachment_id':attachment,'sha256':view['sha256']})
+    log_event(c,'resource-import',entity='projects',entity_id=pid,after={'resource_ids':ids,'updated_ids':updated,'attachment_id':attachment,'sha256':view['sha256']})
     from .archive import publish_project_file
     project_path=publish_project_file(c,attachment_id=attachment,project_id=pid,archive_root=archive_root)
-    return {'project_path':project_path,'imported':len(ids),'skipped':len(view['rows'])-len(ids),'resource_ids':ids,'attachment_id':attachment}
+    return {'project_path':project_path,'imported':len(ids)-len(updated),'updated':len(updated),'skipped':len(view['rows'])-len(ids),'resource_ids':ids,'updated_ids':updated,'attachment_id':attachment}

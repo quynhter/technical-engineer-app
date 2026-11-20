@@ -1,7 +1,11 @@
 'use strict';
 
 const roleNames = {admin:'Администратор', editor:'Редактор', viewer:'Наблюдатель'};
+const accountTabLabels = {profile:'Личные данные', assistants:'Ассистенты', paths:'Рабочие пути', users:'Пользователи', tokens:'Токены API', access:'Вход и сеанс'};
 let currentUser;
+let accountTab='profile';
+let accountData=null;
+let accountLoading=null;
 let sessionSuspended=false;
 let viewerObserver;
 const viewerRestrictions=new Map();
@@ -37,9 +41,6 @@ const promptWindow = createWorkspaceDialog('prompt-dialog', {
   resolve?.(promptAccepted);
   promptAccepted=false;
  }
-});
-const accountWindow = createWorkspaceDialog('account-dialog', {
- onClose:()=>document.querySelector('#account-content').replaceChildren()
 });
 const loginWindow = createWorkspaceDialog('login-dialog', {beforeClose:()=>sessionSuspended});
 
@@ -87,12 +88,12 @@ function setProfile(user){
    for(const control of viewerRestrictions.keys())if(!control.isConnected)viewerRestrictions.delete(control);
    for(const control of viewerActionStyles.keys())if(!control.isConnected)viewerActionStyles.delete(control);
    const content=document.getElementById('editor-content');
-   if(content.firstElementChild&&!content.querySelector('[data-read-only-note]')){const note=document.createElement('p');note.dataset.readOnlyNote='';note.className='hint';note.textContent='Просмотр · изменение сведений недоступно для вашей роли.';content.prepend(note);}
+   if(content.firstElementChild&&!content.querySelector('[data-read-only-note]')){const note=document.createElement('p');note.dataset.readOnlyNote='';note.className='hint';note.textContent='Просмотр. изменение сведений недоступно для вашей роли.';content.prepend(note);}
 
    document.querySelectorAll('#editor-dialog [data-action="cancel-entry"]').forEach(button=>{if(button.textContent!=='Закрыть')button.textContent='Закрыть';});
-   document.querySelectorAll('#new-object,:is(#content,#editor-content,#editor-footer,#actions,#sidebar) button:is('+viewerWriteActions+')').forEach(restrictViewerAction);
+   document.querySelectorAll('#new-object,:is(#content,#editor-content,#editor-footer,#actions,#sidebar) button:is('+viewerWriteActions+')').forEach(control=>{if(!control.closest('#account-page'))restrictViewerAction(control);});
    document.querySelectorAll('#content :is(input,textarea,select),#editor-content :is(input,textarea,select)').forEach(el=>{
-    if(el.closest('.astryx-data-view,.astryx-table-workspace'))return;
+    if(el.closest('.astryx-data-view,.astryx-table-workspace,#account-page'))return;
     const nativeInput=el.closest('.date-island')?._nativeInput;
     if(nativeInput?.matches('[data-filter],[data-table-control]'))return;
     const nativeSelect=el.closest('.select-island')?._nativeSelect;
@@ -110,7 +111,7 @@ function setProfile(user){
  const avatar=$('#account-open');
  avatar.textContent='Настройки';
  avatar.setAttribute('aria-label','Настройки');
- avatar.title=`${user.first_name} ${user.last_name} · ${roleNames[user.role]}`;
+ avatar.title=`${user.first_name} ${user.last_name}. ${roleNames[user.role]}`;
  avatar.hidden=false;
  $('#session-logout').hidden=false;
 }
@@ -130,21 +131,26 @@ function accountNames(user={}){
 function roleField(value){
  return `<label class="field"><span>Роль</span><select name="role">${Object.entries(roleNames).map(([role,label])=>option(role,label,value)).join('')}</select></label>`;
 }
+function accountCard(key, heading, body, iconName){
+  return `<section class="card" data-account-panel="${key}"${key===accountTab?'':' hidden'}><h2 class="card-title"><span class="icon" aria-hidden="true">${icon(iconName)}</span>${heading}</h2>${body}</section>`;
+}
+function accountTabs(tabs){
+  return `<nav class="tabs" aria-label="Разделы настроек">${tabs.map(([key,label])=>`<button type="button" data-account-tab="${key}" class="${key===accountTab?'active':''}" ${key===accountTab?'aria-current="page"':''}>${label}</button>`).join('')}</nav>`;
+}
 function adminPanels(model){
  const {settings,users}=model;
- return `<section class="account-section"><h3>Рабочие пути</h3>
- <form data-account-action="settings">
+ return accountCard('assistants','Ассистенты',`<button type="button" class="secondary" data-account-task="assistants">Настроить ассистентов</button>`,'clipboard')
+ + accountCard('paths','Рабочие пути',`<form class="account-form" data-account-action="settings">
  <label class="field"><span>Файл базы данных на сервере</span><input name="database_path" required value="${esc(settings.database_path)}"></label>
  <label class="field"><span>Папка ИТД на сервере</span><input name="itd_root" required value="${esc(settings.itd_root)}"></label>
  <p class="hint">Укажите полные пути к существующему файлу .db и отдельной папке ИТД для этой базы. Если папки ещё нет, приложение её создаст.</p>
  <button type="submit" class="secondary">Применить пути</button>
  <p id="settings-message" class="account-message" role="status" tabindex="-1"></p>
- </form></section>
- <section class="account-section"><h3>Пользователи</h3>
- <form data-account-action="role">
+ </form>`,'list')
+ + accountCard('users','Пользователи',`<form class="account-form" data-account-action="role">
  <label class="field"><span>Пользователь</span><select name="id" required>
  <option value="">Выберите пользователя…</option>
- ${users.map(u=>option(u.id,`${u.last_name} ${u.first_name} · ${roleNames[u.role]}${u.id===currentUser.id?' (вы)':''}`)).join('')}
+ ${users.map(u=>option(u.id,`${u.last_name} ${u.first_name}. ${roleNames[u.role]}${u.id===currentUser.id?' (вы)':''}`)).join('')}
  </select></label>
  <div id="account-user-tools" hidden>${roleField('viewer')}
  <div class="account-actions"><button type="submit" class="secondary" id="account-save-role">Сохранить роль</button>
@@ -152,51 +158,83 @@ function adminPanels(model){
  <button type="button" class="secondary" data-account-task="delete">Удалить пользователя</button></div></div>
  </form>
  <details class="ux-disclosure"><summary>Добавить пользователя</summary><div class="disclosure-body">
- <form data-account-action="create">${accountNames()}${roleField('viewer')}<button type="submit">Добавить пользователя</button></form>
- </div></details></section>`;
+ <form class="account-form" data-account-action="create">${accountNames()}${roleField('viewer')}<button type="submit">Добавить пользователя</button></form>
+ </div></details>`,'user');
 }
-function drawAccount(model=null){
+function tokenPanel(tokens, users=[]){
+ const date=value=>value?esc(new Date(value*1000).toLocaleString('ru-RU')):'—';
+ return accountCard('tokens','Токены API',`<p class="hint">Токен действует с правами владельца. При смене роли он отзывается. Сохраните новый токен: он показывается один раз.</p>
+ <form class="account-form" data-account-action="token-create"><label class="field"><span>Название токена</span><input name="name" required maxlength="80" autocomplete="off"></label>
+ <label class="field"><span>Действует до</span><input type="datetime-local" name="expires_at" required></label>
+ <button type="submit" class="secondary">Создать токен</button></form>
+ ${journalTable(['Название','Владелец','Создан','Действует до','Последнее использование','Состояние','Действия'],tokens.map(t=>{
+  const owner=users.find(u=>u.id===t.user_id)||currentUser;
+  const active=!t.revoked_at&&t.expires_at>Date.now()/1000;
+  return [esc(t.name),esc(`${owner.last_name} ${owner.first_name}`),date(t.created_at),date(t.expires_at),date(t.last_used_at),t.revoked_at?'Отозван':active?'Действует':'Истёк',active?`<button type="button" class="secondary" data-account-task="token-revoke" data-token-id="${t.id}">Отозвать</button>`:'—'];
+ }))}`,'file');
+}
+function showToken(value){
+ $('#prompt-content').innerHTML=`<p class="hint">Сохраните токен. После закрытия окна получить его снова нельзя.</p><label class="field"><span>Токен API</span><input id="issued-token" readonly autocomplete="off"></label><div class="account-actions"><button type="button" id="copy-token">Копировать токен</button><button type="button" class="secondary" data-dialog-close>Закрыть</button></div><p class="account-message" role="status"></p>`;
+ $('#issued-token').value=value;
+ $('#copy-token').onclick=async()=>{
+  const input=$('#issued-token');
+  try{await navigator.clipboard.writeText(input.value);$('#prompt-content .account-message').textContent='Скопировано.';}
+  catch(_){input.focus();input.select();$('#prompt-content .account-message').textContent='Скопируйте выделенное значение.';}
+ };
+ promptWindow.open({title:'Новый токен API',focus:$('#copy-token')});
+}
+function accountPage(){
+ if(!accountData){
+  loadAccount().catch(error=>notifyWorkspace(error.message));
+  return title('Настройки','Личные данные, доступ и токены API.')+'<p class="hint" role="status">Загрузка…</p>';
+ }
+ const {model,tokens}=accountData;
  const user=currentUser;
- $('#account-content').innerHTML=`<p class="account-message" role="status"></p>
- <section class="account-section"><h3>Личные данные</h3><p class="hint">${roleNames[user.role]}</p>
- <form data-account-action="profile">${accountNames(user)}<button type="submit" class="secondary">Сохранить имя</button></form></section>
+ const keys=Object.keys(accountTabLabels).filter(key=>model||!['assistants','paths','users'].includes(key));
+ if(!keys.includes(accountTab))accountTab='profile';
+ return title('Настройки','Личные данные, рабочие пути, пользователи и токены API.')+`<div id="account-page">
+ <p class="account-message" role="status"></p>${accountTabs(keys.map(key=>[key,accountTabLabels[key]]))}
+ ${accountCard('profile','Личные данные',`<p class="hint">${roleNames[user.role]}</p><form class="account-form" data-account-action="profile">${accountNames(user)}<button type="submit" class="secondary">Сохранить имя</button></form>`,'user')}
  ${model?adminPanels(model):''}
- <div class="account-actions"><button type="button" class="secondary" data-account-task="self-rotate">Сменить код входа</button>
- <button type="button" class="secondary" data-account-task="logout">Выйти из системы</button></div>`;
- $('#account-content').querySelectorAll('select').forEach(enhanceSelect);
- if(!model)return;
- const form=$('[data-account-action="role"]');
- form.elements.id.addEventListener('change',()=>{
-  const target=model.users.find(u=>u.id===Number(form.elements.id.value));
-  $('#account-user-tools').hidden=!target;
-  if(!target)return;
-  form.elements.role.value=target.role;
-  form.elements.role.dispatchEvent(new Event('smart-sync'));
-  form.elements.role.closest('.field').hidden=target.id===user.id;
-  $('#account-save-role').hidden=target.id===user.id;
-  form.querySelector('[data-account-task="delete"]').hidden=target.id===user.id;
- });
+ ${tokenPanel(tokens,model?.users)}
+ ${accountCard('access','Вход и сеанс',`<div class="account-actions"><button type="button" class="secondary" data-account-task="self-rotate">Сменить код входа</button><button type="button" class="secondary" data-account-task="logout">Выйти из системы</button></div>`,'clock')}
+ </div>`;
 }
 
 let accountBusy=false;
-async function accountAction(run, message=$('#account-content .account-message')){
+async function accountAction(run, message=$('#account-page .account-message')){
  if(accountBusy)return;
  accountBusy=true;
  if(message)message.textContent='';
  try{await run();}
  catch(error){
-  if(message){
-   if(message.id==='settings-message')notifyWorkspace(error.message);
-   else message.textContent=error.message;
-  }
+  if(message&&message.id!=='settings-message')message.textContent=error.message;
+  else notifyWorkspace(error.message);
  }
  finally{accountBusy=false;}
 }
 
+async function loadAccount(){
+ if(accountLoading)return accountLoading;
+ accountLoading=(async()=>{
+  try{
+   const model=currentUser.role==='admin'?await api('/api/admin'):null;
+   const tokens=await api(currentUser.role==='admin'?'/api/admin/tokens':'/api/account/tokens');
+   accountData={model,tokens};
+   if(workspaceView==='account')render();
+  }finally{accountLoading=null;}
+ })();
+ return accountLoading;
+}
+
 async function updateAccount(){
- const content=$('#account-content');window.ITDDesign?.setLoading(true,content);
- try{drawAccount(currentUser.role==='admin'?await api('/api/admin'):null);}
- finally{window.ITDDesign?.setLoading(false,content);}
+ await loadAccount();
+}
+
+async function openAccount(){
+ if(workspaceView!=='account')accountTab='profile';
+ await loadAccount();
+ navigate('account');
 }
 
 function suspendWorkspace(){
@@ -257,21 +295,23 @@ function startAccount(){
   signIn(raw.includes('/#')?raw.split('/#').pop():raw);
  });
  $('#session-logout').addEventListener('click',()=>accountAction(logoutWorkspace));
- $('#account-open').addEventListener('click',()=>accountAction(async()=>{
-  await updateAccount();
-  accountWindow.open({focus:$('#account-content input')});
- }));
- const content=$('#account-content');
+ $('#account-open').addEventListener('click',()=>accountAction(openAccount));
+ const content=$('#content');
  content.addEventListener('submit',e=>{
+  if(!e.target.closest('#account-page'))return;
   e.preventDefault();
   e.stopPropagation();
   const form=e.target;
   const operation=form.dataset.accountAction;
   const data=Object.fromEntries(new FormData(form));
   accountAction(async()=>{
-   if(operation==='profile'){
+   if(operation==='token-create'){
+    const result=await api('/api/account/tokens/create',{name:data.name,expires_at:new Date(data.expires_at).getTime()/1000});
+    showToken(result.token);
+    await updateAccount();
+   }else if(operation==='profile'){
     setProfile(await api('/api/account/profile',data));
-    content.querySelector('.account-message').textContent='Личные данные сохранены.';
+    $('#account-page .account-message').textContent='Личные данные сохранены.';
    }else if(operation==='settings'){
     const message='Применить рабочие пути? При изменении остальные сеансы завершатся.'+
      (dirty||formDirty?' Несохранённый ввод будет потерян.':'');
@@ -286,7 +326,7 @@ function startAccount(){
    }else if(operation==='role'){
     await api('/api/admin/role',{...data,id:Number(data.id)});
     await updateAccount();
-    content.querySelector('.account-message').textContent='Роль сохранена.';
+    $('#account-page .account-message').textContent='Роль сохранена.';
    }else if(operation==='create'){
     const result=await api('/api/admin/create',data);
     showCode(result.code);
@@ -296,17 +336,21 @@ function startAccount(){
  });
  content.addEventListener('click',e=>{
   const button=e.target.closest('[data-account-task]');
-  if(!button)return;
+  if(!button||!button.closest('#account-page'))return;
   accountAction(async()=>{
    const task=button.dataset.accountTask;
    const id=Number($('[data-account-action="role"]')?.elements.id.value);
-   if(task==='logout'){
+   if(task==='assistants'){document.dispatchEvent(new Event('itd:assistant-admin'));}else if(task==='token-revoke'){
+    if(!await confirmWorkspace('Отозвать токен? Запросы с ним перестанут работать.','Отозвать'))return;
+    await api(currentUser.role==='admin'?'/api/admin/tokens/revoke':'/api/account/tokens/revoke',{id:Number(button.dataset.tokenId)});
+    await updateAccount();
+   }else if(task==='logout'){
     await logoutWorkspace();
    }else if(task==='delete'){
     if(!await confirmWorkspace('Удалить выбранного пользователя? Его сеансы завершатся.','Удалить'))return;
     await api('/api/admin/delete',{id});
     await updateAccount();
-    content.querySelector('.account-message').textContent='Пользователь удалён.';
+    $('#account-page .account-message').textContent='Пользователь удалён.';
    }else{
     if(!await confirmWorkspace('Сменить код входа? Прежний код и другие сеансы перестанут работать.','Сменить код'))return;
     const result=await (task==='self-rotate'?api('/api/account/rotate',{}):api('/api/admin/rotate',{id}));
@@ -315,7 +359,26 @@ function startAccount(){
    }
   });
  });
- window.addEventListener('hashchange',()=>{
+ content.addEventListener('click',e=>{
+   const tab=e.target.closest('[data-account-tab]');
+   if(!tab||!tab.closest('#account-page'))return;
+   accountTab=tab.dataset.accountTab;
+   render();
+  });
+  content.addEventListener('change',e=>{
+   const select=e.target;
+   if(select.name!=='id'||!select.closest('[data-account-action="role"]'))return;
+   const form=select.form;
+   const target=accountData?.model?.users.find(u=>u.id===Number(select.value));
+   $('#account-user-tools').hidden=!target;
+   if(!target)return;
+   form.elements.role.value=target.role;
+   form.elements.role.dispatchEvent(new Event('smart-sync'));
+   form.elements.role.closest('.field').hidden=target.id===currentUser.id;
+   $('#account-save-role').hidden=target.id===currentUser.id;
+   form.querySelector('[data-account-task="delete"]').hidden=target.id===currentUser.id;
+  });
+  window.addEventListener('hashchange',()=>{
   if(/^[A-Za-z0-9_-]{43}$/.test(location.hash.slice(1)))location.reload();
  });
  (async()=>{

@@ -12,15 +12,15 @@ const manualOperations={
 };
 async function downloadManual(path,name){const r=await fetch(path,{headers:{'X-ITD-Token':token}});if(!r.ok)throw Error((await r.json()).error);const url=URL.createObjectURL(await r.blob());const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function manualPage(){
- if(!pdata)return title('Ручное ведение','Выберите сохранённый раздел для управления его данными.')+projectSelector();
- return title('Ручное ведение раздела','Изменения сохраняются в общую БД и доступны агенту.')+`<div class="section-toolbar">${projectSelector()}</div><div id="manual-app"></div>`;
+ if(!pdata)return title('Ручное ведение','Выберите рабочий раздел на вкладке «Обзор».')+'<button data-view="overview">Открыть обзор</button>';
+ return title('Ручное ведение раздела','Изменения сохраняются в общую БД и доступны агенту.')+`<div id="manual-app"></div>`;
 }
 function originalManualFile(file){return action(()=>downloadManual('/api/v1/original?project_id='+projectId+'&attachment_id='+file.id,file.original_name));}
 function mountManual(){
  const host=$('#manual-app');if(!host)return;
  const pid=projectId,workspace=currentUser.workspace_id;
  window.ITDDesign.renderManualRecords(host,{projectId:pid,workspaceId:workspace,role:currentUser.role,operations:manualOperations,
-  getToken:registryToken,onSessionExpired:suspendWorkspace,onManual:openWorkflowManual,onResource:openResourceItemById,onOriginal:originalManualFile,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
+  initialProject:pdata,getToken:registryToken,onSessionExpired:suspendWorkspace,onManual:openWorkflowManual,onResource:openResourceItemById,onOriginal:originalManualFile,onDelete:deleteProjectRecord,onChanged:value=>registryChanged(host,pid,workspace,value),isDirty:registryDirty});
 }
 function manualOptions(collection){
  const m=pdata.manual;
@@ -30,7 +30,7 @@ function manualOptions(collection){
   releases:pdata.releases.filter(r=>r.selected&&r.mode==='final'),attachments:pdata.attachments.filter(a=>pdata.project_attachment_ids.includes(a.id)),forms:pdata.forms,
   catalog:pdata.catalog.filter(f=>!pdata.forms.some(x=>x.code===f.code))};
  return (lists[collection]||[]).map(r=>[r.code&&['forms','catalog'].includes(collection)?r.code:r.id,
-   collection==='signatories'?r.name:r.act_num?r.act_num+' «'+(pdata.forms.find(f=>f.code===r.act_type)?.name||r.act_type)+'»':(r.id?'№ '+r.id+' · ':'')+(r.name||r.full_name||r.title||r.description||r.source_key||r.recipient||r.work_description||r.code||'Организация № '+r.org_id)]);
+   collection==='signatories'?r.name:r.act_num?r.act_num+' «'+(pdata.forms.find(f=>f.code===r.act_type)?.name||r.act_type)+'»':(r.id?'№ '+r.id+'. ':'')+(r.name||r.full_name||r.title||r.description||r.source_key||r.recipient||r.work_description||r.code||'Организация № '+r.org_id)]);
 }
 function manualField(name,label,type='text',options=null,value=null,required=false){
  const req=required?'required':'';
@@ -145,9 +145,9 @@ function previewMissingLabel(path,fields){
  const field=fields.find(f=>f.key===parts[0]);
  if(!field)return 'Незаполненное поле (подробности в технических данных)';
  const column=field.columns?.find(c=>c.key===parts[2]);
- const row=/^\d+$/.test(parts[1]||'')?' · строка '+Number(parts[1]):'';
+ const row=/^\d+$/.test(parts[1]||'')?'. строка '+Number(parts[1]):'';
  const details={fio:'ФИО',fio_short:'ФИО',position:'должность',nrs_id:'номер в НРС',short_name:'название организации',full_name:'название организации'};
- return field.label+row+(column?' · '+column.label:parts.length>1?' · '+(details[parts.at(-1)]||'сведения представителя'):'');
+ return field.label+row+(column?'. '+column.label:parts.length>1?'. '+(details[parts.at(-1)]||'сведения представителя'):'');
 }
 function previewContent(value){
  const fields=value.preview_fields||[];
@@ -165,7 +165,7 @@ function previewActHtml(id,value){
  if(typeof currentUser!=='undefined'&&currentUser?.role==='viewer')return card('Просмотр документа',`<p class="preview-act-name">${esc(value.act_num)} «${esc(value.form_name||value.act_type)}»</p><p class="hint">Сведения текущей карточки документа. Доступен только просмотр.</p>${previewContent(value)}<div class="ux-form-actions"><button type="button" class="secondary" data-action="cancel-entry">Закрыть</button></div>`,'file');
  const fields=value.preview_fields||[],missing=value.missing||[],issues=value.source_issues||[],claims=value.static_claims||[];
  const blocked=!!(missing.length||issues.length||value.template_error),needsReview=claims.length&&!value.review_current;
- const issuesHtml=issues.map(issue=>`<li>${esc(findingNames[issue.code]||'Нужно проверить связь с источником')}${issue.entry_id?' · запись № '+Number(issue.entry_id):''}${issue.supply_id?' · поставка № '+Number(issue.supply_id):''}</li>`).join('');
+ const issuesHtml=issues.map(issue=>`<li>${esc(findingNames[issue.code]||'Нужно проверить связь с источником')}${issue.entry_id?'. запись № '+Number(issue.entry_id):''}${issue.supply_id?'. поставка № '+Number(issue.supply_id):''}</li>`).join('');
  const check=missing.length?`<p>Заполните обязательные сведения:</p><ul>${[...new Set(missing.map(path=>previewMissingLabel(path,fields)))].map(label=>`<li>${esc(label)}</li>`).join('')}</ul>`:'<p>Обязательные сведения заполнены.</p>';
  return card('Проверка и создание документа',`<p class="preview-act-name">${esc(value.act_num)} «${esc(value.form_name||value.act_type)}»</p><p class="hint">Проверьте сведения, затем создайте черновик для просмотра в Word или окончательный DOCX. Здесь показано содержание; расположение на печатных страницах проверяется в созданном файле.</p><nav class="preview-steps" aria-label="Порядок подготовки"><span>1. Проверьте сведения</span><span>2. Подтвердите утверждения бланка</span><span>3. Создайте DOCX</span></nav>
  <section class="preview-section preview-check"><h3>Что нужно проверить</h3>${check}${value.template_error?`<p role="alert">${esc(value.template_error)}</p>`:''}${issues.length?`<p>Связанные источники требуют повторной проверки:</p><ul>${issuesHtml}</ul>`:'<p>Изменений в связанных источниках не найдено.</p>'}<div class="toolbar"><button class="secondary" data-preview-edit="act-edit" data-act="${id}">Изменить сведения акта</button><button class="secondary" data-preview-edit="act-composition" data-act="${id}">Изменить ресурсы и схемы</button>${issues.length?`<button class="secondary" data-preview-edit="sources-review" data-act="${id}">Повторно сверить источники</button>`:''}</div></section>

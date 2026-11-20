@@ -13,6 +13,14 @@ def execute(accounts, actor, operation, data):
 
 
 def _execute(accounts, actor, operation, data):
+    if operation == 'token-list':
+        return accounts.list_tokens(actor.user_id)
+    if operation == 'token-list-all':
+        return accounts.list_tokens()
+    if operation == 'token-create':
+        return accounts.create_token(actor.user_id, data)
+    if operation in ('token-revoke', 'token-revoke-any'):
+        return accounts.revoke_token(data.get('id'), actor.user_id if operation == 'token-revoke' else None)
     if operation == 'list':
         return accounts.list()
     if operation == 'profile':

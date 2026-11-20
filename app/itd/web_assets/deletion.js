@@ -56,7 +56,7 @@ async function previewRecordDeletion(entity,id){
  }).join('')}<p class="hint">${esc(plan.archive_note)}</p><p role="alert" data-delete-error hidden></p>`;
  dialog.querySelector('[data-confirm-record-delete]').disabled=false;
  dialog.querySelector('[data-confirm-record-delete]').onclick=async event=>{
-  const button=event.currentTarget;button.disabled=true;
+  const button=event.currentTarget;if(button.dataset.busy)return;button.dataset.busy='1';
   try{
    if(pid!==projectId||objectId!==state.object.id)throw Error('Выбран другой объект или раздел. Откройте предупреждение заново.');
    await api('/api/action',{project_id:pid,action:'delete-apply',data:{entity,id,token:plan.token}});
@@ -67,7 +67,7 @@ async function previewRecordDeletion(entity,id){
     await loadProject(state.projects.some(p=>p.id===pid)?pid:state.projects[0]?.id||null);
    }else{state={object:{},participants:[],projects:[],token:null};await loadProject(null);workspaceView='objects';}
    render();toast('Запись удалена. Связанные данные обновлены.');
-  }catch(error){const message=dialog.querySelector('[data-delete-error]');message.textContent=error.message;message.hidden=false;button.disabled=false;}
+  }catch(error){const message=dialog.querySelector('[data-delete-error]');message.textContent=error.message;message.hidden=false;}finally{delete button.dataset.busy;}
  };
  recordDeleteWindow.open({focus:dialog.querySelector('.ux-form-actions [data-dialog-close]')});
 }

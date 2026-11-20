@@ -8,10 +8,10 @@ from ..paths import ROOT
 
 def validate_canonical(root):
     root = Path(root).resolve()
-    if root == (ROOT / 'app/knowledge').resolve():
-        entries = manifest_entries(ROOT / 'app/knowledge-integrity.sha256')
+    if root == (ROOT / 'ai/knowledge').resolve():
+        entries = manifest_entries(ROOT / 'ai/knowledge-integrity.sha256')
         verify_files(ROOT, entries)
-        expected = {name.removeprefix('app/knowledge/') for name in entries}
+        expected = {name.removeprefix('ai/knowledge/') for name in entries}
         actual = {str(p.relative_to(root)) for p in root.rglob('*') if p.is_file()
                   and '__pycache__' not in p.parts and p.suffix not in ('.db', '.sqlite', '.sqlite3')}
         if actual != expected:
@@ -23,7 +23,8 @@ def execute(ctx, command, args):
     validate_canonical(root)
     index = knowledge.default_index(ctx.database)
     if command in ('knowledge-status', 'knowledge-validate'):
-        return knowledge.status(root, index)
+        from .versions import skills_version
+        return {**knowledge.status(root, index), 'skills_version': skills_version()}
     if command == 'knowledge-index':
         return knowledge.build_index(root, index)
     if command == 'knowledge-show':

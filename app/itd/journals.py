@@ -91,7 +91,7 @@ def journal_data(c, project_id):
         if entry['kind'] == 'journal' and fields.get('journal_section') == '1':
             for key, query, target in (
                 ('org_id', 'SELECT full_name FROM organizations WHERE id=?', 'organization'),
-                ('person_id', "SELECT fio || ' · ' || position FROM signatories WHERE id=?", 'person')):
+                ('person_id', "SELECT fio || '. ' || position FROM signatories WHERE id=?", 'person')):
                 linked = c.execute(query, (fields.get(key),)).fetchone()
                 if linked:
                     fields[target] = linked[0]

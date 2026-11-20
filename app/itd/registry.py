@@ -119,7 +119,7 @@ def registry_rows(connection, project_id, *, registry_act_id=None, detailed=Fals
                 f'{page}–{page + sheets - 1}' if page and sheets else '')
             page = page + sheets if page and sheets else None
             date_text = date.fromisoformat(row['date']).strftime('%d.%m.%Y') if row['date'] else ''
-            row['number_date'] = ' · '.join(part for part in (row['number'], date_text) if part)
+            row['number_date'] = '. '.join(part for part in (row['number'], date_text) if part)
             row['organization'] = ''
             if row['entity'] == 'act':
                 organizations = connection.execute(

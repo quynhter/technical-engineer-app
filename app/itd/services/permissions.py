@@ -173,6 +173,9 @@ WEB_READS = {
 }
 
 ACCOUNT_POLICIES = {
+    'token-list': Policy('viewer', False), 'token-create': Policy('viewer', True),
+    'token-revoke': Policy('viewer', True), 'token-list-all': Policy('admin', False),
+    'token-revoke-any': Policy('admin', True),
     'list': Policy('admin', False), 'profile': Policy('viewer', True),
     'rotate-self': Policy('viewer', True), 'create': Policy('admin', True),
     'role': Policy('admin', True), 'delete': Policy('admin', True),

@@ -14,7 +14,7 @@ function functionField(field,locked=false,mode='version',roots=pdata.form_roots|
  return `<div class="field wide document-function-field" data-document-field="${esc(field.key)}" data-field-definition="${esc(JSON.stringify(field))}" data-field-mode="${mode}">
   <label for="document-value-${esc(field.key)}">${esc(field.label||field.key)}${field.required?' *':''}</label>
   <div class="document-function-control"><div data-function-control>${linked||type==='text'?`<textarea id="document-value-${esc(field.key)}" ${name} ${linked?'readonly':''} ${locked?'disabled':''}>${esc(value)}</textarea>`:`<input id="document-value-${esc(field.key)}" ${name} type="${type}" ${type==='number'?'step="any"':''} value="${esc(value)}" ${locked?'disabled':''}>`}</div><button type="button" class="secondary function-toggle" data-field-function aria-label="Выбрать источник: ${esc(field.label||field.key)}" aria-pressed="false" title="Выбрать поле базы данных" ${locked?'disabled':''}><svg class="function-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 4h-2a3 3 0 0 0-3 2.5l-2 11A3 3 0 0 1 7 20H6M8 10h8"/></svg></button></div>
-  <span class="hint function-source" data-function-source>${linked?esc(fieldSourceLabel(field))+' · '+esc(field.source||'Представление подписанта'):''}</span>
+  <span class="hint function-source" data-function-source>${linked?esc(fieldSourceLabel(field))+'. '+esc(field.source||'Представление подписанта'):''}</span>
  </div>`;
 }
 function collectFunctionFields(form){
@@ -28,7 +28,7 @@ function collectFunctionFields(form){
 function functionSourceOptions(field){
  const choices=functionFieldSources().filter(item=>!field.date_group||item.value_type==='date'),groups=new Map();
  for(const choice of choices){if(!groups.has(choice.group))groups.set(choice.group,[]);groups.get(choice.group).push(choice);}
- return `<option value="__manual__">Вводить текст вручную</option>${field.kind!=='literal'?'<option value="__current__" selected>Сохранить текущую связь · '+esc(field.source||'Подписант')+'</option>':'<option value="" selected>Найдите таблицу и поле…</option>'}`+[...groups].map(([label,items])=>`<optgroup label="${esc(label)}">${items.map(item=>`<option value="${esc(item.source)}">${esc(item.group+' · '+item.label)}</option>`).join('')}</optgroup>`).join('');
+ return `<option value="__manual__">Вводить текст вручную</option>${field.kind!=='literal'?'<option value="__current__" selected>Сохранить текущую связь. '+esc(field.source||'Подписант')+'</option>':'<option value="" selected>Найдите таблицу и поле…</option>'}`+[...groups].map(([label,items])=>`<optgroup label="${esc(label)}">${items.map(item=>`<option value="${esc(item.source)}">${esc(item.group+'. '+item.label)}</option>`).join('')}</optgroup>`).join('');
 }
 document.addEventListener('click',e=>{
  const button=e.target.closest('[data-field-function]');if(!button||button.disabled)return;

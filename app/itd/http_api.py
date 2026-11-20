@@ -1,5 +1,6 @@
 """FastAPI transport over the shared workspace and role-checked services."""
 import asyncio
+from contextlib import asynccontextmanager
 import binascii
 import json
 import logging
@@ -14,6 +15,7 @@ from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 
 from .accounts import SessionExpired
+from .http_origin import request_origin
 from .paths import default_templates, itd_root, previous_itd_roots
 from .services.context import Actor, ServiceContext, WorkspaceActionInput
 from .services.operations import execute_web
@@ -42,10 +44,10 @@ def check_site(request):
     if not address:
         raise PermissionError('Недопустимый адрес сервера')
     host = f'{address[0]}:{address[1]}'
-    if request.headers.getlist('host') != [host]:
-        raise PermissionError('Недопустимый адрес сервера')
+    expected = request_origin(request.headers.getlist('host'), host, request.url.scheme,
+                              getattr(request.app.state.workspace, 'public_origin', None))
     origin = request.headers.get('origin')
-    if origin and origin != request.url.scheme + '://' + host:
+    if origin and origin != expected:
         raise PermissionError('Запрос с другого сайта отклонён')
 
 
@@ -66,8 +68,19 @@ def failure(request, error):
     return error_response(request, 'Операция не завершена. Проверьте данные и доступность файлов.', 500, 'internal_error')
 
 
-def authenticate(state, token, *, touch=True):
-    user = state.accounts.authenticate(token, touch=touch)
+def request_credentials(request):
+    authorization = request.headers.getlist('authorization')
+    if authorization:
+        parts = authorization[0].split()
+        if len(authorization) != 1 or len(parts) != 2 or parts[0].lower() != 'bearer':
+            raise SessionExpired('Токен недействителен или отозван')
+        return parts[1], True
+    return request.headers.get('x-itd-token', ''), False
+
+
+def authenticate(state, token, *, touch=True, bearer=False):
+    method = state.accounts.authenticate_token if bearer else state.accounts.authenticate
+    user = method(token, touch=touch)
     return {**user, 'workspace_id': state.workspace_id}
 
 
@@ -78,7 +91,7 @@ def context(state, database):
                           settings={'plan_secret': state.plan_secret})
 
 
-def dispatch(state, route, query, data, token):
+def dispatch(state, route, query, data, token, bearer=False):
     write = data is not None
     with state.workspace_scope(write=write) as database:
         if route == '/api/login' and write:
@@ -86,12 +99,15 @@ def dispatch(state, route, query, data, token):
             result['user']['workspace_id'] = state.workspace_id
             state.accounts.discard_session(token)
             return result
-        user = authenticate(state, token, touch=route != '/api/status' and 'poll' not in query)
+        user = authenticate(state, token, touch=route != '/api/status' and 'poll' not in query, bearer=bearer)
         actor = Actor(user_id=user['id'], role=user['role'], source='web')
         ctx = context(state, database)
         if not write:
             if route == '/api/account':
                 return user
+            if route in ('/api/account/tokens', '/api/admin/tokens'):
+                return account_operation(state.accounts, actor,
+                                         'token-list-all' if route == '/api/admin/tokens' else 'token-list', {})
             if route == '/api/admin':
                 return {'settings': state.settings(), 'users': account_operation(state.accounts, actor, 'list', {})}
             return query_web(ctx, actor, route, query,
@@ -101,6 +117,10 @@ def dispatch(state, route, query, data, token):
             return {'ok': True}
         if route == '/api/account/profile':
             return account_operation(state.accounts, actor, 'profile', data)
+        if route in ('/api/account/tokens/create', '/api/account/tokens/revoke', '/api/admin/tokens/revoke'):
+            operation = ('token-create' if route.endswith('/create') else
+                         'token-revoke-any' if route.startswith('/api/admin/') else 'token-revoke')
+            return account_operation(state.accounts, actor, operation, data)
         if route == '/api/account/rotate':
             return account_operation(state.accounts, actor, 'rotate-self', data)
         if route.startswith('/api/admin/'):
@@ -114,12 +134,12 @@ def dispatch(state, route, query, data, token):
         return execute_web(ctx, actor, route, data)
 
 
-async def workspace_events(state, token, *, interval=1):
+async def workspace_events(state, token, *, interval=1, bearer=False):
     """No transaction or workspace lock is held while waiting for a client."""
     previous = None
     while True:
         try:
-            await run_in_threadpool(state.accounts.authenticate, token, touch=False)
+            await run_in_threadpool(authenticate, state, token, touch=False, bearer=bearer)
         except PermissionError:
             yield 'event: session-expired\ndata: {"code":"session_expired"}\n\n'
             return
@@ -135,8 +155,14 @@ async def workspace_events(state, token, *, interval=1):
 
 def create_app(state):
     """Accept a prepared shared workspace; importing/factory calls do not migrate DBs."""
-    app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
+    @asynccontextmanager
+    async def lifespan(app):
+        yield
+        await app.state.assistant_runtime.close()
+    app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
     app.state.workspace = state
+    from .assistant_http import install
+    install(app,state)
 
     @app.exception_handler(HTTPException)
     async def http_error(request, error):
@@ -161,9 +187,10 @@ def create_app(state):
                     data = json.loads(b''.join(chunks))
                     if not isinstance(data, dict):
                         raise ValueError('Требуется объект JSON')
+                token, bearer = request_credentials(request)
                 result = await run_in_threadpool(dispatch, state, route,
                                                 parse_qs(request.url.query, keep_blank_values=True),
-                                                data, request.headers.get('x-itd-token', ''))
+                                                data, token, bearer)
                 if isinstance(result, FileResult):
                     return Response(result.content, media_type=result.mime,
                                     headers={**SECURITY_HEADERS, 'Content-Disposition': "attachment; filename*=UTF-8''" + quote(result.filename)})
@@ -172,8 +199,9 @@ def create_app(state):
                 return failure(request, error)
         return handle
 
-    reads = set(WEB_READS) | {'/api/account', '/api/admin'}
+    reads = set(WEB_READS) | {'/api/account', '/api/admin', '/api/account/tokens', '/api/admin/tokens'}
     posts = set(WEB_POSTS) | {'/api/login', '/api/logout', '/api/account/profile', '/api/account/rotate',
+                            '/api/account/tokens/create', '/api/account/tokens/revoke', '/api/admin/tokens/revoke',
                             '/api/admin/settings', '/api/admin/create', '/api/admin/role', '/api/admin/delete', '/api/admin/rotate'}
     for post, routes in ((False, reads), (True, posts)):
         for route in sorted(routes):
@@ -189,9 +217,9 @@ def create_app(state):
     async def events(request: Request):
         try:
             check_site(request)
-            token = request.headers.get('x-itd-token', '')
-            await run_in_threadpool(state.accounts.authenticate, token, touch=False)
-            return StreamingResponse(workspace_events(state, token), media_type='text/event-stream',
+            token, bearer = request_credentials(request)
+            await run_in_threadpool(authenticate, state, token, touch=False, bearer=bearer)
+            return StreamingResponse(workspace_events(state, token, bearer=bearer), media_type='text/event-stream',
                                      headers={**SECURITY_HEADERS, 'X-Accel-Buffering': 'no'})
         except Exception as error:
             return failure(request, error)
@@ -200,7 +228,8 @@ def create_app(state):
     async def api_schema(request: Request):
         try:
             check_site(request)
-            await run_in_threadpool(state.accounts.authenticate, request.headers.get('x-itd-token', ''), touch=False)
+            token, bearer = request_credentials(request)
+            await run_in_threadpool(authenticate, state, token, touch=False, bearer=bearer)
             return JSONResponse(app.openapi(), headers=SECURITY_HEADERS)
         except Exception as error:
             return failure(request, error)

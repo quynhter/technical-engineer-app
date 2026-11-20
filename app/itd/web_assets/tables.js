@@ -216,7 +216,7 @@ function renderTableTotals(model,matched){
    }
    for(const [unit,sum] of sums)parts.push(`${tableLabel(headers,i)}: ${formatTableNumber(Math.round(sum*1000)/1000)}${unit?' '+unit:''}`);
   });
-  totalBox.textContent=parts.length&&matched.length?`Итого по отфильтрованным записям (${matched.length}) · ${parts.join(' · ')}`:'';
+  totalBox.textContent=parts.length&&matched.length?`Итого по отфильтрованным записям (${matched.length}). ${parts.join('. ')}`:'';
 }
 function tableCsvValue(value){return `"${String(value).replaceAll('"','""')}"`;}
 function tableExportName(table){
@@ -383,7 +383,7 @@ function applyDataTable(table,model){
   if(data.length&&!matched.length&&!noMatch){noMatch=document.createElement('tr');noMatch.dataset.tableNoMatch='';const cell=document.createElement('td');cell.colSpan=table.tHead.rows[0].cells.length;cell.className='empty';cell.innerHTML='По заданным условиям записей нет. Измените поиск или <button type="button" class="secondary" data-table-control="reset">сбросьте условия</button>.';noMatch.append(cell);body.append(noMatch);}
   if(noMatch)noMatch.hidden=matched.length>0||!data.length;
   const start=matched.length?prefs.page*prefs.size+1:0,end=Math.min((prefs.page+1)*prefs.size,matched.length);
-  const text=`${start}–${end} из ${matched.length}${filtered?' · всего '+total:''}`;
+  const text=`${start}–${end} из ${matched.length}${filtered?'. всего '+total:''}`;
   const pagination=model.footer||controls;
   const count=pagination.querySelector('[role="status"]');if(count.textContent!==text)count.textContent=text;
   pagination.querySelector('[data-table-control="prev"]').disabled=prefs.page===0;
@@ -401,7 +401,7 @@ function applyDataTable(table,model){
   }
   if(model.nativeFields){
    const active=[...model.fieldBox.querySelectorAll('[data-filter]')].filter(el=>el.type==='checkbox'?el.checked:el.value).length;
-   model.fieldBox.closest('details').querySelector('summary').textContent='Фильтр'+(active?' ('+active+')':'');
+   model.fieldBox.closest('details')?.querySelector('summary')?.replaceChildren('Фильтр'+(active?' ('+active+')':''));
   }
   if(model.chipBox)renderTableChips(model);
   if(model.totalBox)renderTableTotals(model,matched);

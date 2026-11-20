@@ -123,6 +123,7 @@ body{min-height:100vh;display:flex;flex-direction:column}.context{width:100%}mai
 pre,code{font-family:inherit}.next-steps{padding-left:0}.next-steps li::before{width:30px;height:30px;left:0}
 
 ::selection{background:var(--accent);color:#fff}
+:root[data-theme="dark"] ::selection{background:#8ed4c4;color:#0b161c}
 
 .workspace-dialog--wide{width:min(1000px,94vw)}
 #knowledge-title{margin:0;line-height:1.4}
@@ -469,31 +470,31 @@ button.account-avatar{position:relative;display:grid;place-items:center;flex:non
 .account-gear{position:absolute;right:-3px;bottom:-3px;display:grid;place-items:center;width:21px;height:21px;border:1px solid var(--line);border-radius:50%;background:var(--surface)}
 .account-gear svg{display:block;width:15px;height:15px}
 #login-form > button{margin-top:12px}
-.account-section{padding-block:16px;border-bottom:1px solid var(--line)}
-.account-section:first-of-type{padding-top:0}
-.account-section h3{margin:0 0 10px}
-.account-section form{display:grid;gap:10px}
-.account-section form > button{justify-self:start}
+[data-account-panel][hidden]{display:none}
+#account-page{display:flex;flex-direction:column;gap:var(--workspace-gap,16px)}
+#account-page>*{margin:0}
+.account-form{display:grid;gap:16px}
+.account-form > button{justify-self:start}
 .account-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.account-actions button,#account-dialog form button,#login-dialog form button{min-height:44px}
+.account-actions button,.account-form button,#login-dialog form button{min-height:44px}
 .account-message{color:var(--ink);overflow-wrap:anywhere}
 .account-message:empty{display:none}
 #issued-code{font-family:monospace}
-#account-dialog :focus-visible,#prompt-dialog :focus-visible,#login-dialog :focus-visible,.account-avatar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#account-page :focus-visible,#prompt-dialog :focus-visible,#login-dialog :focus-visible,.account-avatar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 body[data-role="viewer"] #new-object,
 body[data-role="viewer"] :is(#content,#editor-content,#editor-footer,#actions,#sidebar) button:not(
- :is([data-view],[data-open-object],[data-project],[data-tab],[data-package-panel],[data-org],
+ :is([data-view],[data-open-object],[data-project],[data-tab],[data-tab-menu],[data-package-panel],[data-org],
  [data-ojr-section],[data-journal-project],[data-requirements-open],[data-reset-filters],
  [data-table-control],[data-resource-facts],[data-resource-work],[data-preview],[data-file-card],[data-scheme-card],[data-edit-entry],[data-resource-card],[data-journal-edit],[data-special-edit],[data-open-knowledge],[data-dialog-close],
  [data-action="cancel-entry"],[data-action="back"],[data-action="next"],[data-action="close-editor"])
-){display:none}
+):not(#account-page button){display:none}
 body[data-role="viewer"] :is(#content,#editor-content) :is([data-upload-target],#source-type,#file-input,#source-file){display:none}
 @media(max-width:480px){
  .topbar-inner .header-tools{flex-wrap:wrap;gap:8px}
  .workspace-dialog--settings .dialog-bar button,.workspace-dialog--compact .dialog-bar button{min-width:44px;min-height:44px}
 }
 @media(prefers-reduced-motion:reduce){
- .account-avatar,#account-dialog button,#prompt-dialog button,#login-dialog button{transition:none}
+ .account-avatar,#account-page button,#prompt-dialog button,#login-dialog button{transition:none}
 }
 
 .version-tables [data-version-table]+[data-version-table]{margin-top:18px}

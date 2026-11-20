@@ -141,6 +141,9 @@ def save_workspace(c, data):
         raise ValueError('Неизвестный тип строительства')
     if values.get('developer_functions') not in (None, 'self', 'technical_customer'):
         raise ValueError('Неизвестная схема функций застройщика')
+    effective = {**(before['object'] if object_id else {}), **values}
+    if effective.get('control_self') and effective.get('control_external'):
+        raise ValueError('Строительный контроль не может одновременно осуществляться самим застройщиком (техзаказчиком) и сторонней организацией')
     if values.get('work_start') and values.get('work_end') and values['work_start'] > values['work_end']:
         raise ValueError('Дата начала работ позже даты окончания')
     if object_id is None:
@@ -244,7 +247,7 @@ def extend_journal_dates(c, project_id, dates, confirmation=None):
     obj = c.execute('SELECT * FROM objects WHERE id=?', (project['object_id'],)).fetchone()
     scopes = (
         ('objects', obj, 'work_start', 'work_end', 'Объект'),
-        ('projects', project, 'smr_start', 'smr_end', 'Раздел · СМР'),
+        ('projects', project, 'smr_start', 'smr_end', 'Раздел. СМР'),
     )
     changes = []
     for _, row, start, _, label in scopes:

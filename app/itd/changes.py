@@ -99,6 +99,8 @@ def update_record(connection, *, entity, record_id, changes, expected=None):
             raise ValueError("Неизвестный тип строительства")
         if combined["developer_functions"] not in (None, "self", "technical_customer"):
             raise ValueError("Неизвестная схема функций застройщика")
+        if combined.get("control_self") and combined.get("control_external"):
+            raise ValueError("Строительный контроль не может одновременно осуществляться самим застройщиком (техзаказчиком) и сторонней организацией")
         if combined["work_start"] and combined["work_end"] and combined["work_start"] > combined["work_end"]:
             raise ValueError("Дата начала работ позже даты окончания")
     if entity == "projects":

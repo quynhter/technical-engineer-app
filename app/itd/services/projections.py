@@ -75,7 +75,7 @@ def project_data(c, project_id):
     people={p['id']:p for p in result['journals']['directory']['people']}
     for entry in result['workspace_entries']:
         person=people.get(entry.get('responsible_id'))
-        if person: entry['responsible_display']=person['position']+' · '+person['fio']
+        if person: entry['responsible_display']=person['position']+'. '+person['fio']
 
     from ..form_catalog import catalog, available_forms
     result['catalog']=catalog()

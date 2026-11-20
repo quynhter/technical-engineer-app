@@ -14,6 +14,7 @@ import hmac
 from ipaddress import IPv4Address
 import logging
 import mimetypes
+import os
 from pathlib import Path
 import secrets
 import sqlite3
@@ -24,6 +25,7 @@ import webbrowser
 
 from .db import MIGRATIONS, connect, initialize
 from .accounts import Accounts, SessionExpired
+from .http_origin import public_origin, request_origin
 from .paths import ROOT, database_workspace, default_database, default_templates, itd_root, previous_itd_roots
 from .services.projections import bootstrap, project_data
 from .services.context import Actor, ServiceContext
@@ -87,9 +89,8 @@ class Handler(BaseHTTPRequestHandler):
         # Это поддерживает все интерфейсы без доверия произвольному Host/DNS.
         address, port = self.connection.getsockname()[:2]
         host = f'{address}:{port}'
-        if self.headers.get_all('Host') != [host]:
-            raise PermissionError('Недопустимый адрес сервера')
-        return 'http://' + host
+        return request_origin(self.headers.get_all('Host'), host, 'http',
+                              getattr(self.server, 'public_origin', None))
 
     def check_origin(self):
         expected_origin = self.check_host()
@@ -100,7 +101,16 @@ class Handler(BaseHTTPRequestHandler):
         self.check_origin()
         url = urlsplit(self.path)
         touch = url.path != '/api/status' and 'poll' not in parse_qs(url.query)
-        return {**self.server.accounts.authenticate(self.headers.get('X-ITD-Token', ''), touch=touch),
+        authorization = self.headers.get_all('Authorization')
+        method = self.server.accounts.authenticate
+        token = self.headers.get('X-ITD-Token', '')
+        if authorization:
+            parts = authorization[0].split()
+            if len(authorization) != 1 or len(parts) != 2 or parts[0].lower() != 'bearer':
+                raise SessionExpired('Токен недействителен или отозван')
+            token = parts[1]
+            method = self.server.accounts.authenticate_token
+        return {**method(token, touch=touch),
                 'workspace_id': self.server.workspace_id}
 
     def do_GET(self):
@@ -137,6 +147,11 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_bytes(path.read_bytes(), mimetypes.guess_type(path)[0] + '; charset=utf-8')
                 return
             user = self.authenticate()
+            if url.path in ('/api/account/tokens', '/api/admin/tokens'):
+                from .services.accounts import execute
+                self.send_json(execute(self.server.accounts, self.service_actor(user),
+                                       'token-list-all' if url.path == '/api/admin/tokens' else 'token-list', {}))
+                return
             if url.path == '/api/account':
                 self.send_json(user)
                 return
@@ -198,6 +213,11 @@ class Handler(BaseHTTPRequestHandler):
             return result
         user = self.authenticate()
         user_id = user['id']
+        if route in ('/api/account/tokens/create', '/api/account/tokens/revoke', '/api/admin/tokens/revoke'):
+            from .services.accounts import execute
+            operation = ('token-create' if route.endswith('/create') else
+                         'token-revoke-any' if route.startswith('/api/admin/') else 'token-revoke')
+            return execute(accounts, self.service_actor(user), operation, data)
         if route == '/api/logout':
             accounts.discard_session(token)
             return {'ok': True}
@@ -259,14 +279,16 @@ def create_server(database, port=None, host='127.0.0.1'):
         return WorkspaceServer((host, 0), database)
 
 
-def serve(database, port=None, open_browser=True, host='127.0.0.1'):
+def serve(database, port=None, open_browser=True, host='127.0.0.1', public_url=None):
+    configured_origin = public_origin(public_url)
     # Сначала занимаем порт: не создаём и не обновляем БД при конфликте.
     server = create_server(database, port, host)
+    server.public_origin = configured_origin
     try:
         from .logging_setup import configure
         configure(ROOT / 'logs')
         backup, code = server.prepare()
-        url = server.origin + '/' + ('#' + code if code else '')
+        url = (configured_origin or server.origin) + '/' + ('#' + code if code else '')
         print(f'Локальная форма ИТД: {url}', flush=True)
         if host == '0.0.0.0':
             print(f'Доступ по сети: http://<IPv4-адрес этого компьютера>:{server.server_port}/ '
@@ -292,11 +314,16 @@ def main():
     parser = argparse.ArgumentParser(description='Локальная форма ИТД')
     parser.add_argument('--db', type=Path, default=default_database())
     parser.add_argument('--port', type=int, default=None, help='Порт (по умолчанию 8765 или свободный); 0 — свободный')
-    parser.add_argument('--host', default='127.0.0.1', help='IPv4-адрес сервера; 0.0.0.0 — доступ по сети')
+    network = parser.add_mutually_exclusive_group()
+    network.add_argument('--host', default='127.0.0.1', help='IPv4-адрес сервера; 0.0.0.0 — доступ по сети')
+    network.add_argument('--public', dest='host', action='store_const', const='0.0.0.0',
+                         help='Разрешить подключения на всех сетевых интерфейсах')
+    parser.add_argument('--public-origin', default=os.environ.get('ITD_PUBLIC_ORIGIN'),
+                        help='Внешний http(s)://адрес[:порт] для Docker/прокси; также ITD_PUBLIC_ORIGIN')
     parser.add_argument('--no-browser', action='store_true')
     args = parser.parse_args()
     try:
-        serve(args.db, args.port, not args.no_browser, host=args.host)
+        serve(args.db, args.port, not args.no_browser, host=args.host, public_url=args.public_origin)
     except (ValueError, OSError, sqlite3.Error) as error:
         parser.exit(1, f'Ошибка: {error}\n')
 

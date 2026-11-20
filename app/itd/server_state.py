@@ -78,7 +78,7 @@ class WorkspaceState:
         if not folder.is_dir() and (folder.exists() or not folder.parent.is_dir()):
             raise ValueError('Укажите папку ИТД или новую папку в существующем каталоге')
         if any(folder == path or folder.is_relative_to(path) for path in
-               (ROOT / 'app', ROOT / 'skills', ROOT / 'db', ROOT / 'logs', ROOT / '.git',
+               (ROOT / 'app', ROOT / 'ai/skills', ROOT / 'db', ROOT / 'logs', ROOT / '.git',
                 database.parent / 'archive', database.parent / 'work', database.parent / 'backups')):
             raise ValueError('Выберите отдельную папку ИТД вне служебных каталогов')
         if database.is_relative_to(folder):

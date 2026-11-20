@@ -192,7 +192,7 @@ document.addEventListener('keydown',e=>{const el=e.target?.closest?.('[data-expa
 
 // One accessible upload surface for the section, RD, quality and resource import.
 function uploadZone(id,label,{multiple=false,accept='',maxMB=32,extra=''}={}){
- return `<div class="file-drop" data-upload-target="${id}" role="group" aria-label="${esc(label)}"><span class="drop-icon">${icon('upload')}</span><p>Перетащите ${multiple?'файлы':'файл'} сюда</p><span class="hint">или выберите на компьютере · до ${maxMB} МБ${multiple?' на файл':''}</span><div class="toolbar"><button type="button" data-pick-file="${id}">${esc(label)}</button>${extra}</div><input hidden tabindex="-1" aria-label="${esc(label)}" type="file" id="${id}" ${multiple?'multiple':''} accept="${accept}" data-max-mb="${maxMB}"></div>`;
+ return `<div class="file-drop" data-upload-target="${id}" role="group" aria-label="${esc(label)}"><span class="drop-icon">${icon('upload')}</span><p>Перетащите ${multiple?'файлы':'файл'} сюда</p><span class="hint">или выберите на компьютере. до ${maxMB} МБ${multiple?' на файл':''}</span><div class="toolbar"><button type="button" data-pick-file="${id}">${esc(label)}</button>${extra}</div><input hidden tabindex="-1" aria-label="${esc(label)}" type="file" id="${id}" ${multiple?'multiple':''} accept="${accept}" data-max-mb="${maxMB}"></div>`;
 }
 function validateUploadFiles(input,files){
  if(!input.multiple&&files.length>1)throw Error('Выберите один файл.');
@@ -252,3 +252,10 @@ function mountDialogFooter(){
 }
 const dialogBodyObserver=new MutationObserver(()=>mountDialogFooter());
 dialogBodyObserver.observe(document.getElementById('editor-content'),{childList:true,subtree:true});
+
+// Resolve the editor form within this dialog, even when another native form has the same id.
+document.getElementById('editor-footer').addEventListener('click',event=>{
+ const button=event.target.closest('button');if(!button||button.type!=='submit')return;
+ const owner=button.getAttribute('form'),form=[...document.querySelectorAll('#editor-content form')].find(form=>form.id===owner);
+ if(form&&button.form!==form){event.preventDefault();form.requestSubmit();}
+});
