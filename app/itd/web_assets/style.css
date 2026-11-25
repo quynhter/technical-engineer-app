@@ -509,8 +509,17 @@ body[data-role="viewer"] :is(#content,#editor-content) :is([data-upload-target],
 .document-scalar-fields{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
 .document-scalar-fields:empty{display:none}
 .document-scalar-fields>[data-document-field]{display:grid;gap:8px}
-#act-fields .document-field-title{margin:0;overflow-wrap:anywhere}
-#act-fields .document-field-title>label{color:var(--ink);font-size:1.125rem;font-weight:600;line-height:1.4}
+.document-field-title{margin:0;overflow-wrap:anywhere}
+.document-field-title>label{color:var(--ink);font-size:1.125rem;font-weight:600;line-height:1.4}
+.document-function-control>:is(input,textarea,.date-island,.itd-field-control){flex:1;min-width:0}
+.document-function-control [data-document-expression]{flex:none}
+.document-field-comment{margin:0}
+.document-scalar-fields .expression-manual{justify-self:start}
+.document-version-nav .version-nav{margin:0}
+#document-version-form [data-version-signers]{display:grid;min-width:0;gap:var(--workspace-gap)}
+#document-version-form .version-signer{padding-block-end:var(--workspace-gap)}
+#document-version-form .version-signer:last-child{padding-block-end:0;border-bottom:0}
+.version-linked-person{display:grid;gap:4px;overflow-wrap:anywhere}
 .document-scalar-fields .document-function-control textarea{min-height:60px}
 .document-scalar-fields [data-document-records]{gap:8px}
 .document-scalar-fields [data-template-preview]{color:var(--ink);font-size:.875rem}
@@ -524,15 +533,6 @@ body[data-role="viewer"] :is(#content,#editor-content) :is([data-upload-target],
 .version-tables .table-scroll .version-row-action{min-width:48px;width:48px;text-align:center}
 .version-tables [data-version-table-remove]{min-width:36px;min-height:36px;padding:4px}
 
-.signer-add-menu{margin-top:var(--ui-gap)}
-.signer-add-menu summary{
- display:inline-flex;align-items:center;min-height:var(--ui-control-height);padding:10px 16px;
- border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);
- font-size:13px;font-weight:600;cursor:pointer;list-style:none
-}
-.signer-add-menu summary::-webkit-details-marker{display:none}
-.signer-add-menu summary:hover{background:var(--soft);border-color:var(--teal)}
-.signer-add-menu button{display:block;margin-top:var(--ui-gap)}
 #prompt-content > p{white-space:pre-line}
 
 #incoming-day-form>.toolbar{margin-block-start:var(--ui-gap)}

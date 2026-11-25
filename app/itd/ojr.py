@@ -177,7 +177,7 @@ def signing_date_issues(c,act_id,date):
 
 
 @atomic_operation
-def sign_act(c,pid,data):
+def sign_act(c,pid,data,*,linked_signers=None):
     act=same_project(c,'acts',data['act_id'],pid)
     old=c.execute('SELECT * FROM act_execution_status WHERE act_id=?',(act['id'],)).fetchone()
     if data.get('expected_revision')!=(old['revision'] if old else 0): raise ValueError('Статус акта уже изменён')
@@ -194,9 +194,19 @@ def sign_act(c,pid,data):
             set_act_people(c,pid,act['id'],data['signatories'])
     people=act_people(c,act['id'])
     if state=='signed':
+        from .document_representatives import ROLE_PREFIX, linked_people, validate_linked_signer
+        if linked_signers is None:
+            linked_signers, pending = linked_people(c, pid, act['id'])
+            if pending:
+                raise ValueError('Выберите представителей во всех связанных полях документа')
+            for person in linked_signers.values():
+                validate_linked_signer(c, pid, person['id'], date)
+        people.update(linked_signers)
         if not act['is_active'] or not date or not people: raise ValueError('Для подписания нужны активный акт, дата и выбранные подписанты')
         signing_date_issues(c,act['id'],date)
         for role,p in people.items():
+            if role.startswith(ROLE_PREFIX):
+                continue
             try:
                 from .document_versions import validate_signer
                 validate_signer(c,pid,p['id'],role,date)
@@ -206,7 +216,15 @@ def sign_act(c,pid,data):
         if set(required_roles(c,act['id']))-people.keys(): raise ValueError('Выберите подписантов всех обязательных ролей формы')
         from .workspace import extend_journal_dates
         extend_journal_dates(c, pid, (date,), data.get('journal_dates_confirmation'))
-        c.execute('UPDATE acts SET date_signed=? WHERE id=?',(date,act['id']))
+        from .form_defaults import document_date_field, legacy_document_date
+        fields = json.loads(c.execute('SELECT fields FROM document_types WHERE code=?', (act['act_type'],)).fetchone()[0])
+        document_date = date
+        if document_date_field(act['act_type'], fields):
+            document_date = act['date_signed'] or legacy_document_date(
+                document_date_field(act['act_type'], json.loads(act['fields']))) or date
+            if document_date != date:
+                signing_date_issues(c, act['id'], document_date)
+        c.execute('UPDATE acts SET date_signed=? WHERE id=?',(document_date,act['id']))
     values=(state,desc,basis,json.dumps(people,ensure_ascii=False),date if state=='signed' else None)
     if old:
         c.execute('UPDATE act_execution_status SET state=?,work_description=?,basis=?,signers_json=?,signed_date=?,revision=revision+1 WHERE act_id=?',(*values,act['id']))

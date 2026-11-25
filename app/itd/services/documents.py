@@ -30,7 +30,7 @@ def mutate(c, route, data, ctx):
             else:
                 headers = table_headers(template)
             from ..document_bindings import catalog
-            return {'binding_sources':catalog(c,pid,aid),'versions':versions.versions(c,pid,aid),'candidates':versions.candidates(c,pid),
+            return {'binding_sources':catalog(c,pid,aid),'versions':versions.display_versions(c,pid,aid),'candidates':versions.candidates(c,pid),
                     'required_roles':versions.required_roles(c,aid),'organization_candidates':organization_candidates(c,pid),
                     'table_headers':headers}
         if route=='/api/versions/ensure': return {'versions':versions.ensure(c,pid,aid)}

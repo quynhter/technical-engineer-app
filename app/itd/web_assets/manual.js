@@ -100,9 +100,16 @@ function manualEditor(op,recordId=''){
  if(op==='remark-add')body+=f('description','Замечание','textarea',null,null,true)+f('source','Источник','textarea',null,null,true);
  if(op==='remark-resolve')body+=f('resolution','Что исправлено','textarea',null,null,true)+f('resolution_source','Основание устранения','textarea',null,null,true)+f('resolution_date','Дата устранения','date',null,null,true)+f('resolution_release_id','Точная исправленная версия','text','releases',null,true);
  if(op==='act-edit'){
-  const overrides=r.fields||[];const base=pdata.forms.find(x=>x.code===r.act_type)?.fields||[];const effective=base.map(x=>{const v=overrides.find(v=>v.key===x.key);const merged={...x,...(v||{})};if(v?.source&&!Object.hasOwn(v,'value'))delete merged.value;return merged;}).concat(overrides.filter(x=>!base.some(v=>v.key===x.key)));
-  body+=f('date_signed','Дата подписания','date',null,r.date_signed)+f('filename_title','Название файла','text',null,r.filename_title)+f('sheets_count','Проверенное количество листов','number',null,r.sheets_count)+f('registry_note','Примечание реестра','textarea',null,r.registry_note);
-  body+=effective.filter(x=>x.kind==='literal').map(x=>f('literal_'+x.key,x.label||x.key,'textarea',null,x.value)).join('');
+  const overrides=r.fields||[];const base=pdata.forms.find(x=>x.code===r.act_type)?.fields||[];let effective=base.map(x=>{const v=overrides.find(v=>v.key===x.key);const merged={...x,...(v||{})};if(v?.source&&!Object.hasOwn(v,'value'))delete merged.value;return merged;}).concat(overrides.filter(x=>!base.some(v=>v.key===x.key)));
+  const dateField=r.act_type?.startsWith('TPL_')&&effective.find(isDocumentDateField);
+  if(dateField)effective=effective.filter(x=>x!==dateField);
+  const signingDate=r.date_signed||(dateField?calendarInputValue(overrides.find(isDocumentDateField)?.value):null);
+  body+=f('date_signed','Дата подписания','date',null,signingDate)+f('filename_title','Название файла','text',null,r.filename_title)+f('sheets_count','Проверенное количество листов','number',null,r.sheets_count)+f('registry_note','Примечание реестра','textarea',null,r.registry_note);
+  body+=effective.filter(x=>x.kind==='literal').map(x=>{
+   const type=fieldInputType(x),value=x.value;
+   const typed=['date','number'].includes(type)&&String(value??'').search(dbToken)<0;
+   return f('literal_'+x.key,x.label||x.key,typed?type:'textarea',null,typed&&type==='date'?calendarInputValue(value):value);
+  }).join('');
   body+='<details class="wide"><summary>Расширенная настройка ссылок и таблиц (JSON)</summary>'+f('fields','Индивидуальные поля формы','json',null,effective)+'</details>';
  }
  if(op==='act-composition')body+=f('resources','Ресурсы (можно несколько)','multi','resources')+f('schemes','Схемы (можно несколько)','multi','schemes');

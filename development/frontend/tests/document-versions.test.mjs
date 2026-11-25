@@ -15,7 +15,8 @@ function fixture(theme='light'){
  var representativeLabel=p=>p.fio,notice=text=>window.lastNotice=text,notifyWorkspace=notice;
  var uploadZone=(id,label)=>'<div class="file-drop" data-upload-target="'+id+'"><input type="file" id="'+id+'" aria-label="'+label+'"></div>';
  `);
- w.eval(asset('act-fields.js')+'\n'+asset('field-functions.js')+'\n'+asset('document-versions.js')+`
+ w.createWorkspaceDialog=()=>({});
+ w.eval(asset('templates.js')+'\n'+asset('act-fields.js')+'\n'+asset('field-functions.js')+'\n'+asset('document-versions.js')+`
  documentVersionState={aid:1,selected:11,required_roles:['first','second'],candidates:{first:[{id:1,fio:'Первый'}],second:[{id:2,fio:'Второй'}]},versions:[{id:11,ordinal:1,revision:1,card:{fields:[],date_signed:null},signers:[{role:'first',person_id:1,signed:false},{role:'second',person_id:2,signed:false}]}],binding_sources:[{source:'object.city',group:'Объект',label:'Город',value:'Москва'},{source:'project.name',group:'Раздел',label:'Название раздела',value:'Раздел 1'}]};
  renderDocumentVersion();
  window.openDocumentVersions=openDocumentVersions;window.saveDocumentVersion=saveDocumentVersion;window.collect=collectVersionDraft;window.model=()=>documentVersionState;window.renderCard=renderDocumentVersion;
@@ -179,5 +180,39 @@ test('card initialization writes only after the explicit button action',async()=
  d.querySelector('[data-version-ensure]').click();await pending;
  assert.deepEqual(calls,['/api/versions/ensure']);
  assert.ok(d.querySelector('#document-version-form'));
+ dom.window.close();
+});
+
+test('template card keeps one date and updates signers when a representative binding is filled',()=>{
+ const dom=fixture(),w=dom.window,d=w.document;
+ w.eval(`
+   const people=[{id:7,fio:'Иванов Иван'},{id:8,fio:'Петров Пётр'}];
+   const binding_sources=people.map(person=>({source:'records.signatories.r'+person.id+'.fio',value:person.fio}));
+   pdata.forms[0]={code:'TPL_test',fields:[
+    {key:'date',label:'Дата акта',kind:'literal',value_type:'date'},
+    {key:'name',label:'Первый представитель',kind:'literal',value:'{{ $db.signatories.r7.fio }}'},
+    {key:'position',label:'Должность',kind:'literal',value:'{{ $db.signatories.r7.position }}'},
+    {key:'another',label:'Второй представитель',kind:'literal',value:'{{ $db.signatories.fio }}'}
+   ]};
+   pdata.acts[0].act_type='TPL_test';
+   pdata.template_schema={signatories:{label:'Представители',columns:[]}};
+   pdata.journals={directory:{people}};
+   actRoles=()=>[];
+   window.model().binding_sources=binding_sources;
+   window.model().versions[0].signers=[];
+ `);
+ w.renderCard();
+ assert.equal(d.querySelectorAll('input[name=date_signed]').length,1);
+ assert.equal(d.querySelector('[data-document-field="date"]'),null);
+ assert.equal(d.querySelectorAll('[data-signer-row]').length,1);
+ assert.match(d.querySelector('[data-signer-row]').textContent,/Первый представитель, Должность/);
+ assert.match(d.querySelector('[data-version-signers] [role=status]').textContent,/Второй представитель/);
+ d.querySelector('[data-signature-toggle]').click();
+ d.querySelector('input[name=signed_date_0]').value='2025-11-24';
+ const choice=d.querySelector('[data-document-field="another"] [data-expression-record]');
+ choice.value='r8';choice.dispatchEvent(new w.Event('change',{bubbles:true}));
+ assert.deepEqual(Array.from(w.collect().signers,s=>[s.person_id,s.signed_date]),[[7,'2025-11-24'],[8,null]]);
+ assert.equal(d.querySelector('[data-version-signers] [role=status]'),null);
+ assert.equal(d.querySelector('[data-signer-add]'),null);
  dom.window.close();
 });

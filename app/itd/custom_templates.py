@@ -90,6 +90,8 @@ def inspect_doc(data):
                                 if '.' in key:
                                     key = 'field_' + path.encode().hex()
                                 field = {'key':key,'kind':'literal','value':'','expression':True}
+                                if key == 'date':
+                                    field.update(label='Дата подписания', value_type='date', mask='dd.mm.yyyy')
                                 if key != path:
                                     field.update(marker_path=path,label=path)
                                 fields.setdefault(key,field)

@@ -4,6 +4,27 @@ import json
 from pathlib import Path
 import re
 
+from .db import calendar_date
+
+
+def document_date_field(code, fields):
+    if code.startswith('TPL_'):
+        return next((field for field in fields if field['key'] == 'date' and
+                     not field.get('marker_path') and field['kind'] != 'table'), None)
+    return None
+
+
+def legacy_document_date(field):
+    if field and field['kind'] == 'literal':
+        value = field.get('value')
+        if isinstance(value, str) and re.fullmatch(r'\d{2}\.\d{2}\.\d{4}', value):
+            value = '-'.join(reversed(value.split('.')))
+        try:
+            return calendar_date(value)
+        except ValueError:
+            pass
+    return None
+
 
 @lru_cache(maxsize=1)
 def field_bindings():

@@ -4,6 +4,34 @@ from pathlib import Path
 from .db import atomic_operation, calendar_date
 from .workflow import same_project
 from .changes import log_event, update_record
+from .document_representatives import ROLE_PREFIX, linked_people, representatives, validate_linked_signer
+
+
+def with_linked_signers(signers, linked):
+    existing = {s['role']: s for s in signers if s['role'].startswith(ROLE_PREFIX)}
+    return [s for s in signers if not s['role'].startswith(ROLE_PREFIX)] + [
+        existing.get(role, {'role': role, 'person_id': person['id'], 'person': person,
+                            'signed': False, 'signed_date': None})
+        for role, person in linked.items()
+    ]
+
+
+def released_linked_people(c, pid, version):
+    fields = version['card'].get('fields') or []
+    linked = {s['role']: s['person'] for s in version['signers'] if s['role'].startswith(ROLE_PREFIX)}
+    if not linked:
+        linked, pending = linked_people(c, pid, version['act_id'], frozen_fields=fields)
+    else:
+        pending = representatives(fields)[1]
+    return linked, pending or bool((version['snapshot'] or {}).get('_representative_links_pending'))
+
+
+def display_versions(c, pid, aid):
+    result = versions(c, pid, aid)
+    if result and result[-1]['release_id']:
+        version = result[-1]
+        version['signers'] = with_linked_signers(version['signers'], released_linked_people(c, pid, version)[0])
+    return result
 
 
 def required_roles(c, aid):
@@ -103,6 +131,7 @@ def ensure(c,pid,aid):
     people=[]
     for r in c.execute('SELECT s.role_key,p.* FROM act_signatories s JOIN signatories p ON p.id=s.signatory_id WHERE act_id=?',(aid,)):
         people.append({'role':r['role_key'],'person_id':r['id'],'person':dict(r),'signed':bool(state and state['state']=='signed'),'signed_date':state['signed_date'] if state else None})
+    people = with_linked_signers(people, linked_people(c, pid, aid)[0])
     releases=c.execute('SELECT r.*,g.context_json FROM releases r LEFT JOIN generated_documents g ON g.id=r.generated_id WHERE r.act_id=? ORDER BY r.created_at,r.id',(aid,)).fetchall()
     for ordinal,r in enumerate(releases,1):
         historical={k:None for k in card(c,aid)};historical.update(fields=[],filename_title=r['title'],sheets_count=r['sheets_count'])
@@ -144,6 +173,12 @@ def save(c,pid,data):
     if any(current['card'].get(k,{} if k=='organizations' else None)!=v for k,v in old.items() if k!='work_description'):
         raise ValueError('Акт изменён вне карточки версии. Закройте окно и обновите сведения')
     changes={k:v for k,v in values.items() if k not in ('work_description','organizations') and v!=old[k]}
+    if 'date_signed' in values and not current['release_id']:
+        from .form_defaults import document_date_field
+        code = c.execute('SELECT act_type FROM acts WHERE id=?', (aid,)).fetchone()[0]
+        fields = values.get('fields', old['fields'])
+        if date_field := document_date_field(code, fields):
+            changes['fields'] = [field for field in fields if field is not date_field]
     if current['release_id'] and changes: raise ValueError('Для изменения созданного файла добавьте следующую версию')
     if changes: update_record(c,entity='acts',record_id=aid,changes=changes,expected={k:c.execute('SELECT fields FROM acts WHERE id=?',(aid,)).fetchone()[0] if k=='fields' else old[k] for k in changes})
     from .act_participants import set_organizations
@@ -152,6 +187,10 @@ def save(c,pid,data):
     set_organizations(c,pid,aid,companies)
     people=data.get('signers',[])
     if not isinstance(people,list):raise ValueError('Ожидается список подписантов')
+    if current['release_id']:
+        linked, pending = released_linked_people(c, pid, current)
+    else:
+        linked, pending = linked_people(c, pid, aid)
     primary={}; saved=[];seen=set()
     for s in people:
         role=s['role'];identity=s['person_id']
@@ -159,22 +198,31 @@ def save(c,pid,data):
             raise ValueError('Для каждой из трёх строк «Иное лицо» выберите одного представителя')
         if (role,identity) in seen: raise ValueError('Подписант повторяется в одной роли')
         seen.add((role,identity))
-        person=validate_signer(c,pid,identity,role,s.get('signed_date'))
-        if role in companies and person['org_id']!=companies[role]:raise ValueError('Организация и представитель одной роли должны совпадать')
         signed=s.get('signed') is True
         date=calendar_date(s.get('signed_date') or None)
         if signed and not date:raise ValueError('Для отметки «Подписан» укажите дату')
-        primary.setdefault(role,identity)
+        if role.startswith(ROLE_PREFIX):
+            person = linked.get(role)
+            if not person or person['id'] != identity:
+                raise ValueError('Подписант должен быть связан с полем документа')
+            if signed:
+                validate_linked_signer(c, pid, identity, date)
+        else:
+            person=validate_signer(c,pid,identity,role,s.get('signed_date'))
+        if role in companies and person['org_id']!=companies[role]:raise ValueError('Организация и представитель одной роли должны совпадать')
+        if not role.startswith(ROLE_PREFIX):
+            primary.setdefault(role,identity)
         saved.append({'role':role,'person_id':identity,'person':person,'signed':signed,'signed_date':date if signed else None})
-    if current['release_id'] and {(s['role'],s['person_id']) for s in saved}!={(s['role'],s['person_id']) for s in current['signers']}:
+    saved = with_linked_signers(saved, linked)
+    if current['release_id'] and {(s['role'],s['person_id']) for s in saved}!={(s['role'],s['person_id']) for s in with_linked_signers(current['signers'], linked)}:
         raise ValueError('Для изменения подписантов созданного файла добавьте следующую версию')
     from .ojr import set_act_people, sign_act
-    remember_fallback_roles(c,pid,[(s['role'],s['person_id']) for s in saved])
+    remember_fallback_roles(c,pid,[(s['role'],s['person_id']) for s in saved if not s['role'].startswith(ROLE_PREFIX)])
     set_act_people(c,pid,aid,primary)
     required = set(required_roles(c,aid))
     if saved and all(s['signed'] for s in saved) and required - primary.keys():
         raise ValueError('Выберите подписантов всех обязательных ролей формы')
-    completed = bool(saved) and not (required - primary.keys()) and all(s['signed'] for s in saved)
+    completed = bool(saved) and not pending and not (required - primary.keys()) and all(s['signed'] for s in saved)
     signed_attachment = data.get('signed_attachment_id', current.get('signed_attachment_id'))
     if completed:
         if not signed_attachment:
@@ -194,7 +242,7 @@ def save(c,pid,data):
         link_file(c, attachment_id=signed_attachment, entity='act', entity_id=aid)
         signed = [s for s in saved if s['signed']]
         name = c.execute('SELECT d.name FROM document_types d JOIN acts a ON a.act_type=d.code WHERE a.id=?', (aid,)).fetchone()[0]
-        sign_act(c,pid,{'act_id':aid,'state':'signed','signed_date':max(s['signed_date'] for s in signed),'basis':'Подписание версии подтверждено пользователем','work_description':data.get('work_description') or name,'expected_revision':status['revision'] if status else 0})
+        sign_act(c,pid,{'act_id':aid,'state':'signed','signed_date':max(s['signed_date'] for s in signed),'basis':'Подписание версии подтверждено пользователем','work_description':data.get('work_description') or name,'expected_revision':status['revision'] if status else 0}, linked_signers=linked)
         signed_people={}
         for s in signed:
             key=s['role'] if s['role'] not in signed_people else s['role']+'__'+str(s['person_id'])
@@ -236,7 +284,8 @@ def prepare_generation(c,aid):
     explicit = act_people(c, aid)
     primary = {}
     for signer in current['signers']:
-        primary.setdefault(signer['role'], signer['person_id'])
+        if not signer['role'].startswith(ROLE_PREFIX):
+            primary.setdefault(signer['role'], signer['person_id'])
     if explicit and primary != {role: person['id'] for role, person in explicit.items()}:
         selected = [{'role': role, 'person_id': person['id'], 'person': person,
                      'signed': False, 'signed_date': None} for role, person in explicit.items()]
@@ -244,16 +293,22 @@ def prepare_generation(c,aid):
                   (json.dumps(selected,ensure_ascii=False),current['id']))
         current=versions(c,pid,aid)[-1]
     # Неоднозначная роль остаётся пустой; единственный участник подставляется явно.
-    if not current['signers']:
+    if not primary and not explicit:
         from .ojr import act_people
         from .participants import participants_context
         people=act_people(c,aid) or participants_context(c,pid)['signatories']
-        selected=[]
+        selected=[s for s in current['signers'] if s['role'].startswith(ROLE_PREFIX)]
         for role in required_roles(c,aid):
             person=people.get(role)
             if person:
                 selected.append({'role':role,'person_id':person['id'],'person':person,'signed':False,'signed_date':None})
-        c.execute('UPDATE document_versions SET signers_json=? WHERE id=?',(json.dumps(selected,ensure_ascii=False),current['id']))
+        if selected != current['signers']:
+            c.execute('UPDATE document_versions SET signers_json=? WHERE id=?',(json.dumps(selected,ensure_ascii=False),current['id']))
+    current = versions(c, pid, aid)[-1]
+    signers = with_linked_signers(current['signers'], linked_people(c, pid, aid)[0])
+    if signers != current['signers']:
+        c.execute('UPDATE document_versions SET signers_json=?,revision=revision+1 WHERE id=?',
+                  (json.dumps(signers, ensure_ascii=False), current['id']))
 
 
 def checked_version(c, pid, data):
@@ -304,7 +359,7 @@ def delete(c, pid, data):
         c.execute('DELETE FROM act_signatories WHERE act_id=?', (aid,))
         people = {}
         for signer in last['signers']:
-            if c.execute('SELECT 1 FROM signatories WHERE id=?', (signer['person_id'],)).fetchone():
+            if not signer['role'].startswith(ROLE_PREFIX) and c.execute('SELECT 1 FROM signatories WHERE id=?', (signer['person_id'],)).fetchone():
                 people.setdefault(signer['role'], signer)
         for role, signer in people.items():
             c.execute('INSERT INTO act_signatories(act_id,role_key,signatory_id) VALUES(?,?,?)', (aid, role, signer['person_id']))

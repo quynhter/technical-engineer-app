@@ -38,7 +38,23 @@ for(const theme of ['light','dark']){
   w.HTMLElement.prototype.scrollIntoView=function(){};
   w.eval(['ui.js','dialogs.js','tables.js','templates.js','field-functions.js'].map(asset).join('\n')+
    '\nObject.assign(window,{openTemplate,functionField,collectFunctionFields,functionTableCell,collectFunctionTableCell,enhanceForTest:enhanceSelect});');
-  w.openTemplate({original_name:'Ведомость.docx',name:'Ведомость',form_set:'И 1.13-07',fields:[{key:'date',kind:'literal',value:''}]});
+  w.openTemplate({original_name:'Ведомость.docx',name:'Ведомость',form_set:'И 1.13-07',fields:[
+   {key:'work_date',kind:'literal',value:''},{key:'date',kind:'literal',value:''}]});
+  const dateField=d.querySelector('[data-template-field="1"]');
+  assert.match(dateField.textContent,/Дата подписания/);
+  assert.equal(dateField.querySelector('[data-insert-db]'),null);
+  assert.equal(dateField.querySelector('[data-field-prop="mask"]').value,'dd.mm.yyyy');
+  const typedForm=d.createElement('form');
+  typedForm.innerHTML=w.functionField({key:'deadline',kind:'literal',expression:true,value_type:'date'},false,'creation',{})+
+   w.functionField({key:'quantity',kind:'literal',expression:true,value_type:'number',mask:'0.00',value:0},false,'creation',{});
+  const dateInput=typedForm.querySelector('input[type=date]'),numberInput=typedForm.querySelector('input[type=number]');
+  dateInput.value='2024-02-29';
+  assert.equal(typedForm.querySelector('label[for="'+dateInput.id+'"]').textContent,'deadline');
+  assert.equal(numberInput.value,'0');
+  const [deadline,quantity]=w.collectFunctionFields(typedForm);
+  assert.equal(deadline.value,'2024-02-29');
+  assert.equal(quantity.value,0);
+  assert.equal(quantity.mask,'0.00');
   d.querySelector('[data-insert-db]').click();
   assert.equal(d.querySelector('#template-picker').open,true);
   d.querySelector('[data-db-insert]').click();

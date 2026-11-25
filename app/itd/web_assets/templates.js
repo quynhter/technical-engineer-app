@@ -154,6 +154,11 @@ function templateSaveField(field){
  return {...table,comment:field.comment,fields:[column],value:[{[column.key]:field.value}]};
 }
 function scalarControls(field){
+ if(isDocumentDateField(field)){
+  field.value_type='date';
+  return '<p class="hint">Заполняется из поля «Дата подписания» в документе.</p>'+
+   tMask('date',field.mask||'dd.mm.yyyy','data-field-prop="mask"');
+ }
  const type=field.value_type||expressionType(field.value);
  field.value_type=type;
  if(templateMasks[type])field.mask||=templateMasks[type][0];
@@ -211,7 +216,7 @@ function dbRecordSelect(table,selected,attrs,bindings){
  return tSelect('Привязать к',[['',choices.length?'Выберите запись':'Нет записей'],...choices],selected,
   attrs+' aria-label="'+esc(label)+'" data-select-search'+(!choices.length?' disabled':''));
 }
-function pickExpression(input){
+function pickExpression(input,onInsert){
  const start=input.selectionStart,end=input.selectionEnd;
  const host=$('#template-picker .dialog-content'),schema=pdata.template_schema;
  const inDocument=!!input.closest('[data-document-field]');
@@ -234,7 +239,13 @@ function pickExpression(input){
  insert.onclick=()=>{
   const record=host.querySelector('[data-db-record]')?.value;
   const column=host.querySelector('[data-db-column]').value;
-  input.setRangeText('{{ $db.'+[select.value,record,column].filter(Boolean).join('.')+' }}',start,end,'end');
+  const token='{{ $db.'+[select.value,record,column].filter(Boolean).join('.')+' }}';
+  if(onInsert){
+   picker.close(true);
+   onInsert(token);
+   return;
+  }
+  input.setRangeText(token,start,end,'end');
   const event=new Event('input',{bubbles:true});
   event.fieldType=schema[select.value].columns.find(c=>c.key===column).type;
   input.dispatchEvent(event);
@@ -248,7 +259,8 @@ document.addEventListener('input',event=>{
  if(el.dataset.templateProp)templateDraft[el.dataset.templateProp]=el.value;
  if(el.dataset.fieldProp){
   f[el.dataset.fieldProp]=el.value;
-  if(el.dataset.fieldProp==='mask')el.closest('section').querySelector('[data-template-preview]').textContent=templateExpressionPreview(f.value,f.mask);
+  const preview=el.closest('section').querySelector('[data-template-preview]');
+  if(el.dataset.fieldProp==='mask'&&preview)preview.textContent=templateExpressionPreview(f.value,f.mask);
  }
  if(el.hasAttribute('data-row'))f.value[el.dataset.row][f.fields[el.dataset.col].key]=el.value;
  if(el.dataset.fieldProp==='value'||el.hasAttribute('data-row')){

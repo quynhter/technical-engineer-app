@@ -7,7 +7,12 @@ function functionFieldValue(field,roots){
  if(field.source?.startsWith('records.'))return functionFieldSources().find(x=>x.source===field.source)?.value??'';
  return actAutomaticValue(field,roots);
 }
-function documentScalarFields(fields){return fields.filter(f=>['literal','reference','signatory'].includes(f.kind)&&!['hidden','not_applicable'].includes(f.state)&&(!f.date_group||f.date_group===f.key));}
+function documentScalarFields(fields,code){return fields.filter(f=>['literal','reference','signatory'].includes(f.kind)&&!['hidden','not_applicable'].includes(f.state)&&(!f.date_group||f.date_group===f.key)&&!(code?.startsWith('TPL_')&&isDocumentDateField(f)));}
+function isDocumentDateField(field){return field.key==='date'&&!field.marker_path&&field.kind!=='table';}
+function calendarInputValue(value){
+ const date=String(value??'');
+ return /^\d{2}\.\d{2}\.\d{4}$/.test(date)?date.split('.').reverse().join('-'):date;
+}
 function documentRecordGroups(value){
  const groups=new Map();
  for(const [,table,identity] of String(value??'').matchAll(dbToken)){
@@ -24,19 +29,25 @@ function documentRecordControls(groups){
 }
 function documentFieldLabel(id,field,mode){
  const label=`<label for="${esc(id)}">${esc(field.label||field.marker_path||field.key)}${field.required?' *':''}</label>`;
- return mode==='creation'?`<h4 class="document-field-title">${label}</h4>`:label;
+ return mode!=='table'?`<h4 class="document-field-title">${label}</h4>`:label;
 }
 function functionField(field,locked=false,mode='version',roots=pdata.form_roots||{}){
  if(field.expression){
   const id=(mode==='version'?'version_field_':'act_field_')+field.key;
   const type=field.value_type||expressionType(field.value);
   const mask=templateMasks[type]?.includes(field.mask)?field.mask:templateMasks[type]?.[0];
-  return `<div class="field wide" data-document-field="${esc(field.key)}" data-field-definition="${esc(JSON.stringify(field))}">
+  const linked=String(field.value??'').search(dbToken)>=0;
+  const value=(locked?field._display_value:null)??field.value??'';
+  const typed=!locked&&!linked&&templateMasks[type];
+  return `<div class="field wide document-function-field" data-document-field="${esc(field.key)}" data-field-definition="${esc(JSON.stringify(field))}" data-field-mode="${mode}">
    ${documentFieldLabel(id,field,mode)}
-   <div class="document-function-control"><textarea id="${esc(id)}" ${locked?'disabled':''}>${esc((locked?field._display_value:null)??field.value??'')}</textarea><button type="button" class="secondary" data-document-expression aria-label="Вставить поле из базы" ${locked?'disabled':''}>ƒ</button></div>
+   <div class="document-function-control">${typed?`<input id="${esc(id)}" type="${type}" ${type==='number'?'step="any"':''} value="${esc(type==='date'?calendarInputValue(value):String(value).replace(',','.'))}">`:`<textarea id="${esc(id)}" ${locked?'disabled':''}>${esc(value)}</textarea>`}
+   ${locked?'':`<button type="button" class="secondary" data-document-expression aria-label="Вставить поле из базы: ${esc(field.label||field.key)}">ƒ</button>`}</div>
    ${locked?'':`<output class="hint" data-template-preview>${esc(expressionPreview(field.value,mask,{bindings:functionFieldSources()}))}</output>
    <div data-document-mask data-type="${type}">${tMask(type,mask,'data-document-mask-select')}</div>
-   <div data-document-records>${documentRecordControls(documentRecordGroups(field.value))}</div>`}
+   <div data-document-records>${documentRecordControls(documentRecordGroups(field.value))}</div>
+   ${linked&&templateMasks[type]?`<button type="button" class="secondary expression-manual" data-expression-manual>Ввести вручную</button>`:''}`}
+   ${mode!=='table'&&field.comment?`<p class="hint document-field-comment">${esc(field.comment)}</p>`:''}
   </div>`;
  }
  const linked=field.kind!=='literal',value=functionFieldValue(field,roots),type=fieldInputType(field);
@@ -51,7 +62,7 @@ function collectFunctionFields(form){
  return [...form.querySelectorAll('[data-document-field]')].filter(row=>!row.closest('[data-version-table]')&&!row.querySelector('input,textarea')?.disabled).map(row=>{
   if(row.dataset.functionEditing==='true')throw Error('Подтвердите выбранную связь кнопкой f.');
   const field=JSON.parse(row.dataset.fieldDefinition),input=row.querySelector('input,textarea');
-  if(field.expression){field.value_type=row.querySelector('[data-document-mask]')?.dataset.type||field.value_type;field.mask=row.querySelector('[data-document-mask-select]')?.value;field.value=input.value;return field;}
+  if(field.expression){field.value_type=row.querySelector('[data-document-mask]')?.dataset.type||field.value_type;field.mask=row.querySelector('[data-document-mask-select]')?.value;field.value=input.type==='number'&&input.value!==''?Number(input.value):input.value;return field;}
   if(field.kind==='literal'&&input&&!input.disabled){field.value=input.value===''?null:fieldInputType(field)==='number'?Number(input.value):input.value;}
   return field;
  });
@@ -63,7 +74,27 @@ function functionSourceOptions(field){
 }
 document.addEventListener('click',e=>{
  const expression=e.target.closest('[data-document-expression]');
- if(expression&&!expression.disabled){pickExpression(expression.closest('[data-document-field]').querySelector('textarea'));return;}
+ const manual=e.target.closest('[data-expression-manual]');
+ if(expression||manual){
+  const row=(expression||manual).closest('[data-document-field]'),input=row.querySelector('input,textarea');
+  const replace=value=>{
+   const field=JSON.parse(row.dataset.fieldDefinition);
+   const wrapper=document.createElement('div');
+   wrapper.innerHTML=functionField({...field,value,mask:row.querySelector('[data-document-mask-select]')?.value},false,row.dataset.fieldMode);
+   const next=wrapper.firstElementChild;
+   if(row.dataset.tableColumn){next.dataset.tableColumn=row.dataset.tableColumn;next.classList.add('table-function-cell');}
+   row.replaceWith(next);next.querySelectorAll('select').forEach(enhanceSelect);
+   const control=next.querySelector('input,textarea');control.focus();
+   control.dispatchEvent(new Event('input',{bubbles:true}));
+  };
+  if(manual){
+   const expression=input.value.trim(),match=[...expression.matchAll(dbToken)][0];
+   const [,table,identity,key]=match||[];
+   const source=identity?`records.${table}.${identity}.${key}`:currentDbRows[table]?`${currentDbRows[table]}.${key}`:'';
+   replace(match?.[0]===expression?functionFieldSources().find(item=>item.source===source)?.value??'':'');
+  }else pickExpression(input,input.matches('textarea')?undefined:replace);
+  return;
+ }
  const button=e.target.closest('[data-field-function]');if(!button||button.disabled)return;
  const row=button.closest('[data-document-field]'),field=JSON.parse(row.dataset.fieldDefinition),control=row.querySelector('[data-function-control]');
  if(row.dataset.functionEditing!=='true'){
@@ -104,6 +135,7 @@ document.addEventListener('click',e=>{
   if(row.dataset.tableColumn){wrapper.firstElementChild.dataset.tableColumn=row.dataset.tableColumn;wrapper.firstElementChild.classList.add('table-function-cell');}
   const replacement=wrapper.firstElementChild;row.replaceWith(replacement);
   replacement.querySelector('[data-field-function]').focus();
+  if(replacement.closest('#document-version-form'))refreshVersionSigners();
   formDirty=true;
  }
 });
@@ -121,7 +153,7 @@ function updateFunctionValues(form,roots){
 for(const type of ['input','change'])document.addEventListener(type,e=>{
  const row=e.target.closest('[data-document-field]');
  if(row?.querySelector('[data-document-expression]')){
-  const input=row.querySelector('textarea'),mask=row.querySelector('[data-document-mask]');
+  const input=row.querySelector('input,textarea'),mask=row.querySelector('[data-document-mask]');
   const field=JSON.parse(row.dataset.fieldDefinition);
   if(e.type==='change'&&e.target.hasAttribute('data-expression-record')){
    const table=e.target.dataset.expressionRecord,identity=e.target.value;
@@ -131,7 +163,7 @@ for(const type of ['input','change'])document.addEventListener(type,e=>{
    input.dispatchEvent(new Event('input',{bubbles:true}));
   }
   if(e.target===input&&mask){
-   const type=e.fieldType||(input.value.includes('$db.')?expressionType(input.value):field.value_type)||'text';
+   const type=(templateMasks[field.value_type]?field.value_type:null)||e.fieldType||(input.value.includes('$db.')?expressionType(input.value):field.value_type)||'text';
    if(type!==mask.dataset.type){
     const value=mask.querySelector('select')?.value||field.mask;
     mask.dataset.type=type;

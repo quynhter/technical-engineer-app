@@ -7,11 +7,12 @@ async function openDocumentVersions(aid){
  const result=await api('/api/versions/list',{project_id:projectId,act_id:aid});
  documentVersionState={...result,aid,selected:result.versions.at(-1)?.id};
  openEditor('manual');editorWindow.setTitle('Изменить документ');renderDocumentVersion();
+ if(!result.versions.length)window.requestAnimationFrame?.(()=>$('#editor-content [data-version-ensure]')?.focus());
 }
 function renderDocumentVersion(){
  const model=documentVersionState,a=pdata.acts.find(a=>a.id===model.aid),version=model.versions.find(v=>v.id===model.selected),last=model.versions.at(-1);
  if(!version){
-  $('#editor-content').innerHTML='<p role="status">Карточка документа ещё не создана.</p><div class="toolbar"><button type="button" data-version-ensure>Создать карточку</button></div>';
+  $('#editor-content').innerHTML='<p role="status">Карточка документа ещё не создана. В карточке можно редактировать сведения, вести версии и отмечать подписи.</p><div class="toolbar"><button type="button" data-version-ensure>Создать карточку</button></div>';
   return;
  }
  const signed=pdata.act_statuses.some(status=>status.act_id===a.id&&status.state==='signed');
@@ -25,14 +26,132 @@ function renderDocumentVersion(){
   const candidates=model.candidates[role]||[];
   signers.push({role,person_id:candidates.length===1?candidates[0].id:null,signed:false});
  }
- const signerHtml=signers.map((s,i)=>{
-  const orgId=version.card.organizations?.[s.role];
-  const people=(model.candidates[s.role]||[]).filter(p=>!orgId||p.org_id===Number(orgId)),historical=s.person;
-  const options=locked&&historical?[historical]:[...people];if(historical&&!options.some(p=>p.id===s.person_id))options.push(historical);
-  return `<div class="version-signer" data-signer-row="${i}"><div><label class="field"><span>${esc(participantRoleLabel(s.role,fields))}${required.includes(s.role)?' *':''}</span><select name="person_${i}" ${contentLocked?'disabled':''}><option value="">Выберите представителя…</option>${options.map(p=>option(p.id,representativeLabel(p),s.person_id)).join('')}</select></label><input type="hidden" name="role_${i}" value="${esc(s.role)}"></div><div class="signer-controls"><button type="button" class="secondary signature-toggle" data-preview-blocked="${locked}" data-signature-toggle="${i}" aria-pressed="${!!s.signed}" ${locked?'disabled':''}>${s.signed?'Подписан':'Не подписан'}</button><label class="field"><span>Дата подписи</span><input type="date" name="signed_date_${i}" value="${esc(s.signed_date||'')}" ${locked?'disabled':''}></label>${!contentLocked&&!formRoles.includes(s.role)?`<button class="ghost danger" type="button" data-signer-remove="${i}" aria-label="Убрать подписанта">Убрать</button>`:''}</div></div>`;
- }).join('');
- $('#editor-content').innerHTML=`<h3>Версии</h3><nav class="version-nav" aria-label="Версии документа">${model.versions.map(v=>`<button class="secondary" type="button" data-document-version="${v.id}" aria-current="${v.id===version.id}" aria-label="Версия ${v.ordinal}">${v.ordinal}</button>`).join('')}<button class="secondary" type="button" data-version-add aria-label="Создать следующую версию">+</button></nav><form id="document-version-form" data-version="${version.id}"><section class="preview-section"><h3>Основная информация</h3>${participantRoleChoosers(fields,contentLocked)}${locked&&version.snapshot?previewContent({preview_fields:pdata.forms.find(f=>f.code===a.act_type)?.ui_fields||[],context:version.snapshot}):''}<p>${esc(a.act_num)} «${esc(actName(a))}»</p><div class="grid"><label class="field"><span>Название файла</span><input name="filename_title" value="${esc(version.card.filename_title||a.act_num.replace(/[<>:"/\\|?*\x00-\x1f]/g,'_'))}" ${contentLocked?'disabled':''}></label><label class="field"><span>Дата подписания</span><input type="date" name="date_signed" value="${esc(version.card.date_signed)}" ${contentLocked?'disabled':''}></label>${documentScalarFields(fields).map(f=>functionField(contentLocked&&version.snapshot&&Object.hasOwn(version.snapshot,f.key)?{...f,_display_value:version.snapshot[f.key]}:f,contentLocked,'version',versionFieldRoots(version))).join('')}<label class="field wide"><span>Комментарий</span><textarea name="work_description" ${contentLocked?'disabled':''}>${esc(version.card.work_description||'')}</textarea></label></div></section>${organizationSelects(fields,version.card.organizations||{},model.organization_candidates||{},contentLocked)}${versionTables(fields,model.table_headers||{},contentLocked,version.snapshot||{})}<section class="preview-section"><h3>Подписанты</h3>${!locked?'<p class="hint">Укажите даты подписей и нажмите «Сохранить». Статус изменится после подтверждения всех выбранных подписантов и загрузки подписанного документа. Через «Добавить → Иное лицо» можно выбрать до трёх представителей из «Участников строительства». Их должность, организация и ФИО появятся в конце DOCX с местом для подписи.</p>':''}${signerHtml||'<p class="hint">Сведения о подписантах этой версии не внесены.</p>'}${!contentLocked?`<details class="signer-add-menu"><summary class="secondary">Добавить</summary><button type="button" class="secondary" data-signer-add>Иное лицо</button></details>`:''}</section><section class="preview-section" id="signed-document-section" hidden><h3>Подписанный документ</h3><p class="hint">Загрузите подписанный документ. Файл обязателен для завершения подписания.</p>${!locked?uploadZone('signed-document-file','Выбрать подписанный документ',{accept:'.pdf,.docx,.doc,.png,.jpg,.jpeg'}):''}<p id="signed-document-name" class="hint"></p>${version.signed_attachment_id?'<button type="button" class="secondary" data-download-signed>Скачать подписанный документ</button>':''}</section>${locked?'<p class="hint">Сохранена карточка этой версии. Для изменений создайте следующую версию кнопкой «+».</p>':''}<div class="ux-form-actions">${!locked?'<button type="submit">Сохранить</button>':''}${version.attachment_id||version.release_id||version.id===last.id?`<button type="button" class="secondary" data-regenerate-document ${version.attachment_id&&!version.release_id?'disabled title="Загруженный оригинал не создаётся из шаблона"':''}>Обновить на диске</button><button type="button" class="secondary" data-download-document>${icon('download')}Скачать документ</button>`:''}<button type="button" class="secondary danger" data-delete-document-version ${model.versions.length===1?'disabled title="Нельзя удалить единственную версию"':''}>Удалить версию</button><button type="button" class="secondary" data-action="cancel-entry">Отмена</button></div></form>`;
- model.draftSigners=signers.map(s=>({...s}));decorateSelects();updateSignedDocumentSection();
+ const signingDate=fields.find(isDocumentDateField),canonicalDate=a.act_type.startsWith('TPL_')&&signingDate;
+ const legacyDate=(version.card.fields||[]).find(isDocumentDateField)?.value;
+ const savedDate=contentLocked&&canonicalDate?version.snapshot?.date:null;
+ const date=version.card.date_signed||(canonicalDate?calendarInputValue(legacyDate||savedDate):'');
+ const formattedDate=!!savedDate&&!/^\d{4}-\d{2}-\d{2}$/.test(date);
+ const scalars=documentScalarFields(fields,a.act_type);
+ const automaticTables=contentLocked&&version.snapshot?fields.filter(field=>field.kind==='table'&&!editableVersionTable(field)&&!['hidden','not_applicable'].includes(field.state)):[];
+ $('#editor-content').innerHTML=`<section class="workspace-stack document-version-nav">
+  <h3>Версии</h3>
+  <nav class="version-nav" aria-label="Версии документа">${model.versions.map(v=>`<button class="secondary" type="button" data-document-version="${v.id}" aria-current="${v.id===version.id}" aria-label="Версия ${v.ordinal}">${v.ordinal}</button>`).join('')}<button class="secondary" type="button" data-version-add aria-label="Создать следующую версию">+</button></nav>
+ </section>
+ <form id="document-version-form" data-version="${version.id}">
+  <section class="preview-section workspace-stack">
+   <h3 id="version-information-title" tabindex="-1">Основная информация</h3><p>${esc(a.act_num)} «${esc(actName(a))}»</p>
+   <div class="grid">
+    <label class="field"><span>Название файла</span><input name="filename_title" value="${esc(version.card.filename_title||a.act_num.replace(/[<>:"/\\|?*\x00-\x1f]/g,'_'))}" ${contentLocked?'disabled':''}></label>
+    <label class="field"><span>Дата подписания${canonicalDate&&signingDate.required?' *':''}</span><input type="${formattedDate?'text':'date'}" name="date_signed" value="${esc(formattedDate?savedDate:date)}" ${contentLocked?'disabled':''}></label>
+    <label class="field wide"><span>Комментарий</span><textarea name="work_description" ${contentLocked?'disabled':''}>${esc(version.card.work_description||'')}</textarea></label>
+   </div>
+   ${participantRoleChoosers(fields,contentLocked)}
+  </section>
+  ${organizationSelects(fields,version.card.organizations||{},model.organization_candidates||{},contentLocked)}
+  ${scalars.length?`<section class="preview-section workspace-stack"><h3>Сведения документа</h3><div class="document-scalar-fields">${scalars.map(f=>functionField(contentLocked&&version.snapshot&&Object.hasOwn(version.snapshot,f.key)?{...f,_display_value:version.snapshot[f.key]}:f,contentLocked,'version',versionFieldRoots(version,null))).join('')}</div></section>`:''}
+  ${versionTables(fields,model.table_headers||{},contentLocked,version.snapshot||{})}
+  ${automaticTables.length?`<section class="preview-section workspace-stack"><h3>Автоматические таблицы и перечни</h3>${automaticTables.map(f=>`<h4>${esc(f.label||f.key)}</h4>${previewValue(version.snapshot[f.key],{columns:f.fields},model.table_headers?.[f.key]||[])}`).join('')}</section>`:''}
+  <section class="preview-section workspace-stack" aria-labelledby="version-signers-title">
+   <h3 id="version-signers-title" tabindex="-1">Подписанты</h3>
+   ${!locked?'<p class="hint">Укажите даты подписей и сохраните карточку. Для завершения подписания загрузите подписанный документ.</p>':''}
+   <div data-version-signers></div>
+  </section>
+  <section class="preview-section" id="signed-document-section" hidden>
+   <h3>Подписанный документ</h3>
+   ${!locked?uploadZone('signed-document-file','Выбрать подписанный документ',{accept:'.pdf,.docx,.doc,.png,.jpg,.jpeg'}):''}
+   <p id="signed-document-name" class="hint"></p>${version.signed_attachment_id?'<button type="button" class="secondary" data-download-signed>Скачать подписанный документ</button>':''}
+  </section>
+  ${locked?'<p class="hint">Сохранена карточка этой версии. Для изменений создайте следующую версию кнопкой «+».</p>':''}
+  <div class="ux-form-actions">${!locked?'<button type="submit">Сохранить</button>':''}${version.attachment_id||version.release_id||version.id===last.id?`<button type="button" class="secondary" data-regenerate-document ${version.attachment_id&&!version.release_id?'disabled title="Загруженный оригинал не создаётся из шаблона"':''}>Обновить на диске</button><button type="button" class="secondary" data-download-document>${icon('download')}Скачать документ</button>`:''}<button type="button" class="secondary danger" data-delete-document-version ${model.versions.length===1?'disabled title="Нельзя удалить единственную версию"':''}>Удалить версию</button><button type="button" class="secondary" data-action="cancel-entry">Отмена</button></div>
+ </form>`;
+ model.signerContext={fields,formRoles,locked,contentLocked,custom:a.act_type.startsWith('TPL_')};
+ model.draftSigners=signers;
+ model.signerBindings=null;
+ refreshVersionSigners();
+ updateFunctionValues($('#document-version-form'),versionFieldRoots(version));
+ decorateSelects();
+}
+function versionDraftSigners(form){
+ return documentVersionState.draftSigners.map((s,i)=>{
+  const person=form.elements.namedItem('person_'+i),date=form.elements.namedItem('signed_date_'+i);
+  return {...s,person_id:person&&!person.disabled?Number(person.value)||null:s.person_id,
+   signed_date:date&&!date.disabled?date.value||null:s.signed_date};
+ });
+}
+function refreshVersionSigners(){
+ const model=documentVersionState,form=$('#document-version-form');
+ if(!form||!model.signerContext)return;
+ const {fields,formRoles,locked,contentLocked,custom}=model.signerContext;
+ const sources=model.binding_sources||pdata.binding_sources||[];
+ const ids=new Set(sources.filter(item=>item.source.startsWith('records.signatories.')).map(item=>Number(item.source.split('.')[2].slice(1))));
+ const directory=(pdata.journals?.directory?.people||[]).filter(person=>ids.has(person.id));
+ const links=custom?documentRepresentativeLinks(form,fields,directory):new Map();
+ const fingerprint=JSON.stringify([...links]);
+ if(model.signerBindings===fingerprint)return;
+ const draft=versionDraftSigners(form);
+ const signers=contentLocked?draft:draft.filter(s=>!s.role.startsWith('representative_'));
+ const pending=[...(links.get(null)||[])];
+ if(!contentLocked)for(const [id,labels] of links){
+  if(id===null)continue;
+  const person=directory.find(p=>p.id===id);
+  if(!person){pending.push(...labels);continue;}
+  const role='representative_'+id,existing=draft.find(s=>s.role===role);
+  signers.push(existing||{role,person_id:id,person,signed:false,signed_date:null});
+ }
+ const v=model.versions.find(v=>v.id===model.selected);
+ model.pendingRepresentatives=!!pending.length||(contentLocked&&!!v.snapshot?._representative_links_pending);
+ model.draftSigners=signers;
+ model.signerBindings=fingerprint;
+ const host=form.querySelector('[data-version-signers]');
+ host.innerHTML=signers.map((s,i)=>{
+  const linked=s.role.startsWith('representative_');
+  const label=linked?(links.get(s.person_id)||[]).join(', ')||'Представитель из шаблона':participantRoleLabel(s.role,fields);
+  const orgId=v.card.organizations?.[s.role],historical=s.person;
+  const people=(model.candidates?.[s.role]||[]).filter(p=>!orgId||p.org_id===Number(orgId));
+  const options=locked&&historical?[historical]:[...people];
+  if(historical&&!options.some(p=>p.id===s.person_id))options.push(historical);
+  const person=linked?`<div class="version-linked-person"><strong>${esc(label)}</strong><span>${esc(representativeLabel(historical))}</span></div>`:
+   `<label class="field"><span>${esc(label)}${model.required_roles.includes(s.role)?' *':''}</span><select name="person_${i}" ${contentLocked?'disabled':''}><option value="">Выберите представителя…</option>${options.map(p=>option(p.id,representativeLabel(p),s.person_id)).join('')}</select></label>`;
+  return `<div class="version-signer" data-signer-row="${i}">${person}<div class="signer-controls">
+   <label class="field"><span>Дата подписи</span><input type="date" name="signed_date_${i}" aria-label="Дата подписи: ${esc(label)}" value="${esc(s.signed_date||'')}" ${locked?'disabled':''}></label>
+   <button type="button" class="secondary signature-toggle" data-preview-blocked="${locked}" data-signature-toggle="${i}" aria-label="Подпись: ${esc(label)}" aria-pressed="${!!s.signed}" ${locked?'disabled':''}>${s.signed?'Подписан':'Не подписан'}</button>
+   ${!contentLocked&&!linked&&!formRoles.includes(s.role)?`<button class="ghost danger" type="button" data-signer-remove="${i}" aria-label="Убрать подписанта">Убрать</button>`:''}
+  </div></div>`;
+ }).join('')+(pending.length?`<p class="hint" role="status">Укажите представителя в полях: ${esc([...new Set(pending)].join(', '))}.</p>`:model.pendingRepresentatives?'<p class="hint" role="status">В этой версии есть поля без выбранного представителя.</p>':signers.length?'':'<p class="hint">В документе нет выбранных подписантов.</p>');
+ host.querySelectorAll('select').forEach(enhanceSelect);
+ updateSignedDocumentSection();
+}
+function documentRepresentativeLinks(form,fields,directory){
+ const links=new Map();
+ function add(identity,label){
+  const id=identity?Number(identity.replace(/^r/,'')):null;
+  if(!links.has(id))links.set(id,[]);
+  if(!links.get(id).includes(label))links.get(id).push(label);
+ }
+ function visit(field,value,label){
+  if(field.state==='hidden'||field.state==='not_applicable')return;
+  const reference=/^records\.signatories\.(r[0-9]+)\.\w+$/.exec(field.source||'');
+  if(reference)add(reference[1],label);
+  for(const [,table,identity] of String(value??'').matchAll(dbToken)){
+   if(table==='signatories')add(identity,label);
+  }
+ }
+ for(const field of fields){
+  if(field.state==='hidden'||field.state==='not_applicable'||isDocumentDateField(field))continue;
+  if(field.kind==='table'&&field.db_table==='signatories'){
+   for(const column of field.fields){
+    if(column.state!=='hidden'&&column.state!=='not_applicable'&&column.source?.startsWith('item.')){
+     for(const person of directory)add(String(person.id),column.label||column.key);
+    }
+   }
+  }
+ }
+ for(const row of form.querySelectorAll('[data-document-field]')){
+  const field=JSON.parse(row.dataset.fieldDefinition);
+  const input=row.querySelector('.document-function-control :is(input,textarea):not(.smart-input)');
+  visit(field,input&&!input.disabled?input.value:field.value,field.label||field.key);
+ }
+ return links;
 }
 function collectVersionDraft(){
  const m=documentVersionState,v=m.versions.find(v=>v.id===m.selected),form=$('#document-version-form'),fd=new FormData(form);
@@ -45,7 +164,7 @@ function collectVersionDraft(){
    [...row.querySelectorAll('[data-table-column]')].map(input=>[input.dataset.tableColumn,
     collectFunctionTableCell(input)])));
  }
- return {card:{...v.card,fields,organizations:form.querySelectorAll('[data-organization-role]:not(:disabled)').length?selectedActOrganizations(form):(v.card.organizations||{}),filename_title:fd.has('filename_title')?(fd.get('filename_title')||null):v.card.filename_title,date_signed:fd.has('date_signed')?(fd.get('date_signed')||null):v.card.date_signed},work_description:fd.has('work_description')?(fd.get('work_description')||null):v.card.work_description,signers:m.draftSigners.map((s,i)=>({...s,person_id:fd.has('person_'+i)?Number(fd.get('person_'+i))||null:s.person_id,signed_date:fd.has('signed_date_'+i)?fd.get('signed_date_'+i)||null:s.signed_date}))};
+ return {card:{...v.card,fields,organizations:form.querySelectorAll('[data-organization-role]:not(:disabled)').length?selectedActOrganizations(form):(v.card.organizations||{}),filename_title:fd.has('filename_title')?(fd.get('filename_title')||null):v.card.filename_title,date_signed:fd.has('date_signed')?(fd.get('date_signed')||null):v.card.date_signed},work_description:fd.has('work_description')?(fd.get('work_description')||null):v.card.work_description,signers:versionDraftSigners(form)};
 }
 function retainVersionDraft(){
  const model=documentVersionState,version=model.versions.find(v=>v.id===model.selected);
@@ -105,6 +224,7 @@ function addVersionTableRow(table){
  body.insertAdjacentHTML('beforeend',versionTableRow(field,{},false));
  formDirty=true;
  focusVersionTableRow(body.lastElementChild);
+ refreshVersionSigners();
 }
 function focusVersionTableRow(row){row.querySelector('textarea:not(:disabled),input:not(:disabled):not([type=hidden]),[role=combobox]')?.focus();}
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
@@ -120,7 +240,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
    });
   }else addVersionTableRow(table);
  }
- if(b.hasAttribute('data-version-table-remove')){b.closest('tr').remove();formDirty=true;}
+ if(b.hasAttribute('data-version-table-remove')){b.closest('tr').remove();formDirty=true;refreshVersionSigners();}
  if(b.dataset.documentVersion){if(formDirty){notice('Сохраните изменения перед выбором другой версии.');return;}documentVersionState.pendingSignedFile=null;documentVersionState.selected=Number(b.dataset.documentVersion);renderDocumentVersion();}
  if(b.hasAttribute('data-version-add'))action(createDocumentVersion);
  if(b.hasAttribute('data-signature-toggle')){
@@ -132,23 +252,11 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   if(signer.signed&&!date.value)date.focus();
   formDirty=true;updateSignedDocumentSection();
  }
- if(b.hasAttribute('data-signer-add')){
-  const role=otherSignerRoles.find(role=>!documentVersionState.draftSigners.some(s=>s.role===role));
-  if(!role){notifyWorkspace('К документу можно добавить не более трёх иных лиц.');return;}
-  const version=retainVersionDraft();
-  version.signers.push({role,person_id:null,signed:false});
-  renderDocumentVersion();
-  const index=documentVersionState.draftSigners.findIndex(s=>s.role===role);
-  const row=$(`[data-signer-row="${index}"]`);
-  const control=row?.querySelector('.smart-input, select');
-  (control?.closest('.smart-select')?.querySelector('.smart-input')||control)?.focus();
-  formDirty=true;
- }
  if(b.dataset.signerRemove!==undefined){
   const version=retainVersionDraft();
   version.signers.splice(Number(b.dataset.signerRemove),1);
   renderDocumentVersion();
-  $('#editor-content .signer-add-menu summary')?.focus();
+  $('#version-signers-title')?.focus();
   formDirty=true;
  }
  if(b.hasAttribute('data-regenerate-document'))action(regenerateDocumentVersion);
@@ -156,7 +264,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(b.hasAttribute('data-download-signed'))action(downloadSignedDocument);
  if(b.hasAttribute('data-download-document'))action(downloadDocumentVersion);
 });
-for(const type of ['input','change'])document.addEventListener(type,e=>{if(e.target.closest('#document-version-form'))formDirty=true;});
+for(const type of ['input','change'])document.addEventListener(type,e=>{if(e.target.closest('#document-version-form')){formDirty=true;if(e.target.closest('[data-document-field]'))refreshVersionSigners();}});
 
 function openUploadedAct(){
  if(!projectId){notice('Выберите рабочий раздел.');return;}
@@ -187,6 +295,11 @@ document.addEventListener('change',e=>{
 function versionTableColumns(field){
  return field.fields.filter(column=>column.source?.startsWith('item.')&&column.source.split('.').length===2);
 }
+function editableVersionTable(field){
+ if(field.kind!=='table'||field.source)return false;
+ const columns=versionTableColumns(field);
+ return columns.length&&field.fields.every(c=>c.source==='row.number'||columns.includes(c));
+}
 function versionTableRow(field,row,locked){
  return `<tr>${versionTableColumns(field).map(column=>{
   const key=column.source.split('.')[1],type=fieldInputType(column);
@@ -210,8 +323,7 @@ async function downloadDocumentVersion(){
  await downloadRelease(result.release_id);
 }
 function versionTables(fields,headers,locked,resolved={}){
- const tables=fields.filter(f=>f.kind==='table'&&!f.source&&!['hidden','not_applicable'].includes(f.state)&&
-  versionTableColumns(f).length&&f.fields.every(c=>c.source==='row.number'||versionTableColumns(f).includes(c)));
+ const tables=fields.filter(f=>!['hidden','not_applicable'].includes(f.state)&&editableVersionTable(f));
  if(!tables.length)return '';
  return `<section class="preview-section version-tables"><h3>Таблицы</h3>${tables.map((field,index)=>{
   const columns=versionTableColumns(field);
@@ -228,12 +340,12 @@ function versionTables(fields,headers,locked,resolved={}){
  }).join('')}</section>`;
 }
 
-function versionFieldRoots(version){
- const roots={...pdata.form_roots,act:{...pdata.acts.find(a=>a.id===documentVersionState.aid),...version.card,date_signed:$('#document-version-form [name=date_signed]')?.value||version.card.date_signed}};
+function versionFieldRoots(version,form=$('#document-version-form')){
+ const active=form?.dataset.version===String(version.id);
+ const roots={...pdata.form_roots,act:{...pdata.acts.find(a=>a.id===documentVersionState.aid),...version.card,date_signed:active?form.elements.namedItem('date_signed').value:version.card.date_signed}};
  roots.signatories={...roots.signatories};
- const form=$('#document-version-form'),active=form?.dataset.version===String(version.id);
  roots.organizations={...roots.organizations};
- version.signers.forEach((signer,index)=>{
+ (active?documentVersionState.draftSigners:version.signers).forEach((signer,index)=>{
   const identity=active&&form.elements.namedItem('person_'+index)?Number(form.elements.namedItem('person_'+index).value):signer.person_id;
   const person=(documentVersionState.candidates[signer.role]||[]).find(p=>p.id===identity)||(signer.person?.id===identity?signer.person:null);
   if(person){
@@ -246,12 +358,12 @@ function versionFieldRoots(version){
 }
 function versionSignaturesComplete(signers){
  const chosen=signers.filter(s=>s.person_id);
- return !!chosen.length&&chosen.every(s=>s.signed)&&documentVersionState.required_roles.every(role=>chosen.some(s=>s.role===role));
+ return !documentVersionState.pendingRepresentatives&&!!chosen.length&&chosen.every(s=>s.signed)&&documentVersionState.required_roles.every(role=>chosen.some(s=>s.role===role));
 }
 function updateSignedDocumentSection(){
  const model=documentVersionState,section=$('#signed-document-section');if(!model||!section)return;
  const v=model.versions.find(v=>v.id===model.selected),form=$('#document-version-form');
- const signers=model.draftSigners.map((s,i)=>({...s,person_id:form.elements.namedItem('person_'+i)?Number(form.elements.namedItem('person_'+i).value)||null:s.person_id}));
+ const signers=versionDraftSigners(form);
  section.hidden=!v.signed_attachment_id&&!versionSignaturesComplete(signers);
  const input=$('#signed-document-file');
  if(input)input.setAttribute('aria-required',String(!section.hidden&&!v.signed_attachment_id));
@@ -305,6 +417,7 @@ async function initializeDocumentVersion(){
  const result=await api('/api/versions/ensure',{project_id:projectId,act_id:model.aid});
  model.versions=result.versions;model.selected=result.versions.at(-1)?.id;
  renderDocumentVersion();
+ window.requestAnimationFrame?.(()=>$('#version-information-title')?.focus());
 }
 document.addEventListener('click',e=>{
  if(e.target.closest('[data-version-ensure]'))action(initializeDocumentVersion);

@@ -4,6 +4,7 @@ from datetime import date
 import json
 
 from .fields import merge_fields
+from .form_defaults import document_date_field, legacy_document_date
 
 
 GROUP_RANK = {"registry": 0, "order": 1, "act": 2, "statement": 3,
@@ -41,9 +42,10 @@ def registry_rows(connection, project_id, *, registry_act_id=None, detailed=Fals
         # экземпляры не включаются отдельными первыми строками.
         if act["form_group"] == "registry" and (detailed or registry_act_id is not None and act["id"] != registry_act_id):
             continue
-        definitions = merge_fields(json.loads(act["form_fields"]), json.loads(act["fields"]))
+        overrides = json.loads(act["fields"])
+        definitions = merge_fields(json.loads(act["form_fields"]), overrides)
         note = act["registry_note"] or ""
-        document_date = act["date_signed"]
+        document_date = act["date_signed"] or legacy_document_date(document_date_field(act["act_type"], overrides))
         if act["entry_kind"]:
             from .manual import entry_rows
             entries = entry_rows(connection, project_id, act["entry_kind"], act["work_type"])

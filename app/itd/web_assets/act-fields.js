@@ -63,7 +63,8 @@ function updateActAutomaticValues(){
 function renderActFields(code){
  let form=actForms().find(f=>f.code===code);
  const host=$('#act-fields'),draft=$('#act-form');
- if(form&&host?.dataset?.formCode===code&&draft){
+ const sameTemplate=host?.dataset?.formCode===code;
+ if(form&&sameTemplate&&draft){
   const saved=collectActFields(draft,form);
   form={...form,ui_fields:actFieldDefinitions(form).map(f=>({...f,...saved.find(value=>value.key===f.key)}))};
  }
@@ -81,7 +82,9 @@ function renderActFields(code){
  if(!form){$('#act-fields').innerHTML='';return;}
  if($('#act-resources'))syncLinkedActResources();
  const fields=actFieldDefinitions(form).filter(f=>!['hidden','not_applicable'].includes(f.state)),roots=actInputRoots();
- $('#act-fields').innerHTML=participantRoleChoosers(fields)+organizationSelects(fields)+`<h3>Сведения документа</h3><p class="hint">Обязательные сведения отмечены *. Можно сохранить незаполненный документ для дальнейшей подготовки; пропуски будут показаны при проверке.</p><div class="document-scalar-fields">${documentScalarFields(fields).map(f=>functionField(f,false,'creation',roots)).join('')}</div>
+ const date=fields.find(isDocumentDateField),calendar=draft?.elements.namedItem('date_signed');
+ if(calendar&&!sameTemplate&&code.startsWith('TPL_')&&!calendar.value&&date?.kind==='literal')calendar.value=calendarInputValue(date.value);
+ $('#act-fields').innerHTML=participantRoleChoosers(fields)+organizationSelects(fields)+`<h3>Сведения документа</h3><p class="hint">Обязательные сведения отмечены *. Можно сохранить незаполненный документ для дальнейшей подготовки; пропуски будут показаны при проверке.</p><div class="document-scalar-fields">${documentScalarFields(fields,code).map(f=>functionField(f,false,'creation',roots)).join('')}</div>
  ${versionTables(fields,{},false)}
  ${fields.some(f=>f.kind==='table'&&f.source)?`<details class="act-auto-block"><summary>Автоматические таблицы и перечни</summary><ul>${fields.filter(f=>f.kind==='table'&&f.source).map(f=>`<li>${esc(f.label||'Перечень')} — из связанных сведений раздела и выбранных ресурсов</li>`).join('')}</ul></details>`:''}`;
  decorateSelects();

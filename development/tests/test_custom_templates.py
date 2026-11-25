@@ -16,6 +16,68 @@ from itd.releases import build_project_zip
 
 
 class TemplateWorkflowTests(unittest.TestCase):
+    def test_signing_uses_document_date_and_all_template_representatives(self):
+        from itd.acts import build_context
+        from itd.ojr import sign_act
+        from itd.participants import add_organization, add_signatory
+
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            database = root / 'test.db'
+            initialize(database)
+            ctx = ServiceContext(database=database, templates=root)
+            document = Document()
+            document.add_paragraph('Дата: {{ date }}')
+            document.add_paragraph('{{ first }} {{ position }} {{ second }}')
+            buffer = io.BytesIO()
+            document.save(buffer)
+            content = base64.b64encode(buffer.getvalue()).decode()
+
+            with connect(database) as c:
+                oid = add_object(c, 'Тестовый объект')
+                pid = add_project(c, object_id=oid, name='Раздел', section_code='1', code='РД')
+
+                def call(op, **data):
+                    return mutate(c, '/api/' + op, {'project_id': pid, **data}, ctx)
+
+                org = add_organization(c, full_name='Строймонтаж')
+                c.execute('INSERT INTO object_participants(object_id,org_id,role_key) VALUES (?,?,?)',
+                          (oid, org, 'contractor'))
+                first = add_signatory(c, org_id=org, fio='Иванов Иван Иванович', position='Инженер')
+                second = add_signatory(c, org_id=org, fio='Петров Пётр Петрович', position='Мастер')
+                date, name, position, other = call('templates/inspect', content=content)['fields']
+                self.assertEqual(date['value_type'], 'date')
+                date['mask'] = '«dd» mmmm yyyy'
+                name['value'] = f'{{{{ $db.signatories.r{first}.fio }}}}'
+                position['value'] = f'{{{{ $db.signatories.r{first}.position }}}}'
+                other['value'] = '{{ $db.signatories.fio }}'
+                code = call('templates/save', content=content, original_name='Акт.docx', name='Акт',
+                            form_set='СП', fields=[date, name, position, other])['code']
+                aid = call('act', act_type=code, date_signed='2025-11-24')['act_id']
+                self.assertEqual(call('versions/list', act_id=aid)['versions'], [])
+                self.assertEqual(build_context(c, aid)['context']['date'], '«24» ноября 2025')
+                with self.assertRaisesRegex(ValueError, 'Выберите представителей'):
+                    sign_act(c, pid, {'act_id': aid, 'expected_revision': 0, 'state': 'signed',
+                                      'signed_date': '2025-11-25', 'basis': 'Тест', 'work_description': 'Работы'})
+                version = call('versions/ensure', act_id=aid)['versions'][-1]
+                self.assertEqual([s['person_id'] for s in version['signers']], [first])
+
+                version['card']['fields'] = [{**other, 'value': f'{{{{ $db.signatories.r{second}.fio }}}}'}]
+                version = call('versions/save', act_id=aid, id=version['id'], revision=version['revision'],
+                               card=version['card'])['versions'][-1]
+                self.assertEqual([s['person_id'] for s in version['signers']], [first, second])
+                generated = call('generate', act_id=aid)
+                self.assertEqual(Document(generated['output']).paragraphs[0].text, 'Дата: «24» ноября 2025')
+                version = call('versions/list', act_id=aid)['versions'][-1]
+                signed_file = call('upload', name='Подписанный.docx', content=content, doc_type='other')
+                dates = ['2025-11-24', '2025-11-25']
+                signed = [{**s, 'signed': True, 'signed_date': day} for s, day in zip(version['signers'], dates)]
+                version = call('versions/save', act_id=aid, id=version['id'], revision=version['revision'],
+                               card=version['card'], signers=signed, signed_attachment_id=signed_file['id'])['versions'][-1]
+                self.assertEqual([s['signed_date'] for s in version['signers']], dates)
+                self.assertEqual(version['card']['date_signed'], '2025-11-24')
+                self.assertEqual(version['snapshot']['date'], '«24» ноября 2025')
+
     def test_select_records_when_preparing_a_document(self):
         from itd.acts import build_context
         from itd.custom_templates import list_templates
