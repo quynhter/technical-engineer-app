@@ -9,6 +9,8 @@ function resourceOptionLabel(item){const parts=[item.spec_num?'Поз. '+item.sp
 const incomingResults={pending:'Проверка не завершена',accepted:'Входной контроль пройден',rejected:'Не принято'};
 
 export const recordDefinitions={
+ templates:{title:'Шаблоны документов',create:'Добавить шаблон',entity:'templates',nameIndex:1,
+  headers:['Комплект форм','Наименование'],rows:project=>(project.templates||[]).map(t=>({...t,id:t.code})),values:item=>[item.form_set,item.name]},
  schemes:{title:'Схемы',create:'Добавить схему',entity:'schemes',nameIndex:1,selectable:true,
   headers:['Номер','Наименование','Референс','Комментарий'],rows:project=>project.schemes||[],values:item=>[item.num,item.name,item.ref_code,item.note]},
  documents:{title:'Основные документы',create:'Создать',import:'Загрузить',entity:'acts',nameIndex:1,selectable:true,types:{2:'date'},
@@ -19,11 +21,11 @@ export const recordDefinitions={
   headers:['Дата','Материал','Количество','Ед. изм.','Место','Работа в ОЖР','Статус'],rows:project=>(project.workflow?.fact_records||[]).filter(item=>item.status!=='void').sort((a,b)=>(b.end_date||b.start_date||'').localeCompare(a.end_date||a.start_date||'')),values:(item,project)=>[tableValue(item.end_date||item.start_date),(project.resources||[]).find(resource=>resource.id===item.resource_id)?.name,tableValue(item.quantity),item.unit,item.location,factWork(item,project)?.title||'',item.status==='confirmed'?'Подтверждён':'Ожидает проверки']},
  incoming:{title:'Входной контроль',create:'Добавить запись',entity:'workspace_entries',nameIndex:1,types:{0:'date',2:'number'},
   headers:['Дата','Ресурс','Количество','Ед. изм.','Результат','Примечание'],rows:project=>(project.journals?.incoming||[]).filter(item=>item.kind==='incoming').sort((a,b)=>(b.entry_date||'').localeCompare(a.entry_date||'')||b.id-a.id),values:item=>[tableValue(item.entry_date||''),item.resource?.name||item.title,tableValue(item.quantity??item.supply?.quantity),item.unit||item.supply?.unit||item.resource?.unit,incomingResults[item.work_fields?.incoming_result||'pending'],item.details]},
- cable:{title:'ЖПК',description:'Журнал прокладки кабеля',create:'Записать прокладку кабеля',entity:'workspace_entries',nameIndex:1,types:{0:'date'},
+ cable:{title:'ЖПК',description:'Журнал прокладки кабеля',create:'Добавить запись',entity:'workspace_entries',nameIndex:1,types:{0:'date'},
   headers:['Дата','Работа','Место'],rows:project=>(project.workspace_entries||[]).filter(item=>item.kind==='work'&&item.work_type==='cable'),values:item=>[tableValue(item.entry_date),item.title,item.details]},
 };
 
-export function ProjectRecords({kind,projectId,role,workspaceId='',getToken,onSessionExpired,api:providedApi,onOpen,onCreate,onImport,onDelete,onResource,onChanged,initialProject,isDirty=()=>false,saveFile=defaultSaveFile}){
+export function ProjectRecords({kind,projectId,role,workspaceId='',getToken,onSessionExpired,api:providedApi,onOpen,onCreate,onImport,onExport,onDelete,onResource,onChanged,initialProject,isDirty=()=>false,saveFile=defaultSaveFile}){
  const definition=recordDefinitions[kind];
  const api=useMemo(()=>providedApi||createApiClient({getToken,onSessionExpired}),[providedApi,getToken,onSessionExpired]);
  const [project,setProject]=useState(null),[loading,setLoading]=useState(true),[error,setError]=useState(''),[retry,setRetry]=useState(0),[resourceId,setResourceId]=useState('');
@@ -34,7 +36,7 @@ export function ProjectRecords({kind,projectId,role,workspaceId='',getToken,onSe
  },[api,projectId,workspaceId,kind,retry]);
  useEffect(()=>{if(initialProject){setProject(initialProject);setLoading(false);}},[initialProject]);
  const editable=role!=='viewer';
- const headers=useMemo(()=>[...definition.headers.map((label,index)=>({key:'c'+index,index,label,type:definition.types?.[index]||'text'})),...(editable&&onDelete?[{key:'actions',index:definition.headers.length,label:'Действия',type:'text',action:true}]:[])],[definition,editable,onDelete]);
+ const headers=useMemo(()=>[...definition.headers.map((label,index)=>({key:'c'+index,index,label,type:definition.types?.[index]||'text'})),...(editable&&onDelete?[{key:'actions',index:definition.headers.length,label:kind==='templates'?'Действие':'Действия',type:'text',action:true}]:[])],[definition,editable,onDelete]);
  const rows=project?definition.rows(project):[];
  async function perform(callback,...args){if(isDirty()){setError('Сначала сохраните изменения.');return;}try{await callback?.(...args);}catch(err){setError(err.message);}}
  const snapshot={key:kind+'-api-v1:'+workspaceId+':'+projectId+':'+role,title:definition.title,headers,selectable:!!definition.selectable,hasGroups:false,menuItems:kind==='resources'&&editable&&onImport?[{label:definition.import,onClick:()=>perform(onImport),isDisabled:loading||!project}]:[],
@@ -44,7 +46,7 @@ export function ProjectRecords({kind,projectId,role,workspaceId='',getToken,onSe
  };
  return <Card padding={4} data-project-records={kind}><Heading level={2} hasCapsize={false}>{definition.title}</Heading>
   {definition.description&&<p>{definition.description}</p>}
-  {editable&&(onCreate||onImport)&&<div className="toolbar">{onCreate&&<Button label={definition.create} onClick={()=>perform(onCreate)} isDisabled={loading||!project}/>} {kind!=='resources'&&onImport&&<Button label={definition.import} variant="secondary" onClick={()=>perform(onImport)} isDisabled={loading||!project}/>}</div>}
+  {((editable&&(onCreate||onImport))||onExport)&&<div className="toolbar">{editable&&onCreate&&<Button label={definition.create} onClick={()=>perform(onCreate)} isDisabled={loading||!project}/>} {onExport&&<Button label="Экспорт в DOCX" variant="secondary" onClick={()=>perform(onExport)} isDisabled={loading||!project}/>} {editable&&kind!=='resources'&&onImport&&<Button label={definition.import} variant="secondary" onClick={()=>perform(onImport)} isDisabled={loading||!project}/>}</div>}
   {kind==='facts'&&!!project?.resources?.length&&<Collapsible trigger="Монтаж по ресурсу" defaultIsOpen={false}><Selector label="Ресурс" value={resourceId} options={[{value:'',label:'Выберите ресурс…'},...project.resources.map(item=>({value:String(item.id),label:resourceOptionLabel(item)}))]} onChange={setResourceId}/><Button label="Открыть монтаж по ресурсу" variant="secondary" onClick={()=>{if(!resourceId){setError('Выберите ресурс');return;}perform(onResource,Number(resourceId));}}/></Collapsible>}
   {error&&<Banner title="Не удалось выполнить операцию" description={error} status="error"/>}
   {loading?<Skeleton aria-label={'Загрузка: '+definition.title} height={140}/>:project?<BrowseTable key={snapshot.key} snapshot={snapshot}/>:<Button label="Повторить загрузку" variant="secondary" onClick={()=>setRetry(n=>n+1)}/>}

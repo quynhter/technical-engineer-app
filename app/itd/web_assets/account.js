@@ -142,7 +142,6 @@ function adminPanels(model){
  return accountCard('assistants','Ассистенты',`<button type="button" class="secondary" data-account-task="assistants">Настроить ассистентов</button>`,'clipboard')
  + accountCard('paths','Рабочие пути',`<form class="account-form" data-account-action="settings">
  <label class="field"><span>Файл базы данных на сервере</span><input name="database_path" required value="${esc(settings.database_path)}"></label>
- <label class="field"><span>Папка ИТД на сервере</span><input name="itd_root" required value="${esc(settings.itd_root)}"></label>
  <p class="hint">Укажите полные пути к существующему файлу .db и отдельной папке ИТД для этой базы. Если папки ещё нет, приложение её создаст.</p>
  <button type="submit" class="secondary">Применить пути</button>
  <p id="settings-message" class="account-message" role="status" tabindex="-1"></p>

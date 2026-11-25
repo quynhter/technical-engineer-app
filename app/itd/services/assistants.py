@@ -58,11 +58,11 @@ def context_name(ctx, thread):
     return 'все объекты'
 
 
-def assistant_settings(row):
+def assistant_settings(row, actor):
     value = decoded(row)
     # All assistants use the current registry and knowledge library. Legacy stored
     # subsets do not require a business or accounts DB write during a read.
-    value['allowed_tools'] = [tool.name for tool in TOOLS]
+    value['allowed_tools'] = [tool.name for tool in available(actor)]
     value['knowledge_bases'] = ['*']
     return value
 
@@ -77,6 +77,14 @@ def decoded(row):
     return value
 
 
+def message_view(row, *, for_model=False):
+    message = decoded(row)
+    fields = ('name', 'text', 'id', 'sha256') if for_model else ('name', 'text')
+    message['attachments'] = [{k: file[k] for k in fields if k in file}
+                              for file in message['attachments']]
+    return message
+
+
 class Chats:
     def __init__(self, accounts):
         self.accounts = accounts
@@ -84,7 +92,7 @@ class Chats:
     def assistants(self, actor, *, admin=False):
         require(actor, 'admin' if admin else 'viewer')
         with self.accounts.connect() as c:
-            return [assistant_settings(r) for r in c.execute('SELECT * FROM assistants' + ('' if admin else ' WHERE active=1') + ' ORDER BY id')]
+            return [assistant_settings(r, actor) for r in c.execute('SELECT * FROM assistants' + ('' if admin else ' WHERE active=1') + ' ORDER BY id')]
 
     def save(self, actor, data, providers):
         require(actor, 'admin')
@@ -152,11 +160,29 @@ class Chats:
                 (assistant['id'],actor.user_id,workspace(ctx),oid,pid,title,assistant['skill_path'],skills_version())).lastrowid
         return self.thread(ctx,actor,tid)
 
-    def history(self, ctx, actor, thread_id):
+    def history(self, ctx, actor, thread_id, *, for_model=False):
         thread = self.thread(ctx, actor, thread_id)
         with self.accounts.connect() as c:
-            messages = [decoded(r) for r in c.execute('SELECT * FROM messages WHERE thread_id=? ORDER BY id', (thread_id,))]
+            messages = [message_view(r, for_model=for_model) for r in c.execute(
+                'SELECT * FROM messages WHERE thread_id=? ORDER BY id', (thread_id,))]
         return {'thread':thread,'messages':messages,'context':context_name(ctx,thread)}
+
+    def message(self, ctx, actor, thread_id, message_id):
+        require(actor, 'viewer')
+        with self.accounts.connect() as c:
+            row = c.execute('''SELECT m.* FROM messages m JOIN threads t ON t.id=m.thread_id
+                WHERE m.id=? AND t.id=? AND t.user_id=? AND t.workspace=?''',
+                (message_id, thread_id, actor.user_id, workspace(ctx))).fetchone()
+        if row is None:
+            raise PermissionError('Сообщение недоступно')
+        return message_view(row)
+
+    def attachment_sources(self, ctx, actor, thread_id, message_id):
+        self.thread(ctx, actor, thread_id)
+        with self.accounts.connect() as c:
+            rows = c.execute("SELECT attachments FROM messages WHERE thread_id=? AND id<? AND sender='user'",
+                             (thread_id, message_id))
+            return {file['id']: file for row in rows for file in json.loads(row[0]) if 'content' in file}
 
     def rename(self, ctx, actor, thread_id, title):
         self.thread(ctx, actor, thread_id)
@@ -185,7 +211,7 @@ class Chats:
         assistant = next((a for a in self.assistants(actor) if a['id']==thread['assistant_id']), None)
         if assistant is None:
             raise PermissionError('Ассистент отключён')
-        files = read_attachments([] if attachments is None else attachments)
+        files = read_attachments([] if attachments is None else attachments, keep_source=True)
         with self.accounts.connect() as c, c:
             c.execute('BEGIN IMMEDIATE')
             prior = c.execute('SELECT id FROM messages WHERE thread_id=? AND request_key=?',(thread_id,request_key)).fetchone()

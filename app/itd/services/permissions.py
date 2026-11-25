@@ -170,6 +170,7 @@ WEB_READS = {
     '/api/project': 'viewer', '/api/context': 'viewer', '/api/knowledge': 'viewer',
     '/api/configuration': 'editor', '/api/download': 'editor', '/api/original': 'editor',
     '/api/package': 'editor',
+    '/api/journal-docx': 'viewer',
 }
 
 ACCOUNT_POLICIES = {
@@ -186,7 +187,7 @@ WEB_POSTS = {
     '/api/incoming-day', '/api/entry', '/api/action', '/api/review', '/api/fact',
     '/api/work-fact', '/api/fact-status', '/api/quality', '/api/act', '/api/generate',
     '/api/registry/export', '/api/statement', '/api/ojr-title', '/api/files/plan',
-    '/api/files/apply', '/api/files/recover', '/api/versions/list', '/api/versions/ensure',
+    '/api/templates/inspect', '/api/templates/save', '/api/templates/delete', '/api/templates/download', '/api/scheme-save', '/api/files/apply', '/api/files/recover', '/api/versions/list', '/api/versions/ensure',
     '/api/versions/create', '/api/versions/save', '/api/versions/delete',
     '/api/versions/regenerate', '/api/resource-import/stage',
     '/api/resource-import/preview', '/api/resource-import/commit',
@@ -201,11 +202,13 @@ def web_policy(route, data=None, *, read=False):
     if route not in WEB_POSTS:
         raise ValueError('Неизвестная операция')
     data = data or {}
+    if route == '/api/templates/download':
+        return Policy('viewer',False)
     if route == '/api/action':
         policy = action_policy(data.get('action'))
         # Preserve the existing HTTP viewer contract (only context is exposed).
         return Policy('viewer' if data.get('action') == 'context' else 'editor', policy.write)
     return Policy('editor', route not in {
-        '/api/versions/list', '/api/resource-import/preview', '/api/configuration/preview',
+        '/api/versions/list', '/api/templates/inspect', '/api/resource-import/preview', '/api/configuration/preview',
         '/api/files/plan',
     })

@@ -118,6 +118,10 @@ def _build(c, database, pid, purpose, aid):
         if any(not any((workspace/m['path']).is_relative_to(folder) for folder in mapped_folders) for m in mappings):
             raise ValueError('Привязка файла находится вне стандартных папок раздела')
         states = {m['path']: _state(workspace, workspace/m['path']) for m in mappings}
+        stored = c.execute('SELECT id FROM files WHERE attachment_id=? AND project_id=?',(r['id'],pid)).fetchone()
+        if stored:
+            path = 'storage/'+stored[0]
+            states[path] = _state(workspace,workspace/path)
         archived = archive.archived_path(Path(database).parent/'archive', r['storage_path'])
         _safe(workspace,Path(database).parent/'archive'/r['storage_path'])
         archive_state = _state(workspace, archived)
@@ -130,7 +134,7 @@ def _build(c, database, pid, purpose, aid):
             elif archive_state != r['sha256']:
                 blocked.append({'id':r['id'],'name':r['original_name'],'reason':'Архивная копия изменена. Требуется ручная проверка.'})
             continue
-        if purpose == 'check' and not mappings and archive_state == r['sha256']:
+        if purpose == 'check' and not states and archive_state == r['sha256']:
             actions.append({'action': 'restore', 'id': r['id'], 'name': r['original_name'], 'type': archive.file_type(r)})
             continue
         if purpose == 'check' and any(sha == r['sha256'] for sha in states.values()):
@@ -141,7 +145,7 @@ def _build(c, database, pid, purpose, aid):
         resource_ids = [row['resource_id'] for ref in refs if ref['table'] == 'resource_attachments' for row in ref['rows']]
         local_resources = {row[0] for row in c.execute('SELECT id FROM resources WHERE project_id=?', (pid,))}
         clear_resource_links = purpose == 'delete' and set(resource_ids) <= local_resources
-        removable = {'project_attachments', 'project_files'}
+        removable = {'project_attachments', 'project_files','files'}
         if clear_resource_links:
             removable.add('resource_attachments')
         protected = [ref['table'] for ref in refs if ref['table'] not in removable]
@@ -199,7 +203,7 @@ def _recover(c, database):
             if not re.fullmatch(r'[0-9]+-[0-9]+',move['saved']):
                 raise ValueError('Повреждён путь восстановления')
             original = _safe(workspace, workspace/move['path'])
-            if not any(original.is_relative_to(root) for root in (document_root(workspace), workspace/'ИТД', *previous_itd_roots.get(), Path(database).parent/'archive')):
+            if not any(original.is_relative_to(root) for root in (document_root(workspace), workspace/'ИТД', workspace/'storage', *previous_itd_roots.get(), Path(database).parent/'archive')):
                 raise ValueError('Восстановление разрешено только для исходных файлов')
             saved = _safe(workspace, stage/move['saved'])
             if not saved.exists():
@@ -286,6 +290,7 @@ def apply_plan(database, plan, token, types, secret):
                 pid = plan['project_id']
                 if a['action'] in ('remove', 'detach'):
                     before = dict(c.execute('SELECT * FROM attachments WHERE id=?', (a['id'],)).fetchone())
+                    c.execute('DELETE FROM files WHERE project_id=? AND attachment_id=?',(pid,a['id']))
                     c.execute('DELETE FROM project_files WHERE project_id=? AND attachment_id=?', (pid, a['id']))
                     c.execute('DELETE FROM project_attachments WHERE project_id=? AND attachment_id=?', (pid, a['id']))
                     for resource_id in a.get('unlink_resources', []):

@@ -185,9 +185,9 @@ def save(c,pid,data):
             raise ValueError('Подписанный файл не принадлежит текущему разделу')
         if Path(attachment['original_name']).suffix.lower() not in ('.pdf', '.docx', '.doc', '.png', '.jpg', '.jpeg'):
             raise ValueError('Загрузите подписанный документ в формате PDF, Word или изображения')
-        from .archive import archived_path, digest
+        from .archive import original_path, digest
         database = Path(c.execute('PRAGMA database_list').fetchone()[2])
-        path = archived_path(database.parent / 'archive', attachment['storage_path'])
+        path = original_path(c, database.parent / 'archive', attachment['storage_path'])
         if not path.is_file() or not path.stat().st_size or digest(path) != attachment['sha256']:
             raise ValueError('Подписанный оригинал отсутствует или изменён')
         from .archive import link_file
@@ -381,18 +381,11 @@ def regenerate(c, pid, data, templates_dir):
         staging.unlink(missing_ok=True)
         raise
     c.commit()
-    if selected['id'] == items[-1]['id']:
-        target = releases.default_output(c, project_id=pid, title=selected['card'].get('filename_title') or act['act_num'],
-                                         kind='docx', group=form['form_group'], identity=act['id'], draft=draft)
-        previous = c.execute('SELECT * FROM releases WHERE act_id=? AND selected=1', (act['id'],)).fetchone()
-        if previous and not releases.actual_path(c, previous['path']).exists():
-            releases.unselect_release(c, previous['id'])
-            c.commit()
-        published = releases.publish(c, rid, target)
-    else:
-        target = releases.service_directory(c) / 'История выпусков' / str(rid) / (staging.name)
-        published = releases.move_release(c, rid, target)
-    return {'versions': versions(c, pid, act['id']), 'release_id': rid, 'output': str(target)}
+    from .storage import publish_stored
+    published = publish_stored(c,rid,selected['card'].get('filename_title') or form['name'],
+                               selected=selected['id']==items[-1]['id'])
+    return {'versions': versions(c, pid, act['id']), 'release_id': rid, 'output': published['output']}
+
 
 
 # Локальная атомарная часть регенерации; publish ведёт собственный журнал ФС.

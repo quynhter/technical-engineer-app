@@ -35,6 +35,18 @@ def archived_path(archive_root, relative):
     return path
 
 
+def original_path(connection, archive_root, relative):
+    path = archived_path(archive_root, relative)
+    origin = getattr(connection, 'preview_origin', None)
+    return archived_path(origin.parent / 'archive', relative) if origin and not path.exists() else path
+
+
+def _publish_original(connection, source, target):
+    os.link(source, target)
+    if hasattr(connection, 'preview_new_originals'):
+        connection.preview_new_originals.append(target)
+
+
 def import_file(connection, *, archive_root, source, doc_type, title, doc_num=None, doc_date=None):
     if doc_type not in DOCUMENT_TYPES:
         raise ValueError("Неизвестный тип вложения")
@@ -56,11 +68,14 @@ def import_file(connection, *, archive_root, source, doc_type, title, doc_num=No
         existing = connection.execute("SELECT * FROM attachments WHERE sha256=?", (sha,)).fetchone()
         if existing:
             stored = archived_path(root, existing["storage_path"])
+            original = original_path(connection, root, existing["storage_path"])
+            if original != stored and original.exists() and (not original.is_file() or digest(original) != sha):
+                raise ValueError("Архивная копия отсутствует или повреждена")
             if not stored.exists():
                 # Повторно предоставленный оригинал с тем же хешем может
                 # восстановить потерянную копию без изменения реквизитов.
                 stored.parent.mkdir(parents=True, exist_ok=True)
-                os.link(temp, stored)
+                _publish_original(connection, temp, stored)
             if not stored.is_file() or digest(stored) != sha:
                 raise ValueError("Архивная копия отсутствует или повреждена")
             # Повторный импорт не меняет реквизиты уже зарегистрированного файла.
@@ -75,7 +90,7 @@ def import_file(connection, *, archive_root, source, doc_type, title, doc_num=No
             if digest(target) != sha:
                 raise ValueError("Коллизия или повреждение файла архива")
         else:
-            os.link(temp, target)
+            _publish_original(connection, temp, target)
         cursor = connection.execute(
             "INSERT INTO attachments (sha256, storage_path, original_name, byte_size, doc_type, title, doc_num, doc_date) "
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",

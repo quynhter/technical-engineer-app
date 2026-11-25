@@ -110,6 +110,7 @@ class WorkspaceTests(WorkspaceFixture, unittest.TestCase):
         self.assertEqual(s['participants'][0]['postal_code'], '000123')
         r = s['participants'][0]['representatives'][0]
         self.assertEqual(r['fio'], 'Иванов Иван Иванович')
+        self.assertEqual(r['short_fio'], 'Иванов И. И.')
         self.assertEqual(r['order_doc'], 'Приказ № 001 от 2026-10-01')
         self.assertIsNone(s['projects'][0]['smr_start'])
         with connect(self.path) as c:
@@ -146,7 +147,35 @@ class WorkspaceTests(WorkspaceFixture, unittest.TestCase):
             updated = save_workspace(c, s)
         rep = updated['participants'][0]['representatives'][0]
         self.assertEqual(rep['fio'], 'Иванов Пётр Иванович')
+        self.assertEqual(rep['short_fio'], 'Иванов П. И.')
         self.assertEqual(rep['order_doc'], 'Доверенность № 17 от 01.10.2026')
+
+    def test_short_fio_migration_and_direct_name_updates(self):
+        from unittest.mock import patch
+        from itd import db
+
+        old_migrations = self.path.parent / 'migrations'
+        old_migrations.mkdir()
+        for migration in db.MIGRATIONS.glob('*.sql'):
+            if int(migration.name[:3]) <= 25:
+                (old_migrations / migration.name).write_bytes(migration.read_bytes())
+        legacy_path = self.path.with_name('legacy.db')
+        with patch.object(db, 'MIGRATIONS', old_migrations):
+            initialize(legacy_path)
+        with connect(legacy_path) as c:
+            org = c.execute("INSERT INTO organizations(full_name) VALUES('Организация')").lastrowid
+            c.execute("""INSERT INTO signatories(org_id, fio, position)
+                         VALUES(?, 'Иванов  Иван Федорович', 'Инженер')""", (org,))
+            c.execute("""INSERT INTO signatories(org_id, fio, last_name, first_name, position)
+                         VALUES(?, 'Петров Пётр', 'Петров', 'Пётр', 'Мастер')""", (org,))
+        initialize(legacy_path)
+        with connect(legacy_path) as c:
+            self.assertIsNotNone(c.execute('SELECT 1 FROM schema_migrations WHERE version=26').fetchone())
+            self.assertEqual([tuple(row) for row in c.execute('SELECT fio, short_fio FROM signatories ORDER BY id')],
+                             [('Иванов  Иван Федорович', 'Иванов И. Ф.'), ('Петров Пётр', 'Петров П.')])
+            c.execute('UPDATE signatories SET first_name=?, middle_name=? WHERE id=2', ('Андрей', 'Сергеевич'))
+            self.assertEqual(tuple(c.execute('SELECT fio, short_fio FROM signatories WHERE id=2').fetchone()),
+                             ('Петров Андрей Сергеевич', 'Петров А. С.'))
 
     def test_invalid_late_participant_rolls_back_entire_form(self):
         s = self.payload()
@@ -258,8 +287,8 @@ class DocumentCityTests(WorkspaceFixture, unittest.TestCase):
         saved = self.create()
         pid = saved['projects'][0]['id']
         with connect(self.path) as c:
-            connect_form(c, 'СП_77_А_21')
-            aid = add_act(c, project_id=pid, act_type='СП_77_А_21')
+            connect_form(c, 'И_1_13_07_18')
+            aid = add_act(c, project_id=pid, act_type='И_1_13_07_18')
             self.assertEqual(project_data(c, pid)['form_roots']['project']['city'], 'Нижний Новгород')
             self.assertEqual(build_context(c, aid)['context']['city'], 'Нижний Новгород')
             self.assertIsNone(c.execute('SELECT city FROM projects WHERE id=?', (pid,)).fetchone()[0])
@@ -306,12 +335,12 @@ class HttpTests(WorkspaceFixture, unittest.TestCase):
         pid = saved['projects'][0]['id']
         from itd.acts import add_act
         with connect(self.path) as c:
-            register_form(c, code='СП_77_А_4', name='Проверка кабеля', fields=[
+            register_form(c, code='ПРОВЕРКА', name='Проверка кабеля', fields=[
                 {'key':'t0_r0_c1','label':'Номер барабана','kind':'literal','required':True,'value':None},
                 {'key':'date_0_3','label':'Дата проверки','kind':'reference','source':'act.date_signed','format':'day_2digits'},
                 {'key':'rows','label':'Результаты {{ t0_r0_c1 }}','kind':'table','value':None,
                  'fields':[{'key':'c1','label':'Затухание','kind':'reference','source':'item.c1'}]}])
-            aid=add_act(c, project_id=pid, act_type='СП_77_А_4', fields=[
+            aid=add_act(c, project_id=pid, act_type='ПРОВЕРКА', fields=[
                 {'key':'t0_r0_c1','kind':'literal','required':True,'value':'0001'}])
         status, body = self.request(f'/api/context?project_id={pid}&act_id={aid}')
         self.assertEqual(status, 200)
@@ -322,78 +351,29 @@ class HttpTests(WorkspaceFixture, unittest.TestCase):
         self.assertEqual(value['preview_fields'][2]['label'], 'Результаты')
         self.assertEqual(value['preview_fields'][2]['columns'][0]['label'], 'Затухание')
         self.assertEqual(value['source_issues'], [])
-        self.assertFalse(value['review_current'])
+        self.assertIn('template_error',value)
         from itd.acts import review_act
+        from docx import Document
         from itd.paths import default_templates
-        with connect(self.path) as c:
+        from unittest.mock import patch
+        fixture = self.path.parent/'ПРОВЕРКА.docx'
+        document = Document()
+        document.add_paragraph('{{ t0_r0_c1 }}')
+        document.save(fixture)
+        with patch('itd.acts.find_template',return_value=fixture), connect(self.path) as c:
             review_act(c, aid, default_templates(), 'Тестовая сверка источников')
-        _, body = self.request(f'/api/context?project_id={pid}&act_id={aid}')
+        with patch('itd.acts.find_template',return_value=fixture):
+            _, body = self.request(f'/api/context?project_id={pid}&act_id={aid}')
         self.assertTrue(json.loads(body)['review_current'])
         from itd.changes import update_record
         with connect(self.path) as c:
             update_record(c, entity='acts', record_id=aid,
                           changes={'date_signed': '2026-10-31'}, expected={'date_signed': None})
-        _, body = self.request(f'/api/context?project_id={pid}&act_id={aid}')
+        with patch('itd.acts.find_template',return_value=fixture):
+            _, body = self.request(f'/api/context?project_id={pid}&act_id={aid}')
         self.assertFalse(json.loads(body)['review_current'])
         self.assertEqual(self.request(f'/api/context?project_id={pid+100}&act_id={aid}')[0],400)
 
-
-    def test_catalog_selection_connects_only_chosen_form_and_preserves_customization(self):
-        saved = self.create()
-        pid = saved['projects'][0]['id']
-        status, body = self.request(f'/api/project?project_id={pid}')
-        self.assertEqual(status, 200)
-        forms = json.loads(body)['available_forms']
-        self.assertTrue(any(f['code'] == 'СП_77_А_4' and f['choice_group'] == 'Комплект раздела' for f in forms))
-        self.assertTrue(any(f['code'] == 'И_1_13_07_02' and f['choice_group'] == 'Другие комплекты форм' for f in forms))
-        with connect(self.path) as c:
-            self.assertEqual(c.execute('SELECT count(*) FROM document_types').fetchone()[0], 0)
-        payload = {'project_id':pid, 'act_type':'СП_77_А_4'}
-        # Ошибка состава откатывает и регистрацию формы, и создание акта.
-        self.assertEqual(self.request('/api/act', {**payload, 'resource_ids':[999999]})[0], 400)
-        with connect(self.path) as c:
-            self.assertEqual(c.execute('SELECT count(*) FROM document_types').fetchone()[0], 0)
-        status, body = self.request('/api/act', payload)
-        self.assertEqual(status, 200, body)
-        with connect(self.path) as c:
-            self.assertEqual(c.execute('SELECT count(*) FROM document_types').fetchone()[0], 1)
-            register_form(c, code='СП_77_А_4', name='Согласованное название', fields=[])
-        self.assertEqual(self.request('/api/act', payload)[0], 200)
-        with connect(self.path) as c:
-            row = c.execute('SELECT name,fields FROM document_types WHERE code=?', ('СП_77_А_4',)).fetchone()
-            self.assertEqual(row['name'], 'Согласованное название')
-            self.assertEqual(json.loads(row['fields']), [])
-        self.assertEqual(self.request('/api/act', {**payload, 'act_type':'И_1_13_07_02'})[0], 200)
-        self.assertEqual(self.request('/api/act', {**payload, 'act_type':'НЕСУЩЕСТВУЮЩАЯ'})[0], 400)
-
-    def test_create_statement_protocol_and_preserved_a21_from_other_form_sets(self):
-        from itd.form_catalog import catalog
-        saved = self.create()
-        pid = saved['projects'][0]['id']
-        _, body = self.request(f'/api/project?project_id={pid}')
-        available = json.loads(body)['available_forms']
-        self.assertEqual({f['code'] for f in available}, {f['code'] for f in catalog()})
-        for code in ('И_1_13_07_03', 'И_1_13_07_15', 'СП_77_А_21'):
-            form = next(f for f in available if f['code'] == code)
-            self.assertTrue(form['guidance']['url'].startswith('https://id-prosto.ru/examples/'))
-            fields = []
-            table = next((f for f in form['fields'] if f['kind'] == 'table' and not f.get('source')), None)
-            if table:
-                values = {f['source'].split('.')[1]: 'Тестовое значение'
-                          for f in table['fields'] if f.get('source', '').startswith('item.')}
-                fields = [{**table, 'value': [values]}]
-            status, body = self.request('/api/act', {'project_id': pid, 'act_type': code, 'fields': fields})
-            self.assertEqual(status, 200, body)
-            aid = json.loads(body)['act_id']
-            status, body = self.request('/api/generate', {'project_id': pid, 'act_id': aid})
-            self.assertEqual(status, 200, body)
-            release = json.loads(body)
-            self.assertTrue(Path(release['output']).is_file())
-            with connect(self.path) as c:
-                stored = json.loads(c.execute('SELECT fields FROM acts WHERE id=?', (aid,)).fetchone()[0])
-                self.assertEqual(stored, fields)
-        with connect(self.path) as c:
-            self.assertEqual(c.execute('SELECT count(*) FROM document_types').fetchone()[0], 3)
 
     def request(self, path, data=None, token=True, origin=None, host=None):
         headers = {'Content-Type': 'application/json'}
@@ -448,7 +428,7 @@ class HttpTests(WorkspaceFixture, unittest.TestCase):
         self.assertEqual(status, 200, body)
         first = json.loads(body)
         target=self.path.parent/first['project_path']
-        self.assertEqual(target.parent.name,'Рабочая документация')
+        self.assertEqual(target.parent.name,'storage')
         self.assertEqual(target.read_bytes(),b'%PDF test-original')
         self.assertEqual(self.request('/api/upload', data)[0], 200)
         self.assertEqual(len(list(target.parent.iterdir())),1)
@@ -495,10 +475,15 @@ class HttpTests(WorkspaceFixture, unittest.TestCase):
         pid = saved['projects'][0]['id']
         rid = self.resource(pid)
         with connect(self.path) as c:
+            register_form(c,code='ТЕСТ_РАБОТЫ',name='Проверочный акт',fields=[
+                {'key':'customer_name','label':'Заказчик: наименование','kind':'reference','source':'organizations.customer.full_name'},
+                {'key':'copies_count','label':'Количество экземпляров','kind':'literal','value_type':'number'},
+                {'key':'work_start','kind':'literal','value_type':'date'},
+                {'key':'work_end','kind':'literal','value_type':'date'}])
             entry = save_entry(c, pid, {'kind':'work','title':'Скрытая прокладка кабеля',
                 'entry_date':'2026-10-29','details':'Участок 1, до закрытия отделкой',
                 'resource_id':rid,'quantity':2,'unit':'шт.'})
-        payload = {'project_id':pid,'act_type':'МИНСТРОЙ_344_АОСР','entry_ids':[entry['id']],
+        payload = {'project_id':pid,'act_type':'ТЕСТ_РАБОТЫ','entry_ids':[entry['id']],
                    'resource_ids':[rid],'date_signed':'2026-10-31','fields':[
                        {'key':'copies_count','kind':'literal','value_type':'number','value':2},
                        {'key':'work_start','kind':'literal','value_type':'date','format':'date_ru','value':'2026-10-29'},
@@ -528,56 +513,7 @@ class HttpTests(WorkspaceFixture, unittest.TestCase):
             self.assertIsNone(c.execute('SELECT qty_fact FROM resources WHERE id=?',(rid,)).fetchone()[0])
         _, body = self.request(f'/api/context?project_id={pid}&act_id={aid}')
         self.assertEqual(json.loads(body)['context']['customer_name'],'Уточнённый заказчик')
-        self.assertEqual(self.request('/api/generate', {'project_id':pid,'act_id':aid})[0],200)
         self.assertEqual(self.request('/api/act', payload)[0],400)
-
-    def test_aosr_address_documentation_defaults_stay_live_and_preserve_individual_text(self):
-        from itd.acts import add_act, build_context
-        from itd.form_catalog import ensure_act_form
-        from itd.participants import add_organization, assign
-        from itd.changes import update_record
-        saved = self.create()
-        pid = saved['projects'][0]['id']
-        oid = saved['object']['id']
-        with connect(self.path) as c:
-            update_record(c,entity='objects',record_id=oid,changes={'address':'Тестовый адрес, корпус 2'})
-            designer = add_organization(c, full_name='Проектная организация объекта')
-            assign(c,entity='organization',entity_id=designer,role_key='designer',object_id=oid)
-            ensure_act_form(c,pid,'МИНСТРОЙ_344_АОСР')
-            aid = add_act(c,project_id=pid,act_type='МИНСТРОЙ_344_АОСР')
-        status, body = self.request(f'/api/project?project_id={pid}')
-        self.assertEqual(status,200)
-        view = json.loads(body)
-        form = next(f for f in view['available_forms'] if f['code']=='МИНСТРОЙ_344_АОСР')
-        ui = {f['key']:f for f in form['ui_fields']}
-        self.assertEqual(ui['object_address']['source'],'object.address')
-        self.assertEqual(ui['design_documents']['source'],'project_documentation.description')
-        self.assertEqual(view['form_roots']['project_documentation']['description'],'РД-01-СПС, Проектная организация объекта')
-        with connect(self.path) as c:
-            # Для уже подключённой формы базовые поля остаются в исходном виде.
-            stored = json.loads(c.execute('SELECT fields FROM document_types WHERE code=?',('МИНСТРОЙ_344_АОСР',)).fetchone()[0])
-            self.assertEqual(next(f for f in stored if f['key']=='object_address')['kind'],'literal')
-            context = build_context(c,aid)['context']
-            self.assertEqual(context['object_address'],'Тестовый адрес, корпус 2')
-            self.assertEqual(context['design_documents'],'РД-01-СПС, Проектная организация объекта')
-            section_designer = add_organization(c, full_name='Разработчик выбранного раздела')
-            assign(c,entity='organization',entity_id=section_designer,role_key='designer',project_id=pid)
-            update_record(c,entity='projects',record_id=pid,changes={'designer_org_id':section_designer,'code':'РД-02-СПС'})
-            update_record(c,entity='objects',record_id=oid,changes={'address':'Уточнённый адрес'})
-            current = build_context(c,aid)['context']
-            self.assertEqual(current['object_address'],'Уточнённый адрес')
-            self.assertEqual(current['design_documents'],'РД-02-СПС, Разработчик выбранного раздела')
-            manual = add_act(c,project_id=pid,act_type='МИНСТРОЙ_344_АОСР',fields=[
-                {'key':'object_address','kind':'literal','value':'Индивидуальный строительный адрес'},
-                {'key':'design_documents','kind':'literal','value':'РД-02-СПС, листы 3–5, уточнение'}])
-            explicit = build_context(c,manual)['context']
-            self.assertEqual(explicit['object_address'],'Индивидуальный строительный адрес')
-            self.assertEqual(explicit['design_documents'],'РД-02-СПС, листы 3–5, уточнение')
-            update_record(c,entity='projects',record_id=pid,changes={'designer_org_id':None})
-            # При отсутствии назначенной организации описание не считается полным.
-            c.execute('DELETE FROM organization_assignments WHERE org_id IN (?,?)',(designer,section_designer))
-            incomplete = build_context(c,aid)
-            self.assertIn('design_documents',incomplete['missing'])
 
     def resource(self, pid):
         from itd.resources import CATEGORIES, add_resource

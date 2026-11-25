@@ -20,7 +20,6 @@ def module(name, file):
 
 
 audit = module('relationship_audit', 'development/scripts/audit_relationships.py')
-builder = module('sp_builder_for_audit', 'development/scripts/prepare_sp_templates.py')
 
 
 class RelationshipAuditTests(unittest.TestCase):
@@ -36,26 +35,6 @@ class RelationshipAuditTests(unittest.TestCase):
             refs, locations = audit.template_contract(path)
             self.assertEqual(set(refs), {'t0_r7_c1', 'rows_0_18', 'rows_0_18.c1'})
             self.assertTrue(locations['rows_0_18.c1'])
-
-    def test_signing_date_is_data_but_handwritten_signatures_stay_blank(self):
-        self.assertFalse(builder.handwritten_column('Дата подписания акта'))
-        self.assertTrue(builder.handwritten_column('Подпись бригадира'))
-        self.assertTrue(builder.handwritten_column('Образец подписи'))
-        self.assertTrue(builder.handwritten_column('Фамилия и инициалы исполнителя, подпись'))
-
-    def test_sp70a_signing_date_reaches_docx_and_is_required(self):
-        item = next(f for f in catalog() if f['code'] == 'СП_70_А')
-        fields = apply_form_defaults(item['code'], catalog_fields(item))
-        table = next(f for f in fields if f['key'] == 'rows_9_2')
-        column = next(f for f in table['fields'] if f['key'] == 'c3')
-        self.assertTrue(column['required'])
-        with self.assertRaises(ValueError):
-            resolve_fields([column], {'item': {}}, draft=False)
-        value = resolve_fields([column], {'item': {'c3': '10.11.2026'}}, draft=False)[0]
-        self.assertEqual(value['c3'], '10.11.2026')
-        refs, _ = audit.template_contract(ROOT / item['template'])
-        self.assertIn('rows_9_2.c3', refs)
-        self.assertNotIn('rows_10_2.c7', refs)  # Место рукописной подписи.
 
     def test_ast_resolves_reused_loop_variables_and_conditional_branches(self):
         with tempfile.TemporaryDirectory() as tmp:

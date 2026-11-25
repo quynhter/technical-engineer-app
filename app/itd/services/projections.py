@@ -28,6 +28,12 @@ def project_data(c, project_id):
         UNION SELECT sa.attachment_id FROM scheme_attachments sa JOIN schemes s ON s.id=sa.scheme_id WHERE s.project_id=?
         UNION SELECT attachment_id FROM object_attachments WHERE object_id=?
         ) ORDER BY a.id''', (project_id, project_id, project_id, project_id, project['object_id']))
+    result['scheme_files'] = rows(c, """SELECT s.scheme_id,a.id,a.original_name FROM scheme_attachments s
+        JOIN attachments a ON a.id=s.attachment_id JOIN schemes sc ON sc.id=s.scheme_id
+        WHERE sc.project_id=? ORDER BY a.id""", (project_id,))
+    from ..custom_templates import list_templates, schema
+    result['templates'] = list_templates(c)
+    result['template_schema'] = schema(c)
     result['forms'] = rows(c, 'SELECT * FROM document_types ORDER BY name')
     from ..file_manager import source_files
     result['source_files']=source_files(c,project_id)

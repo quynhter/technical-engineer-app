@@ -1,5 +1,5 @@
 'use strict';
-function actFieldDefinitions(form){return normalizeFormFields(form.code,form.ui_fields||form.fields);}
+function actFieldDefinitions(form){return normalizeFormFields(form.code,form.ui_fields||form.fields).map(f=>form.code.startsWith('TPL_')&&f.kind==='literal'?{...f,expression:true}:f);}
 function fieldInputType(field){return field.input_type||field.value_type==='date'&&'date'||field.value_type==='number'&&'number'||field.format&&'date'||'text';}
 function sourceValue(source,roots){
  const aliases={'Object.City':'object.city','Object.Name':'object.name','Project.ShortName':'project.section_code',

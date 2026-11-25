@@ -21,7 +21,6 @@ def mutate(c, route, data, ctx):
             from ..act_participants import organization_candidates
             from ..acts import find_template
             from ..field_ui import table_headers
-            from ..form_defaults import FIELD_CONTINUATIONS
             from ..workflow import same_project
             act = same_project(c, 'acts', aid, pid)
             try:
@@ -33,7 +32,7 @@ def mutate(c, route, data, ctx):
             from ..document_bindings import catalog
             return {'binding_sources':catalog(c,pid,aid),'versions':versions.versions(c,pid,aid),'candidates':versions.candidates(c,pid),
                     'required_roles':versions.required_roles(c,aid),'organization_candidates':organization_candidates(c,pid),
-                    'table_headers':headers, 'field_continuations':FIELD_CONTINUATIONS.get(act['act_type'], {})}
+                    'table_headers':headers}
         if route=='/api/versions/ensure': return {'versions':versions.ensure(c,pid,aid)}
         if route=='/api/versions/create': return {'versions':versions.create(c,pid,aid,data.get('expected'))}
         if route=='/api/versions/save': return {'versions':versions.save(c,pid,data)}
@@ -54,6 +53,22 @@ def mutate(c, route, data, ctx):
     if route == '/api/activate':
         c.execute('INSERT INTO agent_state VALUES(1,?) ON CONFLICT(id) DO UPDATE SET project_id=excluded.project_id', (pid,))
         return {'project_id': pid}
+    if route.startswith('/api/templates/'):
+        from ..custom_templates import template_operation
+        return template_operation(c, route.rsplit('/',1)[-1], data, ctx.templates)
+    if route == '/api/scheme-save':
+        from ..manual import execute
+        action = data['action']
+        values = data['data']
+        if action != 'scheme-add' and not (action == 'update' and values.get('entity') == 'schemes'):
+            raise ValueError('Выберите схему')
+        result = execute(c, pid, action, values)
+        if data.get('file'):
+            from ..archive import link_file
+            attachment = mutate(c, '/api/upload', {**data['file'], 'project_id': pid, 'doc_type': 'scheme'}, ctx)
+            link_file(c, attachment_id=attachment['id'], entity='scheme',
+                      entity_id=result['id'] if action=='scheme-add' else values['id'])
+        return result
     if route == '/api/upload':
         from ..archive import import_file, link_file
         name = data.get('name', '')
@@ -72,8 +87,10 @@ def mutate(c, route, data, ctx):
             if file_type(stored) != expected_type:
                 raise ValueError('Этот оригинал уже зарегистрирован с другим типом; уточните его назначение')
             link_file(c, attachment_id=result['id'], entity='project', entity_id=pid)
-            from ..archive import publish_project_file
-            result['project_path'] = publish_project_file(c,attachment_id=result['id'],project_id=pid,archive_root=ctx.database.parent/'archive')
+            from ..archive import archived_path
+            from ..storage import store_attachment
+            path = archived_path(ctx.database.parent/'archive',stored['storage_path'])
+            result['project_path'] = str(store_attachment(c,pid,stored,path))
             result['sha256'] = stored['sha256']
             return result
     if route == '/api/incoming-day':
@@ -120,7 +137,7 @@ def mutate(c, route, data, ctx):
                 raise ValueError('Работа уже связана с актом либо относится к другому разделу')
         from ..fields import formatted
         for field in data.get('fields', []):
-            if field.get('kind') == 'literal' and field.get('value') not in (None, ''):
+            if field.get('kind') == 'literal' and not field.get('expression') and field.get('value') not in (None, ''):
                 formatted(field['value'], field)
         for removal in data.get('resource_removals', []):
             eid = removal['id']
@@ -182,7 +199,7 @@ def mutate(c, route, data, ctx):
             raise ValueError('Акт не принадлежит разделу')
         from ..managed import generate_managed
         # Веб-интерфейс выпускает черновик; финал проходит штатную содержательную проверку.
-        return generate_managed(c, act_id=act[0], templates_dir=ctx.templates, draft=not data.get('final',False))
+        return generate_managed(c, act_id=act[0], templates_dir=ctx.templates, storage=True, draft=not data.get('final',False))
     if route == '/api/registry/export':
         from ..acts import add_act
         from ..form_catalog import connect_form
@@ -194,8 +211,8 @@ def mutate(c, route, data, ctx):
             'SELECT id FROM acts WHERE project_id=? AND act_type=? AND is_active=1 ORDER BY id DESC LIMIT 1',
             (pid, code)).fetchone()
         act_id = registry[0] if registry else add_act(c, project_id=pid, act_type=code)
-        return generate_managed(c, act_id=act_id, templates_dir=ctx.templates, draft=True)
+        return generate_managed(c, act_id=act_id, templates_dir=ctx.templates, storage=True, draft=True)
     if route == '/api/statement':
         from ..managed import statement_managed
-        return statement_managed(c, project_id=pid)
+        return statement_managed(c, project_id=pid, storage=True)
     raise ValueError('Неизвестная операция')

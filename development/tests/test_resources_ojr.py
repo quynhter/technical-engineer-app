@@ -215,18 +215,6 @@ class ResourceOjrTests(WorkspaceFixture,unittest.TestCase):
             self.assertEqual(material_issues(c,self.pid)[0]['entry_id'],e['id'])
             self.assertEqual(balances(c,self.pid)[0]['remaining'],-3)
 
-    def test_minstroy_form_roles_include_work_performer_and_are_roster_filtered(self):
-        from itd.form_catalog import ensure_act_form
-        with connect(self.path) as c:
-            code='МИНСТРОЙ_344_АОСР'
-            ensure_act_form(c,self.pid,code)
-            aid=add_act(c,project_id=self.pid,act_type=code)
-            roles=('builder','builder_control','customer_control','designer','work_performer')
-            set_act_people(c,self.pid,aid,{role:self.person for role in roles})
-            result=sign_act(c,self.pid,dict(act_id=aid,state='signed',signed_date='2026-11-02',work_description='Скрытая прокладка',basis='Подтверждение подписания',expected_revision=0))
-            self.assertEqual(result['state'],'signed')
-            self.assertEqual(len(json.loads(result['signers_json'])),5)
-
     def test_act_signatory_comes_from_participant_role_and_respects_revocation(self):
         from itd.acts import build_context
         with connect(self.path) as c:

@@ -158,8 +158,22 @@ def build_context(connection, act_id, *, draft=True):
     fields = apply_form_defaults(act["act_type"], merge_fields(json.loads(form["fields"]), json.loads(act["fields"])))
     from .document_bindings import records
     roots['records'] = records(connection, act['project_id'])
+    if act['act_type']=='ОЖР':
+        from .journal_export import ojr_roots
+        roots['ojr'] = ojr_roots(connection, act['project_id'])
     diagnostics = []
     context, missing = resolve_fields(fields, roots, draft=draft, diagnostics=diagnostics)
+    if act['act_type'].startswith('TPL_'):
+        for field in fields:
+            if path := field.get('marker_path'):
+                parts = path.split('.')
+                node = context
+                for part in parts[:-1]:
+                    old = node.get(part)
+                    if not isinstance(old,dict):
+                        node[part] = {'text':old} if old is not None else {}
+                    node = node[part]
+                node[parts[-1]] = context[field['key']]
     # Дополнительные участники выбираются в карточке, хотя исходный бланк
     # обычно не содержит строк для них. Передаём только явный выбор акта.
     from .workspace import OTHER_SIGNER_ROLES

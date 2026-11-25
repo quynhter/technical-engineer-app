@@ -10,7 +10,8 @@ from starlette.concurrency import run_in_threadpool
 from starlette.responses import JSONResponse
 
 from .accounts import Accounts
-from .services.context import Actor, ServiceContext
+from .assistant_files import MAX_BYTES
+from .services.context import Actor, ServiceContext, accounts_namespace
 from .tools import available, invoke, versions
 
 
@@ -19,6 +20,7 @@ def create_app(ctx, accounts, *, host='127.0.0.1'):
     logging.getLogger('mcp').setLevel(logging.CRITICAL)
     if not ctx.database.is_file() or not accounts.path.is_file():
         raise ValueError('MCP требует существующие БД и хранилище аккаунтов')
+    ctx = ctx.model_copy(update={'accounts_namespace': accounts_namespace(accounts.path)})
     def actor(request):
         headers = request.headers.getlist('authorization')
         parts = headers[0].split() if len(headers) == 1 else []
@@ -37,7 +39,7 @@ def create_app(ctx, accounts, *, host='127.0.0.1'):
         return types.ListToolsResult(tools=[types.Tool(
             name=tool.name, description=tool.description, inputSchema=tool.schema(),
             annotations=types.ToolAnnotations(readOnlyHint=tool.access == 'read',
-                                             destructiveHint=tool.access == 'write',
+                                             destructiveHint=False,
                                              openWorldHint=False)) for tool in available(principal)], _meta=meta)
 
     async def call_tool(context, params):
@@ -46,14 +48,14 @@ def create_app(ctx, accounts, *, host='127.0.0.1'):
             result = await run_in_threadpool(invoke, ctx, principal, params.name, params.arguments or {})
         except Exception:
             # In particular, never return business data if the sidecar is unavailable.
-            result = {'error': {'code': 'audit_unavailable', 'message': 'Не удалось записать аудит чтения.'},
+            result = {'error': {'code': 'audit_unavailable', 'message': 'Не удалось записать аудит операции.'},
                       'knowledge_version': 'unavailable', 'skills_version': 'unavailable'}
         return types.CallToolResult(content=[types.TextContent(type='text', text=json.dumps(result, ensure_ascii=False))],
                                     structuredContent=result, isError='error' in result)
 
     server = Server('itd-read-tools', version='1', on_list_tools=list_tools, on_call_tool=call_tool)
     transport = server.streamable_http_app(stateless_http=True, json_response=True, host=host,
-                                           max_request_body_size=64 * 1024)
+                                           max_request_body_size=4 * ((MAX_BYTES + 2) // 3) + 1024 * 1024)
 
     class BearerOnly:
         def __init__(self, app):
@@ -75,7 +77,7 @@ def create_app(ctx, accounts, *, host='127.0.0.1'):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description='ИТД: MCP по HTTP, только чтение; БД фиксируется при запуске.')
+    parser = argparse.ArgumentParser(description='ИТД: MCP по HTTP, чтение и предпросмотр; БД фиксируется при запуске.')
     parser.add_argument('--agent', action='store_true', help='Записать запуск агента в logs/ai.log')
     parser.add_argument('--db', type=Path, required=True, help='Абсолютный путь существующей БД')
     parser.add_argument('--accounts', type=Path, required=True, help='Абсолютный путь существующей БД аккаунтов')

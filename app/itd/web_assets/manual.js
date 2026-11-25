@@ -10,7 +10,7 @@ const manualOperations={
  'remark-add':'Добавить замечание','remark-resolve':'Устранить замечание',
  'act-composition':'Ресурсы и схемы акта','act-edit':'Реквизиты и поля акта','sources-review':'Повторно сверить источники акта','attachment-edit':'Реквизиты оригинала'
 };
-async function downloadManual(path,name){const r=await fetch(path,{headers:{'X-ITD-Token':token}});if(!r.ok)throw Error((await r.json()).error);const url=URL.createObjectURL(await r.blob());const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+async function downloadManual(path,name){const r=await fetch(path,{headers:{'X-ITD-Token':token}});if(!r.ok){const {error}=await r.json();throw Error(error?.message||error);}const url=URL.createObjectURL(await r.blob());const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function manualPage(){
  if(!pdata)return title('Ручное ведение','Выберите рабочий раздел на вкладке «Обзор».')+'<button data-view="overview">Открыть обзор</button>';
  return title('Ручное ведение раздела','Изменения сохраняются в общую БД и доступны агенту.')+`<div id="manual-app"></div>`;
@@ -52,6 +52,10 @@ function manualEditor(op,recordId=''){
  if(['resource-add','resource-edit'].includes(op))body+=resourceFields();
  if(op==='assign')body+=f('entity','Кого назначить','text',[['organization','Организацию'],['signatory','Представителя']],null,true)+f('entity_id','Организация (для организации)','text','organizations')+f('signatory_id','Представитель (для представителя)','text','signatories')+f('role','Роль в документах','text',Object.entries(meta.document_roles),null,true)+f('scope','Уровень назначения','text',[['object','На весь объект'],['project','Только раздел']],null,true)+f('mode','Действие','text',[['add','Добавить представителя к роли'],['replace','Заменить назначения роли'],['remove','Снять выбранное назначение']],'add',true);
  if(['scheme-add','scheme-edit'].includes(op))body+=f('num','Номер','text',null,r.num,true)+f('name','Наименование','text',null,r.name,true)+f('ref_code','Референс','text',null,r.ref_code)+f('sheets_count','Количество листов','number',null,r.sheets_count)+f('note','Комментарий','textarea',null,r.note);
+ if(['scheme-add','scheme-edit'].includes(op)){
+  body+=`<div class="field wide"><span>Файл схемы</span>${uploadZone('scheme-file','Добавить файл схемы')}<output data-scheme-selected></output></div>`;
+  for(const file of pdata.scheme_files||[])if(file.scheme_id===r.id)body+=`<button type="button" class="secondary" data-original="${file.id}">${esc(file.original_name)}</button>`;
+ }
  if(op==='unit-add')body+=f('name','Полное наименование части объекта','text',null,null,true)+f('code','Короткое обозначение')+f('genplan_num','Номер по генплану');
  if(op==='designer-add')body+=f('name','Наименование разработчика','text',null,null,true);
  if(op==='project-link')body+=f('unit_id','Часть объекта','text','units',pdata.project.unit_id)+f('designer_org_id','Разработчик раздела','text','organizations',pdata.project.designer_org_id);
@@ -119,7 +123,10 @@ async function submitManual(form){
  if(op==='remark-add'){const delivery_id=d.id;delete d.id;d={delivery_id,data:d};}
  if(op==='act-composition'){d={act_id:d.id,resources:fd.getAll('resources').filter(Boolean).map(Number),schemes:fd.getAll('schemes').filter(Boolean).map(Number),expected:{resources:pdata.act_resources.filter(a=>a.act_id===d.id).map(a=>a.resource_id),schemes:pdata.act_schemes.filter(a=>a.act_id===d.id).map(a=>a.scheme_id)}};}
  if(op==='sources-review'){d.act_id=d.id;delete d.id;d.expected=pdata.manual.sources.filter(s=>s.act_id===d.act_id).map(s=>({act_id:s.act_id,entry_id:s.entry_id,source_json:s.source_json}));}
- await api('/api/action',{project_id:projectId,action,data:d});
+ if(op==='scheme-add'||op==='scheme-edit'){
+  const file=form.querySelector('#scheme-file').files[0];
+  await api('/api/v1/scheme-save',{project_id:projectId,action,data:d,file:file?{name:file.name,content:await readUploadContent(file)}:null});
+ }else await api('/api/action',{project_id:projectId,action,data:d});
  closeEditor(true);if(['designer-add','project-link','unit-add'].includes(op)){state=await api('/api/workspace?object_id='+state.object.id);}await loadProject(projectId);render();toast('Сохранено в общей базе');
 }
 function previewFieldLabel(field){
@@ -182,5 +189,5 @@ async function previewAct(id){
  $('#editor-dialog').scrollTop=0;
  syncPreviewActions();
 }
-document.addEventListener('change',e=>{const form=e.target.closest('#manual-form');if(!form)return;if(e.target.name==='id'||(e.target.name==='act_type'&&form.dataset.operation==='journal-add')){const op=form.dataset.operation;$('#editor-content').innerHTML=manualEditor(op,e.target.value);formDirty=false;decorateSelects();if(op==='act-composition'){for(const [name,links,key] of [['resources',pdata.act_resources,'resource_id'],['schemes',pdata.act_schemes,'scheme_id']]){const chosen=links.filter(x=>x.act_id===Number(e.target.value)).map(x=>String(x[key]));$('#manual-form').querySelectorAll(`input[name="${name}"]`).forEach(input=>input.checked=chosen.includes(input.value));}}}});
+document.addEventListener('change',e=>{const form=e.target.closest('#manual-form');if(e.target.id==='scheme-file'){form.querySelector('[data-scheme-selected]').textContent=e.target.files[0]?.name||'';return;}if(!form)return;if(e.target.name==='id'||(e.target.name==='act_type'&&form.dataset.operation==='journal-add')){const op=form.dataset.operation;$('#editor-content').innerHTML=manualEditor(op,e.target.value);formDirty=false;decorateSelects();if(op==='act-composition'){for(const [name,links,key] of [['resources',pdata.act_resources,'resource_id'],['schemes',pdata.act_schemes,'scheme_id']]){const chosen=links.filter(x=>x.act_id===Number(e.target.value)).map(x=>String(x[key]));$('#manual-form').querySelectorAll(`input[name="${name}"]`).forEach(input=>input.checked=chosen.includes(input.value));}}}});
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(formDirty&&!b.closest('form')&&!b.form)return;if(b.dataset.previewEdit){openManual(b.dataset.previewEdit);const select=$('#manual-form').elements.namedItem('id');select.value=b.dataset.act;select.dispatchEvent(new Event('change',{bubbles:true}));formDirty=false;notice();$('#editor-dialog').scrollTop=0;}if(b.dataset.manual){if(formDirty)return;openManual(b.dataset.manual,b.dataset.manualRecord||'');}if(b.dataset.original)action(()=>downloadManual('/api/original?project_id='+projectId+'&attachment_id='+b.dataset.original,pdata.attachments.find(a=>a.id===Number(b.dataset.original)).original_name));if(b.dataset.preview)action(()=>previewAct(Number(b.dataset.preview)));if(b.dataset.final||b.dataset.previewDraft)action(async()=>{const id=Number(b.dataset.final||b.dataset.previewDraft);await api('/api/generate',{project_id:projectId,act_id:id,final:!!b.dataset.final});closeEditor(true);await loadProject(projectId);render();toast('Файл DOCX создан и сохранён в папке ИТД выбранной базы.');});});

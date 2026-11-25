@@ -44,6 +44,71 @@ def _draft_display(value):
     return value
 
 
+def _prepare_custom_rows(document, context):
+    from docx.oxml.ns import qn
+    from copy import deepcopy
+    from .custom_templates import MARKER, LOOP, END, table_rows
+    from docx.parts.hdrftr import HeaderPart, FooterPart
+    parts = [document.part] + [part for part in document.part.package.parts
+                                    if isinstance(part, (HeaderPart, FooterPart))]
+    for part in parts:
+        root = part.element
+        inferred = dict(table_rows(root, part.partname, include_single=True))
+        inferred_rows = set()
+        in_loop = False
+        serial = 0
+        for para in list(root.iter(qn('w:p'))):
+            nodes = list(para.iter(qn('w:t')))
+            value = ''.join(n.text or '' for n in nodes)
+            if LOOP.search(value):
+                in_loop = True
+                continue
+            if END.search(value):
+                in_loop = False
+                continue
+            row = next(para.iterancestors(qn('w:tr')), None)
+            source = inferred.get(row) if not in_loop else None
+            if source and isinstance(context.get(source), list):
+                if row not in inferred_rows:
+                    for tag, insert in [('{%tr for item in '+source+' %}', row.addprevious),
+                                        ('{%tr endfor %}', row.addnext)]:
+                        boundary = deepcopy(row)
+                        texts = list(boundary.iter(qn('w:t')))
+                        for node in texts:
+                            node.text = ''
+                        texts[0].text = tag
+                        insert(boundary)
+                    inferred_rows.add(row)
+            else:
+                source = None
+            def replacement(match):
+                nonlocal serial
+                key = match[1]
+                if key == 'serial_number':
+                    if source or in_loop:
+                        return '{{ loop.index }}'
+                    serial += 1
+                    return str(serial)
+                if source:
+                    return '{{ item.' + key.removeprefix(source+'.') + ' }}'
+                return match[0]
+            # Edit marker spans from the end to preserve surrounding Word runs.
+            offset = 0
+            spans = []
+            for node in nodes:
+                end = offset + len(node.text or '')
+                spans.append((node, offset, end))
+                offset = end
+            edits = [(m.start(), m.end(), replacement(m)) for m in MARKER.finditer(value)]
+            for start, end, text in reversed(edits):
+                if text == value[start:end]:
+                    continue
+                for node, left, right in spans:
+                    if left < end and right > start:
+                        current = node.text or ''
+                        node.text = current[:max(0,start-left)] + (text if left <= start else '') + current[max(0,end-left):]
+
+
 def render_docx(template: str | Path, context: dict, output: str | Path, *, draft=False, font=None) -> Path:
     from docxtpl import DocxTemplate
     from jinja2 import StrictUndefined
@@ -75,6 +140,8 @@ def render_docx(template: str | Path, context: dict, output: str | Path, *, draf
     document = DocxTemplate(template)
     document.init_docx()
     _date_centuries(document.docx, template.stem, context)
+    if template.stem.startswith('TPL_'):
+        _prepare_custom_rows(document.docx, context)
     document.render(context, jinja_env=environment, autoescape=True)
     from .signature_layout import append_signatories
     append_signatories(document.docx, context.get('_additional_signatories', []))

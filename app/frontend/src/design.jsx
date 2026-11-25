@@ -71,7 +71,7 @@ function NativeSelector({select,label,value:externalValue}){
  React.useEffect(()=>{const sync=()=>setValue(select.value);select.addEventListener('change',sync);select.addEventListener('smart-sync',sync);select.focus=()=>ref.current?.focus();return()=>{select.removeEventListener('change',sync);select.removeEventListener('smart-sync',sync);};},[select]);
  const convert=o=>({value:o.value,label:o.textContent,disabled:o.disabled});
  const options=[...select.children].map(child=>child.tagName==='OPTGROUP'?{type:'section',title:child.label,options:[...child.children].map(convert)}:convert(child));
- return <Selector label={label} isLabelHidden options={options} value={value} isDisabled={disabled} hasSearch={select.options.length>6} searchPlaceholder="Найти…" width="100%" ref={ref} onChange={value=>{if(select.disabled)return;select.value=value;setValue(value);select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));}}/>;
+ return <Selector label={label} isLabelHidden options={options} value={value} isDisabled={disabled} hasSearch={select.hasAttribute('data-select-search')||select.options.length>6} searchPlaceholder="Найти…" width="100%" ref={ref} onChange={value=>{if(select.disabled)return;select.value=value;setValue(value);select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));}}/>;
 }
 function enhanceSelect(select){
  if(select.multiple||isReactOwned(select))return;

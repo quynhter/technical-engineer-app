@@ -141,7 +141,7 @@ class Handler(BaseHTTPRequestHandler):
     def get_route(self):
         try:
             url = urlsplit(self.path)
-            if url.path in ('/', '/design.js', '/design.css', '/design-LICENSE.txt', '/logo.svg', '/favicon.svg', '/deletion.js', '/tables.js', '/account.js', '/configuration.js', '/document-versions.js', '/field-functions.js', '/act-fields.js', '/journals.js', '/resources.js', '/ojr-ui.js', '/dialogs.js', '/app.js', '/knowledge.js', '/knowledge-markdown.js', '/manual.js', '/ui.js', '/style.css', '/open-sans-regular.ttf', '/open-sans-semibold.ttf', '/open-sans-bold.ttf', '/open-sans-LICENSE.txt'):
+            if url.path in ('/', '/design.js', '/design.css', '/design-LICENSE.txt', '/logo.svg', '/favicon.svg', '/deletion.js', '/tables.js', '/account.js', '/configuration.js', '/document-versions.js', '/field-functions.js', '/act-fields.js', '/journals.js', '/resources.js', '/ojr-ui.js', '/dialogs.js', '/app.js', '/knowledge.js', '/knowledge-markdown.js', '/templates.js', '/manual.js', '/ui.js', '/style.css', '/open-sans-regular.ttf', '/open-sans-semibold.ttf', '/open-sans-bold.ttf', '/open-sans-LICENSE.txt'):
                 self.check_host()
                 path = ASSETS / ('index.html' if url.path == '/' else url.path[1:])
                 self.send_bytes(path.read_bytes(), mimetypes.guess_type(path)[0] + '; charset=utf-8')

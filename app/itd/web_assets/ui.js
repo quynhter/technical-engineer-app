@@ -246,7 +246,7 @@ function mountDialogFooter(){
  const content=document.getElementById('editor-content'),footer=document.getElementById('editor-footer');if(!content||!footer)return;
  enhanceEditorActions();enhanceCheckLists();
  const bar=content.querySelector('.ux-form-actions');
- if(bar){const form=bar.closest('form');if(form){if(!form.id)form.id='dialog-active-form';bar.querySelectorAll('button').forEach(button=>button.setAttribute('form',form.id));bar.dataset.ownerForm=form.id;}footer.replaceChildren(bar);footer._sourceElement=content.firstElementChild;}
+ if(bar){const form=bar.closest('form');if(form){const owner=form.getAttribute('id')||'dialog-active-form';form.setAttribute('id',owner);bar.querySelectorAll('button').forEach(button=>button.setAttribute('form',owner));bar.dataset.ownerForm=owner;}footer.replaceChildren(bar);footer._sourceElement=content.firstElementChild;}
  else if(footer._sourceElement&&!content.contains(footer._sourceElement))footer.replaceChildren();
  footer.hidden=!footer.childElementCount;
 }
@@ -256,6 +256,6 @@ dialogBodyObserver.observe(document.getElementById('editor-content'),{childList:
 // Resolve the editor form within this dialog, even when another native form has the same id.
 document.getElementById('editor-footer').addEventListener('click',event=>{
  const button=event.target.closest('button');if(!button||button.type!=='submit')return;
- const owner=button.getAttribute('form'),form=[...document.querySelectorAll('#editor-content form')].find(form=>form.id===owner);
+ const owner=button.getAttribute('form'),form=[...document.querySelectorAll('#editor-content form')].find(form=>form.getAttribute('id')===owner);
  if(form&&button.form!==form){event.preventDefault();form.requestSubmit();}
 });

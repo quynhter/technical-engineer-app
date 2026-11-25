@@ -17,7 +17,7 @@ from starlette.exceptions import HTTPException
 from .accounts import SessionExpired
 from .http_origin import request_origin
 from .paths import default_templates, itd_root, previous_itd_roots
-from .services.context import Actor, ServiceContext, WorkspaceActionInput
+from .services.context import Actor, ServiceContext, WorkspaceActionInput, accounts_namespace
 from .services.operations import execute_web
 from .services.permissions import WEB_POSTS, WEB_READS, require
 from .services.queries import FileResult, query_web
@@ -30,9 +30,9 @@ ASSET_NAMES = {'index.html', 'design.js', 'design.css', 'design-LICENSE.txt', 'l
                'favicon.svg', 'deletion.js', 'tables.js', 'account.js', 'configuration.js',
                'document-versions.js', 'field-functions.js', 'act-fields.js', 'journals.js',
                'resources.js', 'ojr-ui.js', 'dialogs.js', 'app.js', 'knowledge.js',
-               'knowledge-markdown.js', 'manual.js', 'ui.js', 'style.css',
+               'knowledge-markdown.js', 'templates.js', 'manual.js', 'ui.js', 'style.css',
                'open-sans-regular.ttf', 'open-sans-semibold.ttf', 'open-sans-bold.ttf',
-               'open-sans-LICENSE.txt'}
+               'open-sans-LICENSE.txt', 'write-previews.js'}
 SECURITY_HEADERS = {
     'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer',
     'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
@@ -57,6 +57,9 @@ def error_response(request, message, status, code, **details):
 
 
 def failure(request, error):
+    from .services.previews import PreviewConflict
+    if isinstance(error, PreviewConflict):
+        return error_response(request, str(error), 400, 'preview_conflict')
     if isinstance(error, PermissionError):
         return error_response(request, str(error), 403,
                               'session_expired' if isinstance(error, SessionExpired) else 'forbidden',
@@ -88,6 +91,7 @@ def context(state, database):
     return ServiceContext(database=database, root=itd_root.get(),
                           previous_roots=tuple(previous_itd_roots.get()),
                           templates=getattr(state, 'templates', None) or default_templates(),
+                          accounts_namespace=accounts_namespace(state.accounts.path),
                           settings={'plan_secret': state.plan_secret})
 
 
@@ -102,6 +106,22 @@ def dispatch(state, route, query, data, token, bearer=False):
         user = authenticate(state, token, touch=route != '/api/status' and 'poll' not in query, bearer=bearer)
         actor = Actor(user_id=user['id'], role=user['role'], source='web')
         ctx = context(state, database)
+        if route in ('/api/write-previews', '/api/write-previews/apply'):
+            from .services import previews
+            if bearer:
+                raise PermissionError('Войдите в веб-интерфейс для работы с предпросмотром.')
+            try:
+                if write:
+                    return previews.apply(ctx, actor, data)
+                project, = query.get('project_id', ['0'])
+                identity, = query.get('preview_id', [None])
+                if int(project) < 1:
+                    raise ValueError('Выберите раздел РД.')
+                return previews.get(ctx, actor, int(project), identity)
+            except PermissionError as error:
+                raise PermissionError('Предпросмотр недоступен для текущего пользователя.') from error
+            except (OSError, sqlite3.Error) as error:
+                raise ValueError('Операция с предпросмотром не завершена. Проверьте БД и аудит.') from error
         if not write:
             if route == '/api/account':
                 return user
@@ -199,13 +219,17 @@ def create_app(state):
                 return failure(request, error)
         return handle
 
-    reads = set(WEB_READS) | {'/api/account', '/api/admin', '/api/account/tokens', '/api/admin/tokens'}
+    reads = set(WEB_READS) | {'/api/account', '/api/admin', '/api/account/tokens', '/api/admin/tokens',
+                             '/api/write-previews'}
     posts = set(WEB_POSTS) | {'/api/login', '/api/logout', '/api/account/profile', '/api/account/rotate',
                             '/api/account/tokens/create', '/api/account/tokens/revoke', '/api/admin/tokens/revoke',
-                            '/api/admin/settings', '/api/admin/create', '/api/admin/role', '/api/admin/delete', '/api/admin/rotate'}
+                            '/api/admin/settings', '/api/admin/create', '/api/admin/role', '/api/admin/delete', '/api/admin/rotate',
+                            '/api/write-previews/apply'}
     for post, routes in ((False, reads), (True, posts)):
         for route in sorted(routes):
             for prefix in ('/api/', '/api/v1/'):
+                if route.startswith('/api/write-previews') and prefix == '/api/':
+                    continue
                 path = route.replace('/api/', prefix, 1)
                 schema = WorkspaceActionInput.model_json_schema() if route == '/api/action' else {'type': 'object', 'additionalProperties': True}
                 extra = {'requestBody': {'required': True, 'content': {'application/json': {'schema': schema}}}} if post else None

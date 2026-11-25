@@ -32,8 +32,15 @@ class ServiceContext(BaseModel):
     database: Path
     root: Path | None = None
     templates: Path = Field(default_factory=default_templates)
+    accounts_namespace: str = ''
     previous_roots: tuple[Path, ...] = ()
     settings: dict[str, Any] = Field(default_factory=dict)
+
+
+def accounts_namespace(path):
+    path = Path(path).resolve()
+    stat = path.stat()
+    return hashlib.sha256(os.fsencode(path) + f'\n{stat.st_dev}:{stat.st_ino}'.encode()).hexdigest()
 
 
 class OperationInput(BaseModel):

@@ -1,4 +1,4 @@
-"""Read-only tools and official HTTP transport, exclusively disposable databases."""
+"""Read tools and official HTTP transport, exclusively disposable databases."""
 from dataclasses import replace
 from contextlib import closing, contextmanager
 import asyncio
@@ -87,7 +87,7 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(before, self.dump())
         with database_connection(str(self.database)+'.audit.sqlite3') as c:
             rows = c.execute('SELECT source,actor_role,on_behalf_of,knowledge_version,skills_version,result FROM read_events').fetchall()
-        self.assertEqual(len(rows), len(tools.TOOLS))
+        self.assertEqual(len(rows), len(tools.available(self.viewer)))
         self.assertTrue(all(row == ('mcp','viewer','12',expected,tools.skills_version(),'success') for row in rows))
 
     def test_search_show_exact_cli_payloads_and_fts5(self):
@@ -145,7 +145,8 @@ class ToolTests(unittest.TestCase):
             self.assertEqual(init.status_code, 200, init.text)
             listing = self.rpc(c, 'tools/list')
             self.assertEqual(listing.status_code, 200, listing.text)
-            self.assertEqual({t['name'] for t in listing.json()['result']['tools']}, {t.name for t in tools.TOOLS})
+            self.assertEqual({t['name'] for t in listing.json()['result']['tools']},
+                             {t.name for t in tools.available(self.viewer)})
             result = self.rpc(c, 'tools/call', {'name':'objects-list','arguments':{}})
             self.assertEqual(result.status_code, 200, result.text)
             payload = result.json()['result']['structuredContent']
@@ -251,7 +252,8 @@ class ToolTests(unittest.TestCase):
                         async with ClientSession(read, write, read_timeout_seconds=10) as session:
                             await session.initialize()
                             listing = await session.list_tools()
-                            self.assertEqual({t.name for t in listing.tools}, {t.name for t in tools.TOOLS})
+                            self.assertEqual({t.name for t in listing.tools},
+                                             {t.name for t in tools.available(self.viewer)})
                             result = await session.call_tool('objects-list', {})
                             self.assertFalse(result.is_error)
                             self.assertEqual(result.structured_content['data'][0]['name'], 'Учебный объект')

@@ -104,7 +104,7 @@ test('cable journal shows only cable works, keeps its three fields and forwards 
  const workspace_entries=[{id:1,kind:'work',work_type:'cable',entry_date:'2026-11-18',title:'Прокладка',details:'Участок'},{id:2,kind:'work',work_type:'other',title:'Не кабель'},{id:3,kind:'incoming',work_type:'cable',title:'Не работа'}];
  w.ITDDesign.renderProjectRecords(d.querySelector('#records-app'),{kind:'cable',projectId:1,role:'editor',api:{json:async()=>({workspace_entries})},onCreate:()=>calls.push('create'),onOpen:item=>calls.push(item.id),onDelete:(entity,id)=>calls.push([entity,id])});
  await until(()=>d.querySelector('tbody button'));assert.equal(d.querySelectorAll('tbody tr').length,1);assert.deepEqual([...d.querySelector('tbody tr').cells].slice(0,3).map(cell=>cell.textContent),['18.11.2026','Прокладка','Участок']);assert.match(d.body.textContent,/Журнал прокладки кабеля/);assert.doesNotMatch(d.body.textContent,/Не кабель|Не работа/);
- button(d,'Записать прокладку кабеля').click();button(d,'Прокладка').click();button(d,'Удалить').click();assert.deepEqual(calls,['create',1,['workspace_entries',1]]);dom.window.close();
+ button(d,'Добавить запись').click();button(d,'Прокладка').click();button(d,'Удалить').click();assert.deepEqual(calls,['create',1,['workspace_entries',1]]);dom.window.close();
 });
 
 

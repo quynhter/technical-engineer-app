@@ -59,12 +59,6 @@ class TemplateObjectTests(unittest.TestCase):
             self.assertIn('Заказчик: ООО Заказчик', printed)
             self.assertNotIn("{'", printed)
 
-    def test_manual_values_are_not_replaced_by_current_database_values(self):
-        values = {'object_name': 'Имя из карточки', 'recipient': 'Ручной представитель'}
-        model = build_template_context('СП_77_А_21', values, roots=self.roots())
-        self.assertEqual(model['object']['name'], 'Имя из карточки')
-        self.assertEqual(model['recipient']['text'], 'Ручной представитель')
-
     def test_database_switch_does_not_reuse_person_or_company(self):
         first = build_template_context('СП_77_А_21', {}, roots=self.roots())
         other = self.roots()
@@ -90,23 +84,7 @@ class TemplateObjectTests(unittest.TestCase):
         self.assertEqual(model['object']['name'], 'Проверочный объект')
         self.assertEqual(model['recipient']['last_name'], 'Иванов')
 
-    def test_registered_metadata_alias_does_not_break_shipped_contract(self):
-        values = {'rows_0_18': [{'c1': 7}]}
-        fields = [{'key': 'rows_0_18', 'kind': 'table', 'template_path': 'form.old_readings',
-                   'fields': [{'key': 'c1', 'template_path': 'old_number'}]}]
-        model = build_template_context('СП_77_А_19_УЧАСТОК', values, fields=fields)
-        self.assertEqual(model['form']['fibre_measurements'][0]['fibre_number'], 7)
-        self.assertEqual(model['form']['old_readings'][0]['old_number'], 7)
-
-    def test_existing_table_records_get_named_properties_without_registration(self):
-        values = {'rows_0_18': [{'c1': 1, 'c2': 0, 'c7': '11.11.2026'}]}
-        model = build_template_context('СП_77_А_19_УЧАСТОК', values)
-        row = model['form']['fibre_measurements'][0]
-        self.assertEqual(row['fibre_number'], 1)
-        self.assertEqual(row['power_ab_input'], 0)
-        self.assertEqual(row['measured_on'], '11.11.2026')
-
-    def test_91_contracts_match_definitions_and_templates_use_english_properties(self):
+    def test_shipped_contracts_match_definitions_and_templates_use_english_properties(self):
         items = catalog()
         self.assertEqual(len(contracts()), len(items))
         for item in items:
@@ -123,20 +101,6 @@ class TemplateObjectTests(unittest.TestCase):
                                 self.assertNotRegex(marker, r'[А-Яа-яЁё]')
                                 self.assertNotIn(' set ', marker)
                                 self.assertNotRegex(marker, r'\b(?:t\d+_r\d+_c\d+|p\d+_\d+|rows_\d+)')
-
-    def test_date_and_public_schema(self):
-        self.assertEqual(date_object('2026-11-11')['text'], '11.11.2026')
-        self.assertEqual(date_object(None)['year'], '')
-        self.assertIn('last_name', template_schema()['types']['Representative'])
-        self.assertIn('materials', template_schema('СП_77_А_21')['fields'])
-
-    def test_legacy_year_binding_does_not_repeat_month(self):
-        from itd.form_defaults import apply_form_defaults
-        legacy = [{'key': 't1_r0_c7', 'kind': 'reference',
-                   'source': 'field_values.t1_r0_c5', 'required': True}]
-        fields = apply_form_defaults('СП_72_Д', legacy)
-        values, _ = resolve_fields(fields, {'act': {'date_signed': '2026-11-11'}}, draft=False)
-        self.assertEqual(values['t1_r0_c7'], '2026')
 
     def test_unknown_property_still_fails(self):
         with tempfile.TemporaryDirectory() as directory:

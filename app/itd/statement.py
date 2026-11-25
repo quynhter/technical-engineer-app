@@ -10,7 +10,7 @@ from copy import copy
 from pathlib import Path
 
 
-TEMPLATE = Path(__file__).resolve().parents[1] / "templates" / "Ведомость оборудования и материалов.xlsx"
+TEMPLATE = Path(__file__).resolve().parents[1] / "forms" / "Ведомость оборудования и материалов.xlsx"
 HEADERS = ["Позиция", "Категория", "Наименование", "Марка, тип", "Заводские номера",
            "Ед. изм.", "Кол-во, по проекту", "Кол-во, по факту", "Документы качества"]
 

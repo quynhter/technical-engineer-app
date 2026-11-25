@@ -243,6 +243,27 @@ body[data-auth="pending"]>.itd-dialog{visibility:visible}
 .document-function-control .itd-field-control{width:100%}
 .document-function-control .function-toggle{flex:0 0 36px;width:36px;height:36px;padding:0;font-style:italic;font-weight:700}
 .document-function-control .function-toggle[aria-pressed="true"]{color:var(--teal);border:1px solid var(--teal);background:var(--soft)}
+#template-editor [data-template-field]{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--workspace-gap)}
+#template-editor [data-expression-mask]:empty,[data-template-preview]:empty,[data-document-records]:empty,[data-document-mask]:empty{display:none}
+[data-template-preview]{display:block;margin:0;white-space:normal;overflow-wrap:anywhere}
+[data-document-records]{display:grid;min-width:0;gap:var(--workspace-gap)}
+#template-editor [data-template-field]+[data-template-field]{padding-block-start:var(--workspace-gap)}
+#template-editor [data-add-row]{justify-self:start;margin:0}
+#template-editor .template-grid{overflow-x:auto;max-width:100%;margin:0}
+.template-grid .table-sized th{position:relative;white-space:normal;overflow-wrap:anywhere}
+.template-grid .table-sized :is(th,td):not(:last-child){border-inline-end:1px solid var(--line)}
+@media(max-width:740px){
+ #template-editor .template-grid table{display:table}
+ #template-editor .template-grid thead{display:table-header-group;position:static;width:auto;height:auto;overflow:visible;clip:auto}
+ #template-editor .template-grid tbody{display:table-row-group}
+ #template-editor .template-grid tr{display:table-row;margin:0;padding:0;border:0}
+ #template-editor .template-grid :is(th,td){display:table-cell}
+ #template-editor .template-grid td::before{display:none}
+ #template-editor .template-grid colgroup{display:table-column-group}
+ #template-editor .template-grid .table-column-resize{display:block;position:absolute;inset-block:0;right:0;width:12px;cursor:col-resize;touch-action:none}
+}
+.template-expression-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:stretch}
+.template-expression-row>button{margin-inline-start:var(--workspace-gap)}
 .function-source:empty{display:none}
 .document-function-field .function-source{margin:4px 0 0;overflow-wrap:anywhere}
 #signed-document-section{display:flex;flex-direction:column;gap:var(--workspace-gap)}
@@ -348,3 +369,27 @@ body[data-auth="pending"]>.itd-dialog{visibility:visible}
 .workspace-tab-row,.section-tabs{display:flex;align-items:center;flex-wrap:nowrap;min-width:0;max-width:100%;overflow-x:auto;overflow-y:hidden}
 .workspace-tab-row>nav{flex:none;margin:0}
 :is(.tabs,.panel-nav,.journal-sections,.section-tabs) [data-tab-menu]{white-space:nowrap}
+
+#write-preview-title:focus{outline:none}
+#write-preview-content{scroll-padding-block:var(--workspace-padding)}
+#write-preview-content [data-write-status]:empty,#write-preview-content [data-write-fields]:empty{display:none}
+#write-preview-footer .ux-form-actions{width:100%;justify-content:flex-end}
+#write-preview-footer [data-write-back]{margin-inline-end:auto}
+.write-preview-meta{color:var(--muted);overflow-wrap:anywhere}
+.write-preview-field-head,.write-preview-field{
+ display:grid;align-items:start;gap:var(--workspace-gap);padding-block:var(--workspace-gap);
+}
+.write-preview-field{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+.write-preview-field-head,.write-preview-compare .write-preview-field{grid-template-columns:minmax(0,1fr) repeat(2,minmax(0,1.5fr))}
+.write-preview-field + .write-preview-field{border-block-start:1px solid var(--line)}
+.write-preview-field-head{border-block-end:1px solid var(--line);color:var(--muted);font-size:.875rem}
+.write-preview-fields,.write-preview-field dd,#write-preview-content pre{margin:0}
+.write-preview-field dt{font-weight:600;overflow-wrap:anywhere}
+.write-preview-field dd,#write-preview-content pre{overflow-wrap:anywhere;white-space:pre-wrap}
+.write-preview-value-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:600px){
+ .write-preview-field-head{display:none}
+ .write-preview-compare .write-preview-field{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .write-preview-compare .write-preview-field dt{grid-column:1/-1}
+ .write-preview-compare .write-preview-value-label{position:static;display:block;width:auto;height:auto;clip-path:none;color:var(--muted);font-size:.875rem}
+}

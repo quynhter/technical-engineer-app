@@ -14,9 +14,8 @@ function ojrPage(){
  return journalSection==='3'?`<p class="journal-purpose">Работы выбранного раздела: ${esc(pdata.project.section_code)}. Выберите записи для подготовки акта.</p>`+workPage():`<div id="journal-app" data-section="${esc(journalSection)}"></div>`;
 }
 function journalTool(tool,section){
- if(tool==='object')navigate('object');
+ if(tool==='export')return exportJournal('ojr');
  if(tool==='participants'||tool==='participantsShort')navigate('participants');
- if(tool==='documents')navigate('documents');
  if(tool==='assign')openManual('assign');
  if(tool==='entry')openEditor('journal',{kind:'journal',work_fields:{journal_section:section}});
  if(tool==='special')openSpecialJournal({});

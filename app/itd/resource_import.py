@@ -226,6 +226,8 @@ def commit(c,pid,data,archive_root):
         ids.append(rid)
     from .changes import log_event
     log_event(c,'resource-import',entity='projects',entity_id=pid,after={'resource_ids':ids,'updated_ids':updated,'attachment_id':attachment,'sha256':view['sha256']})
-    from .archive import publish_project_file
-    project_path=publish_project_file(c,attachment_id=attachment,project_id=pid,archive_root=archive_root)
+    from .storage import store_attachment
+    from .archive import archived_path
+    item = c.execute('SELECT * FROM attachments WHERE id=?',(attachment,)).fetchone()
+    project_path = str(store_attachment(c,pid,item,archived_path(archive_root,item['storage_path'])))
     return {'project_path':project_path,'imported':len(ids)-len(updated),'updated':len(updated),'skipped':len(view['rows'])-len(ids),'resource_ids':ids,'updated_ids':updated,'attachment_id':attachment}

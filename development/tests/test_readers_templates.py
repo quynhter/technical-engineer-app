@@ -80,32 +80,5 @@ class ReaderTemplateTests(unittest.TestCase):
         finally:
             book.close()
 
-    @unittest.skipUnless(available("docxtpl") and available("docx"), "Нужен docxtpl")
-    def test_actual_prepared_statement_template_generates_from_database(self):
-        from docx import Document
-        db = self.root / "itd.db"
-        initialize(db)
-        with connect(db) as connection:
-            obj = add_object(connection, "Учебный объект")
-            project = add_project(connection, object_id=obj, section_code="СПС", code="ТЕСТ", name="СПС", city="Казань")
-            org = add_organization(connection, full_name="Учебная организация", short_name="ООО Тест")
-            signer = add_signatory(connection, org_id=org, fio="Иванов И. И.", position="Инженер")
-            for role in ("recipient", "consignor"):
-                assign(connection, entity="signatory", entity_id=signer, role_key=role, object_id=obj)
-            resource = add_resource(connection, project_id=project, name="Прибор", type_mark="ТЕСТ", unit="шт.",
-                                    spec_num="1", category=CATEGORIES[1])
-            fields = json.loads((ROOT / "app/forms/СП_77_А_21.fields.json").read_text(encoding="utf-8"))
-            register_form(connection, code="СП_77_А_21", name="Ведомость", fields=fields, form_group="statement")
-            act = add_act(connection, project_id=project, act_type="СП_77_А_21", date_signed="2026-10-26")
-            set_resources(connection, act, [resource])
-            output = self.root / "statement.docx"
-            generate(connection, act_id=act, templates_dir=ROOT / "app/templates", output=output, draft=False)
-            doc = Document(output)
-            text = "\n".join(p.text for p in doc.paragraphs)
-            self.assertIn("Казань", text)
-            self.assertEqual(doc.tables[0].cell(2, 2).text, "Прибор")
-            self.assertEqual(connection.execute("SELECT mode FROM generated_documents").fetchone()[0], "final")
-
-
 if __name__ == "__main__":
     unittest.main()

@@ -151,7 +151,8 @@ class HttpApiTests(unittest.TestCase):
         before = self.dump()
         direct = self.client.get(f'/api/v1/download?project_id={pid}&release_id={release_id}', headers=self.headers)
         self.assertEqual(direct.status_code, 200)
-        name = Path(release['path']).name
+        with connect(self.state.database) as c:
+            name = c.execute('SELECT name FROM files WHERE release_id=?',(release_id,)).fetchone()[0]
         self.assertTrue(unquote(direct.headers['content-disposition']).endswith(name))
         for _ in range(2):
             package = self.client.get(f'/api/v1/package?project_id={pid}', headers=self.headers)

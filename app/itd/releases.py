@@ -34,7 +34,9 @@ def stored_path(connection, path):
 
 
 def actual_path(connection, path):
-    return Path(path) if Path(path).is_absolute() else workspace(connection) / path
+    origin = getattr(connection, 'preview_origin', None)
+    root = database_workspace(origin) if origin else workspace(connection)
+    return Path(path) if Path(path).is_absolute() else root / path
 
 
 def release_row(connection, release_id):
@@ -313,7 +315,8 @@ def build_package(connection, project_id, output, *, include_originals=False):
             group={'registry':'01_Реестр','statement':'04_Ведомости','act':'03_Акты'}[form]
         if group=='03_Акты':
             group += '/'+('Черновики' if r['mode']=='draft' else 'Выдача')
-        member=group+'/'+path.name
+        stored = connection.execute('SELECT name FROM files WHERE release_id=?',(r['id'],)).fetchone()
+        member=group+'/'+(stored[0] if stored else path.name)
         if member.casefold() in seen:
             raise ValueError('Совпали имена выбранных документов; задайте содержательное различие')
         seen.add(member.casefold())
@@ -421,3 +424,62 @@ def plan_relocations(connection, movements):
         row=matches[0]
         plan.append({'release_id':row['id'],'old_path':row['path'],'new_path':item['history_path'],'sha256':row['sha256']})
     return {'applied':False,'plan':plan,'ignored':ignored,'instruction':'Согласуйте точный plan и передайте только этот массив в release-reconcile --data; сначала без --apply.'}
+
+
+def build_project_zip(connection, project_id, output):
+    from .archive import archived_path, file_type
+    from .layout import path_component
+    from .registry import registry_rows
+
+    directories = {'scheme': 'Схемы', 'order': 'Распорядительные документы',
+                   'quality': 'Документы качества', 'contract': 'Договоры',
+                   'rd': 'Рабочая документация', 'other': 'Иные документы'}
+    root = connection.execute('SELECT o.name FROM projects p JOIN objects o ON o.id=p.object_id WHERE p.id=?',
+                              (project_id,)).fetchone()
+    if not root:
+        raise ValueError('Раздел не найден')
+    prefix = path_component(root[0]) + '/'
+    members = []
+    names = set()
+
+    def add(path, name, sha, directory=''):
+        if not path.is_file() or digest(path) != sha:
+            raise ValueError(f'Целостность файла не подтверждена: {name}')
+        member = prefix + (directory + '/' if directory else '') + path_component(name, preserve_end=True)
+        candidate = member
+        index = 1
+        while candidate.casefold() in names:
+            index += 1
+            candidate = str(Path(member).with_stem(Path(member).stem + f' ({index})'))
+        names.add(candidate.casefold())
+        members.append((path, candidate))
+
+    releases = connection.execute("""SELECT r.* FROM releases r LEFT JOIN acts a ON a.id=r.act_id
+        WHERE r.project_id=? AND r.selected=1 AND (a.id IS NULL OR a.is_active=1) ORDER BY r.id""",
+        (project_id,)).fetchall()
+    for row in releases:
+        path = actual_path(connection, row['path'])
+        stored = connection.execute('SELECT name FROM files WHERE release_id=?',(row['id'],)).fetchone()
+        add(path, stored[0] if stored else path.name, row['sha256'])
+    primary = set()
+    for version in connection.execute("""SELECT v.attachment_id,v.signed_attachment_id FROM document_versions v
+        JOIN acts a ON a.id=v.act_id WHERE a.project_id=? AND a.is_active=1 AND
+        v.ordinal=(SELECT MAX(ordinal) FROM document_versions WHERE act_id=a.id)""", (project_id,)):
+        primary.update(identity for identity in version if identity)
+    ids = {r['id'] for r in registry_rows(connection, project_id) if r['entity']=='attachment'}
+    archive = Path(connection.execute('PRAGMA database_list').fetchone()[2]).parent / 'archive'
+    historical = {identity for row in connection.execute('''SELECT v.attachment_id,v.signed_attachment_id
+        FROM document_versions v JOIN acts a ON a.id=v.act_id WHERE a.project_id=?''',(project_id,))
+                  for identity in row if identity}
+    for identity in sorted((ids - historical) | primary):
+        row = connection.execute('SELECT * FROM attachments WHERE id=?', (identity,)).fetchone()
+        stored = connection.execute('SELECT id FROM files WHERE project_id=? AND attachment_id=?',(project_id,identity)).fetchone()
+        source = workspace(connection)/'storage'/stored[0] if stored else archived_path(archive,row['storage_path'])
+        add(source, row['original_name'], row['sha256'],
+            '' if identity in primary else directories.get(file_type(row), directories['other']))
+    with ZipFile(output, 'x', compression=ZIP_DEFLATED) as result:
+        for directory in directories.values():
+            result.writestr(prefix + directory + '/', '')
+        for path, member in members:
+            result.write(path, member)
+    return {'releases': [{'release_id': row['id']} for row in releases]}

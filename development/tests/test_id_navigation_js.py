@@ -79,7 +79,7 @@ for(const [view,marker] of [['resources','RESOURCE CONTENT'],['schemes','schemes
  assert.equal((html.match(/<h1>/g)||[]).length,1);
  assert.ok(html.includes('Исполнительная документация'));
 }
-assert.deepEqual(tabs,['Комплект ИД','Ресурсы','Схемы']);
+assert.deepEqual(tabs,['Комплект ИД','Ресурсы','Схемы','Шаблоны документов']);
 navigate('ojr');assert.equal(step,3);assert.ok(journalViews.includes(workspaceView));
 const journalHtml=idPage();assert.ok(journalHtml.includes('Разделы ОЖР'));assert.ok(journalHtml.includes('Журналы'));
 assert.equal((journalHtml.match(/<h1>/g)||[]).length,1);assert.equal(journalHtml.includes('Исполнительная документация'),false);

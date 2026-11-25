@@ -21,9 +21,9 @@ test('split dates use one calendar input and derive the remaining print parts',(
  }
 });
 test('legacy values retain their text after merging calendar metadata',()=>{
- const fields=normalize('СП_77_А_5',Object.values(groups['СП_77_А_5'][0].parts).map(key=>({key,kind:'literal',value:null})));
+ const fields=normalize('СП_48_И',Object.values(groups['СП_48_И'][0].parts).map(key=>({key,kind:'literal',value:null})));
  const values=['07','мая','2025'];
- const legacy=normalize('СП_77_А_5',fields.map((f,i)=>({...f,kind:'literal',value:values[i]})));
+ const legacy=normalize('СП_48_И',fields.map((f,i)=>({...f,kind:'literal',value:values[i]})));
  assert.deepEqual(Array.from(legacy,f=>f.value),values);
  assert.ok(legacy.every(f=>!f.format&&!f.value_type&&!f.input_type));
 });
@@ -33,13 +33,13 @@ test('calendar input has a visible label, accepts focus and saves ISO in both th
  const source=fs.readFileSync(new URL('app/itd/web_assets/act-fields.js',root),'utf8');
  for(const theme of ['light','dark']){
   const dom=new JSDOM(`<html data-theme="${theme}"><body><form id="act-form"><div id="act-fields"></div></form></body></html>`,{runScripts:'outside-only'});
-  const w=dom.window,group=groups['СП_77_А_8'][0];
-  const definition={code:'СП_77_А_8',name:'Проверка даты',fields:Object.values(group.parts).map(key=>({key,kind:'literal',value:null,required:true}))};
+  const w=dom.window,group=groups['СП_48_И'][0];
+  const definition={code:'СП_48_И',name:'Проверка даты',fields:Object.values(group.parts).map(key=>({key,kind:'literal',value:null,required:true}))};
   Object.assign(w,{pdata:{date_groups:groups},meta:{document_roles:{}},$:s=>w.document.querySelector(s),esc:v=>String(v??'').replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;'),cleanFieldLabel:v=>v,actForms:()=>[definition],decorateSelects:()=>{},versionTables:()=>''});
   w.eval(fs.readFileSync(new URL('app/itd/web_assets/field-functions.js',root),'utf8')+'\n'+source+'\nactInputRoots=()=>({});Object.assign(window,{renderActFields,collectActFields});');w.renderActFields(definition.code);
   const input=w.document.querySelector('input[type=date]');
   assert.equal(w.document.querySelectorAll('input').length,1);
-  assert.equal(w.document.querySelector('label[for="'+input.id+'"]').textContent,'Дата документа *');
+  assert.equal(w.document.querySelector('label[for="'+input.id+'"]').textContent,'Дата начала журнала *');
   input.focus();assert.equal(w.document.activeElement,input);
   input.value='2024-02-29';
   const saved=w.collectActFields(w.document.querySelector('form'),definition);

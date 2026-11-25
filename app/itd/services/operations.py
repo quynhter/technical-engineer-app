@@ -57,6 +57,16 @@ def _workspace_action(ctx, actor, connection, project_id, action, data):
     return execute(connection, request.project_id, request.action, request.data)
 
 
+def run_web_operation(ctx, actor, connection, route, data):
+    """Run the same form operation on the transaction owned by its service."""
+    require(actor, web_policy(route, data).role)
+    if route == '/api/action':
+        return _workspace_action(ctx, actor, connection, data.get('project_id'),
+                                 data.get('action'), data.get('data', {}))
+    from .documents import mutate
+    return mutate(connection, route, data, ctx)
+
+
 def execute_cli(ctx, actor, args):
     # Database selection is trusted context, never an operation argument.
     args = SimpleNamespace(**{**vars(args), 'db': ctx.database})
@@ -135,12 +145,7 @@ def execute_web(ctx, actor, route, data):
             if not policy.write:
                 connection.execute('PRAGMA query_only = ON')
             before = connection.total_changes
-            if route == '/api/action':
-                result = _workspace_action(ctx, actor, connection, data.get('project_id'),
-                                          data.get('action'), data.get('data', {}))
-            else:
-                from .documents import mutate
-                result = mutate(connection, route, data, ctx)
+            result = run_web_operation(ctx, actor, connection, route, data)
             if policy.write and connection.total_changes > before:
                 log_event(connection, route, entity='projects', entity_id=data.get('project_id'))
             return result

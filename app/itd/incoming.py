@@ -116,6 +116,9 @@ def save_incoming_day(c, project_id, data, archive_root):
                 archive_type = 'other' if document_type == 'other' else 'quality'
                 attachment = import_file(c, archive_root=archive_root, source=source,
                                          doc_type=archive_type, title=name)['id']
+                from .storage import store_attachment
+                item = c.execute('SELECT * FROM attachments WHERE id=?',(attachment,)).fetchone()
+                store_attachment(c,project_id,item,source)
             link_file(c, attachment_id=attachment, entity='project', entity_id=project_id)
             link_file(c, attachment_id=attachment, entity='resource', entity_id=entry['resource_id'])
             entry['attachment_id'] = attachment

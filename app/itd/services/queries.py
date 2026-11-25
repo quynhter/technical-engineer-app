@@ -29,7 +29,8 @@ def download(connection, project_id, release_id):
         path = workspace(connection) / path
     if not path.is_file() or digest(path) != release['sha256']:
         raise ValueError('Проверка целостности выпуска не пройдена')
-    return FileResult(path.read_bytes(), 'application/octet-stream', path.name)
+    file = connection.execute('SELECT name FROM files WHERE release_id=?',(release_id,)).fetchone()
+    return FileResult(path.read_bytes(), 'application/octet-stream', file[0] if file else path.name)
 
 
 def query_web(ctx, actor, route, query, *, revision=None):
@@ -62,9 +63,15 @@ def query_web(ctx, actor, route, query, *, revision=None):
                 pid = int(query['project_id'][0])
                 if not c.execute('SELECT 1 FROM projects WHERE id=?', (pid,)).fetchone():
                     raise ValueError('Раздел не найден')
-                if query.get('revision', [None])[0] == revision:
+                if revision is not None and query.get('revision', [None])[0] == revision:
                     return {'unchanged': True, '_revision': revision}
                 return {**project_data(c, pid), '_revision': revision}
+            if route == '/api/journal-docx':
+                from ..journal_export import export
+                with tempfile.TemporaryDirectory(prefix='itd-journal-') as folder:
+                    output = Path(folder)/'journal.docx'
+                    filename = export(c,int(query['project_id'][0]),query['kind'][0],ctx.templates,output)
+                    return FileResult(output.read_bytes(), 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',filename)
             if route == '/api/download':
                 return download(c, int(query['project_id'][0]), int(query['release_id'][0]))
             if route == '/api/context':
@@ -96,17 +103,20 @@ def query_web(ctx, actor, route, query, *, revision=None):
                 item = next((a for a in originals if a['id'] == aid), None)
                 if item is None:
                     raise ValueError('Оригинал не связан с разделом')
-                path = archived_path(ctx.database.parent / 'archive', item['storage_path'])
+                from ..storage import directory
+                stored = c.execute('SELECT id FROM files WHERE project_id=? AND attachment_id=?',(pid,aid)).fetchone()
+                path = directory(c)/stored[0] if stored else archived_path(ctx.database.parent / 'archive', item['storage_path'])
                 if not path.is_file() or digest(path) != item['sha256']:
                     raise ValueError('Целостность оригинала не подтверждена')
                 return FileResult(path.read_bytes(), 'application/octet-stream', item['original_name'])
             if route == '/api/package':
-                from ..releases import build_package
+                from ..releases import build_package, build_project_zip
                 from ..read_audit import record
                 pid = int(query['project_id'][0])
                 with tempfile.TemporaryDirectory(prefix='itd-package-') as folder:
                     target = Path(folder) / 'ИТД.zip'
-                    result = build_package(c, pid, target, include_originals=True)
+                    result = (build_project_zip(c, pid, target) if query.get('layout')==['project']
+                              else build_package(c, pid, target, include_originals=True))
                     record(ctx.database, 'package-download', project_id=pid,
                            release_ids=[item['release_id'] for item in result['releases']],
                            source=actor.source, user_id=actor.user_id)

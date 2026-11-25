@@ -163,10 +163,10 @@ function specializedEntryEditor(kind,e){
 function attachmentSelectForEntry(e){return `<label class="field wide"><span>Документ-основание</span><select name="attachment_id"><option value="">Не выбран</option>${pdata.attachments.filter(a=>pdata.project_attachment_ids.includes(a.id)).map(a=>option(a.id,a.title,e.attachment_id)).join('')}</select></label>`;}
 async function refreshJournals(){
  if(typeof sessionSuspended!=='undefined'&&sessionSuspended)return;
- if(journalRefreshBusy||busy||dirty||formDirty||!projectId||!['journal','incoming','work','resources','ojr','facts','cable','schemes','documents','registry','rd','check','delivery','manage'].includes(workspaceView)||$('#editor-dialog').open||document.hidden||document.activeElement?.matches?.('input,textarea,select,[role=combobox]'))return;
+ if(journalRefreshBusy||busy||dirty||formDirty||!projectId||!['journal','incoming','work','resources','ojr','facts','cable','schemes','documents','registry','rd','check','delivery','manage'].includes(workspaceView)||$('#editor-dialog').open||$('#write-preview-dialog')?.open||document.hidden||document.activeElement?.matches?.('input,textarea,select,[role=combobox]'))return;
  journalRefreshBusy=true;
  const pid=projectId,view=workspaceView;
- try{const revision=pdata?._revision;const next=await api('/api/project?project_id='+pid+'&poll=1'+(revision&&Date.now()-(pdata._checkedAt||0)<60000?'&revision='+encodeURIComponent(revision):''));if(pid!==projectId||view!==workspaceView||dirty||formDirty||busy||$('#editor-dialog').open)return;
+ try{const revision=pdata?._revision;const next=await api('/api/project?project_id='+pid+'&poll=1'+(revision&&Date.now()-(pdata._checkedAt||0)<60000?'&revision='+encodeURIComponent(revision):''));if(pid!==projectId||view!==workspaceView||dirty||formDirty||busy||$('#editor-dialog').open||$('#write-preview-dialog')?.open)return;
  if(next.unchanged)return;
  if(JSON.stringify({...next,_checkedAt:0,_revision:null})!==JSON.stringify({...pdata,_checkedAt:0,_revision:null})){if(next._revision)next._checkedAt=Date.now();pdata=next;selectedEntries=new Set([...selectedEntries].filter(id=>pdata.workspace_entries.some(e=>e.id===id&&!e.act_id)));const positions=[...(document.querySelectorAll?.('#content .table-scroll')||[])].map(el=>[el.scrollLeft,el.scrollTop]);render();[...(document.querySelectorAll?.('#content .table-scroll')||[])].forEach((el,i)=>{if(positions[i])[el.scrollLeft,el.scrollTop]=positions[i];});}
  if(next._revision&&pdata){pdata._revision=next._revision;pdata._checkedAt=Date.now();}

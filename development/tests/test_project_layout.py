@@ -103,7 +103,7 @@ class ProjectLayoutTests(unittest.TestCase):
     def test_catalog_and_default_templates_resolve_after_move(self):
         with patch('pathlib.Path.cwd',return_value=self.root):
             self.assertEqual(default_templates(),ROOT/'app/templates')
-        for form in json.loads((ROOT/'app/templates/catalog.json').read_text()):
+        for form in json.loads((ROOT/'app/forms/catalog.json').read_text()):
             for key in ('template','fields'):
                 with self.subTest(form=form['code'],key=key):
                     self.assertTrue((ROOT/form[key]).is_file())

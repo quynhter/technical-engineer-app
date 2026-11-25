@@ -1,18 +1,7 @@
 'use strict';
 let documentVersionState=null;
 const otherSignerRoles=['other_1','other_2','other_3'];
-function versionEffectiveFields(a,version){const definition=pdata.forms.find(f=>f.code===a.act_type),base=definition?.ui_fields||definition?.fields||[],overrides=version.card.fields||[];const fields=base.map(f=>{const override=overrides.find(x=>x.key===f.key);return override?{...Object.fromEntries(Object.entries(f).filter(([key])=>!['kind','source','value','role','template','presentation'].includes(key))),...override}:f;}).concat(overrides.filter(f=>!base.some(x=>x.key===f.key)));
- for(const [key,continuations] of Object.entries(documentVersionState?.field_continuations||{})){
-  const first=fields.find(f=>f.key===key);
-  if(!first)continue;
-  const values=[first.value];
-  for(const continuation of continuations){
-   const index=fields.findIndex(f=>f.key===continuation);
-   if(index>=0)values.push(fields.splice(index,1)[0].value);
-  }
-  const joined=values.filter(value=>value!==null&&value!==undefined&&value!=='');
-  if(joined.length>1||joined.length===1&&joined[0]!==first.value)first.value=joined.join('\n');
- }
+function versionEffectiveFields(a,version){const definition=pdata.forms.find(f=>f.code===a.act_type),base=(definition?.ui_fields||definition?.fields||[]).map(f=>a.act_type.startsWith('TPL_')&&f.kind==='literal'?{...f,expression:true}:f),overrides=version.card.fields||[];const fields=base.map(f=>{const override=overrides.find(x=>x.key===f.key);return override?{...Object.fromEntries(Object.entries(f).filter(([key])=>!['kind','source','value','role','template','presentation'].includes(key))),...override}:f;}).concat(overrides.filter(f=>!base.some(x=>x.key===f.key)));
  return normalizeFormFields(a.act_type,fields);}
 async function openDocumentVersions(aid){
  const result=await api('/api/versions/list',{project_id:projectId,act_id:aid});

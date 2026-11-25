@@ -41,3 +41,6 @@ app/frontend/bundle-meta.json
 development/work/
 llm-providers.json
 *.llm-providers.json
+
+/storage/
+/app/templates/TPL_*.docx

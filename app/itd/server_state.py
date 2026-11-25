@@ -66,6 +66,14 @@ class WorkspaceState:
 
     def configure(self, data, user_id):
         from .layout import check_path
+        explicit_folder = 'itd_root' in data
+        if not explicit_folder:
+            value = data.get('database_path')
+            if isinstance(value,str) and Path(value.strip()).expanduser().is_absolute():
+                database = Path(value.strip()).expanduser().resolve()
+                if database == self.database:
+                    return {'settings':self.settings()}
+                data = {**data,'itd_root':str(database_workspace(database)/'ИТД')}
         paths = []
         for name in ('database_path', 'itd_root'):
             value = data.get(name)
@@ -92,7 +100,8 @@ class WorkspaceState:
         check_workspace_switch(ServiceContext(database=self.database),
                                Actor(user_id=user_id, role=user['role'], source='web'))
         prepare_database(database)
-        folder.mkdir(exist_ok=True)
+        if explicit_folder:
+            folder.mkdir(exist_ok=True)
         self.accounts.save_settings(database, folder)
         with self.state_lock:
             self.database, self.itd_root = database, folder

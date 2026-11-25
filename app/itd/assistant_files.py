@@ -1,9 +1,11 @@
 """Read user-selected chat attachments without archiving them in the workspace."""
 import base64
+import hashlib
 from io import BytesIO
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from uuid import uuid4
 from zipfile import ZipFile
 
 from .readers import read_document
@@ -21,6 +23,10 @@ class AttachmentError(ValueError):
 def attachment_text(data, suffix):
     if suffix in TEXT_FORMATS:
         return data.decode('utf-8-sig')
+    return parts_text(attachment_parts(data, suffix))
+
+
+def attachment_parts(data, suffix):
     if suffix in OFFICE_FORMATS:
         with ZipFile(BytesIO(data)) as archive:
             if sum(item.file_size for item in archive.infolist()) > 16 * 1024 * 1024:
@@ -28,7 +34,10 @@ def attachment_text(data, suffix):
     with TemporaryDirectory() as directory:
         path = Path(directory) / ('attachment' + suffix)
         path.write_bytes(data)
-        parts = read_document(path)['parts']
+        return read_document(path, strict_pdf=suffix == '.pdf')['parts']
+
+
+def parts_text(parts):
     lines = []
     for part in parts:
         if 'text' in part and part['text'].strip():
@@ -40,7 +49,7 @@ def attachment_text(data, suffix):
     return '\n'.join(lines)
 
 
-def read_attachments(files):
+def read_attachments(files, *, keep_source=False):
     if not isinstance(files, list) or len(files) > 4:
         raise AttachmentError('К сообщению можно приложить до четырёх файлов.')
     result = []
@@ -49,7 +58,8 @@ def read_attachments(files):
         if not isinstance(item, dict):
             raise AttachmentError('Некорректное вложение.')
         name = item.get('name')
-        if not isinstance(name, str) or not 1 <= len(name) <= 255:
+        if (not isinstance(name, str) or not 1 <= len(name) <= 255
+                or '/' in name or '\\' in name or any(ord(char) < 32 for char in name)):
             raise AttachmentError('Некорректное имя файла.')
         suffix = Path(name).suffix.lower()
         if suffix not in TEXT_FORMATS | OFFICE_FORMATS | {'.pdf'}:
@@ -72,5 +82,9 @@ def read_attachments(files):
         characters += len(content)
         if characters > MAX_TEXT:
             raise AttachmentError('Текст вложений превышает 80 000 символов. Прикрепите фрагмент.')
-        result.append({'name': name, 'text': content})
+        file = {'name': name, 'text': content}
+        if keep_source:
+            file.update(id=uuid4().hex, sha256=hashlib.sha256(data).hexdigest(),
+                        content=base64.b64encode(data).decode('ascii'))
+        result.append(file)
     return result

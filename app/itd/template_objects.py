@@ -230,6 +230,9 @@ def build_template_context(code, values, *, roots=None, fields=None):
 
 def render_context(code, values):
     result = deepcopy(values)
+    if code.startswith('TPL_'):
+        result.pop(CONTEXT_KEY, None)
+        return result
     model = result.pop(CONTEXT_KEY, None)
     if model is None:
         model = build_template_context(code, result)

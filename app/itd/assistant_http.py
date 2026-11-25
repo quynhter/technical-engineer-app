@@ -62,8 +62,7 @@ def install(app, state):
                         while True:
                             try:
                                 current = await run_in_threadpool(refresh)
-                                history = await run_in_threadpool(runtime.chats.history,ctx,current,tid)
-                                message = next(m for m in history['messages'] if m['id']==mid)
+                                message = await run_in_threadpool(runtime.chats.message,ctx,current,tid,mid)
                             except Exception:
                                 yield 'event: error\ndata: {"error":"Чат недоступен"}\n\n'
                                 return

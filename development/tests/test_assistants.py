@@ -92,7 +92,8 @@ class AssistantTests(unittest.TestCase):
         with self.state.accounts.connect() as c:
             before = list(c.iterdump())
         assistant = self.chats.assistants(self.viewer)[0]
-        self.assertEqual(set(assistant['allowed_tools']), {t.name for t in tools.TOOLS})
+        self.assertEqual(set(assistant['allowed_tools']), {t.name for t in tools.available(self.viewer)})
+        self.assertTrue(any(t.access == 'write' for t in tools.available(self.admin)))
         self.assertEqual(assistant['knowledge_bases'], ['*'])
         with self.state.accounts.connect() as c:
             self.assertEqual(before, list(c.iterdump()))
@@ -224,10 +225,14 @@ class AssistantTests(unittest.TestCase):
                 if task:
                     await task
             c.portal.call(complete)
-            for _ in range(2):
-                response = c.get('/api/v1/assistant/events?thread_id='+str(self.thread['id'])+'&message_id='+str(result['message_id']),headers=self.headers)
-                self.assertIn('Начало и конец',response.text)
-                self.assertIn('"status": "complete"',response.text)
+            runtime = c.app.state.assistant_runtime
+            with patch.object(runtime.chats, 'history', side_effect=AssertionError('SSE must read only its message')):
+                for _ in range(2):
+                    response = c.get('/api/v1/assistant/events?thread_id='+str(self.thread['id'])+'&message_id='+str(result['message_id']),headers=self.headers)
+                    self.assertIn('Начало и конец',response.text)
+                    self.assertIn('"status": "complete"',response.text)
+            with self.assertRaises(PermissionError):
+                runtime.chats.message(self.ctx, self.admin, self.thread['id'], result['message_id'])
             self.assertEqual(len(self.chats.history(self.ctx,self.viewer,self.thread['id'])['messages']),2)
 
     def test_provider_protocols_headers_and_no_key_in_url(self):

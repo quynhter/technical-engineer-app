@@ -143,9 +143,51 @@ def signatory_value(field, roots, draft, path):
     return "".join(pieces), missing
 
 
+DB_TOKEN = re.compile(r'{{\s*\$db\.(\w+)\.(?:(r[0-9]+)\.)?(\w+)\s*}}')
+
+
+def expression_value(expression, roots, mask=None, *, missing_tables=None):
+    def substitute(match):
+        table, identity, column = match.groups()
+        if table == 'objects' and column == 'adress':
+            column = 'address'
+        from .document_bindings import TABLES, EXCLUDE, value_type
+        if table not in TABLES or column in EXCLUDE or column.endswith(('_json','_path','_sha256')):
+            raise ValueError(f'Недоступное поле {table}.{column}')
+        current = {'objects':'object', 'projects':'project'}.get(table)
+        if identity:
+            row = roots.get('records', {}).get(table, {}).get(identity)
+        elif current:
+            row = roots.get(current, {})
+        else:
+            row = roots.get('item') if roots.get('item_table')==table else None
+        if row is None:
+            if missing_tables is not None:
+                missing_tables.add(table)
+            return '[УТОЧНИТЬ]'
+        value = row.get(column)
+        kind = value_type(column, value)
+        applies = kind=='number' and mask in ('0','0.00','0.000','0.00 ₽') or kind=='date' and mask in ('dd.mm.yyyy','«dd» mmmm yyyy')
+        return str(formatted(value, {'mask':mask if applies else None}) if value is not None else '')
+    return DB_TOKEN.sub(substitute, expression)
+
+
 def formatted(value, field):
     if value is None or value == "":
         return value
+    mask = field.get('mask')
+    if field.get('expression') and field.get('value_type') == 'number' and isinstance(value, str):
+        value = float(value.replace(',', '.'))
+        if not math.isfinite(value):
+            raise ValueError('Числовое поле должно содержать конечное число')
+    if mask in ('0','0.00','0.000','0.00 ₽') and isinstance(value,(int,float)):
+        places = {'0':0,'0.00':2,'0.000':3,'0.00 ₽':2}[mask]
+        return f'{value:.{places}f}' + (' ₽' if mask.endswith('₽') else '')
+    if mask in ('dd.mm.yyyy','«dd» mmmm yyyy') and isinstance(value,str):
+        if field.get('expression') and field.get('value_type') != 'date' and not re.fullmatch(r'\d{4}-\d{2}-\d{2}',value):
+            return value
+        parsed = date.fromisoformat(value)
+        return parsed.strftime('%d.%m.%Y') if mask=='dd.mm.yyyy' else f'«{parsed.day:02}» {MONTHS[parsed.month-1]} {parsed.year}'
     fmt = field.get("format")
     if field.get("value_type") == "number" and (
         isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value)
@@ -192,13 +234,15 @@ def resolve_fields(fields, roots, *, draft=True, prefix="", diagnostics=None):
                 field["kind"] == "table" and "value" in field
             ) else lookup(field["source"], roots)
         if field["kind"] == "table":
+            if field.get('db_table'):
+                value = list(roots.get('records',{}).get(field['db_table'],{}).values())
             if value is not None and not isinstance(value, list):
                 raise ValueError(f"Источник таблицы {path} должен содержать массив")
             rows = []
             for index, item in enumerate(value or [], 1):
                 if not isinstance(item, dict):
                     raise ValueError(f"Строка {path} должна быть объектом")
-                row, gaps = resolve_fields(field["fields"], {**roots, "item": item, "row": {"number": index}},
+                row, gaps = resolve_fields(field["fields"], {**roots, "item": item, "item_table":field.get("db_table"), "row": {"number": index}},
                                            draft=draft, prefix=f"{path}[{index}].", diagnostics=diagnostics)
                 rows.append(row)
                 missing.extend(gaps)
@@ -214,7 +258,17 @@ def resolve_fields(fields, roots, *, draft=True, prefix="", diagnostics=None):
                 value = lookup(value['__itd_source'], roots)
                 value = formatted(value, effective)
             else:
-                value = formatted(value, field)
+                if isinstance(value,str) and '$db.' in value:
+                    missing_tables = set()
+                    value = expression_value(value, roots, field.get('mask'), missing_tables=missing_tables)
+                    if missing_tables:
+                        missing.append(path)
+                        if diagnostics is not None:
+                            diagnostics.append({"path": path, "label": field.get("label", key),
+                                                "required": True, "state": "missing",
+                                                "source": "$db", "record_tables": sorted(missing_tables)})
+                else:
+                    value = formatted(value, field)
         empty = value is None or value == "" or value == [] or (isinstance(value, str) and not value.strip())
         if empty:
             if diagnostics is not None:

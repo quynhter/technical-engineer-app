@@ -24,7 +24,7 @@ def page_selection(value, count):
     return sorted(selected)
 
 
-def read_document(path, *, scan_dir=None, pages=None, dpi=144, overview=False):
+def read_document(path, *, scan_dir=None, pages=None, dpi=144, overview=False, strict_pdf=False):
     path = Path(path).resolve(strict=True)
     result = {"source": str(path), "sha256": digest(path), "parts": []}
     suffix = path.suffix.lower()
@@ -32,7 +32,7 @@ def read_document(path, *, scan_dir=None, pages=None, dpi=144, overview=False):
         raise ValueError('Выбор страниц, обзор, DPI и рендер страниц доступны только для PDF')
     if suffix == ".pdf":
         from pypdf import PdfReader
-        reader = PdfReader(path)
+        reader = PdfReader(path, strict=strict_pdf)
         if not isinstance(dpi,int) or isinstance(dpi,bool) or not 36 <= dpi <= 300:
             raise ValueError('DPI должен быть целым числом от 36 до 300')
         result['pdf_page_count'] = len(reader.pages)

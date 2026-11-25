@@ -13,6 +13,7 @@ OBJECT_FIELDS.append('display_name')
 ORG_FIELDS = 'full_name short_name inn ogrn postal_code address phone email sro_info sro_ogrn sro_inn sro_certificate_num sro_certificate_date'.split()
 REP_FIELDS = ('fio position last_name first_name middle_name nrs_id email authority_type authority_num '
               'authority_date order_doc status order_attachment_id').split()
+REP_NAME_FIELDS = ('last_name', 'first_name', 'middle_name')
 ROLES = {'developer': 'Застройщик', 'operator': 'Эксплуатирующая организация / региональный оператор',
          'builder': 'Подрядчик', 'designer': 'Проектировщик', 'subcontractor': 'Субподрядчик',
          'gsn': 'Государственный строительный надзор', 'customer': 'Технический заказчик',
@@ -116,8 +117,8 @@ def validate_workspace_required(data):
     for i,org in enumerate(data.get('participants',[])):
         need(org.get('full_name'),f'participants.{i}.full_name',f'Полное наименование организации {i+1}')
         for j,rep in enumerate(org.get('representatives',[])):
-            fio=rep.get('fio') or ' '.join(rep.get(k) or '' for k in ('last_name','first_name','middle_name'))
-            need(fio,f'participants.{i}.representatives.{j}.fio',f'ФИО представителя {j+1} организации {i+1}')
+            fio=rep.get('fio') or ' '.join(rep.get(k) or '' for k in REP_NAME_FIELDS)
+            need(fio,f'participants.{i}.representatives.{j}.last_name',f'ФИО представителя {j+1} организации {i+1}')
             need(rep.get('position'),f'participants.{i}.representatives.{j}.position',f'Должность представителя {j+1} организации {i+1}')
     for i,project in enumerate(data.get('projects',[])):
         for key,label in [('section_code','Обозначение раздела'),('code','Шифр РД'),('name','Полное название раздела')]:
@@ -181,9 +182,10 @@ def save_workspace(c, data):
                 raise ValueError('Представитель не принадлежит организации')
             previous = next((r for r in known.get(org.get('id'), {}).get('representatives', []) if r['id'] == rep_id), {})
             values = clean(rep, REP_FIELDS)
-            names_changed = any(k in values and values[k] != previous.get(k) for k in ('last_name', 'first_name', 'middle_name'))
+            names_changed = any(k in values and values[k] != previous.get(k) for k in REP_NAME_FIELDS)
             if not values.get('fio') or (names_changed and values.get('fio') == previous.get('fio')):
-                values['fio'] = ' '.join(values.get(k) or '' for k in ('last_name', 'first_name', 'middle_name')).strip()
+                names = [values.get(k, previous.get(k)) for k in REP_NAME_FIELDS]
+                values['fio'] = ' '.join(filter(None, names)) if names_changed else previous.get('fio')
             required_text(values.get('fio'), 'ФИО представителя')
             required_text(values.get('position'), 'должность представителя')
             if values.get('authority_type') not in (None, 'Приказ', 'Распоряжение', 'Доверенность', 'Указания', 'Постановления и решения'):

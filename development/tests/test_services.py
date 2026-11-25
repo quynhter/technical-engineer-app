@@ -132,7 +132,7 @@ class ServiceTests(unittest.TestCase):
         with connect(path) as c:
             self.assertEqual(c.execute('SELECT count(*) FROM audit_events').fetchone()[0], 1)
             self.assertIsNone(c.execute('SELECT actor_id FROM audit_events').fetchone()[0])
-            self.assertEqual(c.execute('SELECT max(version) FROM schema_migrations').fetchone()[0], 23)
+            self.assertIsNotNone(c.execute('SELECT 1 FROM schema_migrations WHERE version=23').fetchone())
 
     def test_unknown_operations_and_missing_agent_delegation_are_rejected(self):
         with self.assertRaises(ValueError):

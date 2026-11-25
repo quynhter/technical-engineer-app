@@ -147,12 +147,12 @@ class WebAccountTests(unittest.TestCase):
         editor = self.login(editor_code)
         original = self.request('upload', editor, {'project_id': project_id, 'name': 'source.pdf',
                                                   'content': base64.b64encode(b'test pdf').decode()})
-        self.assertTrue(Path(original['project_path']).is_relative_to(docs))
+        self.assertTrue(Path(original['project_path']).is_relative_to(alternate.parent/'storage'))
         self.assertTrue(Path(original['project_path']).is_file())
         report = self.request('files/plan', editor, {'project_id': project_id})
         self.assertEqual(report['plan']['actions'], [])
         result = self.request('statement', editor, {'project_id': project_id})
-        self.assertTrue(Path(result['output']).is_relative_to(docs))
+        self.assertTrue(Path(result['output']).is_relative_to(alternate.parent/'storage'))
         self.assertTrue(Path(result['output']).is_file())
         self.server.shutdown()
         self.server.server_close()
@@ -168,7 +168,7 @@ class WebAccountTests(unittest.TestCase):
         self.assertEqual(self.request('files/plan', editor, {'project_id': project_id})['plan']['actions'], [])
         self.assertTrue(Path(original['project_path']).is_file())
         new_statement = self.request('statement', editor, {'project_id': project_id})
-        self.assertTrue(Path(new_statement['output']).is_relative_to(second_root))
+        self.assertTrue(Path(new_statement['output']).is_relative_to(alternate.parent/'storage'))
 
     def test_reads_remain_available_while_writer_holds_workspace_lock(self):
         # Request runs in another thread while this thread owns the write lock.

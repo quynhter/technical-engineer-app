@@ -91,49 +91,12 @@ class TitleTests(unittest.TestCase):
                 self.add(c)
             self.assertEqual(c.execute("SELECT fields FROM document_types WHERE code=?", (CODE,)).fetchone()[0], "[]")
 
-    def test_current_database_repeated_release_fonts_and_package(self):
-        from docx import Document
-        with connect(self.db) as c:
-            a = self.add(c, copies=2, volumes=2, font_index=1)
-            first = generate_managed(c, act_id=a, templates_dir=default_templates(), draft=False)
-            update_record(c, entity="projects", record_id=self.project, changes={"name": "Полное новое наименование & <Б>"})
-            second = generate_managed(c, act_id=a, templates_dir=default_templates(), draft=False)
-            self.assertEqual(first["output"], second["output"])
-            self.assertTrue(verify_releases(c)["ok"])
-            with ZipFile(second["output"]) as z:
-                xml = z.read("word/document.xml").decode()
-                self.assertNotIn("{{", xml)
-                self.assertIn("Полное новое наименование &amp; &lt;Б&gt;", xml)
-                styles = z.read("word/styles.xml").decode()
-                self.assertIn('w:ascii="GOST type B"', styles)
-                self.assertNotIn('w:ascii="Arial"', styles)
-            doc = Document(second["output"])
-            self.assertEqual(len(doc.tables), 16)  # 4 набора: участники + 3 наклейки
-            self.assertIn("Том 2 из 2", "\n".join(p.text for p in doc.paragraphs))
-            package = self.root / "Комплект.zip"
-            export_package(c, self.project, package)
-            with ZipFile(package) as z:
-                self.assertEqual(len([n for n in z.namelist() if n.endswith(".docx")]), 1)
-
-    def test_no_labels(self):
-        from docx import Document
-        with connect(self.db) as c:
-            a = self.add(c, labels=False)
-            out = self.root / "Без наклеек.docx"
-            generate(c, act_id=a, templates_dir=default_templates(), output=out)
-            doc = Document(out)
-            self.assertEqual(len(doc.tables), 1)
-
     def test_settings_are_revalidated_after_record_update(self):
         with connect(self.db) as c:
             a = self.add(c)
             update_record(c, entity="acts", record_id=a, changes={"fields": [{"key": "copies", "kind": "literal", "value": -1}]})
             with self.assertRaisesRegex(ValueError, "copies"):
                 build_context(c, a)
-
-    def test_shipped_fields_match_registration(self):
-        p = default_templates().parent / "forms" / f"{CODE}.fields.json"
-        self.assertEqual(json.loads(p.read_text()), default_fields())
 
     def test_cli_legacy_config_unicode_paths_and_no_overwrite(self):
         config = self.root / "Настройки титула.json"

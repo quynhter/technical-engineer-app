@@ -56,7 +56,7 @@ class AgentContractTests(unittest.TestCase):
 
     def test_04_all_template_and_form_paths(self):
         entries = manifest_entries(FIXTURES / 'templates.txt')
-        self.assertEqual(len(entries), 207)
+        self.assertEqual(len(entries), 14)
         for name in entries:
             self.assertTrue((ROOT / name).is_file(), name)
 
@@ -115,7 +115,11 @@ with patch('itd.paths.ROOT', pathlib.Path(sys.argv[1])):
         from itd.tools import TOOLS, documentation
         mcp_doc = (ROOT / 'ai/docs/mcp.md').read_text()
         self.assertIn(documentation(), mcp_doc)
-        self.assertTrue(all(tool.access == 'read' for tool in TOOLS))
+        reads = [tool for tool in TOOLS if tool.access == 'read']
+        writes = [tool for tool in TOOLS if tool.access == 'write']
+        self.assertTrue(all(tool.role == 'viewer' for tool in reads))
+        self.assertTrue(all(tool.role == 'editor' for tool in writes))
+        self.assertFalse(any(tool.name.startswith(('apply', 'confirm')) for tool in TOOLS))
         for name in ('AGENTS.md', 'README.md', 'ai/skills/ai-technical-engineer/SKILL.md'):
             self.assertIn('docs/mcp.md', (ROOT / name).read_text(), name)
             self.assertIn('docs/assistants.md', (ROOT / name).read_text(), name)

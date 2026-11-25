@@ -64,18 +64,14 @@ test('registry export uses v1 client, prevents repeats, keeps the filename and s
  const api={json:async(path,data)=>{calls.push({path,data});return {registry:rows(1)};},download:(path)=>{calls.push({path});return new Promise(resolve=>{resolveDownload=resolve;});}};
  w.ITDDesign.renderRegistry(d.getElementById('registry-app'),{projectId:7,role:'editor',api,saveFile:file=>saved.push(file)});
  await until(()=>d.querySelector('[data-registry-api] tbody tr'));
- const more=d.querySelector('[aria-label="Действия с таблицей"]');
- const items=()=>[...d.querySelectorAll('[role="menuitem"]')];
- assert.equal(d.querySelectorAll('[data-registry-api] .toolbar button').length,0);
- more.click();await until(()=>items().length);
- assert.deepEqual(items().slice(0,2).map(item=>item.textContent.trim()),['Экспорт ZIP','Экспорт CSV']);
- assert.doesNotMatch(d.body.textContent,/Экспорт DOCX/);
- const zip=items()[0];zip.click();zip.click();await until(()=>resolveDownload);
- assert.equal(calls.filter(c=>c.path==='/package?project_id=7').length,1);
+ const zip=d.querySelector('[data-registry-api] .toolbar button');
+ assert.equal(zip.textContent.trim(),'Скачать в ZIP');
+ zip.click();zip.click();await until(()=>resolveDownload);
+ assert.equal(calls.filter(c=>c.path==='/package?project_id=7&layout=project').length,1);
  resolveDownload({blob:new w.Blob(['zip']),filename:'Комплект.zip'});
  await until(()=>saved.length===1);assert.equal(saved[0].filename,'Комплект.zip');
  api.download=async()=>{throw Error('Аудит недоступен');};
- more.click();await until(()=>items().length);items()[0].click();await until(()=>d.body.textContent.includes('Аудит недоступен'));
+ zip.click();await until(()=>d.body.textContent.includes('Аудит недоступен'));
  assert.equal(saved.length,1);assert.equal(errors.length,0,errors.map(e=>e.detail?.stack||e.message).join('\n'));dom.window.close();
 });
 

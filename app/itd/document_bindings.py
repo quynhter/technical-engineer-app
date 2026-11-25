@@ -14,7 +14,7 @@ TABLES = {
 COLUMNS = {
     'name': 'Наименование', 'city': 'Город', 'address': 'Адрес', 'code': 'Шифр',
     'section_code': 'Код раздела', 'full_name': 'Полное наименование', 'short_name': 'Краткое наименование',
-    'fio': 'ФИО', 'position': 'Должность', 'inn': 'ИНН', 'ogrn': 'ОГРН', 'kpp': 'КПП',
+    'fio': 'ФИО', 'short_fio': 'Инициалы', 'position': 'Должность', 'inn': 'ИНН', 'ogrn': 'ОГРН', 'kpp': 'КПП',
     'order_doc': 'Основание полномочий', 'nrs_id': 'Номер в НРС', 'act_num': 'Номер документа',
     'date_signed': 'Дата подписания', 'filename_title': 'Название файла', 'registry_note': 'Примечание реестра',
     'sheets_count': 'Количество листов', 'description': 'Описание', 'type_mark': 'Тип / марка',
@@ -60,11 +60,11 @@ def records(c, pid):
         elif table == 'projects':
             rows = c.execute('SELECT * FROM projects WHERE id=?', (pid,))
         elif table == 'object_units':
-            rows = c.execute('SELECT * FROM object_units WHERE object_id=?', (oid,))
+            rows = c.execute('SELECT * FROM object_units WHERE object_id=? ORDER BY id', (oid,))
         elif table == 'organizations':
-            rows = c.execute('SELECT DISTINCT o.* FROM organizations o JOIN object_participants p ON p.org_id=o.id WHERE p.object_id=?', (oid,))
+            rows = c.execute('SELECT DISTINCT o.* FROM organizations o JOIN object_participants p ON p.org_id=o.id WHERE p.object_id=? ORDER BY o.id', (oid,))
         elif table == 'signatories':
-            rows = c.execute('SELECT DISTINCT s.* FROM signatories s JOIN object_participants p ON p.org_id=s.org_id WHERE p.object_id=?', (oid,))
+            rows = c.execute('SELECT DISTINCT s.* FROM signatories s JOIN object_participants p ON p.org_id=s.org_id WHERE p.object_id=? ORDER BY s.id', (oid,))
         else:
             rows = c.execute(f'SELECT * FROM {table} WHERE project_id=? ORDER BY id', (pid,))
         result[table] = {'r'+str(row['id']): {

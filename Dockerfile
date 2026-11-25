@@ -25,10 +25,10 @@ COPY ai/ ai/
 COPY run.py ./
 COPY --from=frontend /build/app/itd/web_assets/ app/itd/web_assets/
 RUN mkdir -p /data/db /data/logs \
-    && chown -R itd:itd /data \
+    && chown -R itd:itd /data app/templates \
     && ln -s /data/logs logs
 USER itd
-VOLUME ["/data"]
+VOLUME ["/data", "/srv/itd/app/templates"]
 EXPOSE 8765
 ENTRYPOINT ["python", "run.py"]
 CMD ["--db", "/data/db/itd.db", "--host", "0.0.0.0", "--port", "8765", "--no-browser"]

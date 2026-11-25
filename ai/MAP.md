@@ -1,6 +1,6 @@
 # Карта данных, полей и шаблонов ИТД
 
-Снимок структуры на 18.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. Рабочие БД и документы пользователя не открывались и не изменялись.
+Снимок структуры на 25.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. Рабочие БД и документы пользователя не открывались и не изменялись.
 
 ## Навигация
 
@@ -16,27 +16,27 @@
 <a id="audit"></a>
 ## Итоги проверки
 
-- Основная БД: таблиц — **54**, колонок — **397**, компонентов внешних ключей — **108**; миграции 001–023.
-- Форм / DOCX / JSON-определений — **91**, включая титульник и две общие формы из `form_catalog.catalog()`.
-- **2389 эффективных определений**, включая каждую колонку вложенных таблиц: literal: 754, reference: 1314, signatory: 267, table: 54.
+- Основная БД: таблиц — **57**, колонок — **416**, компонентов внешних ключей — **113**; миграции 001–026.
+- Форм / DOCX / JSON-определений — **4**, включая реестр и три журнала из `form_catalog.catalog()`.
+- **109 эффективных определений**, включая каждую колонку вложенных таблиц: literal: 5, reference: 93, table: 11.
 - Ошибок проверенных контрактов: **0**. Проверены уникальность кодов и файлов, ключи bindings, существование колонок источников, порядок field_values, Jinja AST всех XML-частей DOCX, поля циклов, два рендера каждой формы (контекст пустого тестового объекта и непустые синтетические строки), целостность XML результата, SQLite integrity_check и foreign_key_check на тестовой БД.
 - Результаты штатных тестов и ограничения их запуска фиксируются в CHANGELOG.md; аудит запускается отдельно.
 
 ### Что не означает «всё автоматически связано»
 
-- **748 пустых literal-полей** ожидают индивидуальные сведения. Это явный ручной ввод в `acts.fields`, а не потерянная связь. Нельзя достоверно вывести результаты измерений, заключения, даты испытаний и объёмы из спецификации.
-- **50 ручных таблиц** хранят строки в `acts.fields[].value`. Каждая их ячейка перечислена ниже. Пустое обязательное значение блокирует финал.
+- **5 пустых literal-полей** ожидают индивидуальные сведения. Это явный ручной ввод в `acts.fields`, а не потерянная связь. Нельзя достоверно вывести результаты измерений, заключения, даты испытаний и объёмы из спецификации.
+- **2 ручных таблиц** хранят строки в `acts.fields[].value`. Каждая их ячейка перечислена ниже. Пустое обязательное значение блокирует финал.
 - `role_slot` — намеренно незавершённый выбор роли по варианту бланка; варианты указаны у соответствующих полей. Несколько представителей одной роли требуют выбора в документе.
 - Не каждое поле БД печатается в документе: ключи, ревизии, хеши, пути и служебные состояния поддерживают учёт. У каждой колонки ниже показаны прямые потребители форм; «нет прямой привязки» не означает ошибку.
 - Карта относится к поставляемым определениям. В рабочей БД `document_types.fields`, `acts.fields`, назначения и карточки версий могут отличаться; без выбора рабочей БД и объекта их содержание не проверялось.
 - Семантическое соответствие каждого пустого места оригиналу и применимость нормативов не доказываются рендером. Наличие исходников и проверка их SHA-256 указаны отдельно для каждой формы. Постраничная визуальная сверка всех исходников в этот аудит не входит.
 
-- Все 89 исходников из catalog.json отсутствуют по указанным путям в этой копии проекта. Их хеши сохранены как происхождение, но повторно не подтверждены. Визуальный рендер исправленной формы СП_70_А также не выполнен: встроенный LibreOffice не запускается из-за отсутствия версии CURL_OPENSSL_4 у системной libcurl.so.4. Два рендера в итогах означают подстановку Jinja в DOCX, а не визуализацию страниц.
+- Исходников проверенных форм нет по указанным путям: **2**. Сохранённые в каталоге хеши этих оригиналов не перепроверены. Два рендера в итогах означают подстановку Jinja в DOCX. Визуализация страниц выполняется отдельно.
 
 ### Выявленные особенности
 
 - Исправлен разрыв `СП_70_А.rows_9_2.c3`: «Дата подписания акта» была определена в JSON, но отсутствовала в строке DOCX. Теперь маркер печатается и поле обязательно; генератор исходных форм отличает дату подписания от места для подписи. В ZIP шаблона изменён только word/document.xml, остальные части сохранены побайтно. Исходный бланк и зарегистрированные настройки рабочих БД не изменялись.
-- 16 дочерних колонок блоков подписей намеренно остаются пустыми в DOCX. Их JSON-определения существуют, но введённый в них текст не печатается. Точные ключи и подписи перечислены ниже со статусом «Рукописная подпись». Некоторые подписи совмещены с ФИО/должностью в заголовке; автоматическое заполнение этих частей требует отдельной сверки бланка с оригиналом.
+- Колонок блоков подписей с предусмотренным рукописным заполнением: **1**. Их JSON-определения существуют, но введённый в них текст не печатается. Точные ключи и подписи перечислены ниже со статусом «Рукописная подпись». Некоторые подписи совмещены с ФИО/должностью в заголовке; автоматическое заполнение этих частей требует отдельной сверки бланка с оригиналом.
 - В README шаблонов были устаревшие ссылки на скрипт аудита и окружение Python. Они заменены действующим аудитом `audit_relationships.py` и `development/.venv`.
 - У общего реестра `registry.number`, `registry.date`, `registry.note` остаются в контексте, но текущий DOCX их отдельно не печатает; номер и дата объединены в `number_date`. `registry.organization` вычисляется только при единственном исполнителе ролей `work_performer` / `builder`; пустое значение не заменяется произвольной организацией.
 - У титульника `copies`, `volumes`, `font` — управляющие поля. `pages` и `contractors_info` создаются `titles.prepare_context`, хотя их нет в JSON. Это проверенное исключение, а не неопределённые маркеры.
@@ -45,9 +45,9 @@
 <a id="screens"></a>
 ## Экран → сущности → документы
 
-Ассистент: `app/frontend/src/assistant.jsx` → `/api/v1/assistant/` → `app/itd/services/assistants.py` / `app/itd/assistant_runtime.py`. Настройки, threads и messages находятся в accounts (миграция 3), извлечённый текст вложений — в messages.attachments (миграция 4); контекст читается реестром, аудит source=assistant — в read_events. [Конфигурация](docs/assistants.md).
+Ассистент: `app/frontend/src/assistant.jsx` → `/api/v1/assistant/` → `app/itd/services/assistants.py` / `app/itd/assistant_runtime.py`. Настройки, threads и messages находятся в accounts (миграция 3); исходник, SHA-256 и извлечённый текст новых вложений — в messages.attachments (миграция 4). Контекст читается реестром, аудит source=assistant — в read_events. [Конфигурация](docs/assistants.md).
 
-MCP: `app/itd/mcp_server.py` → единый реестр `app/itd/tools` → сервисы чтения. Контракт и состав: [docs/mcp.md](docs/mcp.md). БД закреплена при запуске, Bearer использует api_tokens отдельной accounts; аудит source=mcp с knowledge_version/skills_version/index_status хранится в read_events sidecar. project_id=0 обозначает чтение без выбранного раздела. Знания CLI/веб/MCP имеют общий fingerprint и skills_version из сервисного knowledge-status.
+MCP: `app/itd/mcp_server.py` → единый реестр `app/itd/tools` → чтение и подготовка предпросмотров. Контракт и состав: [docs/mcp.md](docs/mcp.md). БД закреплена при запуске, Bearer использует api_tokens отдельной accounts; аудит source=mcp с knowledge_version/skills_version/index_status хранится в read_events sidecar. project_id=0 обозначает чтение без выбранного раздела. Знания CLI/веб/MCP имеют общий fingerprint и skills_version из сервисного knowledge-status.
 
 Реестр ИД: `app/frontend/src/registry.jsx` → `/api/v1/project`, `/api/v1/registry/export`, `/api/v1/package` → общие сервисы. Список исходных файлов: `app/frontend/src/source-files.jsx` → `/api/v1/project`, `/api/v1/upload`; карточка оригинала и файловая проверка используют общие сервисы. Списки схем, основных документов, спецификации ресурсов, факта монтажа, входного контроля и ЖПК: `app/frontend/src/project-records.jsx` → `/api/v1/project`; формы сохраняют прежние сервисы. Работы ОЖР: `work-records.jsx`; остальные таблицы ОЖР: `journal-records.jsx`; проверка/сдача: `workflow-records.jsx`; ручное ведение: `manual-records.jsx` — из `app/frontend/src` через `/api/v1/project`. Действующие native формы, версии, файловые операции, настройки и знания сохраняют контроллеры `app/itd/web_assets` и Astryx-адаптеры; схема данных и источники полей не меняются.
 
@@ -59,10 +59,11 @@ MCP: `app/itd/mcp_server.py` → единый реестр `app/itd/tools` → �
 | Ресурсы | resources → resource_sources / resource_attachments; resource_imports / resource_import_rows; specification_pending | act_resources → resources; ведомости DOCX и XLSX; качество |
 | Схемы | schemes → scheme_attachments; act_schemes | schemes в контексте акта; реестр; связь не подставляет схему в произвольное пустое поле |
 | Поставки, входной контроль | supplies; quality_reviews; workspace_entries(kind=incoming), work_fields | materials через act_materials; ЖВК из journals.journal_data |
-| ОЖР, работы, ЖПК | workspace_entries → work_materials → work_facts; work_material_allocations → supplies | act_entry_sources → entries; act_facts → facts; journal_rows по mapping |
+| ОЖР, работы, ЖПК | workspace_entries → work_materials → work_facts; work_material_allocations → supplies | ЖПК выбирает work_type=cable; act_entry_sources → entries; act_facts → facts; journal_rows по mapping |
 | Специальные журналы | special_journals → организации / представители / акт | раздел 2 ОЖР; автоматические журналы — представления, не отдельные таблицы |
 | Основные документы | document_types → acts → состав и участники; document_versions | JSON defaults → overrides → bindings → resolve_fields → DOCX |
 | Выпуск, реестр, сдача | generated_documents → releases; final_reviews; package_requirements; deliveries → delivery_events / delivery_remarks | точный файл, хеш, выбранный выпуск, комплект, передача |
+| Подтверждение изменений | write_previews (отдельный файл), read_events (аудит предпросмотров и отказов), audit_events.preview_id (уникальная отметка применения) | пользователь, БД, раздел, исходное состояние, срок и SHA-256 предпросмотра |
 | Настройки и вход | отдельная БД accounts: users / sessions / api_tokens / settings / document_roots | выбор рабочей БД; правами управляет сервер, без FK на участников строительства |
 
 <a id="resolution"></a>
@@ -84,13 +85,13 @@ flowchart LR
 
 1. `form_catalog.catalog()` добавляет к 89 записям файла каталога `СП_77_А_21` и `РЕЕСТР_ИТД`. Код формы совпадает с именем единственного DOCX и `acts.act_type → document_types.code`.
 2. JSON регистрируется в `document_types.fields`. `acts.fields` заменяет определения по `key`, а не только значения: тип, source, required и формат также входят в определение.
-3. `apply_form_defaults` связывает только пустые literal-поля из bindings. Непустой ручной текст, пользовательские ссылки, явный ручной ввод (binding_explicit), hidden и not_applicable сохраняются. FIELD_CONTINUATIONS объединяет продолжения; исходные удалённые ключи перечислены у формы.
+3. `apply_form_defaults` связывает только пустые literal-поля из bindings. Непустой ручной текст, пользовательские ссылки, явный ручной ввод (binding_explicit), hidden и not_applicable сохраняются.
 4. `build_context` читает актуальные карточки, выбранные ресурсы/схемы/факты и участников. Назначение раздела перекрывает объект; явный выбор акта уточняет его. Для подписанного акта используется signers_json. Организация и представитель проверяются на совместимость общей службой.
 5. `reference` читает source; `literal` читает value; `signatory` форматирует выбранного представителя и его организацию; `table` разрешает каждую дочернюю колонку с item и row.number. `field_values.X` обращается только к уже разрешённому полю в текущем проходе. Форматы дат применяются после чтения источника.
 6. Пропуски required блокируют финальный контекст. В черновике выводится тире. Поля hidden/not_applicable дают пустую строку/таблицу; неприменимость требует reason.
 7. Проверка статических утверждений привязана к хешам шаблона и контекста (`final_reviews`). История выпуска сохраняет контекст и хеш файла; версии связываются с точным release/attachment.
 8. `resources.document_resource` вычисляет количество для DOCX и XLSX при каждом построении: явный итог resources.qty_fact имеет приоритет; если его нет, используются только confirmed-факты ресурса. При неизвестном количестве хотя бы одного подтверждённого прироста итог остаётся неизвестным. Нулевой итог сохраняется; pending/void не суммируются; БД итогов не переписывается. Скачивание возвращает точный сохранённый файл. «Обновить на диске» пересоздаёт выбранную карточку без добавления версии: последний неподписанный черновик читает текущие источники, исторический/подписанный/финальный файл использует снимок. Предыдущий выпуск остаётся в истории.
-9. `document_bindings.records/catalog` предоставляет функции f деловые записи только текущего объекта/раздела: `records.<table>.r<ID>.<column>`. Служебные JSON, пути, аккаунты и идентификаторы связей исключены. SQL от пользователя не выполняется; для объекта/раздела используются прежние object/project sources. Существующие signatory, source, форматы и роли сохраняются без преобразования значений. Ручные таблицы хранят ссылку отдельной ячейки в value строки как `{__itd_source, value_type?, format?}`; разрешение выполняет тот же lookup. `binding_role` сохраняет требование подписи при перенастройке её печатного поля.
+9. `document_bindings.records/catalog` предоставляет функции f деловые записи только текущего объекта/раздела: `records.<table>.r<ID>.<column>`. Служебные JSON, пути, аккаунты и идентификаторы связей исключены. SQL от пользователя не выполняется; для объекта/раздела используются прежние object/project sources. Пример в редакторе шаблона берётся из первой доступной записи таблицы по ID. `signatories.short_fio` доступно как поле «Инициалы» и обновляется при записи ФИО или его частей. Существующие signatory, source, форматы и роли сохраняются без преобразования значений. Ручные таблицы хранят ссылку отдельной ячейки в value строки как `{__itd_source, value_type?, format?}`; разрешение выполняет тот же lookup. `binding_role` сохраняет требование подписи при перенастройке её печатного поля.
 10. Карточка версии переходит в signed после всех выбранных подписей и проверки подписанного оригинала `document_versions.signed_attachment_id → attachments.id`, связанного с тем же разделом и актом. Прежние подписанные карточки читаются без искусственного добавления файла. Удаление версии сохраняет архивные файлы, перенумеровывает карточки и восстанавливает прежнюю последнюю; единственная версия защищена.
 
 ### Удаление связанных записей
@@ -382,7 +383,7 @@ CREATE TABLE act_signatories (
 <a id="table-acts"></a>
 #### acts — Основные документы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/inventory.py](../app/itd/inventory.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/inventory.py](../app/itd/inventory.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/journal_export.py](../app/itd/journal_export.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -390,10 +391,10 @@ CREATE TABLE act_signatories (
 | `project_id` | INTEGER; NOT NULL | FK #1.0 → projects.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `act_type` | TEXT; NOT NULL | FK #0.0 → document_types.code; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `sequence_no` | INTEGER; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `act_num` | TEXT; NOT NULL | Прямые привязки: 5; [список](#source-acts-act_num) |
-| `date_signed` | TEXT | Прямые привязки: 140; [список](#source-acts-date_signed) |
+| `act_num` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `date_signed` | TEXT | Прямые привязки: 3; [список](#source-acts-date_signed) |
 | `is_active` | INTEGER; NOT NULL; DEFAULT 1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `fields` | TEXT; NOT NULL; DEFAULT '[]' | Прямые привязки: 102; [список](#source-acts-fields) |
+| `fields` | TEXT; NOT NULL; DEFAULT '[]' | Прямые привязки: 4; [список](#source-acts-fields) |
 | `sheets_count` | INTEGER | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `registry_note` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `filename_title` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
@@ -450,7 +451,7 @@ CREATE TABLE agent_state (
 <a id="table-attachments"></a>
 #### attachments — Архив исходных файлов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/archive.py](../app/itd/archive.py), [app/itd/participants.py](../app/itd/participants.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/accounts.py](../app/itd/accounts.py), [app/itd/incoming.py](../app/itd/incoming.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/assistant_runtime.py](../app/itd/assistant_runtime.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/assistant_files.py](../app/itd/assistant_files.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/archive.py](../app/itd/archive.py), [app/itd/participants.py](../app/itd/participants.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/accounts.py](../app/itd/accounts.py), [app/itd/incoming.py](../app/itd/incoming.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/assistant_runtime.py](../app/itd/assistant_runtime.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/assistant_files.py](../app/itd/assistant_files.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/storage.py](../app/itd/storage.py), [app/itd/resource_import.py](../app/itd/resource_import.py), [app/itd/journal_export.py](../app/itd/journal_export.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -490,7 +491,7 @@ CREATE TABLE attachments (
 <a id="table-audit_events"></a>
 #### audit_events — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/services/previews.py](../app/itd/services/previews.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -506,6 +507,10 @@ CREATE TABLE attachments (
 | `source` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `on_behalf_of` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `result` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `preview_id` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `knowledge_version` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `skills_version` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `index_status` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
 
@@ -518,7 +523,8 @@ CREATE TABLE audit_events (
     entity_id INTEGER,
     before_json TEXT,
     after_json TEXT
-, actor_id TEXT, actor_role TEXT, source TEXT, on_behalf_of TEXT, result TEXT);
+, actor_id TEXT, actor_role TEXT, source TEXT, on_behalf_of TEXT, result TEXT, preview_id TEXT, knowledge_version TEXT, skills_version TEXT, index_status TEXT);
+CREATE UNIQUE INDEX audit_events_preview_once ON audit_events(preview_id) WHERE preview_id IS NOT NULL;
 ```
 
 </details>
@@ -646,10 +652,38 @@ CREATE TABLE document_counters (
 
 </details>
 
+<a id="table-document_templates"></a>
+#### document_templates — Связующая / служебная сущность
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `code` | TEXT; PK #1 | FK #0.0 → document_types.code; DELETE NO ACTION, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `form_set` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `original_name` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `revision` | INTEGER; NOT NULL; DEFAULT 1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `deleted` | INTEGER; NOT NULL; DEFAULT 0 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE document_templates (
+ code TEXT PRIMARY KEY REFERENCES document_types(code),
+ form_set TEXT NOT NULL,
+ original_name TEXT NOT NULL,
+ revision INTEGER NOT NULL DEFAULT 1,
+ deleted INTEGER NOT NULL DEFAULT 0
+);
+-- sqlite_autoindex_document_templates_1: реализует PK/UNIQUE из CREATE TABLE
+```
+
+</details>
+
 <a id="table-document_types"></a>
 #### document_types — Зарегистрированные формы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -677,7 +711,7 @@ CREATE TABLE document_types (
 <a id="table-document_versions"></a>
 #### document_versions — Карточки версий документов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](../app/itd/acts.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](../app/itd/acts.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/releases.py](../app/itd/releases.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -740,6 +774,45 @@ CREATE TABLE file_operations (
 
 </details>
 
+<a id="table-files"></a>
+#### files — Связующая / служебная сущность
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](../app/itd/db.py), [app/itd/knowledge.py](../app/itd/knowledge.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/assistant_runtime.py](../app/itd/assistant_runtime.py), [app/itd/assistant_files.py](../app/itd/assistant_files.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/storage.py](../app/itd/storage.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `id` | TEXT; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `project_id` | INTEGER; NOT NULL | FK #3.0 → projects.id; DELETE NO ACTION, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `name` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `sha256` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `act_id` | INTEGER | FK #2.0 → acts.id; DELETE NO ACTION, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `release_id` | INTEGER | FK #1.0 → releases.id; DELETE CASCADE, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `attachment_id` | INTEGER | FK #0.0 → attachments.id; DELETE CASCADE, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE files (
+ id TEXT PRIMARY KEY,
+ project_id INTEGER NOT NULL REFERENCES projects(id),
+ name TEXT NOT NULL,
+ sha256 TEXT NOT NULL,
+ act_id INTEGER REFERENCES acts(id),
+ release_id INTEGER UNIQUE REFERENCES releases(id) ON DELETE CASCADE,
+ attachment_id INTEGER REFERENCES attachments(id) ON DELETE CASCADE,
+ UNIQUE(project_id,attachment_id)
+);
+-- sqlite_autoindex_files_3: реализует PK/UNIQUE из CREATE TABLE
+-- sqlite_autoindex_files_2: реализует PK/UNIQUE из CREATE TABLE
+-- sqlite_autoindex_files_1: реализует PK/UNIQUE из CREATE TABLE
+CREATE TRIGGER release_storage_file AFTER DELETE ON files
+BEGIN
+    INSERT OR IGNORE INTO removed_storage_files(id,sha256) VALUES(OLD.id,OLD.sha256);
+END;
+```
+
+</details>
+
 <a id="table-final_reviews"></a>
 #### final_reviews — Связующая / служебная сущность
 
@@ -768,7 +841,7 @@ CREATE TABLE final_reviews (
 <a id="table-generated_documents"></a>
 #### generated_documents — История генерации DOCX
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/storage.py](../app/itd/storage.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -875,28 +948,28 @@ CREATE TABLE object_units (
 <a id="table-objects"></a>
 #### objects — Объекты
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](../app/itd/db.py), [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/layout.py](../app/itd/layout.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/form_defaults.py](../app/itd/form_defaults.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](../app/itd/db.py), [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/fields.py](../app/itd/fields.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/layout.py](../app/itd/layout.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/form_defaults.py](../app/itd/form_defaults.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/journal_export.py](../app/itd/journal_export.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
 | `id` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `name` | TEXT; NOT NULL | Прямые привязки: 80; [список](#source-objects-name) |
-| `construction_type` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `address` | TEXT | Прямые привязки: 14; [список](#source-objects-address) |
-| `permit_num` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `permit_date` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `permit_authority` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `expertise_num` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `expertise_date` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `expertise_authority` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `name` | TEXT; NOT NULL | Прямые привязки: 4; [список](#source-objects-name) |
+| `construction_type` | TEXT | Прямые привязки: 1; [список](#source-objects-construction_type) |
+| `address` | TEXT | Прямые привязки: 2; [список](#source-objects-address) |
+| `permit_num` | TEXT | Прямые привязки: 1; [список](#source-objects-permit_num) |
+| `permit_date` | TEXT | Прямые привязки: 1; [список](#source-objects-permit_date) |
+| `permit_authority` | TEXT | Прямые привязки: 1; [список](#source-objects-permit_authority) |
+| `expertise_num` | TEXT | Прямые привязки: 1; [список](#source-objects-expertise_num) |
+| `expertise_date` | TEXT | Прямые привязки: 1; [список](#source-objects-expertise_date) |
+| `expertise_authority` | TEXT | Прямые привязки: 1; [список](#source-objects-expertise_authority) |
 | `work_start` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `work_end` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `gsn_case` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `gsn_case` | TEXT | Прямые привязки: 1; [список](#source-objects-gsn_case) |
 | `developer_functions` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `control_self` | INTEGER; NOT NULL; DEFAULT 0 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `control_external` | INTEGER; NOT NULL; DEFAULT 0 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `author_supervision` | INTEGER; NOT NULL; DEFAULT 0 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `city` | TEXT | Прямые привязки: 56; [список](#source-objects-city) |
+| `city` | TEXT | Прямые привязки: 1; [список](#source-objects-city) |
 | `display_name` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
@@ -920,7 +993,7 @@ CREATE TABLE objects (
 | `id` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `object_id` | INTEGER | FK #2.0 → objects.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `project_id` | INTEGER | FK #1.0 → projects.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `role_key` | TEXT; NOT NULL | Прямые привязки: 1; [список](#source-organization_assignments-role_key) |
+| `role_key` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `org_id` | INTEGER; NOT NULL | FK #0.0 → organizations.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
@@ -943,18 +1016,18 @@ CREATE UNIQUE INDEX org_role_project ON organization_assignments(project_id, rol
 <a id="table-organizations"></a>
 #### organizations — Участники: организации
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/fields.py](../app/itd/fields.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/participants.py](../app/itd/participants.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_defaults.py](../app/itd/form_defaults.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/template_objects.py](../app/itd/template_objects.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/fields.py](../app/itd/fields.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/participants.py](../app/itd/participants.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_defaults.py](../app/itd/form_defaults.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/template_objects.py](../app/itd/template_objects.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/journal_export.py](../app/itd/journal_export.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
 | `id` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `full_name` | TEXT; NOT NULL | Прямые привязки: 201; [список](#source-organizations-full_name) |
-| `short_name` | TEXT | Прямые привязки: 35; [список](#source-organizations-short_name) |
-| `ogrn` | TEXT | Прямые привязки: 31; [список](#source-organizations-ogrn) |
-| `inn` | TEXT | Прямые привязки: 31; [список](#source-organizations-inn) |
-| `address` | TEXT | Прямые привязки: 31; [список](#source-organizations-address) |
-| `phone` | TEXT | Прямые привязки: 31; [список](#source-organizations-phone) |
-| `sro_info` | TEXT | Прямые привязки: 15; [список](#source-organizations-sro_info) |
+| `full_name` | TEXT; NOT NULL | Прямые привязки: 2; [список](#source-organizations-full_name) |
+| `short_name` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `ogrn` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `inn` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `address` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `phone` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `sro_info` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `postal_code` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `email` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `sro_ogrn` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
@@ -1054,7 +1127,7 @@ CREATE TABLE participant_periods (
 <a id="table-project_attachments"></a>
 #### project_attachments — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](../app/itd/archive.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/workspace.py](../app/itd/workspace.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/archive.py](../app/itd/archive.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/storage.py](../app/itd/storage.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1103,18 +1176,18 @@ CREATE INDEX project_files_attachment ON project_files(attachment_id,project_id)
 <a id="table-projects"></a>
 #### projects — Разделы РД
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](../app/itd/db.py), [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/layout.py](../app/itd/layout.py), [app/itd/participants.py](../app/itd/participants.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/resource_import.py](../app/itd/resource_import.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/configuration.py](../app/itd/configuration.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](../app/itd/db.py), [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/fields.py](../app/itd/fields.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/layout.py](../app/itd/layout.py), [app/itd/participants.py](../app/itd/participants.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/configuration.py](../app/itd/configuration.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/resource_import.py](../app/itd/resource_import.py), [app/itd/journal_export.py](../app/itd/journal_export.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
 | `id` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `object_id` | INTEGER; NOT NULL | FK #2.0 → objects.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `section_code` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `code` | TEXT; NOT NULL | Прямые привязки: 26; [список](#source-projects-code) |
-| `name` | TEXT; NOT NULL | Прямые привязки: 5; [список](#source-projects-name) |
-| `city` | TEXT | Прямые привязки: 56; [список](#source-projects-city) |
-| `smr_start` | TEXT | Прямые привязки: 3; [список](#source-projects-smr_start) |
-| `smr_end` | TEXT | Прямые привязки: 3; [список](#source-projects-smr_end) |
+| `code` | TEXT; NOT NULL | Прямые привязки: 1; [список](#source-projects-code) |
+| `name` | TEXT; NOT NULL | Прямые привязки: 1; [список](#source-projects-name) |
+| `city` | TEXT | Прямые привязки: 1; [список](#source-projects-city) |
+| `smr_start` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `smr_end` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `pnr_start` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `pnr_end` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `gip` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
@@ -1124,7 +1197,7 @@ CREATE INDEX project_files_attachment ON project_files(attachment_id,project_id)
 | `form_set` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `agent_context` | TEXT; NOT NULL; DEFAULT '{}' | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `unit_id` | INTEGER | FK #1.0 → object_units.id; DELETE NO ACTION, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `designer_org_id` | INTEGER | FK #0.0 → organizations.id; DELETE NO ACTION, UPDATE NO ACTION<br>Прямые привязки: 16; [список](#source-projects-designer_org_id) |
+| `designer_org_id` | INTEGER | FK #0.0 → organizations.id; DELETE NO ACTION, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
 
@@ -1191,7 +1264,7 @@ CREATE INDEX quality_reviews_resource ON quality_reviews(resource_id,attachment_
 <a id="table-release_operations"></a>
 #### release_operations — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/releases.py](../app/itd/releases.py), [app/itd/deletion.py](../app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/releases.py](../app/itd/releases.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1225,7 +1298,7 @@ CREATE UNIQUE INDEX release_pending_move ON release_operations(release_id) WHERE
 <a id="table-releases"></a>
 #### releases — Выпуски файлов
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](../app/itd/acts.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/acts.py](../app/itd/acts.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/storage.py](../app/itd/storage.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1266,6 +1339,25 @@ CREATE UNIQUE INDEX releases_selected_xlsx ON releases(project_id) WHERE selecte
 
 </details>
 
+<a id="table-removed_storage_files"></a>
+#### removed_storage_files — Связующая / служебная сущность
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/db.py](../app/itd/db.py), [app/itd/storage.py](../app/itd/storage.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `id` | TEXT; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `sha256` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE removed_storage_files (id TEXT PRIMARY KEY, sha256 TEXT NOT NULL);
+-- sqlite_autoindex_removed_storage_files_1: реализует PK/UNIQUE из CREATE TABLE
+```
+
+</details>
+
 <a id="table-resource_attachments"></a>
 #### resource_attachments — Связующая / служебная сущность
 
@@ -1292,7 +1384,7 @@ CREATE TABLE resource_attachments (
 <a id="table-resource_import_rows"></a>
 #### resource_import_rows — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/resource_import.py](../app/itd/resource_import.py), [app/itd/deletion.py](../app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/resource_import.py](../app/itd/resource_import.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1323,7 +1415,7 @@ CREATE UNIQUE INDEX resource_import_same_source_row ON resource_import_rows(proj
 <a id="table-resource_imports"></a>
 #### resource_imports — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/registry.py](../app/itd/registry.py), [app/itd/resource_import.py](../app/itd/resource_import.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/deletion.py](../app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/registry.py](../app/itd/registry.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/resource_import.py](../app/itd/resource_import.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1350,7 +1442,7 @@ CREATE TABLE resource_imports (
 <a id="table-resource_sources"></a>
 #### resource_sources — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/resource_import.py](../app/itd/resource_import.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/deletion.py](../app/itd/deletion.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/resource_import.py](../app/itd/resource_import.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1385,25 +1477,25 @@ CREATE TABLE resource_sources (
 <a id="table-resources"></a>
 #### resources — Ресурсы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/resources.py](../app/itd/resources.py), [app/itd/fields.py](../app/itd/fields.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/inventory.py](../app/itd/inventory.py), [app/itd/resource_import.py](../app/itd/resource_import.py), [app/itd/resource_card.py](../app/itd/resource_card.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/incoming.py](../app/itd/incoming.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/web.py](../app/itd/web.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/http_api.py](../app/itd/http_api.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/resources.py](../app/itd/resources.py), [app/itd/fields.py](../app/itd/fields.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/specification.py](../app/itd/specification.py), [app/itd/statement.py](../app/itd/statement.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/revision_compare.py](../app/itd/revision_compare.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/inventory.py](../app/itd/inventory.py), [app/itd/resource_card.py](../app/itd/resource_card.py), [app/itd/file_manager.py](../app/itd/file_manager.py), [app/itd/incoming.py](../app/itd/incoming.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/web.py](../app/itd/web.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/http_api.py](../app/itd/http_api.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/resource_import.py](../app/itd/resource_import.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
 | `id` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `project_id` | INTEGER; NOT NULL | FK #0.0 → projects.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `spec_num` | TEXT | Прямые привязки: 1; [список](#source-resources-spec_num) |
-| `name` | TEXT; NOT NULL | Прямые привязки: 2; [список](#source-resources-name) |
+| `spec_num` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `name` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `short_name` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `type_mark` | TEXT | Прямые привязки: 2; [список](#source-resources-type_mark) |
+| `type_mark` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `category` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `serial_num` | TEXT | Прямые привязки: 2; [список](#source-resources-serial_num) |
+| `serial_num` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `manufacturer` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `supplier` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `unit` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `qty_proj` | REAL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `qty_fact` | REAL | Прямые привязки: 1; [список](#source-resources-qty_fact) |
+| `qty_fact` | REAL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `unit_weight` | REAL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `note` | TEXT | Прямые привязки: 2; [список](#source-resources-note) |
+| `note` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
 
@@ -1486,7 +1578,7 @@ CREATE TABLE scheme_attachments (
 <a id="table-schemes"></a>
 #### schemes — Схемы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/resources.py](../app/itd/resources.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/changes.py](../app/itd/changes.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/resources.py](../app/itd/resources.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/assistant_runtime.py](../app/itd/assistant_runtime.py), [app/itd/changes.py](../app/itd/changes.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -1531,13 +1623,13 @@ END;
 |---|---|---|
 | `id` | INTEGER; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `org_id` | INTEGER; NOT NULL | FK #1.0 → organizations.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
-| `fio` | TEXT; NOT NULL | Прямые привязки: 289; [список](#source-signatories-fio) |
-| `last_name` | TEXT | Прямые привязки: 52; [список](#source-signatories-last_name) |
-| `first_name` | TEXT | Прямые привязки: 52; [список](#source-signatories-first_name) |
-| `middle_name` | TEXT | Прямые привязки: 52; [список](#source-signatories-middle_name) |
-| `position` | TEXT; NOT NULL | Прямые привязки: 213; [список](#source-signatories-position) |
-| `nrs_id` | TEXT | Прямые привязки: 10; [список](#source-signatories-nrs_id) |
-| `order_doc` | TEXT | Прямые привязки: 26; [список](#source-signatories-order_doc) |
+| `fio` | TEXT; NOT NULL | Прямые привязки: 1; [список](#source-signatories-fio) |
+| `last_name` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `first_name` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `middle_name` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `position` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `nrs_id` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `order_doc` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `order_attachment_id` | INTEGER | FK #0.0 → attachments.id; DELETE RESTRICT, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `status` | TEXT; NOT NULL; DEFAULT 'Действует' | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `note` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
@@ -1545,6 +1637,7 @@ END;
 | `authority_type` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `authority_num` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `authority_date` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `short_fio` | TEXT; NOT NULL; DEFAULT '' | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
 
@@ -1560,7 +1653,53 @@ CREATE TABLE signatories (
     order_attachment_id INTEGER REFERENCES attachments(id) ON DELETE RESTRICT,
     status TEXT NOT NULL DEFAULT 'Действует' CHECK (status IN ('Действует', 'Отозван')),
     note TEXT
-, email TEXT, authority_type TEXT, authority_num TEXT, authority_date TEXT);
+, email TEXT, authority_type TEXT, authority_num TEXT, authority_date TEXT, short_fio TEXT NOT NULL DEFAULT '');
+CREATE TRIGGER signatories_fill_initials
+AFTER INSERT ON signatories
+BEGIN
+    UPDATE signatories SET fio = fio WHERE id = NEW.id;
+END;
+CREATE TRIGGER signatories_sync_names
+AFTER UPDATE OF fio, last_name, first_name, middle_name ON signatories
+BEGIN
+    -- Старые клиенты могут передать ФИО явно. При правке только частей обновляем его здесь.
+    UPDATE signatories
+    SET fio = trim(
+        coalesce(nullif(trim(NEW.last_name), '') || ' ', '') ||
+        coalesce(nullif(trim(NEW.first_name), '') || ' ', '') ||
+        coalesce(trim(NEW.middle_name), '')
+    )
+    WHERE id = NEW.id AND NEW.fio IS OLD.fio
+      AND (NEW.last_name IS NOT OLD.last_name OR NEW.first_name IS NOT OLD.first_name
+           OR NEW.middle_name IS NOT OLD.middle_name)
+      AND coalesce(nullif(trim(NEW.last_name), ''), nullif(trim(NEW.first_name), ''),
+                   nullif(trim(NEW.middle_name), '')) IS NOT NULL;
+
+    -- Если отдельные части не заполнены, сокращаем прежнее ФИО в порядке «фамилия имя отчество».
+    UPDATE signatories
+    SET short_fio = (
+        WITH RECURSIVE parts(n, name, rest) AS (
+            SELECT 0, '', trim(replace(replace(replace(signatories.fio, char(9), ' '), char(10), ' '), char(13), ' '))
+            WHERE coalesce(nullif(trim(last_name), ''), nullif(trim(first_name), ''),
+                           nullif(trim(middle_name), '')) IS NULL
+            UNION ALL
+            SELECT n + 1, substr(rest, 1, instr(rest || ' ', ' ') - 1),
+                   ltrim(substr(rest, instr(rest || ' ', ' ') + 1))
+            FROM parts WHERE n < 3 AND rest <> ''
+        ),
+        names(last, first, middle) AS (
+            SELECT coalesce(nullif(trim(last_name), ''), max(CASE n WHEN 1 THEN name END)),
+                   coalesce(nullif(trim(first_name), ''), max(CASE n WHEN 2 THEN name END)),
+                   coalesce(nullif(trim(middle_name), ''), max(CASE n WHEN 3 THEN name END))
+            FROM parts
+        )
+        SELECT trim(coalesce(last, '') ||
+                    coalesce(' ' || substr(first, 1, 1) || '.', '') ||
+                    coalesce(' ' || substr(middle, 1, 1) || '.', ''))
+        FROM names
+    )
+    WHERE id = NEW.id;
+END;
 ```
 
 </details>
@@ -2036,7 +2175,7 @@ CREATE INDEX sessions_user ON sessions(user_id);
 <a id="table-settings"></a>
 #### settings — Выбранная БД и рабочая папка
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](../app/itd/titles.py), [app/itd/accounts.py](../app/itd/accounts.py), [app/itd/web.py](../app/itd/web.py), [app/itd/server_state.py](../app/itd/server_state.py), [app/itd/http_api.py](../app/itd/http_api.py), [app/itd/assistant_http.py](../app/itd/assistant_http.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](../app/itd/titles.py), [app/itd/accounts.py](../app/itd/accounts.py), [app/itd/web.py](../app/itd/web.py), [app/itd/http_api.py](../app/itd/http_api.py), [app/itd/assistant_http.py](../app/itd/assistant_http.py), [app/itd/server_state.py](../app/itd/server_state.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -2182,10 +2321,10 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 
 ### Отдельная БД: read_audit
 
-Файл `<путь БД>.audit.sqlite3` создаётся при выдаче ZIP. Идентификаторы раздела, выпусков и пользователя логические, без FK между файлами. Содержимое документов, полные аргументы и пути не сохраняются.
+Файл `<путь БД>.audit.sqlite3` хранит события чтения, выдачи ZIP, предпросмотров и отказов. Идентификаторы раздела, выпусков, пользователя и предпросмотра логические, без FK между файлами. Содержимое документов, полные аргументы и пути не сохраняются.
 
 <a id="table-read_events"></a>
-#### read_events — Аудит чтения и выдачи ZIP (вне деловой БД)
+#### read_events — Аудит чтения, предпросмотров, отказов и выдачи ZIP (вне деловой БД)
 
 Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/read_audit.py](../app/itd/read_audit.py).
 
@@ -2205,6 +2344,7 @@ CREATE TABLE knowledge_meta (manifest TEXT NOT NULL);
 | `knowledge_version` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `skills_version` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 | `index_status` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `preview_id` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
 
 <details><summary>Точный DDL таблицы, индексов и триггеров</summary>
 
@@ -2214,7 +2354,40 @@ CREATE TABLE read_events (
             operation TEXT NOT NULL, project_id INTEGER NOT NULL,
             release_ids TEXT NOT NULL, source TEXT NOT NULL, user_id INTEGER,
             actor_id TEXT, actor_role TEXT, on_behalf_of TEXT, result TEXT,
-            knowledge_version TEXT, skills_version TEXT, index_status TEXT);
+            knowledge_version TEXT, skills_version TEXT, index_status TEXT, preview_id TEXT);
+```
+
+</details>
+
+### Отдельная БД: previews
+
+Файл `<путь БД>.previews.sqlite3` хранит личные предложения. Веб-применение добавляет `audit_events.preview_id` в той же транзакции, что и изменения раздела. Одинаковый ID применяется один раз. Снимок деловой БД и срок проверяются под блокировкой записи.
+
+<a id="table-write_previews"></a>
+#### write_previews — Личные предпросмотры с ограниченным сроком действия (вне деловой БД)
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/services/previews.py](../app/itd/services/previews.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `id` | TEXT; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `namespace` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `owner` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `project_id` | INTEGER; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `expires_at` | INTEGER; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `hash` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `payload` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `view` | TEXT; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE write_previews (
+        id TEXT PRIMARY KEY, namespace TEXT NOT NULL, owner TEXT NOT NULL, project_id INTEGER NOT NULL,
+        expires_at INTEGER NOT NULL, hash TEXT NOT NULL, payload TEXT NOT NULL, view TEXT NOT NULL);
+-- sqlite_autoindex_write_previews_1: реализует PK/UNIQUE из CREATE TABLE
+CREATE INDEX write_previews_owner
+                     ON write_previews(namespace, owner, project_id, expires_at);
 ```
 
 </details>
@@ -2402,7 +2575,7 @@ CREATE TABLE read_events (
 <a id="source-acts-act_num"></a>
 ### `acts.act_num`
 
-`МИНСТРОЙ_344_АОГРО.act_num`, `МИНСТРОЙ_344_АООК.act_num`, `МИНСТРОЙ_344_АОСР.act_num`, `МИНСТРОЙ_344_АОУСИТО.act_num`, `МИНСТРОЙ_344_АРООКС.act_num`
+
 
 <a id="source-acts-act_type"></a>
 ### `acts.act_type`
@@ -2412,12 +2585,12 @@ CREATE TABLE read_events (
 <a id="source-acts-date_signed"></a>
 ### `acts.date_signed`
 
-`И_1_13_07_02.day`, `И_1_13_07_02.month`, `И_1_13_07_02.year`, `И_1_13_07_03.day`, `И_1_13_07_03.month`, `И_1_13_07_03.year`, `И_1_13_07_04.day`, `И_1_13_07_04.month`, `И_1_13_07_04.year`, `И_1_13_07_05.day`, `И_1_13_07_05.month`, `И_1_13_07_05.year`, `И_1_13_07_06.day`, `И_1_13_07_06.month`, `И_1_13_07_06.year`, `И_1_13_07_06а.day`, `И_1_13_07_06а.month`, `И_1_13_07_06а.year`, `И_1_13_07_06б.day`, `И_1_13_07_06б.month`, `И_1_13_07_06б.year`, `И_1_13_07_07.day`, `И_1_13_07_07.month`, `И_1_13_07_07.year`, `И_1_13_07_09.day`, `И_1_13_07_09.month`, `И_1_13_07_09.year`, `И_1_13_07_10.day`, `И_1_13_07_10.month`, `И_1_13_07_10.year`, `И_1_13_07_11.day`, `И_1_13_07_11.month`, `И_1_13_07_11.year`, `И_1_13_07_12.day`, `И_1_13_07_12.month`, `И_1_13_07_12.year`, `И_1_13_07_14а.day`, `И_1_13_07_14а.month`, `И_1_13_07_14а.year`, `И_1_13_07_15.day`, `И_1_13_07_15.month`, `И_1_13_07_15.year`, `И_1_13_07_16.day`, `И_1_13_07_16.month`, `И_1_13_07_16.year`, `И_1_13_07_17.day`, `И_1_13_07_17.month`, `И_1_13_07_17.year`, `И_1_13_07_18.day`, `И_1_13_07_18.month`, `И_1_13_07_18.year`, `И_1_13_07_19.day`, `И_1_13_07_19.month`, `И_1_13_07_19.year`, `И_1_13_07_20.day`, `И_1_13_07_20.month`, `И_1_13_07_20.year`, `И_1_13_07_21.day`, `И_1_13_07_21.month`, `И_1_13_07_21.year`, `И_1_13_07_22.day`, `И_1_13_07_22.month`, `И_1_13_07_22.year`, `И_1_13_07_23.day`, `И_1_13_07_23.month`, `И_1_13_07_23.year`, `И_1_13_07_24.day`, `И_1_13_07_24.month`, `И_1_13_07_24.year`, `МИНСТРОЙ_344_АОГРО.signed_day`, `МИНСТРОЙ_344_АОГРО.signed_month`, `МИНСТРОЙ_344_АОГРО.signed_year`, `МИНСТРОЙ_344_АООК.signed_day`, `МИНСТРОЙ_344_АООК.signed_month`, `МИНСТРОЙ_344_АООК.signed_year`, `МИНСТРОЙ_344_АОСР.signed_day`, `МИНСТРОЙ_344_АОСР.signed_month`, `МИНСТРОЙ_344_АОСР.signed_year`, `МИНСТРОЙ_344_АОУСИТО.signed_day`, `МИНСТРОЙ_344_АОУСИТО.signed_month`, `МИНСТРОЙ_344_АОУСИТО.signed_year`, `МИНСТРОЙ_344_АРООКС.signed_day`, `МИНСТРОЙ_344_АРООКС.signed_month`, `МИНСТРОЙ_344_АРООКС.signed_year`, `СП_68_М.date_0_2`, `СП_68_М.date_0_4`, `СП_68_М.date_0_6`, `СП_68_Н.date_6_2`, `СП_68_Н.date_6_4`, `СП_68_Н.date_6_6`, `СП_70_И.date_0_4`, `СП_70_И.date_0_6`, `СП_70_И.date_0_8`, `СП_71_Г.t0_r0_c0`, `СП_71_В.t0_r0_c0`, `СП_74_Б.date_0_3`, `СП_74_Б.date_0_5`, `СП_74_Б.date_0_7`, `СП_74_Г.date_0_3`, `СП_74_Г.date_0_5`, `СП_74_Г.date_0_7`, `СП_74_Д.date_0_3`, `СП_74_Д.date_0_5`, `СП_74_Д.date_0_7`, `СП_74_А.date_0_3`, `СП_74_А.date_0_5`, `СП_74_А.date_0_7`, `СП_77_А_2.date_0_3`, `СП_77_А_2.date_0_5`, `СП_77_А_2.date_0_7`, `СП_77_А_9.date_5_3`, `СП_77_А_9.date_5_5`, `СП_77_А_9.date_5_7`, `СП_77_А_5.date_0_3`, `СП_77_А_5.date_0_5`, `СП_77_А_5.date_0_7`, `СП_77_А_1.date_0_3`, `СП_77_А_1.date_0_5`, `СП_77_А_1.date_0_7`, `СП_77_А_3.date_0_3`, `СП_77_А_3.date_0_5`, `СП_77_А_3.date_0_7`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_3`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_5`, `СП_77_А_19_ИЗМЕРЕНИЯ.date_6_7`, `СП_77_А_16.date_6_3`, `СП_77_А_16.date_6_5`, `СП_77_А_16.date_6_7`, `СП_77_А_17.date_6_3`, `СП_77_А_17.date_6_5`, `СП_77_А_17.date_6_7`, `СП_77_А_24.p32_1`, `СП_77_А_24.p32_2`, `СП_77_А_24.p32_3`, `СП_77_А_20.date_0_3`, `СП_77_А_20.date_0_5`, `СП_77_А_20.date_0_7`, `СП_77_А_21.day`, `СП_77_А_21.month`, `СП_77_А_21.year`
+`И_1_13_07_18.day`, `И_1_13_07_18.month`, `И_1_13_07_18.year`
 
 <a id="source-acts-fields"></a>
 ### `acts.fields`
 
-`СП_42_101_2003_П.t1_r0_c6`, `СП_42_101_2003_П.t1_r0_c8`, `СП_42_101_2003_П.t7_r0_c5`, `СП_42_101_2003_П.t7_r0_c7`, `СП_42_101_2003_П.t7_r2_c4`, `СП_42_101_2003_П.t7_r2_c6`, `СП_42_101_2003_Т.t7_r0_c4`, `СП_42_101_2003_Т.t7_r0_c6`, `СП_42_101_2003_Т.t7_r2_c4`, `СП_42_101_2003_Т.t7_r2_c6`, `СП_42_101_2003_С.t7_r0_c4`, `СП_42_101_2003_С.t7_r0_c6`, `СП_42_101_2003_С.t7_r2_c4`, `СП_42_101_2003_С.t7_r2_c6`, `СП_42_101_2003_Р.t11_r0_c4`, `СП_42_101_2003_Р.t11_r0_c6`, `СП_42_101_2003_Р.t11_r2_c4`, `СП_42_101_2003_Р.t11_r2_c6`, `СП_45_Ю.t4_r3_c6`, `СП_45_Ю.t4_r3_c8`, `СП_45_Щ.t4_r3_c6`, `СП_45_Щ.t4_r3_c8`, `СП_45_1.t1_r0_c3`, `СП_45_1.t1_r0_c5`, `СП_45_1.t1_r2_c3`, `СП_45_1.t1_r2_c5`, `СП_48_И.t1_r0_c3`, `СП_48_И.t1_r0_c5`, `СП_48_И.t1_r2_c3`, `СП_48_И.t1_r2_c5`, `СП_68_М.t3_r0_c4`, `СП_68_М.t3_r0_c6`, `СП_68_Н.t0_r46_c4`, `СП_68_Н.t0_r46_c6`, `СП_68_Н.t0_r46_c12`, `СП_68_Н.t0_r46_c14`, `СП_68_Н.t0_r63_c3`, `СП_68_Н.t0_r63_c5`, `СП_70_И.t2_r0_c4`, `СП_70_И.t2_r0_c6`, `СП_70_В.t5_r0_c4`, `СП_70_В.t5_r0_c6`, `СП_70_В.t6_r0_c4`, `СП_70_В.t6_r0_c6`, `СП_70_Д.t5_r0_c4`, `СП_70_Д.t5_r0_c6`, `СП_70_Д.t6_r0_c4`, `СП_70_Д.t6_r0_c6`, `СП_70_Г.t5_r0_c4`, `СП_70_Г.t5_r0_c6`, `СП_70_Г.t6_r0_c4`, `СП_70_Г.t6_r0_c6`, `СП_70_А.t6_r0_c4`, `СП_70_А.t6_r0_c6`, `СП_70_А.t7_r0_c4`, `СП_70_А.t7_r0_c6`, `СП_70_Б.t5_r0_c4`, `СП_70_Б.t5_r0_c6`, `СП_70_Б.t6_r0_c4`, `СП_70_Б.t6_r0_c6`, `СП_72_Д.t1_r0_c5`, `СП_72_Д.t1_r0_c7`, `СП_73_В.t1_r2_c5`, `СП_73_В.t1_r2_c7`, `СП_73_Д.t1_r0_c5`, `СП_73_Д.t1_r0_c7`, `СП_73_Г.t1_r2_c5`, `СП_73_Г.t1_r2_c7`, `СП_76_Б.t2_r0_c6`, `СП_76_Б.t2_r0_c8`, `СП_76_Б.t4_r0_c5`, `СП_76_Б.t4_r0_c7`, `СП_76_Б.t5_r0_c4`, `СП_76_Б.t5_r0_c6`, `СП_77_А_8.p36_2`, `СП_77_А_8.p36_3`, `СП_77_А_7.p35_2`, `СП_77_А_7.p35_3`, `СП_77_А_22.t1_r0_c3`, `СП_77_А_22.t1_r0_c5`, `СП_77_А_22.t2_r0_c5`, `СП_77_А_22.t2_r0_c7`, `СП_77_А_23.t1_r0_c3`, `СП_77_А_23.t1_r0_c5`, `СП_77_А_23.t2_r0_c5`, `СП_77_А_23.t2_r0_c7`, `СП_77_А_23.t4_r0_c3`, `СП_77_А_23.t4_r0_c5`, `СП_77_А_23.t8_r0_c3`, `СП_77_А_23.t8_r0_c5`, `СП_77_А_23.t8_r0_c9`, `СП_77_А_23.t8_r0_c11`, `СП_77_А_13.p260_2`, `СП_77_А_13.p260_3`, `СП_77_А_13.p261_5`, `СП_77_А_13.p261_6`, `СП_77_А_19_МУФТА.p58_2`, `СП_77_А_19_МУФТА.p58_3`, `СП_77_А_19_УЧАСТОК.p58_2`, `СП_77_А_19_УЧАСТОК.p58_3`, `СП_77_А_18.t0_r12_c4`, `СП_77_А_18.t0_r12_c6`
+`СП_48_И.t1_r0_c3`, `СП_48_И.t1_r0_c5`, `СП_48_И.t1_r2_c3`, `СП_48_И.t1_r2_c5`
 
 <a id="source-acts-filename_title"></a>
 ### `acts.filename_title`
@@ -2649,6 +2822,16 @@ CREATE TABLE read_events (
 
 
 
+<a id="source-audit_events-index_status"></a>
+### `audit_events.index_status`
+
+
+
+<a id="source-audit_events-knowledge_version"></a>
+### `audit_events.knowledge_version`
+
+
+
 <a id="source-audit_events-occurred_at"></a>
 ### `audit_events.occurred_at`
 
@@ -2664,8 +2847,18 @@ CREATE TABLE read_events (
 
 
 
+<a id="source-audit_events-preview_id"></a>
+### `audit_events.preview_id`
+
+
+
 <a id="source-audit_events-result"></a>
 ### `audit_events.result`
+
+
+
+<a id="source-audit_events-skills_version"></a>
+### `audit_events.skills_version`
 
 
 
@@ -2814,6 +3007,31 @@ CREATE TABLE read_events (
 
 
 
+<a id="source-document_templates-code"></a>
+### `document_templates.code`
+
+
+
+<a id="source-document_templates-deleted"></a>
+### `document_templates.deleted`
+
+
+
+<a id="source-document_templates-form_set"></a>
+### `document_templates.form_set`
+
+
+
+<a id="source-document_templates-original_name"></a>
+### `document_templates.original_name`
+
+
+
+<a id="source-document_templates-revision"></a>
+### `document_templates.revision`
+
+
+
 <a id="source-document_types-code"></a>
 ### `document_types.code`
 
@@ -2916,6 +3134,41 @@ CREATE TABLE read_events (
 
 <a id="source-file_operations-state"></a>
 ### `file_operations.state`
+
+
+
+<a id="source-files-act_id"></a>
+### `files.act_id`
+
+
+
+<a id="source-files-attachment_id"></a>
+### `files.attachment_id`
+
+
+
+<a id="source-files-id"></a>
+### `files.id`
+
+
+
+<a id="source-files-name"></a>
+### `files.name`
+
+
+
+<a id="source-files-project_id"></a>
+### `files.project_id`
+
+
+
+<a id="source-files-release_id"></a>
+### `files.release_id`
+
+
+
+<a id="source-files-sha256"></a>
+### `files.sha256`
 
 
 
@@ -3142,7 +3395,7 @@ CREATE TABLE read_events (
 <a id="source-objects-address"></a>
 ### `objects.address`
 
-`МИНСТРОЙ_344_АОГРО.object_address`, `МИНСТРОЙ_344_АООК.object_address`, `МИНСТРОЙ_344_АОСР.object_address`, `МИНСТРОЙ_344_АОУСИТО.object_address`, `МИНСТРОЙ_344_АРООКС.object_address`, `СП_42_101_2003_П.t0_r0_c0`, `СП_45_1.t0_r2_c1`, `СП_48_И.t0_r2_c1`, `СП_71_Г.t2_r0_c1`, `СП_71_В.t1_r2_c1`, `СП_73_Ж.t0_r0_c1`, `СП_77_А_13.t0_r2_c1`, `СП_77_А_11.t0_r5_c0`, `СП_77_А_15.t0_r5_c0`
+`СП_48_И.t0_r2_c1`, `ОЖР.object_address`
 
 <a id="source-objects-author_supervision"></a>
 ### `objects.author_supervision`
@@ -3152,12 +3405,12 @@ CREATE TABLE read_events (
 <a id="source-objects-city"></a>
 ### `objects.city`
 
-`И_1_13_07_02.city`, `И_1_13_07_03.city`, `И_1_13_07_04.city`, `И_1_13_07_05.city`, `И_1_13_07_06.city`, `И_1_13_07_06а.city`, `И_1_13_07_06б.city`, `И_1_13_07_07.city`, `И_1_13_07_09.city`, `И_1_13_07_10.city`, `И_1_13_07_11.city`, `И_1_13_07_12.city`, `И_1_13_07_14а.city`, `И_1_13_07_15.city`, `И_1_13_07_16.city`, `И_1_13_07_17.city`, `И_1_13_07_18.city`, `И_1_13_07_19.city`, `И_1_13_07_20.city`, `И_1_13_07_21.city`, `И_1_13_07_22.city`, `И_1_13_07_23.city`, `И_1_13_07_24.city`, `И_1_13_07_25.city`, `ТИТУЛЬНЫЙ_ЛИСТ.city`, `СП_42_101_2003_П.t1_r0_c1`, `СП_68_М.t0_r0_c0`, `СП_68_Н.t0_r6_c0`, `СП_70_И.t0_r0_c1`, `СП_72_Д.t1_r0_c1`, `СП_73_В.t1_r2_c1`, `СП_73_Д.t1_r0_c1`, `СП_73_Г.t1_r2_c1`, `СП_74_Б.t0_r0_c1`, `СП_74_Г.t0_r0_c1`, `СП_74_Д.t0_r0_c1`, `СП_74_А.t0_r0_c1`, `СП_76_Б.t0_r0_c0`, `СП_77_А_2.t0_r0_c1`, `СП_77_А_8.t0_r6_c1`, `СП_77_А_7.t0_r5_c1`, `СП_77_А_9.t0_r5_c1`, `СП_77_А_5.t0_r0_c1`, `СП_77_А_1.t0_r0_c1`, `СП_77_А_3.t0_r0_c1`, `СП_77_А_22.t2_r0_c1`, `СП_77_А_23.t2_r0_c1`, `СП_77_А_19_МУФТА.t0_r6_c1`, `СП_77_А_19_УЧАСТОК.t0_r6_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r6_c1`, `СП_77_А_16.t0_r6_c1`, `СП_77_А_18.t0_r6_c3`, `СП_77_А_17.t0_r6_c1`, `СП_77_А_24.t0_r5_c1`, `СП_77_А_20.t0_r0_c1`, `СП_77_А_21.city`
+`И_1_13_07_18.city`
 
 <a id="source-objects-construction_type"></a>
 ### `objects.construction_type`
 
-
+`ОЖР.title_construction_type`
 
 <a id="source-objects-control_external"></a>
 ### `objects.control_external`
@@ -3182,22 +3435,22 @@ CREATE TABLE read_events (
 <a id="source-objects-expertise_authority"></a>
 ### `objects.expertise_authority`
 
-
+`ОЖР.title_expertise_authority`
 
 <a id="source-objects-expertise_date"></a>
 ### `objects.expertise_date`
 
-
+`ОЖР.title_expertise_date`
 
 <a id="source-objects-expertise_num"></a>
 ### `objects.expertise_num`
 
-
+`ОЖР.title_expertise_num`
 
 <a id="source-objects-gsn_case"></a>
 ### `objects.gsn_case`
 
-
+`ОЖР.title_gsn_case`
 
 <a id="source-objects-id"></a>
 ### `objects.id`
@@ -3207,22 +3460,22 @@ CREATE TABLE read_events (
 <a id="source-objects-name"></a>
 ### `objects.name`
 
-`И_1_13_07_02.object_name`, `И_1_13_07_03.object_name`, `И_1_13_07_04.object_name`, `И_1_13_07_05.object_name`, `И_1_13_07_06.object_name`, `И_1_13_07_06а.object_name`, `И_1_13_07_06б.object_name`, `И_1_13_07_07.object_name`, `И_1_13_07_09.object_name`, `И_1_13_07_10.object_name`, `И_1_13_07_11.object_name`, `И_1_13_07_12.object_name`, `И_1_13_07_14а.object_name`, `И_1_13_07_15.object_name`, `И_1_13_07_16.object_name`, `И_1_13_07_17.object_name`, `И_1_13_07_18.object_name`, `И_1_13_07_19.object_name`, `И_1_13_07_20.object_name`, `И_1_13_07_21.object_name`, `И_1_13_07_22.object_name`, `И_1_13_07_23.object_name`, `И_1_13_07_24.object_name`, `И_1_13_07_25.object_name`, `МИНСТРОЙ_344_АОГРО.object_name`, `МИНСТРОЙ_344_АОГРО.examined_object`, `МИНСТРОЙ_344_АООК.object_name`, `МИНСТРОЙ_344_АОСР.object_name`, `МИНСТРОЙ_344_АОУСИТО.object_name`, `МИНСТРОЙ_344_АРООКС.object_name`, `МИНСТРОЙ_344_АРООКС.examined_object`, `ТИТУЛЬНЫЙ_ЛИСТ.object`, `СП_42_101_2003_П.t0_r0_c0`, `СП_42_101_2003_П.t3_r9_c0`, `СП_45_Ш.t0_r1_c1`, `СП_45_Я.t0_r1_c1`, `СП_45_Ю.t0_r1_c1`, `СП_45_Щ.t0_r1_c1`, `СП_45_1.t0_r0_c1`, `СП_48_И.t0_r0_c1`, `СП_70_И.t7_r0_c0`, `СП_70_И.t8_r0_c0`, `СП_70_И.t15_r0_c0`, `СП_70_В.t1_r0_c0`, `СП_70_Ф.t1_r0_c0`, `СП_70_Д.t1_r0_c0`, `СП_70_Г.t1_r0_c0`, `СП_70_Е.t0_r2_c0`, `СП_70_А.t1_r0_c0`, `СП_70_Б.t1_r0_c0`, `СП_71_Г.t1_r0_c1`, `СП_71_В.t1_r0_c1`, `СП_72_Г.t1_r0_c0`, `СП_73_В.t1_r0_c1`, `СП_73_Д.t0_r0_c1`, `СП_73_Г.t1_r0_c1`, `СП_73_Е.t0_r1_c1`, `СП_74_А.t1_r0_c0`, `СП_76_Б.t0_r4_c0`, `СП_76_Б.t2_r4_c0`, `СП_77_А_2.t1_r0_c1`, `СП_77_А_2.t2_r12_c0`, `СП_77_А_9.t0_r8_c1`, `СП_77_А_5.t3_r0_c0`, `СП_77_А_1.t2_r0_c0`, `СП_77_А_13.t0_r2_c1`, `СП_77_А_14.t0_r6_c1`, `СП_77_А_10.t0_r7_c1`, `СП_77_А_19_МУФТА.t0_r7_c1`, `СП_77_А_19_УЧАСТОК.t0_r7_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r8_c1`, `СП_77_А_16.t0_r8_c1`, `СП_77_А_18.t0_r6_c0`, `СП_77_А_18.t0_r10_c3`, `СП_77_А_17.t0_r8_c1`, `СП_77_А_11.t0_r5_c0`, `СП_77_А_15.t0_r5_c0`, `СП_77_А_20.t1_r0_c1`, `СП_77_А_21.object_name`, `РЕЕСТР_ИТД.object_name`
+`И_1_13_07_18.object_name`, `СП_48_И.t0_r0_c1`, `РЕЕСТР_ИТД.object_name`, `ОЖР.object_name`
 
 <a id="source-objects-permit_authority"></a>
 ### `objects.permit_authority`
 
-
+`ОЖР.title_permit_authority`
 
 <a id="source-objects-permit_date"></a>
 ### `objects.permit_date`
 
-
+`ОЖР.title_permit_date`
 
 <a id="source-objects-permit_num"></a>
 ### `objects.permit_num`
 
-
+`ОЖР.title_permit_num`
 
 <a id="source-objects-work_end"></a>
 ### `objects.work_end`
@@ -3257,12 +3510,12 @@ CREATE TABLE read_events (
 <a id="source-organization_assignments-role_key"></a>
 ### `organization_assignments.role_key`
 
-`СП_77_А_21.companies.role`
+
 
 <a id="source-organizations-address"></a>
 ### `organizations.address`
 
-`МИНСТРОЙ_344_АОГРО.customer_address`, `МИНСТРОЙ_344_АОГРО.builder_org_address`, `МИНСТРОЙ_344_АОГРО.designer_org_address`, `МИНСТРОЙ_344_АОГРО.control_org_address`, `МИНСТРОЙ_344_АОГРО.designer_employer_address`, `МИНСТРОЙ_344_АОГРО.work_performer_employer_address`, `МИНСТРОЙ_344_АООК.customer_address`, `МИНСТРОЙ_344_АООК.builder_org_address`, `МИНСТРОЙ_344_АООК.designer_org_address`, `МИНСТРОЙ_344_АООК.control_org_address`, `МИНСТРОЙ_344_АООК.designer_employer_address`, `МИНСТРОЙ_344_АООК.work_performer_employer_address`, `МИНСТРОЙ_344_АОСР.customer_address`, `МИНСТРОЙ_344_АОСР.builder_org_address`, `МИНСТРОЙ_344_АОСР.designer_org_address`, `МИНСТРОЙ_344_АОСР.control_org_address`, `МИНСТРОЙ_344_АОСР.designer_employer_address`, `МИНСТРОЙ_344_АОСР.work_performer_employer_address`, `МИНСТРОЙ_344_АОУСИТО.customer_address`, `МИНСТРОЙ_344_АОУСИТО.builder_org_address`, `МИНСТРОЙ_344_АОУСИТО.designer_org_address`, `МИНСТРОЙ_344_АОУСИТО.control_org_address`, `МИНСТРОЙ_344_АОУСИТО.designer_employer_address`, `МИНСТРОЙ_344_АОУСИТО.work_performer_employer_address`, `МИНСТРОЙ_344_АОУСИТО.network_operator_employer_address`, `МИНСТРОЙ_344_АРООКС.customer_address`, `МИНСТРОЙ_344_АРООКС.builder_org_address`, `МИНСТРОЙ_344_АРООКС.designer_org_address`, `МИНСТРОЙ_344_АРООКС.control_org_address`, `МИНСТРОЙ_344_АРООКС.designer_employer_address`, `МИНСТРОЙ_344_АРООКС.work_performer_employer_address`
+
 
 <a id="source-organizations-email"></a>
 ### `organizations.email`
@@ -3272,7 +3525,7 @@ CREATE TABLE read_events (
 <a id="source-organizations-full_name"></a>
 ### `organizations.full_name`
 
-`И_1_13_07_02.installer_org`, `И_1_13_07_02.customer_org`, `И_1_13_07_02.t3_r0_c0`, `И_1_13_07_03.installer_org`, `И_1_13_07_03.customer_org`, `И_1_13_07_04.installer_org`, `И_1_13_07_04.customer_org`, `И_1_13_07_05.installer_org`, `И_1_13_07_05.customer_org`, `И_1_13_07_06.installer_org`, `И_1_13_07_06.customer_org`, `И_1_13_07_06а.installer_org`, `И_1_13_07_06а.customer_org`, `И_1_13_07_06б.installer_org`, `И_1_13_07_06б.customer_org`, `И_1_13_07_06б.t4_r0_c0`, `И_1_13_07_07.installer_org`, `И_1_13_07_07.customer_org`, `И_1_13_07_07.t10_r2_c2`, `И_1_13_07_09.installer_org`, `И_1_13_07_09.customer_org`, `И_1_13_07_10.installer_org`, `И_1_13_07_10.customer_org`, `И_1_13_07_11.installer_org`, `И_1_13_07_11.customer_org`, `И_1_13_07_11.t3_r1_c0`, `И_1_13_07_12.installer_org`, `И_1_13_07_12.customer_org`, `И_1_13_07_14а.installer_org`, `И_1_13_07_14а.customer_org`, `И_1_13_07_14а.t4_r0_c1`, `И_1_13_07_15.installer_org`, `И_1_13_07_15.customer_org`, `И_1_13_07_16.installer_org`, `И_1_13_07_16.customer_org`, `И_1_13_07_17.installer_org`, `И_1_13_07_17.customer_org`, `И_1_13_07_18.installer_org`, `И_1_13_07_18.customer_org`, `И_1_13_07_19.installer_org`, `И_1_13_07_19.customer_org`, `И_1_13_07_20.installer_org`, `И_1_13_07_20.customer_org`, `И_1_13_07_21.installer_org`, `И_1_13_07_21.customer_org`, `И_1_13_07_21.t8_r0_c0`, `И_1_13_07_22.installer_org`, `И_1_13_07_22.customer_org`, `И_1_13_07_23.installer_org`, `И_1_13_07_23.customer_org`, `И_1_13_07_23.t4_r0_c1`, `И_1_13_07_24.installer_org`, `И_1_13_07_24.customer_org`, `И_1_13_07_25.installer_org`, `И_1_13_07_25.customer_org`, `МИНСТРОЙ_344_АОГРО.customer_name`, `МИНСТРОЙ_344_АОГРО.builder_org_name`, `МИНСТРОЙ_344_АОГРО.designer_org_name`, `МИНСТРОЙ_344_АОГРО.control_org_name`, `МИНСТРОЙ_344_АОГРО.designer_employer_name`, `МИНСТРОЙ_344_АОГРО.work_performer_employer_name`, `МИНСТРОЙ_344_АООК.customer_name`, `МИНСТРОЙ_344_АООК.builder_org_name`, `МИНСТРОЙ_344_АООК.designer_org_name`, `МИНСТРОЙ_344_АООК.control_org_name`, `МИНСТРОЙ_344_АООК.designer_employer_name`, `МИНСТРОЙ_344_АООК.work_performer_employer_name`, `МИНСТРОЙ_344_АООК.actual_performer`, `МИНСТРОЙ_344_АООК.design_documents`, `МИНСТРОЙ_344_АОСР.customer_name`, `МИНСТРОЙ_344_АОСР.builder_org_name`, `МИНСТРОЙ_344_АОСР.designer_org_name`, `МИНСТРОЙ_344_АОСР.control_org_name`, `МИНСТРОЙ_344_АОСР.designer_employer_name`, `МИНСТРОЙ_344_АОСР.work_performer_employer_name`, `МИНСТРОЙ_344_АОСР.actual_performer`, `МИНСТРОЙ_344_АОСР.design_documents`, `МИНСТРОЙ_344_АОУСИТО.customer_name`, `МИНСТРОЙ_344_АОУСИТО.builder_org_name`, `МИНСТРОЙ_344_АОУСИТО.designer_org_name`, `МИНСТРОЙ_344_АОУСИТО.control_org_name`, `МИНСТРОЙ_344_АОУСИТО.designer_employer_name`, `МИНСТРОЙ_344_АОУСИТО.work_performer_employer_name`, `МИНСТРОЙ_344_АОУСИТО.network_operator_employer_name`, `МИНСТРОЙ_344_АОУСИТО.design_documents`, `МИНСТРОЙ_344_АРООКС.customer_name`, `МИНСТРОЙ_344_АРООКС.builder_org_name`, `МИНСТРОЙ_344_АРООКС.designer_org_name`, `МИНСТРОЙ_344_АРООКС.control_org_name`, `МИНСТРОЙ_344_АРООКС.designer_employer_name`, `МИНСТРОЙ_344_АРООКС.work_performer_employer_name`, `ТИТУЛЬНЫЙ_ЛИСТ.client`, `ТИТУЛЬНЫЙ_ЛИСТ.tech_client`, `ТИТУЛЬНЫЙ_ЛИСТ.gen_contractor`, `ТИТУЛЬНЫЙ_ЛИСТ.sub_contractor`, `СП_40_102_2000_Е.t2_r0_c1`, `СП_40_102_2000_Е.t2_r2_c0`, `СП_42_101_2003_П.t3_r0_c1`, `СП_42_101_2003_П.t6_r1_c0`, `СП_42_101_2003_Р.t0_r0_c1`, `СП_45_Ш.t0_r0_c1`, `СП_45_Я.t0_r0_c1`, `СП_45_Ю.t0_r0_c1`, `СП_45_Щ.t0_r0_c1`, `СП_68_М.t1_r2_c0`, `СП_68_М.t2_r2_c0`, `СП_68_М.t2_r6_c0`, `СП_68_М.t2_r10_c0`, `СП_68_М.t2_r14_c0`, `СП_68_М.t2_r30_c0`, `СП_68_Н.t0_r11_c0`, `СП_68_Н.t0_r16_c0`, `СП_68_Н.t0_r18_c1`, `СП_68_Н.t0_r20_c0`, `СП_68_Н.t0_r22_c1`, `СП_68_Н.t0_r24_c0`, `СП_68_Н.t0_r28_c0`, `СП_68_Н.t0_r53_c0`, `СП_70_И.t1_r0_c0`, `СП_70_В.t3_r0_c1`, `СП_70_В.t3_r2_c1`, `СП_70_В.t4_r0_c0`, `СП_70_Д.t3_r0_c1`, `СП_70_Д.t3_r2_c1`, `СП_70_Д.t4_r0_c0`, `СП_70_Г.t3_r0_c1`, `СП_70_Г.t3_r2_c1`, `СП_70_Г.t4_r0_c0`, `СП_70_А.t3_r0_c1`, `СП_70_А.t3_r2_c1`, `СП_70_А.t4_r0_c0`, `СП_70_Б.t3_r0_c1`, `СП_70_Б.t3_r2_c1`, `СП_70_Б.t4_r0_c0`, `СП_71_Г.t4_r0_c0`, `СП_71_Г.t5_r0_c0`, `СП_71_Г.t6_r0_c0`, `СП_71_Г.t7_r0_c1`, `СП_71_В.t2_r1_c0`, `СП_71_В.t3_r0_c0`, `СП_71_В.t3_r2_c1`, `СП_72_Д.t3_r0_c0`, `СП_72_Д.t4_r0_c0`, `СП_72_Д.t5_r0_c0`, `СП_73_В.t2_r0_c0`, `СП_73_В.t3_r0_c0`, `СП_73_В.t4_r0_c0`, `СП_73_Д.t2_r0_c0`, `СП_73_Д.t3_r0_c0`, `СП_73_Д.t4_r0_c0`, `СП_73_Г.t2_r0_c0`, `СП_73_Г.t3_r0_c0`, `СП_73_Г.t4_r0_c0`, `СП_73_Ж.t0_r1_c1`, `СП_74_Б.t1_r0_c1`, `СП_74_Г.t4_r0_c0`, `СП_74_Д.t4_r0_c0`, `СП_74_А.t2_r0_c0`, `СП_74_А.t3_r0_c0`, `СП_74_А.t4_r0_c0`, `СП_76_Б.t0_r2_c0`, `СП_76_Б.t1_r2_c1`, `СП_77_А_2.t2_r0_c1`, `СП_77_А_2.t2_r4_c1`, `СП_77_А_8.t0_r9_c1`, `СП_77_А_8.t0_r12_c1`, `СП_77_А_8.t0_r15_c1`, `СП_77_А_7.t0_r6_c1`, `СП_77_А_7.t0_r9_c1`, `СП_77_А_7.t0_r12_c1`, `СП_77_А_9.t0_r7_c1`, `СП_77_А_9.t0_r9_c1`, `СП_77_А_5.t1_r0_c1`, `СП_77_А_5.t2_r5_c1`, `СП_77_А_1.t1_r0_c1`, `СП_77_А_1.t1_r4_c1`, `СП_77_А_1.t3_r0_c1`, `СП_77_А_3.t1_r0_c1`, `СП_77_А_3.t2_r2_c1`, `СП_77_А_22.t3_r0_c0`, `СП_77_А_23.t0_r1_c0`, `СП_77_А_23.t3_r0_c1`, `СП_77_А_23.t7_r4_c1`, `СП_77_А_23.t7_r6_c1`, `СП_77_А_13.t0_r16_c10`, `СП_77_А_10.t0_r5_c1`, `СП_77_А_10.t0_r6_c1`, `СП_77_А_19_МУФТА.t0_r8_c1`, `СП_77_А_19_УЧАСТОК.t0_r8_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r32_c1`, `СП_77_А_16.t0_r10_c1`, `СП_77_А_16.t0_r12_c1`, `СП_77_А_18.t0_r8_c0`, `СП_77_А_18.t0_r8_c3`, `СП_77_А_17.t0_r10_c1`, `СП_77_А_11.t0_r14_c1`, `СП_77_А_11.t0_r17_c0`, `СП_77_А_15.t0_r7_c0`, `СП_77_А_24.t0_r6_c1`, `СП_77_А_20.t1_r2_c1`, `СП_77_А_21.companies.name`
+`И_1_13_07_18.installer_org`, `И_1_13_07_18.customer_org`
 
 <a id="source-organizations-id"></a>
 ### `organizations.id`
@@ -3282,17 +3535,17 @@ CREATE TABLE read_events (
 <a id="source-organizations-inn"></a>
 ### `organizations.inn`
 
-`МИНСТРОЙ_344_АОГРО.customer_inn`, `МИНСТРОЙ_344_АОГРО.builder_org_inn`, `МИНСТРОЙ_344_АОГРО.designer_org_inn`, `МИНСТРОЙ_344_АОГРО.control_org_inn`, `МИНСТРОЙ_344_АОГРО.designer_employer_inn`, `МИНСТРОЙ_344_АОГРО.work_performer_employer_inn`, `МИНСТРОЙ_344_АООК.customer_inn`, `МИНСТРОЙ_344_АООК.builder_org_inn`, `МИНСТРОЙ_344_АООК.designer_org_inn`, `МИНСТРОЙ_344_АООК.control_org_inn`, `МИНСТРОЙ_344_АООК.designer_employer_inn`, `МИНСТРОЙ_344_АООК.work_performer_employer_inn`, `МИНСТРОЙ_344_АОСР.customer_inn`, `МИНСТРОЙ_344_АОСР.builder_org_inn`, `МИНСТРОЙ_344_АОСР.designer_org_inn`, `МИНСТРОЙ_344_АОСР.control_org_inn`, `МИНСТРОЙ_344_АОСР.designer_employer_inn`, `МИНСТРОЙ_344_АОСР.work_performer_employer_inn`, `МИНСТРОЙ_344_АОУСИТО.customer_inn`, `МИНСТРОЙ_344_АОУСИТО.builder_org_inn`, `МИНСТРОЙ_344_АОУСИТО.designer_org_inn`, `МИНСТРОЙ_344_АОУСИТО.control_org_inn`, `МИНСТРОЙ_344_АОУСИТО.designer_employer_inn`, `МИНСТРОЙ_344_АОУСИТО.work_performer_employer_inn`, `МИНСТРОЙ_344_АОУСИТО.network_operator_employer_inn`, `МИНСТРОЙ_344_АРООКС.customer_inn`, `МИНСТРОЙ_344_АРООКС.builder_org_inn`, `МИНСТРОЙ_344_АРООКС.designer_org_inn`, `МИНСТРОЙ_344_АРООКС.control_org_inn`, `МИНСТРОЙ_344_АРООКС.designer_employer_inn`, `МИНСТРОЙ_344_АРООКС.work_performer_employer_inn`
+
 
 <a id="source-organizations-ogrn"></a>
 ### `organizations.ogrn`
 
-`МИНСТРОЙ_344_АОГРО.customer_ogrn`, `МИНСТРОЙ_344_АОГРО.builder_org_ogrn`, `МИНСТРОЙ_344_АОГРО.designer_org_ogrn`, `МИНСТРОЙ_344_АОГРО.control_org_ogrn`, `МИНСТРОЙ_344_АОГРО.designer_employer_ogrn`, `МИНСТРОЙ_344_АОГРО.work_performer_employer_ogrn`, `МИНСТРОЙ_344_АООК.customer_ogrn`, `МИНСТРОЙ_344_АООК.builder_org_ogrn`, `МИНСТРОЙ_344_АООК.designer_org_ogrn`, `МИНСТРОЙ_344_АООК.control_org_ogrn`, `МИНСТРОЙ_344_АООК.designer_employer_ogrn`, `МИНСТРОЙ_344_АООК.work_performer_employer_ogrn`, `МИНСТРОЙ_344_АОСР.customer_ogrn`, `МИНСТРОЙ_344_АОСР.builder_org_ogrn`, `МИНСТРОЙ_344_АОСР.designer_org_ogrn`, `МИНСТРОЙ_344_АОСР.control_org_ogrn`, `МИНСТРОЙ_344_АОСР.designer_employer_ogrn`, `МИНСТРОЙ_344_АОСР.work_performer_employer_ogrn`, `МИНСТРОЙ_344_АОУСИТО.customer_ogrn`, `МИНСТРОЙ_344_АОУСИТО.builder_org_ogrn`, `МИНСТРОЙ_344_АОУСИТО.designer_org_ogrn`, `МИНСТРОЙ_344_АОУСИТО.control_org_ogrn`, `МИНСТРОЙ_344_АОУСИТО.designer_employer_ogrn`, `МИНСТРОЙ_344_АОУСИТО.work_performer_employer_ogrn`, `МИНСТРОЙ_344_АОУСИТО.network_operator_employer_ogrn`, `МИНСТРОЙ_344_АРООКС.customer_ogrn`, `МИНСТРОЙ_344_АРООКС.builder_org_ogrn`, `МИНСТРОЙ_344_АРООКС.designer_org_ogrn`, `МИНСТРОЙ_344_АРООКС.control_org_ogrn`, `МИНСТРОЙ_344_АРООКС.designer_employer_ogrn`, `МИНСТРОЙ_344_АРООКС.work_performer_employer_ogrn`
+
 
 <a id="source-organizations-phone"></a>
 ### `organizations.phone`
 
-`МИНСТРОЙ_344_АОГРО.customer_phone`, `МИНСТРОЙ_344_АОГРО.builder_org_phone`, `МИНСТРОЙ_344_АОГРО.designer_org_phone`, `МИНСТРОЙ_344_АОГРО.control_org_phone`, `МИНСТРОЙ_344_АОГРО.designer_employer_phone`, `МИНСТРОЙ_344_АОГРО.work_performer_employer_phone`, `МИНСТРОЙ_344_АООК.customer_phone`, `МИНСТРОЙ_344_АООК.builder_org_phone`, `МИНСТРОЙ_344_АООК.designer_org_phone`, `МИНСТРОЙ_344_АООК.control_org_phone`, `МИНСТРОЙ_344_АООК.designer_employer_phone`, `МИНСТРОЙ_344_АООК.work_performer_employer_phone`, `МИНСТРОЙ_344_АОСР.customer_phone`, `МИНСТРОЙ_344_АОСР.builder_org_phone`, `МИНСТРОЙ_344_АОСР.designer_org_phone`, `МИНСТРОЙ_344_АОСР.control_org_phone`, `МИНСТРОЙ_344_АОСР.designer_employer_phone`, `МИНСТРОЙ_344_АОСР.work_performer_employer_phone`, `МИНСТРОЙ_344_АОУСИТО.customer_phone`, `МИНСТРОЙ_344_АОУСИТО.builder_org_phone`, `МИНСТРОЙ_344_АОУСИТО.designer_org_phone`, `МИНСТРОЙ_344_АОУСИТО.control_org_phone`, `МИНСТРОЙ_344_АОУСИТО.designer_employer_phone`, `МИНСТРОЙ_344_АОУСИТО.work_performer_employer_phone`, `МИНСТРОЙ_344_АОУСИТО.network_operator_employer_phone`, `МИНСТРОЙ_344_АРООКС.customer_phone`, `МИНСТРОЙ_344_АРООКС.builder_org_phone`, `МИНСТРОЙ_344_АРООКС.designer_org_phone`, `МИНСТРОЙ_344_АРООКС.control_org_phone`, `МИНСТРОЙ_344_АРООКС.designer_employer_phone`, `МИНСТРОЙ_344_АРООКС.work_performer_employer_phone`
+
 
 <a id="source-organizations-postal_code"></a>
 ### `organizations.postal_code`
@@ -3302,7 +3555,7 @@ CREATE TABLE read_events (
 <a id="source-organizations-short_name"></a>
 ### `organizations.short_name`
 
-`И_1_13_07_02.t1_r1_c0`, `И_1_13_07_02.t1_r4_c0`, `И_1_13_07_02.t1_r7_c0`, `И_1_13_07_06.t1_r0_c0`, `И_1_13_07_06.t2_r0_c0`, `И_1_13_07_06.t3_r0_c0`, `И_1_13_07_06а.t1_r0_c0`, `И_1_13_07_06а.t2_r0_c0`, `И_1_13_07_06б.t1_r0_c0`, `И_1_13_07_06б.t2_r0_c0`, `И_1_13_07_07.t3_r0_c1`, `И_1_13_07_07.t3_r2_c1`, `И_1_13_07_11.t1_r0_c0`, `И_1_13_07_11.t2_r0_c0`, `И_1_13_07_12.t1_r0_c0`, `И_1_13_07_12.t2_r0_c0`, `И_1_13_07_14а.t1_r0_c0`, `И_1_13_07_14а.t2_r0_c0`, `И_1_13_07_14а.t3_r0_c0`, `И_1_13_07_17.t1_r0_c0`, `И_1_13_07_17.t2_r0_c0`, `И_1_13_07_17.t3_r0_c0`, `И_1_13_07_20.t3_r0_c0`, `И_1_13_07_20.t4_r0_c0`, `И_1_13_07_20.t5_r0_c0`, `И_1_13_07_21.t2_r0_c0`, `И_1_13_07_21.t3_r0_c0`, `И_1_13_07_21.t4_r0_c0`, `И_1_13_07_23.t5_r0_c1`, `И_1_13_07_23.t6_r0_c1`, `И_1_13_07_24.t1_r1_c0`, `И_1_13_07_24.t1_r4_c0`, `СП_77_А_21.companies.name`, `СП_77_А_21.recipient`, `СП_77_А_21.consignor`
+
 
 <a id="source-organizations-sro_certificate_date"></a>
 ### `organizations.sro_certificate_date`
@@ -3317,7 +3570,7 @@ CREATE TABLE read_events (
 <a id="source-organizations-sro_info"></a>
 ### `organizations.sro_info`
 
-`МИНСТРОЙ_344_АОГРО.customer_sro`, `МИНСТРОЙ_344_АОГРО.builder_org_sro`, `МИНСТРОЙ_344_АОГРО.designer_org_sro`, `МИНСТРОЙ_344_АООК.customer_sro`, `МИНСТРОЙ_344_АООК.builder_org_sro`, `МИНСТРОЙ_344_АООК.designer_org_sro`, `МИНСТРОЙ_344_АОСР.customer_sro`, `МИНСТРОЙ_344_АОСР.builder_org_sro`, `МИНСТРОЙ_344_АОСР.designer_org_sro`, `МИНСТРОЙ_344_АОУСИТО.customer_sro`, `МИНСТРОЙ_344_АОУСИТО.builder_org_sro`, `МИНСТРОЙ_344_АОУСИТО.designer_org_sro`, `МИНСТРОЙ_344_АРООКС.customer_sro`, `МИНСТРОЙ_344_АРООКС.builder_org_sro`, `МИНСТРОЙ_344_АРООКС.designer_org_sro`
+
 
 <a id="source-organizations-sro_inn"></a>
 ### `organizations.sro_inn`
@@ -3467,12 +3720,12 @@ CREATE TABLE read_events (
 <a id="source-projects-city"></a>
 ### `projects.city`
 
-`И_1_13_07_02.city`, `И_1_13_07_03.city`, `И_1_13_07_04.city`, `И_1_13_07_05.city`, `И_1_13_07_06.city`, `И_1_13_07_06а.city`, `И_1_13_07_06б.city`, `И_1_13_07_07.city`, `И_1_13_07_09.city`, `И_1_13_07_10.city`, `И_1_13_07_11.city`, `И_1_13_07_12.city`, `И_1_13_07_14а.city`, `И_1_13_07_15.city`, `И_1_13_07_16.city`, `И_1_13_07_17.city`, `И_1_13_07_18.city`, `И_1_13_07_19.city`, `И_1_13_07_20.city`, `И_1_13_07_21.city`, `И_1_13_07_22.city`, `И_1_13_07_23.city`, `И_1_13_07_24.city`, `И_1_13_07_25.city`, `ТИТУЛЬНЫЙ_ЛИСТ.city`, `СП_42_101_2003_П.t1_r0_c1`, `СП_68_М.t0_r0_c0`, `СП_68_Н.t0_r6_c0`, `СП_70_И.t0_r0_c1`, `СП_72_Д.t1_r0_c1`, `СП_73_В.t1_r2_c1`, `СП_73_Д.t1_r0_c1`, `СП_73_Г.t1_r2_c1`, `СП_74_Б.t0_r0_c1`, `СП_74_Г.t0_r0_c1`, `СП_74_Д.t0_r0_c1`, `СП_74_А.t0_r0_c1`, `СП_76_Б.t0_r0_c0`, `СП_77_А_2.t0_r0_c1`, `СП_77_А_8.t0_r6_c1`, `СП_77_А_7.t0_r5_c1`, `СП_77_А_9.t0_r5_c1`, `СП_77_А_5.t0_r0_c1`, `СП_77_А_1.t0_r0_c1`, `СП_77_А_3.t0_r0_c1`, `СП_77_А_22.t2_r0_c1`, `СП_77_А_23.t2_r0_c1`, `СП_77_А_19_МУФТА.t0_r6_c1`, `СП_77_А_19_УЧАСТОК.t0_r6_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r6_c1`, `СП_77_А_16.t0_r6_c1`, `СП_77_А_18.t0_r6_c3`, `СП_77_А_17.t0_r6_c1`, `СП_77_А_24.t0_r5_c1`, `СП_77_А_20.t0_r0_c1`, `СП_77_А_21.city`
+`И_1_13_07_18.city`
 
 <a id="source-projects-code"></a>
 ### `projects.code`
 
-`МИНСТРОЙ_344_АООК.design_documents`, `МИНСТРОЙ_344_АОСР.design_documents`, `МИНСТРОЙ_344_АОУСИТО.design_documents`, `ТИТУЛЬНЫЙ_ЛИСТ.cifr`, `СП_70_И.t9_r0_c0`, `СП_70_В.t3_r1_c1`, `СП_70_В.t3_r3_c1`, `СП_70_Д.t3_r1_c1`, `СП_70_Д.t3_r3_c1`, `СП_70_Г.t3_r1_c1`, `СП_70_Г.t3_r3_c1`, `СП_70_А.t3_r1_c1`, `СП_70_А.t3_r3_c1`, `СП_70_Б.t3_r1_c1`, `СП_70_Б.t3_r3_c1`, `СП_77_А_2.t2_r15_c0`, `СП_77_А_8.x_0_16`, `СП_77_А_5.t3_r0_c0`, `СП_77_А_1.t4_r0_c1`, `СП_77_А_14.t0_r7_c1`, `СП_77_А_19_МУФТА.t0_r9_c1`, `СП_77_А_19_УЧАСТОК.t0_r9_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r10_c1`, `СП_77_А_16.t0_r14_c1`, `СП_77_А_20.t1_r1_c1`, `РЕЕСТР_ИТД.project_code`
+`РЕЕСТР_ИТД.project_code`
 
 <a id="source-projects-contract_date"></a>
 ### `projects.contract_date`
@@ -3487,7 +3740,7 @@ CREATE TABLE read_events (
 <a id="source-projects-designer_org_id"></a>
 ### `projects.designer_org_id`
 
-`И_1_13_07_02.t3_r0_c0`, `И_1_13_07_06б.t4_r0_c0`, `И_1_13_07_11.t3_r1_c0`, `И_1_13_07_21.t8_r0_c0`, `МИНСТРОЙ_344_АООК.design_documents`, `МИНСТРОЙ_344_АОСР.design_documents`, `МИНСТРОЙ_344_АОУСИТО.design_documents`, `СП_70_В.t3_r0_c1`, `СП_70_Д.t3_r0_c1`, `СП_70_Г.t3_r0_c1`, `СП_70_А.t3_r0_c1`, `СП_70_Б.t3_r0_c1`, `СП_77_А_8.t0_r15_c1`, `СП_77_А_1.t3_r0_c1`, `СП_77_А_23.t7_r4_c1`, `СП_77_А_11.t0_r17_c0`
+
 
 <a id="source-projects-form_set"></a>
 ### `projects.form_set`
@@ -3512,7 +3765,7 @@ CREATE TABLE read_events (
 <a id="source-projects-name"></a>
 ### `projects.name`
 
-`ТИТУЛЬНЫЙ_ЛИСТ.project`, `СП_77_А_2.t2_r15_c0`, `СП_77_А_3.t3_r0_c0`, `СП_77_А_21.project_name`, `РЕЕСТР_ИТД.project_name`
+`РЕЕСТР_ИТД.project_name`
 
 <a id="source-projects-object_id"></a>
 ### `projects.object_id`
@@ -3537,12 +3790,12 @@ CREATE TABLE read_events (
 <a id="source-projects-smr_end"></a>
 ### `projects.smr_end`
 
-`СП_77_А_5.t5_r0_c2`, `СП_77_А_5.t5_r0_c4`, `СП_77_А_5.t5_r0_c6`
+
 
 <a id="source-projects-smr_start"></a>
 ### `projects.smr_start`
 
-`СП_77_А_5.t4_r0_c2`, `СП_77_А_5.t4_r0_c4`, `СП_77_А_5.t4_r0_c6`
+
 
 <a id="source-projects-unit_id"></a>
 ### `projects.unit_id`
@@ -3636,6 +3889,11 @@ CREATE TABLE read_events (
 
 <a id="source-read_events-operation"></a>
 ### `read_events.operation`
+
+
+
+<a id="source-read_events-preview_id"></a>
+### `read_events.preview_id`
 
 
 
@@ -3766,6 +4024,16 @@ CREATE TABLE read_events (
 
 <a id="source-releases-title"></a>
 ### `releases.title`
+
+
+
+<a id="source-removed_storage_files-id"></a>
+### `removed_storage_files.id`
+
+
+
+<a id="source-removed_storage_files-sha256"></a>
+### `removed_storage_files.sha256`
 
 
 
@@ -3902,12 +4170,12 @@ CREATE TABLE read_events (
 <a id="source-resources-name"></a>
 ### `resources.name`
 
-`И_1_13_07_05.rows_1.c2`, `СП_77_А_21.materials.item_name`
+
 
 <a id="source-resources-note"></a>
 ### `resources.note`
 
-`И_1_13_07_05.rows_1.c6`, `СП_77_А_21.materials.notes`
+
 
 <a id="source-resources-project_id"></a>
 ### `resources.project_id`
@@ -3917,7 +4185,7 @@ CREATE TABLE read_events (
 <a id="source-resources-qty_fact"></a>
 ### `resources.qty_fact`
 
-`И_1_13_07_05.rows_1.c5`
+
 
 <a id="source-resources-qty_proj"></a>
 ### `resources.qty_proj`
@@ -3927,7 +4195,7 @@ CREATE TABLE read_events (
 <a id="source-resources-serial_num"></a>
 ### `resources.serial_num`
 
-`И_1_13_07_05.rows_1.c4`, `СП_77_А_21.materials.serial_no`
+
 
 <a id="source-resources-short_name"></a>
 ### `resources.short_name`
@@ -3937,7 +4205,7 @@ CREATE TABLE read_events (
 <a id="source-resources-spec_num"></a>
 ### `resources.spec_num`
 
-`СП_77_А_21.materials.spec_no`
+
 
 <a id="source-resources-supplier"></a>
 ### `resources.supplier`
@@ -3947,7 +4215,7 @@ CREATE TABLE read_events (
 <a id="source-resources-type_mark"></a>
 ### `resources.type_mark`
 
-`И_1_13_07_05.rows_1.c3`, `СП_77_А_21.materials.item_type`
+
 
 <a id="source-resources-unit"></a>
 ### `resources.unit`
@@ -4082,12 +4350,12 @@ CREATE TABLE read_events (
 <a id="source-signatories-fio"></a>
 ### `signatories.fio`
 
-`И_1_13_07_01.t1_r0_c6`, `И_1_13_07_02.t1_r1_c0`, `И_1_13_07_02.t1_r4_c0`, `И_1_13_07_02.t1_r7_c0`, `И_1_13_07_03.t2_r0_c5`, `И_1_13_07_04.t2_r0_c4`, `И_1_13_07_04.t3_r0_c4`, `И_1_13_07_04.t4_r0_c4`, `И_1_13_07_05.t2_r0_c4`, `И_1_13_07_05.t3_r0_c4`, `И_1_13_07_05.t4_r0_c4`, `И_1_13_07_06.t1_r0_c0`, `И_1_13_07_06.t2_r0_c0`, `И_1_13_07_06.t3_r0_c0`, `И_1_13_07_06а.t1_r0_c0`, `И_1_13_07_06а.t2_r0_c0`, `И_1_13_07_06б.t1_r0_c0`, `И_1_13_07_06б.t2_r0_c0`, `И_1_13_07_06б.t5_r0_c3`, `И_1_13_07_06б.t5_r0_c8`, `И_1_13_07_07.t3_r0_c1`, `И_1_13_07_07.t3_r2_c1`, `И_1_13_07_07.t12_r4_c1`, `И_1_13_07_09.t2_r0_c3`, `И_1_13_07_09.t2_r2_c3`, `И_1_13_07_10.measured_by`, `И_1_13_07_10.foreman`, `И_1_13_07_11.t1_r0_c0`, `И_1_13_07_11.t2_r0_c0`, `И_1_13_07_12.t1_r0_c0`, `И_1_13_07_12.t2_r0_c0`, `И_1_13_07_14а.t1_r0_c0`, `И_1_13_07_14а.t2_r0_c0`, `И_1_13_07_14а.t3_r0_c0`, `И_1_13_07_15.t3_r1_c3`, `И_1_13_07_15.t3_r1_c9`, `И_1_13_07_15.t4_r0_c3`, `И_1_13_07_16.heated_by`, `И_1_13_07_16.foreman`, `И_1_13_07_17.t1_r0_c0`, `И_1_13_07_17.t2_r0_c0`, `И_1_13_07_17.t3_r0_c0`, `И_1_13_07_18.t2_r0_c3`, `И_1_13_07_19.t2_r0_c3`, `И_1_13_07_20.t3_r0_c0`, `И_1_13_07_20.t4_r0_c0`, `И_1_13_07_20.t5_r0_c0`, `И_1_13_07_20.t8_r2_c1`, `И_1_13_07_20.t8_r4_c1`, `И_1_13_07_21.t2_r0_c0`, `И_1_13_07_21.t3_r0_c0`, `И_1_13_07_21.t4_r0_c0`, `И_1_13_07_21.t9_r2_c1`, `И_1_13_07_21.t9_r4_c1`, `И_1_13_07_22.t8_r0_c3`, `И_1_13_07_23.t4_r0_c1`, `И_1_13_07_23.t5_r0_c1`, `И_1_13_07_23.t6_r0_c1`, `И_1_13_07_24.t1_r1_c0`, `И_1_13_07_24.t1_r4_c0`, `МИНСТРОЙ_344_АОГРО.customer_control_details`, `МИНСТРОЙ_344_АОГРО.builder_details`, `МИНСТРОЙ_344_АОГРО.builder_control_details`, `МИНСТРОЙ_344_АОГРО.designer_details`, `МИНСТРОЙ_344_АОГРО.work_performer_details`, `МИНСТРОЙ_344_АОГРО.customer_control_signature`, `МИНСТРОЙ_344_АОГРО.builder_signature`, `МИНСТРОЙ_344_АОГРО.builder_control_signature`, `МИНСТРОЙ_344_АОГРО.designer_signature`, `МИНСТРОЙ_344_АОГРО.work_performer_signature`, `МИНСТРОЙ_344_АООК.customer_control_details`, `МИНСТРОЙ_344_АООК.builder_details`, `МИНСТРОЙ_344_АООК.builder_control_details`, `МИНСТРОЙ_344_АООК.designer_details`, `МИНСТРОЙ_344_АООК.work_performer_details`, `МИНСТРОЙ_344_АООК.customer_control_signature`, `МИНСТРОЙ_344_АООК.builder_signature`, `МИНСТРОЙ_344_АООК.builder_control_signature`, `МИНСТРОЙ_344_АООК.designer_signature`, `МИНСТРОЙ_344_АООК.work_performer_signature`, `МИНСТРОЙ_344_АОСР.customer_control_details`, `МИНСТРОЙ_344_АОСР.builder_details`, `МИНСТРОЙ_344_АОСР.builder_control_details`, `МИНСТРОЙ_344_АОСР.designer_details`, `МИНСТРОЙ_344_АОСР.work_performer_details`, `МИНСТРОЙ_344_АОСР.customer_control_signature`, `МИНСТРОЙ_344_АОСР.builder_signature`, `МИНСТРОЙ_344_АОСР.builder_control_signature`, `МИНСТРОЙ_344_АОСР.designer_signature`, `МИНСТРОЙ_344_АОСР.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.customer_control_details`, `МИНСТРОЙ_344_АОУСИТО.builder_details`, `МИНСТРОЙ_344_АОУСИТО.builder_control_details`, `МИНСТРОЙ_344_АОУСИТО.designer_details`, `МИНСТРОЙ_344_АОУСИТО.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.network_operator_details`, `МИНСТРОЙ_344_АОУСИТО.customer_control_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_control_signature`, `МИНСТРОЙ_344_АОУСИТО.designer_signature`, `МИНСТРОЙ_344_АОУСИТО.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.network_operator_signature`, `МИНСТРОЙ_344_АРООКС.customer_control_details`, `МИНСТРОЙ_344_АРООКС.builder_details`, `МИНСТРОЙ_344_АРООКС.builder_control_details`, `МИНСТРОЙ_344_АРООКС.designer_details`, `МИНСТРОЙ_344_АРООКС.work_performer_details`, `МИНСТРОЙ_344_АРООКС.customer_control_signature`, `МИНСТРОЙ_344_АРООКС.builder_signature`, `МИНСТРОЙ_344_АРООКС.builder_control_signature`, `МИНСТРОЙ_344_АРООКС.designer_signature`, `МИНСТРОЙ_344_АРООКС.work_performer_signature`, `СП_40_102_2000_Е.t2_r0_c1`, `СП_40_102_2000_Е.t2_r2_c0`, `СП_40_102_2000_Е.t2_r4_c0`, `СП_42_101_2003_П.t2_r1_c0`, `СП_42_101_2003_П.t2_r4_c1`, `СП_42_101_2003_П.t2_r6_c1`, `СП_42_101_2003_П.t2_r8_c1`, `СП_42_101_2003_Т.t4_r0_c0`, `СП_42_101_2003_Т.t5_r0_c1`, `СП_42_101_2003_Т.t5_r2_c1`, `СП_42_101_2003_Т.t8_r0_c1`, `СП_42_101_2003_Т.t8_r2_c1`, `СП_42_101_2003_С.t4_r0_c0`, `СП_42_101_2003_С.t5_r0_c1`, `СП_42_101_2003_С.t5_r2_c1`, `СП_42_101_2003_С.t8_r0_c1`, `СП_42_101_2003_С.t8_r2_c1`, `СП_42_101_2003_Р.t4_r0_c0`, `СП_42_101_2003_Р.t6_r0_c1`, `СП_42_101_2003_Р.t6_r2_c1`, `СП_42_101_2003_Р.t7_r0_c1`, `СП_42_101_2003_Р.t7_r2_c1`, `СП_42_101_2003_Р.t9_r0_c1`, `СП_42_101_2003_Р.t9_r2_c1`, `СП_42_101_2003_Р.t12_r0_c1`, `СП_42_101_2003_Р.t12_r2_c1`, `СП_45_Ш.t1_r0_c0`, `СП_45_Ш.t1_r2_c0`, `СП_45_Ш.t1_r4_c0`, `СП_45_Ш.t5_r1_c0`, `СП_45_Ш.t5_r3_c0`, `СП_45_Я.t1_r0_c0`, `СП_45_Я.t1_r2_c0`, `СП_45_Я.t1_r4_c0`, `СП_45_Я.t5_r1_c0`, `СП_45_Я.t5_r3_c0`, `СП_45_Ю.t1_r0_c0`, `СП_45_Ю.t1_r2_c0`, `СП_45_Ю.t1_r4_c0`, `СП_45_Ю.t5_r1_c0`, `СП_45_Ю.t5_r3_c0`, `СП_45_Щ.t1_r0_c0`, `СП_45_Щ.t1_r2_c0`, `СП_45_Щ.t1_r4_c0`, `СП_45_Щ.t5_r1_c0`, `СП_45_Щ.t5_r3_c0`, `СП_68_М.t1_r0_c1`, `СП_68_М.t2_r0_c1`, `СП_68_М.t2_r4_c1`, `СП_68_М.t2_r8_c1`, `СП_68_М.t2_r12_c1`, `СП_68_М.t2_r17_c0`, `СП_68_М.t2_r20_c0`, `СП_68_Н.t0_r9_c1`, `СП_68_Н.t0_r31_c0`, `СП_68_Н.t0_r34_c0`, `СП_70_И.t3_r0_c0`, `СП_70_И.t4_r0_c0`, `СП_70_И.t5_r0_c0`, `СП_70_В.t2_r0_c0`, `СП_70_В.t4_r0_c0`, `СП_70_Д.t2_r0_c0`, `СП_70_Д.t4_r0_c0`, `СП_70_Г.t2_r0_c0`, `СП_70_Г.t4_r0_c0`, `СП_70_А.t2_r0_c0`, `СП_70_А.t4_r0_c0`, `СП_70_Б.t2_r0_c0`, `СП_70_Б.t4_r0_c0`, `СП_71_Г.t6_r0_c0`, `СП_71_Г.t11_r0_c3`, `СП_71_Г.t11_r2_c3`, `СП_71_Г.t11_r4_c3`, `СП_71_Г.t11_r6_c3`, `СП_71_В.t2_r1_c0`, `СП_71_В.t3_r0_c0`, `СП_71_В.t5_r0_c3`, `СП_71_В.t5_r2_c3`, `СП_71_В.t5_r4_c3`, `СП_72_Д.t3_r0_c0`, `СП_72_Д.t4_r0_c0`, `СП_72_Д.t5_r0_c0`, `СП_73_В.t2_r0_c0`, `СП_73_В.t3_r0_c0`, `СП_73_В.t4_r0_c0`, `СП_73_Д.t2_r0_c0`, `СП_73_Д.t3_r0_c0`, `СП_73_Д.t4_r0_c0`, `СП_73_Г.t2_r0_c0`, `СП_73_Г.t3_r0_c0`, `СП_73_Г.t4_r0_c0`, `СП_73_Е.t19_r0_c0`, `СП_73_Е.t20_r0_c0`, `СП_73_Е.t21_r0_c0`, `СП_73_Ж.t0_r3_c0`, `СП_73_Ж.t7_r0_c1`, `СП_73_Ж.t8_r0_c1`, `СП_74_Б.t1_r2_c1`, `СП_74_Г.t1_r0_c0`, `СП_74_Г.t2_r0_c0`, `СП_74_Г.t3_r0_c1`, `СП_74_Д.t1_r0_c0`, `СП_74_Д.t2_r0_c0`, `СП_74_Д.t3_r0_c1`, `СП_74_А.t2_r0_c0`, `СП_74_А.t3_r0_c0`, `СП_74_А.t4_r0_c0`, `СП_76_Б.t1_r0_c0`, `СП_76_Б.t1_r3_c0`, `СП_76_Б.t8_r1_c2`, `СП_76_Б.t8_r1_c6`, `СП_77_А_2.t2_r2_c1`, `СП_77_А_2.t2_r6_c1`, `СП_77_А_2.t2_r9_c0`, `СП_77_А_2.t5_r0_c1`, `СП_77_А_2.t6_r0_c1`, `СП_77_А_2.t7_r0_c1`, `СП_77_А_8.t0_r10_c0`, `СП_77_А_8.t0_r13_c0`, `СП_77_А_8.t0_r37_c1`, `СП_77_А_8.t0_r39_c1`, `СП_77_А_7.t0_r10_c0`, `СП_77_А_7.t0_r13_c0`, `СП_77_А_7.t0_r26_c1`, `СП_77_А_7.t0_r28_c1`, `СП_77_А_9.t0_r12_c1`, `СП_77_А_9.t0_r14_c1`, `СП_77_А_9.t0_r26_c1`, `СП_77_А_9.t0_r28_c1`, `СП_77_А_5.t2_r3_c0`, `СП_77_А_5.t2_r6_c0`, `СП_77_А_1.t1_r2_c1`, `СП_77_А_1.t1_r6_c1`, `СП_77_А_1.t6_r0_c1`, `СП_77_А_1.t7_r0_c1`, `СП_77_А_3.t2_r0_c1`, `СП_77_А_3.t2_r4_c1`, `СП_77_А_3.t6_r0_c1`, `СП_77_А_3.t7_r0_c1`, `СП_77_А_22.t4_r0_c0`, `СП_77_А_22.t4_r2_c0`, `СП_77_А_23.t0_r2_c0`, `СП_77_А_23.t5_r0_c0`, `СП_77_А_23.t6_r0_c1`, `СП_77_А_23.t6_r2_c1`, `СП_77_А_13.t0_r18_c11`, `СП_77_А_13.t0_r18_c13`, `СП_77_А_13.t0_r19_c12`, `СП_77_А_14.t0_r33_c2`, `СП_77_А_14.t0_r35_c2`, `СП_77_А_10.t0_r26_c1`, `СП_77_А_10.t0_r28_c1`, `СП_77_А_19_МУФТА.t0_r14_c1`, `СП_77_А_19_МУФТА.t0_r15_c0`, `СП_77_А_19_МУФТА.t0_r30_c2`, `СП_77_А_19_УЧАСТОК.t0_r23_c2`, `СП_77_А_4.t5_r0_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r12_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r15_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r28_c1`, `СП_77_А_16.t0_r39_c1`, `СП_77_А_16.t0_r41_c1`, `СП_77_А_18.t0_r17_c0`, `СП_77_А_18.t0_r20_c0`, `СП_77_А_17.t0_r19_c1`, `СП_77_А_17.t0_r23_c1`, `СП_77_А_11.t0_r36_c2`, `СП_77_А_11.t0_r38_c2`, `СП_77_А_15.t0_r27_c2`, `СП_77_А_15.t0_r29_c2`, `СП_77_А_24.t0_r10_c1`, `СП_77_А_24.t0_r12_c1`, `СП_77_А_24.t0_r19_c1`, `СП_77_А_24.t0_r21_c1`, `СП_77_А_20.t3_r0_c1`, `СП_77_А_21.recipient`, `СП_77_А_21.consignor`
+`И_1_13_07_18.t2_r0_c3`
 
 <a id="source-signatories-first_name"></a>
 ### `signatories.first_name`
 
-`МИНСТРОЙ_344_АОГРО.customer_control_details`, `МИНСТРОЙ_344_АОГРО.builder_details`, `МИНСТРОЙ_344_АОГРО.builder_control_details`, `МИНСТРОЙ_344_АОГРО.designer_details`, `МИНСТРОЙ_344_АОГРО.work_performer_details`, `МИНСТРОЙ_344_АОГРО.customer_control_signature`, `МИНСТРОЙ_344_АОГРО.builder_signature`, `МИНСТРОЙ_344_АОГРО.builder_control_signature`, `МИНСТРОЙ_344_АОГРО.designer_signature`, `МИНСТРОЙ_344_АОГРО.work_performer_signature`, `МИНСТРОЙ_344_АООК.customer_control_details`, `МИНСТРОЙ_344_АООК.builder_details`, `МИНСТРОЙ_344_АООК.builder_control_details`, `МИНСТРОЙ_344_АООК.designer_details`, `МИНСТРОЙ_344_АООК.work_performer_details`, `МИНСТРОЙ_344_АООК.customer_control_signature`, `МИНСТРОЙ_344_АООК.builder_signature`, `МИНСТРОЙ_344_АООК.builder_control_signature`, `МИНСТРОЙ_344_АООК.designer_signature`, `МИНСТРОЙ_344_АООК.work_performer_signature`, `МИНСТРОЙ_344_АОСР.customer_control_details`, `МИНСТРОЙ_344_АОСР.builder_details`, `МИНСТРОЙ_344_АОСР.builder_control_details`, `МИНСТРОЙ_344_АОСР.designer_details`, `МИНСТРОЙ_344_АОСР.work_performer_details`, `МИНСТРОЙ_344_АОСР.customer_control_signature`, `МИНСТРОЙ_344_АОСР.builder_signature`, `МИНСТРОЙ_344_АОСР.builder_control_signature`, `МИНСТРОЙ_344_АОСР.designer_signature`, `МИНСТРОЙ_344_АОСР.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.customer_control_details`, `МИНСТРОЙ_344_АОУСИТО.builder_details`, `МИНСТРОЙ_344_АОУСИТО.builder_control_details`, `МИНСТРОЙ_344_АОУСИТО.designer_details`, `МИНСТРОЙ_344_АОУСИТО.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.network_operator_details`, `МИНСТРОЙ_344_АОУСИТО.customer_control_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_control_signature`, `МИНСТРОЙ_344_АОУСИТО.designer_signature`, `МИНСТРОЙ_344_АОУСИТО.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.network_operator_signature`, `МИНСТРОЙ_344_АРООКС.customer_control_details`, `МИНСТРОЙ_344_АРООКС.builder_details`, `МИНСТРОЙ_344_АРООКС.builder_control_details`, `МИНСТРОЙ_344_АРООКС.designer_details`, `МИНСТРОЙ_344_АРООКС.work_performer_details`, `МИНСТРОЙ_344_АРООКС.customer_control_signature`, `МИНСТРОЙ_344_АРООКС.builder_signature`, `МИНСТРОЙ_344_АРООКС.builder_control_signature`, `МИНСТРОЙ_344_АРООКС.designer_signature`, `МИНСТРОЙ_344_АРООКС.work_performer_signature`
+
 
 <a id="source-signatories-id"></a>
 ### `signatories.id`
@@ -4097,12 +4365,12 @@ CREATE TABLE read_events (
 <a id="source-signatories-last_name"></a>
 ### `signatories.last_name`
 
-`МИНСТРОЙ_344_АОГРО.customer_control_details`, `МИНСТРОЙ_344_АОГРО.builder_details`, `МИНСТРОЙ_344_АОГРО.builder_control_details`, `МИНСТРОЙ_344_АОГРО.designer_details`, `МИНСТРОЙ_344_АОГРО.work_performer_details`, `МИНСТРОЙ_344_АОГРО.customer_control_signature`, `МИНСТРОЙ_344_АОГРО.builder_signature`, `МИНСТРОЙ_344_АОГРО.builder_control_signature`, `МИНСТРОЙ_344_АОГРО.designer_signature`, `МИНСТРОЙ_344_АОГРО.work_performer_signature`, `МИНСТРОЙ_344_АООК.customer_control_details`, `МИНСТРОЙ_344_АООК.builder_details`, `МИНСТРОЙ_344_АООК.builder_control_details`, `МИНСТРОЙ_344_АООК.designer_details`, `МИНСТРОЙ_344_АООК.work_performer_details`, `МИНСТРОЙ_344_АООК.customer_control_signature`, `МИНСТРОЙ_344_АООК.builder_signature`, `МИНСТРОЙ_344_АООК.builder_control_signature`, `МИНСТРОЙ_344_АООК.designer_signature`, `МИНСТРОЙ_344_АООК.work_performer_signature`, `МИНСТРОЙ_344_АОСР.customer_control_details`, `МИНСТРОЙ_344_АОСР.builder_details`, `МИНСТРОЙ_344_АОСР.builder_control_details`, `МИНСТРОЙ_344_АОСР.designer_details`, `МИНСТРОЙ_344_АОСР.work_performer_details`, `МИНСТРОЙ_344_АОСР.customer_control_signature`, `МИНСТРОЙ_344_АОСР.builder_signature`, `МИНСТРОЙ_344_АОСР.builder_control_signature`, `МИНСТРОЙ_344_АОСР.designer_signature`, `МИНСТРОЙ_344_АОСР.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.customer_control_details`, `МИНСТРОЙ_344_АОУСИТО.builder_details`, `МИНСТРОЙ_344_АОУСИТО.builder_control_details`, `МИНСТРОЙ_344_АОУСИТО.designer_details`, `МИНСТРОЙ_344_АОУСИТО.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.network_operator_details`, `МИНСТРОЙ_344_АОУСИТО.customer_control_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_control_signature`, `МИНСТРОЙ_344_АОУСИТО.designer_signature`, `МИНСТРОЙ_344_АОУСИТО.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.network_operator_signature`, `МИНСТРОЙ_344_АРООКС.customer_control_details`, `МИНСТРОЙ_344_АРООКС.builder_details`, `МИНСТРОЙ_344_АРООКС.builder_control_details`, `МИНСТРОЙ_344_АРООКС.designer_details`, `МИНСТРОЙ_344_АРООКС.work_performer_details`, `МИНСТРОЙ_344_АРООКС.customer_control_signature`, `МИНСТРОЙ_344_АРООКС.builder_signature`, `МИНСТРОЙ_344_АРООКС.builder_control_signature`, `МИНСТРОЙ_344_АРООКС.designer_signature`, `МИНСТРОЙ_344_АРООКС.work_performer_signature`
+
 
 <a id="source-signatories-middle_name"></a>
 ### `signatories.middle_name`
 
-`МИНСТРОЙ_344_АОГРО.customer_control_details`, `МИНСТРОЙ_344_АОГРО.builder_details`, `МИНСТРОЙ_344_АОГРО.builder_control_details`, `МИНСТРОЙ_344_АОГРО.designer_details`, `МИНСТРОЙ_344_АОГРО.work_performer_details`, `МИНСТРОЙ_344_АОГРО.customer_control_signature`, `МИНСТРОЙ_344_АОГРО.builder_signature`, `МИНСТРОЙ_344_АОГРО.builder_control_signature`, `МИНСТРОЙ_344_АОГРО.designer_signature`, `МИНСТРОЙ_344_АОГРО.work_performer_signature`, `МИНСТРОЙ_344_АООК.customer_control_details`, `МИНСТРОЙ_344_АООК.builder_details`, `МИНСТРОЙ_344_АООК.builder_control_details`, `МИНСТРОЙ_344_АООК.designer_details`, `МИНСТРОЙ_344_АООК.work_performer_details`, `МИНСТРОЙ_344_АООК.customer_control_signature`, `МИНСТРОЙ_344_АООК.builder_signature`, `МИНСТРОЙ_344_АООК.builder_control_signature`, `МИНСТРОЙ_344_АООК.designer_signature`, `МИНСТРОЙ_344_АООК.work_performer_signature`, `МИНСТРОЙ_344_АОСР.customer_control_details`, `МИНСТРОЙ_344_АОСР.builder_details`, `МИНСТРОЙ_344_АОСР.builder_control_details`, `МИНСТРОЙ_344_АОСР.designer_details`, `МИНСТРОЙ_344_АОСР.work_performer_details`, `МИНСТРОЙ_344_АОСР.customer_control_signature`, `МИНСТРОЙ_344_АОСР.builder_signature`, `МИНСТРОЙ_344_АОСР.builder_control_signature`, `МИНСТРОЙ_344_АОСР.designer_signature`, `МИНСТРОЙ_344_АОСР.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.customer_control_details`, `МИНСТРОЙ_344_АОУСИТО.builder_details`, `МИНСТРОЙ_344_АОУСИТО.builder_control_details`, `МИНСТРОЙ_344_АОУСИТО.designer_details`, `МИНСТРОЙ_344_АОУСИТО.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.network_operator_details`, `МИНСТРОЙ_344_АОУСИТО.customer_control_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_signature`, `МИНСТРОЙ_344_АОУСИТО.builder_control_signature`, `МИНСТРОЙ_344_АОУСИТО.designer_signature`, `МИНСТРОЙ_344_АОУСИТО.work_performer_signature`, `МИНСТРОЙ_344_АОУСИТО.network_operator_signature`, `МИНСТРОЙ_344_АРООКС.customer_control_details`, `МИНСТРОЙ_344_АРООКС.builder_details`, `МИНСТРОЙ_344_АРООКС.builder_control_details`, `МИНСТРОЙ_344_АРООКС.designer_details`, `МИНСТРОЙ_344_АРООКС.work_performer_details`, `МИНСТРОЙ_344_АРООКС.customer_control_signature`, `МИНСТРОЙ_344_АРООКС.builder_signature`, `МИНСТРОЙ_344_АРООКС.builder_control_signature`, `МИНСТРОЙ_344_АРООКС.designer_signature`, `МИНСТРОЙ_344_АРООКС.work_performer_signature`
+
 
 <a id="source-signatories-note"></a>
 ### `signatories.note`
@@ -4112,7 +4380,7 @@ CREATE TABLE read_events (
 <a id="source-signatories-nrs_id"></a>
 ### `signatories.nrs_id`
 
-`МИНСТРОЙ_344_АОГРО.customer_control_nrs`, `МИНСТРОЙ_344_АОГРО.builder_control_nrs`, `МИНСТРОЙ_344_АООК.customer_control_nrs`, `МИНСТРОЙ_344_АООК.builder_control_nrs`, `МИНСТРОЙ_344_АОСР.customer_control_nrs`, `МИНСТРОЙ_344_АОСР.builder_control_nrs`, `МИНСТРОЙ_344_АОУСИТО.customer_control_nrs`, `МИНСТРОЙ_344_АОУСИТО.builder_control_nrs`, `МИНСТРОЙ_344_АРООКС.customer_control_nrs`, `МИНСТРОЙ_344_АРООКС.builder_control_nrs`
+
 
 <a id="source-signatories-order_attachment_id"></a>
 ### `signatories.order_attachment_id`
@@ -4122,7 +4390,7 @@ CREATE TABLE read_events (
 <a id="source-signatories-order_doc"></a>
 ### `signatories.order_doc`
 
-`МИНСТРОЙ_344_АОГРО.customer_control_details`, `МИНСТРОЙ_344_АОГРО.builder_details`, `МИНСТРОЙ_344_АОГРО.builder_control_details`, `МИНСТРОЙ_344_АОГРО.designer_details`, `МИНСТРОЙ_344_АОГРО.work_performer_details`, `МИНСТРОЙ_344_АООК.customer_control_details`, `МИНСТРОЙ_344_АООК.builder_details`, `МИНСТРОЙ_344_АООК.builder_control_details`, `МИНСТРОЙ_344_АООК.designer_details`, `МИНСТРОЙ_344_АООК.work_performer_details`, `МИНСТРОЙ_344_АОСР.customer_control_details`, `МИНСТРОЙ_344_АОСР.builder_details`, `МИНСТРОЙ_344_АОСР.builder_control_details`, `МИНСТРОЙ_344_АОСР.designer_details`, `МИНСТРОЙ_344_АОСР.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.customer_control_details`, `МИНСТРОЙ_344_АОУСИТО.builder_details`, `МИНСТРОЙ_344_АОУСИТО.builder_control_details`, `МИНСТРОЙ_344_АОУСИТО.designer_details`, `МИНСТРОЙ_344_АОУСИТО.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.network_operator_details`, `МИНСТРОЙ_344_АРООКС.customer_control_details`, `МИНСТРОЙ_344_АРООКС.builder_details`, `МИНСТРОЙ_344_АРООКС.builder_control_details`, `МИНСТРОЙ_344_АРООКС.designer_details`, `МИНСТРОЙ_344_АРООКС.work_performer_details`
+
 
 <a id="source-signatories-org_id"></a>
 ### `signatories.org_id`
@@ -4132,7 +4400,12 @@ CREATE TABLE read_events (
 <a id="source-signatories-position"></a>
 ### `signatories.position`
 
-`И_1_13_07_01.t1_r0_c2`, `И_1_13_07_02.t1_r1_c0`, `И_1_13_07_02.t1_r4_c0`, `И_1_13_07_02.t1_r7_c0`, `И_1_13_07_03.t2_r0_c1`, `И_1_13_07_04.t2_r0_c0`, `И_1_13_07_04.t3_r0_c0`, `И_1_13_07_04.t4_r0_c0`, `И_1_13_07_05.t2_r0_c0`, `И_1_13_07_05.t3_r0_c0`, `И_1_13_07_05.t4_r0_c0`, `И_1_13_07_06.t1_r0_c0`, `И_1_13_07_06.t2_r0_c0`, `И_1_13_07_06.t3_r0_c0`, `И_1_13_07_06а.t1_r0_c0`, `И_1_13_07_06а.t2_r0_c0`, `И_1_13_07_06б.t1_r0_c0`, `И_1_13_07_06б.t2_r0_c0`, `И_1_13_07_07.t3_r0_c1`, `И_1_13_07_07.t3_r2_c1`, `И_1_13_07_11.t1_r0_c0`, `И_1_13_07_11.t2_r0_c0`, `И_1_13_07_12.t1_r0_c0`, `И_1_13_07_12.t2_r0_c0`, `И_1_13_07_14а.t1_r0_c0`, `И_1_13_07_14а.t2_r0_c0`, `И_1_13_07_14а.t3_r0_c0`, `И_1_13_07_17.t1_r0_c0`, `И_1_13_07_17.t2_r0_c0`, `И_1_13_07_17.t3_r0_c0`, `И_1_13_07_20.t3_r0_c0`, `И_1_13_07_20.t4_r0_c0`, `И_1_13_07_20.t5_r0_c0`, `И_1_13_07_20.t8_r2_c1`, `И_1_13_07_20.t8_r4_c1`, `И_1_13_07_21.t2_r0_c0`, `И_1_13_07_21.t3_r0_c0`, `И_1_13_07_21.t4_r0_c0`, `И_1_13_07_21.t9_r2_c1`, `И_1_13_07_21.t9_r4_c1`, `И_1_13_07_23.t4_r0_c1`, `И_1_13_07_23.t5_r0_c1`, `И_1_13_07_23.t6_r0_c1`, `И_1_13_07_24.t1_r1_c0`, `И_1_13_07_24.t1_r4_c0`, `МИНСТРОЙ_344_АОГРО.customer_control_details`, `МИНСТРОЙ_344_АОГРО.builder_details`, `МИНСТРОЙ_344_АОГРО.builder_control_details`, `МИНСТРОЙ_344_АОГРО.designer_details`, `МИНСТРОЙ_344_АОГРО.work_performer_details`, `МИНСТРОЙ_344_АООК.customer_control_details`, `МИНСТРОЙ_344_АООК.builder_details`, `МИНСТРОЙ_344_АООК.builder_control_details`, `МИНСТРОЙ_344_АООК.designer_details`, `МИНСТРОЙ_344_АООК.work_performer_details`, `МИНСТРОЙ_344_АОСР.customer_control_details`, `МИНСТРОЙ_344_АОСР.builder_details`, `МИНСТРОЙ_344_АОСР.builder_control_details`, `МИНСТРОЙ_344_АОСР.designer_details`, `МИНСТРОЙ_344_АОСР.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.customer_control_details`, `МИНСТРОЙ_344_АОУСИТО.builder_details`, `МИНСТРОЙ_344_АОУСИТО.builder_control_details`, `МИНСТРОЙ_344_АОУСИТО.designer_details`, `МИНСТРОЙ_344_АОУСИТО.work_performer_details`, `МИНСТРОЙ_344_АОУСИТО.network_operator_details`, `МИНСТРОЙ_344_АРООКС.customer_control_details`, `МИНСТРОЙ_344_АРООКС.builder_details`, `МИНСТРОЙ_344_АРООКС.builder_control_details`, `МИНСТРОЙ_344_АРООКС.designer_details`, `МИНСТРОЙ_344_АРООКС.work_performer_details`, `СП_40_102_2000_Е.t2_r0_c1`, `СП_40_102_2000_Е.t2_r2_c0`, `СП_40_102_2000_Е.t2_r4_c0`, `СП_42_101_2003_П.t2_r1_c0`, `СП_42_101_2003_П.t2_r4_c1`, `СП_42_101_2003_П.t2_r6_c1`, `СП_42_101_2003_П.t2_r8_c1`, `СП_42_101_2003_Т.t4_r0_c0`, `СП_42_101_2003_Т.t5_r0_c1`, `СП_42_101_2003_Т.t5_r2_c1`, `СП_42_101_2003_Т.t8_r2_c1`, `СП_42_101_2003_С.t4_r0_c0`, `СП_42_101_2003_С.t5_r0_c1`, `СП_42_101_2003_С.t5_r2_c1`, `СП_42_101_2003_С.t8_r2_c1`, `СП_42_101_2003_Р.t4_r0_c0`, `СП_42_101_2003_Р.t6_r0_c1`, `СП_42_101_2003_Р.t6_r2_c1`, `СП_42_101_2003_Р.t7_r2_c1`, `СП_42_101_2003_Р.t9_r0_c1`, `СП_42_101_2003_Р.t9_r2_c1`, `СП_42_101_2003_Р.t12_r2_c1`, `СП_45_Ш.t1_r0_c0`, `СП_45_Ш.t1_r2_c0`, `СП_45_Ш.t1_r4_c0`, `СП_45_Я.t1_r0_c0`, `СП_45_Я.t1_r2_c0`, `СП_45_Я.t1_r4_c0`, `СП_45_Ю.t1_r0_c0`, `СП_45_Ю.t1_r2_c0`, `СП_45_Ю.t1_r4_c0`, `СП_45_Щ.t1_r0_c0`, `СП_45_Щ.t1_r2_c0`, `СП_45_Щ.t1_r4_c0`, `СП_68_М.t1_r0_c1`, `СП_68_М.t2_r0_c1`, `СП_68_М.t2_r4_c1`, `СП_68_М.t2_r8_c1`, `СП_68_М.t2_r12_c1`, `СП_68_М.t2_r17_c0`, `СП_68_М.t2_r20_c0`, `СП_68_Н.t0_r9_c1`, `СП_68_Н.t0_r31_c0`, `СП_68_Н.t0_r34_c0`, `СП_70_И.t3_r0_c0`, `СП_70_И.t4_r0_c0`, `СП_70_И.t5_r0_c0`, `СП_70_В.t2_r0_c0`, `СП_70_В.t4_r0_c0`, `СП_70_Д.t2_r0_c0`, `СП_70_Д.t4_r0_c0`, `СП_70_Г.t2_r0_c0`, `СП_70_Г.t4_r0_c0`, `СП_70_А.t2_r0_c0`, `СП_70_А.t4_r0_c0`, `СП_70_Б.t2_r0_c0`, `СП_70_Б.t4_r0_c0`, `СП_71_Г.t6_r0_c0`, `СП_71_Г.t11_r0_c3`, `СП_71_Г.t11_r2_c3`, `СП_71_Г.t11_r4_c3`, `СП_71_В.t2_r1_c0`, `СП_71_В.t3_r0_c0`, `СП_71_В.t5_r0_c3`, `СП_71_В.t5_r2_c3`, `СП_71_В.t5_r4_c3`, `СП_72_Д.t3_r0_c0`, `СП_72_Д.t4_r0_c0`, `СП_72_Д.t5_r0_c0`, `СП_73_В.t2_r0_c0`, `СП_73_В.t3_r0_c0`, `СП_73_В.t4_r0_c0`, `СП_73_Д.t2_r0_c0`, `СП_73_Д.t3_r0_c0`, `СП_73_Д.t4_r0_c0`, `СП_73_Г.t2_r0_c0`, `СП_73_Г.t3_r0_c0`, `СП_73_Г.t4_r0_c0`, `СП_73_Ж.t0_r3_c0`, `СП_74_Б.t1_r2_c1`, `СП_74_Г.t1_r0_c0`, `СП_74_Г.t2_r0_c0`, `СП_74_Г.t3_r0_c1`, `СП_74_Д.t1_r0_c0`, `СП_74_Д.t2_r0_c0`, `СП_74_Д.t3_r0_c1`, `СП_74_А.t2_r0_c0`, `СП_74_А.t3_r0_c0`, `СП_74_А.t4_r0_c0`, `СП_76_Б.t1_r0_c0`, `СП_76_Б.t1_r3_c0`, `СП_77_А_2.t2_r2_c1`, `СП_77_А_2.t2_r6_c1`, `СП_77_А_2.t2_r9_c0`, `СП_77_А_8.t0_r10_c0`, `СП_77_А_8.t0_r13_c0`, `СП_77_А_7.t0_r10_c0`, `СП_77_А_7.t0_r13_c0`, `СП_77_А_9.t0_r12_c1`, `СП_77_А_9.t0_r14_c1`, `СП_77_А_9.t0_r26_c1`, `СП_77_А_9.t0_r28_c1`, `СП_77_А_5.t2_r3_c0`, `СП_77_А_5.t2_r6_c0`, `СП_77_А_1.t1_r2_c1`, `СП_77_А_1.t1_r6_c1`, `СП_77_А_3.t2_r0_c1`, `СП_77_А_3.t2_r4_c1`, `СП_77_А_22.t4_r0_c0`, `СП_77_А_22.t4_r2_c0`, `СП_77_А_23.t0_r2_c0`, `СП_77_А_23.t5_r0_c0`, `СП_77_А_23.t6_r0_c1`, `СП_77_А_23.t6_r2_c1`, `СП_77_А_14.t0_r33_c2`, `СП_77_А_14.t0_r35_c2`, `СП_77_А_10.t0_r26_c1`, `СП_77_А_10.t0_r28_c1`, `СП_77_А_19_МУФТА.t0_r14_c1`, `СП_77_А_19_МУФТА.t0_r15_c0`, `СП_77_А_19_МУФТА.t0_r30_c2`, `СП_77_А_19_УЧАСТОК.t0_r23_c2`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r12_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r15_c1`, `СП_77_А_19_ИЗМЕРЕНИЯ.t0_r28_c1`, `СП_77_А_16.t0_r39_c1`, `СП_77_А_16.t0_r41_c1`, `СП_77_А_18.t0_r17_c0`, `СП_77_А_18.t0_r20_c0`, `СП_77_А_17.t0_r19_c1`, `СП_77_А_17.t0_r23_c1`, `СП_77_А_11.t0_r36_c2`, `СП_77_А_11.t0_r38_c2`, `СП_77_А_15.t0_r27_c2`, `СП_77_А_15.t0_r29_c2`, `СП_77_А_24.t0_r10_c1`, `СП_77_А_24.t0_r12_c1`, `СП_77_А_24.t0_r19_c1`, `СП_77_А_24.t0_r21_c1`, `СП_77_А_20.t3_r0_c1`, `СП_77_А_21.recipient`, `СП_77_А_21.consignor`
+
+
+<a id="source-signatories-short_fio"></a>
+### `signatories.short_fio`
+
+
 
 <a id="source-signatories-status"></a>
 ### `signatories.status`
@@ -4614,11 +4887,51 @@ CREATE TABLE read_events (
 
 
 
+<a id="source-write_previews-expires_at"></a>
+### `write_previews.expires_at`
+
+
+
+<a id="source-write_previews-hash"></a>
+### `write_previews.hash`
+
+
+
+<a id="source-write_previews-id"></a>
+### `write_previews.id`
+
+
+
+<a id="source-write_previews-namespace"></a>
+### `write_previews.namespace`
+
+
+
+<a id="source-write_previews-owner"></a>
+### `write_previews.owner`
+
+
+
+<a id="source-write_previews-payload"></a>
+### `write_previews.payload`
+
+
+
+<a id="source-write_previews-project_id"></a>
+### `write_previews.project_id`
+
+
+
+<a id="source-write_previews-view"></a>
+### `write_previews.view`
+
+
+
 ### Корни контекста build_context
 
 | Источник | Отбор / происхождение |
 |---|---|
-| _template_context | Общая объектная модель DOCX; object, project, document, organisations, representatives, recipient, consignor, companies, form. JSON template_path связывает сохранённые ключи с публичными свойствами; см. app/templates/README.md и TEMPLATE_FIELDS.md |
+| _template_context | Общая объектная модель DOCX; object, project, document, organisations, representatives, recipient, consignor, companies, form. JSON template_path связывает сохранённые ключи с публичными свойствами; см. app/forms/template_contracts.json |
 | object / project / act | Карточка акта → раздел → объект; project.city с fallback objects.city |
 | resources | Только act_resources, ORDER BY ordinal; _source из resource_sources (attachment_id, source_key, page, sheet, locator) |
 | schemes | Только act_schemes, ORDER BY ordinal |
@@ -4689,663 +5002,15 @@ CREATE TABLE read_events (
 
 | Код | Название | Полей с вложенными колонками |
 |---|---|---|
-| [И_1_13_07_01](#form-1) | Ведомость технической документации | 12 |
-| [И_1_13_07_02](#form-2) | Акт технической готовности электромонтажных работ | 15 |
-| [И_1_13_07_03](#form-3) | Ведомость изменений и отступлений от проекта | 17 |
-| [И_1_13_07_04](#form-4) | Ведомость электромонтажных недоделок | 21 |
-| [И_1_13_07_05](#form-5) | Ведомость смонтированного электрооборудования | 23 |
-| [И_1_13_07_06](#form-6) | Акт готовности строительной части помещений (сооружений) к производству электромонтажных работ | 22 |
-| [И_1_13_07_06а](#form-7) | Справка о ликвидации недоделок | 13 |
-| [И_1_13_07_06б](#form-8) | Акт передачи смонтированного оборудования для производства пусконаладочных работ | 15 |
-| [И_1_13_07_07](#form-9) | Акт о приёмке и монтаже силового трансформатора | 42 |
-| [И_1_13_07_09](#form-10) | Протокол осмотра и проверки технической готовности ЭМР по АБ | 18 |
-| [И_1_13_07_10](#form-11) | Ведомость замеров при контрольном разряде аккумуляторной батареи | 30 |
-| [И_1_13_07_11](#form-12) | Акт осмотра канализации из труб перед закрытием | 18 |
-| [И_1_13_07_12](#form-13) | Протокол испытаний давлением | 21 |
-| [И_1_13_07_14а](#form-14) | Акт приёмки траншей, каналов, туннелей и блоков под монтаж кабелей | 26 |
-| [И_1_13_07_15](#form-15) | Протокол осмотра и проверки сопротивления изоляции кабелей на барабане перед прокладкой | 25 |
-| [И_1_13_07_16](#form-16) | Протокол прогрева кабелей на барабане перед прокладкой при низких температурах | 19 |
-| [И_1_13_07_17](#form-17) | Акт осмотра кабельной канализации в траншеях и каналах перед закрытием | 20 |
-| [И_1_13_07_18](#form-18) | Журнал прокладки кабелей | 20 |
-| [И_1_13_07_19](#form-19) | Журнал монтажа кабельных муфт напряжением выше 1000 В | 17 |
-| [И_1_13_07_20](#form-20) | Акт готовности монолитного бетонного фундамента под опору ВЛ | 24 |
-| [И_1_13_07_21](#form-21) | Акт готовности сборных железобетонных фундаментов под установку опор ВЛ | 38 |
-| [И_1_13_07_22](#form-22) | Паспорт воздушной линии электропередачи | 50 |
-| [И_1_13_07_23](#form-23) | Акт замеров в натуре габаритов от проводов ВЛ до пересекаемого объекта | 25 |
-| [И_1_13_07_24](#form-24) | Паспорт заземляющего устройства | 30 |
-| [И_1_13_07_25](#form-25) | Обложка к комплекту технической документации по сдаче-приёмке электромонтажных работ | 6 |
-| [МИНСТРОЙ_344_АОГРО](#form-26) | Акт освидетельствования геодезической разбивочной основы | 57 |
-| [МИНСТРОЙ_344_АООК](#form-27) | Акт освидетельствования ответственных конструкций | 67 |
-| [МИНСТРОЙ_344_АОСР](#form-28) | Акт освидетельствования скрытых работ | 64 |
-| [МИНСТРОЙ_344_АОУСИТО](#form-29) | Акт освидетельствования участков сетей инженерно-технического обеспечения | 74 |
-| [МИНСТРОЙ_344_АРООКС](#form-30) | Акт разбивки осей объекта капитального строительства на местности | 60 |
-| [ТИТУЛЬНЫЙ_ЛИСТ](#form-31) | Титульный лист исполнительной документации и наклейки | 13 |
-| [СП_40_102_2000_Е](#form-32) | Акт о проведении входного контроля партии труб | 20 |
-| [СП_42_101_2003_П](#form-33) | Акт приёмки газопроводов для комплексного опробования | 29 |
-| [СП_42_101_2003_Т](#form-34) | Строительный паспорт ГРП | 30 |
-| [СП_42_101_2003_С](#form-35) | Строительный паспорт газоиспользующего оборудования | 30 |
-| [СП_42_101_2003_Р](#form-36) | Строительный паспорт газопровода | 58 |
-| [СП_45_Ш](#form-37) | Акт приёмки захватки стены в грунте (баретты) | 17 |
-| [СП_45_Я](#form-38) | Акт приёмки сваи | 17 |
-| [СП_45_Ю](#form-39) | Акт приёмки скважины | 22 |
-| [СП_45_Щ](#form-40) | Акт приёмки траншеи | 21 |
-| [СП_45_1](#form-41) | Журнал контроля качества глинистого раствора | 23 |
-| [СП_48_И](#form-42) | Журнал входного контроля | 20 |
-| [СП_68_М](#form-43) | Акт приёмки оборудования после индивидуального испытания | 33 |
-| [СП_68_Н](#form-44) | Акт приёмки оборудования после комплексного опробования | 37 |
-| [СП_70_И](#form-45) | Акт испытания конструкций здания и сооружения | 28 |
-| [СП_70_В](#form-46) | Журнал АКЗ сварных соединений | 30 |
-| [СП_70_Ф](#form-47) | Журнал бетонных работ | 25 |
-| [СП_70_Д](#form-48) | Журнал выполнения монтажных соединений на болтах с контролируемым натяжением | 39 |
-| [СП_70_Г](#form-49) | Журнал замоноличивания монтажных стыков и узлов | 28 |
-| [СП_70_Е](#form-50) | Журнал контрольной тарировки динамометрических ключей | 11 |
-| [СП_70_А](#form-51) | Журнал работ по монтажу строительных конструкций | 44 |
-| [СП_70_Б](#form-52) | Журнал сварочных работ | 46 |
-| [СП_71_Г](#form-53) | Акт приёмки выполненных работ | 18 |
-| [СП_71_В](#form-54) | Предписание контроля качества строительно-монтажных работ | 14 |
-| [СП_72_Д](#form-55) | Акт приёмки защитного покрытия | 16 |
-| [СП_72_Г](#form-56) | Журнал производства антикоррозионных работ | 21 |
-| [СП_73_В](#form-57) | Акт о проведении гидростатического или манометрического испытания на герметичность | 16 |
-| [СП_73_Д](#form-58) | Акт о проведении индивидуального испытания оборудования | 10 |
-| [СП_73_Г](#form-59) | Акт о проведении испытания систем канализации и водостоков | 12 |
-| [СП_73_Е](#form-60) | Паспорт системы вентиляции (кондиционирования воздуха) | 143 |
-| [СП_73_Ж](#form-61) | Паспорт системы охлаждения (сплит, VRF, VRV) | 16 |
-| [СП_74_Б](#form-62) | Акт на приёмку электрозащитной установки в эксплуатацию | 16 |
-| [СП_74_Г](#form-63) | Акт о проведении испытаний трубопроводов на прочность и герметичность | 19 |
-| [СП_74_Д](#form-64) | Акт о проведении промывки (продувки) трубопроводов | 14 |
-| [СП_74_А](#form-65) | Акт о растяжке компенсаторов | 17 |
-| [СП_76_Б](#form-66) | Акт сдачи-приёмки пусконаладочных работ | 25 |
-| [СП_77_А_2](#form-67) | Акт готовности объекта к производству работ по монтажу систем автоматизации | 17 |
-| [СП_77_А_8](#form-68) | Акт испытания трубных проводок на герметичность | 37 |
-| [СП_77_А_7](#form-69) | Акт испытания трубных проводок на прочность и плотность | 22 |
-| [СП_77_А_9](#form-70) | Акт на обезжиривание труб, арматуры и соединений | 13 |
-| [СП_77_А_5](#form-71) | Акт окончания работ по монтажу систем автоматизации | 17 |
-| [СП_77_А_1](#form-72) | Акт передачи рабочей документации для производства работ по монтажу систем автоматизации | 18 |
-| [СП_77_А_3](#form-73) | Акт передачи технических средств автоматизации в монтаж | 19 |
-| [СП_77_А_22](#form-74) | Акт приёмки в эксплуатацию отдельных систем автоматизации | 19 |
-| [СП_77_А_23](#form-75) | Акт приёмки систем автоматизации в эксплуатацию | 31 |
-| [СП_77_А_13](#form-76) | Журнал по сварке трубопроводов | 32 |
-| [СП_77_А_14](#form-77) | Заключение о проверке качества сварных швов, произведённой методом капиллярной дефектоскопии | 23 |
-| [СП_77_А_10](#form-78) | Опись технической документации | 32 |
-| [СП_77_А_19_МУФТА](#form-79) | Паспорт на смонтированную соединительную муфту | 33 |
-| [СП_77_А_19_УЧАСТОК](#form-80) | Паспорт регенерационного участка | 18 |
-| [СП_77_А_4](#form-81) | Протокол входного контроля оптического кабеля | 16 |
-| [СП_77_А_19_ИЗМЕРЕНИЯ](#form-82) | Протокол измерения параметров смонтированного оптического кабеля | 16 |
-| [СП_77_А_16](#form-83) | Протокол измерения сопротивления изоляции | 26 |
-| [СП_77_А_18](#form-84) | Протокол испытаний давлением | 23 |
-| [СП_77_А_17](#form-85) | Протокол прогрева кабелей на барабанах | 18 |
-| [СП_77_А_11](#form-86) | Свидетельство о монтаже трубных проводок | 14 |
-| [СП_77_А_15](#form-87) | Список сварщиков, дефектоскопистов и сборщиков резьбовых соединений | 21 |
-| [СП_77_А_24](#form-88) | Акт приостановки (консервации) монтажных работ по системам автоматизации | 15 |
-| [СП_77_А_20](#form-89) | Разрешение на монтаж технических средств автоматизации | 11 |
-| [СП_77_А_21](#form-90) | Ведомость смонтированных технических средств автоматизации | 18 |
-| [РЕЕСТР_ИТД](#form-91) | Реестр исполнительной документации | 13 |
+| [И_1_13_07_18](#form-1) | Журнал прокладки кабелей | 20 |
+| [СП_48_И](#form-2) | Журнал входного контроля | 20 |
+| [РЕЕСТР_ИТД](#form-3) | Реестр исполнительной документации | 13 |
+| [ОЖР](#form-4) | Общий журнал работ | 56 |
 
 <a id="form-1"></a>
-### И_1_13_07_01 — Ведомость технической документации
-
-Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_01.docx](../app/templates/И%201.13-07/И_1_13_07_01.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_01.fields.json](../app/forms/И%201.13-07/И_1_13_07_01.fields.json).
-
-SHA-256 рабочего DOCX: `eebeb0e71cb2e15596bddbec676929181b4427488def1a2ef27f75d39cada19d`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/01 - Ведомость технической документации.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/01%20-%20Ведомость%20технической%20документации.docx). SHA-256: `e6ea45715badb472fe2a29d81b9c30d67b46fd0c289ad882804c683cd2000548`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `readiness_date` | Дата акта технической готовности | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c2` | Представительмонтажной организации (должность) | reference; required=true | signatories.installer.position ← signatories.position | DOCX; word/document.xml |
-| `t1_r0_c6` | Представительмонтажной организации (расшифровка подписи) | reference; required=true | signatories.installer.fio ← signatories.fio | DOCX; word/document.xml |
-| `section_1_2` | Номера документов, раздел 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_1_3` | Количество листов, раздел 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_1_4` | Примечание, раздел 1 | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_2_2` | Номера документов, раздел 2 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_2_3` | Количество листов, раздел 2 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_2_4` | Примечание, раздел 2 | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_3_2` | Номера документов, раздел 3 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_3_3` | Количество листов, раздел 3 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `section_3_4` | Примечание, раздел 3 | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-2"></a>
-### И_1_13_07_02 — Акт технической готовности электромонтажных работ
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_02.docx](../app/templates/И%201.13-07/И_1_13_07_02.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_02.fields.json](../app/forms/И%201.13-07/И_1_13_07_02.fields.json).
-
-SHA-256 рабочего DOCX: `f1bd942ceadb320b21f01912876b113a8708746e8bb77767bcdf253a56a59bd4`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/02 - Акт технической готовности электромонтажных работ.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/02%20-%20Акт%20технической%20готовности%20электромонтажных%20работ.docx). SHA-256: `98956ddbee704992e397c653a04c579367c0619d8f0b9157ed48a0e129927079`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r1_c0` | (должность, фамилия, имя, отчество) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r4_c0` | (должность, фамилия, имя, отчество) | signatory; required=true | Роль general_contractor; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r7_c0` | (должность, фамилия, имя, отчество) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | Выполненные работы, характеристики и физические объёмы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c0` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t4_r0_c1` | Индивидуальные испытания: проведены / не проведены | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-3"></a>
-### И_1_13_07_03 — Ведомость изменений и отступлений от проекта
-
-Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_03.docx](../app/templates/И%201.13-07/И_1_13_07_03.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_03.fields.json](../app/forms/И%201.13-07/И_1_13_07_03.fields.json).
-
-SHA-256 рабочего DOCX: `c90b9835b4d8d34740a3b3dd141653852dc65244a7b1920d005a371af3062121`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/03 - Ведомость изменений и отступлений от проекта.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/03%20-%20Ведомость%20изменений%20и%20отступлений%20от%20проекта.docx). SHA-256: `6b0461f395fed0ee1de5a33c02d5a48bf078128581a315e387871cd613196468`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `readiness_date` | Дата акта технической готовности | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_1` | № п.п. / Состав изменений и отступлений / Причина изменений / Кем, когда согласовано, номер документа | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_1.c1` | № п.п. | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c2` | Состав изменений и отступлений | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c3` | Причина изменений | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c4` | Кем, когда согласовано, номер документа | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t2_r0_c1` | Производитель работ (должность) | reference; required=true | signatories.foreman.position ← signatories.position | DOCX; word/document.xml |
-| `t2_r0_c5` | Производитель работ (расшифровка подписи) | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-4"></a>
-### И_1_13_07_04 — Ведомость электромонтажных недоделок
-
-Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_04.docx](../app/templates/И%201.13-07/И_1_13_07_04.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_04.fields.json](../app/forms/И%201.13-07/И_1_13_07_04.fields.json).
-
-SHA-256 рабочего DOCX: `7be1ab252790fd9e616b8860c0350580cd99a46919581a61da83a09e5500779d`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/04 - Ведомость электромонтажных недоделок.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/04%20-%20Ведомость%20электромонтажных%20недоделок.docx). SHA-256: `9ccff642fc63ea0ac173d9ff7ab38e54d24723ffd0de92d8bb98fd1f27fc8407`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `readiness_date` | Дата акта технической готовности | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_1` | № п.п. / Недоделки / Срок устранения / Кто устраняет | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_1.c1` | № п.п. | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c2` | Недоделки | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c3` | Срок устранения | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c4` | Кто устраняет | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность) | reference; required=true | signatories.installer.position ← signatories.position | DOCX; word/document.xml |
-| `t2_r0_c4` | (расшифровка подписи) | reference; required=true | signatories.installer.fio ← signatories.fio | DOCX; word/document.xml |
-| `t3_r0_c0` | (должность) | reference; required=true | signatories.general_contractor.position ← signatories.position | DOCX; word/document.xml |
-| `t3_r0_c4` | (расшифровка подписи) | reference; required=true | signatories.general_contractor.fio ← signatories.fio | DOCX; word/document.xml |
-| `t4_r0_c0` | (должность) | reference; required=true | signatories.customer.position ← signatories.position | DOCX; word/document.xml |
-| `t4_r0_c4` | (расшифровка подписи) | reference; required=true | signatories.customer.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-5"></a>
-### И_1_13_07_05 — Ведомость смонтированного электрооборудования
-
-Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_05.docx](../app/templates/И%201.13-07/И_1_13_07_05.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_05.fields.json](../app/forms/И%201.13-07/И_1_13_07_05.fields.json).
-
-SHA-256 рабочего DOCX: `bbae9786ec6cd031678e813b8e04fc3812d083187146822919b6d3b5769da432`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/05 - Ведомость смонтированного электрооборудования.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/05%20-%20Ведомость%20смонтированного%20электрооборудования.docx). SHA-256: `48a83d2456697f1368c25b3cde472932b06371b38388b8c7f54f4bbf36c18d8c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `readiness_date` | Дата акта технической готовности | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_1` | № п.п. / Наименование электрооборудования, комплекта / Тип, марка / Заводской номер или маркировка / Кол-во / Примечание | table; required=true | resources (строки resources; состав и отбор описаны выше) | DOCX; word/document.xml |
-| `rows_1.c1` | № п.п. | reference; required=true | Порядковый номер строки, начиная с 1; не ID БД | DOCX; word/document.xml |
-| `rows_1.c2` | Наименование электрооборудования, комплекта | reference; required=true | item.name ← resources.name | DOCX; word/document.xml |
-| `rows_1.c3` | Тип, марка | reference; required=true | item.type_mark ← resources.type_mark | DOCX; word/document.xml |
-| `rows_1.c4` | Заводской номер или маркировка | reference; required=true | item.serial_num ← resources.serial_num | DOCX; word/document.xml |
-| `rows_1.c5` | Кол-во | reference; required=true | item.qty_fact ← resources.qty_fact | DOCX; word/document.xml |
-| `rows_1.c6` | Примечание | reference; required=false | item.note ← resources.note | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность) | reference; required=true | signatories.installer.position ← signatories.position | DOCX; word/document.xml |
-| `t2_r0_c4` | (расшифровка подписи) | reference; required=true | signatories.installer.fio ← signatories.fio | DOCX; word/document.xml |
-| `t3_r0_c0` | (должность) | reference; required=true | signatories.customer.position ← signatories.position | DOCX; word/document.xml |
-| `t3_r0_c4` | (расшифровка подписи) | reference; required=true | signatories.customer.fio ← signatories.fio | DOCX; word/document.xml |
-| `t4_r0_c0` | (должность) | reference; required=true | signatories.general_contractor.position ← signatories.position | DOCX; word/document.xml |
-| `t4_r0_c4` | (расшифровка подписи) | reference; required=true | signatories.general_contractor.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-6"></a>
-### И_1_13_07_06 — Акт готовности строительной части помещений (сооружений) к производству электромонтажных работ
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_06.docx](../app/templates/И%201.13-07/И_1_13_07_06.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_06.fields.json](../app/forms/И%201.13-07/И_1_13_07_06.fields.json).
-
-SHA-256 рабочего DOCX: `9972a4804eef6e9975044970f9010ae7f4bf66c64730d716aab9ddd4970ddb28`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/06 - Акт готовности строительной части помещений (сооружений) к производству электромонтажных работ.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/06%20-%20Акт%20готовности%20строительной%20части%20помещений%20(сооружений)%20к%20производству%20электромонтажных%20работ.docx). SHA-256: `edc5ddd115c95e13973f9216a56ed16bddbab4065433ce057a3485303eb181ee`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `ready_date` | Дата готовности помещений | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_7` | № п.п. / Помещение (сооружение) / Недоделки / Сроки устранения / Кто устраняет | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_7.c1` | № п.п. | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7.c2` | Помещение (сооружение) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7.c3` | Недоделки | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7.c4` | Сроки устранения | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7.c5` | Кто устраняет | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t1_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль builder; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | (наименование помещений, сооружений) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c0` | (указать проект, № чертежа) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c0` | (наименование проектной организации, № чертежей строительных зданий) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-7"></a>
-### И_1_13_07_06а — Справка о ликвидации недоделок
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_06а.docx](../app/templates/И%201.13-07/И_1_13_07_06а.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_06а.fields.json](../app/forms/И%201.13-07/И_1_13_07_06а.fields.json).
-
-SHA-256 рабочего DOCX: `f5433de52e9143863533fe9ab2287850be3b412894fa75f6549d75846f0d3f7d`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/06а - Справка о ликвидации недоделок.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/06а%20-%20Справка%20о%20ликвидации%20недоделок.docx). SHA-256: `8c8904a5e812f53a7e02fa97d62d2794b28d1865313b340f16f62cf3517946e9`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `defects_date` | Дата ведомости недоделок | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Ликвидированные недоделки | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-8"></a>
-### И_1_13_07_06б — Акт передачи смонтированного оборудования для производства пусконаладочных работ
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_06б.docx](../app/templates/И%201.13-07/И_1_13_07_06б.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_06б.fields.json](../app/forms/И%201.13-07/И_1_13_07_06б.fields.json).
-
-SHA-256 рабочего DOCX: `6dc85f7148391f404840bb65b8d024999bec46caaa40cba3a78ef317eea10c90`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/06б - Акт передачи смонтированного оборудования для производства пусконаладочных работ.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/06б%20-%20Акт%20передачи%20смонтированного%20оборудования%20для%20производства%20пусконаладочных%20работ.docx). SHA-256: `e65f7d55e40de33c376e905fa2950a56f7407d641d9f2c29b765ccf0b25f5f36`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль commissioner; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Выполненные работы, характеристики и физические объёмы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t5_r0_c3` | Сдали / ФИО | reference; required=true | signatories.installer.fio ← signatories.fio | DOCX; word/document.xml |
-| `t5_r0_c8` | Сдали / Приняли / ФИО | reference; required=true | signatories.commissioner.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-9"></a>
-### И_1_13_07_07 — Акт о приёмке и монтаже силового трансформатора
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_07.docx](../app/templates/И%201.13-07/И_1_13_07_07.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_07.fields.json](../app/forms/И%201.13-07/И_1_13_07_07.fields.json).
-
-SHA-256 рабочего DOCX: `68d67932fc568a89fbffbde143ab96cad8e7d14f351090cb3f31f986025526c0`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/07 - Акт о приёмке и монтаже силового трансформатора.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/07%20-%20Акт%20о%20приёмке%20и%20монтаже%20силового%20трансформатора.docx). SHA-256: `4d9a5d4d3ed8020b71fc9dcce5180aeb777ae71ff9e410d8db920c4646bd9d78`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_t7_r4` | Дата акта приёмки строительной части | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c1` | Мощность | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | Мощность кВА, ВН | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r1_c1` | СН | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r1_c3` | СН кВ, НН | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c1` | Завод-изготовитель | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c3` | Завод-изготовитель , тип | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c1` | заводской номер | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c3` | заводской номер , дата выпуска | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r2_c1` | дата прибытия на площадку | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c1` | от предприятия заказчика (должность, фамилия, и.о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r2_c1` | от электромонтажной организации (должность, фамилия, и.о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r1_c1` | трансформатор по перечню ГОСТ Р 52719-2007 (п. 6.8.2) (есть, нет) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c1` | Отсутствуют документы (наименование документов) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r5_c2` | б) трансформатор (укомплектован, не полностью укомплектован | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r7_c0` | 1. Комплектность | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r9_c0` | 1. Комплектность | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r11_c1` | К трансформатору не поставлены: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c0` | Результаты внешнего осмотра трансформатора | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c0` | (отсутствие течи масла из бака трансформатора и узлов, заполненных маслом) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r1_c1` | пути и др.) выполнена согласно проекта № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c0` | (приняты, не приняты) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r4_c1` | монтажной организацией по акту № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c1` | Не закончено строительством (перечислить неоконченные работы) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r2_c0` | Акт о приёмке и монтаже силового трансформатора | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r0_c0` | (наименование стандарта, ТУ, пробивное напряжение) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r2_c1` | всего требуется масла (с учётом расхода на технологические нужды) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r0_c1` | имеется в трансформаторе | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r1_c1` | недостающее количество масла | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r2_c1` | будет поставлено заказчиком (дата) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r2_c2` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t11_r0_c0` | Заключение о пригодности к монтажу | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t12_r4_c1` | Материально ответственное лицо | signatory; required=true | Роль material_custodian; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-10"></a>
-### И_1_13_07_09 — Протокол осмотра и проверки технической готовности ЭМР по АБ
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_09.docx](../app/templates/И%201.13-07/И_1_13_07_09.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_09.fields.json](../app/forms/И%201.13-07/И_1_13_07_09.fields.json).
-
-SHA-256 рабочего DOCX: `251911dd30170dc8a90bb7efd67f98d4c69fcba32ca1f3b792d5d2022601fe09`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/09 - Протокол осмотра и проверки технической готовности ЭМР по АБ.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/09%20-%20Протокол%20осмотра%20и%20проверки%20технической%20готовности%20ЭМР%20по%20АБ.docx). SHA-256: `30ed6966c7c071fc2c9e30ba7beecc2e1ce416eb5d64907d5636f498ae8a8641`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c2` | 1. Аккумуляторная батарея | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c4` | 1. Аккумуляторная батарея ёмкость | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r1_c1` | напряжение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r1_c3` | напряжение В, количество элементов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c1` | с проектом | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c2` | с проектом (наименование проектной организации, | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c0` | ЭЛЕКТРОМОНТАЖНЫХ РАБОТ ПО АККУМУЛЯТОРНОЙ БАТАРЕЕ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c3` | Осмотр и проверку произвел / (ФИО) | reference; required=true | signatories.inspector.fio ← signatories.fio | DOCX; word/document.xml |
-| `t2_r2_c3` | Производитель работ (мастер) / (ФИО) | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-11"></a>
-### И_1_13_07_10 — Ведомость замеров при контрольном разряде аккумуляторной батареи
-
-Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_10.docx](../app/templates/И%201.13-07/И_1_13_07_10.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_10.fields.json](../app/forms/И%201.13-07/И_1_13_07_10.fields.json).
-
-SHA-256 рабочего DOCX: `8e9c994bdc781ad7603c99873c02eb6f43b54d8dfa5cde4a873813e6221f2907`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/10 - Ведомость замеров при контрольном разряде аккумуляторной батареи.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/10%20-%20Ведомость%20замеров%20при%20контрольном%20разряде%20аккумуляторной%20батареи.docx). SHA-256: `a27e9fcc445880806679fcfc479a5854b9f566829627919a03fda1b3defed91e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_2` | Номер элемента / Напряжение, В заряжен / Плотность, г/см³ заряжен / Напряжение, В разряжен / Плотность, г/см³ Разряжен / Напряжение В / Плотность, г/см³ | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_2.c1` | Номер элемента | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2.c2` | Напряжение, В заряжен | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2.c3` | Плотность, г/см³ заряжен | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2.c4` | Напряжение, В разряжен | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2.c5` | Плотность, г/см³ Разряжен | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2.c6` | Напряжение В | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2.c7` | Плотность, г/см³ | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t1_r0_c0` | (тип аккумулятора) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c2` | , ёмкость | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c4` | , ёмкость А.ч, напряжение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c1` | количество элементов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r3_c1` | Сопротивление изоляции аккумуляторов, замеренное по методике ПУЭ-7 п.1.8.38-1, | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c1` | Температура помещения | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c3` | Температура помещения °С, температура электролита | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c1` | Разряд производится | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | Ёмкость аккумуляторной батареи (по разряду) составляет | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c1` | отстающих элементов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c3` | отстающих элементов шт., номера отстающих элементов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `measured_by` | Замеры выполнил | reference; required=true | signatories.inspector.fio ← signatories.fio | DOCX; word/document.xml |
-| `foreman` | Производитель работ | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-12"></a>
-### И_1_13_07_11 — Акт осмотра канализации из труб перед закрытием
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_11.docx](../app/templates/И%201.13-07/И_1_13_07_11.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_11.fields.json](../app/forms/И%201.13-07/И_1_13_07_11.fields.json).
-
-SHA-256 рабочего DOCX: `a066137f59759cd77379384a3dd1795f08702e8dd0bb13e98e739bb58a1bed84`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/11 - Акт осмотра канализации из труб перед закрытием.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/11%20-%20Акт%20осмотра%20канализации%20из%20труб%20перед%20закрытием.docx). SHA-256: `1b2f625cfb9ef69f85e697fec77b0ded60a6907584ce5a370c897a0b9c555491`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c0` | (должность, фамилия, и.о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и.о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r2_c1` | произвела осмотр (материал) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r4_c0` | (место укладки) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c2` | 1. Прокладка труб произведена по чертежам № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c0` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t4_r0_c0` | (при наличии отклонения указывается кем согласованы, № чертежа и дата согласования) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r2_c2` | 3. Соединения труб выполнены | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c1` | металлических труб обеспечен (чем) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-13"></a>
-### И_1_13_07_12 — Протокол испытаний давлением
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_12.docx](../app/templates/И%201.13-07/И_1_13_07_12.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_12.fields.json](../app/forms/И%201.13-07/И_1_13_07_12.fields.json).
-
-SHA-256 рабочего DOCX: `241e9125cc80202f2ed44d84904dc33eda9704d145818c26d8eceaa083d6d86d`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/12 - Протокол испытаний давлением.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/12%20-%20Протокол%20испытаний%20давлением.docx). SHA-256: `12bb9d1a1e65d65627e84b4a2fa245f2728776503bcaf7822a4b0c67c94c6607`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_3` | Место установки или участок / Класс взрыво-опасной зоны / Фактическое давление, кПа / Падение давления при испытаниях, кПа / Продолжительность испытания, мин / Примечание | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_3.c1` | Место установки или участок | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c2` | Класс взрыво-опасной зоны | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c3` | Фактическое давление, кПа | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c4` | Падение давления при испытаниях, кПа | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c5` | Продолжительность испытания, мин | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c6` | Примечание | reference; required=false | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t1_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c1` | Испытательное давление измерено манометром, заводской номер | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c1` | класс точности (не более четвёртого) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r4_c2` | класса | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-14"></a>
-### И_1_13_07_14а — Акт приёмки траншей, каналов, туннелей и блоков под монтаж кабелей
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_14а.docx](../app/templates/И%201.13-07/И_1_13_07_14а.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_14а.fields.json](../app/forms/И%201.13-07/И_1_13_07_14а.fields.json).
-
-SHA-256 рабочего DOCX: `08ae0419c6b014bda2f668efadb800b1a1a2d1e2b6969e04a522eb87ea601e03`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/14а - Акт приёмки траншей, каналов, туннелей и блоков под монтаж кабелей.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/14а%20-%20Акт%20приёмки%20траншей,%20каналов,%20туннелей%20и%20блоков%20под%20монтаж%20кабелей.docx). SHA-256: `8a007b347126536cc59fbfb58cea1dcb0dfd2b419555da2d6cd7fe421eedf1f1`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль general_contractor; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c1` | Генподрядчик | reference; required=true | organizations.general_contractor.full_name (роль general_contractor; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t5_r0_c0` | (траншеи, каналы, туннели, блоки кабельной канализации) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c0` | (наименование организации, № чертежей рабочей документации) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c0` | (перечислить) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c1` | согласованы (наименование проектной организации) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r4_c1` | 4. Разбивка трассы траншеи (каналов, туннелей) (выполнена, не выполнена) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r7_c1` | выполнена из | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r7_c3` | выполнена из толщиной слоя | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r8_c1` | трубах (материал) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r10_c1` | глубине | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r10_c3` | глубине мм, соединение и окраска труб (способ выполнения) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c0` | Обрамление и перекрытия кабельных каналов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r0_c1` | 9. Особые замечания | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r1_c0` | 8. Дренаж выполнен по проекту. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-15"></a>
-### И_1_13_07_15 — Протокол осмотра и проверки сопротивления изоляции кабелей на барабане перед прокладкой
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_15.docx](../app/templates/И%201.13-07/И_1_13_07_15.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_15.fields.json](../app/forms/И%201.13-07/И_1_13_07_15.fields.json).
-
-SHA-256 рабочего DOCX: `55ff6ff9be26def96f40fcd8ff8a53ab4210856786843e560c748fa66b450daf`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/15 - Протокол осмотра и проверки сопротивления изоляции кабелей на барабане перед прокладкой.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/15%20-%20Протокол%20осмотра%20и%20проверки%20сопротивления%20изоляции%20кабелей%20на%20барабане%20перед%20прокладкой.docx). SHA-256: `c77e5dc97e266f73a9c19fd4f516e6064ccba1cec77ab177751a516649b83a44`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_1` | Номер барабана / Марка кабеля, сечение, мм², напряжение, кВ / Длина кабеля, м / Завод-изготовитель / Дата выпуска / Состояние / барабана и обшивки / Состояние / наружных витков / Состояние / герметизиру-ющих заделок / Сопротивление изоляции, МОм / Заключение | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_1.c1` | Номер барабана | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c2` | Марка кабеля, сечение, мм², напряжение, кВ | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c3` | Длина кабеля, м | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c4` | Завод-изготовитель | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c5` | Дата выпуска | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c6` | Состояние / барабана и обшивки | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c7` | Состояние / наружных витков | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c8` | Состояние / герметизиру-ющих заделок | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c9` | Сопротивление изоляции, МОм | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c10` | Заключение | reference; required=true | item.c10 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t2_r0_c1` | Сопротивление изоляции замерено мегаомметром на напряжение 2500 В типа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c1` | заводской № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c3` | произвел / (ФИО) | reference; required=true | signatories.inspector.fio ← signatories.fio | DOCX; word/document.xml |
-| `t3_r1_c9` | произвел / / (мастер) / (ФИО) | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
-| `t4_r0_c3` | Представитель заказчика / (ФИО) | reference; required=true | signatories.customer.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-16"></a>
-### И_1_13_07_16 — Протокол прогрева кабелей на барабане перед прокладкой при низких температурах
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_16.docx](../app/templates/И%201.13-07/И_1_13_07_16.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_16.fields.json](../app/forms/И%201.13-07/И_1_13_07_16.fields.json).
-
-SHA-256 рабочего DOCX: `eed27f23f6b041e65ac30cc127d7a9ac6830cb3f6f0ada8d060e98092e04061f`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/16 - Протокол прогрева кабелей на барабане перед прокладкой при низких температурах.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/16%20-%20Протокол%20прогрева%20кабелей%20на%20барабане%20перед%20прокладкой%20при%20низких%20температурах.docx). SHA-256: `19172c89f6ee4f8f509dde972d3dcb668b19bbd4f6e81063e25f09c9a6157c70`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_1` | Номер барабана / Марка кабеля, сечение, мм², напряжение, кВ / Длина кабеля, м / Прогрев кабелей внутри обогреваемых помещений / температура в помещении, °С / Прогрев кабелей внутри обогреваемых помещений / продолжительность прогрева, ч / Прогрев кабелей электрическим током, А / температура внешних витков кабеля при температуре наружного воздуха / -10°С / Прогрев кабелей электрическим током, А / температура внешних витков кабеля при температуре наружного воздуха / ниже -10°С | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_1.c1` | Номер барабана | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c2` | Марка кабеля, сечение, мм², напряжение, кВ | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c3` | Длина кабеля, м | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c4` | Прогрев кабелей внутри обогреваемых помещений / температура в помещении, °С | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c5` | Прогрев кабелей внутри обогреваемых помещений / продолжительность прогрева, ч | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c6` | Прогрев кабелей электрическим током, А / температура внешних витков кабеля при температуре наружного воздуха / -10°С | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c7` | Прогрев кабелей электрическим током, А / температура внешних витков кабеля при температуре наружного воздуха / ниже -10°С | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `heated_by` | Прогрев произвёл | reference; required=true | signatories.worker.fio ← signatories.fio | DOCX; word/document.xml |
-| `foreman` | Производитель работ | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-17"></a>
-### И_1_13_07_17 — Акт осмотра кабельной канализации в траншеях и каналах перед закрытием
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_17.docx](../app/templates/И%201.13-07/И_1_13_07_17.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_17.fields.json](../app/forms/И%201.13-07/И_1_13_07_17.fields.json).
-
-SHA-256 рабочего DOCX: `735f6dc2f3566201582c6d171dec40a0cdbefecc5c18c1d93b01334da2328d9e`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/17 - Акт осмотра кабельной канализации в траншеях и каналах перед закрытием.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/17%20-%20Акт%20осмотра%20кабельной%20канализации%20в%20траншеях%20и%20каналах%20перед%20закрытием.docx). SHA-256: `da1c380bf8fb39770bc438def8517211b10b2ad2943a6903f5f548b06130c31e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль general_contractor; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r2_c1` | произвела осмотр кабельной канализации в (траншее, канале) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | (наименование проектной организации, № чертежей и кабельных журналов) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r2_c1` | 2. Отступления от проекта согласованы и нанесены на чертежи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | 4. На кабелях смонтировано (количество) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r3_c1` | 5. Произведена подсыпка кабельных линий слоем (материал подсыпки) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r6_c0` | (указать дополнительные места защиты кабелей при наличии) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r9_c1` | защищены (указать, чем защищены) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c0` | Другие особенности, отмеченные комиссией | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-18"></a>
 ### И_1_13_07_18 — Журнал прокладки кабелей
 
-Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_18.docx](../app/templates/И%201.13-07/И_1_13_07_18.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_18.fields.json](../app/forms/И%201.13-07/И_1_13_07_18.fields.json).
+Группа: `statement`. DOCX: [app/templates/И_1_13_07_18.docx](../app/templates/И_1_13_07_18.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_18.fields.json](../app/forms/И%201.13-07/И_1_13_07_18.fields.json).
 
 SHA-256 рабочего DOCX: `7e754410c1a6a12e2a2a103e06a6209693d542eda299f63629b52777b55a4e6e`.
 
@@ -5374,1095 +5039,10 @@ SHA-256 рабочего DOCX: `7e754410c1a6a12e2a2a103e06a6209693d542eda299f636
 | `rows_1.c9` | Фамилия и подпись ответст- венного за прокладку | reference; required=false | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `t2_r0_c3` | Производитель работ / (ФИО) | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
 
-<a id="form-19"></a>
-### И_1_13_07_19 — Журнал монтажа кабельных муфт напряжением выше 1000 В
-
-Группа: `statement`. DOCX: [app/templates/И 1.13-07/И_1_13_07_19.docx](../app/templates/И%201.13-07/И_1_13_07_19.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_19.fields.json](../app/forms/И%201.13-07/И_1_13_07_19.fields.json).
-
-SHA-256 рабочего DOCX: `3ab82cade9f949a8af34c4b0ca1e68ece4eee1a8bf7186eb946750236294cb3c`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/19 - Журнал монтажа кабельных муфт напряжением выше 1000 В.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/19%20-%20Журнал%20монтажа%20кабельных%20муфт%20напряжением%20выше%201000%20В.docx). SHA-256: `722c6d39813415cceb7e649dc93d2b201e0fc539f566e69a3560ff98441df330`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_1` | Кабель / Номер по кабельному журналу / Кабель / Марка, сечение, мм², напряжение, кВ / Муфта / Номер / Муфта / Тип, размер / Муфта / Дата монтажа / Фамилия и подпись исполнителя | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_1.c1` | Кабель / Номер по кабельному журналу | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c2` | Кабель / Марка, сечение, мм², напряжение, кВ | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c3` | Муфта / Номер | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c4` | Муфта / Тип, размер | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c5` | Муфта / Дата монтажа | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1.c6` | Фамилия и подпись исполнителя | reference; required=false | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t2_r0_c3` | Производитель работ (мастер) / (ФИО) | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-20"></a>
-### И_1_13_07_20 — Акт готовности монолитного бетонного фундамента под опору ВЛ
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_20.docx](../app/templates/И%201.13-07/И_1_13_07_20.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_20.fields.json](../app/forms/И%201.13-07/И_1_13_07_20.fields.json).
-
-SHA-256 рабочего DOCX: `fc1f0de1d8af7ac0da417a2f34a5f71fa703f0109a7449c08f625aac455b807a`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/20 - Акт готовности монолитного бетонного фундамента под опору ВЛ.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/20%20-%20Акт%20готовности%20монолитного%20бетонного%20фундамента%20под%20опору%20ВЛ.docx). SHA-256: `d120fde00b23ddc2c8ec43ce2d96793740d360f41a7768af33105f9a74600b2a`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c1` | ПОД ОПОРУ ВЛ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c1` | Опора № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c3` | Опора № , наименование опоры | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c5` | Опора № , наименование опоры , тип | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль builder; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r0_c2` | 1. Фундамент выполнен согласно проекту по чертежам | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r2_c2` | 2. Согласно предъявленным протоколам марка бетона составляет | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c0` | (материал покрытия, число слоев) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c2` | 3. Анкерные болты (закладные части) установлены по чертежам № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c2` | 5. Отступления от проекта (существо отступления) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r2_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t8_r4_c1` | Представитель проектировщика | signatory; required=true | Роль designer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t9_r0_c0` | (номера чертежей) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-21"></a>
-### И_1_13_07_21 — Акт готовности сборных железобетонных фундаментов под установку опор ВЛ
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_21.docx](../app/templates/И%201.13-07/И_1_13_07_21.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_21.fields.json](../app/forms/И%201.13-07/И_1_13_07_21.fields.json).
-
-SHA-256 рабочего DOCX: `4e29e29db9f5cc10c16f24d5c8d64674d25042bb868133ac7b494522737aec0b`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/21 - Акт готовности сборных железобетонных фундаментов под установку опор ВЛ.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/21%20-%20Акт%20готовности%20сборных%20железобетонных%20фундаментов%20под%20установку%20опор%20ВЛ.docx). SHA-256: `3ce46566f318bcf286eadfa70e1489403c67efeebff73afbd137f68872342fcb`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_t10_r1` | Дата повторного предъявления фундаментов | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_11` | Номер опоры / Наимено-вание и тип опоры / Тип фундам-мента / Завод-изгото-витель сборного ЖБ, паспорт, марка / № чертежа фунда-мента / Наличие гидро-изоляция, материал / Дата устрой-ства фунда-мента / Установка на опоры разре-шается, подпись произво-дителя работ / Приме-чание | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_11.c1` | Номер опоры | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c2` | Наимено-вание и тип опоры | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c3` | Тип фундам-мента | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c4` | Завод-изгото-витель сборного ЖБ, паспорт, марка | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c5` | № чертежа фунда-мента | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c6` | Наличие гидро-изоляция, материал | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c7` | Дата устрой-ства фунда-мента | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c8` | Установка на опоры разре-шается, подпись произво-дителя работ | reference; required=false | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_11.c9` | Приме-чание | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t1_r0_c1` | ФУНДАМЕНТОВ ПОД УСТАНОВКУ ОПОР ВЛ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль builder; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c0` | рассмотрела техническую документацию на сборные железобетонные фундаменты ВЛ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | 1. Предъявлено под установку опор ВЛ законченные устройством (число) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c1` | Из них под опоры: промежуточные (число) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c3` | Из них под опоры: промежуточные , анкерные (число) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c1` | угловые (число) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c3` | угловые , другие (число) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c0` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t8_r2_c1` | по чертежам (наименование и номера чертежей) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r0_c2` | 4. Отступления от проекта (существо отступления) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r2_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t9_r4_c1` | Представитель проектировщика | signatory; required=true | Роль designer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t9_r6_c2` | 5. Сборные железобетонные фундаменты для опор (номера опор) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r8_c1` | комиссией не приняты по причине (указать причину) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r0_c0` | Срок переделки (доработки) отбракованных фундаментов и повторного их предъявления | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-22"></a>
-### И_1_13_07_22 — Паспорт воздушной линии электропередачи
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_22.docx](../app/templates/И%201.13-07/И_1_13_07_22.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_22.fields.json](../app/forms/И%201.13-07/И_1_13_07_22.fields.json).
-
-SHA-256 рабочего DOCX: `45e890255faec2fd96f6d0c2ab9dd5895ac5b28364377115537be9eceecda2f5`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/22 - Паспорт воздушной линии электропередачи.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/22%20-%20Паспорт%20воздушной%20линии%20электропередачи.docx). SHA-256: `9c15813671dfb41bdb3091fcaad0d7138ba44805ed7960b0b393d8036c27c3bc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_3` | Номер опор и пролетов, на которых смонтированы соединения / Тип соединительного напряженного зажима / Способ монтажа соединения / Исполнитель / Фамилия, И.О. / Исполнитель / Подпись | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_3.c1` | Номер опор и пролетов, на которых смонтированы соединения | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c2` | Тип соединительного напряженного зажима | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c3` | Способ монтажа соединения | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c4` | Исполнитель / Фамилия, И.О. | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c5` | Исполнитель / Подпись | reference; required=false | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t1_r3_c0` | 1. Монтаж опор воздушной линии электропередачи | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c1` | Промежуточные / Установлено на ВЛ, шт. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c2` | Промежуточные / Тип опоры (номер чертежа для нетиповых) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c3` | Промежуточные / Материал опоры | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c4` | Промежуточные / Защитное покрытие дополнительно к заводскому (окраска, антисептик), к-во опор | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r5_c1` | Анкерные / Установлено на ВЛ, шт. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r5_c2` | Анкерные / Тип опоры (номер чертежа для нетиповых) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r5_c3` | Анкерные / Материал опоры | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r5_c4` | Анкерные / Защитное покрытие дополнительно к заводскому (окраска, антисептик), к-во опор | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r6_c1` | Угловые / Установлено на ВЛ, шт. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r6_c2` | Угловые / Тип опоры (номер чертежа для нетиповых) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r6_c3` | Угловые / Материал опоры | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r6_c4` | Угловые / Защитное покрытие дополнительно к заводскому (окраска, антисептик), к-во опор | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r7_c1` | Другие / Установлено на ВЛ, шт. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r7_c2` | Другие / Тип опоры (номер чертежа для нетиповых) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r7_c3` | Другие / Материал опоры | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r7_c4` | Другие / Защитное покрытие дополнительно к заводскому (окраска, антисептик), к-во опор | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r8_c1` | Всего: / Установлено на ВЛ, шт. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r8_c2` | Всего: / Тип опоры (номер чертежа для нетиповых) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r8_c3` | Всего: / Материал опоры | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r8_c4` | Всего: / Защитное покрытие дополнительно к заводскому (окраска, антисептик), к-во опор | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c1` | На ВЛ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c3` | На ВЛ кВ смонтирован провод марки | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c1` | сечением | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c3` | сечением мм², в общем количестве | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r2_c1` | марки | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r2_c3` | марки протяжённостью | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | На ВЛ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c2` | а) трубчатые разрядники типа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r2_c1` | на опорах (перечислить номера опор) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c2` | б) разъединители типа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c1` | на опорах (номера опор) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c1` | Монтаж заземляющих устройств опор ВЛ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c0` | Заключение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c3` | Производитель работ / (ФИО) | reference; required=true | signatories.foreman.fio ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-23"></a>
-### И_1_13_07_23 — Акт замеров в натуре габаритов от проводов ВЛ до пересекаемого объекта
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_23.docx](../app/templates/И%201.13-07/И_1_13_07_23.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_23.fields.json](../app/forms/И%201.13-07/И_1_13_07_23.fields.json).
-
-SHA-256 рабочего DOCX: `7c52f76dcafd35d62338eac658ecfb0e299a27039c10e6fe7cc52f4d7f5e9776`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/23 - Акт замеров в натуре габаритов от проводов ВЛ до пересекаемого объекта.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/23%20-%20Акт%20замеров%20в%20натуре%20габаритов%20от%20проводов%20ВЛ%20до%20пересекаемого%20объекта.docx). SHA-256: `ae32a29b2204a0145aa6937d66000074fee8830531e976b6ad7f373785eb7e21`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c1` | Мы, нижеподписавшиеся, произвели осмотр и измерения пересечения ВЛ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r1_c0` | (наименование ВЛ) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r3_c1` | с объектом (наименование объекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c2` | 1. Пересечение выполнено согласно чертежу | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c2` | 2. На пересекающей ВЛ смонтированы (число) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c4` | 2. На пересекающей ВЛ смонтированы проводов марки | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r3_c2` | 3. Ограничивающие объект пересечения опоры ВЛ № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r4_c1` | установлены на пикетах. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c1` | составляет | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c2` | 5. Расстояние от ближайшего провода ВЛ (до пересекаемого | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r4_c0` | Акт замеров в натуре габаритов от проводов ВЛ до пересекаемого объекта | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r6_c1` | составляет | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r7_c2` | 6. Измерения выполнялись при температуре окружающей среды | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | Представитель владельца пересекаемого объекта | signatory; required=true | Роль crossing_owner; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c1` | Представитель заказчика (должность фамилия, и, о, подпись) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r0_c1` | Представитель монтажной организации (должность фамилия, и, о, подпись) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-24"></a>
-### И_1_13_07_24 — Паспорт заземляющего устройства
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_24.docx](../app/templates/И%201.13-07/И_1_13_07_24.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_24.fields.json](../app/forms/И%201.13-07/И_1_13_07_24.fields.json).
-
-SHA-256 рабочего DOCX: `e4176a4d1673a7fe7f05c9ea9070e23937ef20e9d071167e827d641303e24d47`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/24 - Паспорт заземляющего устройства.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/24%20-%20Паспорт%20заземляющего%20устройства.docx). SHA-256: `b89ecb92e38b1f425a33a01fbc527c6dfc753d9d3172a9483bd8db4974af0497`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `division` | Подразделение | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `site` | Участок | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `day` | Дата подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | Дата подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | Дата подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_3` | № п.п. / Элемент заземляющих устройств / Параметры элементов заземляющего устройства / материал / Параметры элементов заземляющего устройства / профиль / Параметры элементов заземляющего устройства / размеры, мм / Параметры элементов заземляющего устройства / кол-во, шт. / Параметры элементов заземляющего устройства / глубина заложения, м / Примечание | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_3.c1` | № п.п. | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c2` | Элемент заземляющих устройств | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c3` | Параметры элементов заземляющего устройства / материал | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c4` | Параметры элементов заземляющего устройства / профиль | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c5` | Параметры элементов заземляющего устройства / размеры, мм | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c6` | Параметры элементов заземляющего устройства / кол-во, шт. | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c7` | Параметры элементов заземляющего устройства / глубина заложения, м | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3.c8` | Примечание | reference; required=false | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t1_r1_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль installer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r4_c0` | (должность, фамилия, и., о.) | signatory; required=true | Роль customer; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (название) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r2_c1` | разработанным (проектная организация) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r4_c1` | по чертежам (номер) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r6_c1` | 2. Отступления от проекта | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r7_c0` | 1. Заземляющее устройство выполнено в соответствии с проектом | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r8_c1` | Согласование отступлений: организация, представитель и дата | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r10_c1` | и внесены в чертежи (номер) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Характер соединений элементов заземления | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | 5. Выделены дефекты | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c0` | Паспорт заземляющего устройства | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-25"></a>
-### И_1_13_07_25 — Обложка к комплекту технической документации по сдаче-приёмке электромонтажных работ
-
-Группа: `act`. DOCX: [app/templates/И 1.13-07/И_1_13_07_25.docx](../app/templates/И%201.13-07/И_1_13_07_25.docx). Определения: [app/forms/И 1.13-07/И_1_13_07_25.fields.json](../app/forms/И%201.13-07/И_1_13_07_25.fields.json).
-
-SHA-256 рабочего DOCX: `2717b1d1433b026d1ec3dc16f8ffdf12613960b983543341ac1c8a3c44121be2`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/И 1.13-07/25 - Обложка к комплекту технической документации по сдаче-приёмке электромонтажных работ.docx](../misc/downloads/Исходные%20формы%20документов/И%201.13-07/25%20-%20Обложка%20к%20комплекту%20технической%20документации%20по%20сдаче-приёмке%20электромонтажных%20работ.docx). SHA-256: `600f5a08496b83e477e2043a6e5246421e51f397c9c5d37b1010d9bd220f6371`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `installer_org` | Электромонтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r2_c0` | (Подразделение) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `object_name` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `customer_org` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `year` | Год комплекта | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-26"></a>
-### МИНСТРОЙ_344_АОГРО — Акт освидетельствования геодезической разбивочной основы
-
-Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОГРО.docx](../app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОГРО.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОГРО.fields.json](../app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОГРО.fields.json).
-
-SHA-256 рабочего DOCX: `dc091a89447ebebd75fcc7ff072c040fd7ffd83ebf2491d18a7950a0fe258c4c`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АОГРО.docx](../misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АОГРО.docx). SHA-256: `3064f6446103057e134362a3abda60a10db9576c9fc5e7be4861ae718c023f3b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `object_name` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `object_address` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `customer_name` | customer: наименование | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_ogrn` | customer: ОГРН | reference; required=false | organizations.customer.ogrn (роль customer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `customer_inn` | customer: ИНН | reference; required=false | organizations.customer.inn (роль customer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `customer_address` | customer: адрес | reference; required=false | organizations.customer.address (роль customer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `customer_phone` | customer: телефон | reference; required=false | organizations.customer.phone (роль customer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `customer_sro` | customer: сведения СРО | reference; required=false | organizations.customer.sro_info (роль customer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `customer_individual` | Индивидуальные реквизиты физического лица/ИП при необходимости | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `builder_org_name` | builder_org: наименование | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `builder_org_ogrn` | builder_org: ОГРН | reference; required=false | organizations.builder.ogrn (роль builder; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `builder_org_inn` | builder_org: ИНН | reference; required=false | organizations.builder.inn (роль builder; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `builder_org_address` | builder_org: адрес | reference; required=false | organizations.builder.address (роль builder; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `builder_org_phone` | builder_org: телефон | reference; required=false | organizations.builder.phone (роль builder; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `builder_org_sro` | builder_org: сведения СРО | reference; required=false | organizations.builder.sro_info (роль builder; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `designer_org_name` | designer_org: наименование | reference; required=false | organizations.designer.full_name (роль designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `designer_org_ogrn` | designer_org: ОГРН | reference; required=false | organizations.designer.ogrn (роль designer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_org_inn` | designer_org: ИНН | reference; required=false | organizations.designer.inn (роль designer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `designer_org_address` | designer_org: адрес | reference; required=false | organizations.designer.address (роль designer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `designer_org_phone` | designer_org: телефон | reference; required=false | organizations.designer.phone (роль designer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `designer_org_sro` | designer_org: сведения СРО | reference; required=false | organizations.designer.sro_info (роль designer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `act_num` | Номер акта | reference; required=true | act.act_num ← acts.act_num | DOCX; word/document.xml |
-| `signed_day` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_month` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_year` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `customer_control_details` | Строительный контроль застройщика/заказчика | signatory; required=true | Роль customer_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `customer_control_nrs` | Строительный контроль застройщика/заказчика: номер НРС | reference; required=false | signatories.customer_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `control_org_name` | control_org: наименование | reference; required=false | signatories.customer_control.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `control_org_ogrn` | control_org: ОГРН | reference; required=false | signatories.customer_control.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `control_org_inn` | control_org: ИНН | reference; required=false | signatories.customer_control.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `control_org_address` | control_org: адрес | reference; required=false | signatories.customer_control.organization.address ← organizations.address | DOCX; word/document.xml |
-| `control_org_phone` | control_org: телефон | reference; required=false | signatories.customer_control.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `builder_details` | Лицо, осуществляющее строительство | signatory; required=true | Роль builder; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_details` | Строительный контроль лица, осуществляющего строительство | signatory; required=true | Роль builder_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_nrs` | Строительный контроль лица, осуществляющего строительство: номер НРС | reference; required=false | signatories.builder_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `designer_details` | Представитель проектировщика | signatory; required=false | Роль designer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `designer_employer_name` | designer_employer: наименование | reference; required=false | signatories.designer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `designer_employer_ogrn` | designer_employer: ОГРН | reference; required=false | signatories.designer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_employer_inn` | designer_employer: ИНН | reference; required=false | signatories.designer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `designer_employer_address` | designer_employer: адрес | reference; required=false | signatories.designer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `designer_employer_phone` | designer_employer: телефон | reference; required=false | signatories.designer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `work_performer_details` | Представитель фактического исполнителя работ | signatory; required=false | Роль work_performer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `work_performer_employer_name` | work_performer_employer: наименование | reference; required=false | signatories.work_performer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `work_performer_employer_ogrn` | work_performer_employer: ОГРН | reference; required=false | signatories.work_performer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `work_performer_employer_inn` | work_performer_employer: ИНН | reference; required=false | signatories.work_performer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `work_performer_employer_address` | work_performer_employer: адрес | reference; required=false | signatories.work_performer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `work_performer_employer_phone` | work_performer_employer: телефон | reference; required=false | signatories.work_performer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `examined_object` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `design_compliance` | Чертежи, проектировщик, регламенты и нормативные акты | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `additional_info` | Дополнительные сведения | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `copies_count` | Количество экземпляров | literal; required=false; value_type=number | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `attachments` | Приложения: чертежи, схемы, ведомости | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `customer_control_signature` | Строительный контроль застройщика/заказчика: подпись/ФИО | signatory; required=true | Роль customer_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_signature` | Лицо, осуществляющее строительство: подпись/ФИО | signatory; required=true | Роль builder; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_control_signature` | Строительный контроль лица, осуществляющего строительство: подпись/ФИО | signatory; required=true | Роль builder_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `designer_signature` | Представитель проектировщика: подпись/ФИО | signatory; required=false | Роль designer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `work_performer_signature` | Представитель фактического исполнителя работ: подпись/ФИО | signatory; required=false | Роль work_performer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-
-<a id="form-27"></a>
-### МИНСТРОЙ_344_АООК — Акт освидетельствования ответственных конструкций
-
-Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АООК.docx](../app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АООК.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АООК.fields.json](../app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АООК.fields.json).
-
-SHA-256 рабочего DOCX: `c1336cfc92a8fd72165c49293ca02d80a138605ef6cd300224143e6ec9f883b8`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АООК.docx](../misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АООК.docx). SHA-256: `9be387e2c63c9a4b721dae07aecd7534015f85e10d4e81c3c73bcdf484365a94`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `object_name` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `object_address` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `customer_name` | customer: наименование | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_ogrn` | customer: ОГРН | reference; required=false | organizations.customer.ogrn (роль customer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `customer_inn` | customer: ИНН | reference; required=false | organizations.customer.inn (роль customer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `customer_address` | customer: адрес | reference; required=false | organizations.customer.address (роль customer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `customer_phone` | customer: телефон | reference; required=false | organizations.customer.phone (роль customer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `customer_sro` | customer: сведения СРО | reference; required=false | organizations.customer.sro_info (роль customer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `customer_individual` | Индивидуальные реквизиты физического лица/ИП при необходимости | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `builder_org_name` | builder_org: наименование | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `builder_org_ogrn` | builder_org: ОГРН | reference; required=false | organizations.builder.ogrn (роль builder; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `builder_org_inn` | builder_org: ИНН | reference; required=false | organizations.builder.inn (роль builder; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `builder_org_address` | builder_org: адрес | reference; required=false | organizations.builder.address (роль builder; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `builder_org_phone` | builder_org: телефон | reference; required=false | organizations.builder.phone (роль builder; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `builder_org_sro` | builder_org: сведения СРО | reference; required=false | organizations.builder.sro_info (роль builder; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `designer_org_name` | designer_org: наименование | reference; required=false | organizations.designer.full_name (роль designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `designer_org_ogrn` | designer_org: ОГРН | reference; required=false | organizations.designer.ogrn (роль designer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_org_inn` | designer_org: ИНН | reference; required=false | organizations.designer.inn (роль designer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `designer_org_address` | designer_org: адрес | reference; required=false | organizations.designer.address (роль designer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `designer_org_phone` | designer_org: телефон | reference; required=false | organizations.designer.phone (роль designer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `designer_org_sro` | designer_org: сведения СРО | reference; required=false | organizations.designer.sro_info (роль designer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `act_num` | Номер акта | reference; required=true | act.act_num ← acts.act_num | DOCX; word/document.xml |
-| `signed_day` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_month` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_year` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `customer_control_details` | Строительный контроль застройщика/заказчика | signatory; required=true | Роль customer_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `customer_control_nrs` | Строительный контроль застройщика/заказчика: номер НРС | reference; required=false | signatories.customer_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `control_org_name` | control_org: наименование | reference; required=false | signatories.customer_control.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `control_org_ogrn` | control_org: ОГРН | reference; required=false | signatories.customer_control.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `control_org_inn` | control_org: ИНН | reference; required=false | signatories.customer_control.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `control_org_address` | control_org: адрес | reference; required=false | signatories.customer_control.organization.address ← organizations.address | DOCX; word/document.xml |
-| `control_org_phone` | control_org: телефон | reference; required=false | signatories.customer_control.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `builder_details` | Лицо, осуществляющее строительство | signatory; required=true | Роль builder; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_details` | Строительный контроль лица, осуществляющего строительство | signatory; required=true | Роль builder_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_nrs` | Строительный контроль лица, осуществляющего строительство: номер НРС | reference; required=false | signatories.builder_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `designer_details` | Представитель проектировщика | signatory; required=false | Роль designer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `designer_employer_name` | designer_employer: наименование | reference; required=false | signatories.designer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `designer_employer_ogrn` | designer_employer: ОГРН | reference; required=false | signatories.designer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_employer_inn` | designer_employer: ИНН | reference; required=false | signatories.designer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `designer_employer_address` | designer_employer: адрес | reference; required=false | signatories.designer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `designer_employer_phone` | designer_employer: телефон | reference; required=false | signatories.designer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `work_performer_details` | Представитель фактического исполнителя работ | signatory; required=false | Роль work_performer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `work_performer_employer_name` | work_performer_employer: наименование | reference; required=false | signatories.work_performer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `work_performer_employer_ogrn` | work_performer_employer: ОГРН | reference; required=false | signatories.work_performer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `work_performer_employer_inn` | work_performer_employer: ИНН | reference; required=false | signatories.work_performer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `work_performer_employer_address` | work_performer_employer: адрес | reference; required=false | signatories.work_performer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `work_performer_employer_phone` | work_performer_employer: телефон | reference; required=false | signatories.work_performer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `actual_performer` | Фактический исполнитель работ/конструкций | reference; required=true | organizations.work_performer.full_name (роль work_performer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `construction_description` | Перечень и характеристика конструкций | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `design_documents` | Рабочая документация и проектировщик | reference; required=true | project_documentation.description (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.code, projects.designer_org_id | DOCX; word/document.xml |
-| `hidden_works_acts` | Скрытые работы, даты и номера актов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `materials_quality` | Применённые материалы и документы качества | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `geodetic_schemes` | Исполнительные геодезические схемы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `control_results` | Экспертизы, обследования и испытания | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `test_reports` | Документы проведённых испытаний и опробований | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `compliance_basis` | Технические регламенты и разделы документации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `decision` | Решение по пункту 9: выбранные подпункты, нагрузка, условия и последующие работы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `additional_info` | Дополнительные сведения | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `copies_count` | Количество экземпляров | literal; required=false; value_type=number | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `attachments` | Приложения | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `work_start` | Индивидуальная дата начала работ | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `work_end` | Индивидуальная дата окончания работ | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `customer_control_signature` | Строительный контроль застройщика/заказчика: подпись/ФИО | signatory; required=true | Роль customer_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_signature` | Лицо, осуществляющее строительство: подпись/ФИО | signatory; required=true | Роль builder; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_control_signature` | Строительный контроль лица, осуществляющего строительство: подпись/ФИО | signatory; required=true | Роль builder_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `designer_signature` | Представитель проектировщика: подпись/ФИО | signatory; required=false | Роль designer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `work_performer_signature` | Представитель фактического исполнителя работ: подпись/ФИО | signatory; required=false | Роль work_performer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-
-<a id="form-28"></a>
-### МИНСТРОЙ_344_АОСР — Акт освидетельствования скрытых работ
-
-Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОСР.docx](../app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОСР.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОСР.fields.json](../app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОСР.fields.json).
-
-SHA-256 рабочего DOCX: `862d9d36b5b989caa67778a250201259855142e337dd81f44a8eafdc2fbaec20`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АОСР.docx](../misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АОСР.docx). SHA-256: `2d95d1b37a821f0013c57dd0bb1bcacea23ae738e79b1ec8ec3c2a9ffcd9e30a`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `object_name` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `object_address` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `customer_name` | customer: наименование | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_ogrn` | customer: ОГРН | reference; required=false | organizations.customer.ogrn (роль customer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `customer_inn` | customer: ИНН | reference; required=false | organizations.customer.inn (роль customer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `customer_address` | customer: адрес | reference; required=false | organizations.customer.address (роль customer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `customer_phone` | customer: телефон | reference; required=false | organizations.customer.phone (роль customer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `customer_sro` | customer: сведения СРО | reference; required=false | organizations.customer.sro_info (роль customer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `customer_individual` | Индивидуальные реквизиты физического лица/ИП при необходимости | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `builder_org_name` | builder_org: наименование | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `builder_org_ogrn` | builder_org: ОГРН | reference; required=false | organizations.builder.ogrn (роль builder; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `builder_org_inn` | builder_org: ИНН | reference; required=false | organizations.builder.inn (роль builder; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `builder_org_address` | builder_org: адрес | reference; required=false | organizations.builder.address (роль builder; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `builder_org_phone` | builder_org: телефон | reference; required=false | organizations.builder.phone (роль builder; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `builder_org_sro` | builder_org: сведения СРО | reference; required=false | organizations.builder.sro_info (роль builder; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `designer_org_name` | designer_org: наименование | reference; required=false | organizations.designer.full_name (роль designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `designer_org_ogrn` | designer_org: ОГРН | reference; required=false | organizations.designer.ogrn (роль designer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_org_inn` | designer_org: ИНН | reference; required=false | organizations.designer.inn (роль designer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `designer_org_address` | designer_org: адрес | reference; required=false | organizations.designer.address (роль designer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `designer_org_phone` | designer_org: телефон | reference; required=false | organizations.designer.phone (роль designer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `designer_org_sro` | designer_org: сведения СРО | reference; required=false | organizations.designer.sro_info (роль designer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `act_num` | Номер акта | reference; required=true | act.act_num ← acts.act_num | DOCX; word/document.xml |
-| `signed_day` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_month` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_year` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `customer_control_details` | Строительный контроль застройщика/заказчика | signatory; required=true | Роль customer_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `customer_control_nrs` | Строительный контроль застройщика/заказчика: номер НРС | reference; required=false | signatories.customer_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `control_org_name` | control_org: наименование | reference; required=false | signatories.customer_control.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `control_org_ogrn` | control_org: ОГРН | reference; required=false | signatories.customer_control.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `control_org_inn` | control_org: ИНН | reference; required=false | signatories.customer_control.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `control_org_address` | control_org: адрес | reference; required=false | signatories.customer_control.organization.address ← organizations.address | DOCX; word/document.xml |
-| `control_org_phone` | control_org: телефон | reference; required=false | signatories.customer_control.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `builder_details` | Лицо, осуществляющее строительство | signatory; required=true | Роль builder; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_details` | Строительный контроль лица, осуществляющего строительство | signatory; required=true | Роль builder_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_nrs` | Строительный контроль лица, осуществляющего строительство: номер НРС | reference; required=false | signatories.builder_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `designer_details` | Представитель проектировщика | signatory; required=false | Роль designer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `designer_employer_name` | designer_employer: наименование | reference; required=false | signatories.designer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `designer_employer_ogrn` | designer_employer: ОГРН | reference; required=false | signatories.designer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_employer_inn` | designer_employer: ИНН | reference; required=false | signatories.designer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `designer_employer_address` | designer_employer: адрес | reference; required=false | signatories.designer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `designer_employer_phone` | designer_employer: телефон | reference; required=false | signatories.designer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `work_performer_details` | Представитель фактического исполнителя работ | signatory; required=false | Роль work_performer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `work_performer_employer_name` | work_performer_employer: наименование | reference; required=false | signatories.work_performer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `work_performer_employer_ogrn` | work_performer_employer: ОГРН | reference; required=false | signatories.work_performer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `work_performer_employer_inn` | work_performer_employer: ИНН | reference; required=false | signatories.work_performer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `work_performer_employer_address` | work_performer_employer: адрес | reference; required=false | signatories.work_performer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `work_performer_employer_phone` | work_performer_employer: телефон | reference; required=false | signatories.work_performer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `actual_performer` | Фактический исполнитель работ/конструкций | reference; required=true | organizations.work_performer.full_name (роль work_performer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `work_description` | Наименование скрытых работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `design_documents` | Рабочая документация и проектировщик | reference; required=true | project_documentation.description (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.code, projects.designer_org_id | DOCX; word/document.xml |
-| `materials_quality` | Применённые материалы и документы качества | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `compliance_documents` | Исполнительные схемы, экспертизы, обследования, испытания | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `compliance_basis` | Технические регламенты, нормативные акты и разделы документации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `subsequent_works` | Разрешённые последующие работы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `additional_info` | Дополнительные сведения | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `copies_count` | Количество экземпляров | literal; required=false; value_type=number | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `attachments` | Приложения | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `work_start` | Индивидуальная дата начала работ | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `work_end` | Индивидуальная дата окончания работ | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `customer_control_signature` | Строительный контроль застройщика/заказчика: подпись/ФИО | signatory; required=true | Роль customer_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_signature` | Лицо, осуществляющее строительство: подпись/ФИО | signatory; required=true | Роль builder; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_control_signature` | Строительный контроль лица, осуществляющего строительство: подпись/ФИО | signatory; required=true | Роль builder_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `designer_signature` | Представитель проектировщика: подпись/ФИО | signatory; required=false | Роль designer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `work_performer_signature` | Представитель фактического исполнителя работ: подпись/ФИО | signatory; required=false | Роль work_performer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-
-<a id="form-29"></a>
-### МИНСТРОЙ_344_АОУСИТО — Акт освидетельствования участков сетей инженерно-технического обеспечения
-
-Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОУСИТО.docx](../app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОУСИТО.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АОУСИТО.fields.json](../app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АОУСИТО.fields.json).
-
-SHA-256 рабочего DOCX: `84bcc0c688ac2fd4eb86edb76eb1ac1e9f6de6276ed0412032ef4f060004984b`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АОУСИТО.docx](../misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АОУСИТО.docx). SHA-256: `d069a91c9731df9a5b69bea9eef78823e094b0810d2b20ab23b4c7d97af7c632`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `object_name` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `object_address` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `customer_name` | customer: наименование | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_ogrn` | customer: ОГРН | reference; required=false | organizations.customer.ogrn (роль customer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `customer_inn` | customer: ИНН | reference; required=false | organizations.customer.inn (роль customer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `customer_address` | customer: адрес | reference; required=false | organizations.customer.address (роль customer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `customer_phone` | customer: телефон | reference; required=false | organizations.customer.phone (роль customer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `customer_sro` | customer: сведения СРО | reference; required=false | organizations.customer.sro_info (роль customer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `customer_individual` | Индивидуальные реквизиты физического лица/ИП при необходимости | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `builder_org_name` | builder_org: наименование | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `builder_org_ogrn` | builder_org: ОГРН | reference; required=false | organizations.builder.ogrn (роль builder; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `builder_org_inn` | builder_org: ИНН | reference; required=false | organizations.builder.inn (роль builder; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `builder_org_address` | builder_org: адрес | reference; required=false | organizations.builder.address (роль builder; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `builder_org_phone` | builder_org: телефон | reference; required=false | organizations.builder.phone (роль builder; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `builder_org_sro` | builder_org: сведения СРО | reference; required=false | organizations.builder.sro_info (роль builder; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `designer_org_name` | designer_org: наименование | reference; required=false | organizations.designer.full_name (роль designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `designer_org_ogrn` | designer_org: ОГРН | reference; required=false | organizations.designer.ogrn (роль designer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_org_inn` | designer_org: ИНН | reference; required=false | organizations.designer.inn (роль designer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `designer_org_address` | designer_org: адрес | reference; required=false | organizations.designer.address (роль designer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `designer_org_phone` | designer_org: телефон | reference; required=false | organizations.designer.phone (роль designer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `designer_org_sro` | designer_org: сведения СРО | reference; required=false | organizations.designer.sro_info (роль designer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `act_num` | Номер акта | reference; required=true | act.act_num ← acts.act_num | DOCX; word/document.xml |
-| `signed_day` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_month` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_year` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `customer_control_details` | Строительный контроль застройщика/заказчика | signatory; required=true | Роль customer_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `customer_control_nrs` | Строительный контроль застройщика/заказчика: номер НРС | reference; required=false | signatories.customer_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `control_org_name` | control_org: наименование | reference; required=false | signatories.customer_control.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `control_org_ogrn` | control_org: ОГРН | reference; required=false | signatories.customer_control.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `control_org_inn` | control_org: ИНН | reference; required=false | signatories.customer_control.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `control_org_address` | control_org: адрес | reference; required=false | signatories.customer_control.organization.address ← organizations.address | DOCX; word/document.xml |
-| `control_org_phone` | control_org: телефон | reference; required=false | signatories.customer_control.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `builder_details` | Лицо, осуществляющее строительство | signatory; required=true | Роль builder; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_details` | Строительный контроль лица, осуществляющего строительство | signatory; required=true | Роль builder_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_nrs` | Строительный контроль лица, осуществляющего строительство: номер НРС | reference; required=false | signatories.builder_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `designer_details` | Представитель проектировщика | signatory; required=false | Роль designer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `designer_employer_name` | designer_employer: наименование | reference; required=false | signatories.designer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `designer_employer_ogrn` | designer_employer: ОГРН | reference; required=false | signatories.designer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_employer_inn` | designer_employer: ИНН | reference; required=false | signatories.designer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `designer_employer_address` | designer_employer: адрес | reference; required=false | signatories.designer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `designer_employer_phone` | designer_employer: телефон | reference; required=false | signatories.designer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `work_performer_details` | Представитель фактического исполнителя работ | signatory; required=false | Роль work_performer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `work_performer_employer_name` | work_performer_employer: наименование | reference; required=false | signatories.work_performer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `work_performer_employer_ogrn` | work_performer_employer: ОГРН | reference; required=false | signatories.work_performer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `work_performer_employer_inn` | work_performer_employer: ИНН | reference; required=false | signatories.work_performer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `work_performer_employer_address` | work_performer_employer: адрес | reference; required=false | signatories.work_performer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `work_performer_employer_phone` | work_performer_employer: телефон | reference; required=false | signatories.work_performer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `network_operator_details` | Представитель эксплуатирующей организации | signatory; required=false | Роль network_operator; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `network_operator_employer_name` | network_operator_employer: наименование | reference; required=false | signatories.network_operator.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `network_operator_employer_ogrn` | network_operator_employer: ОГРН | reference; required=false | signatories.network_operator.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `network_operator_employer_inn` | network_operator_employer: ИНН | reference; required=false | signatories.network_operator.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `network_operator_employer_address` | network_operator_employer: адрес | reference; required=false | signatories.network_operator.organization.address ← organizations.address | DOCX; word/document.xml |
-| `network_operator_employer_phone` | network_operator_employer: телефон | reference; required=false | signatories.network_operator.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `network_sections` | Перечень и характеристика участков сетей | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `design_documents` | Рабочая документация и проектировщик | reference; required=true | project_documentation.description (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.code, projects.designer_org_id | DOCX; word/document.xml |
-| `connection_conditions` | Технические условия подключения: номер, дата, кем выданы, срок действия | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `hidden_works_acts` | Скрытые работы, даты и номера актов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `materials_quality` | Применённые материалы и документы качества | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `geodetic_schemes` | Исполнительные геодезические схемы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `control_results` | Экспертизы, обследования и испытания | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `technical_conditions` | Реквизиты предъявленных технических условий | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `test_reports` | Документы проведённых испытаний и опробований | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `compliance_basis` | Технические условия, регламенты, нормативные акты и разделы документации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `additional_info` | Дополнительные сведения | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `copies_count` | Количество экземпляров | literal; required=false; value_type=number | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `attachments` | Приложения | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `work_start` | Индивидуальная дата начала работ | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `work_end` | Индивидуальная дата окончания работ | literal; required=true; format=date_ru; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `customer_control_signature` | Строительный контроль застройщика/заказчика: подпись/ФИО | signatory; required=true | Роль customer_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_signature` | Лицо, осуществляющее строительство: подпись/ФИО | signatory; required=true | Роль builder; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_control_signature` | Строительный контроль лица, осуществляющего строительство: подпись/ФИО | signatory; required=true | Роль builder_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `designer_signature` | Представитель проектировщика: подпись/ФИО | signatory; required=false | Роль designer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `work_performer_signature` | Представитель фактического исполнителя работ: подпись/ФИО | signatory; required=false | Роль work_performer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `network_operator_signature` | Представитель эксплуатирующей организации: подпись/ФИО | signatory; required=false | Роль network_operator; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-
-<a id="form-30"></a>
-### МИНСТРОЙ_344_АРООКС — Акт разбивки осей объекта капитального строительства на местности
-
-Группа: `act`. DOCX: [app/templates/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АРООКС.docx](../app/templates/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АРООКС.docx). Определения: [app/forms/Приказ Минстроя №344_пр/МИНСТРОЙ_344_АРООКС.fields.json](../app/forms/Приказ%20Минстроя%20№344_пр/МИНСТРОЙ_344_АРООКС.fields.json).
-
-SHA-256 рабочего DOCX: `903422db55a31c6ac182ce2419778dc95b5db09f8ff36b2b7afa227ef6e8950f`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/Приказ Минстроя №344_пр/АРООКС.docx](../misc/downloads/Исходные%20формы%20документов/Приказ%20Минстроя%20№344_пр/АРООКС.docx). SHA-256: `55cdeabe2095133631e7ffba30f3ec730df16fc849f46ce2fe150e280c73dab3`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `object_name` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `object_address` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `customer_name` | customer: наименование | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `customer_ogrn` | customer: ОГРН | reference; required=false | organizations.customer.ogrn (роль customer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `customer_inn` | customer: ИНН | reference; required=false | organizations.customer.inn (роль customer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `customer_address` | customer: адрес | reference; required=false | organizations.customer.address (роль customer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `customer_phone` | customer: телефон | reference; required=false | organizations.customer.phone (роль customer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `customer_sro` | customer: сведения СРО | reference; required=false | organizations.customer.sro_info (роль customer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `customer_individual` | Индивидуальные реквизиты физического лица/ИП при необходимости | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `builder_org_name` | builder_org: наименование | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `builder_org_ogrn` | builder_org: ОГРН | reference; required=false | organizations.builder.ogrn (роль builder; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `builder_org_inn` | builder_org: ИНН | reference; required=false | organizations.builder.inn (роль builder; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `builder_org_address` | builder_org: адрес | reference; required=false | organizations.builder.address (роль builder; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `builder_org_phone` | builder_org: телефон | reference; required=false | organizations.builder.phone (роль builder; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `builder_org_sro` | builder_org: сведения СРО | reference; required=false | organizations.builder.sro_info (роль builder; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `designer_org_name` | designer_org: наименование | reference; required=false | organizations.designer.full_name (роль designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `designer_org_ogrn` | designer_org: ОГРН | reference; required=false | organizations.designer.ogrn (роль designer; назначение объекта → раздела → документа) ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_org_inn` | designer_org: ИНН | reference; required=false | organizations.designer.inn (роль designer; назначение объекта → раздела → документа) ← organizations.inn | DOCX; word/document.xml |
-| `designer_org_address` | designer_org: адрес | reference; required=false | organizations.designer.address (роль designer; назначение объекта → раздела → документа) ← organizations.address | DOCX; word/document.xml |
-| `designer_org_phone` | designer_org: телефон | reference; required=false | organizations.designer.phone (роль designer; назначение объекта → раздела → документа) ← organizations.phone | DOCX; word/document.xml |
-| `designer_org_sro` | designer_org: сведения СРО | reference; required=false | organizations.designer.sro_info (роль designer; назначение объекта → раздела → документа) ← organizations.sro_info | DOCX; word/document.xml |
-| `act_num` | Номер акта | reference; required=true | act.act_num ← acts.act_num | DOCX; word/document.xml |
-| `signed_day` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_month` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `signed_year` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `customer_control_details` | Строительный контроль застройщика/заказчика | signatory; required=true | Роль customer_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `customer_control_nrs` | Строительный контроль застройщика/заказчика: номер НРС | reference; required=false | signatories.customer_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `control_org_name` | control_org: наименование | reference; required=false | signatories.customer_control.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `control_org_ogrn` | control_org: ОГРН | reference; required=false | signatories.customer_control.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `control_org_inn` | control_org: ИНН | reference; required=false | signatories.customer_control.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `control_org_address` | control_org: адрес | reference; required=false | signatories.customer_control.organization.address ← organizations.address | DOCX; word/document.xml |
-| `control_org_phone` | control_org: телефон | reference; required=false | signatories.customer_control.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `builder_details` | Лицо, осуществляющее строительство | signatory; required=true | Роль builder; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_details` | Строительный контроль лица, осуществляющего строительство | signatory; required=true | Роль builder_control; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `builder_control_nrs` | Строительный контроль лица, осуществляющего строительство: номер НРС | reference; required=false | signatories.builder_control.nrs_id ← signatories.nrs_id | DOCX; word/document.xml |
-| `designer_details` | Представитель проектировщика | signatory; required=false | Роль designer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `designer_employer_name` | designer_employer: наименование | reference; required=false | signatories.designer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `designer_employer_ogrn` | designer_employer: ОГРН | reference; required=false | signatories.designer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `designer_employer_inn` | designer_employer: ИНН | reference; required=false | signatories.designer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `designer_employer_address` | designer_employer: адрес | reference; required=false | signatories.designer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `designer_employer_phone` | designer_employer: телефон | reference; required=false | signatories.designer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `work_performer_details` | Представитель фактического исполнителя работ | signatory; required=false | Роль work_performer; представление {signatory.position}, {signatory.fio_short}, {signatory.order_doc} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name, signatories.order_doc, signatories.position | DOCX; word/document.xml |
-| `work_performer_employer_name` | work_performer_employer: наименование | reference; required=false | signatories.work_performer.organization.full_name ← organizations.full_name | DOCX; word/document.xml |
-| `work_performer_employer_ogrn` | work_performer_employer: ОГРН | reference; required=false | signatories.work_performer.organization.ogrn ← organizations.ogrn | DOCX; word/document.xml |
-| `work_performer_employer_inn` | work_performer_employer: ИНН | reference; required=false | signatories.work_performer.organization.inn ← organizations.inn | DOCX; word/document.xml |
-| `work_performer_employer_address` | work_performer_employer: адрес | reference; required=false | signatories.work_performer.organization.address ← organizations.address | DOCX; word/document.xml |
-| `work_performer_employer_phone` | work_performer_employer: телефон | reference; required=false | signatories.work_performer.organization.phone ← organizations.phone | DOCX; word/document.xml |
-| `axes` | Оси, по которым произведена разбивка | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `examined_object` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `setting_out_basis` | Данные и чертежи, по которым выполнена разбивка | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `axes_fixing` | Способ закрепления осей | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `design_compliance` | Чертежи, проектная документация, регламенты и нормативные акты | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `additional_info` | Дополнительные сведения | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `copies_count` | Количество экземпляров | literal; required=false; value_type=number | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `attachments` | Приложения: чертежи, схемы, ведомости | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `customer_control_signature` | Строительный контроль застройщика/заказчика: подпись/ФИО | signatory; required=true | Роль customer_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_signature` | Лицо, осуществляющее строительство: подпись/ФИО | signatory; required=true | Роль builder; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `builder_control_signature` | Строительный контроль лица, осуществляющего строительство: подпись/ФИО | signatory; required=true | Роль builder_control; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `designer_signature` | Представитель проектировщика: подпись/ФИО | signatory; required=false | Роль designer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-| `work_performer_signature` | Представитель фактического исполнителя работ: подпись/ФИО | signatory; required=false | Роль work_performer; представление {signatory.fio_short} ← signatories.fio, signatories.first_name, signatories.last_name, signatories.middle_name | DOCX; word/document.xml |
-
-<a id="form-31"></a>
-### ТИТУЛЬНЫЙ_ЛИСТ — Титульный лист исполнительной документации и наклейки
-
-Группа: `act`. DOCX: [app/templates/Титульники/ТИТУЛЬНЫЙ_ЛИСТ.docx](../app/templates/Титульники/ТИТУЛЬНЫЙ_ЛИСТ.docx). Определения: [app/forms/ТИТУЛЬНЫЙ_ЛИСТ.fields.json](../app/forms/ТИТУЛЬНЫЙ_ЛИСТ.fields.json).
-
-SHA-256 рабочего DOCX: `9948a29ce7119e8300884a81d6c7508ce2d429ebd3b371461b9c59d32f602595`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/Титульники/template.docx](../misc/downloads/Исходные%20формы%20документов/Титульники/template.docx). SHA-256: `bfc4abe58bba5cfdb5a8e62ac19c8ccb2a0f327d9f3ebc3638cb32278a7e30fc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `object` | — | reference; required=true; value_type=text | object.name ← objects.name | DOCX; word/document.xml |
-| `project` | — | reference; required=true; value_type=text | project.name ← projects.name | DOCX; word/document.xml |
-| `cifr` | — | reference; required=true; value_type=text | project.code ← projects.code | DOCX; word/document.xml |
-| `city` | — | reference; required=true; value_type=text | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/footer1.xml, word/footer2.xml, word/footer3.xml |
-| `client` | — | reference; required=false; value_type=text | organizations.Заказчик.full_name (роль Заказчик; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `tech_client` | — | reference; required=false; value_type=text | organizations.Технический_заказчик.full_name (роль Технический_заказчик; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `gen_contractor` | — | reference; required=false; value_type=text | organizations.Генподрядчик.full_name (роль Генподрядчик; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `sub_contractor` | — | reference; required=false; value_type=text | organizations.Подрядчик.full_name (роль Подрядчик; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `year` | — | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/footer1.xml, word/footer2.xml, word/footer3.xml |
-| `copies` | — | literal; required=false | Значение по умолчанию: 1 | Управляет prepare_context / оформлением DOCX |
-| `volumes` | — | literal; required=false | Значение по умолчанию: 1 | Управляет prepare_context / оформлением DOCX |
-| `font` | — | literal; required=false | Значение по умолчанию: "Arial" | Управляет prepare_context / оформлением DOCX |
-| `labels` | — | literal; required=false | Значение по умолчанию: true | DOCX; word/document.xml |
-
-Дополнительные вычисленные поля DOCX: `pages[].duplicates`, `pages[].volumes_info`, `contractors_info`. Контракт задаёт `titles.prepare_context`; copies × volumes определяет число страниц.
-
-<a id="form-32"></a>
-### СП_40_102_2000_Е — Акт о проведении входного контроля партии труб
-
-Группа: `act`. DOCX: [app/templates/СП 40-102-2000/СП_40_102_2000_Е.docx](../app/templates/СП%2040-102-2000/СП_40_102_2000_Е.docx). Определения: [app/forms/СП 40-102-2000/СП_40_102_2000_Е.fields.json](../app/forms/СП%2040-102-2000/СП_40_102_2000_Е.fields.json).
-
-SHA-256 рабочего DOCX: `42568aa92045c2c6f40e7314f228d76eb183c1b8fed7dd4454c0be7fdaef93ce`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 40-102-2000/Акт о проведении входного контроля партии труб.docx](../misc/downloads/Исходные%20формы%20документов/СП%2040-102-2000/Акт%20о%20проведении%20входного%20контроля%20партии%20труб.docx). SHA-256: `c61596ca5277721cf6b6b7f0ee3d2878cc3d78b99054ca7a1b6dbdadc7529e18`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | наименование организации получателя | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | водопровод, канализация и др. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c1` | давлением | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r2_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r4_c0` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | провели входной контроль партии труб (соединительных деталей) № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c1` | диаметром | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c1` | наименование фирмы, дата | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r4_c1` | из полимера типа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | шт., бухт или барабанов (ящиков соединительных деталей) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r2_c1` | российский или зарубежный стандарт | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | Количество труб Ду | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c3` | мм, длиной | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c5` | (маркировка по стандарту) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c1` | Количество деталей Ду | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c3` | мм | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c5` | (маркировка по стандарту) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c1` | Данные о сопроводительном сертификате | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c1` | Дата | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-33"></a>
-### СП_42_101_2003_П — Акт приёмки газопроводов для комплексного опробования
-
-Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_П.docx](../app/templates/СП%2042-101-2003/СП_42_101_2003_П.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_П.fields.json](../app/forms/СП%2042-101-2003/СП_42_101_2003_П.fields.json).
-
-SHA-256 рабочего DOCX: `678847e30c1c3956927900a534d7f3cab4065b89a71dedd2d82be9c483a542a7`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Акт приёмки газопроводов для комплексного опробования.docx](../misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Акт%20приёмки%20газопроводов%20для%20комплексного%20опробования.docx). SHA-256: `a1f0ee77324568febe10221e3cbd32cf61b88ce90222d0b473148c9ef87e0254`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p120_1` | 2. Предъявленное к приемке газооборудование считать принятым с "…"… 20… г. для проведения комплексного опробования (пусконаладочных работ). | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p120_2` | 2. Предъявленное к приемке газооборудование считать принятым с "…"… 20… г. для проведения комплексного опробования (пусконаладочных работ). | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p120_3` | 2. Предъявленное к приемке газооборудование считать принятым с "…"… 20… г. для проведения комплексного опробования (пусконаладочных работ). | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c0` | Объект и адрес | reference; required=true | project_documentation.object_description (вычисляется form_defaults.documentation_context) ← objects.address, objects.name | DOCX; word/document.xml |
-| `t1_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c4` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c6` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r0_c8` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r1_c0` | Председатель комиссии от заказчика | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r4_c1` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r6_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r8_c1` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Генподрядчик | reference; required=true | organizations.general_contractor.full_name (роль general_contractor; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t3_r3_c0` | (тип, количество, техническая характеристика) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c1` | , | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r6_c0` | (тип автоматики) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r9_c0` | (наименование объекта) | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t4_r0_c1` | 2. Проект N | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c3` | (наименование организации) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c1` | (месяц, год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c3` | (месяц, год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r1_c0` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t7_r0_c3` | Дата договора | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c5` | Дата договора | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r0_c7` | Дата договора | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r2_c2` | Срок окончания работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c4` | Срок окончания работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r2_c6` | Срок окончания работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t8_r0_c0` | (виды испытаний) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-34"></a>
-### СП_42_101_2003_Т — Строительный паспорт ГРП
-
-Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_Т.docx](../app/templates/СП%2042-101-2003/СП_42_101_2003_Т.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_Т.fields.json](../app/forms/СП%2042-101-2003/СП_42_101_2003_Т.fields.json).
-
-SHA-256 рабочего DOCX: `dbc07f7112f793118eca971c84c7c97af805716b989d5a14bf069ce4d9bf4918`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Строительный паспорт ГРП.docx](../misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Строительный%20паспорт%20ГРП.docx). SHA-256: `31257058ddfa91dabf4abdc867115c07a9003648b3c6e39472e3f99b9b616e4c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p53_1` | «…» … 20… г. произведено испытание газопровода и оборудования ГРП на герметичность давлением … МПа в течение 12 ч при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p53_2` | «…» … 20… г. произведено испытание газопровода и оборудования ГРП на герметичность давлением … МПа в течение 12 ч при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p53_3` | «…» … 20… г. произведено испытание газопровода и оборудования ГРП на герметичность давлением … МПа в течение 12 ч при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p53_4` | «…» … 20… г. произведено испытание газопровода и оборудования ГРП на герметичность давлением … МПа в течение 12 ч при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p53_5` | «…» … 20… г. произведено испытание газопровода и оборудования ГРП на герметичность давлением … МПа в течение 12 ч при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p54_6` | Падение давления … МПа при допускаемом падении давления … МПа. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p54_7` | Падение давления … МПа при допускаемом падении давления … МПа. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | (наименование строительно-монтажной организации, номер проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r2_c1` | по адресу: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Указываются давление газа (на входе и на выходе), тип и размеры установленного оборудования, число и площадь помещений, система отопления и вентиляции, данные об освещении, связи, телеуправлении | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c0` | 2. Перечень прилагаемых сертификатов, технических паспортов (или их копий) и других документов, удостоверяющих качество материалов и оборудования | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_3_2` | 3*. Данные о сварке стыков газопровода | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_3_2.c1` | Фамилия, имя, отчество сварщика (паяльщика) | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c2` | Номер (клеймо) сварщика (паяльщика) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c3` | Сварено стыков / Диаметр труб, мм | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c4` | Дата проведения сварочных работ / Число, шт. | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c5` | Графа 5 | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t4_r0_c0` | Производитель работ | signatory; required=true | Роль foreman; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c1` | Производитель работ | signatory; required=true | Роль foreman; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r1_c0` | (наименование проектной организации, дата выпуска проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r3_c1` | с учетом согласованных изменений, внесенных в рабочие чертежи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c2` | Дата начала строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c4` | Дата начала строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r0_c6` | Дата начала строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r2_c2` | Дата окончания строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c4` | Дата окончания строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r2_c6` | Дата окончания строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t8_r0_c1` | Главный инженер монтажной организации | signatory; required=true | Роль chief_engineer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t8_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-Объединение исходных полей (хвостовые ключи удалены из эффективного контекста): `t1_r0_c0` ← `t1_r1_c0`; `t2_r0_c0` ← `t2_r1_c0`.
-
-| Исходное поле продолжения | Подпись | Исходное определение |
-|---|---|---|
-
-<a id="form-35"></a>
-### СП_42_101_2003_С — Строительный паспорт газоиспользующего оборудования
-
-Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_С.docx](../app/templates/СП%2042-101-2003/СП_42_101_2003_С.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_С.fields.json](../app/forms/СП%2042-101-2003/СП_42_101_2003_С.fields.json).
-
-SHA-256 рабочего DOCX: `40cba17b75603b41e7885847b8b94f057ad4d73648706a57c7a48f41add948ae`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Строительный паспорт газоиспользующего оборудования.docx](../misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Строительный%20паспорт%20газоиспользующего%20оборудования.docx). SHA-256: `36198022fe155275e2016640d5ada33b19a980e3a5be75029a6f936adad513cc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p56_1` | «…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p56_2` | «…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p56_3` | «…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p56_4` | «…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p56_5` | «…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p56_6` | «…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p56_7` | «…»…20… г. газопровод испытан на герметичность давлением … МПа в течение … ч, с подключенным газоиспользующим оборудованием. Фактическое падение давления … МПа установлено при помощи манометра класса точности …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | (наименование строительно-монтажной организации и номер проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r2_c1` | (город, улица, привязки начального и конечного пикетов) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | ность газопровода и число запорных устройств на них; для внутрицехового оборудования — общая протяженность газопровода, тип и число установленного газоиспользующего оборудования, рабочее давление газа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c0` | 2. Перечень прилагаемых сертификатов, технических паспортов (или их копий) и других документов, удостоверяющих качество материалов и оборудования | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_3_2` | 3. Данные о сварке стыков газопровода | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_3_2.c1` | Фамилия, имя, отчество сварщика (паяльщика) | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c2` | Номер (клеймо) сварщика (паяльщика) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c3` | Сварено стыков / Диаметр труб, мм | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c4` | Дата проведения сварочных работ / Число, шт. | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c5` | Графа 5 | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t4_r0_c0` | Производитель работ | signatory; required=true | Роль foreman; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c1` | Производитель работ | signatory; required=true | Роль foreman; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r1_c0` | (наименование проектной организации, дата выпуска проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r3_c1` | с учетом согласованных изменений, внесенных в рабочие чертежи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c2` | Дата начала строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c4` | Дата начала строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r0_c6` | Дата начала строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r2_c2` | Дата окончания строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c4` | Дата окончания строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r2_c6` | Дата окончания строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t8_r0_c1` | Главный инженер монтажной организации | signatory; required=true | Роль chief_engineer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t8_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-Объединение исходных полей (хвостовые ключи удалены из эффективного контекста): `t1_r0_c0` ← `t1_r1_c0`; `t2_r0_c0` ← `t2_r1_c0`.
-
-| Исходное поле продолжения | Подпись | Исходное определение |
-|---|---|---|
-
-<a id="form-36"></a>
-### СП_42_101_2003_Р — Строительный паспорт газопровода
-
-Группа: `act`. DOCX: [app/templates/СП 42-101-2003/СП_42_101_2003_Р.docx](../app/templates/СП%2042-101-2003/СП_42_101_2003_Р.docx). Определения: [app/forms/СП 42-101-2003/СП_42_101_2003_Р.fields.json](../app/forms/СП%2042-101-2003/СП_42_101_2003_Р.fields.json).
-
-SHA-256 рабочего DOCX: `66c0f2df410265b84c833bededf6c65e3d497ab2c3c8f2f5e8ca043018999cf6`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 42-101-2003/Строительный паспорт газопровода.docx](../misc/downloads/Исходные%20формы%20документов/СП%2042-101-2003/Строительный%20паспорт%20газопровода.docx). SHA-256: `6862408b40ebe470ec04b0f449c65ab32154affcc923cd9d3208f3b7fd9c3c73`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p112_1` | на отсутствие механических повреждений и трещин — внешним осмотром; толщина — замером по ГОСТ 9.602 … мм; адгезия к стали — по ГОСТ 9.602; сплошность — дефектоскопом. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p114_2` | 3. Проверка на отсутствие электрического контакта между металлом трубы и грунтом произведена после полной засыпки траншеи «…» … 20 … г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p114_3` | 3. Проверка на отсутствие электрического контакта между металлом трубы и грунтом произведена после полной засыпки траншеи «…» … 20 … г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p114_4` | 3. Проверка на отсутствие электрического контакта между металлом трубы и грунтом произведена после полной засыпки траншеи «…» … 20 … г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p127_5` | 1. «…» … 20… г. перед испытанием на герметичность произведена продувка газопровода воздухом. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p127_6` | 1. «…» … 20… г. перед испытанием на герметичность произведена продувка газопровода воздухом. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p127_7` | 1. «…» … 20… г. перед испытанием на герметичность произведена продувка газопровода воздухом. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p128_8` | 2. «…» … 20… г. засыпанный до проектных отметок газопровод с установленной на нем арматурой и ответвлениями к объектам до отключающих запорных устройств (или подземная часть газового ввода) испытан на герметичность в течение … ч. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p128_9` | 2. «…» … 20… г. засыпанный до проектных отметок газопровод с установленной на нем арматурой и ответвлениями к объектам до отключающих запорных устройств (или подземная часть газового ввода) испытан на герметичность в течение … ч. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p128_10` | 2. «…» … 20… г. засыпанный до проектных отметок газопровод с установленной на нем арматурой и ответвлениями к объектам до отключающих запорных устройств (или подземная часть газового ввода) испытан на герметичность в течение … ч. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p128_11` | 2. «…» … 20… г. засыпанный до проектных отметок газопровод с установленной на нем арматурой и ответвлениями к объектам до отключающих запорных устройств (или подземная часть газового ввода) испытан на герметичность в течение … ч. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p129_12` | До начала испытания подземный (наземный) газопровод находился под давлением воздуха в течение … ч для выравнивания температуры воздуха в газопроводе с температурой грунта. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p130_13` | Замеры давления производились манометром (дифманометром) по ГОСТ …, класс …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p130_14` | Замеры давления производились манометром (дифманометром) по ГОСТ …, класс …. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p163_15` | «…» … 20… г. произведено испытание надземного газопровода (надземной части газового ввода) на герметичность давлением … МПа с выдержкой в течение … ч, последующим внешним осмотром и проверкой всех сварных, резьбовых и фланцевых соединений. Утечки и дефекты не обнаружены. Надземный газопровод (надземная часть газового ввода) испытание на герметичность выдержал. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p163_16` | «…» … 20… г. произведено испытание надземного газопровода (надземной части газового ввода) на герметичность давлением … МПа с выдержкой в течение … ч, последующим внешним осмотром и проверкой всех сварных, резьбовых и фланцевых соединений. Утечки и дефекты не обнаружены. Надземный газопровод (надземная часть газового ввода) испытание на герметичность выдержал. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p163_17` | «…» … 20… г. произведено испытание надземного газопровода (надземной части газового ввода) на герметичность давлением … МПа с выдержкой в течение … ч, последующим внешним осмотром и проверкой всех сварных, резьбовых и фланцевых соединений. Утечки и дефекты не обнаружены. Надземный газопровод (надземная часть газового ввода) испытание на герметичность выдержал. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p163_18` | «…» … 20… г. произведено испытание надземного газопровода (надземной части газового ввода) на герметичность давлением … МПа с выдержкой в течение … ч, последующим внешним осмотром и проверкой всех сварных, резьбовых и фланцевых соединений. Утечки и дефекты не обнаружены. Надземный газопровод (надземная часть газового ввода) испытание на герметичность выдержал. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p163_19` | «…» … 20… г. произведено испытание надземного газопровода (надземной части газового ввода) на герметичность давлением … МПа с выдержкой в течение … ч, последующим внешним осмотром и проверкой всех сварных, резьбовых и фланцевых соединений. Утечки и дефекты не обнаружены. Надземный газопровод (надземная часть газового ввода) испытание на герметичность выдержал. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r2_c0` | и номер проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r4_c1` | (город, улица, привязки начального и конечного пикетов) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | зопровода, материал труб, тип изоляционного покрытия линейной части и сварных стыков (для стальных подземных газопроводов и газовых вводов), число установленных запорных устройств и других сооружений. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c0` | 2. Перечень прилагаемых сертификатов, технических паспортов (или их копий) и других документов, удостоверяющих качество материалов и оборудования | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_3_2` | 3. Данные о сварке стыков газопровода | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_3_2.c1` | Фамилия, имя, отчество сварщика | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c2` | Вид сварки | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c3` | Номер (клеймо) сварщика | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c4` | Сварено стыков / Диаметр труб, мм | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c5` | Дата проведения сварочных работ / Число, шт. | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_3_2.c6` | Графа 6 | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t4_r0_c0` | Производитель работ | signatory; required=true | Роль foreman; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r0_c1` | Производитель работ | signatory; required=true | Роль foreman; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t7_r0_c1` | Начальник лаборатории | signatory; required=true | Роль laboratory_head; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t7_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `rows_8_3` | Данные замеров давления при испытании подземного (наземного) газопровода | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_8_3.c1` | Дата испытания / Месяц | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c2` | Замеры давления, кПа (мм рт. ст.) / Число | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c3` | Падение давления, кПа (мм рт. ст.) / Часы | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c4` | манометрическое / P1 | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c5` | барометрическое / P2 | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c6` | допускаемое / B1 | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c7` | фактическое / B2 | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c8` | Графа 8 | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c9` | Графа 9 | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t9_r0_c1` | Производитель работ | signatory; required=true | Роль foreman; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t9_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t10_r1_c0` | (наименование проектной организации, дата выпуска проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r3_c1` | с учетом согласованных изменений, внесенных в рабочие чертежи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c2` | Дата начала строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c4` | Дата начала строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t11_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t11_r0_c6` | Дата начала строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t11_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t11_r2_c2` | Дата окончания строительства | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r2_c4` | Дата окончания строительства | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t11_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t11_r2_c6` | Дата окончания строительства | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t11_r2_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t12_r0_c1` | Главный инженер монтажной организации | signatory; required=true | Роль chief_engineer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t12_r2_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-Объединение исходных полей (хвостовые ключи удалены из эффективного контекста): `t1_r0_c0` ← `t1_r1_c0`; `t2_r0_c0` ← `t2_r1_c0`.
-
-| Исходное поле продолжения | Подпись | Исходное определение |
-|---|---|---|
-
-<a id="form-37"></a>
-### СП_45_Ш — Акт приёмки захватки стены в грунте (баретты)
-
-Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Ш.docx](../app/templates/СП%2045.13330.2017/СП_45_Ш.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Ш.fields.json](../app/forms/СП%2045.13330.2017/СП_45_Ш.fields.json).
-
-SHA-256 рабочего DOCX: `23f1f2c2c2cc3277d0b72b11a65d809c242345ea8d9c56c154c16dd0dd66acf5`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки захватки стены в грунте (баретты).docx](../misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20захватки%20стены%20в%20грунте%20(баретты).docx). SHA-256: `5faa1725b1c155f4f655dda0f5a65e1e7d7ba54e34397bf06c15bba8a49842a0`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p9_1` | освидетельствования и приемки захватки стены в грунте (баретты) №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Представитель подрядчика | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r1_c1` | Наименование строительного объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r2_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r4_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c1` | установили, что захватка № (баретта №) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c2` | Работы по захватке стены в грунте (баретты) выполнены с отметки | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c2` | Траншея разработана на глубину, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c2` | Грунт в основании траншеи | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r3_c2` | Траншея заполнена бетоном класса | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r4_c2` | Размеры захватки (баретты), м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c2` | Акт освидетельствования и приемки траншеи захватки № (баретты №) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c2` | Акт освидетельствования арматурного каркаса захватки № (баретты №) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r3_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r5_c0` | 4_r0_c2 }}2.Акт освидетельствования арматурного каркаса захватки № (баретты №){{ t4_r1_c2 }}3.Сертификат на бентонит (полимерный порошок).4.Сертификат на арматуру.5.Ведомость контроля качества бетона. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-38"></a>
-### СП_45_Я — Акт приёмки сваи
-
-Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Я.docx](../app/templates/СП%2045.13330.2017/СП_45_Я.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Я.fields.json](../app/forms/СП%2045.13330.2017/СП_45_Я.fields.json).
-
-SHA-256 рабочего DOCX: `f7041bb7245e7d1f212a4b01cb1104215517b8822b18e467d3fe4cfeba4c0892`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки сваи.docx](../misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20сваи.docx). SHA-256: `b38f59480d88ece49b1d3728925337064ccb4c09001ecf782a21031a8a7dc7cb`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p9_1` | освидетельствования и приёмки сваи №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Представитель подрядчика | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r1_c1` | Наименование строительного объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r2_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r4_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c1` | установили, что свая № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c2` | Работы по свае выполнены с отметки | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c2` | Скважина пробурена на глубину, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c2` | Грунт в основании подошвы сваи | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r3_c2` | Скважина заполнена бетоном класса | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r4_c2` | Размеры сваи (диаметр, длина), м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c2` | Акт освидетельствования и приемки скважины сваи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c2` | Акт освидетельствования арматурного каркаса сваи № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r3_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r5_c0` | r0_c2 }}2.Акт освидетельствования арматурного каркаса сваи №{{ t4_r1_c2 }}3.Документ о качестве на бентонит (полимерный порошок).4.Документ о качестве на арматуру.5.Ведомость контроля качества бетона. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-39"></a>
-### СП_45_Ю — Акт приёмки скважины
-
-Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Ю.docx](../app/templates/СП%2045.13330.2017/СП_45_Ю.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Ю.fields.json](../app/forms/СП%2045.13330.2017/СП_45_Ю.fields.json).
-
-SHA-256 рабочего DOCX: `fd6da226090d9c8edc9d1b51834f403e8787bc99b8cfd04131795783f21d6561`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки скважины.docx](../misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20скважины.docx). SHA-256: `0db78f16a6f60858c8b5f276bb39071b5a71aa60313116c905dc0dcc41dd6b29`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p9_1` | освидетельствования и приёмки скважины сваи №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Представитель подрядчика | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r1_c1` | Наименование строительного объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r2_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r4_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c2` | Отметка низа скважины, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c2` | Отметка устья скважины, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c2` | Абсолютная отметка кровли | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r3_c2` | и мощности слоя грунта, | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r4_c2` | Диаметр и глубина скважины, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c2` | Отклонения скважины | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r7_c1` | Буровой шлам удален из скважины с применением (способ и время) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r9_c1` | на строительной площадке и установили: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c1` | (наименование работ и конструкций) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c2` | Начать бетонирование не позднее | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c4` | Предельная дата начала бетонирования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c6` | Предельная дата начала бетонирования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t4_r3_c8` | Предельная дата начала бетонирования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r1_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r3_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r5_c0` | производство последующих работ по устройству (монтажу){{ t4_r1_c1 }}(наименование работ и конструкций)2.Начать бетонирование не позднее{{ t4_r3_c2 }}ч. «{{ t4_r3_c4 }}»{{ t4_r3_c6 }}20{{ t4_r3_c8 }}г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-40"></a>
-### СП_45_Щ — Акт приёмки траншеи
-
-Группа: `act`. DOCX: [app/templates/СП 45.13330.2017/СП_45_Щ.docx](../app/templates/СП%2045.13330.2017/СП_45_Щ.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_Щ.fields.json](../app/forms/СП%2045.13330.2017/СП_45_Щ.fields.json).
-
-SHA-256 рабочего DOCX: `27c7c3e80a39ab39974b87f4820674886519615a6f66e4f093dd4d32d7eca711`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Акт приёмки траншеи.docx](../misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Акт%20приёмки%20траншеи.docx). SHA-256: `d9d236e28d492b83b7140ea63cfa7a4b04d8aad3154e4447eebd9a7185fc1119`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | Представитель подрядчика | reference; required=true | organizations.builder.full_name (роль builder; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r1_c1` | Наименование строительного объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r2_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r4_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c2` | Отметка низа траншеи, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c2` | Отметка устья траншеи, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c2` | Абсолютная отметка кровли | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r3_c2` | и мощности слоя грунта, | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r4_c2` | Размеры (глубина) траншеи, м | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c2` | Отклонения траншеи | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r7_c1` | Буровой шлам удален из траншеи с применением (способ и время) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r9_c1` | на строительной площадке и установили: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r1_c1` | (наименование работ и конструкций) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c2` | Начать бетонирование не позднее | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c4` | Предельная дата начала бетонирования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c6` | Предельная дата начала бетонирования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t4_r3_c8` | Предельная дата начала бетонирования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r3_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r1_c0` | Строительный контроль подрядчика | signatory; required=true | Роль builder_control; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r3_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t5_r5_c0` | производство последующих работ по устройству (монтажу){{ t4_r1_c1 }}(наименование работ и конструкций)2.Начать бетонирование не позднее{{ t4_r3_c2 }}ч. «{{ t4_r3_c4 }}»{{ t4_r3_c6 }}20{{ t4_r3_c8 }}г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-41"></a>
-### СП_45_1 — Журнал контроля качества глинистого раствора
-
-Группа: `statement`. DOCX: [app/templates/СП 45.13330.2017/СП_45_1.docx](../app/templates/СП%2045.13330.2017/СП_45_1.docx). Определения: [app/forms/СП 45.13330.2017/СП_45_1.fields.json](../app/forms/СП%2045.13330.2017/СП_45_1.fields.json).
-
-SHA-256 рабочего DOCX: `2341942e6cbf24924a2a7f7787e25655630b34dafdf5d6d7acc05d8f8e4d5036`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 45.13330.2017/Журнал контроля качества глинистого раствора.docx](../misc/downloads/Исходные%20формы%20документов/СП%2045.13330.2017/Журнал%20контроля%20качества%20глинистого%20раствора.docx). SHA-256: `e0f23b4cdb241a5dc5aa9fe0676c26574fbaac36a3fba793eabeb6004ed1f566`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r2_c1` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `t0_r4_c1` | Наименование строительной организации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r0_c5` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r2_c1` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c3` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r2_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r2_c5` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r2_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_2_3` | Начат «{{ t1_r0_c1 }}»{{ t1_r0_c3 }}20{{ t1_r0_c5 }}г.Окончен «{{ t1_r2_c1 }}»{{ t1_r2_c3 }}20{{ t1_r2_c5 }}г. | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_2_3.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c2` | Время проб отбора / Дата | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c3` | Место отбора пробы / Часы | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c4` | Вид работы при отборе пробы | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c5` | Глубина отбора пробы | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c6` | Параметры раствора | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c7` | Примечания / Вязкость, с | reference; required=false | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c8` | Водоотделение, % | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c9` | Стабильность, г/см³ | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c10` | Содержание песка, % | reference; required=true | item.c10 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c11` | Водоотдача, см³ за 30 мин | reference; required=true | item.c11 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c12` | Плотность, г/см³ | reference; required=true | item.c12 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_2_3.c13` | Графа 13 | reference; required=true | item.c13 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-
-<a id="form-42"></a>
+<a id="form-2"></a>
 ### СП_48_И — Журнал входного контроля
 
-Группа: `statement`. DOCX: [app/templates/СП 48.13330.2019/СП_48_И.docx](../app/templates/СП%2048.13330.2019/СП_48_И.docx). Определения: [app/forms/СП 48.13330.2019/СП_48_И.fields.json](../app/forms/СП%2048.13330.2019/СП_48_И.fields.json).
+Группа: `statement`. DOCX: [app/templates/СП_48_И.docx](../app/templates/СП_48_И.docx). Определения: [app/forms/СП 48.13330.2019/СП_48_И.fields.json](../app/forms/СП%2048.13330.2019/СП_48_И.fields.json).
 
 SHA-256 рабочего DOCX: `efd9a5f3bf41058596a88f52475b631bc05cc3894af1ae7586b35b1f9e73d624`.
 
@@ -6491,1792 +5071,14 @@ SHA-256 рабочего DOCX: `efd9a5f3bf41058596a88f52475b631bc05cc3894af1ae75
 | `rows_2_2.c9` | Результат лабораторного контроля | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
 | `rows_2_2.c10` | Подпись лица, осуществляющего контроль | reference; required=false | item.c10 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
 
-<a id="form-43"></a>
-### СП_68_М — Акт приёмки оборудования после индивидуального испытания
-
-Группа: `act`. DOCX: [app/templates/СП 68.13330.2017/СП_68_М.docx](../app/templates/СП%2068.13330.2017/СП_68_М.docx). Определения: [app/forms/СП 68.13330.2017/СП_68_М.fields.json](../app/forms/СП%2068.13330.2017/СП_68_М.fields.json).
-
-SHA-256 рабочего DOCX: `a5bec185fa1218f4e53b6fa7def1876344ec0a8fe016d5916e51fd253fac94a1`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 68.13330.2017/Акт приёмки оборудования после индивидуального испытания.docx](../misc/downloads/Исходные%20формы%20документов/СП%2068.13330.2017/Акт%20приёмки%20оборудования%20после%20индивидуального%20испытания.docx). SHA-256: `43e26e7b10d479c5298e258fab3074c50e2578a7d1c29e72cb68940eb61d9706`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_2` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_4` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_6` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c0` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r2_c0` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r0_c1` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r2_c0` | Генподрядчик | reference; required=true | organizations.general_contractor.full_name (роль general_contractor; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r4_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r6_c0` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r8_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r10_c0` | Представитель эксплуатирующей организации | reference; required=true | organizations.network_operator.full_name (роль network_operator; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r12_c1` | Представитель проектировщика | signatory; required=true | Роль designer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r14_c0` | Проектная организация | reference; required=true | organizations.designer.full_name (роль designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r17_c0` | Государственный строительный надзор | signatory; required=true | Роль gsn; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r20_c0` | Представитель надзорной организации | signatory; required=true | Роль supervisory; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r22_c1` | 1. Предъявлено к приёмке следующее оборудование: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r23_c0` | [перечень оборудования и его краткая техническая характеристика (при необходимости перечень указывается в приложении)] | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r25_c1` | (наименование здания, сооружения, цеха) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r27_c1` | (наименование предприятия, его очереди, пускового комплекса) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r29_c1` | 2. Монтажные работы выполнены | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r30_c0` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r32_c1` | 3. Проектная документация разработана | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r33_c0` | (наименования проектных организаций, номера чертежей и даты их составления) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r35_c1` | (месяц и год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r37_c1` | (месяц и год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r40_c0` | (наименование испытаний) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c2` | Дата начала работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c4` | Дата начала работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t3_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t3_r0_c6` | Дата начала работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t3_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t4_r1_c0` | с«{{ t3_r0_c2 }}»{{ t3_r0_c4 }}20{{ t3_r0_c6 }}г.для комплексного опробования. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r2_c0` | с«{{ t3_r0_c2 }}»{{ t3_r0_c4 }}20{{ t3_r0_c6 }}г.для комплексного опробования. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r2_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r2_c0 этой же формы | DOCX; word/document.xml |
-
-<a id="form-44"></a>
-### СП_68_Н — Акт приёмки оборудования после комплексного опробования
-
-Группа: `act`. DOCX: [app/templates/СП 68.13330.2017/СП_68_Н.docx](../app/templates/СП%2068.13330.2017/СП_68_Н.docx). Определения: [app/forms/СП 68.13330.2017/СП_68_Н.fields.json](../app/forms/СП%2068.13330.2017/СП_68_Н.fields.json).
-
-SHA-256 рабочего DOCX: `e28b93d2ef330f3544566c450e84694a2fb82f853ccae46888ac8b1b03a652f6`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 68.13330.2017/Акт приёмки оборудования после комплексного опробования.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2068.13330.2017/Акт%20приёмки%20оборудования%20после%20комплексного%20опробования.xlsx). SHA-256: `6fe3ffedf9131459e55ba06571df87e56aae3c041ea72674ff302eea83f360bc`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p343_1` | указываются в приложении … к акту), выявленные в процессе комплексного опробования, | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p346_2` | в приложении … к акту. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `date_6_2` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_4` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_6` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r6_c0` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r9_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r11_c0` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r14_c1` | генерального подрядчика | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r16_c0` | Генподрядчик | reference; required=true | organizations.general_contractor.full_name (роль general_contractor; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r18_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r20_c0` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r22_c1` | Представитель эксплуатирующей организации | reference; required=true | organizations.network_operator.full_name (роль network_operator; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r24_c0` | Представитель эксплуатирующей организации | reference; required=true | organizations.network_operator.full_name (роль network_operator; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r26_c1` | генерального проектировщика | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r28_c0` | Проектная организация | reference; required=true | organizations.designer.full_name (роль designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r31_c0` | Государственный строительный надзор | signatory; required=true | Роль gsn; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r34_c0` | Представитель надзорной организации | signatory; required=true | Роль supervisory; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r36_c1` | 1. Оборудование: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r38_c0` | (при необходимости указывается в приложении к акту)] | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r40_c1` | смонтированное в | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r42_c1` | входящего в состав | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c2` | Дата начала комплексного опробования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c4` | Дата начала комплексного опробования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r46_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r46_c6` | Дата начала комплексного опробования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r46_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r46_c10` | Дата окончания комплексного опробования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r46_c12` | Дата окончания комплексного опробования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r46_c10; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r46_c14` | Дата окончания комплексного опробования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r46_c10; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r48_c1` | в течение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r50_c1` | и по | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r53_c0` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r63_c1` | Дата приёмки оборудования | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r63_c3` | Дата приёмки оборудования | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r63_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r63_c5` | Дата приёмки оборудования | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r63_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r68_c1` | таблица 0, строка 68, ячейка 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r69_c1` | таблица 0, строка 69, ячейка 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r69_c9` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r69_c1 этой же формы | DOCX; word/document.xml |
-
-<a id="form-45"></a>
-### СП_70_И — Акт испытания конструкций здания и сооружения
-
-Группа: `act`. DOCX: [app/templates/СП 70.13330.2012/СП_70_И.docx](../app/templates/СП%2070.13330.2012/СП_70_И.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_И.fields.json](../app/forms/СП%2070.13330.2012/СП_70_И.fields.json).
-
-SHA-256 рабочего DOCX: `cab3fdf8c5ec75addfe8e51439e8225dfcb6e639809ca1722ec315d9550b7a27`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Акт испытания конструкций здания и сооружения.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Акт%20испытания%20конструкций%20здания%20и%20сооружения.docx). SHA-256: `c81f4e63589dc178f55931ef460532c26a62e1f13957ff56fe5738cb6c59273b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_4` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_6` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_8` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c0` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r0_c2` | Дата приказа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c4` | Дата приказа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c6` | Дата приказа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c9` | № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c0` | Председатель комиссии от заказчика | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r0_c0` | (наименование организации и ее ведомственная подчиненность) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t8_r0_c0` | (наименование объекта) | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t9_r0_c0` | (шифр проекта) | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t9_r2_c0` | (наименование проектной организации и ее ведомственная подчиненность) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r0_c0` | (виды работ) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c0` | (наименование организации и перечень видов работ) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t12_r0_c1` | (месяц, год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t12_r0_c4` | (месяц, год) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t13_r0_c0` | (шифр проекта, наименование организации, ведомственная подчиненность) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t13_r2_c1` | (дата начала и окончания испытания) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t14_r0_c0` | (указать результаты испытаний) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t15_r0_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t16_r0_c1` | 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t17_r0_c1` | 2 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t19_r0_c1` | Члены комиссии | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-46"></a>
-### СП_70_В — Журнал АКЗ сварных соединений
-
-Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_В.docx](../app/templates/СП%2070.13330.2012/СП_70_В.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_В.fields.json](../app/forms/СП%2070.13330.2012/СП_70_В.fields.json).
-
-SHA-256 рабочего DOCX: `2603e89d0991691d4f80e274d9261f28321a2a738e149f57d66c552a99ded66c`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал АКЗ сварных соединений.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20АКЗ%20сварных%20соединений.docx). SHA-256: `69439e8888126797e553c82b5948aaca7dc9b8f55d416991e148ef0c8b1e4417`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p18_1` | Журнал антикоррозионной защиты сварных соединений №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c0` | Наименование организации, выполняющей работы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Наименование объекта строительства | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Проектная организация РД | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t3_r1_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r2_c1` | Разработчик ППР | reference; required=true | organizations.ppr_designer.full_name (роль ppr_designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t3_r3_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r4_c1` | Предприятие, изготовившее конструкции | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c1` | Шифр заказа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_7_2` | Журнал окончен "{{ t6_r0_c2 }}"{{ t6_r0_c4 }}20{{ t6_r0_c6 }}г. | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_7_2.c1` | Дата выполнения работ | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c2` | Наименование соединяемых элементов и материал антикоррозионного покрытия закладных изделий, нанесённого на заводе | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c3` | Место или номер (по чертежу или схеме) стыкуемого элемента | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c4` | Отметка о сдаче и приёмке узла под антикоррозионную защиту (должность, подпись) | reference; required=false | item.c4 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_7_2.c5` | Материал покрытия сварных соединений и способ его нанесения | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c6` | Атмосферные условия при производстве антикоррозионной защиты сварных соединений (температура воздуха, осадки) | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c7` | Фамилия и инициалы исполнителя | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c8` | Фамилия и инициалы ответственного за ведение работ по антикоррозионной защите (мастера, производителя работ) | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c9` | Результаты осмотра качества покрытия. Толщина покрытия | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c10` | Подпись исполнителя | reference; required=false | item.c10 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_7_2.c11` | Подписи о приёмке антикоррозионной защиты (мастера, производителя работ) | reference; required=false | item.c11 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_7_2.c12` | Замечания по контрольной проверке (производителя работ, авторского надзора, технического надзора, заказчика) | reference; required=true | item.c12 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-
-<a id="form-47"></a>
-### СП_70_Ф — Журнал бетонных работ
-
-Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Ф.docx](../app/templates/СП%2070.13330.2012/СП_70_Ф.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Ф.fields.json](../app/forms/СП%2070.13330.2012/СП_70_Ф.fields.json).
-
-SHA-256 рабочего DOCX: `e812177d7dfe567f67c4583e037c2d5386d4c4698e69e58cb359014b1a924152`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал бетонных работ.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20бетонных%20работ.docx). SHA-256: `92801ce22622d03fc097b2dbf9fa83cc691a62cd518037f4977d3aa554f12e6b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c0` | Организация | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c0` | Адрес | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c0` | 1. Класс бетона по прочности на сжатие конструктивных элементов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | 2. Объём бетона общий | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | Объём бетона неармированного | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c1` | Объём бетона армированного | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c1` | Производитель работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c1` | Начало | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r0_c1` | Окончание | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_10_3` | Окончание{{ t9_r0_c1 }} | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_10_3.c1` | Дата и время укладки бетона | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c2` | Наименование бетонируемой конструкции и ее расположение (оси, отметка) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c3` | Изготовитель (поставщик) бетонной смеси | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c4` | Условное обозначение бетонной смеси и номер документа о качестве по ГОСТ 7473 | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c5` | Объем партии бетонной смеси, уложенной в конструкцию, м3 | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c6` | Температура наружного воздуха, °С | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c7` | Способ и режим твердения бетона | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c8` | Проектный класс прочности бетона В / Нормируемый (В норм) | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c9` | Прочность бетона в промежуточном возрасте при распалубке или нагружении конструкций (% Внорм) / Фактический (Вф) в проектном возрасте в контролируемой партии конструкций по результатам сплошного неразрушающего контроля прочности по ГОСТ 18105 | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c10` | Средняя прочность серий контрольных образцов бетона (МПа) по результатам входного контроля прочности бетонной смеси по пунктам 6.2 и 7.2.4 ГОСТ 18105-2018 или по пункту 8.2.4 ГОСТ 18105-2018 / Нормируемая | reference; required=true | item.c10 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c11` | Подписи ответственных исполнителей работ по бетонированию и контролю качества / Фактическая в контролируемой партии конструкций по результатам сплошного неразрушающего контроля прочности по ГОСТ 18105 | reference; required=false | item.c11 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_10_3.c12` | В промежуточном возрасте | reference; required=true | item.c12 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c13` | В проектном возрасте | reference; required=true | item.c13 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_3.c14` | Графа 14 | reference; required=true | item.c14 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-
-Объединение исходных полей (хвостовые ключи удалены из эффективного контекста): `t3_r0_c0` ← `t3_r1_c0`, `t3_r2_c0`, `t3_r3_c0`, `t3_r4_c0`.
-
-| Исходное поле продолжения | Подпись | Исходное определение |
-|---|---|---|
-
-<a id="form-48"></a>
-### СП_70_Д — Журнал выполнения монтажных соединений на болтах с контролируемым натяжением
-
-Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Д.docx](../app/templates/СП%2070.13330.2012/СП_70_Д.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Д.fields.json](../app/forms/СП%2070.13330.2012/СП_70_Д.fields.json).
-
-SHA-256 рабочего DOCX: `d7d33a4a3c8a9ce398d9fb1537208793d9f7d6837e482f7d9b542a2c715e9b9e`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал выполнения монтажных соединений на болтах с контролируемым натяжением.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20выполнения%20монтажных%20соединений%20на%20болтах%20с%20контролируемым%20натяжением.docx). SHA-256: `7ba14101abfe853354d88eb1509981be78522f51bbfce65ac1b809f45e25a43b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p12_1` | на болтах с контролируемым натяжением №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Наименование организации, выполняющей работы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Наименование объекта строительства | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Проектная организация РД | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t3_r1_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r1_c3` | Диаметры и классы прочности болтов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c1` | Разработчик ППР | reference; required=true | organizations.ppr_designer.full_name (роль ppr_designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t3_r3_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r4_c1` | Предприятие, разработавшее чертежи КМД и изготовившее конструкции | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c1` | Шифр заказа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c3` | Диаметры и классы прочности болтов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_7_2` | и лиц, ответственных за выполнение работ и ведение журнала | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_7_2.c1` | Фамилия, имя, отчество | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c2` | Присвоенный разряд | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c3` | Присвоенный номер или знак (клеймо) | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c4` | Квалификационное удостоверение / Дата выдачи | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c5` | Примечание / Кем выдано | reference; required=false | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c6` | Графа 6 | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3` | р или знак (клеймо)Квалификационное удостоверениеПримечаниеДата выдачиКем выдано{%tr for item in rows_7_2 %}{{ item.c1 }}{{ item.c2 }}{{ item.c3 }}{{ item.c4 }}{{ item.c5 }}{{ item.c6 }}{%tr endfor %} | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_8_3.c1` | Дата | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c2` | Номер чертежа КМД и наименование узла (стыка) в соединении, ряд, ось, отметка | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c3` | Постановка болтов / Число постав-ленных болтов в соеди-нении, шт. | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c4` | Результаты контроля / Номер серти-фиката на болты | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c5` | Способ обработки контактных поверхностей | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c6` | Расчётный момент закручивания, кгс*м, угол поворота, град. | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c7` | Качество обработки контактных поверхно-стей | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c8` | Число прове-ренных болтов, шт | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c9` | Результаты проверки момента закручивания, кгс*м, угла поворота, град. | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_3.c10` | Номер клейма, подпись бригадира | reference; required=false | item.c10 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_8_3.c11` | Подпись лица, ответственного за постановку болтов | reference; required=false | item.c11 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_8_3.c12` | Подпись представителя заказчика | reference; required=false | item.c12 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-
-<a id="form-49"></a>
-### СП_70_Г — Журнал замоноличивания монтажных стыков и узлов
-
-Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Г.docx](../app/templates/СП%2070.13330.2012/СП_70_Г.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Г.fields.json](../app/forms/СП%2070.13330.2012/СП_70_Г.fields.json).
-
-SHA-256 рабочего DOCX: `f54cdf6d6e668330bb36cf804b8899975fb2d8baf269936bc9a9a65448b969ed`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал замоноличивания монтажных стыков и узлов.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20замоноличивания%20монтажных%20стыков%20и%20узлов.docx). SHA-256: `11217e4b0304b0d4541e2c9a22e2f219b4a73845d52c0233cedc8eaf887f08aa`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p16_1` | Журнал замоноличивания монтажных стыков и узлов №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Наименование организации, выполняющей работы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Наименование объекта строительства | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Проектная организация РД | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t3_r1_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r2_c1` | Разработчик ППР | reference; required=true | organizations.ppr_designer.full_name (роль ppr_designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t3_r3_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r4_c1` | Предприятие, изготовившее конструкции | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c1` | Шифр заказа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_7_2` | Журнал окончен "{{ t6_r0_c2 }}"{{ t6_r0_c4 }}20{{ t6_r0_c6 }}г. | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_7_2.c1` | Дата замоноличивания | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c2` | Наименование стыков и узлов, место или номер по чертежу или схеме | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c3` | Заданные марки бетона (раствора) и рабочий состав бетонной (растворной) смеси | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c4` | Температура наружного воздуха, °С | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c5` | Температура предварительного обогрева элементов в узлах, °С | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c6` | Температура бетона в момент укладки, °С | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c7` | Результата испытаний контрольных образцов | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c8` | Дата распалубки | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_2.c9` | Фамилия и инициалы исполнителя (бригадира), подпись | reference; required=false | item.c9 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_7_2.c10` | Замечания производителя работ, авторского надзора, технического надзора заказчика | reference; required=true | item.c10 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-
-<a id="form-50"></a>
-### СП_70_Е — Журнал контрольной тарировки динамометрических ключей
-
-Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Е.docx](../app/templates/СП%2070.13330.2012/СП_70_Е.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Е.fields.json](../app/forms/СП%2070.13330.2012/СП_70_Е.fields.json).
-
-SHA-256 рабочего DOCX: `6ad6eec2b5b28a01949a89c17b0c46f8f66e5185d7a56a3f75de5ac57f22453f`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал контрольной тарировки динамометрических ключей.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20контрольной%20тарировки%20динамометрических%20ключей.docx). SHA-256: `d3eabf039e4de9176c4b773cbbf00998b115baa0670ae2691838d95c8096dd8e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c0` | (наименование строительной организации) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r2_c0` | (наименование объекта строительства) | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r4_c0` | (месторасположение объекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_1_2` | контрольной тарировки динамометрических ключей | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_1_2.c1` | Дата | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1_2.c2` | Ключ / тип | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1_2.c3` | Вес груза*, Н (кгс) / номер | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1_2.c4` | Момент от контрольного груза, Нм (кгс*м) | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1_2.c5` | Показания на приборе**, деление | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_1_2.c6` | Подпись бригадира | reference; required=false | item.c6 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_1_2.c7` | Графа 7 | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-
-<a id="form-51"></a>
-### СП_70_А — Журнал работ по монтажу строительных конструкций
-
-Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_А.docx](../app/templates/СП%2070.13330.2012/СП_70_А.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_А.fields.json](../app/forms/СП%2070.13330.2012/СП_70_А.fields.json).
-
-SHA-256 рабочего DOCX: `47b2745245090f0e4ffd457fe0af71839949b4eff9770112a3066557d8de19c6`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал работ по монтажу строительных конструкций.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20работ%20по%20монтажу%20строительных%20конструкций.docx). SHA-256: `dd06eaf63a1bef33362f5b50b8a38647cb63286e53bd9bbefeede3c3670fdbff`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p16_1` | Журнал работ по монтажу строительных конструкций №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Наименование организации, выполняющей работы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Наименование объекта строительства | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Проектная организация РД | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t3_r1_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r2_c1` | Разработчик ППР | reference; required=true | organizations.ppr_designer.full_name (роль ppr_designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t3_r3_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r4_c1` | Предприятие, изготовившее конструкции | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c1` | Шифр заказа | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c1` | Объем работ: стальных конструкций, т | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c1` | сборных железобетонных конструкций, м³ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c1` | деревянных конструкций, м³ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t7_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t7_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_8_1` | инженерно-технического персонала, занятого на монтаже здания (сооружения) | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_8_1.c1` | Фамилия, имя, отчество | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_1.c2` | Специальность и образование | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_1.c3` | Занимаемая должность | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_1.c4` | Дата начала работы на объекте | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_1.c5` | Отметка о прохождении аттестации и дата аттестации | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_1.c6` | Дата окончания работы на объекте | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2` | актов освидетельствования скрытых работ и актов промежуточной приемки ответственных конструкций | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_9_2.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c2` | Наименование актов | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c3` | Дата подписания акта | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t9_r1_c0` | {{ item.c1 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r1_c1` | {{ item.c2 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r1_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t9_r1_c1 этой же формы | DOCX; word/document.xml |
-| `rows_10_2` | № п/пНаименование актов Дата подписания акта {{ t9_r1_c0 }}{{ t9_r1_c1 }}{{ t9_r1_c2 }}{%tr for item in rows_9_2 %}{{ item.c1 }}{{ item.c2 }}{%tr endfor %} | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_10_2.c1` | Дата выполнения работ, смена | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_2.c2` | Описание производимых работ, наименование устанавливаемых конструкций, их марка, результаты осмотра конструкций | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_2.c3` | Место установки и номера монтажных схем | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_2.c4` | Номера технических паспортов на конструкции | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_2.c5` | Атмосферные условия (температура окружающего воздуха, осадки, скорость ветра) | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_2.c6` | Фамилия, инициалы исполнителя (бригадира) | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_2.c7` | Подпись исполнителя (бригадира) | reference; required=false | item.c7 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_10_2.c8` | Замечания и предложения по монтажу конструкций руководителей монтажной организации, авторского надзора, технического надзора заказчика | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_10_2.c9` | Подпись мастера (производителя работ), разрешившего производство работ и принявшего работу. Подпись лиц, осуществляющих авторский надзор | reference; required=false | item.c9 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-
-<a id="form-52"></a>
-### СП_70_Б — Журнал сварочных работ
-
-Группа: `statement`. DOCX: [app/templates/СП 70.13330.2012/СП_70_Б.docx](../app/templates/СП%2070.13330.2012/СП_70_Б.docx). Определения: [app/forms/СП 70.13330.2012/СП_70_Б.fields.json](../app/forms/СП%2070.13330.2012/СП_70_Б.fields.json).
-
-SHA-256 рабочего DOCX: `c0a72f1b3cf5ed2757f8966e1c5855e5962a00bdd57657b648e5f102df24ff48`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 70.13330.2012/Журнал сварочных работ.docx](../misc/downloads/Исходные%20формы%20документов/СП%2070.13330.2012/Журнал%20сварочных%20работ.docx). SHA-256: `0b249d0c1e1eeeb642ea37ef3073852636f70986ea01a39f467275bcd6a4ba99`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p16_1` | Журнал сварочных работ №… | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r0_c1` | Наименование организации, выполняющей работы: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Наименование объекта строительства: | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель исполнителя работ | signatory; required=true | Роль work_performer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Проектная организация РД | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t3_r1_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r2_c1` | Разработчик ППР | reference; required=true | organizations.ppr_designer.full_name (роль ppr_designer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t3_r3_c1` | Шифр проекта | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t3_r4_c1` | Предприятие, изготовившее стальные конструкции, арматурные и закладные изделия | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r5_c1` | Шифр документа о качестве | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c2` | Дата начала журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | Дата начала журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r0_c6` | Дата начала журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c2` | Дата окончания журнала | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c4` | Дата окончания журнала | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c6` | Дата окончания журнала | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t6_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_7_1` | инженерно-технического персонала, занятого выполнением сварочных работ | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_7_1.c1` | Фамилия, имя, отчество | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_1.c2` | Специальность и образование | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_1.c3` | Занимаемая должность | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_1.c4` | Дата начала работы на объекте | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_1.c5` | Отметка о прохождении аттестации и дата | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_1.c6` | Дата окончания работы на объекте | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_2` | выполнявших сварочные работы на объекте | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_8_2.c1` | Фамилия, имя, отчество | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_2.c2` | Разряд квалифи-кационный | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_2.c3` | Номер личного клейма | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_2.c4` | Диплом, удостоверение на право производства сварочных работ / номер | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_2.c5` | Отметка о сварке пробных и контрольных образцов / срок действия | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_2.c6` | допущен к сварке (швов в пространственном положении) | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_8_2.c7` | Графа 7 | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2` | ерсрок действиядопущен к сварке (швов в пространственном положении){%tr for item in rows_8_2 %}{{ item.c1 }}{{ item.c2 }}{{ item.c3 }}{{ item.c4 }}{{ item.c5 }}{{ item.c6 }}{{ item.c7 }}{%tr endfor %} | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_9_2.c1` | Дата выполнения работ, смена | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c2` | Наименование соединяемых элементов; марка стали | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c3` | Место или номер (по чертежу или схеме) свариваемого элемента | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c4` | Отметка о сдаче и приёмке узла под сварку (должность, фамилия, инициалы, подпись) | reference; required=false | item.c4 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_9_2.c5` | Марка применяемых сварочных материалов (проволока, флюс, электроды), номер партии | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c6` | Атмосферные условия (температура воздуха, осадки, скорость ветра) | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c7` | Фамилия, инициалы сварщика, номер удостоверения | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c8` | Клеймо | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c9` | Подписи сварщиков, сваривших соединения | reference; required=false | item.c9 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_9_2.c10` | Фамилия, инициалы ответственного за производство работ (мастера, производителя работ) | reference; required=true | item.c10 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c11` | Подпись руководителя сварочных работ | reference; required=false | item.c11 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `rows_9_2.c12` | Отметка о приёмке сварного соединения представителя ИЛ | reference; required=true | item.c12 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_9_2.c13` | Замечания по контрольной проверке (производителя работ и др.) | reference; required=true | item.c13 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-
-<a id="form-53"></a>
-### СП_71_Г — Акт приёмки выполненных работ
-
-Группа: `act`. DOCX: [app/templates/СП 71.13330.2017/СП_71_Г.docx](../app/templates/СП%2071.13330.2017/СП_71_Г.docx). Определения: [app/forms/СП 71.13330.2017/СП_71_Г.fields.json](../app/forms/СП%2071.13330.2017/СП_71_Г.fields.json).
-
-SHA-256 рабочего DOCX: `ec630066d285dbd5729b515e383b94c5361c289d32a8f19549441fc239ee3424`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 71.13330.2017/Акт приёмки выполненных работ.docx](../misc/downloads/Исходные%20формы%20документов/СП%2071.13330.2017/Акт%20приёмки%20выполненных%20работ.docx). SHA-256: `e54009469da96d1344c90dd56ea660159198a89e9f5505edff90207165b37086`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c0` | Дата документа | reference; required=true; format=date_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r2_c1` | в осях: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c4` | на отм.: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c1` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `t3_r0_c0` | - авторского надзора | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Строительный контроль заказчика | reference; required=true | organizations.customer_control.full_name (роль customer_control; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t5_r0_c0` | Генподрядчик | reference; required=true | organizations.general_contractor.full_name (роль general_contractor; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t6_r0_c0` | Представитель субподрядчика | signatory; required=true | Роль subcontractor; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t7_r0_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t8_r0_c0` | (наименование работ) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r0_c0` | (стандарт, проект серии, наименование проектной организации, номера чертежей и дата их составления) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r2_c1` | 3 Работы выполнены в период с | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r2_c3` | по | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c3` | Авторский надзор | signatory; required=true | Роль author_supervision; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t11_r2_c3` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t11_r4_c3` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t11_r6_c3` | Представитель субподрядчика | signatory; required=true | Роль subcontractor; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-54"></a>
-### СП_71_В — Предписание контроля качества строительно-монтажных работ
-
-Группа: `act`. DOCX: [app/templates/СП 71.13330.2017/СП_71_В.docx](../app/templates/СП%2071.13330.2017/СП_71_В.docx). Определения: [app/forms/СП 71.13330.2017/СП_71_В.fields.json](../app/forms/СП%2071.13330.2017/СП_71_В.fields.json).
-
-SHA-256 рабочего DOCX: `6e990e3cd1596688ae1feea7a844b49047865e8f09229343611ffdc1b73218d8`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 71.13330.2017/Предписание контроля качества строительно-монтажных работ.docx](../misc/downloads/Исходные%20формы%20документов/СП%2071.13330.2017/Предписание%20контроля%20качества%20строительно-монтажных%20работ.docx). SHA-256: `b67bf58212acbd9608688f6eadb7f38c0ea5ddd3ee8c1074e0711ae6d6b5ea0b`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c0` | Дата документа | reference; required=true; format=date_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t1_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r2_c1` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `t2_r1_c0` | Представитель, проводящий осмотр | signatory; required=true | Роль inspection_party; представление {organization.full_name}, {signatory.position} {signatory.fio}; требуется выбор inspection_party: customer_control, author_supervision, general_contractor ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r2_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `rows_4_2` | На основании проведённого осмотра предложены к выполнению следующие мероприятия: | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_4_2.c1` | N п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_2.c2` | Наименование мероприятий | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_2.c3` | Срок исполнения | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_2.c4` | Отметки о выполнении | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t5_r0_c3` | Авторский надзор | signatory; required=true | Роль author_supervision; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r2_c3` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r4_c3` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-55"></a>
-### СП_72_Д — Акт приёмки защитного покрытия
-
-Группа: `act`. DOCX: [app/templates/СП 72.13330.2016/СП_72_Д.docx](../app/templates/СП%2072.13330.2016/СП_72_Д.docx). Определения: [app/forms/СП 72.13330.2016/СП_72_Д.fields.json](../app/forms/СП%2072.13330.2016/СП_72_Д.fields.json).
-
-SHA-256 рабочего DOCX: `6dd9a96f5936472c17c948bfd58675488bb7a07e5403810a6803f6a34a1f6aa1`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 72.13330.2016/Акт приёмки защитного покрытия.docx](../misc/downloads/Исходные%20формы%20документов/СП%2072.13330.2016/Акт%20приёмки%20защитного%20покрытия.docx). SHA-256: `54d8b46d7d92f9d4d55c3ce123d9eed1c5a3388d474abe7ee8595b37d31aba01`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | АКТ № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c0` | (наименование) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c0` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r0_c1` | 1. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c1` | 2. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c2` | Объём выполненных работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r0_c2` | Дата начала работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r0_c2` | Дата окончания работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t11_r0_c0` | Работы выполнены в соответствии с проектно-сметной документацией, стандартами, строительными нормами и правилами и отвечают требованиям их приёмки. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t12_r0_c1` | Качество выполненных работ: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-56"></a>
-### СП_72_Г — Журнал производства антикоррозионных работ
-
-Группа: `statement`. DOCX: [app/templates/СП 72.13330.2016/СП_72_Г.docx](../app/templates/СП%2072.13330.2016/СП_72_Г.docx). Определения: [app/forms/СП 72.13330.2016/СП_72_Г.fields.json](../app/forms/СП%2072.13330.2016/СП_72_Г.fields.json).
-
-SHA-256 рабочего DOCX: `68aa212a26ae9e35a57b929b1c522af64f9fb0d03c4c743e8424a1c14685e8c2`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 72.13330.2016/Журнал производства антикоррозионных работ.docx](../misc/downloads/Исходные%20формы%20документов/СП%2072.13330.2016/Журнал%20производства%20антикоррозионных%20работ.docx). SHA-256: `02fe498c140f4065d3abb887706e3e87ccf3bac22501e70ad3e91d5c22ba141d`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c1` | Основание для выполнения работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c1` | Производитель работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | Начало работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c3` | Окончание работ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | В журнале пронумеровано | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_7_4` | Подпись администрации организации, выдавшей журнал | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_7_4.c1` | Дата (число, месяц, год), смена | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c2` | Наименование работ и применяемых материалов (пооперационно) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c3` | Объём | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c4` | Температура во время выполнения работ, С / на поверхности материала | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c5` | Применяемые материалы / окружающего воздуха на расстоянии не более 1 м от поверхности | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c6` | Число нанесенных слоев и их толщина, мкм / Наименование, ГОСТ, ТУ | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c7` | Температура С, и продолжительность сушки отдельных слоев покрытия, ч / номер / паспорта качества | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c8` | Фамилия и инициалы бригадира (специалиста), выполнявшего защитное покрытие / протокола входного контроля | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c9` | Дата и номер акта освидетельствования выполненных работ | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c10` | Примечание | reference; required=false | item.c10 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c11` | Графа 11 | reference; required=true | item.c11 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c12` | Графа 12 | reference; required=true | item.c12 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c13` | Графа 13 | reference; required=true | item.c13 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-
-<a id="form-57"></a>
-### СП_73_В — Акт о проведении гидростатического или манометрического испытания на герметичность
-
-Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_В.docx](../app/templates/СП%2073.13330.2016/СП_73_В.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_В.fields.json](../app/forms/СП%2073.13330.2016/СП_73_В.fields.json).
-
-SHA-256 рабочего DOCX: `dd7b6e1b109bd4784e721efcf38b104413d3d8c7f79b7e59d9790f1fba6de804`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Акт о проведении гидростатического или манометрического испытания на герметичность.docx](../misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Акт%20о%20проведении%20гидростатического%20или%20манометрического%20испытания%20на%20герметичность.docx). SHA-256: `6c4b6fbdbd1ff4fecb4a80caf09007d5431c4b8abb20f68cd3ff981ed9445109`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c0` | (наименование системы) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r2_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r2_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r2_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c1` | (наименование проектной организации и номера чертежей) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c1` | (гидростатическим или манометрическим методом) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r4_c1` | давлением | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r4_c4` | ( | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r5_c1` | в течение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r6_c1` | 3. Падение давления составило | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r6_c4` | ( | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-58"></a>
-### СП_73_Д — Акт о проведении индивидуального испытания оборудования
-
-Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Д.docx](../app/templates/СП%2073.13330.2016/СП_73_Д.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Д.fields.json](../app/forms/СП%2073.13330.2016/СП_73_Д.fields.json).
-
-SHA-256 рабочего DOCX: `645431beb3ee8488503aaff6f72655700a62ac4dcf131f8a668405ca094d20af`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Акт о проведении индивидуального испытания оборудования.docx](../misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Акт%20о%20проведении%20индивидуального%20испытания%20оборудования.docx). SHA-256: `24b7810e3e37ee969e710342b3d9a6d383a51872e4b2bedabb40679f7b3207d3`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c0` | (вентиляторы, насосы, муфты, самоочищающиеся фильтры с электроприводом, регулирующие клапаны систем вентиляции (кондиционирования воздуха), теплоутилизаторы, увлажнители, секции нагрева и охлаждения, воздушно-тепловые завесы (указываются номера систем)) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c1` | прошли испытание в течение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-59"></a>
-### СП_73_Г — Акт о проведении испытания систем канализации и водостоков
-
-Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Г.docx](../app/templates/СП%2073.13330.2016/СП_73_Г.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Г.fields.json](../app/forms/СП%2073.13330.2016/СП_73_Г.fields.json).
-
-SHA-256 рабочего DOCX: `95932453b42e8bb95b459976c5a9786d3edf4c98e3c688d6447d4c7c94cea522`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Акт о проведении испытания систем канализации и водостоков.docx](../misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Акт%20о%20проведении%20испытания%20систем%20канализации%20и%20водостоков.docx). SHA-256: `3c8d74655b4bc6fec4199a25cf74eb264f8014c9f5049a682a0a5a10236ad665`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c0` | (наименование системы) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r2_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r2_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r2_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r2_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c1` | (наименование проектной организации и номера чертежей) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c2` | проливом воды путем одновременного открытия | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r2_c1` | санитарных приборов, подключенных к проверяемому участку в течение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-60"></a>
-### СП_73_Е — Паспорт системы вентиляции (кондиционирования воздуха)
-
-Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Е.docx](../app/templates/СП%2073.13330.2016/СП_73_Е.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Е.fields.json](../app/forms/СП%2073.13330.2016/СП_73_Е.fields.json).
-
-SHA-256 рабочего DOCX: `6e9ce74677d0725d2982c68ac69d3f1f7e1acb6ec1a7e93188d233813c672629`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Паспорт системы вентиляции (кондиционирования воздуха).docx](../misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Паспорт%20системы%20вентиляции%20(кондиционирования%20воздуха).docx). SHA-256: `1fe79b60b52d932720447aea22eceecc6b71c6d9c7b85c636d2d55f5f4a5c9ac`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | Наименование системы, установки | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r1_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r2_c1` | Адрес | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r3_c1` | Зона, цех, помещения | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | 1. Назначение системы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r1_c1` | 2. Местонахождение оборудования системы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r4_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r4_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r4_c1 этой же формы | DOCX; word/document.xml |
-| `t2_r4_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r4_c2 этой же формы | DOCX; word/document.xml |
-| `t2_r4_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r4_c3 этой же формы | DOCX; word/document.xml |
-| `t2_r4_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r4_c4 этой же формы | DOCX; word/document.xml |
-| `t2_r4_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r4_c5 этой же формы | DOCX; word/document.xml |
-| `t2_r4_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r4_c6 этой же формы | DOCX; word/document.xml |
-| `t2_r5_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r5_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r5_c1 этой же формы | DOCX; word/document.xml |
-| `t2_r5_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r5_c2 этой же формы | DOCX; word/document.xml |
-| `t2_r5_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r5_c3 этой же формы | DOCX; word/document.xml |
-| `t2_r5_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r5_c4 этой же формы | DOCX; word/document.xml |
-| `t2_r5_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r5_c5 этой же формы | DOCX; word/document.xml |
-| `t2_r5_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t2_r5_c6 этой же формы | DOCX; word/document.xml |
-| `t3_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r3_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r3_c1 этой же формы | DOCX; word/document.xml |
-| `t4_r3_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r3_c2 этой же формы | DOCX; word/document.xml |
-| `t4_r3_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r3_c3 этой же формы | DOCX; word/document.xml |
-| `t4_r3_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r3_c4 этой же формы | DOCX; word/document.xml |
-| `t4_r3_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r3_c5 этой же формы | DOCX; word/document.xml |
-| `t4_r3_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r3_c6 этой же формы | DOCX; word/document.xml |
-| `t4_r3_c8` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r3_c7 этой же формы | DOCX; word/document.xml |
-| `t4_r4_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r4_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r4_c1 этой же формы | DOCX; word/document.xml |
-| `t4_r4_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r4_c2 этой же формы | DOCX; word/document.xml |
-| `t4_r4_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r4_c3 этой же формы | DOCX; word/document.xml |
-| `t4_r4_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r4_c4 этой же формы | DOCX; word/document.xml |
-| `t4_r4_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r4_c5 этой же формы | DOCX; word/document.xml |
-| `t4_r4_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r4_c6 этой же формы | DOCX; word/document.xml |
-| `t4_r4_c8` | Повтор сведений | reference; required=true | Уже разрешённое поле t4_r4_c7 этой же формы | DOCX; word/document.xml |
-| `t5_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r2_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r2_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r2_c1 этой же формы | DOCX; word/document.xml |
-| `t6_r2_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r2_c2 этой же формы | DOCX; word/document.xml |
-| `t6_r2_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r2_c3 этой же формы | DOCX; word/document.xml |
-| `t6_r2_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r2_c4 этой же формы | DOCX; word/document.xml |
-| `t6_r2_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r2_c5 этой же формы | DOCX; word/document.xml |
-| `t6_r2_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r2_c6 этой же формы | DOCX; word/document.xml |
-| `t6_r3_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r3_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r3_c1 этой же формы | DOCX; word/document.xml |
-| `t6_r3_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r3_c2 этой же формы | DOCX; word/document.xml |
-| `t6_r3_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r3_c3 этой же формы | DOCX; word/document.xml |
-| `t6_r3_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r3_c4 этой же формы | DOCX; word/document.xml |
-| `t6_r3_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r3_c5 этой же формы | DOCX; word/document.xml |
-| `t6_r3_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t6_r3_c6 этой же формы | DOCX; word/document.xml |
-| `t7_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r2_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r2_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c1 этой же формы | DOCX; word/document.xml |
-| `t8_r2_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c2 этой же формы | DOCX; word/document.xml |
-| `t8_r2_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c3 этой же формы | DOCX; word/document.xml |
-| `t8_r2_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c4 этой же формы | DOCX; word/document.xml |
-| `t8_r2_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c5 этой же формы | DOCX; word/document.xml |
-| `t8_r2_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c6 этой же формы | DOCX; word/document.xml |
-| `t8_r2_c8` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c7 этой же формы | DOCX; word/document.xml |
-| `t8_r2_c9` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r2_c8 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r3_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c1 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c2 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c3 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c4 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c5 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c6 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c8` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c7 этой же формы | DOCX; word/document.xml |
-| `t8_r3_c9` | Повтор сведений | reference; required=true | Уже разрешённое поле t8_r3_c8 этой же формы | DOCX; word/document.xml |
-| `t9_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r4_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r4_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r4_c1 этой же формы | DOCX; word/document.xml |
-| `t10_r4_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r4_c2 этой же формы | DOCX; word/document.xml |
-| `t10_r4_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r4_c3 этой же формы | DOCX; word/document.xml |
-| `t10_r4_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r4_c4 этой же формы | DOCX; word/document.xml |
-| `t10_r4_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r4_c5 этой же формы | DOCX; word/document.xml |
-| `t10_r5_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t10_r5_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r5_c1 этой же формы | DOCX; word/document.xml |
-| `t10_r5_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r5_c2 этой же формы | DOCX; word/document.xml |
-| `t10_r5_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r5_c3 этой же формы | DOCX; word/document.xml |
-| `t10_r5_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r5_c4 этой же формы | DOCX; word/document.xml |
-| `t10_r5_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t10_r5_c5 этой же формы | DOCX; word/document.xml |
-| `t11_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t12_r4_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t12_r4_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c1 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c2 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c3 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c4 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c5 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c6 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c8` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c7 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c9` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c8 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c10` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c9 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c11` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c10 этой же формы | DOCX; word/document.xml |
-| `t12_r4_c12` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r4_c11 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t12_r5_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c1 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c2 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c3 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c4 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c5 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c6 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c8` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c7 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c9` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c8 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c10` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c9 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c11` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c10 этой же формы | DOCX; word/document.xml |
-| `t12_r5_c12` | Повтор сведений | reference; required=true | Уже разрешённое поле t12_r5_c11 этой же формы | DOCX; word/document.xml |
-| `t13_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t14_r2_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t14_r2_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r2_c1 этой же формы | DOCX; word/document.xml |
-| `t14_r2_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r2_c2 этой же формы | DOCX; word/document.xml |
-| `t14_r2_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r2_c3 этой же формы | DOCX; word/document.xml |
-| `t14_r2_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r2_c4 этой же формы | DOCX; word/document.xml |
-| `t14_r3_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t14_r3_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r3_c1 этой же формы | DOCX; word/document.xml |
-| `t14_r3_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r3_c2 этой же формы | DOCX; word/document.xml |
-| `t14_r3_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r3_c3 этой же формы | DOCX; word/document.xml |
-| `t14_r3_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t14_r3_c4 этой же формы | DOCX; word/document.xml |
-| `t15_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t16_r2_c1` | По проекту | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t16_r2_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r2_c1 этой же формы | DOCX; word/document.xml |
-| `t16_r2_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r2_c2 этой же формы | DOCX; word/document.xml |
-| `t16_r2_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r2_c3 этой же формы | DOCX; word/document.xml |
-| `t16_r2_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r2_c4 этой же формы | DOCX; word/document.xml |
-| `t16_r2_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r2_c5 этой же формы | DOCX; word/document.xml |
-| `t16_r3_c1` | Фактически | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t16_r3_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r3_c1 этой же формы | DOCX; word/document.xml |
-| `t16_r3_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r3_c2 этой же формы | DOCX; word/document.xml |
-| `t16_r3_c4` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r3_c3 этой же формы | DOCX; word/document.xml |
-| `t16_r3_c5` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r3_c4 этой же формы | DOCX; word/document.xml |
-| `t16_r3_c6` | Повтор сведений | reference; required=true | Уже разрешённое поле t16_r3_c5 этой же формы | DOCX; word/document.xml |
-| `t17_r0_c1` | Примечание - | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_18_3` | Таблица Е.2 - Расход воздуха по помещениям | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_18_3.c1` | Номер мерного сечения | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_18_3.c2` | Наименование помещений | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_18_3.c3` | Расход воздуха, м³/ч / Фактически | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_18_3.c4` | Невязка, % отклонения от показателей / По проекту | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_18_3.c5` | Графа 5 | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t19_r0_c0` | Заказчик или наладочная организация | signatory; required=true | Роль acceptance_party; представление {signatory.fio}; требуется выбор acceptance_party: customer, commissioner ← signatories.fio | DOCX; word/document.xml |
-| `t20_r0_c0` | Представитель проектировщика | signatory; required=true | Роль designer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t21_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-61"></a>
-### СП_73_Ж — Паспорт системы охлаждения (сплит, VRF, VRV)
-
-Группа: `act`. DOCX: [app/templates/СП 73.13330.2016/СП_73_Ж.docx](../app/templates/СП%2073.13330.2016/СП_73_Ж.docx). Определения: [app/forms/СП 73.13330.2016/СП_73_Ж.fields.json](../app/forms/СП%2073.13330.2016/СП_73_Ж.fields.json).
-
-SHA-256 рабочего DOCX: `d9db32b717c9808c78b6574a33bb0af2052031c7dd0662c79826f90278aab305`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 73.13330.2016/Паспорт системы охлаждения (сплит, VRF, VRV).docx](../misc/downloads/Исходные%20формы%20документов/СП%2073.13330.2016/Паспорт%20системы%20охлаждения%20(сплит,%20VRF,%20VRV).docx). SHA-256: `5e01d6c1ff49d3710bada529dcae426110f7cf79570ed56f3d46668a63df992c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | Адрес объекта | reference; required=true | object.address ← objects.address | DOCX; word/document.xml |
-| `t0_r1_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r3_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r5_c1` | Наименование системы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r6_c1` | (тип, модель, производитель) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | (230 В±10%) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r4_c1` | (не менее 12ºС) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r6_c1` | (отклонение от заводских параметров не более ±5%) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c1` | Используемый хладон | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c1` | Количество дозаправленного хладагента, кг | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | Пролив конденсата | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | Наличие дополнительных агрегатов и опций | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c0` | (дренажная помпа, козырек, защитная сетка, комплект зимнего старта, прочее) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c1` | Заключение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t8_r0_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-62"></a>
-### СП_74_Б — Акт на приёмку электрозащитной установки в эксплуатацию
-
-Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_Б.docx](../app/templates/СП%2074.13330.2023/СП_74_Б.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_Б.fields.json](../app/forms/СП%2074.13330.2023/СП_74_Б.fields.json).
-
-SHA-256 рабочего DOCX: `68bdba821e925b5683fa80d71f57ec5be52fb0a4f74a5c63eba40afb8719e1fe`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт на приёмку электрозащитной установки в эксплуатацию.docx](../misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20на%20приёмку%20электрозащитной%20установки%20в%20эксплуатацию.docx). SHA-256: `db2ea38f2c400f7a83b3f650a4c1f55e1dced9cebdcfe2d4eafe1139c93e2ae8`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t1_r1_c1` | ОЭТС | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r2_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | (стене, опоре, фундаменте) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c1` | по адресу | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c1` | (дренажная, катодная и др.) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r2_c2` | Общая протяжённость защищаемых сетей | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | (тип, количество) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c1` | (марка, длина) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r4_c1` | (характеристика, значение сопротивления растеканию) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r6_c1` | (количество и на каких сооружениях) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r8_c1` | Перемычки между | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-63"></a>
-### СП_74_Г — Акт о проведении испытаний трубопроводов на прочность и герметичность
-
-Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_Г.docx](../app/templates/СП%2074.13330.2023/СП_74_Г.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_Г.fields.json](../app/forms/СП%2074.13330.2023/СП_74_Г.fields.json).
-
-SHA-256 рабочего DOCX: `6e378c2b0c4ed7594ce3dcc9d218d5f98f37ce9d9cea6cca578d26f86119bac1`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт о проведении испытаний трубопроводов на прочность и герметичность.docx](../misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20о%20проведении%20испытаний%20трубопроводов%20на%20прочность%20и%20герметичность.docx). SHA-256: `762115b530778c3547a669f0fbcd0fda10354925441cb5e66a850fe5797e3c0e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t5_r0_c1` | (гидравлические или пневматические) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c1` | (пикета, шахты) № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c3` | до камеры (пикета, шахты) № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r1_c1` | (наименование трубопровода) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r1_c3` | протяженностью | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_7_4` | (пикета, шахты) №{{ t6_r0_c1 }}до камеры (пикета, шахты) №{{ t6_r0_c3 }}трассы{{ t6_r1_c1 }}протяженностью{{ t6_r1_c3 }}м.(наименование трубопровода) | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_7_4.c1` | Трубопровод | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c2` | Испытательное давление, МПа (кгс/см²) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c3` | Продолжительность, выдержки под испытательным давлением, мин | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_7_4.c4` | Наружный осмотр при давлении, МПа (кгс/см²) | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t8_r1_c0` | (наименование проектной организации, номера чертежей и дата их составления) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-64"></a>
-### СП_74_Д — Акт о проведении промывки (продувки) трубопроводов
-
-Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_Д.docx](../app/templates/СП%2074.13330.2023/СП_74_Д.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_Д.fields.json](../app/forms/СП%2074.13330.2023/СП_74_Д.fields.json).
-
-SHA-256 рабочего DOCX: `f3bc1f59327345e72801dcd558c911cee39e44870acb0dd3f658314552cbda71`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт о проведении промывки (продувки) трубопроводов.docx](../misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20о%20проведении%20промывки%20(продувки)%20трубопроводов.docx). SHA-256: `36d13d97b5a664035b4c8cc153ab756c1b9f55858ff293fffff8224209b38f9c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c1` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t5_r1_c1` | участке от камеры (пикета, шахты) № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c3` | до камеры (пикета, шахты) № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r2_c0` | (наименование трубопровода) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r4_c1` | протяженностью | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r5_c1` | (наименование среды, давление, расход) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r8_c0` | (наименование проектной организации, номера чертежей и дата их составления) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-65"></a>
-### СП_74_А — Акт о растяжке компенсаторов
-
-Группа: `act`. DOCX: [app/templates/СП 74.13330.2023/СП_74_А.docx](../app/templates/СП%2074.13330.2023/СП_74_А.docx). Определения: [app/forms/СП 74.13330.2023/СП_74_А.fields.json](../app/forms/СП%2074.13330.2023/СП_74_А.fields.json).
-
-SHA-256 рабочего DOCX: `e9629b57a55780368639bbbed4d68e20d1b5ddce5cc1465c7e0d258283332072`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 74.13330.2023/Акт о растяжке компенсаторов.docx](../misc/downloads/Исходные%20формы%20документов/СП%2074.13330.2023/Акт%20о%20растяжке%20компенсаторов.docx). SHA-256: `c03bffc28545f63a9c46364011a6a03acf95d37d87e875b286572fc6c0ccb757`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | г. | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c0` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Представитель подрядчика | signatory; required=true | Роль builder; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r0_c0` | Представитель эксплуатирующей организации | signatory; required=true | Роль network_operator; представление {organization.full_name}, {signatory.position} {signatory.fio} ← organizations.full_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r2_c1` | составили настоящий акт о том, что на участке тепловых сетей от камеры (пикета) № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r1_c1` | таблице, на участке до камеры (пикета, шахты) № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_6_4` | 1.К освидетельствованию и приемке предъявлена растяжка компенсаторов, перечисленных в таблице, на участке до камеры (пикета, шахты) №{{ t5_r1_c1 }}проведена растяжка компенсаторов: | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_6_4.c1` | Номер компенсатора по проектной схеме | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_6_4.c2` | Номер чертежа | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_6_4.c3` | Тип компенсатора | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_6_4.c4` | Величина растяжки, мм / проектная | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_6_4.c5` | фактическая | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t7_r0_c1` | Растяжка компенсаторов проведена при температуре окружающего воздуха | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-66"></a>
-### СП_76_Б — Акт сдачи-приёмки пусконаладочных работ
-
-Группа: `act`. DOCX: [app/templates/СП 76.13330.2016/СП_76_Б.docx](../app/templates/СП%2076.13330.2016/СП_76_Б.docx). Определения: [app/forms/СП 76.13330.2016/СП_76_Б.fields.json](../app/forms/СП%2076.13330.2016/СП_76_Б.fields.json).
-
-SHA-256 рабочего DOCX: `34b128c0bee380caf33d8df9f6c516c653acaebf43617122405db1325a4c8f82`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 76.13330.2016/Акт сдачи-приёмки пусконаладочных работ.docx](../misc/downloads/Исходные%20формы%20документов/СП%2076.13330.2016/Акт%20сдачи-приёмки%20пусконаладочных%20работ.docx). SHA-256: `95d04f5d0d9bc77bf5c3d37f6e96b3f6ca1fdf2c32afd63c32527acadb106a9f`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c0` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r2_c0` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r4_c0` | (объект) | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r2_c1` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t1_r3_c0` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c1` | 1. В соответствии с договором № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c4` | Дата договора | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c6` | Дата договора | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c8` | Дата договора | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r1_c1` | заключённым между | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r2_c1` | и | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r4_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r6_c0` | установила следующее: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c0` | 2. Работы выполнены на следующих электроустановках | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c3` | Дата начала работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c5` | Дата начала работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t4_r0_c7` | Дата начала работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r0_c2` | Дата окончания работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c4` | Дата окончания работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t5_r0_c6` | Дата окончания работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t5_r0_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t6_r0_c0` | 4. Результаты пусконаладочных работ приведены в представленной технической документации в составе: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c0` | 6. Дополнительные замечания: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r1_c2` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t8_r1_c6` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-67"></a>
-### СП_77_А_2 — Акт готовности объекта к производству работ по монтажу систем автоматизации
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_2.docx](../app/templates/СП%2077.13330.2016/СП_77_А_2.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_2.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_2.fields.json).
-
-SHA-256 рабочего DOCX: `5e8d7a729f682ab3c5f84c5a71446cd7d0d5c0440c3065836aee78fd0cedfa11`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт готовности объекта к производству работ по монтажу систем автоматизации.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20готовности%20объекта%20к%20производству%20работ%20по%20монтажу%20систем%20автоматизации.docx). SHA-256: `cc602d8b291cd33bde978c4af5cd9f32a50e040f87e3fd25fdb34de7ac38d941`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r0_c1` | Генподрядчик | reference; required=true | organizations.general_contractor.full_name (роль general_contractor; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r2_c1` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r4_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r6_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r9_c0` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r12_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t2_r15_c0` | Раздел и шифр РД | reference; required=true | project_documentation.section_description (вычисляется form_defaults.documentation_context) ← projects.code, projects.name | DOCX; word/document.xml |
-| `t3_r0_c0` | Особые замечания | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c0` | Приложение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c1` | Представитель генподрядчика | signatory; required=true | Роль general_contractor; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t6_r0_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t7_r0_c1` | Строительный контроль заказчика | signatory; required=true | Роль customer_control; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-Объединение исходных полей (хвостовые ключи удалены из эффективного контекста): `t3_r0_c0` ← `t3_r1_c0`; `t4_r0_c0` ← `t4_r1_c0`.
-
-| Исходное поле продолжения | Подпись | Исходное определение |
-|---|---|---|
-
-<a id="form-68"></a>
-### СП_77_А_8 — Акт испытания трубных проводок на герметичность
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_8.docx](../app/templates/СП%2077.13330.2016/СП_77_А_8.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_8.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_8.fields.json).
-
-SHA-256 рабочего DOCX: `3504e92cb4766e99461f1dee8fc93496604b5a6aab6161bccf5bc2f4f029a869`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт испытания трубных проводок на герметичность.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20испытания%20трубных%20проводок%20на%20герметичность.xlsx). SHA-256: `3e1f45c9e6c9b5a0e5ca33eb81f40eb9fa79f5f9e57521e88eb90985f87e6b5f`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p36_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p36_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p36_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p36_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p36_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p83_4` | в начале испытания … °C | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p84_5` | в конце испытания … °C | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p151_6` | Установлено … заглушек. Снято после испытаний … заглушек.Согласно приведенным результатам испытаний и осмотру монтаж трубных проводок выполнен в соответствии с рабочей документацией и СП 77.13330 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p151_7` | Установлено … заглушек. Снято после испытаний … заглушек.Согласно приведенным результатам испытаний и осмотру монтаж трубных проводок выполнен в соответствии с рабочей документацией и СП 77.13330 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `x_0_16` | Проект N | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `rows_0_21` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_21.c1` | Проект N {{ x_0_16 }} / Данные контрольных приборов / N п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c2` | Наименование приборов | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c3` | Тип | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c4` | N прибора | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c5` | Шкала | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c6` | Класс | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c7` | Примечание | reference; required=false | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_32.c1` | Графа 1 | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c2` | Графа 2 | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c3` | Графа 3 | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c4` | Графа 4 | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c5` | Графа 5 | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c6` | Графа 6 | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c7` | Графа 7 | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c8` | Графа 8 | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_32.c9` | Графа 9 | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r7_c1` | (наименование) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r9_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r10_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r12_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r13_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r15_c1` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t0_r15_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r15_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r24_c1` | Испытательная среда | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r37_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t0_r39_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-69"></a>
-### СП_77_А_7 — Акт испытания трубных проводок на прочность и плотность
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_7.docx](../app/templates/СП%2077.13330.2016/СП_77_А_7.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_7.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_7.fields.json).
-
-SHA-256 рабочего DOCX: `211174706f6e1f43e8a5404c88bd1b0ef99f3e7251f1a5107daad861e41556ec`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт испытания трубных проводок на прочность и плотность.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20испытания%20трубных%20проводок%20на%20прочность%20и%20плотность.xlsx). SHA-256: `928b9ed508ecad5a6841046a0d03bdd6bde8ddb67360a3f6564c91d908f149c9`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p35_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p35_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p35_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p35_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p35_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p93_4` | Установлено … заглушек. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p94_5` | Снято после испытания … заглушек. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_0_21` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_21.c1` | N трубной проводки | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c2` | Наименование трубной проводки | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c3` | Внутренний диаметр трубопровода, мм | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c4` | Длина трубной проводки, мм | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c5` | Испытательное давление на прочность, МПа, (кгс/см²) | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c6` | Испытательное давление на плотность, МПа, (кгс/см²) | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_21.c7` | Примечание | reference; required=false | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r5_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r6_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r7_c0` | (наименование) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r9_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r10_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r12_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r13_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r26_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t0_r28_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-70"></a>
-### СП_77_А_9 — Акт на обезжиривание труб, арматуры и соединений
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_9.docx](../app/templates/СП%2077.13330.2016/СП_77_А_9.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_9.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_9.fields.json).
-
-SHA-256 рабочего DOCX: `4e976220a7a03be72117b82072f3e9cf8682396211d3b3c6f60355e026a8de08`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт на обезжиривание труб, арматуры и соединений.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20на%20обезжиривание%20труб,%20арматуры%20и%20соединений.xlsx). SHA-256: `7accea367252663ed536ed541311dab1f3c23e3fc23ec6b38fa6ae1288340765`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_5_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_5_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_5_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r5_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r7_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r8_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r9_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r12_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r14_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r17_c0` | (наименование изделий) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r20_c0` | (метод обезжиривания) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r26_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r28_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-71"></a>
-### СП_77_А_5 — Акт окончания работ по монтажу систем автоматизации
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_5.docx](../app/templates/СП%2077.13330.2016/СП_77_А_5.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_5.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_5.fields.json).
-
-SHA-256 рабочего DOCX: `4d3f74488ba27fb41a1a1e1ad50d035bfc1dfd863cb94b8264122a9dcfd2d8b4`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт окончания работ по монтажу систем автоматизации.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20окончания%20работ%20по%20монтажу%20систем%20автоматизации.docx). SHA-256: `f44faa24ed4b56863b62ec1580d1c604a74e175a19e55eab5f0a3b502cea7bff`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c1` | Организация: Генподрядчик или заказчик | reference; required=true | organizations.construction_party.full_name (роль construction_party; назначение объекта → раздела → документа); требуется выбор construction_party: general_contractor, customer ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r3_c0` | Генподрядчик или заказчик | signatory; required=true | Роль construction_party; представление {signatory.position} {signatory.fio}; требуется выбор construction_party: general_contractor, customer ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r5_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r6_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Объект и шифр РД | reference; required=true | project_documentation.object_and_project (вычисляется form_defaults.documentation_context) ← objects.name, projects.code | DOCX; word/document.xml |
-| `t4_r0_c2` | Монтажные работы начаты | reference; required=true; format=day_2digits; value_type=date | project.smr_start ← projects.smr_start | DOCX; word/document.xml |
-| `t4_r0_c4` | Монтажные работы начаты | reference; required=true; format=month_genitive_ru; value_type=date | project.smr_start ← projects.smr_start | DOCX; word/document.xml |
-| `t4_r0_c6` | Монтажные работы начаты | reference; required=true; format=year_4digits; value_type=date | project.smr_start ← projects.smr_start | DOCX; word/document.xml |
-| `t5_r0_c2` | Монтажные работы окончены | reference; required=true; format=day_2digits; value_type=date | project.smr_end ← projects.smr_end | DOCX; word/document.xml |
-| `t5_r0_c4` | Монтажные работы окончены | reference; required=true; format=month_genitive_ru; value_type=date | project.smr_end ← projects.smr_end | DOCX; word/document.xml |
-| `t5_r0_c6` | Монтажные работы окончены | reference; required=true; format=year_4digits; value_type=date | project.smr_end ← projects.smr_end | DOCX; word/document.xml |
-| `t6_r0_c1` | Перечень прилагаемой к акту документации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r1_c0` | кументацией. Смонтированные приборы, средства автоматизации и вспомогательная аппаратура перечислены в ведомости смонтированных технических средств систем автоматизации, прилагаемой к настоящему акту. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-Объединение исходных полей (хвостовые ключи удалены из эффективного контекста): `t6_r1_c0` ← `t6_r2_c0`.
-
-| Исходное поле продолжения | Подпись | Исходное определение |
-|---|---|---|
-
-<a id="form-72"></a>
-### СП_77_А_1 — Акт передачи рабочей документации для производства работ по монтажу систем автоматизации
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_1.docx](../app/templates/СП%2077.13330.2016/СП_77_А_1.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_1.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_1.fields.json).
-
-SHA-256 рабочего DOCX: `0b828eeb2731d6c6ead8dda7371771945e4d649b0d7504844c1815b4d7fc7dc9`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт передачи рабочей документации для производства работ по монтажу систем автоматизации.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20передачи%20рабочей%20документации%20для%20производства%20работ%20по%20монтажу%20систем%20автоматизации.docx). SHA-256: `56409992b2bddbbe2287f89c65de391421fc3a0cc2b6ce9290185d91aa685731`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c1` | Организация: Генподрядчик или заказчик | reference; required=true | organizations.construction_party.full_name (роль construction_party; назначение объекта → раздела → документа); требуется выбор construction_party: general_contractor, customer ← organizations.full_name | DOCX; word/document.xml |
-| `t1_r2_c1` | Генподрядчик или заказчик | signatory; required=true | Роль construction_party; представление {signatory.position} {signatory.fio}; требуется выбор construction_party: general_contractor, customer ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r4_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t1_r6_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r0_c0` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t3_r0_c1` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t4_r0_c1` | Проект № | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `rows_5_2` | Переданы в производство работ | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_5_2.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_5_2.c2` | Наименование и номер чертежа | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_5_2.c3` | Количество экз. | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_5_2.c4` | Примечание | reference; required=false | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t6_r0_c1` | Генподрядчик или заказчик | signatory; required=true | Роль construction_party; представление {signatory.fio}; требуется выбор construction_party: general_contractor, customer ← signatories.fio | DOCX; word/document.xml |
-| `t7_r0_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-73"></a>
-### СП_77_А_3 — Акт передачи технических средств автоматизации в монтаж
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_3.docx](../app/templates/СП%2077.13330.2016/СП_77_А_3.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_3.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_3.fields.json).
-
-SHA-256 рабочего DOCX: `8a7e651bdbbb0edd6a1dc40fed51ddcd6332dc9eff6ebe18f48f8557074da1ce`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт передачи технических средств автоматизации в монтаж.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20передачи%20технических%20средств%20автоматизации%20в%20монтаж.docx). SHA-256: `3ecda3dbea78941976e8ba97eae39269c7a979ca92bced5bf36b6964e2edf180`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r0_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t2_r2_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r4_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t3_r0_c0` | Название раздела | reference; required=true | project.name ← projects.name | DOCX; word/document.xml |
-| `t3_r2_c0` | (наименование конкретного объекта монтажа) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_4_4` | следующие технические средства и материалы: | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_4_4.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_4.c2` | Наименование и номер чертежа | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_4.c3` | Тип, марка и заводская документация | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_4.c4` | Единица измерения | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_4.c5` | Количество | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t5_r0_c0` | (обозначение с "СО1") | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t7_r0_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-74"></a>
-### СП_77_А_22 — Акт приёмки в эксплуатацию отдельных систем автоматизации
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_22.docx](../app/templates/СП%2077.13330.2016/СП_77_А_22.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_22.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_22.fields.json).
-
-SHA-256 рабочего DOCX: `99f2475e1e8d635db7a0d261bfc02e137f922141a0fe2a93c933643c27cf5782`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт приёмки в эксплуатацию отдельных систем автоматизации.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20приёмки%20в%20эксплуатацию%20отдельных%20систем%20автоматизации.docx). SHA-256: `1e4addc0adc39009a95d971175721ac05187f0be9dda028e86f56e66bfa76f22`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r1_c0` | Обозначение формы | literal; required=false | Значение по умолчанию: "Приложение А.22" | DOCX; word/document.xml |
-| `t0_r2_c0` | Обозначение формы | literal; required=false | Значение по умолчанию: "Приложение А.22" | DOCX; word/document.xml |
-| `t1_r0_c1` | Дата утверждения акта | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | Дата утверждения акта | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r0_c5` | Дата утверждения акта | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t2_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t3_r0_c0` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t4_r0_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t4_r2_c0` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t5_r0_c0` | (наименование систем автоматизации) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t6_r0_c1` | (времени) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r0_c0` | (наименование нормативного документа, проекта) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r1_c2` | Пусконаладочные работы выполнены с оценкой | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r0_c1` | 1. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r1_c1` | 2. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t9_r2_c1` | 3. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-75"></a>
-### СП_77_А_23 — Акт приёмки систем автоматизации в эксплуатацию
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_23.docx](../app/templates/СП%2077.13330.2016/СП_77_А_23.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_23.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_23.fields.json).
-
-SHA-256 рабочего DOCX: `d81167f45ba0d017af34a8fd1b8973da53050db8b0fd0b6b105fd3017683bb5e`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт приёмки систем автоматизации в эксплуатацию.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20приёмки%20систем%20автоматизации%20в%20эксплуатацию.docx). SHA-256: `3bb78f65546bf4823c1871bb3345d927573701f899a566f26e0819661966a97e`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p86_1` | Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p86_2` | Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p86_3` | Перечисленные системы автоматизации, прошедшие комплексную наладку, считать принятыми в эксплуатацию с «…» … 20 … г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r1_c0` | Организация, утверждающая акт | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r2_c0` | Представитель, утверждающий акт | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t1_r0_c1` | Дата утверждения акта | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c3` | Дата утверждения акта | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t1_r0_c5` | Дата утверждения акта | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t1_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t2_r0_c3` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c5` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t2_r0_c7` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t2_r0_c3; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t3_r0_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t4_r0_c1` | Дата приказа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t4_r0_c3` | Дата приказа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t4_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t4_r0_c5` | Дата приказа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t4_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t4_r0_c7` | г. № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t5_r0_c0` | Председатель комиссии от заказчика | signatory; required=true | Роль commission_chair; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r0_c1` | Представитель пусконаладочной организации | signatory; required=true | Роль commissioner; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t6_r2_c1` | Представитель надзорной организации | signatory; required=true | Роль supervisory; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t7_r0_c0` | (наименование систем или технических средств) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r2_c1` | (обозначение проекта, дата разработки) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t7_r4_c1` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t7_r6_c1` | Пусконаладочная организация | reference; required=true | organizations.commissioner.full_name (роль commissioner; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t8_r0_c1` | Дата начала работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c3` | Дата начала работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t8_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t8_r0_c5` | Дата начала работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t8_r0_c1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t8_r0_c7` | Дата окончания работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t8_r0_c9` | Дата окончания работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t8_r0_c7; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t8_r0_c11` | Дата окончания работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t8_r0_c7; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t9_r0_c0` | Перечень прилагаемой к акту документации: | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-76"></a>
-### СП_77_А_13 — Журнал по сварке трубопроводов
-
-Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_13.docx](../app/templates/СП%2077.13330.2016/СП_77_А_13.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_13.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_13.fields.json).
-
-SHA-256 рабочего DOCX: `3db3aa15f4588ccc8f2a4f1077b7de4c68b65a34eb8319f927121593d9a8fca2`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Журнал по сварке трубопроводов.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Журнал%20по%20сварке%20трубопроводов.xlsx). SHA-256: `f66add7c13af53fe73edbc01c9b00495d5d2609469c1d3df64545c59f6aed94f`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p260_1` | Дата подписи руководителя монтажных работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p260_2` | Дата подписи руководителя монтажных работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p260_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p260_3` | Дата подписи руководителя монтажных работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p260_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p261_4` | Дата подписи руководителя сварочных работ | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p261_5` | Дата подписи руководителя сварочных работ | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p261_4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p261_6` | Дата подписи руководителя сварочных работ | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p261_4; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_0_8` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_8.c1` | (N чертежей расположения трубопроводов, буквенно-цифровое обозначение участков) / № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c2` | (наименование и месторасположение объекта) / Номер сварного соединения по чертежам (исполнительным чертежам) | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c3` | Номер трубной проводки | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c4` | Ф.И.О. сварщика, личное клеймо | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c5` | Марка стали (композиция марок сталей), НД, № сертификата | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c6` | Наружный диаметр элемента трубопровода и толщина стенки DнхS, мм | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c7` | Дата сварки, температурные условия в рабочей зоне, °С | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c8` | Способ сварки | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c9` | Сварочные материалы (марка электрода, сварочной проволоки, защитный газ, флюс), НД, № сертификата | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c10` | Режим предварительного и сопутствующего подогрева | reference; required=true | item.c10 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c11` | Отметка о контроле корня шва | reference; required=true | item.c11 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c12` | Стилоскопирование металла шва, № заключения, дата | reference; required=true | item.c12 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c13` | Ф.И.О. оператора-термиста, личное клеймо | reference; required=true | item.c13 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c14` | № диаграммы по журналу термообработки сварных соединений | reference; required=true | item.c14 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c15` | Замер твердости металла шва, N включения, дата | reference; required=true | item.c15 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c16` | Отметка о годности сварного соединения по внешнему осмотру и измерениям | reference; required=true | item.c16 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c17` | Способ и результаты неразрушающего контроля сварного соединения, N заключения, дата | reference; required=true | item.c17 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_8.c18` | Результаты замера ферритной фазы в металле шва, N заключения, дата | reference; required=true | item.c18 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r2_c1` | Объект и адрес | reference; required=true | project_documentation.object_description (вычисляется form_defaults.documentation_context) ← objects.address, objects.name | DOCX; word/document.xml |
-| `t0_r4_c0` | (N чертежей расположения трубопроводов, буквенно-цифровое обозначение участков) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r16_c10` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r18_c11` | Начальник участка | signatory; required=true | Роль site_manager; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t0_r18_c13` | Руководитель сварочных работ | signatory; required=true | Роль welding_supervisor; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-| `t0_r19_c10` | "{{ p260_1 }}" {{ p260_2 }} 20{{ p260_3 }} г. | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r19_c12` | Руководитель сварочных работ | signatory; required=true | Роль welding_supervisor; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-77"></a>
-### СП_77_А_14 — Заключение о проверке качества сварных швов, произведённой методом капиллярной дефектоскопии
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_14.docx](../app/templates/СП%2077.13330.2016/СП_77_А_14.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_14.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_14.fields.json).
-
-SHA-256 рабочего DOCX: `1be639c9b5633500269320365635ee3d847e6dd659e9ff543e1525c3690e428e`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Заключение о проверке качества сварных швов, произведённой методом капиллярной дефектоскопии.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Заключение%20о%20проверке%20качества%20сварных%20швов,%20произведённой%20методом%20капиллярной%20дефектоскопии.xlsx). SHA-256: `a171ef947bef1a27026134ecccb7b0515f8c37100facdd11f4af464749fe1a12`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p11_1` | …сварочная лаборатория | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p15_2` | ЗАКЛЮЧЕНИЕ N … | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_0_16` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_16.c1` | Дефектоскопист / Удостоверение / Результаты контроля / N блока | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c2` | Поз. КИП | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c3` | Место контроля (наименование участка, диаметр и толщина стенки трубы) | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c4` | Дата контроля | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c5` | Номер стыка | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c6` | Ф.И.О. сварщика | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c7` | Клеймо сварщика | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c8` | Обнаружены дефекты | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c9` | Заключение по контролю | reference; required=true | item.c9 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r3_c1` | {{ p11_1 }}сварочная лаборатория | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r6_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r6_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r6_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r7_c1` | Шифр рабочей документации | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t0_r7_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r7_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r9_c1` | Контроль производился дефектоскопическим комплектом | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c1` | Класс чувствительности контроля | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r11_c1` | Дефектоскопист | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c1` | Удостоверение | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r33_c2` | Дефектоскопист | signatory; required=true | Роль flaw_detector; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r35_c2` | Начальник лаборатории | signatory; required=true | Роль laboratory_head; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-78"></a>
-### СП_77_А_10 — Опись технической документации
-
-Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_10.docx](../app/templates/СП%2077.13330.2016/СП_77_А_10.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_10.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_10.fields.json).
-
-SHA-256 рабочего DOCX: `bab0b828985f3ee99ac171e09d4d4402bf4d75fa537e07cae85effa491ccc1ff`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Опись технической документации.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Опись%20технической%20документации.xlsx). SHA-256: `011309c9277ffc7ef79eeaa77ca3e0fbf8b3d8fa5e5457e7570d6b6cac17ee31`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r5_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r6_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r7_c1` | Наименование объекта | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r8_c1` | Вид документации | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c2` | Свидетельство о монтаже | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r12_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r13_c2` | Акт на обезжиривание труб, арматуры и соединений (для кислородопроводов) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r13_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r13_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r14_c2` | Схема расположения сварных швов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r14_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r14_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r15_c2` | Журнал по сварке трубопроводов | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r15_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r15_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r16_c2` | Заключение ВИК | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r16_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r16_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r17_c2` | Заключение цветной дефектоскопии | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r17_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r17_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r18_c2` | Заключение дефектоскопии ультразвуковым или радиографическим методом | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r18_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r18_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r19_c2` | Список сварщиков, дефектоскопистов и сборщиков резьбовых соединений | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r19_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r19_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r20_c2` | Копии удостоверений сварщиков | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r20_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r20_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r21_c2` | Копии удостоверений дефектоскопистов, сборщиков резьбовых соединений | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r21_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r21_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r22_c2` | Документация входного контроля на изделия и материалы для трубных проводок. Сертификаты | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r22_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r22_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r23_c2` | Акт испытания трубных проводок на прочность и плотность | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r23_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r23_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r24_c2` | Акт испытания трубных проводок на герметичность с определением падения давления за время испытания | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r24_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r24_c2 этой же формы | DOCX; word/document.xml |
-| `t0_r26_c1` | Документацию сдал | signatory; required=true | Роль documentation_sender; представление {signatory.position} {signatory.fio}; требуется выбор documentation_sender: installer, general_contractor, builder, customer ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r28_c1` | Документацию принял | signatory; required=true | Роль documentation_recipient; представление {signatory.position} {signatory.fio}; требуется выбор documentation_recipient: customer, general_contractor, installer, builder ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-79"></a>
-### СП_77_А_19_МУФТА — Паспорт на смонтированную соединительную муфту
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_19_МУФТА.docx](../app/templates/СП%2077.13330.2016/СП_77_А_19_МУФТА.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_19_МУФТА.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_19_МУФТА.fields.json).
-
-SHA-256 рабочего DOCX: `c917925b4db2576445ee5b6162dd233f17e338fcd2e95e1044025e1f70c78c50`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Паспорт на смонтированную соединительную муфту.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Паспорт%20на%20смонтированную%20соединительную%20муфту.xlsx). SHA-256: `ef9e6dac36d12fd0c661c1faeb26e493a5925b34ff7911241d43636d9e166f74`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p58_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p58_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p58_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r7_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r8_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r9_c1` | Шифр рабочей документации | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t0_r10_c1` | Муфта N | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r11_c1` | Оптические линии связи | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c1` | Регенерационный участок | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r13_c1` | Марка оптического кабеля | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r14_c1` | Исполнитель | signatory; required=true | Роль worker; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r15_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r17_c1` | Сведения о ремонте | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r18_c1` | Измерительные приборы | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r19_c0` | НомерОВ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r22_c1` | 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r22_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r22_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r23_c1` | 2 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r23_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r23_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r24_c1` | 3 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r24_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r24_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r25_c1` | 4 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r25_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r25_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r26_c1` | 5 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r26_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r26_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r27_c1` | 6 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r27_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r27_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r28_c1` | 7 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r28_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r28_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r29_c1` | 8 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r29_c2` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r29_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r30_c2` | Проверяющий | signatory; required=true | Роль inspector; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-80"></a>
-### СП_77_А_19_УЧАСТОК — Паспорт регенерационного участка
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_19_УЧАСТОК.docx](../app/templates/СП%2077.13330.2016/СП_77_А_19_УЧАСТОК.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_19_УЧАСТОК.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_19_УЧАСТОК.fields.json).
-
-SHA-256 рабочего DOCX: `3fc17b18f89969ae1a90e36f4436809591f4bbd936b458849bf8dbd7cb51935d`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Паспорт регенерационного участка.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Паспорт%20регенерационного%20участка.xlsx). SHA-256: `1c55f34a7493904ae6610550b1a690fc0a660657e273cb948268a59e6f52046a`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p58_1` | Дата документа | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `p58_2` | Дата документа | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `p58_3` | Дата документа | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля p58_1; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `rows_0_18` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_18.c1` | Графа 1 | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_18.c2` | НаправлениеА-Б / Pвх | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_18.c3` | Направление Б-А / Pвых | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_18.c4` | Затухание А, дБ / Pвх | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_18.c5` | Pвых | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_18.c6` | Графа 6 | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_18.c7` | Графа 7 | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r7_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r8_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r9_c1` | Шифр рабочей документации | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t0_r10_c1` | Регенерационный участок | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r11_c0` | НомерОВ | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r23_c2` | Проверяющий | signatory; required=true | Роль inspector; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-81"></a>
-### СП_77_А_4 — Протокол входного контроля оптического кабеля
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_4.docx](../app/templates/СП%2077.13330.2016/СП_77_А_4.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_4.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_4.fields.json).
-
-SHA-256 рабочего DOCX: `c61a0e60112f6fdae0e9ae6256aa7facf80e2e3b83660bedd351dea17ba24e16`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол входного контроля оптического кабеля.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20входного%20контроля%20оптического%20кабеля.docx). SHA-256: `b74c3af49c420dc24771603cebc175b1a30c1dbaf5021515ac8db003e853b1d1`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r0_c1` | № бухты барабана | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t1_r0_c1` | Марка кабеля | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r0_c1` | Количество оптических волокон | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c2` | тип | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r1_c2` | заводской № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r2_c2` | год выпуска | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `rows_4_5` | Прибор:тип{{ t3_r0_c2 }}заводской №{{ t3_r1_c2 }}год выпуска{{ t3_r2_c2 }} | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_4_5.c1` | Длина ОК, М L | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_5.c2` | Номер ОВ | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_5.c3` | Паспортные данные (затухание ОВ, А, ДБ) | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_5.c4` | Мощность излучения по индикатору, ДБ / Авх | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_5.c5` | Результаты расчёта / Затухания А, ДБ / Авых | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_5.c6` | Дата проверки / Коэффициент затухания α, ДБ/км | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_5.c7` | Графа 7 | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_4_5.c8` | Графа 8 | reference; required=true | item.c8 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t5_r0_c1` | Проверяющий | signatory; required=true | Роль inspector; представление {signatory.fio} ← signatories.fio | DOCX; word/document.xml |
-
-<a id="form-82"></a>
-### СП_77_А_19_ИЗМЕРЕНИЯ — Протокол измерения параметров смонтированного оптического кабеля
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.docx](../app/templates/СП%2077.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_19_ИЗМЕРЕНИЯ.fields.json).
-
-SHA-256 рабочего DOCX: `271cee09fa879200aa715d8638e592ace3150cd9647b2ce2491f8fd5b6243cec`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол измерения параметров смонтированного оптического кабеля.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20измерения%20параметров%20смонтированного%20оптического%20кабеля.xlsx). SHA-256: `51b9a171b911ec081e6b252ba8f2f5ea89b18ba5321d7e37cb97cc0f3d72f494`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_6_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r8_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r10_c1` | Шифр рабочей документации | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t0_r12_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r15_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r19_c1` | рабочие чертежи | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r20_c1` | отступление от рабочих чертежей | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r24_c0` | 4. Заключение о сдаче-приемке ВОЛС | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r26_c0` | таблица 0, строка 26, ячейка 0 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r28_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r28_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r28_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r32_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r32_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r32_c1 этой же формы | DOCX; word/document.xml |
-
-<a id="form-83"></a>
-### СП_77_А_16 — Протокол измерения сопротивления изоляции
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_16.docx](../app/templates/СП%2077.13330.2016/СП_77_А_16.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_16.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_16.fields.json).
-
-SHA-256 рабочего DOCX: `544d5374e90fece840e050ac668aeadb5654e62b1c5c2259ac17d61d622534ec`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол измерения сопротивления изоляции.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20измерения%20сопротивления%20изоляции.xlsx). SHA-256: `379c08ba0940c13f6cc904cc00189f4c40d013a3363b2cb7d9c1bb2646bc6396`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_6_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_0_22` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_22.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_22.c2` | Наименование прибора | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_22.c3` | Тип | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_22.c4` | № прибора | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_22.c5` | Шкала | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_22.c6` | Класс | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_22.c7` | Примечание | reference; required=false | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_33.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c2` | Маркировка провода (кабеля) по чертежу, N позиции | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c3` | Марка провода (кабеля) | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c4` | Кол-во и сечение жил, мм2 | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c5` | Сопротивление изоляции МОм / между проводами (жилами) | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c6` | Сопротивление изоляции МОм / относи-тельно земли | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_33.c7` | Примечание | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r8_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r10_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r12_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r14_c1` | Проект № | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t0_r39_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r41_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-84"></a>
-### СП_77_А_18 — Протокол испытаний давлением
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_18.docx](../app/templates/СП%2077.13330.2016/СП_77_А_18.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_18.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_18.fields.json).
-
-SHA-256 рабочего DOCX: `e0e1cf65d22f4c2f2a8b1f6c90160b961a9e48e5be64fe1cb59d10ee86d96efc`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол испытаний давлением.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20испытаний%20давлением.xlsx). SHA-256: `5909b97c343540e63b782696717b39759e3ae32d8226edda55a0178571b1403d`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `rows_0_29` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_29.c1` | Место установки или участок | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_29.c2` | Класс взрывоопасной зоны | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_29.c3` | Фактическое давление, кПа | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_29.c4` | Падение давления при испытании, кПа | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_29.c5` | Продолжительность испытания, мин | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_29.c6` | Примечание | reference; required=false | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r6_c0` | (объект) | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r6_c3` | (город) | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r8_c0` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r8_c3` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r10_c0` | (подразделение) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c3` | (объект) | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r12_c0` | (участок) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c2` | Дата испытания / проверки | literal; required=true; format=day_2digits; value_type=date | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r12_c4` | Дата испытания / проверки | reference; required=true; format=month_genitive_ru; value_type=date | Исходная календарная дата поля t0_r12_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r12_c6` | Дата испытания / проверки | reference; required=true; format=year_4digits; value_type=date | Исходная календарная дата поля t0_r12_c2; часть даты для печати ← acts.fields | DOCX; word/document.xml |
-| `t0_r17_c0` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r20_c0` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r33_c1` | Испытательное давление измерено манометром, заводской номер | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r34_c1` | точности | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r37_c0` | таблица 0, строка 37, ячейка 0 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r37_c2` | класса | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-
-<a id="form-85"></a>
-### СП_77_А_17 — Протокол прогрева кабелей на барабанах
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_17.docx](../app/templates/СП%2077.13330.2016/СП_77_А_17.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_17.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_17.fields.json).
-
-SHA-256 рабочего DOCX: `d5987945f7da81818d57851c5946f3f0fe56a08c3f8b67c094d8b39bcd988736`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Протокол прогрева кабелей на барабанах.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Протокол%20прогрева%20кабелей%20на%20барабанах.xlsx). SHA-256: `bd3920300c980911f75c261ae23e2cf742498fc5ad59b98b17f75d74de91bfb7`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_6_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_6_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_0_16` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_16.c1` | Номер барабана | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c2` | Марка кабеля, напряжение, кВ, сечение, мм2 | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c3` | Длина кабеля, м | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c4` | Прогрев кабелей внутри обогреваемых помещений / температура в помещении, °С | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c5` | Прогрев кабелей электрическим током, А / температура внешних витков кабеля при температуре наружного воздуха / продолжительность прогрева, ч | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c6` | -10°С | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_16.c7` | ниже-10°С | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r6_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r8_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t0_r10_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r19_c1` | Исполнитель | signatory; required=true | Роль worker; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r19_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r19_c1 этой же формы | DOCX; word/document.xml |
-| `t0_r23_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r23_c3` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r23_c1 этой же формы | DOCX; word/document.xml |
-
-<a id="form-86"></a>
-### СП_77_А_11 — Свидетельство о монтаже трубных проводок
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_11.docx](../app/templates/СП%2077.13330.2016/СП_77_А_11.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_11.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_11.fields.json).
-
-SHA-256 рабочего DOCX: `e737108cc940250f28174511801bcb1cd3b986f8f253836375d27cfc40fb34c2`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Свидетельство о монтаже трубных проводок.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Свидетельство%20о%20монтаже%20трубных%20проводок.xlsx). SHA-256: `b8cff0c400ec4c9a72cb5a035f46d04bbe33078c3ece86230fca46c6f164b820`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `t0_r3_c1` | Свидетельство № | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r5_c0` | Объект и адрес | reference; required=true | project_documentation.object_description (вычисляется form_defaults.documentation_context) ← objects.address, objects.name | DOCX; word/document.xml |
-| `t0_r7_c0` | (назначение и категория трубопровода) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r9_c0` | (буквенно-цифровое обозначение) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r11_c0` | (рабочая среда, рабочее давление, рабочая температура) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r14_c1` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r16_c1` | в полном соответствии с рабочей документацией, разработанной | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r17_c0` | Проектная организация | reference; required=true | project_documentation.designer_name (вычисляется form_defaults.documentation_context) ← organizations.full_name, projects.designer_org_id | DOCX; word/document.xml |
-| `t0_r19_c1` | (номера чертежей расположения оборудования трубопроводов) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r22_c1` | Вид сварки, применявшейся при монтаже трубных проводок | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r23_c1` | Методы и объем контроля качества сварных соединений | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r30_c0` | Примечание - Пункты 3 и 4 заполняются при наличии указаний в рабочей документации или НТД о необходимости выполнения указанных работ | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r36_c2` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r38_c2` | Главный инженер монтажной организации | signatory; required=true | Роль chief_engineer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-87"></a>
-### СП_77_А_15 — Список сварщиков, дефектоскопистов и сборщиков резьбовых соединений
-
-Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_15.docx](../app/templates/СП%2077.13330.2016/СП_77_А_15.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_15.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_15.fields.json).
-
-SHA-256 рабочего DOCX: `deec1edc34b8a1cb294c0b0ccb412ec446d2204f3413e0d8970381ad46dccfaf`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Список сварщиков, дефектоскопистов и сборщиков резьбовых соединений.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Список%20сварщиков,%20дефектоскопистов%20и%20сборщиков%20резьбовых%20соединений.xlsx). SHA-256: `536494bc86fe48083c332d5c542c46663e920d8cfe0fdb265087b7eb2fbf2927`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `rows_0_11` | Таблица 1 | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_11.c1` | (месторасположение объекта, отделение, корпус) / (наименование монтажной организации) / N п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_11.c2` | Ф.И.О. | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_11.c3` | Специальность, вид операции | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_11.c4` | Разряд | reference; required=true | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_11.c5` | Личное клеймо | reference; required=true | item.c5 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_11.c6` | Номер | reference; required=true | item.c6 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_11.c7` | N журнала учета и проверки качества контрольных соединений | reference; required=true | item.c7 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_11.c8` | Образец подписи | reference; required=false | item.c8 (ячейка строки, введённой в acts.fields[].value) | Рукописная подпись: ячейка DOCX оставлена пустой |
-| `t0_r5_c0` | Объект и адрес | reference; required=true | project_documentation.object_description (вычисляется form_defaults.documentation_context) ← objects.address, objects.name | DOCX; word/document.xml |
-| `t0_r7_c0` | Монтажная организация | reference; required=true | organizations.installer.full_name (роль installer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r10_c0` | {{ item.c1 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c1` | {{ item.c2 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c2` | {{ item.c3 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c3` | {{ item.c4 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c4` | {{ item.c5 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c5` | {{ item.c6 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c6` | {{ item.c7 }} | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c7` | Повтор сведений | reference; required=true | Уже разрешённое поле t0_r10_c6 этой же формы | DOCX; word/document.xml |
-| `t0_r27_c2` | Руководитель сварочных работ | signatory; required=true | Роль welding_supervisor; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r29_c2` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-88"></a>
-### СП_77_А_24 — Акт приостановки (консервации) монтажных работ по системам автоматизации
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_24.docx](../app/templates/СП%2077.13330.2016/СП_77_А_24.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_24.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_24.fields.json).
-
-SHA-256 рабочего DOCX: `67443430ded9b72ddde24ff8bfa46edf803672216fc85486153597b48401fc48`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Акт приостановки (консервации) монтажных работ по системам автоматизации.xlsx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Акт%20приостановки%20(консервации)%20монтажных%20работ%20по%20системам%20автоматизации.xlsx). SHA-256: `dad64a50c5308182cf735ed43783ac342b73ab61e2d4d3e557338eb799907c3c`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `p32_1` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `p32_2` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `p32_3` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `rows_0_17` | Выполненные работы и технические средства, переданные заказчику | table; required=true | Ручные строки: acts.fields[].value; измерения/результаты не берутся из спецификации | DOCX; word/document.xml |
-| `rows_0_17.c1` | № п/п | reference; required=true | item.c1 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_17.c2` | Выполненные и принятые заказчиком работы | reference; required=true | item.c2 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_17.c3` | Технические средства систем автоматизации, переданные заказчику | reference; required=true | item.c3 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `rows_0_17.c4` | Примечание | reference; required=false | item.c4 (ячейка строки, введённой в acts.fields[].value) | DOCX; word/document.xml |
-| `t0_r5_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t0_r6_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t0_r8_c1` | (наименование и номер проекта, проектная организация) | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t0_r10_c1` | Генподрядчик или заказчик | signatory; required=true | Роль construction_party; представление {signatory.position} {signatory.fio}; требуется выбор construction_party: general_contractor, customer ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r12_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r19_c1` | Представитель монтажной организации | signatory; required=true | Роль installer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-| `t0_r21_c1` | Генподрядчик или заказчик | signatory; required=true | Роль construction_party; представление {signatory.position} {signatory.fio}; требуется выбор construction_party: general_contractor, customer ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-89"></a>
-### СП_77_А_20 — Разрешение на монтаж технических средств автоматизации
-
-Группа: `act`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_20.docx](../app/templates/СП%2077.13330.2016/СП_77_А_20.docx). Определения: [app/forms/СП 77.13330.2016/СП_77_А_20.fields.json](../app/forms/СП%2077.13330.2016/СП_77_А_20.fields.json).
-
-SHA-256 рабочего DOCX: `97f6c8097d1901a41942bc918405b3731cd55b5a67d895f4354300da53a07f0a`.
-
-Оригинал по каталогу: [misc/downloads/Исходные формы документов/СП 77.13330.2016/Разрешение на монтаж технических средств автоматизации.docx](../misc/downloads/Исходные%20формы%20документов/СП%2077.13330.2016/Разрешение%20на%20монтаж%20технических%20средств%20автоматизации.docx). SHA-256: `fb071911b81be512510c258e6d3c5fda6a73cfbcd12a67af8c8c04d3a34edba9`. Исходник отсутствует в этой копии проекта; хеш не перепроверен.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `date_0_3` | День подписания | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_5` | Месяц подписания | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `date_0_7` | Год подписания | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `t0_r0_c1` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `t1_r0_c1` | Объект | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `t1_r1_c1` | Шифр рабочей документации | reference; required=true | project.code ← projects.code | DOCX; word/document.xml |
-| `t1_r2_c1` | Заказчик | reference; required=true | organizations.customer.full_name (роль customer; назначение объекта → раздела → документа) ← organizations.full_name | DOCX; word/document.xml |
-| `t2_r0_c0` | Недоделки, подлежащие устранению: строка 1 | literal; required=true | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r1_c0` | Недоделки, подлежащие устранению: строка 2 | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t2_r2_c0` | Недоделки, подлежащие устранению: строка 3 | literal; required=false | Ручное значение: acts.fields[].value | DOCX; word/document.xml |
-| `t3_r0_c1` | Представитель заказчика | signatory; required=true | Роль customer; представление {signatory.position} {signatory.fio} ← signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-90"></a>
-### СП_77_А_21 — Ведомость смонтированных технических средств автоматизации
-
-Группа: `statement`. DOCX: [app/templates/СП 77.13330.2016/СП_77_А_21.docx](../app/templates/СП%2077.13330.2016/СП_77_А_21.docx). Определения: [app/forms/СП_77_А_21.fields.json](../app/forms/СП_77_А_21.fields.json).
-
-SHA-256 рабочего DOCX: `8402ed30deb1d9acd989501d051cee942a7303559b0a456f3563585577ed0abc`.
-
-Не указан в каталоге (общая форма); см. app/templates/README.md.
-
-| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
-|---|---|---|---|---|
-| `city` | Город | reference; required=true | project.city (город раздела, иначе город объекта) ← objects.city, projects.city | DOCX; word/document.xml |
-| `day` | — | reference; required=true; format=day_2digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `month` | — | reference; required=true; format=month_genitive_ru | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `year` | — | reference; required=true; format=year_4digits | act.date_signed ← acts.date_signed | DOCX; word/document.xml |
-| `object_name` | — | reference; required=true | object.name ← objects.name | DOCX; word/document.xml |
-| `project_name` | — | reference; required=true | project.name ← projects.name | DOCX; word/document.xml |
-| `companies` | — | table; required=false | companies (строки organizations; состав и отбор описаны выше) | DOCX; word/document.xml |
-| `companies.role` | — | reference; required=true | item.role ← organization_assignments.role_key | DOCX; word/document.xml |
-| `companies.name` | — | reference; required=true | item.name ← organizations.full_name, organizations.short_name | DOCX; word/document.xml |
-| `materials` | — | table; required=true | resources (строки resources; состав и отбор описаны выше) | DOCX; word/document.xml |
-| `materials.no` | — | reference; required=false | Порядковый номер строки, начиная с 1; не ID БД | DOCX; word/document.xml |
-| `materials.spec_no` | — | reference; required=true | item.spec_num ← resources.spec_num | DOCX; word/document.xml |
-| `materials.item_name` | — | reference; required=true | item.name ← resources.name | DOCX; word/document.xml |
-| `materials.item_type` | — | reference; required=false | item.type_mark ← resources.type_mark | DOCX; word/document.xml |
-| `materials.serial_no` | — | reference; required=false | item.serial_num ← resources.serial_num | DOCX; word/document.xml |
-| `materials.notes` | — | reference; required=false | item.note ← resources.note | DOCX; word/document.xml |
-| `recipient` | Принял | signatory; required=true | Роль recipient; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-| `consignor` | Сдал | signatory; required=true | Роль consignor; представление {signatory.position} {organization.short_name} {signatory.fio} ← organizations.short_name, signatories.fio, signatories.position | DOCX; word/document.xml |
-
-<a id="form-91"></a>
+<a id="form-3"></a>
 ### РЕЕСТР_ИТД — Реестр исполнительной документации
 
 Группа: `registry`. DOCX: [app/templates/РЕЕСТР_ИТД.docx](../app/templates/РЕЕСТР_ИТД.docx). Определения: [app/forms/РЕЕСТР_ИТД.fields.json](../app/forms/РЕЕСТР_ИТД.fields.json).
 
 SHA-256 рабочего DOCX: `017a47295f79a12edbffef9b2681d0f31c999a134ab46875fef3502943a972c5`.
 
-Не указан в каталоге (общая форма); см. app/templates/README.md.
+Не указан в каталоге (общая форма)
 
 | Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
 |---|---|---|---|---|
@@ -8294,10 +5096,78 @@ SHA-256 рабочего DOCX: `017a47295f79a12edbffef9b2681d0f31c999a134ab46875
 | `registry.organization` | — | reference; required=false | item.organization (вычисляемая колонка registry_rows; см. контракт реестра) | DOCX; word/document.xml |
 | `registry.pages` | — | reference; required=false | item.pages (вычисляемая колонка registry_rows; см. контракт реестра) | DOCX; word/document.xml |
 
+<a id="form-4"></a>
+### ОЖР — Общий журнал работ
+
+Группа: `act`. DOCX: [app/templates/ОЖР.docx](../app/templates/ОЖР.docx). Определения: [app/forms/ОЖР.fields.json](../app/forms/ОЖР.fields.json).
+
+SHA-256 рабочего DOCX: `70aaaf4f3f9512e91cc80aefc181c53a3819ef6f0ac2b80cc4b104251dc124ec`.
+
+Не указан в каталоге (общая форма)
+
+| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |
+|---|---|---|---|---|
+| `participants` | Участники объекта | table; required=false | ojr.participants (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `participants.org` | Организация | reference; required=false | item.org (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `participants.roles` | Роли | reference; required=false | item.roles (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `participants.people` | Представители | reference; required=false | item.people (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `assignments` | Уполномоченные представители | table; required=false | ojr.assignments (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `assignments.role` | Роль | reference; required=false | item.role (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `assignments.org` | Организация | reference; required=false | item.org (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `assignments.person` | Представитель | reference; required=false | item.person (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `assignments.basis` | Основание | reference; required=false | item.basis (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `title_gsn_case` | Дело государственного строительного надзора | reference; required=false | object.gsn_case ← objects.gsn_case | DOCX; word/document.xml |
+| `title_expertise_authority` | Орган экспертизы | reference; required=false | object.expertise_authority ← objects.expertise_authority | DOCX; word/document.xml |
+| `title_expertise_date` | Дата заключения | reference; required=false | object.expertise_date ← objects.expertise_date | DOCX; word/document.xml |
+| `title_expertise_num` | Номер заключения экспертизы | reference; required=false | object.expertise_num ← objects.expertise_num | DOCX; word/document.xml |
+| `title_permit_authority` | Орган, выдавший разрешение | reference; required=false | object.permit_authority ← objects.permit_authority | DOCX; word/document.xml |
+| `title_permit_date` | Дата разрешения | reference; required=false | object.permit_date ← objects.permit_date | DOCX; word/document.xml |
+| `title_permit_num` | Номер разрешения | reference; required=false | object.permit_num ← objects.permit_num | DOCX; word/document.xml |
+| `title_work_end` | Окончание строительства | reference; required=false | ojr.work_end (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `title_work_start` | Начало строительства | reference; required=false | ojr.work_start (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `title_construction_type` | Вид строительства | reference; required=false | object.construction_type ← objects.construction_type | DOCX; word/document.xml |
+| `object_address` | Адрес объекта | reference; required=false | object.address ← objects.address | DOCX; word/document.xml |
+| `object_name` | Наименование объекта | reference; required=false | object.name ← objects.name | DOCX; word/document.xml |
+| `section1` | Инженерно-технический персонал | table; required=false | ojr.section1 (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section1.organization` | Организация | reference; required=false | item.organization (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section1.person` | Представитель | reference; required=false | item.person (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section1.start_date` | Начало | reference; required=false | item.start_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section1.end_date` | Окончание | reference; required=false | item.end_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section1.scope` | Вид работ | reference; required=false | item.scope (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section1.authority` | Основание | reference; required=false | item.authority (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section2` | Специальные журналы и авторский надзор | table; required=false | ojr.section2 (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section2.name` | Журнал | reference; required=false | item.name (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section2.issued_date` | Выдан | reference; required=false | item.issued_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section2.keeper` | Ведёт журнал | reference; required=false | item.keeper (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section2.transfer_date` | Передан | reference; required=false | item.transfer_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section2.recipient` | Принял | reference; required=false | item.recipient (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section3` | Выполнение работ | table; required=false | ojr.section3 (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section3.entry_date` | Дата | reference; required=false | item.entry_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section3.title` | Работы | reference; required=false | item.title (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section3.details` | Место | reference; required=false | item.details (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section3.responsible` | Исполнитель | reference; required=false | item.responsible (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section4` | Строительный контроль | table; required=false | ojr.section4 (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section4.entry_date` | Дата | reference; required=false | item.entry_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section4.defects` | Замечания | reference; required=false | item.defects (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section4.deadline` | Срок | reference; required=false | item.deadline (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section4.resolved_date` | Устранено | reference; required=false | item.resolved_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section4.resolved_by` | Подтвердил | reference; required=false | item.resolved_by (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section5` | Исполнительная документация | table; required=false | ojr.section5 (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section5.act_num` | Номер | reference; required=false | item.act_num (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section5.form_name` | Документ | reference; required=false | item.form_name (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section5.work_description` | Работы | reference; required=false | item.work_description (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section5.date_signed` | Подписан | reference; required=false | item.date_signed (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section6` | Государственный строительный надзор | table; required=false | ojr.section6 (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section6.entry_date` | Дата | reference; required=false | item.entry_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section6.defects` | Замечания | reference; required=false | item.defects (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section6.deadline` | Срок | reference; required=false | item.deadline (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section6.resolved_date` | Устранено | reference; required=false | item.resolved_date (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+| `section6.resolved_by` | Подтвердил | reference; required=false | item.resolved_by (проекция журнала по объекту, journals.journal_data) | DOCX; word/document.xml |
+
 <a id="xlsx"></a>
 ## Общая ведомость XLSX
 
-Шаблон: [app/templates/Ведомость оборудования и материалов.xlsx](../app/templates/Ведомость%20оборудования%20и%20материалов.xlsx). Это отдельный контракт `statement.py` / `statement.mjs`; он не связан с document_types и не использует Jinja.
+Шаблон: [app/forms/Ведомость оборудования и материалов.xlsx](../app/forms/Ведомость%20оборудования%20и%20материалов.xlsx). Это отдельный контракт `statement.py` / `statement.mjs`; он не связан с document_types и не использует Jinja.
 
 | Ячейка / колонка с 8-й строки | Источник |
 |---|---|

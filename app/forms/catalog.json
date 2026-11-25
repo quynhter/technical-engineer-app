@@ -1,0 +1,37 @@
+[
+  {
+    "code": "И_1_13_07_18",
+    "name": "Журнал прокладки кабелей",
+    "group": "statement",
+    "template": "app/templates/И_1_13_07_18.docx",
+    "fields": "app/forms/И 1.13-07/И_1_13_07_18.fields.json",
+    "source": "misc/downloads/Исходные формы документов/И 1.13-07/18 - Журнал прокладки кабелей.docx",
+    "source_sha256": "46947d89a3d0425693e4d5a4b2ff43b2cbc42e4b140edbc7c87745048e6cca26",
+    "form_set": "И 1.13-07"
+  },
+  {
+    "code": "СП_48_И",
+    "name": "Журнал входного контроля",
+    "group": "statement",
+    "set": "СП 48.13330.2019",
+    "template": "app/templates/СП_48_И.docx",
+    "fields": "app/forms/СП 48.13330.2019/СП_48_И.fields.json",
+    "source": "misc/downloads/Исходные формы документов/СП 48.13330.2019/Журнал входного контроля.docx",
+    "source_sha256": "28ab85f9eca43db4e6094640770cf86fc21cfa5d542ab8572f53b9f2b15b2ea6",
+    "form_set": "СП 48.13330.2019"
+  },
+  {
+    "code": "РЕЕСТР_ИТД",
+    "name": "Реестр исполнительной документации",
+    "group": "registry",
+    "fields": "app/forms/РЕЕСТР_ИТД.fields.json",
+    "template": "app/templates/РЕЕСТР_ИТД.docx"
+  },
+  {
+    "code": "ОЖР",
+    "name": "Общий журнал работ",
+    "group": "act",
+    "fields": "app/forms/ОЖР.fields.json",
+    "template": "app/templates/ОЖР.docx"
+  }
+]

@@ -3,7 +3,7 @@ import {Banner,Button,Card,Heading,Skeleton} from '@astryxdesign/core';
 import {BrowseTable} from './astryx-tables.jsx';
 import {createApiClient,saveFile as defaultSaveFile} from './api-v1.mjs';
 import {journalBlocks} from './journal-model.mjs';
-const toolLabels={object:'Открыть карточку объекта',participants:'Открыть участников строительства',participantsShort:'Открыть участников',assign:'Назначить представителя раздела',special:'Добавить специальный журнал',documents:'Открыть документы раздела'};
+const toolLabels={export:'Экспорт в DOCX',participants:'Открыть участников строительства',participantsShort:'Открыть участников',assign:'Назначить представителя раздела',special:'Добавить специальный журнал'};
 const entryLabels={'1':'Добавить работника','4':'Внести проверку','6':'Добавить мероприятие'};
 export function JournalBlock({block,context,editable,perform,onTool,onOpen,onDelete,saveFile}){
  const deletable=editable&&onDelete&&block.rows.some(row=>row.entity);

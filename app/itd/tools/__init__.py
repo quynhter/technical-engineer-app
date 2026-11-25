@@ -1,4 +1,4 @@
-"""Transport-independent, role-checked catalogue of read tools."""
+"""Transport-independent, role-checked catalogue of reads and write proposals."""
 from dataclasses import dataclass
 from types import SimpleNamespace
 from typing import Callable, Literal
@@ -6,13 +6,15 @@ from typing import Callable, Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from .. import knowledge
-from ..read_audit import record
+from ..assistant_files import AttachmentError
+from ..read_audit import audit_transaction, record
 from ..services.context import scope
 from ..services.knowledge import execute as knowledge_execute
 from ..services.operations import execute_cli
 from ..services.permissions import RANK, require
 from ..services.queries import query_web
 from ..services.versions import skills_version
+from .preview_schemas import DEFINITIONS
 
 
 class EmptyInput(BaseModel):
@@ -70,6 +72,14 @@ class Tool:
         return self.input.model_json_schema()
 
 
+def preview_tool(definition):
+    def run(ctx, actor, data, **trusted):
+        from ..services.previews import prepare
+        return prepare(ctx, actor, definition.name, definition.label, data, **trusted)
+    return Tool(definition.name, f'{definition.label}. Подготовить предпросмотр изменений.',
+                definition.model, 'editor', 'write', run)
+
+
 TOOLS = (
     Tool('objects-list', 'Список объектов.', EmptyInput, 'viewer', 'read',
          cli('list', entity='objects', project_id=None)),
@@ -89,6 +99,7 @@ TOOLS = (
          cli('release-list')),
     Tool('project-check', 'Отчёт связей и готовности раздела без исправлений.', ProjectInput, 'viewer', 'read',
          cli('project-check')),
+    *(preview_tool(definition) for definition in DEFINITIONS),
 )
 
 
@@ -109,12 +120,13 @@ def documentation():
     return '\n'.join(lines)
 
 
-def invoke(ctx, actor, name, arguments, *, allowed=None, knowledge_bases=None):
+def invoke(ctx, actor, name, arguments, *, allowed=None, knowledge_bases=None, attachments=None):
     """Validate before dispatch. No output is returned without a successful sidecar audit."""
     meta = {'knowledge_version': 'unavailable', 'skills_version': skills_version(), 'index_status': 'unavailable'}
     tool = next((item for item in TOOLS if item.name == name), None)
     project_id = 0
     outcome = 'error'
+    prepared = None
     try:
         require(actor, 'viewer')
         meta = versions(ctx)
@@ -133,7 +145,11 @@ def invoke(ctx, actor, name, arguments, *, allowed=None, knowledge_bases=None):
         project_id = getattr(data, 'project_id', 0)
         if not ctx.database.is_file():
             raise ValueError('Business database missing')
-        value = tool.service(ctx, actor, data)
+        if tool.access == 'write':
+            prepared = tool.service(ctx, actor, data, versions=meta, attachments=attachments)
+            value = prepared.view
+        else:
+            value = tool.service(ctx, actor, data)
         if name == 'knowledge-status' and knowledge_bases is not None:
             value['corpora'] = {k:v for k,v in value['corpora'].items() if k in knowledge_bases}
             value['entries'] = sum(v.get('chunks',0)+v.get('rules',0) for v in value['corpora'].values())
@@ -141,16 +157,27 @@ def invoke(ctx, actor, name, arguments, *, allowed=None, knowledge_bases=None):
         if tool.name in ('knowledge-search', 'knowledge-show'):
             meta['index_status'] = 'ready'
         response = {'data': value, **meta}
-        outcome = 'success'
+        outcome = ('rejected' if prepared and any(check['status'] == 'error' for check in value['checks'])
+                   else 'success')
     except PermissionError:
         outcome = 'denied'
         response = {'error': {'code': 'forbidden', 'message': 'Инструмент недоступен.'}, **meta}
+    except AttachmentError as error:
+        response = {'error': {'code': 'invalid_attachment', 'message': str(error)}, **meta}
     except (ValidationError, ValueError, KeyError, TypeError):
         response = {'error': {'code': 'invalid_input', 'message': 'Проверьте параметры и целостность знаний.'}, **meta}
     except Exception:
         response = {'error': {'code': 'operation_failed', 'message': 'Операция не завершена.'}, **meta}
     with scope(ctx, actor):
-        record(ctx.database, tool.name if tool else 'unknown-tool', project_id=project_id,
-               release_ids=[], source=actor.source, user_id=actor.user_id,
-               result=outcome, versions=meta)
+        operation = tool.name if tool else 'unknown-tool'
+        audit = dict(project_id=project_id, release_ids=[], source=actor.source, user_id=actor.user_id,
+                     result=outcome, versions=meta)
+        if prepared:
+            from ..services.previews import persist
+            with audit_transaction(ctx.database) as connection:
+                persist(ctx.database, prepared, connection)
+                record(ctx.database, operation, connection=connection,
+                       preview_id=prepared.view['preview_id'], **audit)
+        else:
+            record(ctx.database, operation, **audit)
     return response

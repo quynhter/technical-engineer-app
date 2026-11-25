@@ -26,7 +26,7 @@ from itd.db import add_object, add_project, connect, initialize
 from itd.docx_render import render_docx
 from itd.fields import PRESENTATIONS, SEMANTIC_SOURCES, validate_fields
 from itd.form_catalog import catalog, catalog_fields
-from itd.form_defaults import FIELD_CONTINUATIONS, apply_form_defaults, field_bindings
+from itd.form_defaults import apply_form_defaults, field_bindings
 from itd.titles import CODE as TITLE_CODE, ROLES as TITLE_ROLES, prepare_context
 from itd.workspace import DOC_ROLES, ROLES
 
@@ -49,7 +49,8 @@ TABLE_LABELS = {
     'releases': 'Выпуски файлов', 'generated_documents': 'История генерации DOCX',
     'attachments': 'Архив исходных файлов', 'project_files': 'Файлы раздела',
     'package_requirements': 'Состав комплекта', 'deliveries': 'Сдача',
-    'read_events': 'Аудит чтения и выдачи ZIP (вне деловой БД)',
+    'read_events': 'Аудит чтения, предпросмотров, отказов и выдачи ZIP (вне деловой БД)',
+    'write_previews': 'Личные предпросмотры с ограниченным сроком действия (вне деловой БД)',
     'users': 'Пользователи', 'settings': 'Выбранная БД и рабочая папка',
     'document_roots': 'Разрешённые рабочие папки', 'knowledge_entries': 'Фрагменты нормативов',
     'knowledge_meta': 'Манифест индекса', 'knowledge_fts': 'Полнотекстовый поиск',
@@ -110,15 +111,16 @@ def schema(c):
 def auxiliary_schema():
     """Извлекаем именно DDL из кода; ни аккаунты, ни индекс пользователя не открываем."""
     result = {}
-    for module in ('accounts', 'knowledge', 'read_audit'):
-        tree = ast.parse((ROOT / f'app/itd/{module}.py').read_text())
+    for module in ('accounts', 'knowledge', 'read_audit', 'previews'):
+        source = 'services/previews' if module == 'previews' else module
+        tree = ast.parse((ROOT / f'app/itd/{source}.py').read_text())
         statements = []
         for node in ast.walk(tree):
             if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.args:
                 arg = node.args[0]
                 if node.func.attr in ('execute', 'executescript') and isinstance(arg, ast.Constant) and isinstance(arg.value, str):
                     if arg.value.lstrip().startswith(('CREATE TABLE', 'CREATE VIRTUAL TABLE', 'CREATE INDEX', 'ALTER TABLE')):
-                        statements.append(arg.value)
+                            statements.append(arg.value.replace('proposals.', '') if module == 'previews' else arg.value)
         with sqlite3.connect(':memory:') as c:
             c.row_factory = sqlite3.Row
             for sql in statements:
@@ -239,6 +241,8 @@ def source_columns(source, schemas, item_source=None):
     table = None
     column = None
     description = source
+    if root == 'ojr' or (root=='item' and (item_source or '').startswith('ojr.')):
+        return [], source + ' (проекция журнала по объекту, journals.journal_data)'
     if root in DIRECT_ROOTS and len(bits) == 2:
         table, column = DIRECT_ROOTS[root], bits[1]
     elif root == 'organizations' and len(bits) == 3:
@@ -389,6 +393,7 @@ def run_audit():
         initialize(db)
         with connect(db) as c:
             tables = schema(c)
+            migrations = [row['version'] for row in c.execute('SELECT version FROM schema_migrations ORDER BY version')]
             oid = add_object(c, 'Проверочный объект карты')
             pid = add_project(c, object_id=oid, section_code='ТЕСТ', code='ТЕСТ-РД', name='Тестовый раздел')
             for item in items:
@@ -407,7 +412,7 @@ def run_audit():
     if len({p.name for p in actual_docx}) != len(actual_docx):
         errors.append('Повторяющиеся имена DOCX')
     for path in actual_docx:
-        if path.name not in expected_docx:
+        if not re.fullmatch(r'TPL_[a-f0-9]{32}\.docx',path.name) and path.name not in expected_docx:
             errors.append('DOCX вне каталога: ' + str(path.relative_to(ROOT)))
     expected_fields = {item['fields'] for item in items}
     for path in (ROOT / 'app/forms').rglob('*.fields.json'):
@@ -425,20 +430,24 @@ def run_audit():
     handwritten = sum(row['status'].startswith('Рукописная') for form in forms for row in form['rows'])
     if handwritten:
         warnings.append(f'Непечатаемых колонок блоков подписей: {handwritten}; введённый в них текст не выводится')
-    return {'tables': tables, 'auxiliary': extras, 'forms': forms, 'errors': errors, 'warnings': warnings}
+    return {'tables': tables, 'migrations': migrations, 'auxiliary': extras,
+            'forms': forms, 'errors': errors, 'warnings': warnings}
 
 
 def render_map(result):
     tables, forms = result['tables'], result['forms']
+    migrations = result['migrations']
     rows = [row for form in forms for row in form['rows']]
     counts = Counter(row['field']['kind'] for row in rows)
+    absent = sum(form['provenance'].startswith('Исходник отсутствует') for form in forms)
+    handwritten = sum(row['status'].startswith('Рукописная') for row in rows)
     reverse = defaultdict(list)
     for form in forms:
         for row in form['rows']:
             for col in row['columns']:
                 reverse[col].append(form['item']['code'] + '.' + row['path'])
     lines = ['# Карта данных, полей и шаблонов ИТД', '',
-             'Снимок структуры на 18.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. '
+             'Снимок структуры на 25.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. '
              'Рабочие БД и документы пользователя не открывались и не изменялись.', '',
              '## Навигация', '',
              '- [Итоги и границы проверки](#audit)', '- [Экран → сущности → документы](#screens)',
@@ -447,8 +456,9 @@ def render_map(result):
              '- [Общая ведомость XLSX](#xlsx)', '- [Как обновить карту](#update)', '',
              '<a id="audit"></a>', '## Итоги проверки', '',
              f'- Основная БД: таблиц — **{len(tables)}**, колонок — **{sum(len(t["columns"]) for t in tables.values())}**, '
-             f'компонентов внешних ключей — **{sum(len(t["fks"]) for t in tables.values())}**; миграции 001–023.',
-             f'- Форм / DOCX / JSON-определений — **{len(forms)}**, включая титульник и две общие формы из `form_catalog.catalog()`.',
+             f'компонентов внешних ключей — **{sum(len(t["fks"]) for t in tables.values())}**; '
+             f'миграции {migrations[0]:03d}–{migrations[-1]:03d}.',
+             f'- Форм / DOCX / JSON-определений — **{len(forms)}**, включая реестр и три журнала из `form_catalog.catalog()`.',
              f'- **{len(rows)} эффективных определений**, включая каждую колонку вложенных таблиц: ' + ', '.join(f'{k}: {v}' for k, v in sorted(counts.items())) + '.',
              f'- Ошибок проверенных контрактов: **{len(result["errors"])}**. '
              'Проверены уникальность кодов и файлов, ключи bindings, существование колонок источников, порядок field_values, '
@@ -469,18 +479,16 @@ def render_map(result):
              'могут отличаться; без выбора рабочей БД и объекта их содержание не проверялось.',
              '- Семантическое соответствие каждого пустого места оригиналу и применимость нормативов не доказываются рендером. '
              'Наличие исходников и проверка их SHA-256 указаны отдельно для каждой формы. Постраничная визуальная сверка всех исходников в этот аудит не входит.', '',
-             '- Все 89 исходников из catalog.json отсутствуют по указанным путям в этой копии проекта. '
-             'Их хеши сохранены как происхождение, но повторно не подтверждены. '
-             'Визуальный рендер исправленной формы СП_70_А также не выполнен: встроенный LibreOffice '
-             'не запускается из-за отсутствия версии CURL_OPENSSL_4 у системной libcurl.so.4. '
-             'Два рендера в итогах означают подстановку Jinja в DOCX, а не визуализацию страниц.', '',
+             f'- Исходников проверенных форм нет по указанным путям: **{absent}**. '
+             'Сохранённые в каталоге хеши этих оригиналов не перепроверены. '
+             'Два рендера в итогах означают подстановку Jinja в DOCX. Визуализация страниц выполняется отдельно.', '',
              '### Выявленные особенности', '',
              '- Исправлен разрыв `СП_70_А.rows_9_2.c3`: «Дата подписания акта» была определена в JSON, '
              'но отсутствовала в строке DOCX. Теперь маркер печатается и поле обязательно; '
              'генератор исходных форм отличает дату подписания от места для подписи. '
              'В ZIP шаблона изменён только word/document.xml, остальные части сохранены побайтно. '
              'Исходный бланк и зарегистрированные настройки рабочих БД не изменялись.',
-             '- 16 дочерних колонок блоков подписей намеренно остаются пустыми в DOCX. '
+             f'- Колонок блоков подписей с предусмотренным рукописным заполнением: **{handwritten}**. '
              'Их JSON-определения существуют, но введённый в них текст не печатается. '
              'Точные ключи и подписи перечислены ниже со статусом «Рукописная подпись». '
              'Некоторые подписи совмещены с ФИО/должностью в заголовке; автоматическое заполнение '
@@ -500,10 +508,10 @@ def render_map(result):
              '<a id="screens"></a>', '## Экран → сущности → документы', '',
              'Ассистент: `app/frontend/src/assistant.jsx` → `/api/v1/assistant/` → '
              '`app/itd/services/assistants.py` / `app/itd/assistant_runtime.py`. '
-             'Настройки, threads и messages находятся в accounts (миграция 3), извлечённый текст вложений — в messages.attachments (миграция 4); '
-             'контекст читается реестром, аудит source=assistant — в read_events. '
+             'Настройки, threads и messages находятся в accounts (миграция 3); исходник, SHA-256 и извлечённый текст новых вложений — в messages.attachments (миграция 4). '
+             'Контекст читается реестром, аудит source=assistant — в read_events. '
              '[Конфигурация](docs/assistants.md).', '',
-             'MCP: `app/itd/mcp_server.py` → единый реестр `app/itd/tools` → сервисы чтения. '
+             'MCP: `app/itd/mcp_server.py` → единый реестр `app/itd/tools` → чтение и подготовка предпросмотров. '
              'Контракт и состав: [docs/mcp.md](docs/mcp.md). БД закреплена при запуске, '
              'Bearer использует api_tokens отдельной accounts; аудит source=mcp с '
              'knowledge_version/skills_version/index_status хранится в read_events sidecar. '
@@ -517,10 +525,11 @@ def render_map(result):
              '| Ресурсы | resources → resource_sources / resource_attachments; resource_imports / resource_import_rows; specification_pending | act_resources → resources; ведомости DOCX и XLSX; качество |',
              '| Схемы | schemes → scheme_attachments; act_schemes | schemes в контексте акта; реестр; связь не подставляет схему в произвольное пустое поле |',
              '| Поставки, входной контроль | supplies; quality_reviews; workspace_entries(kind=incoming), work_fields | materials через act_materials; ЖВК из journals.journal_data |',
-             '| ОЖР, работы, ЖПК | workspace_entries → work_materials → work_facts; work_material_allocations → supplies | act_entry_sources → entries; act_facts → facts; journal_rows по mapping |',
+             '| ОЖР, работы, ЖПК | workspace_entries → work_materials → work_facts; work_material_allocations → supplies | ЖПК выбирает work_type=cable; act_entry_sources → entries; act_facts → facts; journal_rows по mapping |',
              '| Специальные журналы | special_journals → организации / представители / акт | раздел 2 ОЖР; автоматические журналы — представления, не отдельные таблицы |',
              '| Основные документы | document_types → acts → состав и участники; document_versions | JSON defaults → overrides → bindings → resolve_fields → DOCX |',
              '| Выпуск, реестр, сдача | generated_documents → releases; final_reviews; package_requirements; deliveries → delivery_events / delivery_remarks | точный файл, хеш, выбранный выпуск, комплект, передача |',
+             '| Подтверждение изменений | write_previews (отдельный файл), read_events (аудит предпросмотров и отказов), audit_events.preview_id (уникальная отметка применения) | пользователь, БД, раздел, исходное состояние, срок и SHA-256 предпросмотра |',
              '| Настройки и вход | отдельная БД accounts: users / sessions / api_tokens / settings / document_roots | выбор рабочей БД; правами управляет сервер, без FK на участников строительства |', '',
              '<a id="resolution"></a>', '## Порядок разрешения полей', '',
              '```mermaid', 'flowchart LR', '  C["catalog.json + две общие формы"] --> T["document_types.fields"]',
@@ -533,8 +542,7 @@ def render_map(result):
              '2. JSON регистрируется в `document_types.fields`. `acts.fields` заменяет определения по `key`, '
              'а не только значения: тип, source, required и формат также входят в определение.',
              '3. `apply_form_defaults` связывает только пустые literal-поля из bindings. Непустой ручной текст, '
-             'пользовательские ссылки, явный ручной ввод (binding_explicit), hidden и not_applicable сохраняются. FIELD_CONTINUATIONS объединяет продолжения; '
-             'исходные удалённые ключи перечислены у формы.',
+             'пользовательские ссылки, явный ручной ввод (binding_explicit), hidden и not_applicable сохраняются.',
              '4. `build_context` читает актуальные карточки, выбранные ресурсы/схемы/факты и участников. '
              'Назначение раздела перекрывает объект; явный выбор акта уточняет его. Для подписанного акта используется signers_json. '
              'Организация и представитель проверяются на совместимость общей службой.',
@@ -555,6 +563,8 @@ def render_map(result):
              '9. `document_bindings.records/catalog` предоставляет функции f деловые записи только текущего объекта/раздела: '
              '`records.<table>.r<ID>.<column>`. Служебные JSON, пути, аккаунты и идентификаторы связей исключены. '
              'SQL от пользователя не выполняется; для объекта/раздела используются прежние object/project sources. '
+             'Пример в редакторе шаблона берётся из первой доступной записи таблицы по ID. '
+             '`signatories.short_fio` доступно как поле «Инициалы» и обновляется при записи ФИО или его частей. '
              'Существующие signatory, source, форматы и роли сохраняются без преобразования значений. '
              'Ручные таблицы хранят ссылку отдельной ячейки в value строки как '
              '`{__itd_source, value_type?, format?}`; разрешение выполняет тот же lookup. '
@@ -586,13 +596,19 @@ def render_map(result):
     for title, group in groups:
         lines += ['### ' + title, '']
         if title.endswith('read_audit'):
-            lines += ['Файл `<путь БД>.audit.sqlite3` создаётся при выдаче ZIP. Идентификаторы раздела, выпусков и пользователя логические, без FK между файлами. Содержимое документов, полные аргументы и пути не сохраняются.', '']
+            lines += ['Файл `<путь БД>.audit.sqlite3` хранит события чтения, выдачи ZIP, предпросмотров и отказов. Идентификаторы раздела, выпусков, пользователя и предпросмотра логические, без FK между файлами. Содержимое документов, полные аргументы и пути не сохраняются.', '']
+        if title.endswith('previews'):
+            lines += ['Файл `<путь БД>.previews.sqlite3` хранит личные предложения. '
+                      'Веб-применение добавляет `audit_events.preview_id` в той же транзакции, что и изменения раздела. '
+                      'Одинаковый ID применяется один раз. Снимок деловой БД и срок проверяются под блокировкой записи.', '']
         if title.endswith('knowledge'):
             lines += ['`knowledge_fts` — виртуальная FTS5-таблица. Её внутренние shadow-таблицы управляются SQLite и не являются деловыми сущностями. '
                       'Связь knowledge_entries.id ↔ knowledge_fts.id логическая, без FK.', '']
         for name, table in group.items():
             lines += [f'<a id="table-{name}"></a>', f'#### {name} — {TABLE_LABELS.get(name, "Связующая / служебная сущность")}', '']
             consumers = [link(f'app/itd/{module}.py') for module, text in modules.items() if re.search(r'\b' + re.escape(name) + r'\b', text)]
+            if name in ('write_previews', 'audit_events'):
+                consumers.append(link('app/itd/services/previews.py'))
             lines += ['Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): ' + ', '.join(consumers) + '.', '',
                       '| Колонка | SQL-тип; ограничения | FK / прямые поля форм |', '|---|---|---|']
             for col in table['columns']:
@@ -619,7 +635,7 @@ def render_map(result):
     for col, uses in sorted(reverse.items()):
         lines += [f'<a id="source-{col.replace(".", "-")}"></a>', f'### `{col}`', '', ', '.join('`' + x + '`' for x in uses), '']
     lines += ['### Корни контекста build_context', '', '| Источник | Отбор / происхождение |', '|---|---|',
-              '| _template_context | Общая объектная модель DOCX; object, project, document, organisations, representatives, recipient, consignor, companies, form. JSON template_path связывает сохранённые ключи с публичными свойствами; см. app/templates/README.md и TEMPLATE_FIELDS.md |',
+              '| _template_context | Общая объектная модель DOCX; object, project, document, organisations, representatives, recipient, consignor, companies, form. JSON template_path связывает сохранённые ключи с публичными свойствами; см. app/forms/template_contracts.json |',
               '| object / project / act | Карточка акта → раздел → объект; project.city с fallback objects.city |',
               '| resources | Только act_resources, ORDER BY ordinal; _source из resource_sources (attachment_id, source_key, page, sheet, locator) |',
               '| schemes | Только act_schemes, ORDER BY ordinal |',
@@ -669,7 +685,7 @@ def render_map(result):
         if item.get('source'):
             lines += [f'Оригинал по каталогу: {link(item["source"])}. SHA-256: `{item["source_sha256"]}`. {form["provenance"]}.', '']
         else:
-            lines += [form['provenance'] + '; см. app/templates/README.md.', '']
+            lines += [form['provenance'] + '', '']
         lines += ['| Поле / колонка | Подпись | Вид; required; формат | Источник / назначение | Использование; части DOCX |', '|---|---|---|---|---|']
         for row in form['rows']:
             f, path = row['field'], row['path']
@@ -680,19 +696,11 @@ def render_map(result):
             if row['columns']:
                 desc += ' ← ' + ', '.join(row['columns'])
             lines.append('| `' + path + '` | ' + md(f.get('label', '—')) + ' | ' + md('; '.join(flags)) + ' | ' + md(desc) + ' | ' + md(row['status'] + ('; ' + ', '.join(parts) if parts else '')) + ' |')
-        continuation = FIELD_CONTINUATIONS.get(item['code'], {})
-        if continuation:
-            lines += ['', 'Объединение исходных полей (хвостовые ключи удалены из эффективного контекста): ' + '; '.join(f'`{key}` ← ' + ', '.join(f'`{tail}`' for tail in tails) for key, tails in continuation.items()) + '.']
-            removed = {key for keys in continuation.values() for key in keys}
-            lines += ['', '| Исходное поле продолжения | Подпись | Исходное определение |', '|---|---|---|']
-            for path, field in flatten(form['raw']):
-                if path in removed:
-                    lines.append('| `' + path + '` | ' + md(field.get('label', '—')) + ' | ' + md(json.dumps(field, ensure_ascii=False)) + ' |')
         if item['code'] == TITLE_CODE:
             lines += ['', 'Дополнительные вычисленные поля DOCX: `pages[].duplicates`, `pages[].volumes_info`, '
                       '`contractors_info`. Контракт задаёт `titles.prepare_context`; copies × volumes определяет число страниц.']
     lines += ['', '<a id="xlsx"></a>', '## Общая ведомость XLSX', '',
-              'Шаблон: ' + link('app/templates/Ведомость оборудования и материалов.xlsx') + '. '
+              'Шаблон: ' + link('app/forms/Ведомость оборудования и материалов.xlsx') + '. '
               'Это отдельный контракт `statement.py` / `statement.mjs`; он не связан с document_types и не использует Jinja.', '',
               '| Ячейка / колонка с 8-й строки | Источник |', '|---|---|',
               '| B3 | objects.name по projects.object_id |', '| B4 | projects.name + projects.code (section_label) |',

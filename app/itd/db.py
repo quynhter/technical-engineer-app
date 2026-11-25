@@ -27,10 +27,16 @@ def enable_wal(path):
         connection.close()
 
 
+class WorkspaceConnection(sqlite3.Connection):
+    pass
+
+
 @contextmanager
-def connect(path: str | Path, *, transaction=True):
+def connect(path: str | Path, *, transaction=True, cleanup_removed_files=True):
     """Транзакция с внешними ключами и закрытием соединения."""
-    connection = sqlite3.connect(path, timeout=10)
+    connection = sqlite3.connect(path, timeout=10, factory=WorkspaceConnection)
+    connection.new_storage_files = []
+    connection.template_changes = []
     connection.row_factory = sqlite3.Row
     connection.execute("PRAGMA foreign_keys = ON")
     try:
@@ -39,7 +45,18 @@ def connect(path: str | Path, *, transaction=True):
                 connection.execute("BEGIN")
             yield connection
     finally:
-        connection.close()
+        try:
+            if connection.template_changes:
+                from .custom_templates import restore_rolled_back_changes
+                restore_rolled_back_changes(connection)
+            if cleanup_removed_files and connection.total_changes and connection.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='removed_storage_files'").fetchone():
+                from .storage import cleanup_removed
+                cleanup_removed(connection)
+            for identity, target in connection.new_storage_files:
+                if not connection.execute('SELECT 1 FROM files WHERE id=?',(identity,)).fetchone():
+                    target.unlink(missing_ok=True)
+        finally:
+            connection.close()
 
 
 def initialize(path: str | Path) -> None:
@@ -78,6 +95,9 @@ def initialize(path: str | Path) -> None:
                             statement = ""
                     if statement.strip():
                         raise ValueError(f"Незавершённый SQL в {migration.name}")
+                    if version == 24:
+                        from .storage import import_existing
+                        import_existing(connection)
                     connection.execute(
                         "INSERT INTO schema_migrations (version, name) VALUES (?, ?)",
                         (version, migration.name),

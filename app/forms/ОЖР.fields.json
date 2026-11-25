@@ -1,0 +1,374 @@
+[
+  {
+    "key": "participants",
+    "kind": "table",
+    "label": "Участники объекта",
+    "source": "ojr.participants",
+    "template_path": "participants",
+    "fields": [
+      {
+        "key": "org",
+        "kind": "reference",
+        "label": "Организация",
+        "source": "item.org"
+      },
+      {
+        "key": "roles",
+        "kind": "reference",
+        "label": "Роли",
+        "source": "item.roles"
+      },
+      {
+        "key": "people",
+        "kind": "reference",
+        "label": "Представители",
+        "source": "item.people"
+      }
+    ]
+  },
+  {
+    "key": "assignments",
+    "kind": "table",
+    "label": "Уполномоченные представители",
+    "source": "ojr.assignments",
+    "template_path": "assignments",
+    "fields": [
+      {
+        "key": "role",
+        "kind": "reference",
+        "label": "Роль",
+        "source": "item.role"
+      },
+      {
+        "key": "org",
+        "kind": "reference",
+        "label": "Организация",
+        "source": "item.org"
+      },
+      {
+        "key": "person",
+        "kind": "reference",
+        "label": "Представитель",
+        "source": "item.person"
+      },
+      {
+        "key": "basis",
+        "kind": "reference",
+        "label": "Основание",
+        "source": "item.basis"
+      }
+    ]
+  },
+  {
+    "key": "title_gsn_case",
+    "kind": "reference",
+    "label": "Дело государственного строительного надзора",
+    "source": "object.gsn_case",
+    "template_path": "title_gsn_case"
+  },
+  {
+    "key": "title_expertise_authority",
+    "kind": "reference",
+    "label": "Орган экспертизы",
+    "source": "object.expertise_authority",
+    "template_path": "title_expertise_authority"
+  },
+  {
+    "key": "title_expertise_date",
+    "kind": "reference",
+    "label": "Дата заключения",
+    "source": "object.expertise_date",
+    "template_path": "title_expertise_date"
+  },
+  {
+    "key": "title_expertise_num",
+    "kind": "reference",
+    "label": "Номер заключения экспертизы",
+    "source": "object.expertise_num",
+    "template_path": "title_expertise_num"
+  },
+  {
+    "key": "title_permit_authority",
+    "kind": "reference",
+    "label": "Орган, выдавший разрешение",
+    "source": "object.permit_authority",
+    "template_path": "title_permit_authority"
+  },
+  {
+    "key": "title_permit_date",
+    "kind": "reference",
+    "label": "Дата разрешения",
+    "source": "object.permit_date",
+    "template_path": "title_permit_date"
+  },
+  {
+    "key": "title_permit_num",
+    "kind": "reference",
+    "label": "Номер разрешения",
+    "source": "object.permit_num",
+    "template_path": "title_permit_num"
+  },
+  {
+    "key": "title_work_end",
+    "kind": "reference",
+    "label": "Окончание строительства",
+    "source": "ojr.work_end",
+    "template_path": "title_work_end"
+  },
+  {
+    "key": "title_work_start",
+    "kind": "reference",
+    "label": "Начало строительства",
+    "source": "ojr.work_start",
+    "template_path": "title_work_start"
+  },
+  {
+    "key": "title_construction_type",
+    "kind": "reference",
+    "label": "Вид строительства",
+    "source": "object.construction_type",
+    "template_path": "title_construction_type"
+  },
+  {
+    "key": "object_address",
+    "kind": "reference",
+    "source": "object.address",
+    "template_path": "object.address",
+    "label": "Адрес объекта"
+  },
+  {
+    "key": "object_name",
+    "kind": "reference",
+    "source": "object.name",
+    "template_path": "object.name",
+    "label": "Наименование объекта"
+  },
+  {
+    "key": "section1",
+    "label": "Инженерно-технический персонал",
+    "kind": "table",
+    "source": "ojr.section1",
+    "fields": [
+      {
+        "key": "organization",
+        "label": "Организация",
+        "kind": "reference",
+        "source": "item.organization"
+      },
+      {
+        "key": "person",
+        "label": "Представитель",
+        "kind": "reference",
+        "source": "item.person"
+      },
+      {
+        "key": "start_date",
+        "label": "Начало",
+        "kind": "reference",
+        "source": "item.start_date"
+      },
+      {
+        "key": "end_date",
+        "label": "Окончание",
+        "kind": "reference",
+        "source": "item.end_date"
+      },
+      {
+        "key": "scope",
+        "label": "Вид работ",
+        "kind": "reference",
+        "source": "item.scope"
+      },
+      {
+        "key": "authority",
+        "label": "Основание",
+        "kind": "reference",
+        "source": "item.authority"
+      }
+    ],
+    "template_path": "section1"
+  },
+  {
+    "key": "section2",
+    "label": "Специальные журналы и авторский надзор",
+    "kind": "table",
+    "source": "ojr.section2",
+    "fields": [
+      {
+        "key": "name",
+        "label": "Журнал",
+        "kind": "reference",
+        "source": "item.name"
+      },
+      {
+        "key": "issued_date",
+        "label": "Выдан",
+        "kind": "reference",
+        "source": "item.issued_date"
+      },
+      {
+        "key": "keeper",
+        "label": "Ведёт журнал",
+        "kind": "reference",
+        "source": "item.keeper"
+      },
+      {
+        "key": "transfer_date",
+        "label": "Передан",
+        "kind": "reference",
+        "source": "item.transfer_date"
+      },
+      {
+        "key": "recipient",
+        "label": "Принял",
+        "kind": "reference",
+        "source": "item.recipient"
+      }
+    ],
+    "template_path": "section2"
+  },
+  {
+    "key": "section3",
+    "label": "Выполнение работ",
+    "kind": "table",
+    "source": "ojr.section3",
+    "fields": [
+      {
+        "key": "entry_date",
+        "label": "Дата",
+        "kind": "reference",
+        "source": "item.entry_date"
+      },
+      {
+        "key": "title",
+        "label": "Работы",
+        "kind": "reference",
+        "source": "item.title"
+      },
+      {
+        "key": "details",
+        "label": "Место",
+        "kind": "reference",
+        "source": "item.details"
+      },
+      {
+        "key": "responsible",
+        "label": "Исполнитель",
+        "kind": "reference",
+        "source": "item.responsible"
+      }
+    ],
+    "template_path": "section3"
+  },
+  {
+    "key": "section4",
+    "label": "Строительный контроль",
+    "kind": "table",
+    "source": "ojr.section4",
+    "fields": [
+      {
+        "key": "entry_date",
+        "label": "Дата",
+        "kind": "reference",
+        "source": "item.entry_date"
+      },
+      {
+        "key": "defects",
+        "label": "Замечания",
+        "kind": "reference",
+        "source": "item.defects"
+      },
+      {
+        "key": "deadline",
+        "label": "Срок",
+        "kind": "reference",
+        "source": "item.deadline"
+      },
+      {
+        "key": "resolved_date",
+        "label": "Устранено",
+        "kind": "reference",
+        "source": "item.resolved_date"
+      },
+      {
+        "key": "resolved_by",
+        "label": "Подтвердил",
+        "kind": "reference",
+        "source": "item.resolved_by"
+      }
+    ],
+    "template_path": "section4"
+  },
+  {
+    "key": "section5",
+    "label": "Исполнительная документация",
+    "kind": "table",
+    "source": "ojr.section5",
+    "fields": [
+      {
+        "key": "act_num",
+        "label": "Номер",
+        "kind": "reference",
+        "source": "item.act_num"
+      },
+      {
+        "key": "form_name",
+        "label": "Документ",
+        "kind": "reference",
+        "source": "item.form_name"
+      },
+      {
+        "key": "work_description",
+        "label": "Работы",
+        "kind": "reference",
+        "source": "item.work_description"
+      },
+      {
+        "key": "date_signed",
+        "label": "Подписан",
+        "kind": "reference",
+        "source": "item.date_signed"
+      }
+    ],
+    "template_path": "section5"
+  },
+  {
+    "key": "section6",
+    "label": "Государственный строительный надзор",
+    "kind": "table",
+    "source": "ojr.section6",
+    "fields": [
+      {
+        "key": "entry_date",
+        "label": "Дата",
+        "kind": "reference",
+        "source": "item.entry_date"
+      },
+      {
+        "key": "defects",
+        "label": "Замечания",
+        "kind": "reference",
+        "source": "item.defects"
+      },
+      {
+        "key": "deadline",
+        "label": "Срок",
+        "kind": "reference",
+        "source": "item.deadline"
+      },
+      {
+        "key": "resolved_date",
+        "label": "Устранено",
+        "kind": "reference",
+        "source": "item.resolved_date"
+      },
+      {
+        "key": "resolved_by",
+        "label": "Подтвердил",
+        "kind": "reference",
+        "source": "item.resolved_by"
+      }
+    ],
+    "template_path": "section6"
+  }
+]
