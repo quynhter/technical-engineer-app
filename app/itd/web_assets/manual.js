@@ -1,7 +1,7 @@
 'use strict';
 // Ручные операции используют тот же сервис, что workspace-action в CLI.
 const manualOperations={
- 'assign':'Назначить участника в документах','resource-add':'Добавить ресурс', 'resource-edit':'Изменить ресурс', 'scheme-add':'Добавить схему','scheme-edit':'Карточка схемы',
+ 'assign':'Назначения в документах','resource-add':'Добавить ресурс', 'resource-edit':'Изменить ресурс', 'scheme-add':'Добавить схему','scheme-edit':'Карточка схемы',
  'supply-add':'Добавить поставку / партию','supply-set':'Решение по поставке','allocate':'Материал поставки в акте',
  'period-set':'Период участия организации','unit-add':'Добавить корпус / часть объекта','designer-add':'Добавить разработчика раздела','project-link':'Связи раздела',
  'form-connect':'Подключить форму из каталога','journal-add':'Связать форму журнала с записями',
@@ -44,13 +44,28 @@ function selectedManualRecord(op,id){
  const lists={resources:pdata.resources,schemes:pdata.schemes,supplies:pdata.manual.supplies,requirements:pdata.manual.requirements_records,facts:pdata.workflow.fact_records,deliveries:pdata.workflow.deliveries,remarks:pdata.workflow.remarks,acts:pdata.acts,attachments:pdata.attachments,organizations:state.participants};
  return (lists[coll]||[]).find(r=>r.id===Number(id));
 }
+function assignmentTargetField(entity){
+ return entity==='signatory'
+  ?manualField('entity_id','Представитель','text','signatories',null,true)
+  :manualField('entity_id','Организация','text','organizations',null,true);
+}
 function manualEditor(op,recordId=''){
  const f=manualField,r=selectedManualRecord(op,recordId)||{};let body='';
  const coll={'scheme-edit':'schemes','resource-edit':'resources','supply-set':'supplies','requirement-set':'requirements','fact-set':'facts','delivery-set':'deliveries','remark-add':'deliveries','remark-resolve':'remarks','act-edit':'acts','sources-review':'acts','act-composition':'acts','attachment-edit':'attachments','period-set':'organizations'}[op];
  if(coll)body+=f('id','Запись','text',coll,recordId,true);
  const resourceFields=()=>f('name','Полное наименование','text',null,r.name,true)+f('category','Категория','text',meta.categories.map(v=>[v,v]),r.category,true)+f('unit','Единица','text',null,r.unit,true)+f('spec_num','Позиция спецификации','text',null,r.spec_num)+f('type_mark','Марка / тип','text',null,r.type_mark)+f('serial_num','Заводские номера (по одному в строке)','textarea',null,r.serial_num)+f('manufacturer','Производитель','text',null,r.manufacturer)+f('supplier','Поставщик','text',null,r.supplier)+f('qty_proj','Количество по проекту','number',null,r.qty_proj)+f('qty_fact','Подтверждённый общий факт','number',null,r.qty_fact)+f('note','Примечание','textarea',null,r.note);
  if(['resource-add','resource-edit'].includes(op))body+=resourceFields();
- if(op==='assign')body+=f('entity','Кого назначить','text',[['organization','Организацию'],['signatory','Представителя']],null,true)+f('entity_id','Организация (для организации)','text','organizations')+f('signatory_id','Представитель (для представителя)','text','signatories')+f('role','Роль в документах','text',Object.entries(meta.document_roles),null,true)+f('scope','Уровень назначения','text',[['object','На весь объект'],['project','Только раздел']],null,true)+f('mode','Действие','text',[['add','Добавить представителя к роли'],['replace','Заменить назначения роли'],['remove','Снять выбранное назначение']],'add',true);
+ if(op==='assign'){
+  body+=f('scope','Уровень назначения','text',[
+   ['object','Весь объект'],['project',`Только раздел «${pdata.project.section_code}»`]
+  ],'object',true);
+  body+=f('role','Роль в документах','text',Object.entries(meta.document_roles),null,true);
+  body+=f('entity','Кого назначить','text',[['signatory','Представителя'],['organization','Организацию']],'signatory',true);
+  body+=`<div data-assignment-target>${assignmentTargetField('signatory')}</div>`;
+  body+=f('mode','Действие','text',[
+   ['add','Добавить к роли'],['replace','Заменить назначения этой роли'],['remove','Снять выбранное назначение']
+  ],'add',true);
+ }
  if(['scheme-add','scheme-edit'].includes(op))body+=f('num','Номер','text',null,r.num,true)+f('name','Наименование','text',null,r.name,true)+f('ref_code','Референс','text',null,r.ref_code)+f('sheets_count','Количество листов','number',null,r.sheets_count)+f('note','Комментарий','textarea',null,r.note);
  if(['scheme-add','scheme-edit'].includes(op)){
   body+=`<div class="field wide"><span>Файл схемы</span>${uploadZone('scheme-file','Добавить файл схемы')}<output data-scheme-selected></output></div>`;
@@ -93,7 +108,9 @@ function manualEditor(op,recordId=''){
  if(op==='act-composition')body+=f('resources','Ресурсы (можно несколько)','multi','resources')+f('schemes','Схемы (можно несколько)','multi','schemes');
  if(op==='sources-review')body+=f('reason','Что повторно сверено, источник и основание','textarea',null,null,true);
  if(op==='attachment-edit')body+=f('title','Название','text',null,r.title,true)+f('doc_num','Номер','text',null,r.doc_num)+f('doc_date','Дата','date',null,r.doc_date)+f('sheets_count','Проверенное количество листов','number',null,r.sheets_count)+f('note','Примечание','textarea',null,r.note);
- return card(manualOperations[op],`<form id="manual-form" data-operation="${op}"><div class="grid">${body}</div><p class="hint">${['requirement-add','requirement-set'].includes(op)?'Готовый файл можно связать с этим пунктом позже.':'Пустые количества и даты сохраняются неизвестными. Изменения применяются только к выбранной записи; устаревшие данные отклоняются.'}</p><button type="submit">Сохранить</button> <button type="button" class="secondary" data-action="cancel-entry">Отменить ввод</button></form>`,'clipboard');
+ const hint=op==='assign'?'Укажите роль представителя по распорядительному документу.':
+  ['requirement-add','requirement-set'].includes(op)?'Готовый файл можно связать с этим пунктом позже.':'Пустые количества и даты сохраняются неизвестными. Изменения применяются только к выбранной записи; устаревшие данные отклоняются.';
+ return card(manualOperations[op],`<form id="manual-form" data-operation="${op}"><div class="grid">${body}</div><p class="hint">${hint}</p><button type="submit">Сохранить</button> <button type="button" class="secondary" data-action="cancel-entry">Отменить ввод</button></form>`,'clipboard');
 }
 function openManual(op,recordId=''){if(dirty){toast('Сначала сохраните сведения карточки');return;}openEditor('manual');editorWindow.setTitle(manualOperations[op]);$('#editor-content').innerHTML=manualEditor(op,recordId);decorateSelects();}
 async function submitManual(form){
@@ -101,7 +118,13 @@ async function submitManual(form){
  for(const [k,v] of fd){const el=form.elements.namedItem(k);d[k]=v===''?null:el.type==='number'?Number(v):v;}
  for(const k of ['id','act_id','supply_id','resource_id','attachment_id','scheme_id','release_id','resolution_release_id','unit_id','designer_org_id','sheets_count'])if(d[k]!=null)d[k]=Number(d[k]);
  const r=selectedManualRecord(op,d.id);let action=op;
- if(op==='assign'){if(d.entity==='signatory')d.entity_id=Number(d.signatory_id);else d.entity_id=Number(d.entity_id);delete d.signatory_id;const list=d.entity==='organization'?pdata.manual.org_assignments:pdata.manual.sig_assignments;const old=list.filter(r=>r.role_key===d.role&&(d.scope==='object'?r.object_id===state.object.id:r.project_id===projectId));d.expected={entity_ids:old.map(r=>d.entity==='organization'?r.org_id:r.signatory_id)};}
+ if(op==='assign'){
+  d.entity_id=Number(d.entity_id);
+  const organization=d.entity==='organization';
+  const list=organization?pdata.manual.org_assignments:pdata.manual.sig_assignments;
+  const old=list.filter(r=>r.role_key===d.role&&(d.scope==='object'?r.object_id===state.object.id:r.project_id===projectId));
+  d.expected={entity_ids:old.map(r=>organization?r.org_id:r.signatory_id)};
+ }
  if(op==='resource-add'){d.serial_numbers=(d.serial_num||'').split('\n').filter(Boolean);delete d.serial_num;}
  if(['scheme-edit','resource-edit','act-edit','attachment-edit'].includes(op)){
   if(!r)throw Error('Выберите запись');const id=d.id;delete d.id;
@@ -127,7 +150,9 @@ async function submitManual(form){
   const file=form.querySelector('#scheme-file').files[0];
   await api('/api/v1/scheme-save',{project_id:projectId,action,data:d,file:file?{name:file.name,content:await readUploadContent(file)}:null});
  }else await api('/api/action',{project_id:projectId,action,data:d});
- closeEditor(true);if(['designer-add','project-link','unit-add'].includes(op)){state=await api('/api/workspace?object_id='+state.object.id);}await loadProject(projectId);render();toast('Сохранено в общей базе');
+ closeEditor(true);
+ if(['assign','designer-add','project-link','unit-add'].includes(op))await reloadJournalWorkspace();
+ await loadProject(projectId);render();toast('Сохранено в общей базе');
 }
 function previewFieldLabel(field){
  const suffix={day_2digits:' — день',month_genitive_ru:' — месяц',year_4digits:' — год'};
@@ -189,5 +214,12 @@ async function previewAct(id){
  $('#editor-dialog').scrollTop=0;
  syncPreviewActions();
 }
+document.addEventListener('change',e=>{
+ const form=e.target.closest('#manual-form[data-operation="assign"]');
+ if(!form||e.target.name!=='entity')return;
+ const target=form.querySelector('[data-assignment-target]');
+ target.innerHTML=e.target.value?assignmentTargetField(e.target.value):'';
+ if(e.target.value)enhanceSelect(target.querySelector('select'));
+});
 document.addEventListener('change',e=>{const form=e.target.closest('#manual-form');if(e.target.id==='scheme-file'){form.querySelector('[data-scheme-selected]').textContent=e.target.files[0]?.name||'';return;}if(!form)return;if(e.target.name==='id'||(e.target.name==='act_type'&&form.dataset.operation==='journal-add')){const op=form.dataset.operation;$('#editor-content').innerHTML=manualEditor(op,e.target.value);formDirty=false;decorateSelects();if(op==='act-composition'){for(const [name,links,key] of [['resources',pdata.act_resources,'resource_id'],['schemes',pdata.act_schemes,'scheme_id']]){const chosen=links.filter(x=>x.act_id===Number(e.target.value)).map(x=>String(x[key]));$('#manual-form').querySelectorAll(`input[name="${name}"]`).forEach(input=>input.checked=chosen.includes(input.value));}}}});
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(formDirty&&!b.closest('form')&&!b.form)return;if(b.dataset.previewEdit){openManual(b.dataset.previewEdit);const select=$('#manual-form').elements.namedItem('id');select.value=b.dataset.act;select.dispatchEvent(new Event('change',{bubbles:true}));formDirty=false;notice();$('#editor-dialog').scrollTop=0;}if(b.dataset.manual){if(formDirty)return;openManual(b.dataset.manual,b.dataset.manualRecord||'');}if(b.dataset.original)action(()=>downloadManual('/api/original?project_id='+projectId+'&attachment_id='+b.dataset.original,pdata.attachments.find(a=>a.id===Number(b.dataset.original)).original_name));if(b.dataset.preview)action(()=>previewAct(Number(b.dataset.preview)));if(b.dataset.final||b.dataset.previewDraft)action(async()=>{const id=Number(b.dataset.final||b.dataset.previewDraft);await api('/api/generate',{project_id:projectId,act_id:id,final:!!b.dataset.final});closeEditor(true);await loadProject(projectId);render();toast('Файл DOCX создан и сохранён в папке ИТД выбранной базы.');});});

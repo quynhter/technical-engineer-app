@@ -33,7 +33,8 @@ function tSelect(label,items,value,attrs){
  return `<label class="field"><span>${esc(label)}</span><select ${attrs}>${items.map(([v,l])=>option(v,l,value)).join('')}</select></label>`;
 }
 function tMask(type,value,attrs){
- return templateMasks[type]?tSelect('Маска поля',templateMasks[type].map(v=>[v,v]),value||templateMasks[type][0],attrs):'';
+ const masks=templateMasks[type];
+ return masks?tSelect('Маска поля',masks.map(v=>[v,v]),masks.includes(value)?value:masks[0],attrs):'';
 }
 const dbToken=/{{\s*\$db\.(\w+)\.(?:(r\d+)\.)?(\w+)\s*}}/g;
 const currentDbRows={objects:'object',projects:'project'};
@@ -46,14 +47,18 @@ function expressionType(value){
 }
 function expressionPreview(expression,mask,{bindings=pdata.binding_sources||[],useFirstRecord=false}={}){
  if(String(expression??'').search(dbToken)<0)return '';
- return 'Пример: '+expression.replace(dbToken,(_,table,identity,key)=>{
+ let needsRecord=false;
+ const preview=expression.replace(dbToken,(_,table,identity,key)=>{
   if(table==='objects'&&key==='adress')key='address';
   const root=Object.hasOwn(currentDbRows,table)?currentDbRows[table]:null;
   const prefix='records.'+table+'.';
-  if(!identity&&!root&&useFirstRecord)identity=bindings.find(b=>b.source.startsWith(prefix))?.source.split('.')[2];
+  if(!identity&&!root){
+   needsRecord=true;
+   if(useFirstRecord)identity=bindings.find(b=>b.source.startsWith(prefix))?.source.split('.')[2];
+  }
   const source=identity?prefix+identity+'.'+key:root?root+'.'+key:null;
   const binding=source&&bindings.find(b=>b.source===source);
-  if(binding?.value==null||binding.value==='')return useFirstRecord?'—':'ЗНАЧЕНИЕ';
+  if(binding?.value==null||binding.value==='')return '—';
   const {value,value_type}=binding;
   if(value_type==='number'&&templateMasks.number.includes(mask))return Number(value).toFixed(mask==='0'?0:mask==='0.000'?3:2)+(mask.endsWith('₽')?' ₽':'');
   if(value_type==='date'&&templateMasks.date.includes(mask)){
@@ -62,6 +67,8 @@ function expressionPreview(expression,mask,{bindings=pdata.binding_sources||[],u
   }
   return String(value);
  });
+ if(!needsRecord)return preview;
+ return useFirstRecord?'Пример: '+preview:'';
 }
 function templateExpressionPreview(expression,mask){
  return expressionPreview(expression,mask,{useFirstRecord:true});
@@ -197,11 +204,12 @@ function dbRecordOptions(table,bindings){
   return [id,[title,...details].filter(Boolean).join('. ')];
  });
 }
-function dbRecordSelect(label,table,selected,attrs,bindings){
+function dbRecordSelect(table,selected,attrs,bindings){
  const choices=dbRecordOptions(table,bindings);
  if(selected&&!choices.some(([id])=>id===selected))choices.push([selected,'Запись № '+selected.slice(1)+' недоступна']);
- return tSelect(label,[['',choices.length?'Выберите запись':'Нет записей'],...choices],selected,
-  attrs+' data-select-search'+(!choices.length?' disabled':''));
+ const label='Привязать к записи. '+pdata.template_schema[table].label;
+ return tSelect('Привязать к',[['',choices.length?'Выберите запись':'Нет записей'],...choices],selected,
+  attrs+' aria-label="'+esc(label)+'" data-select-search'+(!choices.length?' disabled':''));
 }
 function pickExpression(input){
  const start=input.selectionStart,end=input.selectionEnd;
@@ -214,7 +222,7 @@ function pickExpression(input){
  const needsRecord=()=>inDocument&&!Object.hasOwn(currentDbRows,select.value);
  const columns=()=>{
   const table=select.value;
-  fields.innerHTML=(needsRecord()?dbRecordSelect('Запись',table,'','data-db-record',functionFieldSources()):'')+
+  fields.innerHTML=(needsRecord()?dbRecordSelect(table,'','data-db-record',functionFieldSources()):'')+
    tSelect('Поле',schema[table].columns.map(c=>[c.key,c.label+' ('+c.key+')']),'','data-db-column');
   if(!inDocument&&!Object.hasOwn(currentDbRows,table))fields.insertAdjacentHTML('beforeend','<p class="hint">Запись выбирается при подготовке документа.</p>');
   const record=fields.querySelector('[data-db-record]');
@@ -229,7 +237,9 @@ function pickExpression(input){
   input.setRangeText('{{ $db.'+[select.value,record,column].filter(Boolean).join('.')+' }}',start,end,'end');
   const event=new Event('input',{bubbles:true});
   event.fieldType=schema[select.value].columns.find(c=>c.key===column).type;
-  input.dispatchEvent(event);picker.close(true);input.focus();
+  input.dispatchEvent(event);
+  picker.close(true);
+  requestAnimationFrame(()=>input.focus());
  };picker.open();
 }
 document.addEventListener('input',event=>{

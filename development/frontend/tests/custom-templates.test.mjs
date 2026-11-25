@@ -4,9 +4,26 @@ import test from 'node:test';
 import {JSDOM} from '../dependencies.mjs';
 
 const asset=name=>readFileSync(new URL('../../../app/itd/web_assets/'+name,import.meta.url),'utf8');
+
+test('a selector option does not trigger the workspace navigation guard',()=>{
+ const dom=new JSDOM('<main id="content"><button data-view="rd"></button></main><div role="listbox"><button role="option"></button></div>',{runScripts:'outside-only'});
+ const w=dom.window,d=w.document,notices=[];
+ const app=asset('app.js');
+ const start=app.indexOf("document.addEventListener('click',async e=>");
+ Object.assign(w,{formDirty:false,notice:message=>notices.push(message)});
+ w.eval(app.slice(start,app.indexOf("document.addEventListener('submit'",start)));
+ const option=d.querySelector('[role="option"]');
+ option.onclick=()=>{w.formDirty=true;option.remove();};
+ option.click();
+ assert.deepEqual(notices,[]);
+ d.querySelector('[data-view]').click();
+ assert.match(notices[0],/Сначала сохраните запись/);
+ dom.window.close();
+});
+
 for(const theme of ['light','dark']){
  test('template field picker and form submission in '+theme,async()=>{
-  const dom=new JSDOM(asset('index.html'),{url:'http://localhost/',runScripts:'outside-only'}),w=dom.window,d=w.document;
+  const dom=new JSDOM(asset('index.html'),{url:'http://localhost/',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window,d=w.document;
   d.documentElement.dataset.theme=theme;
   w.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
   w.HTMLDialogElement.prototype.close=function(){this.open=false;};
@@ -44,6 +61,16 @@ for(const theme of ['light','dark']){
   assert.equal(d.querySelector('[data-template-preview]').textContent,'Пример: 0');
   assert.equal(d.querySelector('[data-field-type]').value,'number');
   assert.equal(d.querySelector('[data-field-prop="mask"]').value,'0');
+  w.pdata.template_schema.objects.columns.push({key:'city',label:'Город',type:'text'});
+  w.pdata.template_schema.projects={label:'Разделы',columns:[{key:'code',label:'Шифр',type:'text'}]};
+  w.pdata.binding_sources.push(
+   {source:'object.city',value:'Казань',value_type:'text'},
+   {source:'project.code',value:'ЭОМ-1',value_type:'text'});
+  const city={key:'city',label:'Город',kind:'literal',expression:true,value:'{{ $db.objects.city }}'};
+  input.value=city.value;input.dispatchEvent(new w.Event('input',{bubbles:true}));
+  assert.equal(d.querySelector('[data-template-preview]').textContent,'Казань');
+  input.value=city.value+' · {{ $db.projects.code }}';input.dispatchEvent(new w.Event('input',{bubbles:true}));
+  assert.equal(d.querySelector('[data-template-preview]').textContent,'Казань · ЭОМ-1');
   w.pdata.template_schema.organizations={label:'Организации',columns:[
    {key:'full_name',label:'Наименование',type:'text'},{key:'inn',label:'ИНН',type:'text'}]};
   w.pdata.binding_sources.push(
@@ -54,27 +81,39 @@ for(const theme of ['light','dark']){
   const expression='{{ $db.organizations.full_name }}, ИНН: {{ $db.organizations.inn }}';
   input.value=expression;input.dispatchEvent(new w.Event('input',{bubbles:true}));
   assert.equal(d.querySelector('[data-template-preview]').textContent,'Пример: Строймонтаж, ИНН: 7700000001');
+  input.value=city.value+' · '+expression;input.dispatchEvent(new w.Event('input',{bubbles:true}));
+  assert.equal(d.querySelector('[data-template-preview]').textContent,'Пример: Казань · Строймонтаж, ИНН: 7700000001');
+  input.value=expression.replaceAll('organizations.','organizations.r3.');
+  input.dispatchEvent(new w.Event('input',{bubbles:true}));
+  assert.equal(d.querySelector('[data-template-preview]').textContent,'Строймонтаж, ИНН: 7700000001');
   w.pdata.binding_sources.find(b=>b.source==='records.organizations.r3.inn').value=null;
+  input.value=expression;
   input.dispatchEvent(new w.Event('input',{bubbles:true}));
   assert.equal(d.querySelector('[data-template-preview]').textContent,'Пример: Строймонтаж, ИНН: —');
   const documentForm=d.createElement('form');
-  documentForm.innerHTML=w.functionField({key:'organization',kind:'literal',expression:true,value:expression},false,'creation');
+  documentForm.innerHTML=w.functionField({key:'organization',kind:'literal',expression:true,value:expression},false,'creation')+
+   w.functionField(city,false,'creation');
   d.body.append(documentForm);
   const record=documentForm.querySelector('[data-expression-record="organizations"]');
   w.enhanceForTest(record);
+  assert.equal(documentForm.querySelector('h4 label[for="act_field_city"]').textContent,'Город');
+  assert.equal(documentForm.querySelector('[data-document-field="city"] output').textContent,'Казань');
   assert.equal(record.value,'');
-  assert.equal(documentForm.querySelector('[data-template-preview]').textContent,'Пример: ЗНАЧЕНИЕ, ИНН: ЗНАЧЕНИЕ');
+  assert.equal(record.closest('.field').querySelector('span').textContent,'Привязать к');
+  assert.equal(record.options[0].textContent,'Выберите запись');
+  assert.equal(documentForm.querySelector('[data-template-preview]').textContent,'');
   const combo=record.parentElement.querySelector('[role="combobox"]');
   combo.focus();combo.value='7700000002';combo.dispatchEvent(new w.Event('input',{bubbles:true}));
   combo.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
   assert.equal(record.value,'r4');
   const selected='{{ $db.organizations.r4.full_name }}, ИНН: {{ $db.organizations.r4.inn }}';
   assert.equal(w.collectFunctionFields(documentForm)[0].value,selected);
-  assert.equal(documentForm.querySelector('[data-template-preview]').textContent,'Пример: Промстрой, ИНН: 7700000002');
+  assert.equal(documentForm.querySelector('[data-template-preview]').textContent,'Промстрой, ИНН: 7700000002');
   record.value='r3';record.dispatchEvent(new w.Event('change',{bubbles:true}));
   assert.equal(w.collectFunctionFields(documentForm)[0].value,selected.replaceAll('r4','r3'));
   record.value='';record.dispatchEvent(new w.Event('change',{bubbles:true}));
   assert.equal(w.collectFunctionFields(documentForm)[0].value,expression);
+  assert.equal(documentForm.querySelector('[data-template-preview]').textContent,'');
   const text=documentForm.querySelector('textarea');text.select();
   documentForm.querySelector('[data-document-expression]').click();
   const docTable=d.querySelector('[data-db-table]');docTable.value='organizations';docTable.dispatchEvent(new w.Event('change'));
@@ -84,6 +123,8 @@ for(const theme of ['light','dark']){
   docRecord.value='r4';docRecord.dispatchEvent(new w.Event('change'));
   d.querySelector('[data-db-insert]').click();
   assert.equal(text.value,'{{ $db.organizations.r4.full_name }}');
+  await new Promise(resolve=>w.requestAnimationFrame(resolve));
+  assert.equal(d.activeElement,text);
   documentForm.innerHTML=w.functionTableCell({type:'text'},expression,false,'organization');
   const cell=documentForm.querySelector('[data-table-column]'),cellRecord=cell.querySelector('select');
   cellRecord.value='r4';cellRecord.dispatchEvent(new w.Event('change',{bubbles:true}));
@@ -102,11 +143,12 @@ for(const theme of ['light','dark']){
   const legacy={key:'table_2',kind:'table',source:'table_2',fields:[{key:'object',kind:'reference',source:'item.object'}]};
   let saved;
   w.api=async(path,data)=>{
-   if(path.endsWith('/inspect'))return {fields:[legacy]};
+   if(path.endsWith('/inspect'))return {fields:[legacy,{...city,value:undefined}]};
    saved=data;
   };
-  await w.openTemplate({code:'old',name:'Акт',form_set:'И 1.13-07',original_name:'СП_77_А_1.docx',fields:[{...legacy,source:undefined,value:[{object:'Корпус'}]}]});
+  await w.openTemplate({code:'old',name:'Акт',form_set:'И 1.13-07',original_name:'СП_77_А_1.docx',fields:[{...legacy,source:undefined,value:[{object:'Корпус'}]},city]});
   assert.equal(d.querySelector('[data-template-field] h3').textContent,'Поле «object»');
+  assert.equal(d.querySelector('[data-template-field="1"] [data-template-preview]').textContent,'Казань');
   assert.equal(d.querySelector('[data-add-row]'),null);
   const objectInput=d.querySelector('[data-field-prop="value"]');
   assert.equal(objectInput.value,'Корпус');

@@ -200,8 +200,8 @@ def save_workspace(c, data):
             if rep_id is None:
                 rep_id = add_signatory(c, org_id=org_id, fio=values['fio'], position=values['position'])
             patch(c, 'signatories', rep_id, values)
-            old = next((r['document_roles'] for r in known.get(org.get('id'), {}).get('representatives', []) if r['id'] == rep_id), [])
-            _assign_roles(c, 'signatory', rep_id, object_id, rep.get('document_roles', []), old)
+            if 'document_roles' in rep:
+                _assign_roles(c, 'signatory', rep_id, object_id, rep['document_roles'], previous.get('document_roles', []))
     known_projects = {p['id']: p for p in before['projects']}
     for project in data.get('projects', []):
         pid = project.get('id')

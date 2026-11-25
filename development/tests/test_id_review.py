@@ -78,6 +78,38 @@ class IdReviewTests(WorkspaceFixture, unittest.TestCase):
             # Общее назначение сохраняется при изменении назначения раздела.
             self.assertEqual(c.execute('SELECT signatory_id FROM signatory_assignments WHERE object_id=?',(saved['object']['id'],)).fetchone()[0],first)
 
+    def test_workspace_save_preserves_roles_managed_on_ojr_title(self):
+        from itd.manual import context
+        from itd.workspace import save_workspace, snapshot
+
+        saved = self.create()
+        oid, pid = saved['object']['id'], saved['projects'][0]['id']
+        org = saved['participants'][0]
+        first = org['representatives'][0]['id']
+        with connect(self.path) as c:
+            second = add_signatory(c, org_id=org['id'], fio='Петров Пётр', position='Инженер')
+            data = dict(entity='signatory', role='builder', scope='object', mode='add')
+            execute(c, pid, 'assign', {**data, 'entity_id': second, 'expected': {'entity_ids': []}})
+            execute(c, pid, 'assign', {**data, 'entity_id': first, 'expected': {'entity_ids': [second]}})
+            execute(c, pid, 'assign', {**data, 'scope': 'project', 'entity_id': first,
+                                      'expected': {'entity_ids': []}})
+
+            updated = snapshot(c, oid)
+            for rep in updated['participants'][0]['representatives']:
+                rep.pop('document_roles')
+            updated['participants'][0]['representatives'][0]['position'] = 'Ведущий инженер'
+            updated = save_workspace(c, updated)
+            self.assertEqual(updated['participants'][0]['representatives'][0]['position'], 'Ведущий инженер')
+
+            assignments = [r for r in context(c, pid)['sig_assignments'] if r['role_key'] == 'builder']
+            self.assertEqual([(r['object_id'], r['project_id'], r['signatory_id']) for r in assignments],
+                             [(oid, None, second), (oid, None, first), (None, pid, first)])
+            execute(c, pid, 'assign', {**data, 'mode': 'remove', 'entity_id': second,
+                                      'expected': {'entity_ids': [second, first]}})
+            rendered = [r for r in journal_data(c, pid)['title_assignments'] if r['role_key'] == 'builder']
+            self.assertEqual([(r['section_code'], r['person']['id']) for r in rendered],
+                             [(None, first), ('СПС', first)])
+
     def test_work_tab_is_project_scoped_but_ojr_contains_all_object_sections(self):
         saved = self.create()
         pid, oid = saved['projects'][0]['id'], saved['object']['id']

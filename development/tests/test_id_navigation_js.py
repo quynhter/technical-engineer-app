@@ -52,6 +52,8 @@ const project={journals:{object:{name:'Сведения об объекте'},ti
  {role_key:'foreman',organization:{full_name:'Организация монтажника'},person:{fio:'Сидоров',position:'Прораб'},section_code:'ЭОМ'}]}};
 const blocks=journalBlocks(project,'0',{document_roles:{builder:'Подрядчик',foreman:'Производитель работ'}});
 assert.equal(blocks[0].title,'Сведения об объекте');assert.equal(blocks[1].title,'Уполномоченные представители');
+assert.ok(blocks[1].tools.includes('assign'));
+assert.ok(!journalBlocks(project,'automatic')[0].tools.includes('assign'));
 const text=JSON.stringify(blocks);for(const value of ['Подрядчик','Иванов','Петров','Производитель работ','Организация монтажника','Раздел ЭОМ'])assert.ok(text.includes(value));
 """+'});')
 

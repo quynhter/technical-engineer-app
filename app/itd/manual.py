@@ -230,7 +230,7 @@ def context(c,project_id):
     return {'supplies':supply_balance(c,project_id),
       'requirements_records':[dict(r) for r in c.execute('SELECT * FROM package_requirements WHERE project_id=?',(project_id,))],
       'org_assignments':[dict(r) for r in c.execute('SELECT * FROM organization_assignments WHERE object_id=? OR project_id=?',(project['object_id'],project_id))],
-      'sig_assignments':[dict(r) for r in c.execute('SELECT * FROM signatory_assignments WHERE object_id=? OR project_id=?',(project['object_id'],project_id))],
+      'sig_assignments':[dict(r) for r in c.execute('SELECT * FROM signatory_assignments WHERE object_id=? OR project_id=? ORDER BY id',(project['object_id'],project_id))],
       'allocations':[dict(r) for r in c.execute('SELECT m.* FROM act_materials m JOIN acts a ON a.id=m.act_id WHERE a.project_id=?',(project_id,))],
       'periods':[dict(r) for r in c.execute('SELECT * FROM participant_periods WHERE object_id=?',(project['object_id'],))],
       'units':[dict(r) for r in c.execute('SELECT * FROM object_units WHERE object_id=?',(project['object_id'],))],

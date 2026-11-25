@@ -19,25 +19,30 @@ function documentRecordGroups(value){
 }
 function documentRecordControls(groups){
  const bindings=functionFieldSources();
- return groups.map(([table,identity])=>dbRecordSelect('Запись: '+pdata.template_schema[table].label,table,identity,
+ return groups.map(([table,identity])=>dbRecordSelect(table,identity,
   'data-expression-record="'+table+'"',bindings)).join('');
+}
+function documentFieldLabel(id,field,mode){
+ const label=`<label for="${esc(id)}">${esc(field.label||field.marker_path||field.key)}${field.required?' *':''}</label>`;
+ return mode==='creation'?`<h4 class="document-field-title">${label}</h4>`:label;
 }
 function functionField(field,locked=false,mode='version',roots=pdata.form_roots||{}){
  if(field.expression){
-  const prefix=mode==='version'?'version_field_':'act_field_';
-  const label=esc(field.label||field.marker_path||field.key);
+  const id=(mode==='version'?'version_field_':'act_field_')+field.key;
+  const type=field.value_type||expressionType(field.value);
+  const mask=templateMasks[type]?.includes(field.mask)?field.mask:templateMasks[type]?.[0];
   return `<div class="field wide" data-document-field="${esc(field.key)}" data-field-definition="${esc(JSON.stringify(field))}">
-   <label for="${prefix+esc(field.key)}">${label}</label>
-   <div class="document-function-control"><textarea id="${prefix+esc(field.key)}" ${locked?'disabled':''}>${esc((locked?field._display_value:null)??field.value??'')}</textarea><button type="button" class="secondary" data-document-expression aria-label="Вставить поле из базы" ${locked?'disabled':''}>ƒ</button></div>
-   ${locked?'':`<div data-document-records>${documentRecordControls(documentRecordGroups(field.value))}</div>
-   <div data-document-mask data-type="${field.value_type||expressionType(field.value)}">${tMask(field.value_type||expressionType(field.value),field.mask,'data-document-mask-select')}</div>
-   <output class="hint" data-template-preview>${esc(expressionPreview(field.value,field.mask,{bindings:functionFieldSources()}))}</output>`}
+   ${documentFieldLabel(id,field,mode)}
+   <div class="document-function-control"><textarea id="${esc(id)}" ${locked?'disabled':''}>${esc((locked?field._display_value:null)??field.value??'')}</textarea><button type="button" class="secondary" data-document-expression aria-label="Вставить поле из базы" ${locked?'disabled':''}>ƒ</button></div>
+   ${locked?'':`<output class="hint" data-template-preview>${esc(expressionPreview(field.value,mask,{bindings:functionFieldSources()}))}</output>
+   <div data-document-mask data-type="${type}">${tMask(type,mask,'data-document-mask-select')}</div>
+   <div data-document-records>${documentRecordControls(documentRecordGroups(field.value))}</div>`}
   </div>`;
  }
  const linked=field.kind!=='literal',value=functionFieldValue(field,roots),type=fieldInputType(field);
  const name=mode==='table'?'':mode==='version'?`name="version_field_${esc(field.key)}"`:`data-act-field="${esc(field.key)}"`;
  return `<div class="field wide document-function-field" data-document-field="${esc(field.key)}" data-field-definition="${esc(JSON.stringify(field))}" data-field-mode="${mode}">
-  <label for="document-value-${esc(field.key)}">${esc(field.label||field.key)}${field.required?' *':''}</label>
+  ${documentFieldLabel('document-value-'+field.key,field,mode)}
   <div class="document-function-control"><div data-function-control>${linked||type==='text'?`<textarea id="document-value-${esc(field.key)}" ${name} ${linked?'readonly':''} ${locked?'disabled':''}>${esc(value)}</textarea>`:`<input id="document-value-${esc(field.key)}" ${name} type="${type}" ${type==='number'?'step="any"':''} value="${esc(value)}" ${locked?'disabled':''}>`}</div><button type="button" class="secondary function-toggle" data-field-function aria-label="Выбрать источник: ${esc(field.label||field.key)}" aria-pressed="false" title="Выбрать поле базы данных" ${locked?'disabled':''}><svg class="function-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17 4h-2a3 3 0 0 0-3 2.5l-2 11A3 3 0 0 1 7 20H6M8 10h8"/></svg></button></div>
   <span class="hint function-source" data-function-source>${linked?esc(fieldSourceLabel(field))+'. '+esc(field.source||'Представление подписанта'):''}</span>
  </div>`;
@@ -153,7 +158,7 @@ for(const type of ['input','change'])document.addEventListener(type,e=>{
    }
   }
   if(mask&&(e.target===input||e.target.matches('[data-document-mask-select]'))){
-   row.querySelector('[data-template-preview]').textContent=expressionPreview(input.value,mask.querySelector('select')?.value||field.mask,{bindings:functionFieldSources()});
+   row.querySelector('[data-template-preview]').textContent=expressionPreview(input.value,mask.querySelector('select')?.value,{bindings:functionFieldSources()});
   }
  }
  const form=e.target.closest('form');if(!form||e.target.matches('[data-function-source-select]'))return;

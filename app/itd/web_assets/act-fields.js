@@ -77,11 +77,11 @@ function renderActFields(code){
   panel.hidden=!roots.some(root=>uses(fieldsForLinks,root));
   panel.querySelectorAll('input').forEach(input=>input.disabled=panel.hidden);
  }
+ const people=$('#act-people-fields');if(people)people.outerHTML=actPeopleSelects(null,form);
  if(!form){$('#act-fields').innerHTML='';return;}
  if($('#act-resources'))syncLinkedActResources();
- const people=$('#act-people-fields');if(people){people.outerHTML=actPeopleSelects(null,form);decorateSelects();}
  const fields=actFieldDefinitions(form).filter(f=>!['hidden','not_applicable'].includes(f.state)),roots=actInputRoots();
- $('#act-fields').innerHTML=documentCreationGuidance(form)+participantRoleChoosers(fields)+organizationSelects(fields)+`<h3 class="rep">Сведения документа</h3><p class="hint">Обязательные сведения отмечены *. Можно сохранить незаполненный документ для дальнейшей подготовки; пропуски будут показаны при проверке.</p><div class="grid">${documentScalarFields(fields).map(f=>functionField(f,false,'creation',roots)).join('')}</div>
+ $('#act-fields').innerHTML=participantRoleChoosers(fields)+organizationSelects(fields)+`<h3>Сведения документа</h3><p class="hint">Обязательные сведения отмечены *. Можно сохранить незаполненный документ для дальнейшей подготовки; пропуски будут показаны при проверке.</p><div class="document-scalar-fields">${documentScalarFields(fields).map(f=>functionField(f,false,'creation',roots)).join('')}</div>
  ${versionTables(fields,{},false)}
  ${fields.some(f=>f.kind==='table'&&f.source)?`<details class="act-auto-block"><summary>Автоматические таблицы и перечни</summary><ul>${fields.filter(f=>f.kind==='table'&&f.source).map(f=>`<li>${esc(f.label||'Перечень')} — из связанных сведений раздела и выбранных ресурсов</li>`).join('')}</ul></details>`:''}`;
  decorateSelects();
@@ -176,10 +176,6 @@ function actLinkIds(form,fd,section,name){
  return form.querySelector('#'+section)?.hidden?[]:fd.getAll(name).map(Number);
 }
 
-function documentCreationGuidance(form){
- const guidance=form.guidance;
- return `<section class="preview-section"><h3>${esc(form.name)}</h3>${guidance?`<p class="hint">${esc(guidance.norm)}</p><p>${esc(guidance.summary)}</p><a href="${esc(guidance.url)}" target="_blank" rel="noopener noreferrer">Пример заполнения и пояснения к частям документа</a><p class="hint">Пояснения id-prosto.ru. Применимость и редакцию сверяйте с оригиналом нормы и проектом.</p>`:'<p class="hint">Заполняйте по исходному бланку и проекту. Реквизиты участников подставляются из карточек; результаты, замечания и решение укажите по фактическим данным.</p>'}</section>`;
-}
 function collectCreationTables(form,fields){
  return [...form.querySelectorAll('[data-version-table]')].map(table=>{
   const field=fields.find(f=>f.key===table.dataset.versionTable);

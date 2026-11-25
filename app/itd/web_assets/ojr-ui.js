@@ -49,9 +49,14 @@ function actRoles(definition){
 }
 function actPeopleSelects(aid=null,definition=null){
  const a=pdata.acts.find(a=>a.id===aid);definition=definition||pdata.forms.find(f=>f.code===a?.act_type)||actForms().find(f=>f.code===$('#act-type')?.value);
- if(!aid&&!definition)return '<div id="act-people-fields" class="workspace-stack"><p class="hint">После выбора формы здесь появятся роли подписантов.</p></div>';
- const existing=pdata.act_signatories.filter(s=>s.act_id===aid),roles=meta.document_roles;
- const body=`<details class="ux-disclosure" open><summary>Подписанты из участников строительства</summary><div class="grid">${actRoles(definition).map(role=>`<label class="field"><span>${esc(participantRoleLabel(role,definition?.ui_fields||definition?.fields||[]))}</span><select name="signer_${role}"><option value="">Не выбран</option>${actRoleCandidates(role).map(p=>option(p.id,representativeLabel(p),existing.find(s=>s.role_key===role)?.signatory_id||(actRoleCandidates(role).length===1?actRoleCandidates(role)[0].id:null))).join('')}</select></label>`).join('')}</div></details>`;
+ const roles=actRoles(definition);
+ if(!roles.length)return aid?'':'<div id="act-people-fields" class="workspace-stack" hidden></div>';
+ const existing=pdata.act_signatories.filter(s=>s.act_id===aid);
+ const body=`<details class="ux-disclosure" open><summary>Подписанты из участников строительства</summary><div class="grid">${roles.map(role=>{
+  const candidates=actRoleCandidates(role);
+  const selected=existing.find(s=>s.role_key===role)?.signatory_id||(candidates.length===1?candidates[0].id:null);
+  return `<label class="field"><span>${esc(participantRoleLabel(role,definition?.ui_fields||definition?.fields||[]))}</span><select name="signer_${role}"><option value="">Не выбран</option>${candidates.map(p=>option(p.id,representativeLabel(p),selected)).join('')}</select></label>`;
+ }).join('')}</div></details>`;
  return aid?body:'<div id="act-people-fields" class="workspace-stack">'+body+'</div>';
 }
 function actStatusEditor(aid){
