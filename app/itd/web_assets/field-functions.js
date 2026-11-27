@@ -31,6 +31,17 @@ function documentFieldLabel(id,field,mode){
  const label=`<label for="${esc(id)}">${esc(field.label||field.marker_path||field.key)}${field.required?' *':''}</label>`;
  return mode!=='table'?`<h4 class="document-field-title">${label}</h4>`:label;
 }
+function documentExpressionPreview(field,value,mask,roots){
+ const source=field.source||'';
+ let defaultRows={};
+ if(source==='object')defaultRows={objects:roots.object||{}};
+ else if(/^(organizations\.\w+|signatories\.\w+\.organization)$/.test(source))defaultRows={organizations:sourceValue(source,roots)||{}};
+ else if(/^signatories\.\w+$/.test(source)){
+  const person=sourceValue(source,roots)||{};
+  defaultRows={signatories:person,organizations:person.organization||{}};
+ }
+ return expressionPreview(value,mask,{bindings:functionFieldSources(),defaultRows});
+}
 function functionField(field,locked=false,mode='version',roots=pdata.form_roots||{}){
  if(field.expression){
   const id=(mode==='version'?'version_field_':'act_field_')+field.key;
@@ -43,7 +54,7 @@ function functionField(field,locked=false,mode='version',roots=pdata.form_roots|
    ${documentFieldLabel(id,field,mode)}
    <div class="document-function-control">${typed?`<input id="${esc(id)}" type="${type}" ${type==='number'?'step="any"':''} value="${esc(type==='date'?calendarInputValue(value):String(value).replace(',','.'))}">`:`<textarea id="${esc(id)}" ${locked?'disabled':''}>${esc(value)}</textarea>`}
    ${locked?'':`<button type="button" class="secondary" data-document-expression aria-label="Вставить поле из базы: ${esc(field.label||field.key)}">ƒ</button>`}</div>
-   ${locked?'':`<output class="hint" data-template-preview>${esc(expressionPreview(field.value,mask,{bindings:functionFieldSources()}))}</output>
+   ${locked?'':`<output class="hint" data-template-preview>${esc(documentExpressionPreview(field,field.value,mask,roots))}</output>
    <div data-document-mask data-type="${type}">${tMask(type,mask,'data-document-mask-select')}</div>
    <div data-document-records>${documentRecordControls(documentRecordGroups(field.value))}</div>
    ${linked&&templateMasks[type]?`<button type="button" class="secondary expression-manual" data-expression-manual>Ввести вручную</button>`:''}`}
@@ -114,7 +125,7 @@ document.addEventListener('click',e=>{
   if(source!=='__current__')next.binding_explicit=true;
   if(field.kind==='signatory')next.binding_role=field.role;
   if(source!=='__current__'){
-   for(const key of ['value','source','role','template','presentation','_display_value'])delete next[key];
+   for(const key of ['value','source','role','template','presentation','text_pattern','text_required','required_columns','_display_value'])delete next[key];
    if(source==='__manual__'){
     const value=row.dataset.functionValue??'';
     Object.assign(next,{kind:'literal',value:value===''?null:fieldInputType(field)==='number'?Number(value):value});
@@ -145,9 +156,13 @@ function updateFunctionValues(form,roots){
  for(const row of form.querySelectorAll('[data-document-field]')){
   if(row.dataset.functionEditing==='true')continue;
   const field=JSON.parse(row.dataset.fieldDefinition);
-  if(field.kind==='literal')continue;
   const input=row.querySelector('input,textarea');
-  if(input&&!input.disabled)input.value=functionFieldValue(field,roots);
+  if(!input||input.disabled)continue;
+  if(field.kind!=='literal')input.value=functionFieldValue(field,roots);
+  else if(field.expression&&field.source){
+   const preview=row.querySelector('[data-template-preview]');
+   if(preview)preview.textContent=documentExpressionPreview(field,input.value,row.querySelector('[data-document-mask-select]')?.value,roots);
+  }
  }
 }
 for(const type of ['input','change'])document.addEventListener(type,e=>{

@@ -132,7 +132,8 @@ class Handler(BaseHTTPRequestHandler):
     def service_context(self):
         return ServiceContext(database=getattr(self, 'database', self.server.database),
                               root=itd_root.get(), previous_roots=tuple(previous_itd_roots.get()),
-                              templates=default_templates(), settings={'plan_secret': self.server.plan_secret})
+                              templates=getattr(self.server, 'templates', None) or default_templates(),
+                              settings={'plan_secret': self.server.plan_secret})
 
     @staticmethod
     def service_actor(user):
@@ -246,7 +247,8 @@ class Handler(BaseHTTPRequestHandler):
         # Compatibility for trusted in-process callers; requests use execute_web.
         from .services.operations import legacy_mutate
         server = getattr(self, 'server', None)
-        return legacy_mutate(c, route, data, getattr(server, 'database', None), default_templates())
+        return legacy_mutate(c, route, data, getattr(server, 'database', None),
+                             getattr(server, 'templates', None) or default_templates())
 
     def download(self, c, project_id, release_id):
         from .services.queries import download
@@ -287,6 +289,10 @@ def serve(database, port=None, open_browser=True, host='127.0.0.1', public_url=N
     try:
         from .logging_setup import configure
         configure(ROOT / 'logs')
+        archive = os.environ.get('ITD_TEMPLATE_BUNDLE')
+        directory = os.environ.get('ITD_TEMPLATE_DIR')
+        server.templates = Path(directory).resolve() if directory else default_templates()
+        server.template_bundle = Path(archive) if archive else default_templates() / 'itd-forms.zip'
         backup, code = server.prepare()
         url = (configured_origin or server.origin) + '/' + ('#' + code if code else '')
         print(f'Локальная форма ИТД: {url}', flush=True)

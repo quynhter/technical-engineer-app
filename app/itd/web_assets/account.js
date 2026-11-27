@@ -44,12 +44,22 @@ const promptWindow = createWorkspaceDialog('prompt-dialog', {
 });
 const loginWindow = createWorkspaceDialog('login-dialog', {beforeClose:()=>sessionSuspended});
 
-function confirmWorkspace(message, label='Продолжить'){
- $('#prompt-content').innerHTML=`<p>${esc(message)}</p><div class="account-actions"><button type="button" class="secondary" data-dialog-close>Назад</button><button type="button" id="prompt-confirm">${esc(label)}</button></div>`;
+function confirmWorkspace(message, label='Продолжить', cancelLabel='Назад'){
+ $('#prompt-content').innerHTML=`<p>${esc(message)}</p><div class="account-actions"><button type="button" class="secondary" data-dialog-close>${esc(cancelLabel)}</button><button type="button" id="prompt-confirm">${esc(label)}</button></div>`;
  return new Promise(resolve=>{
   finishPrompt=resolve;
   $('#prompt-confirm').onclick=()=>{promptAccepted=true;promptWindow.close(true);};
   promptWindow.open({title:'Подтверждение',focus:$('#prompt-content [data-dialog-close]')});
+ });
+}
+
+function chooseWorkspace(message, saveLabel, discardLabel){
+ $('#prompt-content').innerHTML=`<p>${esc(message)}</p><div class="account-actions"><button type="button" class="secondary" data-dialog-close>Отменить</button><button type="button" class="secondary" id="prompt-discard">${esc(discardLabel)}</button><button type="button" id="prompt-confirm">${esc(saveLabel)}</button></div>`;
+ return new Promise(resolve=>{
+  finishPrompt=resolve;
+  $('#prompt-confirm').onclick=()=>{promptAccepted='save';promptWindow.close(true);};
+  $('#prompt-discard').onclick=()=>{promptAccepted='discard';promptWindow.close(true);};
+  promptWindow.open({title:'Несохранённые изменения',focus:$('#prompt-content [data-dialog-close]')});
  });
 }
 

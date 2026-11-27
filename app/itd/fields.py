@@ -10,6 +10,7 @@ from .db import calendar_date
 
 KEY = re.compile(r"[A-Za-z_][A-Za-z_0-9]*\Z")
 PATH_KEY = re.compile(r"(?:[^\W\d]|_)\w*\Z")
+FIELD_TEXT_TOKEN = re.compile(r'{{\s*([A-Za-z_][A-Za-z_0-9]*(?:\.[A-Za-z_][A-Za-z_0-9]*)*)\s*}}')
 MONTHS = ("января", "февраля", "марта", "апреля", "мая", "июня",
           "июля", "августа", "сентября", "октября", "ноября", "декабря")
 FORMATS = {None, "date_ru", "day_2digits", "month_genitive_ru", "year_4digits"}
@@ -72,6 +73,16 @@ def validate_fields(fields):
             raise ValueError(f"Неизвестный формат: {field.get('format')}")
         if field.get("value_type") not in (None, "text", "date", "number"):
             raise ValueError("Неизвестный тип значения")
+        if 'text_pattern' in field:
+            pattern = field['text_pattern']
+            if field['kind'] != 'reference' or not isinstance(pattern, str) or not FIELD_TEXT_TOKEN.search(pattern):
+                raise ValueError(f'Для поля {field["key"]} нужен шаблон текста с реквизитами записи')
+            required_parts = field.get('text_required', [])
+            if not isinstance(required_parts, list) or not all(part in FIELD_TEXT_TOKEN.findall(pattern) for part in required_parts):
+                raise ValueError(f'В значении поля {field["key"]} должны присутствовать обязательные реквизиты')
+        if 'required_columns' in field and (not isinstance(field['required_columns'], list)
+                or not all(isinstance(column, str) and source_path(column) for column in field['required_columns'])):
+            raise ValueError(f'Некорректный список обязательных реквизитов поля {field["key"]}')
         if field["kind"] in ("reference", "table"):
             if field["kind"] == "table" and "value" in field:
                 if "source" in field:
@@ -146,7 +157,20 @@ def signatory_value(field, roots, draft, path):
 DB_TOKEN = re.compile(r'{{\s*\$db\.(\w+)\.(?:(r[0-9]+)\.)?(\w+)\s*}}')
 
 
-def expression_value(expression, roots, mask=None, *, missing_tables=None):
+def expression_rows(source, roots):
+    if source == 'object':
+        return {'objects': roots.get('object') or {}}
+    if re.fullmatch(r'organizations\.\w+|signatories\.\w+\.organization', source):
+        return {'organizations': lookup(source, roots) or {}}
+    if re.fullmatch(r'signatories\.\w+', source):
+        person = lookup(source, roots) or {}
+        return {'signatories': person, 'organizations': person.get('organization') or {}}
+    return {}
+
+
+def expression_value(expression, roots, mask=None, *, missing_tables=None, default_rows=None, missing_columns=None):
+    default_rows = default_rows or {}
+
     def substitute(match):
         table, identity, column = match.groups()
         if table == 'objects' and column == 'adress':
@@ -157,6 +181,10 @@ def expression_value(expression, roots, mask=None, *, missing_tables=None):
         current = {'objects':'object', 'projects':'project'}.get(table)
         if identity:
             row = roots.get('records', {}).get(table, {}).get(identity)
+        elif table in default_rows:
+            row = default_rows[table]
+            if column.endswith('_id') and column != 'nrs_id':
+                raise ValueError(f'Недоступное поле {table}.{column}')
         elif current:
             row = roots.get(current, {})
         else:
@@ -166,10 +194,22 @@ def expression_value(expression, roots, mask=None, *, missing_tables=None):
                 missing_tables.add(table)
             return '[УТОЧНИТЬ]'
         value = row.get(column)
+        if missing_columns is not None and value in (None, ''):
+            missing_columns.add(f'{table}.{column}')
         kind = value_type(column, value)
         applies = kind=='number' and mask in ('0','0.00','0.000','0.00 ₽') or kind=='date' and mask in ('dd.mm.yyyy','«dd» mmmm yyyy')
         return str(formatted(value, {'mask':mask if applies else None}) if value is not None else '')
-    return DB_TOKEN.sub(substitute, expression)
+    if not default_rows:
+        return DB_TOKEN.sub(substitute, expression)
+    parts = []
+    for part in expression.split(';'):
+        values = [substitute(match) for match in DB_TOKEN.finditer(part)]
+        if '' not in values:
+            values = iter(values)
+            text = DB_TOKEN.sub(lambda _: next(values), part).strip()
+            if text:
+                parts.append(text)
+    return '; '.join(parts)
 
 
 def formatted(value, field):
@@ -208,6 +248,19 @@ def formatted(value, field):
     return value
 
 
+def reference_text(pattern, record):
+    if not isinstance(record, dict):
+        return ''
+    parts = []
+    for part in pattern.split(';'):
+        values = {source: lookup(source, record) for source in FIELD_TEXT_TOKEN.findall(part)}
+        if all(value not in (None, '') for value in values.values()):
+            text = FIELD_TEXT_TOKEN.sub(lambda match: str(values[match[1]]), part).strip()
+            if text:
+                parts.append(text)
+    return '; '.join(parts)
+
+
 def resolve_fields(fields, roots, *, draft=True, prefix="", diagnostics=None):
     """Вернуть контекст и список пропусков; обязательные пропуски блокируют финал."""
     validate_fields(fields)
@@ -233,6 +286,16 @@ def resolve_fields(fields, roots, *, draft=True, prefix="", diagnostics=None):
             value = field.get("value") if field["kind"] == "literal" or (
                 field["kind"] == "table" and "value" in field
             ) else lookup(field["source"], roots)
+            if 'text_pattern' in field:
+                record = value
+                value = reference_text(field['text_pattern'], value)
+                if value and field.get('required'):
+                    gaps = [path + '.' + part for part in field.get('text_required', [])
+                            if lookup(part, record) in (None, '')]
+                    missing.extend(gaps)
+                    if diagnostics is not None:
+                        diagnostics.extend({'path': gap, 'label': field.get('label', key), 'required': True,
+                                            'source': field['source'], 'state': 'missing'} for gap in gaps)
         if field["kind"] == "table":
             if field.get('db_table'):
                 value = list(roots.get('records',{}).get(field['db_table'],{}).values())
@@ -260,7 +323,18 @@ def resolve_fields(fields, roots, *, draft=True, prefix="", diagnostics=None):
             else:
                 if isinstance(value,str) and '$db.' in value:
                     missing_tables = set()
-                    value = expression_value(value, roots, field.get('mask'), missing_tables=missing_tables)
+                    missing_columns = set()
+                    default_rows = expression_rows(field.get('source') or '', roots) if field['kind'] == 'literal' else {}
+                    value = expression_value(value, roots, field.get('mask'), missing_tables=missing_tables,
+                                             default_rows=default_rows, missing_columns=missing_columns)
+                    required_columns = missing_columns.intersection(field.get('required_columns', []))
+                    if value and field.get('required'):
+                        for column in sorted(required_columns):
+                            gap = path + '.' + column.split('.')[-1]
+                            missing.append(gap)
+                            if diagnostics is not None:
+                                diagnostics.append({'path': gap, 'label': field.get('label', key), 'required': True,
+                                                    'source': field.get('source'), 'state': 'missing'})
                     if missing_tables:
                         missing.append(path)
                         if diagnostics is not None:

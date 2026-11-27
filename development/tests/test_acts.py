@@ -79,6 +79,23 @@ class ActTests(unittest.TestCase):
             self.assertEqual(context, {"signed": "26.10.2026", "month": "октября", "started": "29.05.2026"})
             self.assertEqual(model['document']['date']['text'], '26.10.2026')
 
+    def test_template_number_follows_document_card(self):
+        with connect(self.path) as connection:
+            register_form(connection, code="TPL_НОМЕР", name="Номер", fields=[
+                {"key": "act_num", "kind": "literal", "value": "", "expression": True, "label": "Номер документа"},
+            ])
+            register_form(connection, code="ЛИТЕРАЛ", name="Без связи", fields=[
+                {"key": "act_num", "kind": "literal", "value": "", "expression": True},
+            ])
+            act = add_act(connection, project_id=self.project, act_type="TPL_НОМЕР",
+                          fields=[{"key": "act_num", "kind": "literal", "value": "99/ХХХ", "expression": True}])
+            number = connection.execute("SELECT act_num FROM acts WHERE id=?", (act,)).fetchone()[0]
+            self.assertEqual(connection.execute("SELECT fields FROM acts WHERE id=?", (act,)).fetchone()[0], "[]")
+            self.assertEqual(build_context(connection, act)["context"]["act_num"], number)
+            plain = add_act(connection, project_id=self.project, act_type="ЛИТЕРАЛ",
+                            fields=[{"key": "act_num", "kind": "literal", "value": "ручной", "expression": True}])
+            self.assertEqual(build_context(connection, plain)["context"]["act_num"], "ручной")
+
     def test_act_creation_respects_outer_transaction_rollback(self):
         with self.assertRaises(RuntimeError):
             with connect(self.path) as connection:

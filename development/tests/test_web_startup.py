@@ -139,6 +139,7 @@ class WebStartupTests(unittest.TestCase):
 
     def test_both_entry_points_start_with_busy_default_or_port_zero(self):
         import json
+        import os
         import queue
         import subprocess
         import sys
@@ -162,7 +163,8 @@ class WebStartupTests(unittest.TestCase):
                         command = ([sys.executable, '-m', 'app.itd', '--db', str(database), 'web']
                                    if entry == 'cli' else
                                    [sys.executable, str(root/'run.py'), '--db', str(database)])
-                        process = subprocess.Popen(command + ports + ['--no-browser', '--host', '0.0.0.0'], cwd=root,
+                        env = dict(os.environ, ITD_TEMPLATE_DIR=str(Path(folder) / 'app/templates'))
+                        process = subprocess.Popen(command + ports + ['--no-browser', '--host', '0.0.0.0'], cwd=root, env=env,
                                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                                    text=True)
                         lines = queue.Queue()

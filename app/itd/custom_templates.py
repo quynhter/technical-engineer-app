@@ -11,9 +11,12 @@ from .acts import register_form
 from .document_bindings import COLUMNS, EXCLUDE, TABLES, value_type
 
 NAME = r'[A-Za-z][A-Za-z0-9_]*'
+TEMPLATE_CODE = re.compile(r'TPL_[a-f0-9]{32}')
 MARKER = re.compile(r'{{\s*(' + NAME + r'(?:\.' + NAME + r')*)\s*}}')
 LOOP = re.compile(r'{%\s*(?:tr\s+)?for\s+(' + NAME + r')\s+in\s+(' + NAME + r')\s*%}')
 END = re.compile(r'{%\s*(?:tr\s+)?endfor\s*%}')
+IF_FIELD = re.compile(r'{%\s*if\s+(' + NAME + r')\s*%}')
+END_IF = re.compile(r'{%\s*endif\s*%}')
 W = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
 
 
@@ -53,6 +56,7 @@ def inspect_doc(data):
             if 'word/document.xml' not in archive.namelist():
                 raise ValueError('Выберите документ DOCX')
             fields = {}
+            conditions = set()
             for name in archive.namelist():
                 if not name.startswith('word/') or not name.endswith('.xml'):
                     continue
@@ -64,6 +68,7 @@ def inspect_doc(data):
                 loop = None
                 for para in root.iter(W+'p'):
                     text = ''.join(t.text or '' for t in para.iter(W+'t'))
+                    condition_depth = 0
                     for tag in re.findall(r'{{.*?}}|{%.*?%}', text):
                         if match := LOOP.fullmatch(tag):
                             if loop: raise ValueError('Вложенные циклы не поддерживаются')
@@ -71,6 +76,13 @@ def inspect_doc(data):
                             fields.setdefault(loop[1], {'key':loop[1], 'kind':'table','source':loop[1],'fields':[]})
                         elif END.fullmatch(tag):
                             loop = None
+                        elif match := IF_FIELD.fullmatch(tag):
+                            conditions.add(match[1])
+                            condition_depth += 1
+                        elif END_IF.fullmatch(tag):
+                            if not condition_depth:
+                                raise ValueError('Условие и его конец должны находиться в одном абзаце')
+                            condition_depth -= 1
                         elif match := MARKER.fullmatch(tag):
                             key = match[1]
                             table = loop
@@ -92,12 +104,18 @@ def inspect_doc(data):
                                 field = {'key':key,'kind':'literal','value':'','expression':True}
                                 if key == 'date':
                                     field.update(label='Дата подписания', value_type='date', mask='dd.mm.yyyy')
+                                if key == 'act_num':
+                                    field.update(label='Номер документа')
                                 if key != path:
                                     field.update(marker_path=path,label=path)
                                 fields.setdefault(key,field)
                         else:
                             raise ValueError('Документ содержит неподдерживаемое выражение')
+                    if condition_depth:
+                        raise ValueError('Условие и его конец должны находиться в одном абзаце')
                 if loop: raise ValueError('Не найден конец таблицы')
+            if not conditions.issubset(key for key, field in fields.items() if field['kind'] == 'literal'):
+                raise ValueError('Условие должно ссылаться на обычное поле бланка')
             return list(fields.values())
     except (BadZipFile, ElementTree.ParseError) as error:
         raise ValueError('Не удалось прочитать DOCX') from error
@@ -149,12 +167,16 @@ def restore_rolled_back_changes(c):
             write_file(path,previous)
 
 
+def field_shape(fields):
+    return [(field['key'], field_shape(field['fields']) if field['kind'] == 'table' else None) for field in fields]
+
+
 def template_operation(c, op, data, directory):
     from .db import required_text
     code = data.get('code')
     if code:
         row = c.execute('SELECT * FROM document_templates WHERE code=? AND deleted=0',(code,)).fetchone()
-        if not row or not re.fullmatch(r'TPL_[a-f0-9]{32}', code): raise ValueError('Шаблон не найден')
+        if not row or not TEMPLATE_CODE.fullmatch(code): raise ValueError('Шаблон не найден')
     if op in ('download','delete') and not code:
         raise ValueError('Выберите шаблон')
     if op=='download':
@@ -181,9 +203,7 @@ def template_operation(c, op, data, directory):
     if not code and content is None: raise ValueError('Добавьте DOCX')
     if detected is None:
         detected = inspect_doc((directory/(code+'.docx')).read_bytes())
-    def shape(fields):
-        return [(field['key'],shape(field['fields']) if field['kind']=='table' else None) for field in fields]
-    if shape(detected)!=shape(data['fields']):
+    if field_shape(detected)!=field_shape(data['fields']):
         raise ValueError('Поля настройки не совпадают с полями файла')
     code = code or getattr(c, 'preview_template_code', None) or 'TPL_'+uuid4().hex
     register_form(c,code=code,name=name,fields=data['fields'],form_group='act')

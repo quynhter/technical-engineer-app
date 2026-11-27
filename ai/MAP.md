@@ -1,6 +1,6 @@
 # Карта данных, полей и шаблонов ИТД
 
-Снимок структуры на 25.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. Рабочие БД и документы пользователя не открывались и не изменялись.
+Снимок структуры на 26.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. Рабочие БД и документы пользователя не открывались и не изменялись.
 
 ## Навигация
 
@@ -16,8 +16,9 @@
 <a id="audit"></a>
 ## Итоги проверки
 
-- Основная БД: таблиц — **57**, колонок — **416**, компонентов внешних ключей — **113**; миграции 001–026.
+- Основная БД: таблиц — **58**, колонок — **421**, компонентов внешних ключей — **114**; миграции 001–027.
 - Форм / DOCX / JSON-определений — **4**, включая реестр и три журнала из `form_catalog.catalog()`.
+- [Архив поставки](../app/templates/itd-forms.zip) содержит штатных файлов — **5**, пользовательских форм по комплектам — И 1.13-07 (25), Приказ Минстроя №344_пр (5), СП 77.13330.2016 (5).
 - **109 эффективных определений**, включая каждую колонку вложенных таблиц: literal: 5, reference: 93, table: 11.
 - Ошибок проверенных контрактов: **0**. Проверены уникальность кодов и файлов, ключи bindings, существование колонок источников, порядок field_values, Jinja AST всех XML-частей DOCX, поля циклов, два рендера каждой формы (контекст пустого тестового объекта и непустые синтетические строки), целостность XML результата, SQLite integrity_check и foreign_key_check на тестовой БД.
 - Результаты штатных тестов и ограничения их запуска фиксируются в CHANGELOG.md; аудит запускается отдельно.
@@ -71,7 +72,9 @@ MCP: `app/itd/mcp_server.py` → единый реестр `app/itd/tools` → �
 
 ```mermaid
 flowchart LR
-  C["catalog.json + две общие формы"] --> T["document_types.fields"]
+  C["catalog.json"] --> T["document_types.fields"]
+  Z["itd-forms.zip"] --> B["bundled_document_templates → document_templates"]
+  B --> T
   T --> M["merge_fields: overrides акта по key"]
   A["acts.fields"] --> M
   M --> D["apply_form_defaults + bindings.json"]
@@ -83,7 +86,7 @@ flowchart LR
   DOCX --> G["generated_documents → releases → document_versions"]
 ```
 
-1. `form_catalog.catalog()` добавляет к 89 записям файла каталога `СП_77_А_21` и `РЕЕСТР_ИТД`. Код формы совпадает с именем единственного DOCX и `acts.act_type → document_types.code`.
+1. `form_catalog.catalog()` читает штатные формы из JSON. Сервер при подготовке БД добавляет пользовательские формы из архива поставки. `bundled_document_templates` хранит соответствие комплекта и исходного имени коду `TPL_…`, включая удалённые пользователем формы. Код формы соответствует имени рабочего DOCX и `acts.act_type → document_types.code`.
 2. JSON регистрируется в `document_types.fields`. `acts.fields` заменяет определения по `key`, а не только значения: тип, source, required и формат также входят в определение.
 3. `apply_form_defaults` связывает только пустые literal-поля из bindings. Непустой ручной текст, пользовательские ссылки, явный ручной ввод (binding_explicit), hidden и not_applicable сохраняются.
 4. `build_context` читает актуальные карточки, выбранные ресурсы/схемы/факты и участников. Назначение раздела перекрывает объект; явный выбор акта уточняет его. Для подписанного акта используется signers_json. Организация и представитель проверяются на совместимость общей службой.
@@ -383,7 +386,7 @@ CREATE TABLE act_signatories (
 <a id="table-acts"></a>
 #### acts — Основные документы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/inventory.py](../app/itd/inventory.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/journal_export.py](../app/itd/journal_export.py), [app/itd/document_representatives.py](../app/itd/document_representatives.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/inventory.py](../app/itd/inventory.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/act_participants.py](../app/itd/act_participants.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/document_bindings.py](../app/itd/document_bindings.py), [app/itd/workspace.py](../app/itd/workspace.py), [app/itd/changes.py](../app/itd/changes.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/journal_export.py](../app/itd/journal_export.py), [app/itd/document_representatives.py](../app/itd/document_representatives.py), [app/itd/services/template_bundle.py](../app/itd/services/template_bundle.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -529,6 +532,35 @@ CREATE UNIQUE INDEX audit_events_preview_once ON audit_events(preview_id) WHERE 
 
 </details>
 
+<a id="table-bundled_document_templates"></a>
+#### bundled_document_templates — Подключение шаблонов из архива поставки
+
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/services/template_bundle.py](../app/itd/services/template_bundle.py).
+
+| Колонка | SQL-тип; ограничения | FK / прямые поля форм |
+|---|---|---|
+| `form_set` | TEXT; NOT NULL; PK #1 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `original_name` | TEXT; NOT NULL; PK #2 | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `code` | TEXT; NOT NULL | FK #0.0 → document_templates.code; DELETE NO ACTION, UPDATE NO ACTION<br>Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `sha256` | TEXT | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+| `revision` | INTEGER; NOT NULL | Нет прямой привязки поля каталога; служебное/учётное поле или косвенное использование в сервисе |
+
+<details><summary>Точный DDL таблицы, индексов и триггеров</summary>
+
+```sql
+CREATE TABLE bundled_document_templates (
+ form_set TEXT NOT NULL,
+ original_name TEXT NOT NULL,
+ code TEXT NOT NULL REFERENCES document_templates(code),
+ sha256 TEXT,
+ revision INTEGER NOT NULL,
+ PRIMARY KEY(form_set,original_name)
+);
+-- sqlite_autoindex_bundled_document_templates_1: реализует PK/UNIQUE из CREATE TABLE
+```
+
+</details>
+
 <a id="table-deliveries"></a>
 #### deliveries — Сдача
 
@@ -655,7 +687,7 @@ CREATE TABLE document_counters (
 <a id="table-document_templates"></a>
 #### document_templates — Связующая / служебная сущность
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/services/template_bundle.py](../app/itd/services/template_bundle.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -683,7 +715,7 @@ CREATE TABLE document_templates (
 <a id="table-document_types"></a>
 #### document_types — Зарегистрированные формы
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/document_representatives.py](../app/itd/document_representatives.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/__main__.py](../app/itd/__main__.py), [app/itd/acts.py](../app/itd/acts.py), [app/itd/registry.py](../app/itd/registry.py), [app/itd/managed.py](../app/itd/managed.py), [app/itd/workflow.py](../app/itd/workflow.py), [app/itd/titles.py](../app/itd/titles.py), [app/itd/manual.py](../app/itd/manual.py), [app/itd/document_preview.py](../app/itd/document_preview.py), [app/itd/form_catalog.py](../app/itd/form_catalog.py), [app/itd/journals.py](../app/itd/journals.py), [app/itd/document_versions.py](../app/itd/document_versions.py), [app/itd/deletion.py](../app/itd/deletion.py), [app/itd/ojr.py](../app/itd/ojr.py), [app/itd/releases.py](../app/itd/releases.py), [app/itd/custom_templates.py](../app/itd/custom_templates.py), [app/itd/document_representatives.py](../app/itd/document_representatives.py), [app/itd/services/template_bundle.py](../app/itd/services/template_bundle.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -2175,7 +2207,7 @@ CREATE INDEX sessions_user ON sessions(user_id);
 <a id="table-settings"></a>
 #### settings — Выбранная БД и рабочая папка
 
-Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](../app/itd/titles.py), [app/itd/accounts.py](../app/itd/accounts.py), [app/itd/web.py](../app/itd/web.py), [app/itd/http_api.py](../app/itd/http_api.py), [app/itd/assistant_http.py](../app/itd/assistant_http.py), [app/itd/server_state.py](../app/itd/server_state.py).
+Упоминания таблицы в Python (статический указатель, включая SQL; динамические обращения см. сервисы): [app/itd/titles.py](../app/itd/titles.py), [app/itd/accounts.py](../app/itd/accounts.py), [app/itd/web.py](../app/itd/web.py), [app/itd/http_api.py](../app/itd/http_api.py), [app/itd/assistant_http.py](../app/itd/assistant_http.py), [app/itd/server_state.py](../app/itd/server_state.py), [app/itd/services/template_bundle.py](../app/itd/services/template_bundle.py).
 
 | Колонка | SQL-тип; ограничения | FK / прямые поля форм |
 |---|---|---|
@@ -2864,6 +2896,31 @@ CREATE INDEX write_previews_owner
 
 <a id="source-audit_events-source"></a>
 ### `audit_events.source`
+
+
+
+<a id="source-bundled_document_templates-code"></a>
+### `bundled_document_templates.code`
+
+
+
+<a id="source-bundled_document_templates-form_set"></a>
+### `bundled_document_templates.form_set`
+
+
+
+<a id="source-bundled_document_templates-original_name"></a>
+### `bundled_document_templates.original_name`
+
+
+
+<a id="source-bundled_document_templates-revision"></a>
+### `bundled_document_templates.revision`
+
+
+
+<a id="source-bundled_document_templates-sha256"></a>
+### `bundled_document_templates.sha256`
 
 
 

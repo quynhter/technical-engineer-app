@@ -14,6 +14,13 @@ def document_date_field(code, fields):
     return None
 
 
+def document_number_field(code, fields):
+    if code.startswith('TPL_'):
+        return next((field for field in fields if field['key'] == 'act_num' and
+                     not field.get('marker_path') and field['kind'] != 'table'), None)
+    return None
+
+
 def legacy_document_date(field):
     if field and field['kind'] == 'literal':
         value = field.get('value')

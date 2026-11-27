@@ -1,5 +1,5 @@
 'use strict';
-const templateSets=['СП 77.13330.2016','И 1.13-07','Иной согласованный комплект'];
+const templateSets=['СП 77.13330.2016','И 1.13-07','Приказ Минстроя №344_пр','Иной согласованный комплект'];
 const templateMasks={number:['0','0.00','0.000','0.00 ₽'],date:['«dd» mmmm yyyy','dd.mm.yyyy']};
 let templateDraft;
 const templateApi=(op,data)=>api('/api/v1/templates/'+op,{project_id:projectId,...data});
@@ -45,20 +45,23 @@ function expressionType(value){
  }
  return 'text';
 }
-function expressionPreview(expression,mask,{bindings=pdata.binding_sources||[],useFirstRecord=false}={}){
+function expressionPreview(expression,mask,{bindings=pdata.binding_sources||[],useFirstRecord=false,defaultRows={}}={}){
  if(String(expression??'').search(dbToken)<0)return '';
  let needsRecord=false;
- const preview=expression.replace(dbToken,(_,table,identity,key)=>{
+ const scoped=Object.keys(defaultRows).length>0;
+ const substitute=(_,table,identity,key)=>{
   if(table==='objects'&&key==='adress')key='address';
+  const defaultRow=!identity&&Object.hasOwn(defaultRows,table)?defaultRows[table]:null;
   const root=Object.hasOwn(currentDbRows,table)?currentDbRows[table]:null;
   const prefix='records.'+table+'.';
-  if(!identity&&!root){
+  if(!identity&&!root&&!defaultRow){
    needsRecord=true;
    if(useFirstRecord)identity=bindings.find(b=>b.source.startsWith(prefix))?.source.split('.')[2];
   }
   const source=identity?prefix+identity+'.'+key:root?root+'.'+key:null;
-  const binding=source&&bindings.find(b=>b.source===source);
-  if(binding?.value==null||binding.value==='')return '—';
+  const binding=defaultRow?{value:defaultRow[key],value_type:pdata.template_schema[table]?.columns?.find(column=>column.key===key)?.type}:
+   source&&bindings.find(b=>b.source===source);
+  if(binding?.value==null||binding.value==='')return scoped?'':'—';
   const {value,value_type}=binding;
   if(value_type==='number'&&templateMasks.number.includes(mask))return Number(value).toFixed(mask==='0'?0:mask==='0.000'?3:2)+(mask.endsWith('₽')?' ₽':'');
   if(value_type==='date'&&templateMasks.date.includes(mask)){
@@ -66,7 +69,12 @@ function expressionPreview(expression,mask,{bindings=pdata.binding_sources||[],u
    return mask==='dd.mm.yyyy'?[day,month,year].join('.'):'«'+day+'» '+['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'][Number(month)-1]+' '+year;
   }
   return String(value);
- });
+ };
+ const preview=scoped?expression.split(';').map(part=>{
+  let empty=false;
+  const text=part.replace(dbToken,(...args)=>{const value=substitute(...args);empty||=value==='';return value;});
+  return empty?'':text.trim();
+ }).filter(Boolean).join('; '):expression.replace(dbToken,substitute);
  if(!needsRecord)return preview;
  return useFirstRecord?'Пример: '+preview:'';
 }
@@ -104,7 +112,8 @@ function tableControls(field,i){
  }).join('');
 }
 function mergeTemplateField(field,previous){
- const old=previous.find(f=>f.key===field.key&&f.kind===field.kind);
+ const old=previous.find(f=>f.key===field.key&&(f.kind===field.kind||
+  (field.kind==='literal'&&['reference','signatory'].includes(f.kind))));
  if(!old){
   if(field.kind!=='table'){
    const [prefix,key]=(field.marker_path||'').split('.');
@@ -129,6 +138,7 @@ function mergeTemplateField(field,previous){
   return field;
  }
  const merged={...field,...old};
+ if(!old.expression&&['reference','signatory'].includes(old.kind))delete merged.expression;
  if(field.kind==='table'&&Array.isArray(old.value))delete merged.source;
  if(field.fields)merged.fields=field.fields.map(c=>mergeTemplateField(c,old.fields||[]));
  return merged;
@@ -158,6 +168,10 @@ function scalarControls(field){
   field.value_type='date';
   return '<p class="hint">Заполняется из поля «Дата подписания» в документе.</p>'+
    tMask('date',field.mask||'dd.mm.yyyy','data-field-prop="mask"');
+ }
+ if(field.kind==='reference'||field.kind==='signatory'){
+  const pattern=Object.hasOwn(field,'text_pattern')?tInput('Значение поля',field.text_pattern,'data-field-prop="text_pattern" required'):'';
+  return pattern+`<p class="hint">${esc(fieldSourceLabel(field))}</p>`;
  }
  const type=field.value_type||expressionType(field.value);
  field.value_type=type;

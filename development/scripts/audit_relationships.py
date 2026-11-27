@@ -27,6 +27,7 @@ from itd.docx_render import render_docx
 from itd.fields import PRESENTATIONS, SEMANTIC_SOURCES, validate_fields
 from itd.form_catalog import catalog, catalog_fields
 from itd.form_defaults import apply_form_defaults, field_bindings
+from itd.services.template_bundle import read_bundle
 from itd.titles import CODE as TITLE_CODE, ROLES as TITLE_ROLES, prepare_context
 from itd.workspace import DOC_ROLES, ROLES
 
@@ -46,6 +47,7 @@ TABLE_LABELS = {
     'supplies': 'Поставки', 'quality_reviews': 'Проверки документов качества',
     'special_journals': 'Специальные журналы', 'acts': 'Основные документы',
     'document_versions': 'Карточки версий документов', 'document_types': 'Зарегистрированные формы',
+    'bundled_document_templates': 'Подключение шаблонов из архива поставки',
     'releases': 'Выпуски файлов', 'generated_documents': 'История генерации DOCX',
     'attachments': 'Архив исходных файлов', 'project_files': 'Файлы раздела',
     'package_requirements': 'Состав комплекта', 'deliveries': 'Сдача',
@@ -420,6 +422,18 @@ def run_audit():
             errors.append('Определение полей вне каталога: ' + str(path.relative_to(ROOT)))
     for code in set(field_bindings()) - {i['code'] for i in items}:
         errors.append('bindings для неизвестной формы: ' + code)
+    bundle_counts = Counter()
+    native_count = 0
+    try:
+        native, templates = read_bundle(ROOT / 'app/templates/itd-forms.zip')
+        native_count = len(native)
+        for location, data in native:
+            path = ROOT / 'app' / location
+            if not path.is_file() or path.read_bytes() != data:
+                errors.append('Штатный файл в архиве отличается от поставки: ' + location)
+        bundle_counts.update(item['form_set'] for item, _ in templates)
+    except (OSError, ValueError) as error:
+        errors.append('Архив шаблонов поставки: ' + str(error))
     warnings = []
     absent = sum(f['provenance'].startswith('Исходник отсутствует') for f in forms)
     if absent:
@@ -431,7 +445,8 @@ def run_audit():
     if handwritten:
         warnings.append(f'Непечатаемых колонок блоков подписей: {handwritten}; введённый в них текст не выводится')
     return {'tables': tables, 'migrations': migrations, 'auxiliary': extras,
-            'forms': forms, 'errors': errors, 'warnings': warnings}
+            'forms': forms, 'errors': errors, 'warnings': warnings,
+            'bundle_counts': bundle_counts, 'bundle_native': native_count}
 
 
 def render_map(result):
@@ -447,7 +462,7 @@ def render_map(result):
             for col in row['columns']:
                 reverse[col].append(form['item']['code'] + '.' + row['path'])
     lines = ['# Карта данных, полей и шаблонов ИТД', '',
-             'Снимок структуры на 25.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. '
+             'Снимок структуры на 26.11.2026. Карта построена по миграциям и исполняемым контрактам этой копии проекта. '
              'Рабочие БД и документы пользователя не открывались и не изменялись.', '',
              '## Навигация', '',
              '- [Итоги и границы проверки](#audit)', '- [Экран → сущности → документы](#screens)',
@@ -459,6 +474,8 @@ def render_map(result):
              f'компонентов внешних ключей — **{sum(len(t["fks"]) for t in tables.values())}**; '
              f'миграции {migrations[0]:03d}–{migrations[-1]:03d}.',
              f'- Форм / DOCX / JSON-определений — **{len(forms)}**, включая реестр и три журнала из `form_catalog.catalog()`.',
+             f'- [Архив поставки](../app/templates/itd-forms.zip) содержит штатных файлов — **{result["bundle_native"]}**, '
+             'пользовательских форм по комплектам — ' + ', '.join(f'{name} ({count})' for name, count in sorted(result['bundle_counts'].items())) + '.',
              f'- **{len(rows)} эффективных определений**, включая каждую колонку вложенных таблиц: ' + ', '.join(f'{k}: {v}' for k, v in sorted(counts.items())) + '.',
              f'- Ошибок проверенных контрактов: **{len(result["errors"])}**. '
              'Проверены уникальность кодов и файлов, ключи bindings, существование колонок источников, порядок field_values, '
@@ -532,13 +549,17 @@ def render_map(result):
              '| Подтверждение изменений | write_previews (отдельный файл), read_events (аудит предпросмотров и отказов), audit_events.preview_id (уникальная отметка применения) | пользователь, БД, раздел, исходное состояние, срок и SHA-256 предпросмотра |',
              '| Настройки и вход | отдельная БД accounts: users / sessions / api_tokens / settings / document_roots | выбор рабочей БД; правами управляет сервер, без FK на участников строительства |', '',
              '<a id="resolution"></a>', '## Порядок разрешения полей', '',
-             '```mermaid', 'flowchart LR', '  C["catalog.json + две общие формы"] --> T["document_types.fields"]',
+             '```mermaid', 'flowchart LR', '  C["catalog.json"] --> T["document_types.fields"]',
+             '  Z["itd-forms.zip"] --> B["bundled_document_templates → document_templates"]',
+             '  B --> T',
              '  T --> M["merge_fields: overrides акта по key"]', '  A["acts.fields"] --> M',
              '  M --> D["apply_form_defaults + bindings.json"]', '  DB["карточки БД + состав + выбранные участники"] --> R["roots build_context"]',
              '  D --> F["resolve_fields"]', '  R --> F', '  F --> P["prepare_context для титульника"]',
              '  P --> DOCX["StrictUndefined DOCX"]', '  DOCX --> G["generated_documents → releases → document_versions"]', '```', '',
-             '1. `form_catalog.catalog()` добавляет к 89 записям файла каталога `СП_77_А_21` и `РЕЕСТР_ИТД`. '
-             'Код формы совпадает с именем единственного DOCX и `acts.act_type → document_types.code`.',
+             '1. `form_catalog.catalog()` читает штатные формы из JSON. Сервер при подготовке БД '
+             'добавляет пользовательские формы из архива поставки. `bundled_document_templates` хранит соответствие '
+             'комплекта и исходного имени коду `TPL_…`, включая удалённые пользователем формы. '
+             'Код формы соответствует имени рабочего DOCX и `acts.act_type → document_types.code`.',
              '2. JSON регистрируется в `document_types.fields`. `acts.fields` заменяет определения по `key`, '
              'а не только значения: тип, source, required и формат также входят в определение.',
              '3. `apply_form_defaults` связывает только пустые literal-поля из bindings. Непустой ручной текст, '
@@ -593,6 +614,7 @@ def render_map(result):
              'это не отменяет свойства первичного ключа.', '']
     groups = [('Основная БД ИТД', tables)] + [(f'Отдельная БД: {module}', s) for module, s in result['auxiliary'].items()]
     modules = {p.stem: p.read_text() for p in (ROOT / 'app/itd').glob('*.py')}
+    modules['services/template_bundle'] = (ROOT / 'app/itd/services/template_bundle.py').read_text()
     for title, group in groups:
         lines += ['### ' + title, '']
         if title.endswith('read_audit'):

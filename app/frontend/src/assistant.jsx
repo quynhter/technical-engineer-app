@@ -118,7 +118,7 @@ function encodeFile(file){
 
 export function AssistantPanel({config}){
   const api=useApi(config),[open,setOpen]=useState(false),[admin,setAdmin]=useState(false),[assistants,setAssistants]=useState([]),[threads,setThreads]=useState([]),[aid,setAid]=useState(''),[tid,setTid]=useState(null),[history,setHistory]=useState(null),[drafts,setDrafts]=useState({}),[error,setError]=useState(''),[busy,setBusy]=useState(false),[revision,setRevision]=useState(0),[streamRetry,setStreamRetry]=useState(0),[renaming,setRenaming]=useState(null),[confirmDelete,setConfirmDelete]=useState(false);
-  const scrollRef=useRef(null),nearBottom=useRef(true),closeRef=useRef(null),returnFocus=useRef(null),pending=useRef(null),latest=useRef(config);latest.current=config;
+  const scrollRef=useRef(null),nearBottom=useRef(true),closeRef=useRef(null),returnFocus=useRef(null),pending=useRef(null),latest=useRef(config),firstOpenRef=useRef(true);latest.current=config;
   const draftKey=String(tid||'new'),draft=drafts[draftKey]||'';
   const [fileDrafts,setFileDrafts]=useState({});
   const files=fileDrafts[draftKey]||emptyFiles,fileInput=useRef(null);
@@ -131,9 +131,9 @@ export function AssistantPanel({config}){
     setFileDrafts(d=>({...d,[draftKey]:selected}));setError('');
   }
   const setDraft=text=>setDrafts(d=>({...d,[draftKey]:text}));
-  useEffect(()=>{const show=e=>{returnFocus.current=document.activeElement;setOpen(true);setAdmin(e.type==='itd:assistant-admin');};document.addEventListener('itd:assistant-open',show);document.addEventListener('itd:assistant-admin',show);return()=>{document.removeEventListener('itd:assistant-open',show);document.removeEventListener('itd:assistant-admin',show);};},[]);
-  const refresh=async()=>{const [a,t]=await Promise.all([api.json('/assistants'),api.json('/assistant/threads')]);setAssistants(a);setThreads(t);setAid(v=>a.some(item=>String(item.id)===v)?v:String(a[0]?.id||''));};
-  useEffect(()=>{if(open){closeRef.current?.focus();refresh().catch(e=>setError(e.message));}},[open,api]);
+  useEffect(()=>{const toggle=e=>{if(e.type==='itd:assistant-admin'){returnFocus.current=document.activeElement;setOpen(true);setAdmin(true);return;}setOpen(prev=>{if(!prev)returnFocus.current=document.activeElement;return!prev;});};document.addEventListener('itd:assistant-open',toggle);document.addEventListener('itd:assistant-admin',toggle);return()=>{document.removeEventListener('itd:assistant-open',toggle);document.removeEventListener('itd:assistant-admin',toggle);};},[]);
+  const refresh=async()=>{const [a,t]=await Promise.all([api.json('/assistants'),api.json('/assistant/threads')]);setAssistants(a);setThreads(t);setAid(v=>a.some(item=>String(item.id)===v)?v:String(a[0]?.id||''));return{a,t};};
+  useEffect(()=>{if(open){closeRef.current?.focus();refresh().then(({a,t})=>{if(firstOpenRef.current){firstOpenRef.current=false;const nextAid=String(a[0]?.id||'');if(!nextAid)return;const check=()=>{const th=t.find(x=>x.title==='Новый чат'&&String(x.assistant_id)===nextAid);return th?api.json('/assistant/thread?thread_id='+th.id).then(d=>d.messages.length?null:d).catch(()=>null):Promise.resolve(null);};check().then(d=>{if(d){setTid(d.thread.id);setHistory(d);return;}setBusy(true);api.json('/assistant/threads',{assistant_id:Number(nextAid),project_id:config.projectId||null,object_id:config.objectId||null}).then(thread=>{setTid(thread.id);setHistory(null);return api.json('/assistant/threads');}).then(t=>setThreads(t)).catch(e=>setError(e.message)).finally(()=>setBusy(false));});}}).catch(e=>setError(e.message));}},[open,api]);
   useEffect(()=>{if(!open)return;const focus=event=>{if(event.target.id==='login-dialog')closeRef.current?.focus();};document.addEventListener('close',focus,true);return()=>document.removeEventListener('close',focus,true);},[open]);
   useEffect(()=>{if(!open||!tid)return;let alive=true;api.json('/assistant/thread?thread_id='+tid).then(v=>{if(alive){setHistory(v);setAid(String(v.thread.assistant_id));}}).catch(e=>{if(alive)setError(e.message);});return()=>{alive=false;};},[tid,open,api,revision]);
   React.useLayoutEffect(()=>{if(nearBottom.current&&scrollRef.current)scrollRef.current.scrollTop=scrollRef.current.scrollHeight;},[history]);

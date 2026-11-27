@@ -20,10 +20,10 @@ def representatives(fields, available=()):
         else:
             unresolved = True
 
-    def visit_value(value):
+    def visit_value(value, source=''):
         if isinstance(value, str):
             for table, identity, _ in DB_TOKEN.findall(value):
-                if table == 'signatories':
+                if table == 'signatories' and (identity or not re.fullmatch(r'signatories\.\w+', source)):
                     binding(identity)
         elif isinstance(value, dict) and isinstance(value.get('__itd_source'), str):
             match = RECORD_SOURCE.fullmatch(value['__itd_source'])
@@ -36,7 +36,7 @@ def representatives(fields, available=()):
         if match := RECORD_SOURCE.fullmatch(field.get('source') or ''):
             binding(match[1])
         if field['kind'] == 'literal':
-            visit_value(field.get('value'))
+            visit_value(field.get('value'), field.get('source') or '')
         if field['kind'] == 'table':
             columns = [column for column in field['fields']
                        if column.get('state') not in ('hidden', 'not_applicable')]

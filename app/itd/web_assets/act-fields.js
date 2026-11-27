@@ -31,7 +31,7 @@ function fieldSourceLabel(field){
  if(source==='act.date_signed')return 'Из поля «Дата подписания» выше';
  if(source==='act.act_num')return 'Номер будет присвоен при создании документа';
  if(source.startsWith('project_documentation.'))return 'Шифр РД текущего раздела и его проектная организация';
- if(source.startsWith('object.'))return 'Из карточки объекта';
+ if(source==='object'||source.startsWith('object.'))return 'Из карточки объекта';
  if(source.startsWith('project.'))return 'Из карточки раздела';
  if(source.startsWith('organizations.')||source.startsWith('signatories.')||field.kind==='signatory')return 'По назначению: '+(roles[role]||'участник документа');
  return 'Из сохранённых сведений раздела';
@@ -45,6 +45,13 @@ function actAutomaticValue(field,roots){
   const patterns={fio:'{signatory.fio}',fio_short:'{signatory.fio_short}',position_org_fio:'{signatory.position} {organization.short_name} {signatory.fio}',position_org_fio_nrs:'{signatory.position} {organization.short_name} {signatory.fio}, номер в НРС №{signatory.nrs_id}'};
   value=(field.template||patterns[field.presentation||'fio']||'').replace(/\{([\w.]+)\}/g,(_,path)=>sourceValue(path,{signatory:person,organization:person.organization||{}})??'Не заполнено');
  }else value=sourceValue(field.source,roots);
+ if(field.text_pattern&&value&&typeof value==='object'){
+  const marker=/{{\s*([A-Za-z_][A-Za-z_0-9]*(?:\.[A-Za-z_][A-Za-z_0-9]*)*)\s*}}/g;
+  const record=value;
+  const property=path=>sourceValue(path,record);
+  value=field.text_pattern.split(';').filter(part=>[...part.matchAll(marker)].every(([,path])=>property(path)!=null&&property(path)!==''))
+   .map(part=>part.replace(marker,(_,path)=>String(property(path))).trim()).filter(Boolean).join('; ');
+ }
  if(field.source==='act.act_num')return 'Будет присвоен при создании';
  if(field.source==='project_documentation.description'&&!value){const doc=roots.project_documentation||{};return `${doc.code||'Шифр РД не указан'}, ${doc.designer_name||'проектная организация не назначена'}`;}
  if(value===null||value===undefined||value==='')return field.source==='act.date_signed'?'Выберите дату подписания выше':'Не заполнено — уточните исходные сведения';

@@ -1,9 +1,11 @@
 """The deployed tree starts independently of development and the caller's cwd."""
+from contextlib import closing
 import json
 import os
 from pathlib import Path
 import queue
 import shutil
+import sqlite3
 import subprocess
 import sys
 import tempfile
@@ -47,13 +49,15 @@ class RuntimeDistributionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix='itd-runtime-') as temporary:
             root = Path(temporary) / 'distribution'
             shutil.copytree(ROOT / 'app', root / 'app',
-                            ignore=shutil.ignore_patterns('node_modules', '__pycache__', 'bundle-meta.json'))
+                            ignore=shutil.ignore_patterns('node_modules', '__pycache__', 'bundle-meta.json', 'TPL_*.docx'))
             shutil.copy2(ROOT / 'run.py', root / 'run.py')
             self.assertFalse((root / 'development').exists())
             database = root / 'data/itd.db'
+            templates = root / 'app/templates'
+            (templates / 'ОЖР.docx').unlink()
             env = dict(os.environ)
-            env.pop('PYTHONPATH', None)
-            env.pop('ITD_PUBLIC_ORIGIN', None)
+            for name in ('PYTHONPATH', 'ITD_PUBLIC_ORIGIN', 'ITD_TEMPLATE_DIR', 'ITD_TEMPLATE_BUNDLE'):
+                env.pop(name, None)
             process = subprocess.Popen(
                 [sys.executable, str(root / 'run.py'), '--db', str(database),
                  '--public', '--port', '0', '--no-browser'],
@@ -92,6 +96,12 @@ class RuntimeDistributionTests(unittest.TestCase):
                     self.assertEqual(json.load(response)['database'], 'ready')
                 self.assertTrue(database.is_file())
                 self.assertTrue(database.with_name('itd.db.accounts.sqlite3').is_file())
+                self.assertEqual(len(list(templates.glob('TPL_*.docx'))), 35)
+                self.assertEqual((templates / 'ОЖР.docx').read_bytes(), (ROOT / 'app/templates/ОЖР.docx').read_bytes())
+                with closing(sqlite3.connect(database.as_uri() + '?mode=ro', uri=True)) as db:
+                    installed = db.execute('SELECT form_set, count(*) FROM document_templates GROUP BY form_set').fetchall()
+                self.assertEqual(dict(installed), {'И 1.13-07': 25, 'Приказ Минстроя №344_пр': 5,
+                                                   'СП 77.13330.2016': 5})
                 self.assertFalse((root / 'development').exists())
                 self.assertFalse((Path(temporary) / 'db').exists())
             finally:

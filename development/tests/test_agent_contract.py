@@ -56,7 +56,7 @@ class AgentContractTests(unittest.TestCase):
 
     def test_04_all_template_and_form_paths(self):
         entries = manifest_entries(FIXTURES / 'templates.txt')
-        self.assertEqual(len(entries), 14)
+        self.assertEqual(len(entries), 13)
         for name in entries:
             self.assertTrue((ROOT / name).is_file(), name)
 

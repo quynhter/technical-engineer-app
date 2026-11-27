@@ -144,7 +144,7 @@ function navigate(view){const revealPermits=view==='permits';if(revealPermits)vi
 let renderedTableContext=null;
 function render(){
  const nav=[['overview','Обзор','home'],['object','Объект','building'],['rd','Разделы','file'],['participants','Участники','user'],['registry','Исполнительная документация','list'],['ojr','Журналы','journal']];
- if(window.ITDDesign)window.ITDDesign.renderNav(nav.map(([v,n,i])=>[v,n,icon(i)]),workspaceView,navigate,crumbTrail(workspaceView),{userId:currentUser?.id,role:currentUser?.role,workspaceId:currentUser?.workspace_id,projectId,projectLabel:pdata?.project?.name||state.projects.find(p=>p.id===projectId)?.name,sectionCode:pdata?.project?.section_code||state.projects.find(p=>p.id===projectId)?.section_code,objectId:state.object?.id,objectName:state.object?.name,getToken:registryToken,onSessionExpired:suspendWorkspace});
+ if(window.ITDDesign)window.ITDDesign.renderNav(nav.map(([v,n,i])=>[v,n,icon(i)]),workspaceView,navigateGuarded,crumbTrail(workspaceView),{userId:currentUser?.id,role:currentUser?.role,workspaceId:currentUser?.workspace_id,projectId,projectLabel:pdata?.project?.name||state.projects.find(p=>p.id===projectId)?.name,sectionCode:pdata?.project?.section_code||state.projects.find(p=>p.id===projectId)?.section_code,objectId:state.object?.id,objectName:state.object?.name,getToken:registryToken,onSessionExpired:suspendWorkspace});
  $('#sidebar').innerHTML=step===1&&workspaceView==='participants'?orgSidebar():'';
  $('#sidebar').hidden=!(step===1&&workspaceView==='participants');
  $('main').classList.toggle('no-sidebar',$('#sidebar').hidden);
@@ -347,12 +347,37 @@ function journalsWorkspace(){
   else html+=`<div class="content-stack">${journalsPage()}</div>`;
   return `<div class="content-stack id-workspace">${html}</div>`;
 }
+async function leaveGuard(){
+ if(formDirty){
+  if(!await confirmWorkspace('Форма содержит несохранённые данные. Закрыть форму без сохранения?','Закрыть форму','Отменить'))return false;
+  closeEditor(true);
+  formDirty=false;
+ }
+ if(dirty){
+  const choice=await chooseWorkspace('Есть несохранённые изменения в данных объекта.','Сохранить изменения','Отклонить изменения');
+  if(choice==='discard'){
+   await action(()=>loadObject(state.object.id));
+   return !dirty;
+  }
+  if(choice!=='save')return false;
+  await action(async()=>{await save();});
+  return !dirty;
+ }
+ return true;
+}
+async function tabNavigate(view){
+ if(await leaveGuard())navigate(view);
+ else mountSectionTabs();
+}
+async function navigateGuarded(view){
+ if(await leaveGuard())navigate(view);
+}
 function mountSectionTabs(){
   if(!window.ITDDesign)return;
   const idHost=$('#section-tabs'),journalHost=$('#journal-tabs');
   if(idHost){
    const reviewOptions=['check','delivery'].includes(packagePanel)?[{value:'check',label:'Проверка'},{value:'delivery',label:'Сдача'}]:[];
-   window.ITDDesign.renderSectionTabs(idHost,{label:'Разделы ИД',value:workspaceView,onChange:navigate,items:[
+   window.ITDDesign.renderSectionTabs(idHost,{label:'Разделы ИД',value:workspaceView,onChange:tabNavigate,items:[
     {label:'Комплект ИД',options:[{value:'registry',label:'Реестр ИД'},{value:'documents',label:'Основные документы'},...reviewOptions]},
     {label:'Ресурсы',options:[{value:'resources',label:'Спецификация'},{value:'incoming',label:'Входной контроль'},{value:'facts',label:'Факт монтажа'}]},
     {value:'schemes',label:'Схемы'},{value:'templates',label:'Шаблоны документов'}
@@ -360,7 +385,11 @@ function mountSectionTabs(){
   }
   if(journalHost)window.ITDDesign.renderSectionTabs(journalHost,{label:'Виды журналов',value:journalView()==='ojr'?'ojr:'+journalSection:journalView(),onChange:journalTabChange,items:[{label:'ОЖР',options:ojrSectionItems.map(([key,label])=>({value:'ojr:'+key,label}))},{value:'journal',label:'ЖВК'},{value:'cable',label:'ЖПК'}]});
 }
-function journalTabChange(value){
+async function journalTabChange(value){
+ if(!await leaveGuard()){
+  mountSectionTabs();
+  return;
+ }
  if(value.startsWith('ojr:'))selectOjrSection(value.slice(4));
  else navigate(value);
 }

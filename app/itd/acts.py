@@ -34,11 +34,14 @@ def add_act(connection, *, project_id, act_type, date_signed=None, fields=None):
     form = connection.execute("SELECT fields FROM document_types WHERE code=?", (act_type,)).fetchone()
     if not form:
         raise ValueError("Сначала зарегистрируйте тип документа")
-    from .form_defaults import document_date_field, legacy_document_date
+    from .form_defaults import document_date_field, document_number_field, legacy_document_date
     if document_date_field(act_type, json.loads(form['fields'])):
         override = document_date_field(act_type, fields)
         date_signed = date_signed or legacy_document_date(override)
         fields = [field for field in fields if field is not override]
+    if document_number_field(act_type, json.loads(form['fields'])):
+        number_override = document_number_field(act_type, fields)
+        fields = [field for field in fields if field is not number_override]
     # SAVEPOINT сохраняет атомарность, в том числе если вызывающий код поймал исключение.
     connection.execute("SAVEPOINT create_act")
     try:
@@ -163,7 +166,7 @@ def build_context(connection, act_id, *, draft=True):
         roots["registry"] = registry_rows(connection, act["project_id"], registry_act_id=act_id, detailed=act["act_type"] == "РЕЕСТР_ИТД")
     overrides = json.loads(act["fields"])
     fields = apply_form_defaults(act["act_type"], merge_fields(json.loads(form["fields"]), overrides))
-    from .form_defaults import document_date_field, legacy_document_date
+    from .form_defaults import document_date_field, document_number_field, legacy_document_date
     if signing_date := document_date_field(act['act_type'], fields):
         roots['act']['date_signed'] = act['date_signed'] or legacy_document_date(document_date_field(act['act_type'], overrides))
         date_binding = {k: v for k, v in signing_date.items() if k not in ('value', 'expression', 'format')}
@@ -171,6 +174,10 @@ def build_context(connection, act_id, *, draft=True):
         if date_binding.get('mask') not in ('dd.mm.yyyy', '«dd» mmmm yyyy'):
             date_binding['mask'] = 'dd.mm.yyyy'
         fields = [date_binding if field is signing_date else field for field in fields]
+    if number_field := document_number_field(act['act_type'], fields):
+        number_binding = {k: v for k, v in number_field.items() if k not in ('value', 'expression', 'format')}
+        number_binding.update(kind='reference', source='act.act_num')
+        fields = [number_binding if field is number_field else field for field in fields]
     from .document_bindings import records
     roots['records'] = records(connection, act['project_id'])
     if act['act_type']=='ОЖР':

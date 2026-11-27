@@ -33,6 +33,8 @@ def prepare_database(path):
 
 class WorkspaceState:
     daemon_threads = True
+    template_bundle = None
+    templates = None
 
     def __init__(self, database):
         self.database = Path(database).resolve()
@@ -42,6 +44,13 @@ class WorkspaceState:
         self.state_lock = RLock()
         self.workspace_id = secrets.token_urlsafe(24)
         self.itd_root = None
+
+    def prepare_workspace_database(self, database):
+        backup = prepare_database(database)
+        if self.template_bundle is not None:
+            from .services.template_bundle import install_bundle
+            install_bundle(database, self.template_bundle, self.templates)
+        return backup
 
     def prepare(self):
         # Настройки и аккаунты остаются доступны при смене деловой БД.
@@ -53,7 +62,7 @@ class WorkspaceState:
             self.itd_root = Path(settings['itd_root'])
             if not self.database.is_file():
                 raise ValueError('Выбранная БД недоступна. Проверьте путь: ' + str(self.database))
-        backup = prepare_database(self.database)
+        backup = self.prepare_workspace_database(self.database)
         if not existing_accounts:
             code = self.accounts.initialize()
         self.accounts.remember_root(self.database, Path(self.settings()['itd_root']))
@@ -99,7 +108,7 @@ class WorkspaceState:
         user = self.accounts.get(user_id)
         check_workspace_switch(ServiceContext(database=self.database),
                                Actor(user_id=user_id, role=user['role'], source='web'))
-        prepare_database(database)
+        self.prepare_workspace_database(database)
         if explicit_folder:
             folder.mkdir(exist_ok=True)
         self.accounts.save_settings(database, folder)

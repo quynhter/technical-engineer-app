@@ -10,6 +10,7 @@ RUN mkdir -p ../itd/web_assets && npm run build
 FROM python:3.12-slim-bookworm AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    ITD_TEMPLATE_BUNDLE=/srv/itd/itd-forms.zip \
     ITD_PUBLIC_ORIGIN=http://127.0.0.1:8765
 WORKDIR /srv/itd
 # LibreOffice supplies DOCX previews; fonts cover Cyrillic document templates.
@@ -21,11 +22,13 @@ RUN apt-get update \
 COPY app/requirements.txt app/requirements.txt
 RUN pip install --no-cache-dir -r app/requirements.txt
 COPY app/ app/
+COPY app/templates/itd-forms.zip ./itd-forms.zip
 COPY ai/ ai/
 COPY run.py ./
 COPY --from=frontend /build/app/itd/web_assets/ app/itd/web_assets/
 RUN mkdir -p /data/db /data/logs \
     && chown -R itd:itd /data app/templates \
+    && chown itd:itd app/forms \
     && ln -s /data/logs logs
 USER itd
 VOLUME ["/data", "/srv/itd/app/templates"]
